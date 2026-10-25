@@ -12,6 +12,12 @@
 
 ## Authority and status
 
+- Stage 3 source plan approved by the project owner in this chat on 25 October 2026 (reply: “implement”). Scope: local email/password and confirmation, protected Profile, JWT/session authorization, dedicated database role/RLS, generated contracts and tests. At initial Stage 3 completion, authenticated entry temporarily went to `/settings/profile`; Stage 3.5 resolved that destination below. The owner also approved local-only A-01 persistence/testing before the hosted Render/session-pooler spike. This is a sequencing exception for synthetic local development, not hosted/real-user approval. The separate local-only SQL/Auth/credential activation approval was recorded and executed on 26 October 2026 without resetting local database volumes or modifying hosted resources.
+
+## Stage 3.5 application integration
+
+26 October 2026 — approved by the project owner in this task, followed by approval to implement the unified-UI plan. Successful login opens Dashboard; verified registration opens Welcome / entry. The working application shares the preview's compact Dashboard / Roadmap / Settings shell and Settings components. Feature destinations remain protected and are reached through existing page actions; normal application routes show empty/unavailable states instead of sample account activity. Sample fixtures and review-state controls remain in public `/preview` routes. Successful logout returns to `/`; dirty profile changes require confirmation. Existing Supabase Auth, JWT verification, RLS and Profile API contracts remain unchanged. This resolves the temporary Stage 3 profile destination and supersedes the expanded seven-link header. Browser verification is pending owner review.
+
 - The foundation in [Architecture](architecture.md) is already approved. React/Vite, FastAPI, Supabase, Groq, Docker and the named hosts supersede older Next.js/native-only proposals.
 - The delegated choices below are product/operating defaults. Their owning documents contain the requirements. A selected number is an Asgard policy unless a cited source explicitly supplies it; there is no universal standard for every UX choice or request quota.
 - The project lead is initially accountable for product/content approval, architecture review and deployment. Record the actual operator contact and backup operator before external use; do not invent names or delivery availability.

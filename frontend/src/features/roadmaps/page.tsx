@@ -10,15 +10,18 @@ import {
 } from "@/components/ui/accordion";
 import {
   BackLink,
+  PageHeading,
   Notice,
   StatePanel,
   StatusBadge,
   Unavailable,
 } from "@/components/shared";
 import { findCareer, categories, sampleMilestones } from "@/fixtures/catalog";
-import { routes } from "@/lib/routes";
+import { useIsPreview, usePageRoutes } from "@/lib/page-routes";
 
 export function RoadmapPage() {
+  const preview = useIsPreview();
+  const pageRoutes = usePageRoutes();
   const { careerId } = useParams();
   const career = findCareer(careerId);
   const location = useLocation();
@@ -45,6 +48,27 @@ export function RoadmapPage() {
     setParams({}, { state: location.state });
     requestAnimationFrame(() => opener.current?.focus());
   }
+  if (!preview)
+    return (
+      <>
+        <PageHeading
+          title="Learning roadmaps"
+          description="A place for your learning path and progress."
+        />
+        <StatePanel
+          kind="empty"
+          title="Learning roadmaps are not available yet"
+          action={
+            <Button asChild variant="outline">
+              <Link to={pageRoutes.careers}>Back to careers</Link>
+            </Button>
+          }
+        >
+          Published learning paths and progress saving are being prepared. No
+          roadmap has been selected for your account.
+        </StatePanel>
+      </>
+    );
   if (!career)
     return (
       <StatePanel
@@ -52,7 +76,7 @@ export function RoadmapPage() {
         title="This career is unavailable"
         action={
           <Button asChild variant="outline">
-            <Link to={routes.careers}>Back to catalog</Link>
+            <Link to={pageRoutes.careers}>Back to catalog</Link>
           </Button>
         }
       >
@@ -62,7 +86,7 @@ export function RoadmapPage() {
   const category = categories.find((item) => item.id === career.category);
   return (
     <>
-      <BackLink to={`${routes.careers}${catalogSearch}`}>
+      <BackLink to={`${pageRoutes.careers}${catalogSearch}`}>
         Back to catalog
       </BackLink>
       <div className="roadmap-layout">
@@ -173,7 +197,7 @@ export function RoadmapPage() {
               title="This roadmap is awaiting content review"
               action={
                 <Button asChild variant="outline">
-                  <Link to={routes.roadmap("frontend")}>
+                  <Link to={pageRoutes.roadmap("frontend")}>
                     View the sample Frontend layout
                   </Link>
                 </Button>

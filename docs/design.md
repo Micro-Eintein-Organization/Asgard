@@ -37,7 +37,7 @@ Primitives were obtained through the [official shadcn registry](https://ui.shadc
 
 ## Shell, routes and reflow
 
-[AppShell](../frontend/src/app/shell.tsx) owns the text brand, Dashboard / Roadmap / Settings navigation, account menu, skip link and footer. Roadmap opens the catalog. [Routes](../frontend/src/lib/routes.ts) centralize addresses; screen bundles load separately. Public account forms remain unconnected. `/preview/...` explicitly exposes sample layouts without pretending an authenticated session exists; `/status` retains the real technical connectivity check. These preview addresses are not a final protected-route contract.
+[AppShell](../frontend/src/app/shell.tsx) supplies the same compact Dashboard / Roadmap / Settings header, account menu, skip link and footer to preview and authenticated routes. Roadmap opens the catalog; Discovery, recommendations and roadmap availability are reached through page actions. Settings opens Profile, with Account and security in the shared Settings navigation and account menu. [Routes](../frontend/src/lib/routes.ts) centralize addresses; screen bundles load separately. Email/password account access and the profile API are connected. Normal application screens show empty or unavailable states for unfinished features. Sample fixtures and layout-state selectors remain in `/preview/...`; `/status` retains the technical connectivity check.
 
 The MVP targets desktop/laptop widths of approximately 1280–1920 px under [NFR-02](product.md#nfr-02-desktop-compatibility-and-accessible-reflow). Content is capped at 1248 px to keep reading widths comfortable on larger displays. Desktop navigation stays visible, catalog categories sit beside a three-column grid, and roadmap details sit beside milestones. Discovery uses four choice columns; entry uses two.
 
@@ -45,10 +45,12 @@ Existing smaller-width layouts and Menu navigation remain to preserve working co
 
 ## Interaction and honesty
 
+Stage 3.5 uses the preview's visual foundation for the working application. Login opens Dashboard; verified registration opens Welcome / entry. Profile and preview settings share [SettingsLayout and ProfileDetailsCard](../frontend/src/features/profile/settings-layout.tsx). The connected profile retains explicit name saves, stale-version feedback, discard/reload confirmation and Save-and-leave protection. Successful logout returns to the public landing page at `/`; dirty profile edits require confirmation before logout. Ordinary dirty-form navigation retains its save/discard/stay dialog. The shared logout helper delegates session clearing to the existing Auth provider. Discovery answers remain local and unsaved; careers, recommendations, roadmaps and progress saving await feature integration. The global feature-preview banner and seven-link authenticated header have been removed. Browser verification remains pending owner review.
+
 - Native labeled radio/checkbox cards implement only local selection. F-001 supplies question copy and combination rules; no inferred recommendation mapping is added.
 - Menus, tabs, accordions and dialogs retain semantic keyboard controls. Dialogs close with Escape and return focus. Route changes focus the heading without outlining the entire page.
 - Focus uses a visible three-pixel green outline. Selected-topic styling differs from Learning/Done status. Labels/icons accompany status colors. Reduced motion removes transitions; loading examples do not pulse indefinitely.
-- Backend actions remain disabled with nearby explanations. No auth, upload, save, focus or progress success is simulated. Unsaved local Discovery/Profile input offers Stay or Discard; Save is not invented.
+- Email/password auth and profile saves use the connected local services. Other backend actions remain disabled with nearby explanations. Discovery answers and feature preview data are not saved or analyzed. Unsaved local Discovery input offers Stay or Discard; no save outcome is simulated.
 - Empty, loading, error and success styling can be inspected at `/preview/components`; data-screen state selectors are explicitly visual examples. Actual service connectivity is independent.
 - [Fixtures](../frontend/src/fixtures/catalog.ts) are labeled sample content, not published curricula or generated advice. Only Frontend has topic fixtures; other roadmaps explain their unavailable curriculum. No sample values become saved account state.
 

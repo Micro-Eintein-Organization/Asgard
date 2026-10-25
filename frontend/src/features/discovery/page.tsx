@@ -3,11 +3,12 @@ import { Link } from "react-router";
 import { BookOpen, Compass } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BackLink, Notice, Unavailable } from "@/components/shared";
-import { routes } from "@/lib/routes";
+import { usePageRoutes } from "@/lib/page-routes";
 import { questions } from "./questions";
 import { UnsavedPreviewDialog } from "@/components/unsaved-preview-dialog";
 
 export function WelcomePage() {
+  const pageRoutes = usePageRoutes();
   const [choice, setChoice] = useState("");
   return (
     <section className="discovery-page entry-page">
@@ -55,7 +56,7 @@ export function WelcomePage() {
       <div className="action-row centered entry-actions mt-8">
         {choice ? (
           <Button asChild>
-            <Link to={choice === "guided" ? routes.discovery : routes.careers}>
+            <Link to={choice === "guided" ? pageRoutes.discovery : pageRoutes.careers}>
               Continue
             </Link>
           </Button>
@@ -72,6 +73,7 @@ export function WelcomePage() {
 }
 
 export function DiscoveryPage() {
+  const pageRoutes = usePageRoutes();
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Record<number, string[]>>({});
   const [announcement, setAnnouncement] = useState("");
@@ -120,13 +122,13 @@ export function DiscoveryPage() {
       />
       <div className="discovery-topline">
         {step === 0 ? (
-          <BackLink to={routes.welcome} />
+          <BackLink to={pageRoutes.welcome} />
         ) : (
           <Button variant="ghost" onClick={() => changeStep(step - 1)}>
             Back
           </Button>
         )}
-        <Link to={routes.careers}>Skip questions and browse careers</Link>
+        <Link to={pageRoutes.careers}>Skip questions and browse careers</Link>
       </div>
       <header className="discovery-header">
         <div className="question-progress" aria-hidden="true">
@@ -206,7 +208,7 @@ export function DiscoveryPage() {
             been saved or analyzed.
           </Unavailable>
           <div className="mt-4">
-            <Link className="inline-link" to={routes.results}>
+            <Link className="inline-link" to={pageRoutes.results}>
               View sample results layout
             </Link>
           </div>

@@ -8,7 +8,7 @@ The MVP targets desktop and laptop browsers at approximately 1280–1920 px, wit
 
 ## Project status
 
-Asgard is under development. The repository includes a working local React/FastAPI scaffold and navigable UI previews for account entry, Discovery, career exploration, roadmaps, Dashboard, and Settings. The previews use clearly labeled sample content. Authentication, saved learning data, uploads, and AI recommendations are not integrated yet.
+Asgard is under development. The repository includes a working local React/FastAPI scaffold and navigable UI previews for account entry, Discovery, career exploration, roadmaps, Dashboard, and Settings. The previews use clearly labeled sample content. Authentication and private Profile source are prepared behind a separate SQL/Auth activation review gate; they remain disabled by default. Saved learning data, uploads and AI recommendations are not integrated yet.
 
 Local runtime and UI checks cover only part of the required evidence. Provider compatibility, reviewed roadmap content, feature integration and release verification remain prerequisites for the final MVP. Planned hosting below is not a claim of deployment.
 
@@ -98,6 +98,8 @@ node scripts/dev.mjs start
 Run project commands from the repository root. The shared Node helper works without shell scripts or executable-bit changes. It creates root `.env` from `.env.example` if missing, starts CLI-managed Supabase, regenerates its local anonymous key and Docker URL, checks migrations without applying them, and builds/starts the app services. It prints `READY` and the URLs only after connectivity checks pass. It stops on errors and never resets databases or stops another project. Existing custom environment entries are preserved; project ID, local Supabase URL/key and local CORS origins are regenerated.
 
 No environment value needs manual setup for the standard local workflow. Do not create `frontend/.env` or `backend/.env`; Compose uses only root `.env`. Keep credentials and real user data out of Git.
+
+Stage 3 is awaiting security review. Keep `ASGARD_AUTH_ENABLED=false` until its migration, signing-key configuration and dedicated database credentials are approved and provisioned. SQL in `supabase/review/` and the `.pending` Auth config are intentionally inactive. Do not move/apply them or substitute an administrator database credential to make Profile work. See [Stage 3 review status](docs/development.md#stage-3-authentication-and-profile-review-gate).
 
 ### Open the application
 

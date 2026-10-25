@@ -95,6 +95,11 @@ function assertShellEnvironment(values) {
     "ASGARD_SUPABASE_URL",
     "ASGARD_SUPABASE_ANON_KEY",
     "ASGARD_CORS_ORIGINS",
+    "ASGARD_AUTH_ENABLED",
+    "ASGARD_AUTH_ISSUER",
+    "ASGARD_DATABASE_URL",
+    "VITE_SUPABASE_URL",
+    "VITE_SUPABASE_ANON_KEY",
   ]) {
     if (process.env[name] !== undefined && process.env[name] !== values[name])
       throw new Error(
@@ -194,7 +199,9 @@ function syncEnvironment() {
 
 function checkMigrations() {
   const result = JSON.parse(
-    cli(["db", "push", "--local", "--dry-run"], { privateOutput: true }),
+    cli(["db", "push", "--local", "--dry-run", "--output-format", "json"], {
+      privateOutput: true,
+    }),
   );
   if (!result.upToDate)
     throw new Error(

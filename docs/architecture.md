@@ -188,7 +188,7 @@ asgard/
 
 | ID | Topic | Required resolution / acceptance evidence | Timing |
 |---|---|---|---|
-| A-01 | Database role and pooler | Test least-privilege SQL role through Supabase session pooler on Render; verify grants, RLS behavior, TLS, connection limits, and SQLAlchemy reconnect behavior | Foundation spike, before feature writes |
+| A-01 | Database role and pooler | Test least-privilege SQL role through Supabase session pooler on Render; verify grants, RLS behavior, TLS, connection limits, and SQLAlchemy reconnect behavior. Owner approved local-only synthetic persistence/testing first in the Stage 3 plan (25 October 2026); see decisions.md. Local SQL/Auth execution still awaits its separate approval | Before hosted/real-user writes; local-only sequencing exception recorded |
 | A-02 | SMTP | Resend via Supabase custom SMTP selected; provision verified domain/account and test delivery, redirects and limits | Before external testers |
 | A-03 | MFA recovery and linking | Security policy selected; prove provider-managed recovery/fresh-auth and resolve automatic-linking conflict under AUTH-C1/C2 | Before Google/MFA rollout |
 | A-04 | AI model evaluation | F-002 and verification.md select 30 synthetic profiles, three runs/model and quality thresholds; execute comparison | Before releasing recommendations |

@@ -9,6 +9,21 @@ import { Card } from "@/components/ui/card";
 import { StatusBadge, Unavailable } from "@/components/shared";
 import { sampleMilestones } from "@/fixtures/catalog";
 import { routes } from "@/lib/routes";
+import { authConfigured } from "@/auth/supabase";
+import { MIN_PASSWORD_LENGTH } from "@/auth/password";
+import { ConnectedAuthPage } from "./connected-page";
+
+export function AuthPage({
+  mode,
+}: {
+  mode: "login" | "register" | "recovery" | "verify";
+}) {
+  return authConfigured && mode !== "recovery" ? (
+    <ConnectedAuthPage key={mode} mode={mode} />
+  ) : (
+    <PreviewAuthPage key={mode} mode={mode} />
+  );
+}
 
 export function LandingPage() {
   return (
@@ -24,17 +39,21 @@ export function LandingPage() {
         </p>
         <div className="action-row">
           <Button asChild>
-            <Link to={routes.register}>Create an account</Link>
+            <Link to={routes.register}>Get started</Link>
           </Button>
           <Button asChild variant="outline">
-            <Link to={routes.login}>Sign in</Link>
+            <Link to={routes.login}>Log in</Link>
           </Button>
         </div>
         <p className="landing-note">
           For adults 18 and above. All experience levels welcome.
         </p>
         <div className="landing-preview">
-          <p>Asgard is in development. Account access is not connected yet.</p>
+          <p>
+            {authConfigured
+              ? "Account access and profile saving are available. Career and learning features are being prepared."
+              : "Account access is not configured in this environment. Career and learning screens use sample content."}
+          </p>
           <Link to={routes.dashboard}>View the UI preview</Link>
         </div>
       </div>
@@ -104,7 +123,7 @@ function PasswordField({
   );
 }
 
-export function AuthPage({
+function PreviewAuthPage({
   mode,
 }: {
   mode: "login" | "register" | "recovery" | "verify";
@@ -162,8 +181,8 @@ export function AuthPage({
           {isRegistration && (
             <>
               <p className="field-help">
-                Use at least 15 characters. Spaces and password managers are
-                welcome.
+                Use at least {MIN_PASSWORD_LENGTH} characters. Spaces and
+                password managers are welcome.
               </p>
               <PasswordField
                 id="confirmation"

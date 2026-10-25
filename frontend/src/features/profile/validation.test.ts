@@ -12,4 +12,6 @@ it("distinguishes optional surname from required first name and rejects invalid 
   expect(validateFirstName("  ")).not.toBe(true);
   expect(validateSurname("x".repeat(101))).not.toBe(true);
   expect(validateFirstName("a\u0000b")).not.toBe(true);
+  expect(validateFirstName("\nAda")).not.toBe(true);
+  expect(validateSurname("A\u0085B")).not.toBe(true);
 });

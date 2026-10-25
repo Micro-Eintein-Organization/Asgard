@@ -1,4 +1,4 @@
-import { useSearchParams } from "react-router";
+import { Link, useSearchParams } from "react-router";
 import { useState } from "react";
 import { Search, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -6,6 +6,8 @@ import { Input } from "@/components/ui/input";
 import { PageHeading, StatePanel } from "@/components/shared";
 import { categories, careers } from "@/fixtures/catalog";
 import { CareerCard } from "@/components/career-card";
+import { useIsPreview, usePageRoutes } from "@/lib/page-routes";
+import { appRoutes } from "@/lib/routes";
 import {
   PreviewStateControl,
   PreviewDataState,
@@ -13,6 +15,8 @@ import {
 } from "@/components/preview-states";
 
 export function CatalogPage() {
+  const preview = useIsPreview();
+  const pageRoutes = usePageRoutes();
   const [state, setState] = useState<PreviewState>("sample");
   const [params, setParams] = useSearchParams();
   const query = params.get("q") ?? "";
@@ -40,7 +44,28 @@ export function CatalogPage() {
         description="Understand the work, see the skills involved, and take a closer look at a learning path."
       />
       <PreviewStateControl value={state} onChange={setState} />
-      {state !== "sample" ? (
+      {!preview ? (
+        <StatePanel
+          kind="empty"
+          title="Career browsing is coming next"
+          action={
+            <div className="action-row">
+              <Button asChild>
+                <Link to={pageRoutes.welcome}>Explore Discovery</Link>
+              </Button>
+              <Button asChild variant="outline">
+                <Link to={appRoutes.roadmaps}>Roadmaps</Link>
+              </Button>
+              <Button asChild variant="outline">
+                <Link to={pageRoutes.results}>Your suggestions</Link>
+              </Button>
+            </div>
+          }
+        >
+          Published careers and learning paths are not available yet. Browsing
+          here does not select a roadmap or change your progress.
+        </StatePanel>
+      ) : state !== "sample" ? (
         <PreviewDataState
           state={state}
           subject="careers"

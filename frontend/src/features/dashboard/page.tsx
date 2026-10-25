@@ -10,13 +10,18 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { PageHeading, StatusBadge, Notice } from "@/components/shared";
+import {
+  PageHeading,
+  StatusBadge,
+  Notice,
+  StatePanel,
+} from "@/components/shared";
 import {
   PreviewStateControl,
   PreviewDataState,
   type PreviewState,
 } from "@/components/preview-states";
-import { routes } from "@/lib/routes";
+import { useIsPreview, usePageRoutes } from "@/lib/page-routes";
 
 function SampleCalendar() {
   const [month, setMonth] = useState(1);
@@ -24,7 +29,7 @@ function SampleCalendar() {
   const days = october ? 31 : 30;
   const offset = october ? 4 : 2;
   return (
-    <Card className="support-card">
+    <Card id="progress" className="support-card">
       <div className="calendar-title">
         <h2>{october ? "October" : "September"} 2026</h2>
         <div className="flex">
@@ -78,9 +83,12 @@ function SampleCalendar() {
 }
 
 export function DashboardPage() {
+  const preview = useIsPreview();
+  const pageRoutes = usePageRoutes();
   const [state, setState] = useState<PreviewState>("sample");
   const [helper, setHelper] = useState(true);
-  const topicLink = (id: string) => `${routes.roadmap("frontend")}?topic=${id}`;
+  const topicLink = (id: string) =>
+    `${pageRoutes.roadmap("frontend")}?topic=${id}`;
   return (
     <>
       <PageHeading
@@ -88,19 +96,58 @@ export function DashboardPage() {
         description="Keep your focus in sight. Pick up a topic, or make room to explore something different."
         action={
           <Button asChild variant="outline">
-            <Link to={routes.careers}>Browse careers</Link>
+            <Link to={pageRoutes.careers}>Browse careers</Link>
           </Button>
         }
       />
       <PreviewStateControl value={state} onChange={setState} />
-      {state !== "sample" ? (
+      {!preview ? (
+        <div className="dashboard-layout">
+          <div className="dashboard-main">
+            <StatePanel
+              kind="empty"
+              title="Find your starting point"
+              action={
+                <div className="action-row">
+                  <Button asChild>
+                    <Link to={pageRoutes.welcome}>Explore Discovery</Link>
+                  </Button>
+                  <Button asChild variant="outline">
+                    <Link to={pageRoutes.results}>Your suggestions</Link>
+                  </Button>
+                </div>
+              }
+            >
+              You can explore the Discovery questions while career
+              recommendations and learning roadmaps are being prepared. Answers
+              are not saved yet.
+            </StatePanel>
+          </div>
+          <aside className="dashboard-side" aria-label="Learning context">
+            <Card className="support-card" id="progress">
+              <h2>Your progress</h2>
+              <p>
+                Learning activity will appear here when roadmap and progress
+                saving become available.
+              </p>
+            </Card>
+            <Card className="support-card">
+              <h2>Make it yours.</h2>
+              <p>Add or update the name saved to your account.</p>
+              <Button asChild variant="outline">
+                <Link to={pageRoutes.profile}>Edit profile</Link>
+              </Button>
+            </Card>
+          </aside>
+        </div>
+      ) : state !== "sample" ? (
         <PreviewDataState
           state={state}
           subject="learning activity"
           onReset={() => setState("sample")}
           emptyAction={
             <Button asChild>
-              <Link to={routes.careers}>Browse careers</Link>
+              <Link to={pageRoutes.careers}>Browse careers</Link>
             </Button>
           }
         />
@@ -131,7 +178,7 @@ export function DashboardPage() {
             <section>
               <div className="section-heading">
                 <h2>Your learning topics</h2>
-                <Link to={routes.roadmap("frontend")}>View milestone</Link>
+                <Link to={pageRoutes.roadmap("frontend")}>View milestone</Link>
               </div>
               <Accordion type="multiple" defaultValue={["learning", "next"]}>
                 <AccordionItem value="learning">
@@ -174,14 +221,14 @@ export function DashboardPage() {
             <Card className="support-card">
               <div className="section-heading">
                 <h2>Current roadmap</h2>
-                <Link to={routes.careers}>Edit</Link>
+                <Link to={pageRoutes.careers}>Edit</Link>
               </div>
               <div className="focus-title">Frontend Developer</div>
               <p>
                 A sample focus for this layout. Your roadmap changes only when
                 you explicitly save a new focus.
               </p>
-              <Link to={routes.roadmap("frontend")} className="inline-link">
+              <Link to={pageRoutes.roadmap("frontend")} className="inline-link">
                 Open roadmap
               </Link>
             </Card>
@@ -193,20 +240,20 @@ export function DashboardPage() {
                 are optional.
               </p>
               <Button asChild variant="outline">
-                <Link to={routes.profile}>Edit profile</Link>
+                <Link to={pageRoutes.profile}>Edit profile</Link>
               </Button>
             </Card>
           </aside>
         </div>
       )}
-      {helper && (
+      {preview && helper && (
         <div className="dismissible-guidance mt-8">
           <Notice>
             <div className="guidance-content">
               <div>
                 <strong>Want a different starting point?</strong>
                 <p>Try the Discovery preview, or keep browsing.</p>
-                <Link to={routes.welcome}>Open Discovery</Link>
+                <Link to={pageRoutes.welcome}>Open Discovery</Link>
               </div>
               <Button
                 variant="ghost"

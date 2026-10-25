@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router";
 import { Button } from "@/components/ui/button";
-import { PageHeading, BackLink, Notice } from "@/components/shared";
+import { PageHeading, BackLink, Notice, StatePanel } from "@/components/shared";
 import {
   PreviewDataState,
   PreviewStateControl,
@@ -9,27 +9,34 @@ import {
 } from "@/components/preview-states";
 import { CareerCard } from "@/components/career-card";
 import { careers } from "@/fixtures/catalog";
-import { routes } from "@/lib/routes";
+import { useIsPreview, usePageRoutes } from "@/lib/page-routes";
 
 export function ResultsPage() {
+  const preview = useIsPreview();
+  const pageRoutes = usePageRoutes();
   const [state, setState] = useState<PreviewState>("sample");
   const samples = [careers[0], careers[2], careers[3]];
   return (
     <>
-      <BackLink to={routes.discovery}>Back to Discovery preview</BackLink>
+      <BackLink to={pageRoutes.discovery}>Back to Discovery</BackLink>
       <PageHeading
         title="Careers to explore."
         description="Suggestions are starting points. You can explore any career in the catalog."
       />
       <PreviewStateControl value={state} onChange={setState} />
-      {state !== "sample" ? (
+      {!preview ? (
+        <StatePanel kind="empty" title="No saved suggestions yet">
+          Career suggestions are not available yet. Exploring Discovery does not
+          generate or save recommendations in this build.
+        </StatePanel>
+      ) : state !== "sample" ? (
         <PreviewDataState
           state={state}
           subject="career suggestions"
           onReset={() => setState("sample")}
           emptyAction={
             <Button asChild variant="outline">
-              <Link to={routes.careers}>Browse careers</Link>
+              <Link to={pageRoutes.careers}>Browse careers</Link>
             </Button>
           }
         />
@@ -58,15 +65,17 @@ export function ResultsPage() {
       )}
       <div className="action-row centered mt-8">
         <Button asChild variant="outline">
-          <Link to={routes.discovery}>Retake Discovery preview</Link>
+          <Link to={pageRoutes.discovery}>Retake Discovery</Link>
         </Button>
         <Button asChild>
-          <Link to={routes.careers}>Browse careers</Link>
+          <Link to={pageRoutes.careers}>Browse careers</Link>
         </Button>
       </div>
-      <p className="landing-note centered">
-        No match scores, inferred abilities or automatic roadmap selection.
-      </p>
+      {preview && (
+        <p className="landing-note centered">
+          No match scores, inferred abilities or automatic roadmap selection.
+        </p>
+      )}
     </>
   );
 }

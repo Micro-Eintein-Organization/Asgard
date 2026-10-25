@@ -15,3 +15,15 @@ export const routes = {
   components: "/preview/components",
   roadmap: (id: string) => `/preview/roadmaps/${id}`,
 };
+
+export const appRoutes = {
+  dashboard: "/dashboard",
+  welcome: "/welcome",
+  discovery: "/discovery",
+  results: "/recommendations",
+  careers: "/careers",
+  profile: "/settings/profile",
+  account: "/settings/account",
+  roadmaps: "/roadmaps",
+  roadmap: (id: string) => `/roadmaps/${id}`,
+};

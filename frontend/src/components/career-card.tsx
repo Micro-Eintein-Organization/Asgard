@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import type { CareerFixture } from "@/fixtures/catalog";
-import { routes } from "@/lib/routes";
+import { usePageRoutes } from "@/lib/page-routes";
 
 export function CareerCard({
   career,
@@ -12,6 +12,7 @@ export function CareerCard({
   reason?: string;
 }) {
   const location = useLocation();
+  const pageRoutes = usePageRoutes();
   return (
     <Card className="career-card">
       <p className="card-category">{career.work}</p>
@@ -33,10 +34,10 @@ export function CareerCard({
       </div>
       <Button asChild variant="outline" className="card-action">
         <Link
-          to={routes.roadmap(career.id)}
+          to={pageRoutes.roadmap(career.id)}
           state={{
             catalogSearch:
-              location.pathname === routes.careers ? location.search : "",
+              location.pathname === pageRoutes.careers ? location.search : "",
           }}
         >
           View roadmap<span className="sr-only"> for {career.title}</span>

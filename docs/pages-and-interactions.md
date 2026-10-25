@@ -32,8 +32,9 @@ REQ-06 and REQ-12 remain outside MVP. Career saving/comparison, tutor/chat inter
 
 ### Navigation and terminology
 
-- Retain the reference header's Dashboard, Roadmap, Settings, and account/avatar entry points. Roadmap opens the career/roadmap catalog and does not change current focus. Careers/Roadmaps is the specification's page-family name.
-- Dashboard opens DASHBOARD. Settings opens the Settings area. The account menu exposes Edit profile, Settings, and Log out.
+- Preview and authenticated pages share the reference header's Dashboard, Roadmap, Settings, and account/avatar entry points. Roadmap opens the career catalog. Existing page actions lead to Discovery, recommendations and roadmap availability; progress belongs to Dashboard.
+- Settings opens Profile. Its shared navigation and the account menu expose Profile and Account and security. Successful Log out returns to the public landing page at `/`. Confirm discarding dirty profile edits before logging out; an active profile save must finish first.
+- Normal application screens show empty or unavailable states for unfinished features. Sample fixtures and layout-state controls are limited to the explicit UI preview.
 - Protected pages require authentication. Unauthenticated access opens account entry; expired sessions provide a recoverable authentication route.
 - New authenticated users reach ENTRY-CHOICE. Returning users reach Dashboard. Unfinished Discovery produces an optional Resume Discovery action using saved answers.
 - Each roadmap detail has its own addressable URL. Animation may accompany navigation without removing that URL.

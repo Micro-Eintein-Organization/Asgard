@@ -80,6 +80,8 @@ In Bash, use `cd frontend` instead of `Set-Location`. Host frontend packages and
 
 ## Stage 2 hardening evidence
 
+Startup correction, 25 October 2026: the user reported `Unexpected token 'L'` when running the PowerShell helper. The migration dry-run parsed the CLI's default output as JSON without explicitly requesting JSON. It now passes `--output-format json`. Verified against pinned CLI 2.122.0 with both `--agent no` and `--agent yes`; both returned valid dry-run JSON. The exact `scripts/start-local.ps1` startup then reached READY with all connectivity probes passing, and all 4 helper configuration tests passed. No migration was applied or database reset performed. This focused fix awaits project-lead review.
+
 25 October 2026. Task owner: Codex; required reviewer: project lead, who approved the bounded hardening plan in this chat. Scope: onboarding scripts/environment, local Docker networking, setup documentation and verification; partial A-06/A-11 and QA-11 evidence. Shared product contracts, dependencies, UI, database schema and auth behavior are unchanged. Project-lead review remains required before integration.
 
 | Check | Result / limit |
@@ -105,6 +107,59 @@ Linux follow-up owner is unassigned: on a native x86-64 Linux machine, clone the
 Final verification after Docker recovery: the final helper successfully started both normal and isolated stacks and passed all connectivity probes. Host-owned contract generation and the full container check suite passed again. Five negative guard cases rejected remote endpoints, unrelated Compose project/file overrides, stale environment identity and credential overrides; secret values were not printed. The retained-database/pending-migration repeat passed, including unchanged database identity and no applied migration (a fresh database may have no migration-history table yet).
 
 The isolated verification stack was stopped with Compose down followed by CLI stop; its containers are gone and its database/storage volumes are retained. The normal stack remains ready on the documented default URLs, and the original database identity is unchanged. Docker's temporary outage is resolved. Final syntax, local-link/anchor and diff-whitespace checks passed. No commit, push, merge, deployment, database reset or volume deletion was performed. Available-environment hardening is ready for project-lead review; native Linux-host acceptance and an independent clean-clone walkthrough remain outstanding, with follow-up ownership unassigned.
+
+## Stage 3 authentication and Profile review gate
+
+25 October 2026 — source implementation authorized by the project owner's “implement” reply to the bounded Stage 3 plan. Owner: Codex; technical/security reviewer: project lead. Coverage: REQ-01/13 and the name-only part of REQ-11; partial QA-01/07/09/11. The two pre-existing startup-format corrections are preserved. This remains on `foundation`; nothing is committed or pushed by the agent.
+
+The second approval gate is still closed. The [SQL draft](../supabase/review/20261025000100_auth_profile_foundation.sql) is outside the active CLI migrations directory; the [Auth configuration candidate](../supabase/config.auth.toml.pending) is not the active config file. Neither can execute through normal startup. After approval, the SQL file will move into the versioned migrations directory and the approved Auth settings will replace the live config. The live `supabase/config.toml` is unchanged, signup remains disabled, no signing key was generated and no application DB password was provisioned. `ASGARD_AUTH_ENABLED` defaults to false in both app containers. Building/testing the source does not authorize activation or a database reset.
+
+The credential initializer now writes the random password to ignored `.env` atomically before changing the local database role, then restores the prior `.env` if role provisioning fails. It refuses to replace an existing database URL and requires the explicit approval flag. This ordering ensures a failed `.env` write cannot leave the database role with a new password that was never saved locally.
+
+### Implemented source boundaries
+
+- Official Supabase browser SDK owns password/OTP/session operations. Connected forms support registration, explicit code verification, resend feedback, login, SDK restoration/refresh and current-session logout. The current preview forms remain when Auth is disabled. Google, TOTP enrollment, recovery, deletion, uploads, preferences, careers and learning persistence are not implemented by this slice.
+- `/settings/profile` is the protected, temporary post-authentication destination approved for this stage. `/preview/...` continues to display isolated fixtures. Query caches and request tokens are separated by account; account changes abort old requests, and an old response cannot sign a newer account out. Browser session state is not a backend authorization boundary.
+- FastAPI verifies ES256 signature, issuer, authenticated audience/role, expiry, issued-at, UUID subject/session and assurance claims through a bounded trusted JWKS fetch/cache. No symmetric fallback, unverified JWT decoding for authorization, token-supplied key URL or custom password store is introduced. The public issuer differs from the internal Docker URL used to fetch keys. The actual local ES256 issuance/JWKS integration awaits activation testing.
+- Profile API: `GET /api/v1/me/profile` returns `{profile: null}` before first save; `PATCH` creates or updates only the authenticated owner's names. The request contains `first_name`, optional `surname` and `expected_version` (zero on creation). The successful PATCH response requires a non-null profile. Updates use a version condition; stale saves return 409, preserving recoverable edits. Client-supplied ownership fields are rejected. The generated OpenAPI/types remain the contract authority.
+- Names follow the existing 1–100/0–100 Unicode-code-point rules with trimmed whitespace and rejected control characters. Protected responses have no-store headers. Errors use code/message/request ID without echoing submitted values. CORS permits the explicit origins, Bearer header and PATCH without credentialed wildcards.
+
+### SQL and credential proposal for review
+
+The migration creates one `asgard_private.profiles` table, a dedicated `asgard_app` login with no password yet, and forced RLS policies. The schema is outside the Data API's exposed schemas. Runtime privileges are SELECT, column-limited INSERT/UPDATE, schema usage and execution of one boolean account/session check. There is no DELETE, schema creation, superuser, role creation, inherited role access or RLS bypass grant.
+
+Each backend operation uses a bounded SQLAlchemy async transaction, checks the runtime role, validates provider account/session state through the narrow function and sets verified user identity transaction-locally. Queries also include an explicit owner condition. The security-definer function has a fixed empty search path and no PUBLIC execution; it returns only whether the supplied user/session is confirmed, active and meets existing MFA assurance. The app does not receive general SELECT access to Auth tables. This is defense in depth for a trusted backend role, not protection against a compromised backend credential deliberately impersonating another user.
+
+The [credential initializer](../scripts/provision-local-db.mjs) is prepared but not executed: it requires an explicit approval flag, a local Docker context and the already-migrated restricted role. It atomically writes a generated credential into ignored root `.env` before changing only that role's password using SQL on stdin. It neither creates roles nor grants privileges and refuses automatic rotation. Structural changes remain solely in versioned Supabase SQL. Database credentials and signing keys never become Vite variables.
+
+The Auth candidate keeps existing ports/network/services, enables local email/password signup with required six-digit confirmation, 600-second code expiry, 60-second resend spacing, minimum password length 15 and 900-second JWT expiry. It references an ignored local signing-key file and the committed confirmation template. The CLI's ES256 key-generation capability was checked through help only; no private key was generated or printed. Local SMTP is the testing destination; no external delivery or public-registration readiness is claimed.
+
+After the project lead approves these exact artifacts, activation will require a local backup/state check, applying the versioned SQL through the CLI without reset, generating the local signing key, initializing the app credential, activating the reviewed Auth config, restarting affected services and enabling the flag. Fresh isolated-stack initialization is included in the approval gate because it would also execute migrations. No new activation commands are documented as verified before execution.
+
+### Verification and remaining work
+
+Python 3.13 Docker builds and hashed locks cover PyJWT cryptographic support, psycopg and SQLAlchemy's async extra. The official Supabase JS SDK is exactly pinned in the frontend lock. Existing dependency versions are preserved where possible; source/contract checks remain mandatory.
+
+Source tests cover signed/malformed/wrong-key JWTs, claim rejection, unavailable keys, inactive Auth, missing Bearer credentials, profile validation, HTTP conflicts and ownership-field rejection. Frontend unit tests cover token separation and old-response races. Browser tests explicitly mock provider/API responses on an isolated frontend-only server; these prove interface behavior, not real login, mail delivery or SQL isolation. The opt-in [local integration tests](../backend/tests/integration/test_local_auth.py) are restricted to an isolated `asgard-stage3-test*` Docker stack and are skipped by default. They cover two-account persistence/isolation, actual role/RLS access and connection reuse, logout/revocation and refresh; privileged synthetic-account setup is confined to the test harness, never app runtime.
+
+Still unverified until execution approval: migration application and grants, real ES256 tokens/JWKS, SMTP delivery and six-digit verification, signup enumeration/rate behavior, actual persistence and pooled-connection isolation, and the opt-in live suite. The hosted Render/session-pooler A-01 gate, external SMTP, production abuse controls, native Linux-host onboarding, code ownership/protected-review setup and hosted CI remain open. This source slice does not establish final-MVP authentication acceptance.
+
+Final pre-activation evidence:
+
+| Check | Result |
+| --- | --- |
+| Python 3.13 source checks | Pass: Ruff and 23 pytest tests; 4 live integration tests skipped behind the explicit gate |
+| Frontend source checks | Pass: TypeScript, ESLint, 6 Vitest tests, production build on Windows and in Linux Docker, API-client drift |
+| Environment helper | Pass: all 4 configuration tests; credential initializer rejects invocation without its approval flag |
+| Existing UI regressions | Pass: 20 desktop preview/navigation/accessibility checks |
+| New Auth/Profile UI | Pass: 9 mocked-provider checks across 1280, 1440 and 1920 px, including focused validation, session restoration, failed edits, saves, logout and axe checks |
+| Dependencies | Exact frontend lock and hashed Python locks; existing locked package versions were not upgraded |
+| Documentation | Pass: changed-document local links/anchors and diff whitespace checks |
+| Live acceptance | Not run: SQL/RLS/provider tests await the separate migration/Auth approval |
+
+An initial browser focus test exposed validation moving the Save button during the click. The connected form now validates first on submit and focuses the committed error summary; corrections revalidate as typed. A separate stale-source issue in the disposable Windows review container was resolved by enabling Vite polling, and all 9 final checks used the current source. The upstream Starlette/httpx pytest deprecation warning remains; no failing automated source/UI checks remain.
+
+The temporary mocked UI container was removed. Ignored `.local/stage3-review/` contains rendered screenshots. Existing app containers were refreshed only to load the new dependencies, with Auth still disabled; backend liveness passed and the protected API returned `503 auth_not_configured` as intended. No Supabase services were started, no database reset or migration application occurred, no signing key/password was initialized, and no commit/push/merge/deployment was performed. Review the SQL, Auth candidate, credential initializer and generated contract before authorizing activation and real-data-path tests.
 
 ## Historical foundation evidence
 

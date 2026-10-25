@@ -12,9 +12,11 @@ import {
   ResultsPage,
   SettingsPage,
   DesignSystemPage,
+  AuthenticatedProfilePage,
 } from "./screens";
-import { routes } from "@/lib/routes";
+import { appRoutes, routes } from "@/lib/routes";
 import { StatePanel } from "@/components/shared";
+import { ProtectedRoute } from "@/auth/protected-route";
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +28,20 @@ export const router = createBrowserRouter([
       { path: routes.recovery, element: <AuthPage mode="recovery" /> },
       { path: routes.verify, element: <AuthPage mode="verify" /> },
       { path: routes.status, element: <FoundationStatus /> },
+      {
+        element: <ProtectedRoute />,
+        children: [
+          { path: appRoutes.dashboard, element: <DashboardPage /> },
+          { path: appRoutes.welcome, element: <WelcomePage /> },
+          { path: appRoutes.discovery, element: <DiscoveryPage /> },
+          { path: appRoutes.results, element: <ResultsPage /> },
+          { path: appRoutes.careers, element: <CatalogPage /> },
+          { path: appRoutes.roadmaps, element: <RoadmapPage /> },
+          { path: "/roadmaps/:careerId", element: <RoadmapPage /> },
+          { path: appRoutes.profile, element: <AuthenticatedProfilePage /> },
+          { path: appRoutes.account, element: <SettingsPage account /> },
+        ],
+      },
       {
         path: "*",
         element: (

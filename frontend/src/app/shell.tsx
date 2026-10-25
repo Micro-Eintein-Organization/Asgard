@@ -10,19 +10,35 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { routes } from "@/lib/routes";
+import { appRoutes, routes } from "@/lib/routes";
 import { StatePanel } from "@/components/shared";
-
-const navigation = [
-  { to: routes.dashboard, label: "Dashboard" },
-  { to: routes.careers, label: "Roadmap" },
-  { to: routes.profile, label: "Settings" },
-];
+import { useAuth } from "@/auth/context";
+import { LogoutBoundary, useLogout } from "./logout";
 
 function Header({ preview }: { preview: boolean }) {
-  const { pathname } = useLocation();
+  const { user } = useAuth();
+  const signOut = useLogout();
+  const pageRoutes = preview ? routes : appRoutes;
+  const navigation = [
+    { to: pageRoutes.dashboard, label: "Dashboard" },
+    { to: pageRoutes.careers, label: "Roadmap" },
+    { to: pageRoutes.profile, label: "Settings" },
+  ];
+  const location = useLocation();
+  const { pathname } = location;
   const [open, setOpen] = useState(false);
+  const [logoutError, setLogoutError] = useState("");
   const menuRef = useRef<HTMLButtonElement>(null);
+  async function logOut() {
+    setLogoutError("");
+    try {
+      await signOut();
+    } catch (error) {
+      setLogoutError(
+        error instanceof Error ? error.message : "Could not sign out.",
+      );
+    }
+  }
   const mobileNavigation = () => (
     <nav
       id="mobile-navigation"
@@ -34,7 +50,7 @@ function Header({ preview }: { preview: boolean }) {
           {item.label}
         </NavLink>
       ))}
-      <Link to={routes.welcome} onClick={() => setOpen(false)}>
+      <Link to={pageRoutes.welcome} onClick={() => setOpen(false)}>
         Discovery
       </Link>
     </nav>
@@ -51,13 +67,19 @@ function Header({ preview }: { preview: boolean }) {
     >
       <div className="header-inner">
         <Link
-          to={preview ? routes.dashboard : routes.home}
+          to={
+            preview
+              ? routes.dashboard
+              : user
+                ? appRoutes.dashboard
+                : routes.home
+          }
           className="brand"
           aria-label="Asgard home"
         >
           Asgard
         </Link>
-        {preview ? (
+        {preview || user?.email_confirmed_at ? (
           <>
             <nav aria-label="Main navigation" className="desktop-navigation">
               {navigation.map((item) => (
@@ -67,9 +89,14 @@ function Header({ preview }: { preview: boolean }) {
                   className={({ isActive }) =>
                     isActive ||
                     (item.label === "Roadmap" &&
-                      pathname.startsWith("/preview/roadmaps/")) ||
+                      (pathname === "/roadmaps" ||
+                        pathname.startsWith(
+                          preview ? "/preview/roadmaps/" : "/roadmaps/",
+                        ))) ||
                     (item.label === "Settings" &&
-                      pathname.startsWith("/preview/settings/"))
+                      pathname.startsWith(
+                        preview ? "/preview/settings/" : "/settings/",
+                      ))
                       ? "active"
                       : ""
                   }
@@ -108,57 +135,93 @@ function Header({ preview }: { preview: boolean }) {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="account-menu">
-                  <DropdownMenuLabel>Preview account</DropdownMenuLabel>
+                  <DropdownMenuLabel>
+                    {preview ? "Preview account" : user?.email}
+                  </DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem asChild>
-                    <Link to={routes.profile}>Edit profile</Link>
+                    <Link to={pageRoutes.profile}>Edit profile</Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
-                    <Link to={routes.account}>Account and security</Link>
+                    <Link to={pageRoutes.account}>Account and security</Link>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem disabled>
-                    Log out (not connected)
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link to={routes.home}>Leave preview</Link>
-                  </DropdownMenuItem>
+                  {preview ? (
+                    <>
+                      <DropdownMenuItem disabled>
+                        Log out (not connected)
+                      </DropdownMenuItem>
+                      <DropdownMenuItem asChild>
+                        <Link to={routes.home}>Leave preview</Link>
+                      </DropdownMenuItem>
+                    </>
+                  ) : (
+                    <DropdownMenuItem onSelect={() => void logOut()}>
+                      Log out
+                    </DropdownMenuItem>
+                  )}
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
           </>
         ) : (
           <div className="public-nav">
-            <Link to={routes.login}>Sign in</Link>
-            <Button asChild>
-              <Link to={routes.register}>Create an account</Link>
-            </Button>
+            {user ? (
+              <Link to={appRoutes.dashboard}>Dashboard</Link>
+            ) : (
+              <>
+                <Link to={routes.login}>Log in</Link>
+                <Button asChild>
+                  <Link to={routes.register}>Get started</Link>
+                </Button>
+              </>
+            )}
           </div>
         )}
       </div>
-      {preview && open && mobileNavigation()}
+      {logoutError && (
+        <p role="alert" className="field-error text-center">
+          {logoutError}
+        </p>
+      )}
+      {open && mobileNavigation()}
     </header>
   );
 }
 
 function PageFocus() {
-  const location = useLocation();
-  const pathname = location.pathname;
+  const { pathname, hash } = useLocation();
   const previousPath = useRef(pathname);
   useEffect(() => {
     document.title = `Asgard | ${pathname.split("/").at(-1)?.replaceAll("-", " ") || "Career exploration"}`;
-    if (previousPath.current === pathname) return;
+    if (previousPath.current === pathname && !hash) return;
     previousPath.current = pathname;
+    if (hash) {
+      const frame = requestAnimationFrame(() => {
+        document
+          .getElementById(decodeURIComponent(hash.slice(1)))
+          ?.scrollIntoView({ block: "start" });
+      });
+      return () => cancelAnimationFrame(frame);
+    }
     const heading =
       document.querySelector<HTMLHeadingElement>("#main-content h1");
     heading?.setAttribute("tabindex", "-1");
     heading?.focus({ preventScroll: true });
     window.scrollTo(0, 0);
-  }, [pathname]);
+  }, [pathname, hash]);
   return null;
 }
 
 export function AppShell({ preview = false }: { preview?: boolean }) {
+  return (
+    <LogoutBoundary>
+      <ShellContent preview={preview} />
+    </LogoutBoundary>
+  );
+}
+
+function ShellContent({ preview }: { preview: boolean }) {
   return (
     <>
       <a className="skip-link" href="#main-content">

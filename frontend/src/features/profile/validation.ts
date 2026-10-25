@@ -2,18 +2,18 @@ import { z } from "zod";
 
 const supportedName = z
   .string()
-  .trim()
-  .refine(
-    (value) => Array.from(value).length <= 100,
-    "Use 100 characters or fewer.",
-  )
   .refine(
     (value) =>
       !Array.from(value).some((character) => {
         const code = character.codePointAt(0) ?? 0;
-        return code < 32 || code === 127;
+        return code < 32 || (code >= 127 && code <= 159);
       }),
     "Remove control characters from your name.",
+  )
+  .transform((value) => value.trim())
+  .refine(
+    (value) => Array.from(value).length <= 100,
+    "Use 100 characters or fewer.",
   );
 
 const firstName = supportedName.refine(

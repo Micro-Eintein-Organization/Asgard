@@ -1,3 +1,4 @@
+# Review candidate. Not read by the CLI until explicitly approved and activated.
 project_id = "asgard-foundation"
 
 [api]
@@ -45,11 +46,22 @@ enabled = true
 enabled = true
 site_url = "http://127.0.0.1:5173"
 additional_redirect_urls = ["http://localhost:5173"]
-enable_signup = false
+enable_signup = true
 enable_anonymous_sign_ins = false
+minimum_password_length = 8
+jwt_expiry = 900
+signing_keys_path = "./signing-keys.json"
 
 [auth.email]
-enable_signup = false
+enable_signup = true
+enable_confirmations = true
+max_frequency = "60s"
+otp_expiry = 600
+otp_length = 6
+
+[auth.email.template.confirmation]
+subject = "Confirm your Asgard account"
+content_path = "./supabase/templates/confirmation.html"
 
 [edge_runtime]
 enabled = false

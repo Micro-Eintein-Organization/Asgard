@@ -67,6 +67,9 @@ export function updateEnvironment(source, config, key) {
     ASGARD_PROJECT_ID: config.project,
     ASGARD_SUPABASE_URL: `http://supabase_kong_${config.project}:8000`,
     ASGARD_SUPABASE_ANON_KEY: key,
+    ASGARD_AUTH_ISSUER: `http://127.0.0.1:${config.api}/auth/v1`,
+    VITE_SUPABASE_URL: `http://127.0.0.1:${config.api}`,
+    VITE_SUPABASE_ANON_KEY: key,
     ASGARD_CORS_ORIGINS: JSON.stringify([
       `http://localhost:${frontend}`,
       `http://127.0.0.1:${frontend}`,

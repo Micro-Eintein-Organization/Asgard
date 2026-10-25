@@ -2,5 +2,7 @@ fastapi
 uvicorn
 pydantic
 pydantic-settings
-SQLAlchemy>=2,<3
+SQLAlchemy[asyncio]>=2,<3
 httpx
+PyJWT[crypto]==2.15.1
+psycopg[binary]==3.3.6

@@ -15,12 +15,12 @@ These instructions apply to human contributors and AI agents. Read this file at 
 
 ## Before implementation
 
-1. Read the relevant project documentation and assigned task, including architecture and applicable open decisions.
+1. Read the assigned task and only the relevant project documentation, specifications, contracts, and affected source; include architecture and applicable open decisions.
 2. Inspect the existing implementation before proposing changes.
-3. Identify affected components, contracts, and dependencies.
+3. Identify affected components, contracts, dependencies, and the smallest suitable verification for the risk.
 4. Confirm that the task is within approved scope.
 5. If a required decision is missing or contradictory, stop and report it. Do not invent a product or architectural decision.
-6. Have the bounded implementation plan reviewed before coding. Unrelated parked decisions do not block independent work with approved boundaries.
+6. Record and have the bounded implementation plan reviewed before coding. Unrelated parked decisions do not block independent work with approved boundaries.
 
 ## Team coordination
 
@@ -44,7 +44,21 @@ These instructions apply to human contributors and AI agents. Read this file at 
 - Reuse established components and utilities.
 - Keep changes small and focused.
 - Preserve existing behavior unless the task explicitly authorizes a change.
-- Add or update relevant verification for modified behavior.
+- Follow the standard workflow: implement within agreed scope, run the smallest appropriate automated verification, fix directly related failures, provide guided manual verification for user-facing functionality, and report evidence and outstanding risks.
+- Add or update relevant verification for modified behavior. Preserve valuable regression tests and required CI/release checks; do not add elaborate test harnesses without a demonstrated need.
+- Use risk-based verification defaults:
+  - UI or navigation: TypeScript checks and guided manual browser verification.
+  - Forms or interactions: relevant unit tests and guided manual verification.
+  - Backend APIs: targeted pytest tests and schema validation.
+  - Database or migrations: migration validation and focused database integrity checks.
+  - Authentication or authorization: mandatory applicable security checks, including ownership isolation and session validation.
+  - AI features: structured-output validation and representative manually reviewed results.
+  - Shared API contracts: OpenAPI generation, TypeScript client synchronization, and representative contract tests.
+  - Cross-feature changes: relevant integration tests.
+  - Major merges or releases: complete required regression and security verification.
+- Manual verification does not replace essential authorization, security, or data-integrity checks. For interactive user-facing changes, give the exact local URL or navigation path, steps, expected outcomes, and how to report a failure. Prefer guided manual checks to complex browser automation for straightforward interactions.
+- Reuse existing tests, scripts, fixtures, and infrastructure. Do not repeat passing checks when relevant code has not changed, rebuild Docker images or restart services without need, or create elaborate harnesses without a demonstrated need. Retest focused changes and distinguish application failures from environment or test-harness failures. Efficiency never justifies reduced security or correctness.
+- When a check fails, identify whether the cause is application behavior, configuration, or verification infrastructure. If understood, make one focused correction and retry only the affected check. If the same blocker persists, stop and report it rather than entering repeated debugging loops. Request approval before expanding scope or adding infrastructure. Never bypass a mandatory check silently or report an unrun check as passed.
 - Routine implementation choices within reviewed scope and approved patterns may proceed without a new product or architecture decision. Escalate choices that change those boundaries.
 
 ## Documentation and change records
@@ -61,7 +75,8 @@ These instructions apply to human contributors and AI agents. Read this file at 
 
 - Run applicable checks and report their results.
 - Distinguish passed, failed, and not-run checks; include reasons for checks that could not run.
-- Summarize changed files and their purpose.
+- For interactive functionality, report manual checks as completed or pending. Give guided steps when user verification remains.
+- Concisely summarize files/components changed, functionality implemented, verification evidence, remaining blockers and risks, and readiness for review or integration.
 - Report unresolved assumptions and integration risks.
 - Do not claim completion when acceptance criteria have not been verified.
 - Submit changes for human review before merging.

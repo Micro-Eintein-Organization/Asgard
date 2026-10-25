@@ -32,6 +32,9 @@ services:
     environment:
       API_PROXY_TARGET: http://backend:8000
       VITE_USE_POLLING: "true"
+      VITE_AUTH_ENABLED: ${ASGARD_AUTH_ENABLED:-false}
+      VITE_SUPABASE_URL: ${VITE_SUPABASE_URL:-http://127.0.0.1:55321}
+      VITE_SUPABASE_ANON_KEY: ${VITE_SUPABASE_ANON_KEY:-}
     ports:
       - "127.0.0.1:${FRONTEND_PORT:-5173}:5173"
     volumes:

@@ -27,6 +27,10 @@ export const ResultsPage = lazy(async () => ({
 export const SettingsPage = lazy(async () => ({
   default: (await import("@/features/profile/page")).SettingsPage,
 }));
+export const AuthenticatedProfilePage = lazy(async () => ({
+  default: (await import("@/features/profile/authenticated-page"))
+    .AuthenticatedProfilePage,
+}));
 export const DesignSystemPage = lazy(async () => ({
   default: (await import("@/features/design-system/page")).DesignSystemPage,
 }));
