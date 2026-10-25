@@ -1,41 +1,80 @@
----
-id: BRIEF
-kind: brief
-status: draft
----
-
 # Asgard
 
-Asgard is a web application for exploring technology careers, following curated learning roadmaps, and returning to a practical next learning step. Users can browse directly or use guided Discovery for explained career suggestions. They choose their current roadmap and record their own topic progress.
+Asgard is a web application for exploring technology careers and following curated learning roadmaps. It connects career explanations, learning topics, and resources so users can choose a direction, track their progress, and return to their next learning step.
 
-The initial audience is adults aged 18 and above at any experience level; initial design evaluation focuses on students. Suggestions support exploration, and recorded completion describes activity rather than measured competence.
+Users can browse careers directly or complete a five-round Discovery questionnaire for explained career suggestions. The intended audience is adults aged 18 and above, from beginners to people with technical experience.
 
-## Current state
+## Project status
 
-The workspace contains active product/engineering documentation, historical frontend references and 14 static Figma images. It has no application runtime or Git repository. No install, start, build, or test commands have been established.
+Asgard is in the planning and engineering preparation stage. The repository contains product requirements, architecture, feature specifications, and design references. The application scaffold, deployment configuration, and automated checks have not been implemented or verified yet.
 
-The protected journey is sign in → guided Discovery or direct browsing → career explanation and roadmap → explicit current focus and topic states → Dashboard continuation. Optional profile enrichment must not block it. The one-day working demo and final MVP have different PDF expectations; see the product document.
+The stack below is the selected architecture, not a claim that these services are already running. Provider compatibility checks, reviewed roadmap content, and implementation verification remain prerequisites for the final MVP.
 
-## Read what the task needs
+## Planned features
 
-| Document | Read for |
+- **Career exploration:** browse and search careers across software and AI, design and UX, data and analytics, cybersecurity, hardware and embedded systems, and networking and infrastructure.
+- **Guided Discovery:** answer five rounds of questions about interests, activities, work approach, background, and goals to receive explained career suggestions.
+- **Interactive roadmaps:** explore curated milestones, topics, learning resources, and tool guidance.
+- **Learning progress:** explicitly choose a current roadmap and record reversible topic states: Not started, Learning, Done, and Skipped.
+- **Dashboard:** continue learning, view milestone progress, and review activity and streaks.
+- **Profile and account settings:** manage preferences, retake Discovery, and optionally upload a PDF containing relevant background for analysis.
+- **Account access:** verified email/password and planned Google sign-in, password recovery, optional authenticator-based two-factor authentication, and account deletion. Google linking and MFA recovery remain subject to provider compatibility verification.
+
+Career suggestions support exploration. They do not assess competence or guarantee career suitability or job readiness. Recorded completion represents the user's reported activity.
+
+## Technology stack
+
+| Area | Selected technology |
 | --- | --- |
-| [AI engineering instructions](AGENTS.md) | Agent boundaries, verification, and conflict handling |
-| [Product requirements and scope](docs/product.md) | Users, requirements, acceptance criteria, demo/MVP boundaries, and exclusions |
-| [User journeys](docs/user-journeys.md) | End-to-end actions, recovery, one flow diagram, and a student example |
-| [Pages and interactions](docs/pages-and-interactions.md) | Screen content, controls, state changes, and missing design coverage |
-| [Decisions and open work](docs/decisions.md) | Recorded resolutions, unresolved choices, and implementation blockers |
-| [Architecture](docs/architecture.md) | Approved React/Vite, FastAPI, Supabase and Docker foundation |
-| [Development context](docs/development.md) | Selected tooling, work order, implementation prerequisites and checks |
-| [Security and operations](docs/security-and-operations.md) | Abuse controls, account recovery, provider gates, retention, backups and incident response |
-| [Verification](docs/verification.md) | Browser/accessibility, AI quality and release evidence gates |
-| [Discovery](docs/specs/discovery.md) | Questionnaire boundaries and F-001 acceptance scenarios |
-| [Career recommendations](docs/specs/career-recommendations.md) | Catalog-grounded LLM direction, PDF boundaries, and F-002 acceptance scenarios |
-| [Static Figma exports](docs/design/figma/) | Visual reference only; incomplete coverage, not verified interactions |
-| [Frontend UI reference](docs/design/ui-reference/README.md) | Historical frontend source, styles and reuse audit; some designs/interactions are inaccurate; no backend or implementation authority |
+| Frontend | React, TypeScript, Vite |
+| UI | Tailwind CSS, shadcn/ui |
+| Routing and server state | React Router, TanStack Query |
+| Forms and validation | React Hook Form, Zod |
+| Backend | Python, FastAPI, Pydantic |
+| Database and data access | Supabase PostgreSQL, SQLAlchemy 2.x |
+| Authentication and file storage | Supabase Auth, Supabase Storage |
+| Database migrations | Supabase CLI with versioned SQL migrations |
+| API contracts | FastAPI OpenAPI with a generated TypeScript client |
+| AI provider | Groq; GPT-OSS 120B and 20B are evaluation candidates |
+| Local development | Docker Compose, Supabase CLI |
+| Testing and CI | Pytest, Vitest, Playwright, GitHub Actions |
+| Planned hosting | Vercel Hobby for the frontend; Render Free for the backend; Supabase Free for data services |
 
-The architecture foundation is approved; the owner delegated remaining product/default choices on 25 October 2026. The decision register distinguishes selected policy from provider conflicts, content authoring, technical contract review and unrun verification. No document asserts a working implementation. Start with the relevant documents and inspect any implementation added by later tasks; the historical archive is not default task context.
+The initial runtime baseline is Node.js 24 LTS and Python 3.13. Exact dependency versions will be pinned during scaffolding. Free hosting is the evaluation baseline; it does not establish an always-on availability commitment.
 
-## History
+## Architecture
 
-Historical documentation, legacy tooling, LaTeX/PDF exports, and temporary files are preserved outside this workspace at `C:\Users\saave\OneDrive\Documents\Projects\AI-CAREER-DSS-NEW-docs-archive\2026-10-25`. The original consolidation manifest is at the archive root; `workspace-cleanup/manifest.csv` records the 865 additional files archived and checksum-verified before removal. Historical files are not implementation authority.
+Asgard uses a modular monolith with a React single-page frontend, a FastAPI backend, and one PostgreSQL database. The browser uses Supabase Auth for identity and calls FastAPI for application data and business operations.
+
+The backend enforces account ownership, saves learning progress, and calls AI providers through a server-side adapter. Recommendations, optional PDF extraction, and authored next-topic guidance have separate responsibilities. Secrets remain server-side, and private files belong in object storage.
+
+See the [architecture document](docs/architecture.md) for service boundaries, deployment decisions, and verification gates.
+
+## Getting started
+
+There are no verified install, start, build, or test commands yet because the application scaffold is not present.
+
+The planned local workflow uses Docker Compose for the frontend and backend, plus the Supabase CLI for local database, authentication, and storage services. Windows development will support Docker Desktop with WSL2. Configuration templates, lockfiles, migrations, seed data, and a checked bootstrap workflow will be added with the scaffold.
+
+See the [development guide](docs/development.md) for the selected tooling and implementation order. Never commit credentials or real user data.
+
+## Documentation
+
+| Document | Contents |
+| --- | --- |
+| [Product requirements](docs/product.md) | Product purpose, audience, MVP scope, and acceptance criteria |
+| [User journeys](docs/user-journeys.md) | End-to-end flows and recovery paths |
+| [Pages and interactions](docs/pages-and-interactions.md) | Page content, controls, and interface states |
+| [Architecture](docs/architecture.md) | Stack, service boundaries, data access, and deployment |
+| [Development](docs/development.md) | Local environment, implementation order, and checks |
+| [Discovery specification](docs/specs/discovery.md) | Five-round questionnaire, copy, and interaction rules |
+| [Recommendation specification](docs/specs/career-recommendations.md) | Catalog-grounded recommendations and optional PDF extraction |
+| [Security and operations](docs/security-and-operations.md) | Account security, privacy, retention, backups, and operational controls |
+| [Verification](docs/verification.md) | Functional, accessibility, AI quality, and release checks |
+| [Decision register](docs/decisions.md) | Recorded decisions, compatibility blockers, and remaining evidence |
+
+Static design exports are in [docs/design/figma](docs/design/figma/). The [historical frontend reference](docs/design/ui-reference/README.md) provides design context and reuse notes; it is not the current application.
+
+## Contributing
+
+Read the product requirements, architecture, and development guide before proposing implementation changes. Keep changes focused, update affected documentation, and include the relevant verification results in a pull request. Report checks that could not be run.
