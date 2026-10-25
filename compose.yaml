@@ -1,0 +1,59 @@
+name: ${ASGARD_PROJECT_ID:-asgard-foundation}
+services:
+  backend:
+    build:
+      context: ./backend
+      target: development
+    env_file: .env
+    ports:
+      - "127.0.0.1:${BACKEND_PORT:-8000}:8000"
+    networks:
+      - default
+      - supabase
+    volumes:
+      - ./backend/app:/workspace/app
+      - ./backend/tests:/workspace/tests
+      - ./backend/scripts:/workspace/scripts
+      - ./backend/openapi.json:/workspace/openapi.json
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=3)",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+  frontend:
+    build: ./frontend
+    environment:
+      API_PROXY_TARGET: http://backend:8000
+      VITE_USE_POLLING: "true"
+    ports:
+      - "127.0.0.1:${FRONTEND_PORT:-5173}:5173"
+    volumes:
+      - ./frontend/src:/workspace/src
+      - ./frontend/index.html:/workspace/index.html
+      - ./backend/openapi.json:/backend/openapi.json:ro
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:5173').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+networks:
+  supabase:
+    external: true
+    name: supabase_network_${ASGARD_PROJECT_ID:-asgard-foundation}

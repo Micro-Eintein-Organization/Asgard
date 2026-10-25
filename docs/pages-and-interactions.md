@@ -618,7 +618,7 @@ The Roadmaps.png frame supplies the milestone-list reference. Owner-confirmed be
   - On explicit successful save: Changes only this topic; Clear restores Not started
   - Learning limit: At most one Learning topic across the account; resolve any other active topic first
   - Independence: Parent, child, and sibling states do not propagate; Done is user-reported completion
-  - On failure: Shows the actual saved state; supports mobile and keyboard interaction
+  - On failure: Shows the actual saved state; supports desktop and keyboard interaction, including browser zoom/reflow
 
 ### Resolve active learning: RESOLVE-LEARNING
 
@@ -767,8 +767,8 @@ The Roadmaps.png frame supplies the milestone-list reference. Owner-confirmed be
 
 ### Missing:
 
-- Responsive Layouts: NFR-02
-  - Shows: Tablet and mobile versions of the page groups, including usable forms, cards, navigation, menus, and resource panels.
+- Desktop Layouts and Accessible Reflow: NFR-02
+  - Shows: Desktop/laptop page groups at approximately 1280–1920 px, including usable forms, cards, navigation, menus and resource panels. Browser zoom, keyboard access and sensible overflow remain required. Mobile-specific layouts/navigation are outside MVP scope; existing functioning code may remain.
 - Keyboard and Accessible Interaction States: NFR-01
   - Shows: Visible keyboard focus, selection and status labels beyond color, readable validation, accessible code entry, menu / panel closing and focus return, and an accessible way to inspect roadmap relationships and actions. Static images cannot establish these behaviors or WCAG conformance.
 - Consistent Request Feedback: NFR-01, NFR-03, NFR-04, NFR-07, NFR-08

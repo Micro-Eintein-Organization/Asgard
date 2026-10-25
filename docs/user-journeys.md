@@ -305,4 +305,4 @@ Only one topic may be Learning across the account. Different roadmaps retain ind
 - Invalid, scanned, oversized, or failed PDF input does not replace prior successful document context. A saved name does not depend on analysis success.
 - Done activity is deduplicated per roadmap topic per local day; undoing Done removes its contribution and recalculates streaks.
 - If all applicable topics are Done, show a completion summary without changing current focus. If only Done/Skipped remain, show No remaining suggested topics and a route to revisit Skipped rather than false completion.
-- Graph layout, mobile presentation, exact question controls, role inventory and security/data-lifecycle details still require their respective reviews.
+- Graph layout, desktop presentation and zoom/reflow, exact question controls, role inventory and security/data-lifecycle details still require their respective reviews. Mobile-specific presentation is outside MVP scope under [NFR-02](product.md#nfr-02-desktop-compatibility-and-accessible-reflow).

@@ -2,6 +2,14 @@
 
 25 October 2026. The project owner delegated resolution of outstanding caveats and requested standards research. This register records selected documentation policy and preserves existing review IDs. It does not claim deployed controls, reviewed migrations/API schemas, validated questionnaires, completed curricula or passed tests.
 
+## Team development hardening
+
+25 October 2026 — project owner approved the bounded hardening plan in this chat. Windows 11/Docker Desktop/WSL2/PowerShell and Linux/Docker Engine/Compose plugin/Bash are the development targets. The shared Node helper and direct attachment to the CLI-managed local Supabase network preserve the approved stack; they add no feature schema, auth workflow or dependency. [Development](development.md#stage-2-hardening-evidence) owns execution evidence and explicitly leaves native Linux-host acceptance pending. A-06/A-11 and QA-11 remain partial; this approval is not a feature-contract or release approval.
+
+## Desktop MVP scope resolution
+
+25 October 2026 — approved by the project owner in this chat (request: “Asgard's MVP is now desktop-only”). [NFR-02](product.md#nfr-02-desktop-compatibility-and-accessible-reflow) owns the 1280–1920 px desktop/laptop scope; [Verification](verification.md#browser-accessibility-and-performance) owns its checks. Mobile-specific layout, navigation and optimization are excluded from the MVP. Existing functioning code remains; accessibility, zoom and overflow handling remain required. This resolution changes presentation scope, not the approved stack or feature contracts.
+
 ## Authority and status
 
 - The foundation in [Architecture](architecture.md) is already approved. React/Vite, FastAPI, Supabase, Groq, Docker and the named hosts supersede older Next.js/native-only proposals.

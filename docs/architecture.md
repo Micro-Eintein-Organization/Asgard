@@ -1,6 +1,6 @@
 # Asgard: Architecture v1.1
 
-**Status:** Approved foundational architecture by project lead (25 October 2026); owner-delegated product/operations policy is recorded in the linked specifications; provider compatibility and implementation evidence remain required. **Scope:** MVP and extensible foundation. **Implementation status:** Design only; no runtime has been created or verified.
+**Status:** Approved foundational architecture by project lead (25 October 2026); owner-delegated product/operations policy is recorded in the linked specifications; provider compatibility and implementation evidence remain required. **Scope:** MVP and extensible foundation. **Implementation status:** Local technical scaffold and UI previews are implemented; product integrations and the listed verification gates remain pending. See [Development](development.md) for bounded execution evidence. The architectural choices below are unchanged.
 
 ## 1. Architectural decision
 
@@ -117,7 +117,7 @@ Each module owns its routes, schemas, service logic, and repository interfaces. 
 - Docker Compose runs frontend and backend with hot reload, health checks, environment configuration, and deterministic dependencies.
 - Supabase CLI starts the local Supabase stack using Docker. Provide a single documented developer bootstrap sequence or script that orchestrates both tools; avoid duplicating Supabase's containers in Compose.
 - Commit `.env.example`, lockfiles, migrations, seed fixtures, Dockerfiles, and startup scripts. Never commit secrets or real user data.
-- Windows + Docker Desktop/WSL2 is a supported development environment; document volume-mount and networking differences.
+- Windows 11 + Docker Desktop/WSL2/PowerShell and Linux + Docker Engine/Compose plugin/Bash are supported development targets (project-owner hardening request, 25 October 2026). Record actual host verification separately; Linux-container builds alone do not verify a native Linux host. The backend joins the CLI-created local Supabase Docker network; local connectivity does not depend on a host gateway alias. See [Development](development.md#local-network-and-filesystem-boundaries) for volume-mount and networking limits.
 - CI runs frontend lint/type checks/tests, backend lint/tests, OpenAPI contract generation verification, and migration checks. Playwright covers critical sign-in, Discovery, recommendation, and roadmap flows.
 
 ## 10. Deployment and free-tier constraints

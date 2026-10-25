@@ -75,6 +75,8 @@ Where an approved document explicitly supersedes older guidance, follow that sta
 
 ## Document map
 
+Before changing frontend components or layouts, consult the [implemented design system](docs/design.md) and reuse its shared components and tokens.
+
 Start with [README.md](README.md). Use [product requirements and scope](docs/product.md), [user journeys](docs/user-journeys.md), and [pages and interactions](docs/pages-and-interactions.md) for product context. Check [decisions](docs/decisions.md) and [development context](docs/development.md) for blockers; read the relevant [Discovery](docs/specs/discovery.md) or [recommendation](docs/specs/career-recommendations.md) specification for feature work.
 
 Read [architecture](docs/architecture.md) for the approved stack, runtime/data/API boundaries, team guardrails, and A-01 through A-11 follow-up items. The development guide and recommendation spec contain older implementation wording identified by architecture; do not adopt that wording over the approved foundation. Consult [frontend reference instructions](docs/design/ui-reference/AGENTS.md) before using the historical UI snapshot.

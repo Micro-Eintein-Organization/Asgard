@@ -158,7 +158,7 @@ Career browsing, role explanations, dedicated roadmap pages, topic resources, cu
 - **Outcome:** inspect a comprehensible learning sequence and find material to begin.
 - **Behavior:** ordered expandable milestone cards with topics, authored advisory relationships and alternatives, topic selection, and a resource/detail panel within the roadmap experience. Topic content includes explanation, learning context, curated tutorial/book links, and relevant tool setup guidance. Prefer free resources; label cost/access when applicable.
 - **Acceptance:** selecting a topic opens its details; closing retains milestone expansion, selected-topic context, and keyboard focus. Opening a resource or topic does not automatically change progress. Missing resources are stated as unavailable. AI-generated graph structures are outside initial scope.
-- **States:** roadmap/resource loading errors, unavailable links, mobile layout, no topic resources.
+- **States:** roadmap/resource loading errors, unavailable links, desktop layout and zoom/reflow, no topic resources.
 - **External resources:** external learning-resource links shall open in a new tab, preserving the current roadmap and selected-topic context in the application. Opening a resource shall not change topic progress.
 - **Learning order:** prerequisites and suggested order shall be presented as guidance. Users may open topics, access resources, and record topic states out of order; prerequisite completion shall not lock access. The single-Learning-topic limit in REQ-09 still applies.
 - **Alternative learning paths:** authored roadmaps may identify mutually alternative branches, such as choosing one language. Users shall be able to select an applicable branch. Only the selected branch contributes to milestone completion calculations; unselected alternatives are excluded from those calculations. Branch selection shall remain distinct from setting a topic status.
@@ -275,9 +275,9 @@ These requirements apply across all five page groups. They specify required qual
 - Distinguish loading, empty, success, and failure states. Communicate when an operation is pending and whether a save succeeded.
 - **Verification:** keyboard and assistive-technology walkthroughs, supported by automated checks. Automated checks alone do not establish conformance. Reference: [WCAG 2.2](https://www.w3.org/TR/WCAG22/).
 
-### NFR-02: Compatibility and responsive presentation
+### NFR-02: Desktop compatibility and accessible reflow
 
-- Support desktop, tablet, and mobile, including usable roadmap navigation and topic resources. Forms, menus, and panels shall remain readable and operable at supported sizes.
+- The MVP supports desktop/laptop layouts at approximately 1280–1920 px. Forms, menus, roadmap navigation and topic resources shall remain readable and operable across these widths. Preserve browser zoom, keyboard access and sensible overflow/reflow; mobile-specific layouts and navigation are outside MVP scope. Existing functioning mobile code may remain.
 - Support current stable Chrome, Edge, Firefox, and Safari on their applicable platforms. Record exact browser versions and representative viewport sizes in the release QA matrix.
 - The initial interface and curated content shall be in English and broadly applicable without country-specific education or employment guidance.
 - **Verification:** the browser/device matrix shall cover account entry, catalog, roadmap/topic actions, Dashboard, and Settings.

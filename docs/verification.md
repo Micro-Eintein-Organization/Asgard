@@ -1,12 +1,12 @@
 # Asgard: Verification and release gates
 
-25 October 2026. Selected acceptance plan; no tests below have been executed. Requirements remain in [product](product.md), interactions in [pages](pages-and-interactions.md), and security policy in [security and operations](security-and-operations.md). Evidence, not document completion, determines release readiness.
+25 October 2026. Selected acceptance plan; partial local foundation/UI execution evidence is recorded in [Development](development.md). No complete release gate is claimed by that partial record. Requirements remain in [product](product.md), interactions in [pages](pages-and-interactions.md), and security policy in [security and operations](security-and-operations.md). Evidence, not document completion, determines release readiness.
 
 ## Browser, accessibility, and performance
 
-Use current stable Chrome, Edge and Firefox on Windows; Safari on macOS/iOS; Chrome on Android. Record exact versions at release. Test 360×800 mobile, 768×1024 tablet, and 1440×900 desktop; also check 320 CSS-pixel reflow and 200%/400% zoom. Playwright WebKit is useful coverage but does not replace an actual Safari check.
+Use current stable Chrome, Edge and Firefox on Windows; Safari on macOS. Record exact versions at release. Test desktop/laptop viewports at 1280×800, 1440×900 and 1920×1080; also check 320 CSS-pixel reflow and 200%/400% browser zoom. Mobile-specific verification is outside MVP scope under NFR-02. Playwright WebKit is useful coverage but does not replace an actual Safari check.
 
-Walk account entry, Discovery, catalog, roadmap, Dashboard and Settings by keyboard. Test NVDA with Firefox on Windows and VoiceOver with Safari on iOS or macOS. Check focus return, labeled code fields, error summaries/inline errors, live save feedback, dialog focus, non-color states, touch targets, and reduced motion. Automated accessibility checks supplement manual WCAG 2.2 AA review. [WCAG 2.2](https://www.w3.org/TR/WCAG22/).
+Walk account entry, Discovery, catalog, roadmap, Dashboard and Settings by keyboard. Test NVDA with Firefox on Windows and VoiceOver with Safari on macOS. Check focus return, labeled code fields, error summaries/inline errors, live save feedback, dialog focus, non-color states, touch targets, and reduced motion. Automated accessibility checks supplement manual WCAG 2.2 AA review. [WCAG 2.2](https://www.w3.org/TR/WCAG22/).
 
 Milestones use accordion headers with button semantics, expanded state, and associated panels; Enter/Space toggle without changing topic progress. Multiple milestones can stay open. [WAI accordion pattern](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/).
 
@@ -19,7 +19,7 @@ Adopt LCP ≤2.5 seconds, INP ≤200 ms, CLS ≤0.1 as targets, not measured cla
 | QA-01 | REQ-01/13 | Google/email entry, verification code, invalid/expired/resend, known/unknown reset responses, password change, OAuth cancellation, expired sessions; AUTH-C1 compatibility evidence |
 | QA-02 | REQ-11/13 | TOTP enrollment, direct-API AAL enforcement, recovery code once-only consumption under concurrent requests, rotation/ambiguous response, lost-all-factor state, fresh-auth and disablement; AUTH-C2 evidence |
 | QA-03 | REQ-04; F-001-AC-01–08 | Per-round controls, exclusive uncertainty, Back/resume/skip, explicit saves, concurrent draft conflict, final submission and failed retake |
-| QA-04 | REQ-02/03/07 | Seven reviewed launch roles, six categories, search by role/skill, filter reset, direct View roadmap, role explanation, authored alternatives, resources and mobile/keyboard panels |
+| QA-04 | REQ-02/03/07 | Seven reviewed launch roles, six categories, search by role/skill, filter reset, direct View roadmap, role explanation, authored alternatives, resources and desktop/keyboard panels |
 | QA-05 | REQ-08/09/10 | Explicit focus, branch/topic switching with resolution, cancel/failure/partial outcomes, cross-tab single Learning topic, per-roadmap state, Done-only counts, Hide completed, retained skipped topics |
 | QA-06 | REQ-10 | Empty/start/completed/exhausted Dashboard, continuation, calendar deduplication/undo, midnight/timezone changes and streak rules |
 | QA-07 | REQ-10/11 | Explicit profile/preference saves, dirty-form exit, name/photo limits, shared-banner eligibility/dismissal across pages/devices, no recommendation claim from name/photo |
