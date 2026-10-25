@@ -26,7 +26,9 @@ def main() -> int:
         or connection_info.get("user") != "asgard_app"
         or connection_info.get("dbname") != "postgres"
     ):
-        raise SystemExit("The configured database connection is not the local least-privilege role.")
+        raise SystemExit(
+            "The configured database connection is not the local least-privilege role."
+        )
 
     account_a = account_id("Account A")
     account_b = account_id("Account B")
