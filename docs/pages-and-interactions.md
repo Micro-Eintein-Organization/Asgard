@@ -34,7 +34,7 @@ REQ-06 and REQ-12 remain outside MVP. Career saving/comparison, tutor/chat inter
 
 - Preview and authenticated pages share the reference header's Dashboard, Roadmap, Settings, and account/avatar entry points. Roadmap opens the career catalog. Existing page actions lead to Discovery, recommendations and roadmap availability; progress belongs to Dashboard.
 - Settings opens Profile. Its shared navigation and the account menu expose Profile and Account and security. Successful Log out returns to the public landing page at `/`. Confirm discarding dirty profile edits before logging out; an active profile save must finish first.
-- Normal application screens show empty or unavailable states for unfinished features. Sample fixtures and layout-state controls are limited to the explicit UI preview.
+- During the approved prototype phase, authenticated and public preview feature routes render the same canonical layouts, sample fixtures and visual-state controls. Label demo data clearly; sample roles, recommendations and progress must not appear to be persisted account data. Profile remains backed by the real account API.
 - Protected pages require authentication. Unauthenticated access opens account entry; expired sessions provide a recoverable authentication route.
 - New authenticated users reach ENTRY-CHOICE. Returning users reach Dashboard. Unfinished Discovery produces an optional Resume Discovery action using saved answers.
 - Each roadmap detail has its own addressable URL. Animation may accompany navigation without removing that URL.

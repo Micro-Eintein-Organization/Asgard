@@ -51,7 +51,7 @@ export function LandingPage() {
         <div className="landing-preview">
           <p>
             {authConfigured
-              ? "Account access and profile saving are available. Career and learning features are being prepared."
+              ? "Account access and profile saving are available. Career and learning screens use labeled demo content."
               : "Account access is not configured in this environment. Career and learning screens use sample content."}
           </p>
           <Link to={routes.dashboard}>View the UI preview</Link>

@@ -3,14 +3,15 @@ import { useForm } from "react-hook-form";
 import { FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { PageHeading, StatePanel, Unavailable } from "@/components/shared";
 import { UnsavedPreviewDialog } from "@/components/unsaved-preview-dialog";
 import { categories } from "@/fixtures/catalog";
 import { useIsPreview, usePageRoutes } from "@/lib/page-routes";
-import { SettingsLayout, ProfileDetailsCard } from "./settings-layout";
-import { validateFirstName, validateSurname } from "./validation";
+import {
+  SettingsLayout,
+  ProfileDetailsCard,
+  ProfileNameFields,
+} from "./settings-layout";
 
 export function SettingsPage({ account = false }: { account?: boolean }) {
   const preview = useIsPreview();
@@ -92,55 +93,7 @@ export function SettingsPage({ account = false }: { account?: boolean }) {
                 className="form-grid"
                 onSubmit={(event) => event.preventDefault()}
               >
-                <div className="name-fields">
-                  <div className="field">
-                    <Label htmlFor="first-name">First name</Label>
-                    <Input
-                      id="first-name"
-                      autoComplete="given-name"
-                      aria-invalid={!!errors.firstName}
-                      aria-describedby={
-                        errors.firstName ? "first-name-error" : undefined
-                      }
-                      {...register("firstName", {
-                        validate: validateFirstName,
-                      })}
-                    />
-                    {errors.firstName && (
-                      <p
-                        className="field-error"
-                        id="first-name-error"
-                        role="alert"
-                      >
-                        {errors.firstName.message}
-                      </p>
-                    )}
-                  </div>
-                  <div className="field">
-                    <Label htmlFor="surname">
-                      Surname{" "}
-                      <span className="muted font-normal">(optional)</span>
-                    </Label>
-                    <Input
-                      id="surname"
-                      autoComplete="family-name"
-                      aria-invalid={!!errors.surname}
-                      aria-describedby={
-                        errors.surname ? "surname-error" : undefined
-                      }
-                      {...register("surname", { validate: validateSurname })}
-                    />
-                    {errors.surname && (
-                      <p
-                        className="field-error"
-                        id="surname-error"
-                        role="alert"
-                      >
-                        {errors.surname.message}
-                      </p>
-                    )}
-                  </div>
-                </div>
+                <ProfileNameFields register={register} errors={errors} />
                 <div>
                   <Button disabled>Save profile</Button>
                   <Unavailable>

@@ -10,17 +10,15 @@ import {
 } from "@/components/ui/accordion";
 import {
   BackLink,
-  PageHeading,
   Notice,
   StatePanel,
   StatusBadge,
   Unavailable,
 } from "@/components/shared";
 import { findCareer, categories, sampleMilestones } from "@/fixtures/catalog";
-import { useIsPreview, usePageRoutes } from "@/lib/page-routes";
+import { usePageRoutes } from "@/lib/page-routes";
 
 export function RoadmapPage() {
-  const preview = useIsPreview();
   const pageRoutes = usePageRoutes();
   const { careerId } = useParams();
   const career = findCareer(careerId);
@@ -48,27 +46,6 @@ export function RoadmapPage() {
     setParams({}, { state: location.state });
     requestAnimationFrame(() => opener.current?.focus());
   }
-  if (!preview)
-    return (
-      <>
-        <PageHeading
-          title="Learning roadmaps"
-          description="A place for your learning path and progress."
-        />
-        <StatePanel
-          kind="empty"
-          title="Learning roadmaps are not available yet"
-          action={
-            <Button asChild variant="outline">
-              <Link to={pageRoutes.careers}>Back to careers</Link>
-            </Button>
-          }
-        >
-          Published learning paths and progress saving are being prepared. No
-          roadmap has been selected for your account.
-        </StatePanel>
-      </>
-    );
   if (!career)
     return (
       <StatePanel

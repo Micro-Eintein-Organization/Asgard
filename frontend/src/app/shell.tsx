@@ -222,20 +222,34 @@ export function AppShell({ preview = false }: { preview?: boolean }) {
 }
 
 function ShellContent({ preview }: { preview: boolean }) {
+  const { pathname } = useLocation();
+  const demoPaths = [
+    appRoutes.dashboard,
+    appRoutes.welcome,
+    appRoutes.discovery,
+    appRoutes.results,
+    appRoutes.careers,
+    appRoutes.roadmaps,
+  ];
+  const demo =
+    preview ||
+    demoPaths.includes(pathname) ||
+    pathname.startsWith("/roadmaps/");
   return (
     <>
       <a className="skip-link" href="#main-content">
         Skip to content
       </a>
       <Header preview={preview} />
-      {preview && (
+      {demo && (
         <div className="preview-bar">
           <div>
-            <strong>UI preview</strong>
+            <strong>Demo content</strong>
             <span>
-              Sample content. No account, answers or progress are saved.
+              Sample careers, suggestions and progress. These examples are not
+              your saved account data. Discovery answers are not saved.
             </span>
-            <Link to={routes.home}>Leave preview</Link>
+            {preview && <Link to={routes.home}>Leave preview</Link>}
           </div>
         </div>
       )}

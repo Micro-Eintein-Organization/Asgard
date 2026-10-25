@@ -5,8 +5,6 @@ import { useBlocker, useBeforeUnload } from "react-router";
 import { useAuth } from "@/auth/context";
 import { isCurrentAccount } from "@/auth/transport";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   Dialog,
   DialogContent,
@@ -15,9 +13,12 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { PageHeading, StatePanel } from "@/components/shared";
-import { validateFirstName, validateSurname } from "./validation";
 import { readProfile, saveProfile } from "./api";
-import { SettingsLayout, ProfileDetailsCard } from "./settings-layout";
+import {
+  SettingsLayout,
+  ProfileDetailsCard,
+  ProfileNameFields,
+} from "./settings-layout";
 import { useLogout, useLogoutGuard } from "@/app/logout";
 
 export function AuthenticatedProfilePage() {
@@ -164,42 +165,11 @@ function ProfileEditor({ userId }: { userId: string }) {
               Check the name fields below.
             </p>
           )}
-          <div className="name-fields">
-            <div className="field">
-              <Label htmlFor="first-name">First name</Label>
-              <Input
-                id="first-name"
-                autoComplete="given-name"
-                disabled={mutation.isPending}
-                aria-invalid={!!errors.firstName}
-                aria-describedby={
-                  errors.firstName ? "first-name-error" : undefined
-                }
-                {...register("firstName", { validate: validateFirstName })}
-              />
-              {errors.firstName && (
-                <p id="first-name-error" role="alert" className="field-error">
-                  {errors.firstName.message}
-                </p>
-              )}
-            </div>
-            <div className="field">
-              <Label htmlFor="surname">Surname (optional)</Label>
-              <Input
-                id="surname"
-                autoComplete="family-name"
-                disabled={mutation.isPending}
-                aria-invalid={!!errors.surname}
-                aria-describedby={errors.surname ? "surname-error" : undefined}
-                {...register("surname", { validate: validateSurname })}
-              />
-              {errors.surname && (
-                <p id="surname-error" role="alert" className="field-error">
-                  {errors.surname.message}
-                </p>
-              )}
-            </div>
-          </div>
+          <ProfileNameFields
+            register={register}
+            errors={errors}
+            disabled={mutation.isPending}
+          />
           {mutation.error && (
             <div role="alert" className="field-error">
               <p>{mutation.error.message}</p>

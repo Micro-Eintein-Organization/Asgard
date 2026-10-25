@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router";
 import { Button } from "@/components/ui/button";
-import { PageHeading, BackLink, Notice, StatePanel } from "@/components/shared";
+import { PageHeading, BackLink, Notice } from "@/components/shared";
 import {
   PreviewDataState,
   PreviewStateControl,
@@ -9,10 +9,9 @@ import {
 } from "@/components/preview-states";
 import { CareerCard } from "@/components/career-card";
 import { careers } from "@/fixtures/catalog";
-import { useIsPreview, usePageRoutes } from "@/lib/page-routes";
+import { usePageRoutes } from "@/lib/page-routes";
 
 export function ResultsPage() {
-  const preview = useIsPreview();
   const pageRoutes = usePageRoutes();
   const [state, setState] = useState<PreviewState>("sample");
   const samples = [careers[0], careers[2], careers[3]];
@@ -24,12 +23,7 @@ export function ResultsPage() {
         description="Suggestions are starting points. You can explore any career in the catalog."
       />
       <PreviewStateControl value={state} onChange={setState} />
-      {!preview ? (
-        <StatePanel kind="empty" title="No saved suggestions yet">
-          Career suggestions are not available yet. Exploring Discovery does not
-          generate or save recommendations in this build.
-        </StatePanel>
-      ) : state !== "sample" ? (
+      {state !== "sample" ? (
         <PreviewDataState
           state={state}
           subject="career suggestions"
@@ -71,11 +65,9 @@ export function ResultsPage() {
           <Link to={pageRoutes.careers}>Browse careers</Link>
         </Button>
       </div>
-      {preview && (
-        <p className="landing-note centered">
-          No match scores, inferred abilities or automatic roadmap selection.
-        </p>
-      )}
+      <p className="landing-note centered">
+        No match scores, inferred abilities or automatic roadmap selection.
+      </p>
     </>
   );
 }

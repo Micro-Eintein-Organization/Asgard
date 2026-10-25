@@ -1,7 +1,6 @@
 import { useId } from "react";
 import { Button } from "@/components/ui/button";
 import { StatePanel } from "@/components/shared";
-import { useIsPreview } from "@/lib/page-routes";
 
 export type PreviewState = "sample" | "empty" | "loading" | "error";
 export function PreviewStateControl({
@@ -12,8 +11,6 @@ export function PreviewStateControl({
   onChange: (value: PreviewState) => void;
 }) {
   const id = useId();
-  const preview = useIsPreview();
-  if (!preview) return null;
   return (
     <div className="preview-state-control">
       <label htmlFor={id}>Review layout state</label>

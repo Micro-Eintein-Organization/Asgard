@@ -10,18 +10,13 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import {
-  PageHeading,
-  StatusBadge,
-  Notice,
-  StatePanel,
-} from "@/components/shared";
+import { PageHeading, StatusBadge, Notice } from "@/components/shared";
 import {
   PreviewStateControl,
   PreviewDataState,
   type PreviewState,
 } from "@/components/preview-states";
-import { useIsPreview, usePageRoutes } from "@/lib/page-routes";
+import { usePageRoutes } from "@/lib/page-routes";
 
 function SampleCalendar() {
   const [month, setMonth] = useState(1);
@@ -83,7 +78,6 @@ function SampleCalendar() {
 }
 
 export function DashboardPage() {
-  const preview = useIsPreview();
   const pageRoutes = usePageRoutes();
   const [state, setState] = useState<PreviewState>("sample");
   const [helper, setHelper] = useState(true);
@@ -101,46 +95,7 @@ export function DashboardPage() {
         }
       />
       <PreviewStateControl value={state} onChange={setState} />
-      {!preview ? (
-        <div className="dashboard-layout">
-          <div className="dashboard-main">
-            <StatePanel
-              kind="empty"
-              title="Find your starting point"
-              action={
-                <div className="action-row">
-                  <Button asChild>
-                    <Link to={pageRoutes.welcome}>Explore Discovery</Link>
-                  </Button>
-                  <Button asChild variant="outline">
-                    <Link to={pageRoutes.results}>Your suggestions</Link>
-                  </Button>
-                </div>
-              }
-            >
-              You can explore the Discovery questions while career
-              recommendations and learning roadmaps are being prepared. Answers
-              are not saved yet.
-            </StatePanel>
-          </div>
-          <aside className="dashboard-side" aria-label="Learning context">
-            <Card className="support-card" id="progress">
-              <h2>Your progress</h2>
-              <p>
-                Learning activity will appear here when roadmap and progress
-                saving become available.
-              </p>
-            </Card>
-            <Card className="support-card">
-              <h2>Make it yours.</h2>
-              <p>Add or update the name saved to your account.</p>
-              <Button asChild variant="outline">
-                <Link to={pageRoutes.profile}>Edit profile</Link>
-              </Button>
-            </Card>
-          </aside>
-        </div>
-      ) : state !== "sample" ? (
+      {state !== "sample" ? (
         <PreviewDataState
           state={state}
           subject="learning activity"
@@ -246,7 +201,7 @@ export function DashboardPage() {
           </aside>
         </div>
       )}
-      {preview && helper && (
+      {helper && (
         <div className="dismissible-guidance mt-8">
           <Notice>
             <div className="guidance-content">

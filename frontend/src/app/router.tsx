@@ -18,6 +18,22 @@ import { appRoutes, routes } from "@/lib/routes";
 import { StatePanel } from "@/components/shared";
 import { ProtectedRoute } from "@/auth/protected-route";
 
+function featureRoutes(
+  paths: Pick<
+    typeof appRoutes,
+    "dashboard" | "welcome" | "discovery" | "results" | "careers" | "roadmap"
+  >,
+) {
+  return [
+    { path: paths.dashboard, element: <DashboardPage /> },
+    { path: paths.welcome, element: <WelcomePage /> },
+    { path: paths.discovery, element: <DiscoveryPage /> },
+    { path: paths.results, element: <ResultsPage /> },
+    { path: paths.careers, element: <CatalogPage /> },
+    { path: paths.roadmap(":careerId"), element: <RoadmapPage /> },
+  ];
+}
+
 export const router = createBrowserRouter([
   {
     element: <AppShell />,
@@ -31,13 +47,11 @@ export const router = createBrowserRouter([
       {
         element: <ProtectedRoute />,
         children: [
-          { path: appRoutes.dashboard, element: <DashboardPage /> },
-          { path: appRoutes.welcome, element: <WelcomePage /> },
-          { path: appRoutes.discovery, element: <DiscoveryPage /> },
-          { path: appRoutes.results, element: <ResultsPage /> },
-          { path: appRoutes.careers, element: <CatalogPage /> },
-          { path: appRoutes.roadmaps, element: <RoadmapPage /> },
-          { path: "/roadmaps/:careerId", element: <RoadmapPage /> },
+          ...featureRoutes(appRoutes),
+          {
+            path: appRoutes.roadmaps,
+            element: <Navigate to={appRoutes.roadmap("frontend")} replace />,
+          },
           { path: appRoutes.profile, element: <AuthenticatedProfilePage /> },
           { path: appRoutes.account, element: <SettingsPage account /> },
         ],
@@ -62,12 +76,7 @@ export const router = createBrowserRouter([
     element: <AppShell preview />,
     children: [
       { index: true, element: <Navigate to={routes.dashboard} replace /> },
-      { path: "dashboard", element: <DashboardPage /> },
-      { path: "welcome", element: <WelcomePage /> },
-      { path: "discovery", element: <DiscoveryPage /> },
-      { path: "results", element: <ResultsPage /> },
-      { path: "careers", element: <CatalogPage /> },
-      { path: "roadmaps/:careerId", element: <RoadmapPage /> },
+      ...featureRoutes(routes),
       { path: "settings", element: <Navigate to={routes.profile} replace /> },
       { path: "settings/profile", element: <SettingsPage key="profile" /> },
       {
