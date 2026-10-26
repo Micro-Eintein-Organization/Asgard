@@ -1,4 +1,4 @@
-# Local environment values; examples must contain placeholders only.
+# Environment files (commit placeholder examples only)
 .env
 .env.*
 !.env.example
@@ -6,27 +6,61 @@
 .envrc
 .envrc.local
 
-# Credentials and private keys
-.aws/
-.azure/
-.config/gcloud/
-.ssh/
-secrets/
-.secrets/
-credentials.json
-service-account*.json
-*-credentials.json
+# Private keys and local credentials
 *.pem
 *.key
 *.p12
 *.pfx
 id_rsa
 id_ed25519
+.aws/
+.azure/
+.config/gcloud/
+.ssh/
 .netrc
+_netrc
+.pgpass
+pgpass.conf
 .pypirc
+secrets/
+.secrets/
+credentials.json
+service-account*.json
+*-credentials.json
 
-# JavaScript dependencies, caches and build output
-node_modules/
+# Local data and database exports (keep SQL migrations and seeds tracked)
+backups/
+*.dump
+*.backup
+*.db
+*.db-*
+*.sql.gz
+*.sqlite
+*.sqlite3
+*.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm
+*.sqlite3-journal
+*.sqlite3-wal
+*.sqlite3-shm
+.local/
+.docker/
+/docker-data/
+/volumes/
+**/docker/volumes/
+**/supabase/volumes/
+pgdata/
+
+# Dependencies, builds, and tool caches
+**/node_modules/
+**/dist/
+**/.venv/
+venv/
+env/
+**/__pycache__/
+*.py[cod]
+*$py.class
+*.tsbuildinfo
 .npm/
 .pnpm-store/
 .yarn/cache/
@@ -36,66 +70,41 @@ node_modules/
 .vite-temp/
 .turbo/
 .cache/
-dist/
-build/
-*.tsbuildinfo
 .eslintcache
 .stylelintcache
 .vercel/
-
-# Python environments, bytecode, tools and package output
-.venv/
-venv/
-env/
-__pycache__/
-*.py[cod]
-*$py.class
-.pytest_cache/
-.ruff_cache/
-.mypy_cache/
-.pyright/
-.hypothesis/
-.tox/
-.nox/
+build/
 .Python
 *.egg-info/
 *.egg
 .eggs/
 pip-wheel-metadata/
-htmlcov/
+.mypy_cache/
+.pyright/
+.hypothesis/
+.tox/
+.nox/
+**/.pytest_cache/
+**/.ruff_cache/
+
+# Test output and saved browser authentication
+**/coverage/
 .coverage
 .coverage.*
 coverage.xml
-
-# Test artifacts
-coverage/
-playwright-report/
+htmlcov/
+**/test-results/
+**/playwright-report/
 playwright/.cache/
-test-results/
 blob-report/
+**/playwright/.auth/
 
-# Supabase CLI state; config, migrations and seed SQL remain versioned.
+# Local Supabase state and signing secrets
 supabase/.temp/
 supabase/.branches/
+supabase/signing-keys.json
 
-# Local Docker credentials, volumes and database state
-.docker/
-/docker-data/
-/volumes/
-**/docker/volumes/
-**/supabase/volumes/
-pgdata/
-*.db
-*.db-*
-*.sqlite
-*.sqlite-*
-*.sqlite3
-*.sqlite3-*
-*.dump
-*.backup
-backups/
-
-# Logs, temporary files and machine-specific editor state
+# Runtime logs and operating-system metadata
 *.log
 logs/
 tmp/
