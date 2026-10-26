@@ -235,7 +235,7 @@ Security review references: [OWASP MFA guidance](https://cheatsheetseries.owasp.
 
 ## 2. Discovery / Setup
 
-Keep the existing five question rounds followed by results. The [Discovery copy draft](specs/discovery.md#discovery-copy-draft) owns the revised headings, questions, card labels, descriptions, uncertainty wording, and shared messages. The 25 October 2026 owner instruction retains the rounds and changes wording only. The selected per-round controls and persistence in F-001 apply; screenshots and historical prototypes do not override them.
+Use the existing five themes as the content baseline, followed by results after the applicable conditional route. Later questions or choice sets may depend on earlier answers. The [Discovery copy draft](specs/discovery.md#discovery-copy-draft) owns the baseline headings, questions, card labels, descriptions, uncertainty wording, and shared messages. The 26 October 2026 owner clarification supersedes fixed-five/no-branch wording; Assignment A must propose the route map and inactive-answer behavior. The selected baseline controls and persistence in F-001 apply subject to that reviewed route; screenshots and historical prototypes do not define routing.
 
 ### Entry Choice
 
@@ -252,12 +252,12 @@ Keep the existing five question rounds followed by results. The [Discovery copy 
   - On click with Guided Discovery selected: Opens the first question round
   - On click with Browse careers selected: Opens the career catalog
 
-### Rounds 1–5: Questions
+### Question screens and conditional route
 
 #### Content Area
 
 - Discovery Heading and Progress Indicator
-  - Shows: Discovery title and Question 1 of 5 through Question 5 of 5; the existing final results stage uses Results, not a sixth question
+  - Shows: Discovery title and progress through the active route; the current five-screen progress indicator is skeleton content and must be replaced by route-aware progress when questions are authored
 
 - Question and Instructions
   - Shows: The current question, its subject, and a short explanation of how to answer
@@ -267,10 +267,10 @@ Keep the existing five question rounds followed by results. The [Discovery copy 
 - Content / Answer Cards
   - Shows: Choice title, short description where supplied, category label, and illustration or icon area
   - On click: Selects the answer card, highlighting its border and showing a Selected label as pictured
-  - Exact content: F-001; all five rounds are independent, without conditional question branches
+  - Exact content: F-001 baseline content; show the authored question/choice set for the active route
 
 - Next / See Suggestions
-  - Shows: Next in rounds 1-4 and See suggestions in round 5
+  - Shows: Next for questions with a later active step; See suggestions on the final question in the applicable route
   - On click: Validates and saves the current answer, then advances; save failure retains recoverable input
   - On the last question round: Submits the answers and opens the results when ready
 
@@ -351,7 +351,7 @@ Keep the existing five question rounds followed by results. The [Discovery copy 
 
 ### Recorded design decisions
 
-- Controls: Entry starts unselected. F-001 specifies checkbox rounds 1–4, uncertainty/background exclusions, radio round 5, validation and saved checkpoints. No conditional questions.
+- Controls: Entry starts unselected. F-001 specifies baseline checkbox/radio controls, uncertainty/background exclusions, validation and saved checkpoints. Conditional questions and choice sets follow the reviewed route map.
 - Entry action: Guided Discovery, Browse careers, Continue. Remove the duplicate Start Assessment control.
 - Results actions: View roadmap opens the associated detail; Browse careers opens the full catalog. No result selection or focus change.
 - Match badges: The screenshots show match percentages. The current requirements omit them, so this draft leaves them out of card content.
@@ -368,7 +368,7 @@ Keep the existing five question rounds followed by results. The [Discovery copy 
 - Unavailable or Failed Results: REQ-05
   - Shows: No usable result, incomplete catalog content, or invalid result-reference feedback, with retry and full-catalog browsing actions.
 - Retake and Changed-Answer States: REQ-04, REQ-05
-  - Shows: Retained answers and previous successful suggestions during a failed retake. Earlier edits preserve later answers; there are no dependent questions. Concurrent saves require explicit conflict recovery.
+  - Shows: Retained answers and previous successful suggestions during a failed retake. Earlier edits recompute the active route; inactive-answer retention or clearing follows the reviewed policy. Concurrent saves require explicit conflict recovery.
 - Optional Profile Feedback: REQ-11
   - Shows: Saving / saved / failed profile states and PDF validation, uploading, analyzing, completed-analysis, and failure states. Upload success must be distinct from analysis success.
 - Document-Use Explanation: NFR-06
@@ -777,7 +777,7 @@ The Roadmaps.png frame supplies the milestone-list reference. Owner-confirmed be
 - Consistent Request Feedback: NFR-01, NFR-03, NFR-04, NFR-07, NFR-08
   - Shows: Pending, empty, success, failure, timeout, and retry feedback where applicable; recoverable input and previous successful context remain available. Recommendation or analysis failure keeps available core browsing and learning usable.
 
-Engineering requirements such as authorization, storage, backup procedures, performance measurements, and operational logging need separate implementation / verification evidence. They are not treated as missing visual controls here. Selected audience notice, independent Discovery rounds, security-action policies and retention deadlines apply. Provider compatibility, technical review, content readiness and test evidence remain release gates. Excluded features such as comparison, bookmarking, an assistant, and data export are not missing MVP screens.
+Engineering requirements such as authorization, storage, backup procedures, performance measurements, and operational logging need separate implementation / verification evidence. They are not treated as missing visual controls here. Selected audience notice, conditional Discovery routing direction, security-action policies and retention deadlines apply. The route map, provider compatibility, technical review, content readiness and test evidence remain release gates. Excluded features such as comparison, bookmarking, an assistant, and data export are not missing MVP screens.
 
 
 ### Quality coverage

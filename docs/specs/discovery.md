@@ -13,7 +13,7 @@ acceptance: [F-001-AC-01, F-001-AC-02, F-001-AC-03, F-001-AC-04, F-001-AC-05, F-
 
 Implementation pointers updated 26 October 2026. Stage 4 provides [Discovery schemas](../../backend/app/modules/discovery/schemas.py), generic saved-session/answer envelopes, a versioned identity registry and generated API scaffolding. The [shared handoff](../development.md#stage-4-shared-contracts-and-handoff) defines ownership/revision boundaries; feature handlers still return 501. Authored question/option publication, service-level meaning/exclusion validation and persisted UI integration remain unfinished. Local selection screens do not establish saved Discovery acceptance. The BRIEF provenance gap is recorded in [Decisions](../decisions.md#documentation-authority-and-unresolved-integration-records).
 
-This specification follows [Product](../product.md), [pages](../pages-and-interactions.md), and [journeys](../user-journeys.md). The owner retained five rounds and delegated remaining choices on 25 October 2026. Controls and persistence below are selected product defaults; comprehension/evaluation are required evidence, not completed work. Earlier short/expanded questionnaires remain historical, not additional app modes.
+This specification follows [Product](../product.md), [pages](../pages-and-interactions.md), and [journeys](../user-journeys.md). The five existing themes and wording areas remain the content baseline; the owner clarified on 26 October 2026 that later question or choice sets may depend on earlier answers. The current UI is an unfinished skeleton, not the route authority. Assignment A must propose a reviewed route map before branch-dependent implementation. Controls and persistence below are baseline policies, subject to that route map; comprehension/evaluation are required evidence, not completed work. Earlier short/expanded questionnaires remain historical, not additional app modes.
 
 ## Purpose
 
@@ -21,21 +21,21 @@ Help authenticated users find catalog-grounded careers and learning paths worth 
 
 ## Screen sequence
 
-Keep the existing order: general interests, activities and motivations, work approach, experience and background, and goals, followed by results. These are five question rounds; results are not a sixth question. See [Discovery pages and interactions](../pages-and-interactions.md#2-discovery--setup) for entry choice, screen behavior, and missing design states. [J-02](../user-journeys.md#j-02-complete-or-leave-guided-discovery) owns the end-to-end route. No A/B selector, separate answer-review page, or mandatory completion/profile screen is introduced.
+Use the existing themes as the question-content baseline: general interests, activities and motivations, work approach, experience and background, and goals. Earlier answers may determine which later question or choice set is shown; the final route and question count depend on the reviewed route map. Results follow the applicable route and are not an answer-review round. See [Discovery pages and interactions](../pages-and-interactions.md#2-discovery--setup) for entry choice, screen behavior, and missing design states. [J-02](../user-journeys.md#j-02-complete-or-leave-guided-discovery) owns the end-to-end route. No A/B selector, separate answer-review page, or mandatory completion/profile screen is introduced.
 
 ## Discovery copy draft
 
 ### Source and writing rules
 
-The owner requested simpler wording without changing the rounds. The baseline is the six existing Rounds 1-5 exports: five questions followed by results. The historical frontend snapshot has different question choices and does not supply questionnaire authority. Tables below pair each original card title with revised copy so the meaning can be reviewed. These titles are editorial references, not answer identifiers or a data contract.
+The owner requested simpler wording while retaining the five existing themes as the content baseline. The baseline exports show five questions followed by results; they do not settle the conditional route map. The historical frontend snapshot has different question choices and does not supply questionnaire authority. Tables below pair each original card title with revised copy so the meaning can be reviewed. These titles are editorial references, not answer identifiers or a data contract.
 
 - Use familiar words with specific descriptions of the activity. Keep meaningful distinctions such as software logic, data handling, and security; do not replace every option with a vague phrase such as solving problems.
 - Address adults with different experience levels. Avoid slang, personality types, skill rankings, and language suggesting that prior technical experience is necessary.
 - Use sentence case. Keep each question separate from its short subject label. Do not repeat the round number inside the question.
 - Keep interest separate from experience. A preferred activity or approach does not demonstrate ability, and uncertainty does not imply dislike.
-- Use the existing required uncertainty option with the wording below. Adding it to frames that lack it completes documented uncertainty support; it does not create an extra round.
+- Use the existing required uncertainty option with the wording below wherever it applies. Adding it to frames that lack it completes documented uncertainty support.
 - Show Choose all that apply for rounds 1–4 and Choose one for round 5. Use the controls policy below, including exclusive uncertainty and background exclusions. Selected-card artwork does not change these rules.
-- Preserve answer identity and reviewed meaning when implementation contracts are defined. A label change does not authorize a new interpretation, mapping, branch, or stored-answer migration.
+- Preserve answer identity and reviewed meaning when implementation contracts are defined. A label change does not authorize a new interpretation, mapping, branch, or stored-answer migration. Conditional routes and their answer identities require explicit authored definitions.
 
 ### Entry and shared labels
 
@@ -43,12 +43,12 @@ The owner requested simpler wording without changing the rounds. The baseline is
 | --- | --- |
 | Entry heading | How would you like to begin? |
 | Guided path | Guided Discovery |
-| Guided description | Answer five questions about your interests, experience, and goals to get career suggestions. |
+| Guided description | Answer questions about your interests, experience, and goals to get career suggestions. |
 | Direct browsing path | Browse careers |
 | Direct browsing description | Explore careers and learning roadmaps without answering the questions. |
 | Entry action | Continue |
 | Question flow title | Discovery |
-| Question progress | Question 1 of 5, through Question 5 of 5 |
+| Question progress | Show the current question and progress through the applicable route; do not assume a fixed total until routes are authored |
 | Earlier question action | Next |
 | Final question action | See suggestions |
 | Previous question action | Back |
@@ -185,8 +185,8 @@ Before releasing the copy, ask beginners and experienced technical readers to ex
 - Do not require technical experience, employment history, a profile image, a PDF or additional optional background to use Discovery.
 - Do not interpret uncertainty as dislike or low ability. A profession, qualification or activity preference does not establish unreported competence.
 - Software interest is not necessarily AI interest; automation does not necessarily use AI. Broad interest in building software does not establish a precise frontend/backend preference.
-- All five rounds are independent and always shown; no conditional question branching. Editing an earlier answer preserves later answers and marks recommendations outdated. No dependent answers are silently cleared or remapped.
-- Preserve the five themes, order and activity areas. Comprehension tests and reviewed catalog relevance attributes are release evidence; they do not reopen the selected interaction policy.
+- Later question or choice sets may depend on earlier answers. Editing an earlier answer recomputes the active route; recommendations use only answers active on that route. Assignment A must propose whether inactive answers are retained for possible restoration, revisited, or cleared, and define save/resume and Back behavior before implementation. Do not silently clear or remap answers.
+- Preserve the five themes and their intended order where applicable. Comprehension tests and reviewed catalog relevance attributes are release evidence; they do not replace the owner-reviewed route proposal.
 
 ## Results and recommendations
 
@@ -216,7 +216,7 @@ These are intended outcomes, not executed tests. The selected controls above/bel
 
 ### F-001-AC-01: Enter or bypass the working sequence
 
-Given a verified new user reaches ENTRY-CHOICE, Guided Discovery opens the existing five-question sequence and Browse careers opens the catalog. There is no A/B selector, mandatory profile form or separate answer-review page. Returning users reach Dashboard and may explicitly resume unfinished saved Discovery.
+Given a verified new user reaches ENTRY-CHOICE, Guided Discovery opens the authored conditional question route and Browse careers opens the catalog. There is no A/B selector, mandatory profile form or separate answer-review page. Returning users reach Dashboard and may explicitly resume unfinished saved Discovery.
 
 ### F-001-AC-02: Represent uncertainty without invented ability
 
@@ -246,7 +246,7 @@ Given successful results, each reference is available curated content with an ex
 
 Require an answer or uncertainty in each round only to submit Discovery; Browse careers remains available at every step. These controls follow the multiple-choice/single-choice distinction in [GOV.UK checkboxes](https://design-system.service.gov.uk/components/checkboxes/) and [radios](https://design-system.service.gov.uk/components/radios/). The specific combinations are Asgard product decisions, not validated psychometric rules.
 
-No optional free-text fields or dependent questions are introduced. Round 4 includes independent learning/projects as experience and must not imply that work or qualifications are required. Rounds 1–4 use Choose all that apply; include a short explanation of uncertainty/exclusions beside the choices. Keep the existing wording tables as the content baseline; no new answer meanings are inferred.
+No optional free-text fields are introduced. Conditional questions and choice sets must be defined in the reviewed route map. The background theme includes independent learning/projects as experience and must not imply that work or qualifications are required. Baseline checkbox/radio and uncertainty rules apply to the existing themes, subject to the route map. Keep the existing wording tables as the content baseline; no new answer meanings are inferred.
 
 Save valid answers at explicit Next/Back/Skip checkpoints, with pending/success/failure feedback; do not autosave every click. Invalid current-round answers may return via Back without discarding earlier saved rounds; preserve the current local draft while the tab stays open. Closing an unsaved draft or navigating elsewhere offers Save and leave (if valid), Leave without saving, or Stay. Do not claim unsubmitted changes survived a closed tab. Warn on unsaved browser exit where supported, without relying on that warning as persistence.
 
@@ -254,7 +254,7 @@ Use a versioned saved draft. A stale tab must not overwrite a newer revision; sh
 
 ## Additional acceptance scenarios
 
-- **F-001-AC-06:** Entry starts unselected; rounds enforce the table, exclusive uncertainty and accessible errors. All five rounds remain reachable without conditional question branches.
+- **F-001-AC-06:** Entry starts unselected; the authored conditional route enforces applicable controls, exclusive uncertainty and accessible errors. Earlier answers determine the active later questions/choice sets; inactive answers are excluded from recommendations. Route changes and inactive-answer retention/clearing follow the reviewed route policy.
 - **F-001-AC-07:** Next/Back/Skip saves valid answers; failed save and dirty exit offer truthful recovery. Concurrent drafts cannot silently overwrite newer revisions.
 - **F-001-AC-08:** Results offer direct View roadmap and Browse careers without selection or automatic current focus. Editing answers invalidates old context and obeys F-002 refresh policy.
 

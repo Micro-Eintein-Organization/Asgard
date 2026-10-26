@@ -6,6 +6,23 @@ Users can browse careers directly or complete a five-round Discovery questionnai
 
 The MVP targets desktop and laptop browsers at approximately 1280–1920 px, with keyboard access and browser zoom support. See [compatibility requirements](docs/product.md#nfr-02-desktop-compatibility-and-accessible-reflow).
 
+## Start Asgard
+
+**Windows teammates: open the Asgard folder in File Explorer and double-click the matching launcher.**
+
+| First time | Every work session after setup |
+| --- | --- |
+| **[Setup-Asgard.cmd](Setup-Asgard.cmd)** | **[Start-Asgard.cmd](Start-Asgard.cmd)** |
+| Installs the locked local tools and guides approved local setup. | Starts the app and opens the website and verification-email inbox. |
+
+1. Install [Node 24 and Docker Desktop](#install-prerequisites) once, if needed.
+2. Start Docker Desktop and wait until Linux containers are ready.
+3. Double-click the launcher. For a fresh environment, obtain project-lead approval before confirming initialization or Auth activation. See the [Windows first-run instructions](#windows-first-run).
+
+**Local addresses:** [Asgard website](http://127.0.0.1:5173) · [Verification-email inbox](http://127.0.0.1:55324). Local verification emails appear in that inbox rather than your real email account.
+
+**Linux:** follow the [Linux setup steps](#linux). **Developing with an agent:** copy the [short agent prompt](#ask-an-ai-coding-agent-to-work-on-asgard).
+
 ## Project status
 
 Asgard is under development. The authenticated React/FastAPI application is the single implementation of Dashboard, Discovery, career exploration, roadmaps and Settings. These feature pages retain labeled sample content and prototypes; standalone UI Preview routes have been removed. Email/password access and private Profile integration are implemented, with local-only activation recorded in the decision register; fresh environments remain disabled by default. Saved learning data, uploads and AI recommendations are not integrated yet. See the [Stage 3.5 handoff](docs/stage-3.5-handoff.md) for preservation details and pending manual acceptance.
@@ -93,25 +110,47 @@ Windows 11/PowerShell and Linux/Bash are the documented development targets. Nat
 
 ### First-time setup
 
-Follow these steps once for a new checkout. If you already have a checkout, open its folder in a terminal. If you already ran `npm ci` and the lockfile has not changed, skip that step.
+Install Node 24 and Docker once; Docker Desktop may ask for administrator access or a restart. Get the repository with GitHub Desktop. These prerequisites are installed separately because Docker setup can require administrator access or a restart. Then follow the matching steps below.
 
-1. **Get a checkout** if needed, using GitHub Desktop or your usual Git workflow. Then open PowerShell (Windows) or Bash (Linux) in the checkout root and install the pinned local tools:
+#### Windows: first run
 
-```powershell
+1. Start Docker Desktop and wait until it is running Linux containers.
+2. Open the Asgard folder in File Explorer and double-click **Setup-Asgard.cmd**.
+3. If this is a fresh local environment, the launcher asks for approval before initializing it. Type `INITIALIZE` only when the project lead approved this machine and you are sure its Docker project has no existing data. The script creates a local signing key and restricted database password; it never copies another teammate's secrets or resets/deletes Docker data.
+4. If prompted, type `ENABLE AUTH` only when the project lead separately approved enabling local email/password Auth. After startup, check signup and Profile manually. The launcher opens the app and local email inbox.
+
+If the checkout already has its own approved `.env`, signing key and database credential, the launcher keeps them and starts the app. It does not turn Auth on without approval.
+
+See the [Windows one-click onboarding notes](docs/features/windows-one-click-onboarding.md) for launcher behavior, safety gates and review status.
+
+#### Windows: daily start
+
+Start Docker Desktop, then double-click **Start-Asgard.cmd** in the Asgard folder. It starts the services and opens the app and local inbox. To stop them, follow [Daily startup and shutdown](#daily-startup-and-shutdown).
+
+#### Linux
+
+Install Node 24 and Docker Engine with its Compose plugin, then start Docker and verify `docker info` works as your login user. From a terminal in the Asgard folder, run:
+
+```bash
 npm ci
-```
-
-The `npm ci` command is the same on Windows and Linux.
-
-2. **For a fresh local environment, check the one-time setup gate.** The local Auth signing key and restricted database credential are environment-specific. Read [Before first startup](#before-first-startup) and coordinate its approval with the project lead. Do not copy another teammate's `.env`, signing key, or database password. If this checkout already has its own approved setup, keep those files and skip provisioning.
-
-3. **Start the local services** from the checkout root:
-
-```text
 node scripts/dev.mjs start
 ```
 
-The helper creates `.env` from `.env.example` if needed, starts the local services, and prints the addresses after its connectivity checks pass. For later work, use [Daily startup and shutdown](#daily-startup-and-shutdown).
+For a fresh Linux environment, request project-lead approval and follow [Before first startup](#before-first-startup) before starting the services. Native Linux-host onboarding is still awaiting independent verification. For later sessions, run `node scripts/dev.mjs start` again. See [Install prerequisites](#install-prerequisites) for installation links and skip conditions.
+
+### Ask an AI coding agent to work on Asgard
+
+Give the agent one task at a time. Fill in the task and acceptance result, then paste this:
+
+```text
+Work on this Asgard task: [what should change]
+Done means: [observable result or requirement/acceptance ID]
+Reviewer: [project lead or assigned reviewer]
+
+Read AGENTS.md, docs/architecture.md, and the relevant docs and source first. Check the branch and existing edits. Before coding, send me a short plan listing scope, files/contracts, checks, and reviewer; wait for me to approve it. Follow the repository rules, keep the change within that plan, and do not commit, push, merge, or change auth/database/API contracts without explicit approval. When done, report changed files, check results, and anything still blocked.
+```
+
+For feature work, first check the [Stage 4 readiness gate](docs/development.md#stage-4-parallel-readiness-and-publication). An agent task does not replace required code-owner review or project-lead approval.
 
 ### Create and configure `.env`
 
@@ -184,7 +223,19 @@ npx --no-install supabase gen signing-key --algorithm ES256 --append
 if ($LASTEXITCODE -ne 0) { throw 'Signing-key generation failed. Stop before starting Supabase.' }
 ```
 
-The CLI stores the key in the path configured by `supabase/config.toml`. Keep that private JSON file local and ignored; do not print or share it. The existing CLI operation and ES256 support are described in [Supabase's CLI reference](https://supabase.com/docs/reference/cli/global-flags#supabase-gen-signing-key). On Linux, create the same new file containing `[]` with owner-only permissions, then run the same `npx` command; do not append to an already provisioned key file. The isolated generation probe used Windows; native Linux-host acceptance remains pending.
+The CLI stores the key in the path configured by `supabase/config.toml`. Keep that private JSON file local and ignored; do not print or share it. The existing CLI operation and ES256 support are described in [Supabase's CLI reference](https://supabase.com/docs/reference/cli/global-flags#supabase-gen-signing-key). On Linux, run this once from the checkout root instead of the Windows commands above:
+
+```bash
+set -e
+if [ -e supabase/signing-keys.json ]; then
+  echo 'Signing-key file already exists. Keep it; do not rerun key provisioning.' >&2
+  exit 1
+fi
+(umask 077 && printf '[]\n' > supabase/signing-keys.json)
+npx --no-install supabase gen signing-key --algorithm ES256 --append
+```
+
+Do not append to an already provisioned key file. The isolated generation probe used Windows; native Linux-host acceptance remains pending.
 
 After that key file exists and database initialization is approved, perform the following in PowerShell or Bash. **Stop after any failed command**:
 

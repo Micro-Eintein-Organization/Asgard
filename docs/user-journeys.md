@@ -16,7 +16,7 @@ These draft journeys describe intended actions, responses, and recovery, not obs
 ## Review boundaries
 
 - The initial release is for adults aged 18 and above across all experience levels; students are the initial design-evaluation group.
-- The current Discovery reference uses five question screens followed by results. F-001 selects controls/persistence and F-002 selects result count, interpretation and refresh; comprehension and quality remain unverified. Earlier questionnaire alternatives are historical references, not additional user choices.
+- The unfinished Discovery skeleton shows five baseline themes; the intended flow may show different later questions or choice sets based on earlier answers. Assignment A's reviewed route map and F-001 persistence integration remain unfinished; comprehension and quality remain unverified. Earlier questionnaire alternatives are historical references, not additional user choices.
 - Canonical roadmap/milestone/topic presentation exists under [Design](design.md); visual approval, current-app manual review and feature interactions remain pending. The journeys describe required behavior, not completed acceptance.
 - Six categories and seven launch roles are selected in Product. Authored topic sequences, milestones, learning alternatives and resources still require editorial review/publication. Named examples are not approved curricula.
 - Selected profile/security/lifecycle policy is recorded in the [decision register](decisions.md) and security baseline. Provider compatibility and unrun evidence remain release gates.
@@ -47,8 +47,8 @@ These draft journeys describe intended actions, responses, and recovery, not obs
 
 **Starting state:** new-user entry choice, a deliberate Resume Discovery action, or Retake Discovery in Profile.
 
-1. Choose Guided Discovery. Retain the existing five rounds: general interests, activities/motivations, work approach, experience/background, and goals/context. Use the headings and wording in the [Discovery copy draft](specs/discovery.md#discovery-copy-draft).
-2. Use checkbox rounds 1–4 and radio goal round, with exclusive uncertainty and F-001 background exclusions. Save valid rounds on Next/Back checkpoints. Back preserves answers. Explicit uncertainty must be supported without interpreting it as dislike or low ability. Profile photos, PDFs, employment history, and technical experience are not prerequisites.
+1. Choose Guided Discovery. Use the existing themes as the content baseline: general interests, activities/motivations, work approach, experience/background, and goals/context. Earlier answers may determine later questions or choice sets. Use the headings and wording in the [Discovery copy draft](specs/discovery.md#discovery-copy-draft), following the reviewed route map.
+2. Apply the applicable checkbox/radio controls, exclusive uncertainty and F-001 background exclusions. Save valid answers on Next/Back checkpoints. Back preserves recoverable answers; route changes follow the reviewed inactive-answer policy. Explicit uncertainty must be supported without interpreting it as dislike or low ability. Profile photos, PDFs, employment history, and technical experience are not prerequisites.
 3. At any question, choose Skip questions and browse careers to open the catalog. No answers are invented on the user's behalf. An unfinished saved questionnaire may be resumed later from Dashboard; returning sign-in does not reopen it automatically.
 4. Submit the final question and receive processing feedback. Successful results reference available catalog entries and explain the relevant supplied context. No suitability, competence, or job-readiness percentage is displayed.
 5. Inspect up to three explained results. Use View roadmap on a result to open its detail, or Browse careers for the full catalog. There is no separate answer-review page, additional mandatory completion page, or required profile setup.
@@ -56,7 +56,7 @@ These draft journeys describe intended actions, responses, and recovery, not obs
 
 **Outcome:** the user has directions to investigate and remains free to browse alternatives.
 
-**Recovery:** preserve answers on request failure and offer retry or browsing. Invalid/unavailable catalog references must not become fabricated results. A failed retake preserves previous successful recommendations. F-002 defines evidence-based ranking/refresh; all rounds are independent. Results provide direct View roadmap and full Browse careers.
+**Recovery:** preserve answers on request failure and offer retry or browsing. Invalid/unavailable catalog references must not become fabricated results. A failed retake preserves previous successful recommendations. F-002 defines evidence-based ranking/refresh; only answers active on the submitted route may inform recommendations. Results provide direct View roadmap and full Browse careers.
 
 **Requirements:** REQ-01 through REQ-05, REQ-11, REQ-13.
 
@@ -113,7 +113,7 @@ These draft journeys describe intended actions, responses, and recovery, not obs
 
 **Outcome:** saved Discovery context and catalog preference remain distinct from the current learning path.
 
-**Update policy:** independent rounds preserve later answers after edits. Final Discovery submission requests once; focus/branch/progress/PDF changes mark recommendations outdated for explicit Update suggestions in Careers. Same revisions reuse saved results; no changed ranking is promised.
+**Update policy:** editing an answer recomputes the applicable route; the reviewed policy governs answers that become inactive. Final Discovery submission requests once; focus/branch/progress/PDF changes mark recommendations outdated for explicit Update suggestions in Careers. Same revisions reuse saved results; no changed ranking is promised.
 
 **Requirements:** REQ-02, REQ-04, REQ-05, REQ-08, REQ-09, REQ-11, REQ-13.
 
@@ -251,7 +251,7 @@ Diagram edges show available user actions, not automatic navigation after saving
 
 Illustrative adult student exploring software-related work; not an approved curriculum or guaranteed recommendation.
 
-The example follows F-001's selected five-round wording/control policy and F-002's recommendation boundaries. Authored versioned question/option publication, persisted services, comprehension and quality evidence remain unfinished. Milestone-list/panel behavior is selected; zoom/reflow evidence and actual curricula remain unfinished. Backend, Internet fundamentals and HTTP below are illustrative content, not an approved launch selection or guaranteed recommendation.
+The example follows F-001's baseline wording/control policy and F-002's recommendation boundaries. It does not define the conditional route map. Authored versioned question/option publication, persisted services, comprehension and quality evidence remain unfinished. Milestone-list/panel behavior is selected; zoom/reflow evidence and actual curricula remain unfinished. Backend, Internet fundamentals and HTTP below are illustrative content, not an approved launch selection or guaranteed recommendation.
 
 ### Entry and exploration
 
@@ -307,4 +307,4 @@ Only one topic may be Learning across the account. Different roadmaps retain ind
 - Invalid, scanned, oversized, or failed PDF input does not replace prior successful document context. A saved name does not depend on analysis success.
 - Done activity is deduplicated per roadmap topic per local day; undoing Done removes its contribution and recalculates streaks.
 - If all applicable topics are Done, show a completion summary without changing current focus. If only Done/Skipped remain, show No remaining suggested topics and a route to revisit Skipped rather than false completion.
-- Milestone-list presentation, five-round controls and launch-role inventory are selected; visual/manual acceptance, authored curricula, persistence, comprehension, security/lifecycle implementation and zoom/reflow evidence remain pending. A graph canvas is not required. Mobile-specific presentation is outside MVP scope under [NFR-02](product.md#nfr-02-desktop-compatibility-and-accessible-reflow).
+- Milestone-list presentation, baseline Discovery controls and launch-role inventory are selected; the conditional Discovery route map remains to be authored. Visual/manual acceptance, authored curricula, persistence, comprehension, security/lifecycle implementation and zoom/reflow evidence remain pending. A graph canvas is not required. Mobile-specific presentation is outside MVP scope under [NFR-02](product.md#nfr-02-desktop-compatibility-and-accessible-reflow).
