@@ -6,6 +6,28 @@ Updated 26 October 2026. Follow the approved [architecture](architecture.md), se
 
 The repository contains `frontend/`, `backend/`, app-service Compose configuration, CLI-managed Supabase configuration, and a cross-platform Node helper with PowerShell compatibility wrappers in `scripts/`. Public entry is at `/`, sample fixtures live in `frontend/src/fixtures/catalog.ts` and render within protected application pages, and real service connectivity remains at `/status`. Standalone `/preview/...` routes have been removed; historical evidence below describes their earlier implementation. Historical frontend files in design/ui-reference remain unchanged references, not an executable application or approved API; no prototype backend/state behavior has been imported. The [Stage 3.5 handoff](stage-3.5-handoff.md) records the consolidation and pending manual review.
 
+## Foundation Git workflow
+
+Owner-confirmed workflow, 26 October 2026: `foundation` is the project owner's development branch for completed Stages 1–4 until the foundation PR is accepted. `main` is the stable branch; the PR must use **base `main`, compare `foundation`**. Teammates use their own feature branches from the agreed reviewed baseline. Follow [AGENTS.md](../AGENTS.md#team-coordination) before editing or performing Git operations. Do not create additional task branches for the owner's foundation work or silently switch branches.
+
+Consolidation record: task owner Codex; required reviewer project lead `@YakisobaNissin`; requirement is the owner's “Consolidate all foundation work into foundation” request, with execution approved by “Implement” in this chat. The bounded approved plan was to fast-forward the existing branch to the inspected handoff commit, update only AGENTS.md and this guide, and verify content/history and publication scope without application changes or broad tests. `foundation` advanced from `ccadec0` to `442d15e7545fd2b9ec71529ee7f91038a217981f` using `git merge --ff-only`. This preserves its complete ancestry and incorporates the existing 56-file handoff without a duplicate or merge commit. `codex/gitignore-hygiene` points to that same handoff; `codex/stage35-canonical-ui` remains an older checkpoint. These branches were not deleted. No content from `main` was imported, and no new commit or push was made during consolidation. The documentation edits require their own reviewed commit and publication approval.
+
+Content inspection confirmed the Docker/configuration and Auth/Profile foundations, canonical UI/navigation, both versioned SQL migrations, the shared database probe, 29 authenticated contract stubs, generated OpenAPI/TypeScript, recommendation validation schemas, and handoff documentation on `foundation`. This establishes accumulated source presence, not completed feature or security acceptance. Intentional 501 feature responses and the existing manual UI, fresh-host, provider and hosted-security gates remain unchanged.
+
+The inspected local `main` is `c3ca40d`; it separately contains a broader `.gitignore` and `docs/Asgard-Stage-5-Team-Task-List.md`. Preserve both sets of ignore protections and that task document during any separately approved integration. Both histories independently added `.gitignore`, so its add/add conflict must be resolved before the PR can merge. Do not merge `main` or replace either file wholesale merely to clear the conflict. Remote freshness/protections remain unverified because the read-only Git remote request failed; cached `origin/*` refs are not current server evidence.
+
+Publication procedure, requiring separate approval for each mutation:
+
+1. Confirm the active branch is `foundation`, inspect the worktree/index, and refresh/compare the remote state before publishing. Stop if unexpected edits or divergent remote work appear.
+2. Review the focused workflow-documentation diff, then commit only the approved files if explicitly authorized. Existing application work is already in handoff commit `442d15e`; do not recreate the old Stage 3.5/4 commits.
+3. Inspect the proposed `foundation` versus `main` changes and any new secret-scan findings. Resolve the `.gitignore` overlap through a separately approved integration operation, preserving `main`'s task document. Request a decision for ambiguous conflicts.
+4. After explicit push approval and confirming the remote branch has not diverged, push `foundation` normally. Do not force-push or change `main` directly.
+5. Open the PR with base `main`, compare `foundation`; include the existing verification evidence and outstanding gates. Obtain the required eligible human review and hosted CI evidence before any separately approved merge. CODEOWNERS/protection bootstrap limitations below still apply.
+
+Consolidation verification: the committed `foundation` tree exactly matches the inspected source branch at `442d15e`; `main` remains at `c3ca40d`. Only AGENTS.md and this guide have uncommitted changes, and the index is empty. All 51 local links/anchors in those two documents resolve, obsolete publication commands are removed, and whitespace checks pass. The heuristic secret scan found no matches in 166 current text files or 293 historical text blobs across ten locally referenced commits, including exact comparisons against two local secret values without printing them. No currently tracked file matches the ignore rules. The verification script initially failed while reading UTF-8 through the host's default encoding; explicitly reading UTF-8 corrected that check without an application change. Broad tests, database/browser checks and remote refresh were not repeated during this history/documentation-only operation; previous acceptance limits remain in force. The local branch is one existing commit ahead of cached `origin/foundation`, not yet pushed.
+
+The branch workflow is recorded under the owner's explicit authorization; technical review, commit/push permission and PR approval are separate. Historical branch names and verification records below describe earlier work, not current instructions. Do not execute superseded publication sequences or delete checkpoint/team branches as part of this consolidation.
+
 ## Local workflow
 
 [README](../README.md#getting-started) is the teammate onboarding entry point: prerequisite installation links, separate PowerShell/Bash first-time commands, daily startup, shutdown and troubleshooting. Run root `npm ci` to install the locked local CLI; after the first-start provisioning prerequisite in README is satisfied, use `node scripts/dev.mjs start`. Application dependencies are installed by Docker builds, not host npm/pip. No cloud credentials are needed; the helper manages ordinary local URL/anonymous-key values, while local signing-key and authenticated application credentials need separate provisioning. The commands below were executed on Windows; their shared Node implementation and Linux-container checks do not establish native Linux-host acceptance.
@@ -167,7 +189,7 @@ Follow-up checks passed: owner-file syntax/content, all 43 local links/anchors a
 
 Final README/AGENTS handoff pass, 26 October 2026: authorized by the owner's request in this chat; task owner Codex, required reviewer project lead. Scope: portable README prerequisites/startup descriptions, AGENTS contributor guidance and this cumulative publication record (A-07/A-11 and QA-11 documentation support). The instructions were compared with `.node-version`, package manifests/locks, Dockerfiles, Compose, `.env.example`, active Supabase config and existing scripts. No runtime, dependency, migration, Auth configuration or service change was made. README now distinguishes host tools from container packages and first-start provisioning from ordinary startup. The active config's ignored signing-key requirement is an actual fresh-clone prerequisite not fulfilled by `scripts/dev.mjs`; its CLI generation capability was checked through help only, without generating keys. The helper also does not initialize the restricted application's password. Therefore authenticated fresh-host onboarding remains incomplete until environment-specific approved provisioning; existing local Stage 4 database verification is still valid and was not rerun. Native Linux-host acceptance and the manual Stage 3.5 navigation checklist remain pending. This pass does not authorize a new setup service or silently grant new-environment activation.
 
-Current branch: `codex/stage35-canonical-ui`. Stage 4 and its ownership/portability/documentation follow-ups own the following **26 files** (directory entries below each contain only `__init__.py` and `schemas.py`):
+Historical pre-handoff branch: `codex/stage35-canonical-ui`; the current owner workflow is [foundation Git workflow](#foundation-git-workflow). Stage 4 and its ownership/portability/documentation follow-ups covered the following **26 files** (directory entries below each contain only `__init__.py` and `schemas.py`):
 
 ```text
 .github/CODEOWNERS
@@ -193,9 +215,9 @@ frontend/src/api/query-keys.ts
 supabase/migrations/20261026000100_shared_foundation.sql
 ```
 
-`docs/development.md` and README also contain preserved Stage 3.5 context/corrections; their final cumulative states belong in the second commit below. The 29 paths in the first manifest are the pre-existing Stage 3.5 presentation/documentation changes, including the three intentional deletions. Review them through the [Stage 3.5 handoff](stage-3.5-handoff.md) before publication. Do not treat them as verification fixes. No dependency lockfile, Auth provider/transport, Profile repository/API, existing migration, infrastructure file or design asset was modified by this closure.
+`docs/development.md` and README also contain preserved Stage 3.5 context/corrections. These cumulative changes are now included in handoff commit `442d15e` on `foundation`. The former Stage 3.5 manifest covered 29 presentation/documentation paths, including three intentional deletions. Review that scope through the [Stage 3.5 handoff](stage-3.5-handoff.md) before publication. Do not treat those changes as verification fixes. No dependency lockfile, Auth provider/transport, Profile repository/API, existing migration, infrastructure file or design asset was modified by the historical closure.
 
-A separate `.gitignore` modification appeared during the final README/AGENTS review. It was inspected read-only, preserved, and deliberately excluded from the two foundation/UI publication manifests because its ownership/approval is outside this task. The project lead should review it separately; do not blanket-stage it with the handoff or discard it. The manifests account for 55 intended paths (29 Stage 3.5, 26 Stage 4/documentation); this additional edit makes 56 currently changed paths.
+A separate `.gitignore` modification appeared during the final README/AGENTS review. That historical task inspected it read-only and excluded it from its two manifests. The combined 55 manifest paths and the additional `.gitignore` change were subsequently committed together in `442d15e` (56 changed paths), now incorporated into `foundation`. Those counts describe the historical handoff, not the current worktree. Review its ignore rules alongside the separately changed `main` version before integration.
 
 Final documentation checks passed: 85 local links/anchors across README, AGENTS and the three affected guides; runtime pins matched the repository manifests/Dockerfiles; no absolute personal filesystem paths remained in the Markdown scan; publication syntax and whitespace checks passed. The manifests cover the 55 intended paths without duplicates, with only the separately preserved `.gitignore` edit excluded. No fresh-host installation, application regression rerun, browser walkthrough, database recheck, commit or push was performed for this documentation pass.
 
@@ -205,62 +227,7 @@ Environment-instruction checks passed: all 11 `.env.example` variables are docum
 
 Signing-key explanation follow-up, 26 October 2026: requested by the project lead in this chat. The locked CLI's `gen signing-key --algorithm ES256 --append` was probed in an isolated temporary directory, with no Supabase services or application environment activated. Appending with a missing file failed; one focused correction created a new empty JSON array first, and the retry produced exactly one valid ES256 private JWK in the configured file. No private key was printed, and the temporary key/directory were removed. Current Asgard keys, `.env` and database credentials were not modified. README now documents guarded first-time PowerShell key creation, the existing local credential-initializer sequence, and the stop conditions. This proves the isolated key-file command, not fresh-host Auth/session or native Linux onboarding acceptance. No application, migration, dependency or security-model change was made.
 
-After review and explicit authorization to publish, the project lead can run this PowerShell sequence from their own Asgard checkout root (the folder containing `AGENTS.md` and `compose.yaml`). Teammates may clone the repository anywhere; no personal Windows username, OneDrive folder or drive letter is required. These are proposed publication commands, **not actions performed by Codex**. They use repository-relative paths, preserve the existing branch and avoid blanket staging. Inspect each staged diff before its commit; stop on any failed command.
-
-```powershell
-if (-not (Test-Path -LiteralPath 'AGENTS.md') -or -not (Test-Path -LiteralPath 'compose.yaml')) {
-  throw 'Open PowerShell in your own Asgard checkout root before proceeding'
-}
-if ((git branch --show-current) -ne 'codex/stage35-canonical-ui') { throw 'Unexpected branch' }
-git diff --cached --quiet
-if ($LASTEXITCODE -ne 0) { throw 'Review existing staged changes before proceeding' }
-function Invoke-CheckedGit {
-  & git @args
-  if ($LASTEXITCODE -ne 0) { throw 'Git command failed; stop and review the output' }
-}
-
-$stage35Files = @(
-  'docs/decisions.md', 'docs/design.md', 'docs/pages-and-interactions.md',
-  'docs/stage-3.5-handoff.md',
-  'frontend/src/app/router.tsx', 'frontend/src/app/screens.ts', 'frontend/src/app/shell.tsx',
-  'frontend/src/components/career-card.tsx', 'frontend/src/components/preview-states.tsx',
-  'frontend/src/components/shared.tsx', 'frontend/src/components/unsaved-preview-dialog.tsx',
-  'frontend/src/features/auth/connected-page.test.tsx',
-  'frontend/src/features/auth/connected-page.tsx', 'frontend/src/features/auth/pages.tsx',
-  'frontend/src/features/dashboard/page.tsx', 'frontend/src/features/design-system/page.tsx',
-  'frontend/src/features/discovery/page.tsx',
-  'frontend/src/features/profile/authenticated-page.tsx',
-  'frontend/src/features/profile/page.tsx', 'frontend/src/features/profile/settings-layout.tsx',
-  'frontend/src/features/profile/account-page.tsx',
-  'frontend/src/features/recommendations/page.tsx', 'frontend/src/features/roadmaps/page.tsx',
-  'frontend/src/lib/page-routes.ts', 'frontend/src/lib/routes.ts', 'frontend/src/styles.css',
-  'frontend/tests/auth-ui.spec.ts', 'frontend/tests/navigation.spec.ts', 'frontend/tests/ui.spec.ts'
-)
-Invoke-CheckedGit add -- @stage35Files
-Invoke-CheckedGit diff --cached --check
-Invoke-CheckedGit diff --cached
-Invoke-CheckedGit commit -m "Consolidate Stage 3.5 canonical application UI"
-
-$stage4Files = @(
-  '.github/CODEOWNERS', 'AGENTS.md', 'README.md',
-  'backend/app/main.py', 'backend/app/api/contracts.py', 'backend/app/api/foundation.py',
-  'backend/app/modules/careers', 'backend/app/modules/discovery', 'backend/app/modules/progress',
-  'backend/app/modules/recommendations', 'backend/app/modules/roadmaps',
-  'backend/openapi.json', 'backend/scripts/check_foundation.sql',
-  'backend/tests/test_foundation_contracts.py', 'docs/development.md',
-  'docs/design/ui-reference/README.md', 'docs/design/ui-reference/audit.md',
-  'frontend/src/api/generated/schema.d.ts', 'frontend/src/api/errors.ts',
-  'frontend/src/api/query-keys.ts', 'supabase/migrations/20261026000100_shared_foundation.sql'
-)
-Invoke-CheckedGit add -- @stage4Files
-Invoke-CheckedGit diff --cached --check
-Invoke-CheckedGit diff --cached
-Invoke-CheckedGit commit -m "Establish and verify Stage 4 shared foundation"
-Invoke-CheckedGit status --short
-Invoke-CheckedGit push -u origin codex/stage35-canonical-ui
-```
-
-Open a PR against `main` using the pushed branch, obtain the required human technical review and passing hosted CI, and integrate through the protected workflow. CI includes broader checks than this bounded local closure; no hosted run is claimed here. Share the resulting reviewed/integrated commit SHA with all four workstreams. No Stage 5 assignments, issues or schedule were created.
+The former two-commit publication sequence targeted `codex/stage35-canonical-ui` and is superseded by the [foundation Git workflow](#foundation-git-workflow). Its changes already exist in `442d15e`; do not repeat its staging/commit operations or publish that obsolete branch as the foundation baseline. Share the reviewed common `foundation` commit with teammates after the publication and review gates are satisfied. This documentation update does not publish the branch or approve integration.
 
 For optional browser checks, the already verified host workflow remains:
 
