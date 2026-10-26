@@ -1,8 +1,40 @@
 # Asgard: Decisions and delivery gates
 
-25 October 2026. The project owner delegated resolution of outstanding caveats and requested standards research. This register records selected documentation policy and preserves existing review IDs. It does not claim deployed controls, reviewed migrations/API schemas, validated questionnaires, completed curricula or passed tests.
+Updated 26 October 2026. The project owner delegated policy choices on 25 October and approved the documentation cleanup on 26 October. This register preserves existing review IDs and distinguishes selected policy from implementation evidence. [Development](development.md#current-foundation-status-and-evidence) records local foundation checks; it does not establish reviewed shared contracts, validated questionnaires, completed curricula or release acceptance.
+
+## Password minimum resolution
+
+PASSWORD-01, 26 October 2026. Approver: project owner. Review reference: the owner's reply to the [documentation audit plan](documentation-audit-plan.md), “implement and 8 is the new required.” Scope: eight characters is the required minimum for account passwords, superseding the former 15-character documentation default. [Security and operations](security-and-operations.md#account-access-and-recovery) owns the full policy.
+
+The active and pending Supabase configs, frontend validator, registration feedback and existing password tests already use 8. This resolves AUD-08's policy mismatch without changing runtime source or provider settings. Static agreement does not establish hosted enforcement or final account-security acceptance. Other password, session, MFA and abuse requirements remain in force; no standards-conformance claim follows from this project-specific minimum.
+
+## Documentation authority and unresolved integration records
+
+The project owner approved the bounded cleanup plan on 26 October 2026 in the reply quoted above. The [audit and handoff](documentation-audit-plan.md) records DOC-01 through DOC-05, affected files, verification and remaining follow-up ownership. This approval authorizes documentation edits and the password-policy resolution; it does not grant Git publication, shared-contract approval or feature/release acceptance.
+
+AUD-09 remains open: the Stage 5 assignment available only at local `main:docs/Asgard-Stage-5-Team-Task-List.md` requests conditional Discovery branching and inactive-answer clearing. That conflicts with D1/F-001's five independent rounds, no conditional question branches and retained later answers. Preserve the selected F-001 policy; the project owner must resolve the assignment before dependent branching work or its integration. No branch import or task-document rewrite is authorized by this cleanup.
+
+AUD-10 remains open: frontmatter references to `BRIEF` identify an originating artifact absent from this checkout. Earlier approval records cite their original conversations; a durable external review reference was not supplied. These are provenance gaps, not implied new approvals. The project lead owns supplying or confirming the archived source/review references. Preserve existing IDs and recorded approval scope meanwhile.
+
+## Team development hardening
+
+25 October 2026 — project owner approved the bounded hardening plan in this chat. Windows 11/Docker Desktop/WSL2/PowerShell and Linux/Docker Engine/Compose plugin/Bash are the development targets. The shared Node helper and direct attachment to the CLI-managed local Supabase network preserve the approved stack; they add no feature schema, auth workflow or dependency. [Development](development.md#stage-2-hardening-evidence) owns execution evidence and explicitly leaves native Linux-host acceptance pending. A-06/A-11 and QA-11 remain partial; this approval is not a feature-contract or release approval.
+
+## Desktop MVP scope resolution
+
+25 October 2026 — approved by the project owner in this chat (request: “Asgard's MVP is now desktop-only”). [NFR-02](product.md#nfr-02-desktop-compatibility-and-accessible-reflow) owns the 1280–1920 px desktop/laptop scope; [Verification](verification.md#browser-accessibility-and-performance) owns its checks. Mobile-specific layout, navigation and optimization are excluded from the MVP. Existing functioning code remains; accessibility, zoom and overflow handling remain required. This resolution changes presentation scope, not the approved stack or feature contracts.
 
 ## Authority and status
+
+- Stage 3 source plan approved by the project owner in this chat on 25 October 2026 (reply: “implement”). Scope: local email/password and confirmation, protected Profile, JWT/session authorization, dedicated database role/RLS, generated contracts and tests. At initial Stage 3 completion, authenticated entry temporarily went to `/settings/profile`; Stage 3.5 resolved that destination below. The owner also approved local-only A-01 persistence/testing before the hosted Render/session-pooler spike. This is a sequencing exception for synthetic local development, not hosted/real-user approval. The separate local-only SQL/Auth/credential activation approval was recorded and executed on 26 October 2026 without resetting local database volumes or modifying hosted resources.
+
+## Stage 3.5 application integration
+
+The following dated paragraphs record the original sequence. The second supersedes the first's public Preview routes. Current source status and the later Stage 4 contracts are in [Development](development.md#current-foundation-status-and-evidence); historical scope exclusions do not undo that later work.
+
+26 October 2026 — approved by the project owner in this task, followed by approval to implement the unified-UI plan. Successful login opens Dashboard; verified registration opens Welcome / entry. The working application shares the preview's compact Dashboard / Roadmap / Settings shell and Settings components. The owner's subsequent Stage 3.5 consolidation correction supersedes the authenticated-only empty/unavailable screen replacements. Feature destinations remain protected and render the same canonical populated screens, sample fixtures and visual-state controls as public `/preview` routes. A shared demo-data notice separates sample roles, suggestions and progress from the persisted Profile. Common feature-route definitions and Profile name fields are shared; authentication/persistence and route destinations are the necessary mode differences. Successful logout returns to `/`; dirty profile changes require confirmation. Existing Supabase Auth, JWT verification, RLS and Profile API contracts remain unchanged. This resolves the temporary Stage 3 profile destination and supersedes the expanded seven-link header. Browser verification is pending owner review.
+
+26 October 2026 — the project owner approved the [standalone Preview removal plan](stage-3.5-handoff.md) in this task (reply: “implement”). This supersedes the paragraph above only where it retains public `/preview` routes and mode-dependent destinations. The authenticated application becomes the single canonical implementation. Preserve populated shared screens, sample fixtures, components, styling and assets; migrate missing Profile prototype sections before removing disconnected duplicates. Retain verified-registration entry choice (Browse careers / Guided Discovery), returning-login Dashboard, real Supabase Auth, session restoration, protected routes, Profile API and logout. No Stage 4 contracts or Stage 5 business logic are authorized. Source verification and pending manual acceptance belong to the handoff; approval to implement does not establish rendered parity or merge approval.
 
 - The foundation in [Architecture](architecture.md) is already approved. React/Vite, FastAPI, Supabase, Groq, Docker and the named hosts supersede older Next.js/native-only proposals.
 - The delegated choices below are product/operating defaults. Their owning documents contain the requirements. A selected number is an Asgard policy unless a cited source explicitly supplies it; there is no universal standard for every UX choice or request quota.
@@ -63,9 +95,9 @@ Continue learning opens the topic. Separate View milestone links to its roadmap 
 | --- | --- | --- |
 | C1 | Six categories/seven named launch roles. Each catalog card has direct View roadmap; Set as current roadmap belongs inside detail. No catalog topic-status groupings | All seven curated explanations/introductory paths, search/filter/URL tests |
 | C2 | Foundations, starter tools and practical outcome; each topic has explanation and ≥1 free resource. Project lead approves content; editor/source/license/review date per role; link review before release and every 90 days | Authored curricula and editorial review, not fabricated from repeated cards |
-| C3 | Stable identities; each learning topic belongs to one milestone within a roadmap. Explicit common/alternative membership; grouping headings have no status. No silent alternative default; withhold full-path percentage until required choice | Reviewed content model/migrations and denominator tests |
+| C3 | Stable identities; each learning topic belongs to one milestone within a roadmap. Explicit common/alternative membership; grouping headings have no status. No silent alternative default; withhold full-path percentage until required choice | Stage 4 schema/constraints exist with local integrity evidence; technical review, authored content and denominator service tests remain |
 | C4 | Explicit branch changes preserve histories and resolve an excluded Learning topic first | Branch-switch tests |
-| C5 | Copy/link corrections retain state; changed outcomes get new identities. Retired topics preserve history/activity, leave future suggestions/denominators, show revision explanation; no silent focus/status transfer | Technical migration/version design and retirement tests |
+| C5 | Copy/link corrections retain state; changed outcomes get new identities. Retired topics preserve history/activity, leave future suggestions/denominators, show revision explanation; no silent focus/status transfer | Stable identity/revision storage exists; publication/retirement services, content review and behavioral tests remain |
 
 The owner rejected a blanket shorter-card prescription: actual authored content/choices determine height. A tree canvas/pan/zoom is no longer required. Product publication/revision policy owns details; no curricula were authored or approved in this documentation review.
 
@@ -91,10 +123,10 @@ The owner rejected a blanket shorter-card prescription: actual authored content/
 
 | ID | Selected direction | Remaining work |
 | --- | --- | --- |
-| E1 | Approved modular monolith in architecture.md; no stack replacement | Foundation spike, least-privilege SQL role/pooler/RLS evidence |
-| E2 | FastAPI Pydantic/OpenAPI with generated TS client; SQL migrations sole authority; transactional invariants and revision guards | Review actual schema/routes/migrations; no deployed contracts were changed here |
+| E1 | Approved modular monolith in architecture.md; no stack replacement | Local scaffold/restricted-role source and RLS probe are recorded; hosted session-pooler/TLS/reconnect evidence remains |
+| E2 | FastAPI Pydantic/OpenAPI with generated TS client; SQL migrations sole authority; transactional invariants and revision guards | Two migrations and generated scaffolding exist with local checks; shared technical review and feature implementation remain |
 | E3 | Groq adapter, strict validation and budgeted execution; independent extraction/ranking/authored-next-topic modules | Candidate evaluation, provider settings and integration tests |
-| E4 | Compose/local Supabase, Node 24/Python 3.13 lines, npm and hashed pip locks; Vercel/Render/Supabase hosted demo | Pin compatible patches/dependencies, real bootstrap/CI commands, environment provisioning |
+| E4 | Compose/local Supabase, Node 24/Python 3.13 lines, npm and hashed pip locks; Vercel/Render/Supabase hosted demo | Pins, helper, locks and source/build CI workflow exist; independent fresh-host/native Linux, hosted CI and deployment/provisioning evidence remain |
 | E5 | Project lead initial reviewer/operator; dependency order in development.md and mandatory PR review | Real contacts/access, backup operator, calendar availability and achievable delivery schedule |
 
 ## Research and review boundary

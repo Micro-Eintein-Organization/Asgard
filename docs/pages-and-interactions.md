@@ -7,9 +7,11 @@ requires: [PRD]
 
 # Asgard: Pages and interactions
 
-Status: Owner-delegated interaction baseline · Reviewed 25 October 2026 · Implementation and verification pending
+Status: Owner-delegated interaction baseline · Updated 26 October 2026 · Canonical presentation and Auth/Profile source implemented; feature integration and acceptance pending
 
 This guide uses short content and interaction descriptions across five page categories: Landing / Account Entry, Discovery / Setup, Dashboard / Home, Careers / Roadmaps, and Settings.
+
+The controls below describe intended behavior unless explicitly identified as current prototype behavior. [Design](design.md) documents implemented presentation; [Development](development.md#current-foundation-status-and-evidence) distinguishes working foundation source, labeled samples, authenticated 501 stubs and pending acceptance. Current Google, MFA, recovery, upload and learning actions must not be inferred from the intended screen descriptions. The [password resolution](decisions.md#password-minimum-resolution) selects an eight-character minimum without enabling unfinished account features.
 
 [Product requirements](product.md) own outcomes and constraints; [journeys](user-journeys.md) own routes and [decisions](decisions.md) track open details. This guide consolidates the simple guide and unique detail from the previous page specification. [Static exports](design/figma/) supply layout references, not proof of functioning interactions, completed design, or approval. Screen IDs below are logical references rather than implementation routes or Figma node IDs.
 
@@ -32,8 +34,9 @@ REQ-06 and REQ-12 remain outside MVP. Career saving/comparison, tutor/chat inter
 
 ### Navigation and terminology
 
-- Retain the reference header's Dashboard, Roadmap, Settings, and account/avatar entry points. Roadmap opens the career/roadmap catalog and does not change current focus. Careers/Roadmaps is the specification's page-family name.
-- Dashboard opens DASHBOARD. Settings opens the Settings area. The account menu exposes Edit profile, Settings, and Log out.
+- The authenticated application uses the reference header's Dashboard, Roadmap, Settings, and account/avatar entry points. Roadmap opens the career catalog. Existing page actions lead to Discovery, recommendations and roadmap availability; progress belongs to Dashboard. There is no separate UI Preview navigation or route tree.
+- Settings opens Profile. Its shared navigation and the account menu expose Profile and Account and security. Successful Log out returns to the public landing page at `/`. Confirm discarding dirty profile edits before logging out; an active profile save must finish first.
+- During the approved prototype phase, authenticated feature routes are the canonical layouts and retain sample fixtures and visual-state controls. Label demo data clearly; sample roles, recommendations and progress must not appear to be persisted account data. Profile remains backed by the real account API; background documents, saved suggestions and preference controls remain clearly labeled prototypes within that page.
 - Protected pages require authentication. Unauthenticated access opens account entry; expired sessions provide a recoverable authentication route.
 - New authenticated users reach ENTRY-CHOICE. Returning users reach Dashboard. Unfinished Discovery produces an optional Resume Discovery action using saved answers.
 - Each roadmap detail has its own addressable URL. Animation may accompany navigation without removing that URL.
@@ -612,13 +615,13 @@ The Roadmaps.png frame supplies the milestone-list reference. Owner-confirmed be
   - On resource click: Opens a new tab; viewing creates no progress or calendar credit
   - On Close: Restores milestone expansion, selected-topic context, and keyboard focus without changing progress
   - Desktop: Clearly identify the selected topic in its row and panel title; the panel may remain visible while topics scroll
-  - Mobile: Use full-width topic details with an obvious return action restoring list context
+  - Reflow: Preserve existing smaller-width topic details and an obvious return action restoring list context. This supports zoom/reflow; new mobile-specific layout work is outside the desktop MVP scope in NFR-02
   - On unavailable content: Shows feedback rather than inventing replacement resources
 - Learning / Done / Skip / Clear
   - On explicit successful save: Changes only this topic; Clear restores Not started
   - Learning limit: At most one Learning topic across the account; resolve any other active topic first
   - Independence: Parent, child, and sibling states do not propagate; Done is user-reported completion
-  - On failure: Shows the actual saved state; supports mobile and keyboard interaction
+  - On failure: Shows the actual saved state; supports desktop and keyboard interaction, including browser zoom/reflow
 
 ### Resolve active learning: RESOLVE-LEARNING
 
@@ -767,8 +770,8 @@ The Roadmaps.png frame supplies the milestone-list reference. Owner-confirmed be
 
 ### Missing:
 
-- Responsive Layouts: NFR-02
-  - Shows: Tablet and mobile versions of the page groups, including usable forms, cards, navigation, menus, and resource panels.
+- Desktop Layouts and Accessible Reflow: NFR-02
+  - Shows: Desktop/laptop page groups at approximately 1280–1920 px, including usable forms, cards, navigation, menus and resource panels. Browser zoom, keyboard access and sensible overflow remain required. Mobile-specific layouts/navigation are outside MVP scope; existing functioning code may remain.
 - Keyboard and Accessible Interaction States: NFR-01
   - Shows: Visible keyboard focus, selection and status labels beyond color, readable validation, accessible code entry, menu / panel closing and focus return, and an accessible way to inspect roadmap relationships and actions. Static images cannot establish these behaviors or WCAG conformance.
 - Consistent Request Feedback: NFR-01, NFR-03, NFR-04, NFR-07, NFR-08

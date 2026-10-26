@@ -11,6 +11,8 @@ acceptance: [F-001-AC-01, F-001-AC-02, F-001-AC-03, F-001-AC-04, F-001-AC-05, F-
 
 **Version 0.2 · 23 October 2026 · Status: Draft for review**
 
+Implementation pointers updated 26 October 2026. Stage 4 provides [Discovery schemas](../../backend/app/modules/discovery/schemas.py), generic saved-session/answer envelopes, a versioned identity registry and generated API scaffolding. The [shared handoff](../development.md#stage-4-shared-contracts-and-handoff) defines ownership/revision boundaries; feature handlers still return 501. Authored question/option publication, service-level meaning/exclusion validation and persisted UI integration remain unfinished. Local selection screens do not establish saved Discovery acceptance. The BRIEF provenance gap is recorded in [Decisions](../decisions.md#documentation-authority-and-unresolved-integration-records).
+
 This specification follows [Product](../product.md), [pages](../pages-and-interactions.md), and [journeys](../user-journeys.md). The owner retained five rounds and delegated remaining choices on 25 October 2026. Controls and persistence below are selected product defaults; comprehension/evaluation are required evidence, not completed work. Earlier short/expanded questionnaires remain historical, not additional app modes.
 
 ## Purpose
@@ -195,7 +197,7 @@ Before releasing the copy, ask beginners and experienced technical readers to ex
 - The recommendation specification owns the selected up-to-three result count, evidence-based explanations, context invalidation, explicit refresh and prior-result policy. It does not promise different results on every visit.
 - Preferred Primary Field changes the catalog default category only, not recommendation context by itself.
 - User-reported Done is not proof of mastery or career preference. Work approach is not an ability test.
-- The updated MVP direction on 24 October 2026 is LLM-based recommendations grounded in curated careers, with separate optional PDF extraction. The [recommendation specification](career-recommendations.md) owns that contract and future agent / PDF-reviewer boundaries; provider/candidates, prompt policy, logical output and refresh rules are selected there; encoded implementation contracts and evaluation evidence remain required. Historical work-preferences research informs discussion rather than validating this custom instrument; see [decisions](../decisions.md).
+- The updated MVP direction on 24 October 2026 is LLM-based recommendations grounded in curated careers, with separate optional PDF extraction. The [recommendation specification](career-recommendations.md) owns those policies and future agent / PDF-reviewer boundaries. Stage 4 encodes recommendation structures and validators; service/prompt integration, technical review and evaluation remain required. Historical work-preferences research informs discussion rather than validating this custom instrument; see [decisions](../decisions.md).
 
 ## States and recovery
 
@@ -258,4 +260,4 @@ Use a versioned saved draft. A stale tab must not overwrite a newer revision; sh
 
 ## Remaining evidence
 
-Run the comprehension cases in [verification](../verification.md), author/review catalog relevance attributes, encode the versioned answer contract, and test persistence/concurrency. Product choices above are selected; no comprehension sessions or runtime acceptance tests have been performed.
+Run the comprehension cases in [verification](../verification.md), author/review catalog relevance attributes and versioned questionnaire/option content, review the existing generic answer/session contract, and implement/test persistence and concurrency. Product choices above are selected; no comprehension sessions or complete Discovery runtime acceptance tests are recorded.

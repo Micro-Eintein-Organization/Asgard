@@ -2,11 +2,13 @@
 
 25 October 2026 · Read-only source audit · Integration proposal for review
 
+Current-status note, 26 October 2026: this audit retains its original observations and pre-approval proposals. Its Next.js direction, unresolved questionnaire/results choices and proposed integration sequence are superseded by [Architecture](../../architecture.md), [F-001](../../specs/discovery.md), [F-002](../../specs/career-recommendations.md), the [implemented design system](../../design.md) and [Stage 3.5 handoff](../../stage-3.5-handoff.md). Shared SQL/API foundations are in the [Stage 4 handoff](../../development.md#stage-4-shared-contracts-and-handoff). Statements below about work not yet implemented or a report outside the projects refer to the original audit date/location, not the current checkout. They are not current implementation instructions or acceptance evidence.
+
 Packaging note: this is a copy of the audit originally prepared outside both projects, now retained with the frontend reference at the user's request. Backend descriptions below explain the inspected experiment; no backend source is included. The statements about unchanged projects and report location describe the original audit phase, before this reference folder was created. This report does not authorize its proposed integration steps.
 
 ## Scope and evidence
 
-Reviewed `docs/design/figma/` (all 14 PNG exports) and `docs/pages-and-interactions.md` first, then the archived prototype at `C:/Users/saave/OneDrive/Documents/Projects/AI-CAREER-DSS-NEW-docs-archive/mvp-one-day-experiment`. This is the prototype identified in the preceding discussion; no separate AsgardUI source directory was identified in the inspected project locations.
+Reviewed `docs/design/figma/` (all 14 PNG exports) and `docs/pages-and-interactions.md` first, then the external historical archive `AI-CAREER-DSS-NEW-docs-archive/mvp-one-day-experiment`. This archive name records provenance, not a required checkout path or repository link; the copied reference is retained in this folder. This is the prototype identified in the preceding discussion; no separate AsgardUI source directory was identified in the inspected project locations. The original machine-specific path was omitted on 26 October 2026 for documentation portability; the audit findings are unchanged.
 
 Source evidence: `components/prototype.tsx`, `components/career-roadmap.tsx`, `components/activity-calendar.tsx`, `app/ui.css`, application entry/error files, `lib/catalog.ts`, `lib/db.ts`, `lib/recommendations.ts`, `app/api/state/route.ts`, migration, package manifest, DESIGN.md and IMPLEMENTATION.md. Current product, Discovery, recommendation, decision and development documents supply requirement boundaries.
 
