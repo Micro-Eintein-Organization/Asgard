@@ -2,6 +2,8 @@
 
 25 October 2026. Selected acceptance plan; partial local foundation/UI execution evidence is recorded in [Development](development.md). No complete release gate is claimed by that partial record. Requirements remain in [product](product.md), interactions in [pages](pages-and-interactions.md), and security policy in [security and operations](security-and-operations.md). Evidence, not document completion, determines release readiness.
 
+Status pointers updated 26 October 2026: [current foundation evidence](development.md#current-foundation-status-and-evidence) includes source checks, generated-contract synchronization and the recorded local Stage 4 integrity/RLS probe. [Current CI coverage](development.md#current-ci-coverage) defines source/unit/contract/build checks, not migration reproducibility or end-to-end feature acceptance. [Stage 3.5 manual navigation](stage-3.5-handoff.md#manual-navigation-checklist-pending), native Linux/independent fresh-host, hosted Auth/provider, maintenance/restore and final QA gates remain pending. Verify the owner's [8-character minimum](decisions.md#password-minimum-resolution) at both frontend and receiving service; static config agreement alone is not hosted acceptance. This documentation cleanup does not rerun or pass any application/release gate below.
+
 ## Browser, accessibility, and performance
 
 Use current stable Chrome, Edge and Firefox on Windows; Safari on macOS. Record exact versions at release. Test desktop/laptop viewports at 1280×800, 1440×900 and 1920×1080; also check 320 CSS-pixel reflow and 200%/400% browser zoom. Mobile-specific verification is outside MVP scope under NFR-02. Playwright WebKit is useful coverage but does not replace an actual Safari check.

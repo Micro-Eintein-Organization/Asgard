@@ -7,16 +7,18 @@ requires: [BRIEF, PRD]
 
 # User journeys
 
-**Version 0.2 · 23 October 2026 · Status: Draft for review**
+**Version 0.2 · Updated 26 October 2026 · Status: Intended journeys with recorded owner resolutions; feature acceptance pending**
 
 These draft journeys describe intended actions, responses, and recovery, not observed research or implemented behavior. [Product requirements](product.md) own requirements; [pages and interactions](pages-and-interactions.md) own screen details. The flow and student example below illustrate the same journeys without guaranteeing particular recommendations.
+
+[Development](development.md#current-foundation-status-and-evidence) records the implemented local foundation and unfinished integrations. Google/MFA/recovery, saved Discovery, learning/progress and PDF steps below remain intended capabilities; their presence in a journey does not establish runtime support. The originating BRIEF/review provenance gap is recorded in [Decisions](decisions.md#documentation-authority-and-unresolved-integration-records).
 
 ## Review boundaries
 
 - The initial release is for adults aged 18 and above across all experience levels; students are the initial design-evaluation group.
 - The current Discovery reference uses five question screens followed by results. F-001 selects controls/persistence and F-002 selects result count, interpretation and refresh; comprehension and quality remain unverified. Earlier questionnaire alternatives are historical references, not additional user choices.
-- Individual roadmap pages, their milestone lists, topic panels, and related dialogs still need completed visual designs. The journeys describe required behavior, not completed wireframes.
-- Launch categories, roles, authored topic sequences, milestones, branches, and resources require a content inventory. Named examples are not approved curricula.
+- Canonical roadmap/milestone/topic presentation exists under [Design](design.md); visual approval, current-app manual review and feature interactions remain pending. The journeys describe required behavior, not completed acceptance.
+- Six categories and seven launch roles are selected in Product. Authored topic sequences, milestones, learning alternatives and resources still require editorial review/publication. Named examples are not approved curricula.
 - Selected profile/security/lifecycle policy is recorded in the [decision register](decisions.md) and security baseline. Provider compatibility and unrun evidence remain release gates.
 
 ## J-01: Sign in and browse directly
@@ -249,7 +251,7 @@ Diagram edges show available user actions, not automatic navigation after saving
 
 Illustrative adult student exploring software-related work; not an approved curriculum or guaranteed recommendation.
 
-The current working Discovery sequence is used without finalizing its questions, controls or recommendation logic. Milestone-list/panel behavior is selected; responsive interaction evidence and actual curricula remain unfinished. Backend, Internet fundamentals, and HTTP below are illustrative content, not an approved launch selection or guaranteed recommendation.
+The example follows F-001's selected five-round wording/control policy and F-002's recommendation boundaries. Authored versioned question/option publication, persisted services, comprehension and quality evidence remain unfinished. Milestone-list/panel behavior is selected; zoom/reflow evidence and actual curricula remain unfinished. Backend, Internet fundamentals and HTTP below are illustrative content, not an approved launch selection or guaranteed recommendation.
 
 ### Entry and exploration
 
@@ -257,8 +259,8 @@ The current working Discovery sequence is used without finalizing its questions,
 | --- | --- | --- | --- |
 | E01 | LANDING / AUTH-REGISTER | Register using email/password or Google. | Complete applicable verification; a verified new account reaches ENTRY-CHOICE. Email entry alone does not authenticate. |
 | E02 | ENTRY-CHOICE | Choose Guided Discovery. | Open DISC-INTERESTS. Choosing Browse careers instead opens CAREERS-CATALOG directly. |
-| E03 | DISC-INTERESTS | Express interest in creating useful tools. | Save/retain the answer using the eventual reviewed controls; continue to activities. No fixed career is inferred from this answer alone. |
-| E04 | DISC-ACTIVITIES | Express interest in useful software or automation. | Continue to work approach. Exact options and distinctions remain under review; automation does not imply AI interest. |
+| E03 | DISC-INTERESTS | Express interest in creating useful tools. | Save/retain the answer using F-001's selected controls/checkpoints; continue to activities. No fixed career is inferred from this answer alone. |
+| E04 | DISC-ACTIVITIES | Express interest in useful software or automation. | Continue to work approach under F-001's wording/selection policy; automation does not imply AI interest. |
 | E05 | DISC-WORK-APPROACH | Express an approach or uncertainty. | Continue to background without claiming this preference measures technical ability. |
 | E06 | DISC-BACKGROUND | Indicate being new to tech. | No employment, prior skills, profile photo or PDF is required. |
 | E07 | DISC-GOALS | Indicate a goal of starting to learn; submit. | Show processing, then usable explained results or recovery feedback. No separate answer-review page. |
@@ -291,7 +293,7 @@ Only one topic may be Learning across the account. Different roadmaps retain ind
 | Step | Screen | Student action | System response |
 | --- | --- | --- | --- |
 | P01 | DASHBOARD / ACCOUNT-MENU | Choose Profile Enrichment or Edit profile. | Open Settings / Profile. This is an optional detour, not onboarding. |
-| P02 | SETTINGS-PROFILE | Save a nonempty First name; optionally Surname/photo. | Persist details without changing learning. Hide the Dashboard enrichment prompt; photo/PDF remain optional. Final save-control treatment requires design review. |
+| P02 | SETTINGS-PROFILE | Save a nonempty First name; optionally Surname/photo. | Save profile explicitly, independently of Save preferences. Name persistence exists; photo processing and cross-page guidance integration remain unfinished. Intended success hides the basic-profile prompt; photo/PDF remain optional. |
 | P03 | SETTINGS-PROFILE | Optionally upload a supported selectable-text PDF up to 10 MB. | Show separate upload/analysis states. On success, automatically apply explicitly documented background without a mandatory extraction review or skills editor. |
 | P04 | SETTINGS-PROFILE | Replace or remove the PDF. | Replacement applies only after successful analysis; removal clears active document context and prevents stale reapplication. Preserve focus and progress. |
 | P05 | SETTINGS-PROFILE | Save Preferred Primary Field or Retake Discovery. | Preferred field changes the default catalog category only. A successful retake updates recommendation context without changing current roadmap. |
@@ -305,4 +307,4 @@ Only one topic may be Learning across the account. Different roadmaps retain ind
 - Invalid, scanned, oversized, or failed PDF input does not replace prior successful document context. A saved name does not depend on analysis success.
 - Done activity is deduplicated per roadmap topic per local day; undoing Done removes its contribution and recalculates streaks.
 - If all applicable topics are Done, show a completion summary without changing current focus. If only Done/Skipped remain, show No remaining suggested topics and a route to revisit Skipped rather than false completion.
-- Graph layout, desktop presentation and zoom/reflow, exact question controls, role inventory and security/data-lifecycle details still require their respective reviews. Mobile-specific presentation is outside MVP scope under [NFR-02](product.md#nfr-02-desktop-compatibility-and-accessible-reflow).
+- Milestone-list presentation, five-round controls and launch-role inventory are selected; visual/manual acceptance, authored curricula, persistence, comprehension, security/lifecycle implementation and zoom/reflow evidence remain pending. A graph canvas is not required. Mobile-specific presentation is outside MVP scope under [NFR-02](product.md#nfr-02-desktop-compatibility-and-accessible-reflow).

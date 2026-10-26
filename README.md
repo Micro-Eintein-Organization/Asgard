@@ -12,6 +12,8 @@ Asgard is under development. The authenticated React/FastAPI application is the 
 
 Stage 4 adds the shared SQL foundation, 29 authenticated API contract stubs, generated TypeScript contracts and query/error conventions. The local integrity/RLS probe passed; feature operations intentionally return `501` until implemented. See the [Stage 4 handoff](docs/development.md#stage-4-shared-contracts-and-handoff) for contracts, verification and review/publication gates.
 
+The [current foundation status](docs/development.md#current-foundation-status-and-evidence) separates source, recorded checks and remaining acceptance. The owner selected an [8-character password minimum](docs/decisions.md#password-minimum-resolution) on 26 October 2026; existing local source/configuration already uses that value.
+
 Local runtime and UI checks cover only part of the required evidence. Provider compatibility, reviewed roadmap content, feature integration and release verification remain prerequisites for the final MVP. Planned hosting below is not a claim of deployment.
 
 ## Planned features
@@ -143,22 +145,7 @@ Keep the copied defaults initially, including `ASGARD_AUTH_ENABLED=false` and an
 | `ASGARD_AUTH_ENABLED` | Keep `false` until this environment's Auth provisioning is approved and complete |
 | `ASGARD_DATABASE_URL` | Keep blank until the approved local credential initializer writes the restricted `asgard_app` connection; never put this value in a `VITE_*` variable |
 
-**Populate local connectivity values.** First satisfy the signing-key and initialization prerequisite in the next section; then, with Docker running, use these existing commands from the repository root:
-
-```text
-npx --no-install supabase start
-node scripts/dev.mjs env
-```
-
-The `env` command updates the managed rows in root `.env`, preserves custom entries, and does not print credentials. Expect the message that the local `.env` was regenerated and credentials were not printed. It does not generate signing keys, create an application password, or enable application Auth. Alternatively, `node scripts/dev.mjs start` runs this environment synchronization as part of normal startup.
-
-**Provision the local application credential only after project-lead approval for this environment.** Supabase must be running, the approved migrations must have created `asgard_app`, root `.env` must exist, and `ASGARD_DATABASE_URL` must still be empty. The existing credential-only initializer works in PowerShell and Bash:
-
-```text
-node scripts/provision-local-db.mjs --approve-local-password
-```
-
-It generates a fresh password, records the connection URL in ignored root `.env`, and sets only the existing local `asgard_app` role's password. It does not create roles, grant permissions, run migrations or enable Auth. Successful output says the least-privilege application password was initialized and no credentials were printed. If a database URL already exists, it stops: do not clear that value or rerun this as password rotation. If it fails, stop and report the sanitized error, not the connection string. This command changes local credential state; it is not a read-only check or an approval grant by itself.
+For a fresh environment, follow [Before first startup](#before-first-startup) in order: approved signing-key creation, Supabase/migration checks, connectivity synchronization, then restricted-role credential provisioning. The `env` helper fills managed connectivity rows without printing credentials; it does not create either secret or enable Auth. The credential initializer requires environment-specific project-lead approval, an existing migrated `asgard_app` role, root `.env` and an empty `ASGARD_DATABASE_URL`. It changes local credential state, not schema or grants, and is not an approval grant by itself.
 
 Once signing keys, migrations, credentials and local Auth/session validation are approved for this environment, edit the existing line in **your own** root `.env` to:
 
@@ -204,7 +191,7 @@ node scripts/dev.mjs env
 node scripts/provision-local-db.mjs --approve-local-password
 ```
 
-On a genuinely new database, Supabase startup initializes the committed migrations, including the restricted application role. The migration dry-run should report up to date. If migrations remain pending, stop for review instead of continuing to credential setup. The `env` helper fills local connectivity values; the credential initializer generates the application password and saves its connection string in your root `.env`. Never substitute `postgres` or a service-role credential as the runtime connection. Keep the app Auth flag false until this environment's initialization/configuration and local Auth/session checks are approved; then set `ASGARD_AUTH_ENABLED=true` and run `node scripts/dev.mjs start` as described in the environment section.
+On a genuinely new database, Supabase startup initializes the committed migrations, including the restricted application role. The migration dry-run should report up to date. If migrations remain pending, stop for review instead of continuing to credential setup. The `env` helper fills local connectivity values; the credential initializer generates the application password and saves its connection string in your root `.env`. Successful output says the least-privilege password was initialized and no credentials were printed. The initializer refuses an existing database URL: do not clear it or use this command for password rotation. On failure, stop and report the sanitized error rather than the connection string. Never substitute `postgres` or a service-role credential as the runtime connection. Keep the app Auth flag false until this environment's initialization/configuration and local Auth/session checks are approved; then follow the [activation step](#create-and-configure-env).
 
 These are two distinct secrets: the signing key signs Supabase Auth sessions, while the generated `asgard_app` password lets FastAPI connect to the database with restricted permissions. You do not choose or paste either secret manually. No cloud dashboard, Groq key or hosted service-role key is needed for this local process.
 
@@ -218,7 +205,7 @@ node scripts/dev.mjs start
 
 The shared Node helper works without shell scripts or executable-bit changes. It creates root `.env` from `.env.example` if missing, starts CLI-managed Supabase, regenerates its local anonymous key and Docker URL, checks retained-database migrations without applying them, and builds/starts the app services. It prints `READY` and the URLs only after connectivity checks pass. It stops on errors and never resets databases or stops another project. Existing custom environment entries are preserved; project ID, local Supabase URL/key and local CORS origins are regenerated. Supabase itself handles schema initialization for a new empty database.
 
-The helper manages ordinary local connectivity values; enabling the authenticated app additionally needs the local signing-key/database credential setup described below. Do not create `frontend/.env` or `backend/.env`; Compose uses only root `.env`. Keep credentials and real user data out of Git. `READY` proves the helper's connectivity checks, not successful login, Profile saving or feature acceptance.
+The helper manages ordinary local connectivity values; enabling the authenticated app additionally needs the local signing-key/database credential setup above. Do not create `frontend/.env` or `backend/.env`; Compose uses only root `.env`. Keep credentials and real user data out of Git. `READY` proves the helper's connectivity checks, not successful login, Profile saving or feature acceptance.
 
 Fresh environments must keep `ASGARD_AUTH_ENABLED=false` until their migration, signing-key configuration and dedicated `asgard_app` database credentials are approved and provisioned. Local-only activation was separately approved and executed on 26 October 2026, as recorded in [Decisions](docs/decisions.md#authority-and-status); this does not authorize activation in another environment. The approved SQL is versioned under `supabase/migrations/`; the `.pending` Auth config remains a historical review artifact. Normal startup does not grant approval to initialize another environment. Do not substitute an administrator database credential to make Profile work. See [Stage 3 review history](docs/development.md#stage-3-authentication-and-profile-review-gate).
 
@@ -320,6 +307,7 @@ The pinned CLI publishes local Supabase ports on host interfaces; use a trusted 
 | [Security and operations](docs/security-and-operations.md) | Account security, privacy, retention, backups, and operational controls |
 | [Verification](docs/verification.md) | Functional, accessibility, AI quality, and release checks |
 | [Decision register](docs/decisions.md) | Recorded decisions, compatibility blockers, and remaining evidence |
+| [Documentation audit and handoff](docs/documentation-audit-plan.md) | Reviewed cleanup scope, findings, verification and outstanding documentation/integration follow-ups |
 
 Static design exports are in [docs/design/figma](docs/design/figma/). The [historical frontend reference](docs/design/ui-reference/README.md) provides design context and reuse notes; it is not the current application.
 

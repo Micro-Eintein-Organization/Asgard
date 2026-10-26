@@ -1,12 +1,12 @@
 # Asgard: Architecture v1.1
 
-**Status:** Approved foundational architecture by project lead (25 October 2026); owner-delegated product/operations policy is recorded in the linked specifications; provider compatibility and implementation evidence remain required. **Scope:** MVP and extensible foundation. **Implementation status:** Local technical scaffold and UI previews are implemented; product integrations and the listed verification gates remain pending. See [Development](development.md) for bounded execution evidence. The architectural choices below are unchanged.
+**Status:** Approved foundational architecture by project lead (25 October 2026); owner-delegated product/operations policy is recorded in the linked specifications; provider compatibility and implementation evidence remain required. **Scope:** MVP and extensible foundation. **Implementation status, 26 October 2026:** Local scaffold, email/password and Profile source, canonical protected UI, versioned SQL and generated API scaffolding are implemented. Feature pages retain labeled samples and 29 feature operations return 501. See [Development](development.md#current-foundation-status-and-evidence) for recorded local evidence, pending review and unfinished acceptance. The architectural choices below are unchanged.
 
 ## 1. Architectural decision
 
 Use a **modular monolith**: one React single-page frontend, one FastAPI backend, one PostgreSQL database hosted by Supabase, and a server-side LLM provider adapter. The backend owns application business logic and protected data access. Deploy the frontend to Vercel Hobby and the backend to Render Free for the MVP. Use Docker for reproducible local development. Keep deployment providers replaceable.
 
-This supersedes the older `docs/development.md` proposals for Next.js and native-only development. The existing product and feature specifications continue to define **what** Asgard does; this document defines **how** it is structured. Owner-delegated product defaults now live in the feature/page specifications; this foundation does not certify catalog content, encoded prompts or runtime behavior.
+This supersedes historical proposals for Next.js and native-only development, including the proposal retained in the UI reference audit. The existing product and feature specifications continue to define **what** Asgard does; this document defines **how** it is structured. Owner-delegated product defaults now live in the feature/page specifications; this foundation does not certify catalog content, encoded prompts or runtime behavior.
 
 ## 2. Approved stack
 
@@ -31,7 +31,7 @@ This supersedes the older `docs/development.md` proposals for Next.js and native
 | Backend deployment | Render Free (MVP; replaceable) |
 | Cloud data | Supabase Free (subject to quotas, inactivity, and backup limitations) |
 
-Lock dependency versions and runtimes. Prefer stable, broadly supported releases at implementation time rather than hard-coding unverified version numbers now.
+Runtime patches, dependency locks and image digests are pinned in the repository. Read the current values from `.node-version`, manifests/locks and Dockerfiles; [README prerequisites](../README.md#install-prerequisites) explains their host/container boundaries. Upgrades require their own reviewed scope.
 
 ## 3. Runtime boundaries
 
@@ -91,13 +91,14 @@ backend/app/
     careers/
     roadmaps/
     recommendations/
+    progress/
   integrations/
     llm/                # provider adapter and implementations
     storage/
   api/                  # route registration / shared API conventions
 ```
 
-Each module owns its routes, schemas, service logic, and repository interfaces. Modules may share approved core primitives but must not bypass another module's business invariants through direct table manipulation. Keep asynchronous background infrastructure out of MVP until actual workloads require it.
+This is the intended responsibility layout, not a claim that every listed adapter/service file exists. Each module owns its routes, schemas, service logic, and repository interfaces. The current feature schemas are registered through shared [foundation routes](../backend/app/api/foundation.py); business services remain unfinished. Modules may share approved core primitives but must not bypass another module's business invariants through direct table manipulation. Keep asynchronous background infrastructure out of MVP until actual workloads require it.
 
 ## 8. AI recommendations
 
@@ -118,7 +119,7 @@ Each module owns its routes, schemas, service logic, and repository interfaces. 
 - Supabase CLI starts the local Supabase stack using Docker. Provide a single documented developer bootstrap sequence or script that orchestrates both tools; avoid duplicating Supabase's containers in Compose.
 - Commit `.env.example`, lockfiles, migrations, seed fixtures, Dockerfiles, and startup scripts. Never commit secrets or real user data.
 - Windows 11 + Docker Desktop/WSL2/PowerShell and Linux + Docker Engine/Compose plugin/Bash are supported development targets (project-owner hardening request, 25 October 2026). Record actual host verification separately; Linux-container builds alone do not verify a native Linux host. The backend joins the CLI-created local Supabase Docker network; local connectivity does not depend on a host gateway alias. See [Development](development.md#local-network-and-filesystem-boundaries) for volume-mount and networking limits.
-- CI runs frontend lint/type checks/tests, backend lint/tests, OpenAPI contract generation verification, and migration checks. Playwright covers critical sign-in, Discovery, recommendation, and roadmap flows.
+- Required CI coverage includes frontend lint/type checks/tests, backend lint/tests, OpenAPI drift and migration checks; Playwright must cover critical sign-in, Discovery, recommendation and roadmap flows as features are integrated. The current [workflow coverage](development.md#current-ci-coverage) is narrower: source/unit/contract checks and container builds. Migration reproducibility and end-to-end feature acceptance are not established by that workflow.
 
 ## 10. Deployment and free-tier constraints
 
@@ -126,7 +127,7 @@ Each module owns its routes, schemas, service logic, and repository interfaces. 
 - Render Free runs the FastAPI container. Expect sleep/cold starts (Render documents spin-down after 15 minutes idle), limited memory/CPU, usage caps, and ephemeral storage. Add `/health` (process liveness) and `/ready` (dependency readiness), visible startup/loading behavior, bounded retries only for safe/idempotent requests, and a pre-demo warm-up checklist. Avoid periodic keep-alive traffic designed to defeat free-plan idling.
 - Required cleanup/backups run through external GitHub Actions maintenance workflows, not Render process timers. Quota reservations and deletion access blocks remain in the request path. The security baseline's maintenance matrix assigns scheduled and manual work; OPS-C1 requires actual plan/quota, storage, alert and missed-run recovery evidence before real-user use. No background worker or paid Render Cron service is added by this plan.
 - Use structured JSON logs, correlation/request IDs, sanitized error messages, and lightweight metrics (latency, 5xx, DB connection failures, Groq 429/timeout). Keep secrets and sensitive student answers out of logs.
-- CI verifies contract generation, tests, migration reproducibility, and Docker build. Deploy staging before production when feasible; limit production deployment permissions to designated operators.
+- Before release, CI must verify contract generation, tests, migration reproducibility and Docker build; current coverage and missing evidence are linked above. Deploy staging before production when feasible; limit production deployment permissions to designated operators.
 - Supabase Free can pause after inactivity and does not provide managed database backups. Use external SMTP for public signup testing and respect quota limits.
 - Do not promise always-on uptime or zero cold-start latency on these free plans. Prepare a fully tested local Docker demo fallback.
 - Keep configuration provider-neutral so backend deployment can migrate to a paid container host or Cloud Run without restructuring the app.
@@ -134,7 +135,7 @@ Each module owns its routes, schemas, service logic, and repository interfaces. 
 ## 11. Team and AI-agent guardrails
 
 - Every feature task names its owner, scope, relevant acceptance criteria, files/modules, API contracts, and checks.
-- Use branches or isolated worktrees per contributor/agent. No agent commits directly to `main`.
+- Use branches or isolated worktrees per contributor/agent, subject to the owner's later [foundation Git workflow](development.md#foundation-git-workflow): the owner's Stages 1–4 work stays on `foundation` until its reviewed PR is accepted. No agent commits directly to `main`; Git mutations require the explicit approvals in AGENTS.md.
 - Changes to auth, migrations, shared API contracts, cross-module invariants, infrastructure, and core dependencies require architecture-owner review.
 - Prefer generated API clients over manually invented frontend types. CI and PR review are merge gates.
 - Agents must read `AGENTS.md`, this architecture document, relevant product spec, and actual source code. If an implementation decision conflicts with an approved document, stop and escalate.
@@ -188,17 +189,17 @@ asgard/
 
 | ID | Topic | Required resolution / acceptance evidence | Timing |
 |---|---|---|---|
-| A-01 | Database role and pooler | Test least-privilege SQL role through Supabase session pooler on Render; verify grants, RLS behavior, TLS, connection limits, and SQLAlchemy reconnect behavior. Owner approved local-only synthetic persistence/testing first in the Stage 3 plan (25 October 2026); see decisions.md. Local SQL/Auth execution still awaits its separate approval | Before hosted/real-user writes; local-only sequencing exception recorded |
+| A-01 | Database role and pooler | Local-only SQL/Auth activation was separately approved/executed on 26 October; the Stage 4 handoff records the local restricted-role integrity/RLS probe. Test the role through the Render session pooler, TLS, limits and reconnect behavior; local evidence does not pass the hosted gate or activate another environment | Before hosted/real-user writes; local-only sequencing exception recorded |
 | A-02 | SMTP | Resend via Supabase custom SMTP selected; provision verified domain/account and test delivery, redirects and limits | Before external testers |
 | A-03 | MFA recovery and linking | Security policy selected; prove provider-managed recovery/fresh-auth and resolve automatic-linking conflict under AUTH-C1/C2 | Before Google/MFA rollout |
 | A-04 | AI model evaluation | F-002 and verification.md select 30 synthetic profiles, three runs/model and quality thresholds; execute comparison | Before releasing recommendations |
-| A-05 | AI behavior/product contract | F-001/F-002 select controls, count, interpretation and refresh; encode/review Pydantic/OpenAPI and persistence | Before feature implementation |
-| A-06 | Runtime and tooling | development.md selects Node 24/Python 3.13 and tools; pin patches/locks/images and execute bootstrap/CI | During scaffold |
+| A-05 | AI behavior/product contract | F-001/F-002 select controls, count, interpretation and refresh. Stage 4 encodes saved-context/run structures, validators and API scaffolding; technical review, service semantics, prompts, PDF lifecycle and quality evidence remain | Before dependent feature implementation/release |
+| A-06 | Runtime and tooling | Patches/locks/images and helper are committed; local Windows/container checks are recorded. Native Linux/independent fresh-host acceptance and hosted CI evidence remain | Scaffold implemented; remaining portability/CI gates before acceptance |
 | A-07 | Operations ownership | Project lead owns initial review/deploy/content; record real contact and backup operator, access and branch protections | Before external use/team work |
 | A-08 | Data protection | Security baseline selects retention/deletion, daily backup/7-day expiry and RPO/RTO; configure and restore-test including Storage | Before real user data |
 | A-09 | Reliability targets | Verification selects warm/cold budgets, no free-tier uptime promise and local fallback; execute hosted smoke tests | Before hosted demo |
-| A-10 | Catalog and roadmap model | Product selects membership/revision policy; author seven reviewed curricula and encode/test technical relationships | Before roadmap publication/persistence |
-| A-11 | Backend integration contract | F-002 now names FastAPI/Python; define/review generated OpenAPI client and verify drift | Before parallel implementation |
+| A-10 | Catalog and roadmap model | Stage 4 SQL encodes identities, membership and integrity constraints with a recorded local probe. Author/review seven curricula and implement publication, revision and learning calculations | Before roadmap publication/feature acceptance |
+| A-11 | Backend integration contract | Pydantic/OpenAPI, generated TypeScript and account-scoped query/error conventions exist; local drift checks are recorded. Shared-contract review, published common base and protected-review gate remain | Before parallel implementation |
 
 Product choices delegated on 25 October 2026 are recorded in their owning specs and decision register. Provider incompatibilities, technical contract review and unrun evidence are not resolved by choosing defaults. Screenshots are not implementation authority.
 

@@ -1,6 +1,8 @@
 # Stage 3.5: canonical application UI
 
-26 October 2026. Owner: Codex. Required reviewer: project lead (product and architecture reviewer). Review reference: this task's consolidation plan, approved by the owner's “implement” reply. Branch: `codex/stage35-canonical-ui`. No commit, push or merge is authorized.
+26 October 2026. Historical implementation owner: Codex. Required reviewer: project lead (product and architecture reviewer; account mapping in [CODEOWNERS](../.github/CODEOWNERS)). Review reference: the original Stage 3.5 consolidation plan, approved by the owner's “implement” reply. Original branch: `codex/stage35-canonical-ui`; its work is incorporated into `foundation`. Follow the current [foundation Git workflow](development.md#foundation-git-workflow); this handoff grants no Git-operation approval.
+
+The scope and verification below retain the original UI task's boundaries. The later [Stage 4 handoff](development.md#stage-4-shared-contracts-and-handoff) records shared contracts now present in the repository; its existence does not complete the manual UI review below.
 
 ## Reviewed scope
 
@@ -43,11 +45,11 @@ Documentation updated: README, design.md, pages-and-interactions.md, decisions.m
 
 ## Manual navigation checklist (pending)
 
-Use the existing locally activated stack at <http://127.0.0.1:5173>. Do not activate or rebuild another environment for this cleanup.
+Use the reviewer's own approved local environment after completing [README setup/provisioning](../README.md#before-first-startup). The default website is <http://127.0.0.1:5173>; loopback refers to that reviewer's computer. Use the configured frontend port if an approved isolated setup differs. A prior contributor's activation does not authorize this environment. Reuse its running stack when available; no new activation, rebuild or service operation was performed for the documentation cleanup. These checks remain pending until a reviewer executes them.
 
 1. Open `/check-email` directly without a pending signup; expect a redirect to `/create-account`. Create a synthetic account and submit registration; expect the check-email step to show the signup address as read-only, then verify its emailed code. Confirm `/welcome` asks “How would you like to begin?” with Continue disabled until a choice is made. Browse careers must open `/careers`; Guided Discovery must open `/discovery` at Question 1 of 5. Profile setup remains optional.
 2. Sign in through `/sign-in` with an existing account: expect `/dashboard`. Refresh to confirm session restoration. Navigate Dashboard, Careers, a roadmap/topic/resource, Discovery, `/recommendations`, Profile and Account/security. Confirm the retained layouts/content and nearby sample/prototype labels. Try sample/empty/loading/error selectors; do not interpret them as service outcomes.
 3. At `/settings/profile`, save a synthetic name and refresh to confirm persistence. Confirm the background-document, saved-suggestions and preference sections remain visible; uploads/preference saves stay unavailable. Select a prototype preference and confirm it is local only. Check Stay, Discard and Save-and-leave for dirty name edits, and confirm preference selections are not presented as saved.
 4. Open the account menu and Log out: expect `/`. Check dirty-edit confirmation first when applicable. Revisit `/dashboard` or `/settings/profile`: expect sign-in. Check `/preview`, `/preview/dashboard`, `/preview/settings/profile` and `/preview/components`: expect Page unavailable, with no Preview navigation links.
 
-Report failures in this task with the URL, action, expected/actual result and viewport; omit passwords, tokens and private profile data. Human review is required before integration. No dependent integration order; follow-up manual acceptance belongs to the project lead. No commit, push or merge was performed.
+Report failures in the current review task or PR with the URL, action, expected/actual result and viewport; omit passwords, tokens and private profile data. Human review is required before integration. Follow-up manual acceptance belongs to the project lead; subsequent feature work also follows the shared-foundation/team gates. No commit, push or merge was performed by the original Stage 3.5 task or this documentation cleanup.

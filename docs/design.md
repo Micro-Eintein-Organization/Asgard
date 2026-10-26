@@ -2,6 +2,8 @@
 
 Updated 26 October 2026. Stage 3.5 canonical application UI, retaining the Stage C visual foundation; project-lead visual review is pending. [Product](product.md), [pages](pages-and-interactions.md), [journeys](user-journeys.md) and [architecture](architecture.md) retain authority over behavior and technical boundaries. This guide describes the implemented presentation, not approval of product integrations or curricula.
 
+The [later Stage 4 foundation](development.md#stage-4-shared-contracts-and-handoff) adds shared SQL/API scaffolding without connecting these sample screens. References below to Stage 3.5 not introducing contracts describe that UI task's scope; they do not mean the current repository lacks contracts. [Current foundation status](development.md#current-foundation-status-and-evidence) distinguishes source, recorded evidence and pending acceptance.
+
 ## Identity and hierarchy
 
 Asgard uses white cards, light neutral surfaces, dark text/actions and a restrained green selection/progress accent. Arial/Helvetica matches the sans-serif character of the supplied exports without adding a font dependency. The text wordmark remains Asgard. There are no generated illustrations, invented people, testimonials or match scores.

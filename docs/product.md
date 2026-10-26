@@ -21,11 +21,13 @@ requirements:
 
 # Asgard: Product requirements and scope
 
-**Version 0.3 · 25 October 2026 · Status: Product baseline with owner-delegated defaults; implementation unverified**
+**Version 0.3 · Updated 26 October 2026 · Status: Product baseline with recorded owner resolutions; partial foundation implemented, feature acceptance pending**
 
 Consolidated 25 October 2026 from the product brief, PRD, and scope. Original requirements and acceptance statements are retained. The owner delegated outstanding choices on 25 October 2026; [decisions](decisions.md) distinguishes selected policy from provider conflicts, authored content and unrun evidence. [Journeys](user-journeys.md) describe routes and [pages and interactions](pages-and-interactions.md) describe screen behavior.
 
 Asgard connects career explanations with curated learning paths so people can understand the work, investigate options, and choose a practical learning step. The assumed need and intended benefits still require user research. Suggestions are advisory and uncertainty must not become an inferred ability or preference.
+
+[Development](development.md#current-foundation-status-and-evidence) owns implementation status and evidence. Auth/Profile source and shared SQL/API scaffolding exist; labeled sample pages and 501 feature operations do not meet these end-to-end acceptance criteria. The [password minimum resolution](decisions.md#password-minimum-resolution) selects 8 characters; [Security and operations](security-and-operations.md) owns the complete account policy. Frontmatter still retains draft status; recorded resolutions do not approve the whole PRD. The missing originating BRIEF artifact is tracked under [decision provenance](decisions.md#documentation-authority-and-unresolved-integration-records).
 
 ## Vocabulary
 
@@ -65,7 +67,7 @@ Account entry, verification, password recovery, and authenticated access. Option
 - **Behavior:** compact Landing combines product essence with Google sign-in and email/password registration or sign-in. Email/password registration shall include email verification. Password recovery shall be available. Route verified new users to Welcome with Guided / Browse choices; returning users toward Dashboard. Returning users with unfinished Discovery shall reach Dashboard and receive an optional Resume Discovery action. Resuming shall retain their saved answers; the questionnaire shall not reopen automatically. Facebook and Apple sign-in are outside the MVP provider set.
 - **Acceptance:** a signed-out visitor sees product context and the supported account actions. Google sign-in or verified email/password access allows entry; entering an email alone does not authenticate. After successful authentication, a new user can choose guided discovery or direct browsing. Browse opens Careers directly. An email/password user can request password recovery and set a new password through the recovery flow.
 - **States:** authentication processing/failure, email verification pending/success/failure, password recovery, new/returning account, expired session, additional verification when 2FA is enabled.
-- **Email verification interaction:** retain emailed code entry with an explicit Verify button. Entering the final digit shall not automatically submit. Provide Resend code and Return to sign-in actions; invalid or expired codes receive recoverable feedback. Code format, expiry, and resend limits require authentication design.
+- **Email verification interaction:** retain emailed code entry with an explicit Verify button. Entering the final digit shall not automatically submit. Provide Resend code and Return to sign-in actions; invalid or expired codes receive recoverable feedback. Code format, expiry and resend policy follow Security and operations; hosted enforcement and delivery still require verification.
 - **Journeys:** J-01, J-02.
 
 ### REQ-13: Authenticate and protect account-owned data
@@ -251,7 +253,7 @@ Live job-market scraping, market analytics, AI-generated graphs, full course del
 
 - **Career/category:** stable identifier, working taxonomy, plain-language explanation, associated roadmap references, editorial/source ownership.
 - **Roadmap/topic/resource:** authored relationships, meaningful milestone grouping, explanations, resource links/access labels, tool guidance, maintenance/version decisions.
-- **Discovery and recommendations:** questionnaire version, supplied answers including explicit uncertainty, relevant roadmap/progress context, and recommendation results. Retention follows the security baseline; database/API schema needs technical review.
+- **Discovery and recommendations:** questionnaire version, supplied answers including explicit uncertainty, relevant roadmap/progress context, and recommendation results. Stage 4 supplies versioned identity/storage and generated API scaffolding; technical review, authored option content and feature services remain required. Retention follows the security baseline.
 - **Current focus:** explicit account-to-roadmap choice, separate from selected category and recommendation results.
 - **Topic state:** account-owned state and relevant ordering/history data; no assessment score is implied.
 - **Profile:** name/image and optional supplied background; no profession-based automatic skill assignment. Document lifecycle follows the security baseline; assistant history is outside MVP.
@@ -383,7 +385,7 @@ All seven named launch roles are the content floor; each of the six categories i
 ### Build-now boundaries
 
 - Account entry and required verification / recovery, with new versus returning routing: REQ-01, REQ-13.
-- Five-question Discovery and explained results; exact controls and branching still require decisions: REQ-04, REQ-05.
+- Five-question Discovery and explained results under F-001's selected controls and five independent rounds, without conditional question branches: REQ-04, REQ-05. Persistence, authored content, service integration and comprehension/quality evidence remain required.
 - Searchable category catalog, role explanation, curated roadmap / resources: REQ-02, REQ-03, REQ-07.
 - Explicit current roadmap, reversible independent topic states, and account-wide single Learning topic: REQ-08, REQ-09.
 - Dashboard continuation, milestone progress, groups, activity, and relevant empty / end states: REQ-10.

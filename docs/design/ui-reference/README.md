@@ -4,6 +4,8 @@
 
 This folder preserves useful frontend work from the one-day experiment: screen markup, layout, shared CSS, visual states and sample content. It is a reference implementation, not the main application, an approved architecture, or an accurate specification of every design and interaction. Reuse requires review against the current task and governing documents.
 
+Current context, 26 October 2026: [Architecture](../../architecture.md) selects React/Vite and FastAPI; the [implemented design guide](../../design.md) and [Stage 3.5 handoff](../../stage-3.5-handoff.md) record later presentation reuse and removal of standalone Preview routes. [F-001](../../specs/discovery.md) and [F-002](../../specs/career-recommendations.md) select current question/results policy; the [Stage 4 handoff](../../development.md#stage-4-shared-contracts-and-handoff) records shared SQL/API scaffolding. Historical open questions and proposals in the audit do not reopen these selected boundaries. Current visual/feature acceptance still requires its own evidence.
+
 ## Start here
 
 1. Read the current [pages and interactions](../../pages-and-interactions.md), relevant [product requirements](../../product.md), and [decisions](../../decisions.md).
@@ -32,11 +34,11 @@ No API route, database module, migration, Supabase configuration, server recomme
 
 ## Known inaccuracies and gaps
 
-- Results navigate directly to selected career detail; current documentation describes a catalog handoff whose details require review.
-- Discovery options, selection limits, six-segment wording and save timing reflect experiment choices. Exact final behavior remains under review.
+- Results use a selected-result/detail flow. Current F-002 instead specifies individual View roadmap actions plus full Browse careers, with no result selection prerequisite.
+- Discovery options, selection limits, six-segment wording and save timing reflect experiment choices. Current F-001 selects five independent rounds, checkbox/radio rules, exclusive uncertainty and explicit saved checkpoints; the snapshot does not implement that full contract.
 - Catalog search/filter context resets on remount; catalog Back and explained recommendations are incomplete.
 - Authentication, logout, optional profile setup as a separate flow, photo/PDF actions and account-security screens are absent.
-- Topic progress assumes global topic IDs and a single local profile; graph branches and final account/history rules are not represented.
+- Topic progress assumes global topic IDs and a single local profile; the current roadmap-specific identities, learning alternatives, ownership and history rules are not represented. The current milestone-list presentation does not require a graph canvas.
 - Empty illustration circles and limited sample content remain. Do not infer launch coverage from them.
 - CSS defines responsive/focus states, but browser, keyboard, contrast and accessibility checks have not been established by this snapshot.
 
@@ -44,6 +46,6 @@ Figma filenames are imperfect: `Final Round_ Discovery Results.png` shows the ca
 
 ## Provenance and use
 
-Copied from the external historical archive `AI-CAREER-DSS-NEW-docs-archive/mvp-one-day-experiment` on 25 October 2026. The five frontend files were checksum-verified against that source. The archive itself was not modified. The original machine-specific path was omitted on 26 October 2026 for documentation portability; the archive name records provenance and is not a required local path. This repository contains the reference files, so teammates do not need access to that external archive to develop Asgard.
+Copied from the external historical archive `AI-CAREER-DSS-NEW-docs-archive/mvp-one-day-experiment` on 25 October 2026. The five frontend files were checksum-verified against that source. The archive itself was not modified. The archive name records provenance, not a required local path. The copied files and [relative-path/hash manifest](source-manifest.csv) are in this repository; teammates need no external archive to develop Asgard.
 
 Keep this snapshot separate from executable application code. A later authorized implementation may adapt reviewed presentation into the chosen architecture; this folder does not select that architecture or authorize refactoring, dependency installation, service integration, or deletion. Record any approved behavior in its owning specification rather than treating the snapshot as authority.

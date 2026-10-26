@@ -7,9 +7,11 @@ requires: [PRD]
 
 # Asgard: Pages and interactions
 
-Status: Owner-delegated interaction baseline · Reviewed 25 October 2026 · Implementation and verification pending
+Status: Owner-delegated interaction baseline · Updated 26 October 2026 · Canonical presentation and Auth/Profile source implemented; feature integration and acceptance pending
 
 This guide uses short content and interaction descriptions across five page categories: Landing / Account Entry, Discovery / Setup, Dashboard / Home, Careers / Roadmaps, and Settings.
+
+The controls below describe intended behavior unless explicitly identified as current prototype behavior. [Design](design.md) documents implemented presentation; [Development](development.md#current-foundation-status-and-evidence) distinguishes working foundation source, labeled samples, authenticated 501 stubs and pending acceptance. Current Google, MFA, recovery, upload and learning actions must not be inferred from the intended screen descriptions. The [password resolution](decisions.md#password-minimum-resolution) selects an eight-character minimum without enabling unfinished account features.
 
 [Product requirements](product.md) own outcomes and constraints; [journeys](user-journeys.md) own routes and [decisions](decisions.md) track open details. This guide consolidates the simple guide and unique detail from the previous page specification. [Static exports](design/figma/) supply layout references, not proof of functioning interactions, completed design, or approval. Screen IDs below are logical references rather than implementation routes or Figma node IDs.
 
@@ -613,7 +615,7 @@ The Roadmaps.png frame supplies the milestone-list reference. Owner-confirmed be
   - On resource click: Opens a new tab; viewing creates no progress or calendar credit
   - On Close: Restores milestone expansion, selected-topic context, and keyboard focus without changing progress
   - Desktop: Clearly identify the selected topic in its row and panel title; the panel may remain visible while topics scroll
-  - Mobile: Use full-width topic details with an obvious return action restoring list context
+  - Reflow: Preserve existing smaller-width topic details and an obvious return action restoring list context. This supports zoom/reflow; new mobile-specific layout work is outside the desktop MVP scope in NFR-02
   - On unavailable content: Shows feedback rather than inventing replacement resources
 - Learning / Done / Skip / Clear
   - On explicit successful save: Changes only this topic; Clear restores Not started

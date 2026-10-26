@@ -9,7 +9,7 @@ These instructions apply to human contributors and AI agents. Read this file at 
 - Approved UI specifications and Figma frames define intended presentation.
 - Historical drafts, reviews, and generated outputs are not implementation authority.
 - A task assignment does not override project-wide architectural restrictions.
-- Read [architecture](docs/architecture.md) before implementation. It records the approved foundation and explicitly supersedes the older Next.js and native-only proposals in the development guide. Its open decisions and verification gates still apply.
+- Read [architecture](docs/architecture.md) before implementation. It records the approved foundation; historical Next.js and native-only proposals are superseded. Its open decisions and verification gates still apply.
 - Product documents remain drafts except for specifically recorded resolutions. Architecture approval does not approve unresolved product behavior or grant permission to change shared contracts.
 - Use each document for the subject it owns. Link to requirements, decisions, and contracts rather than maintaining competing copies. A newer date alone does not establish approval or precedence.
 
@@ -31,7 +31,7 @@ These instructions apply to human contributors and AI agents. Read this file at 
 - Do not merge, rebase, cherry-pick, reset, force-push, delete branches, rewrite history, create commits or push without explicit owner approval for the specific operation. Approval to edit files is not approval to commit or publish. Never redirect foundation development into `main` or change this workflow without explicit owner approval. See the [foundation Git workflow](docs/development.md#foundation-git-workflow).
 - Auth, migrations, shared API contracts, cross-module invariants, infrastructure, and core dependency changes require architecture-owner review. Follow the architecture's requirement to establish code ownership and protected PR review before independent coding agents implement features.
 - Product/scope decisions belong to the project owner. Technical approvals belong to the designated architecture reviewer. If the required reviewer is unassigned, report the missing assignment before dependent implementation; do not assume approval authority.
-- The project lead confirmed `@YakisobaNissin` as reviewer on 26 October 2026; use [.github/CODEOWNERS](.github/CODEOWNERS) for the repository mapping. This assignment does not establish completed review, remote enforcement or permission to self-approve a PR. Check the current review/publication gates in [Development](docs/development.md#stage-4-parallel-readiness-and-publication).
+- The project lead confirmed the reviewer assignment on 26 October 2026; use [.github/CODEOWNERS](.github/CODEOWNERS) for the current repository account mapping. This assignment does not establish completed review, remote enforcement or permission to self-approve a PR. Check the current review/publication gates in [Development](docs/development.md#stage-4-parallel-readiness-and-publication).
 
 ## Portable local development and shared foundation
 
@@ -106,6 +106,6 @@ Before changing frontend components or layouts, consult the [implemented design 
 
 Start with [README.md](README.md). Use [product requirements and scope](docs/product.md), [user journeys](docs/user-journeys.md), and [pages and interactions](docs/pages-and-interactions.md) for product context. Check [decisions](docs/decisions.md) and [development context](docs/development.md) for blockers; read the relevant [Discovery](docs/specs/discovery.md) or [recommendation](docs/specs/career-recommendations.md) specification for feature work.
 
-Read [architecture](docs/architecture.md) for the approved stack, runtime/data/API boundaries, team guardrails, and A-01 through A-11 follow-up items. The development guide and recommendation spec contain older implementation wording identified by architecture; do not adopt that wording over the approved foundation. Consult [frontend reference instructions](docs/design/ui-reference/AGENTS.md) before using the historical UI snapshot.
+Read [architecture](docs/architecture.md) for the approved stack, runtime/data/API boundaries, team guardrails, and A-01 through A-11 follow-up items. [Development](docs/development.md#current-foundation-status-and-evidence) separates current source from dated execution records. The [password minimum resolution](docs/decisions.md#password-minimum-resolution) records the owner's eight-character requirement. Consult [frontend reference instructions](docs/design/ui-reference/AGENTS.md) before using the historical UI snapshot.
 
 Drafts and historical material do not establish implementation approval. Static Figma exports do not verify working behavior. Legacy starter instructions apply to that kit, not automatically to Asgard.
