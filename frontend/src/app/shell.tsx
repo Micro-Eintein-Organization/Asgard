@@ -13,7 +13,8 @@ import {
 import { appRoutes, routes } from "@/lib/routes";
 import { StatePanel } from "@/components/shared";
 import { useAuth } from "@/auth/context";
-import { LogoutBoundary, useLogout } from "./logout";
+import { LogoutBoundary } from "./logout-boundary";
+import { useLogout } from "./logout";
 
 function Header() {
   const { user } = useAuth();
