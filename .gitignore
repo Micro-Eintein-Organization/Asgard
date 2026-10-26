@@ -2,6 +2,9 @@
 .env
 .env.*
 !.env.example
+!.env.*.example
+.envrc
+.envrc.local
 
 # Private keys and local credentials
 *.pem
@@ -11,19 +14,26 @@
 id_rsa
 id_ed25519
 .aws/
+.azure/
+.config/gcloud/
 .ssh/
 .netrc
 _netrc
 .pgpass
 pgpass.conf
 .pypirc
-/secrets/
-/credentials/
+secrets/
+.secrets/
+credentials.json
+service-account*.json
+*-credentials.json
 
 # Local data and database exports (keep SQL migrations and seeds tracked)
-/backups/
+backups/
 *.dump
 *.backup
+*.db
+*.db-*
 *.sql.gz
 *.sqlite
 *.sqlite3
@@ -34,16 +44,46 @@ pgpass.conf
 *.sqlite3-wal
 *.sqlite3-shm
 .local/
+.docker/
+/docker-data/
+/volumes/
+**/docker/volumes/
+**/supabase/volumes/
+pgdata/
 
 # Dependencies, builds, and tool caches
 **/node_modules/
 **/dist/
 **/.venv/
+venv/
+env/
 **/__pycache__/
 *.py[cod]
+*$py.class
 *.tsbuildinfo
+.npm/
+.pnpm-store/
+.yarn/cache/
+.yarn/unplugged/
+.yarn/install-state.gz
+.vite/
+.vite-temp/
+.turbo/
 .cache/
+.eslintcache
+.stylelintcache
+.vercel/
+build/
+.Python
+*.egg-info/
+*.egg
+.eggs/
+pip-wheel-metadata/
 .mypy_cache/
+.pyright/
+.hypothesis/
+.tox/
+.nox/
 **/.pytest_cache/
 **/.ruff_cache/
 
@@ -51,9 +91,12 @@ pgpass.conf
 **/coverage/
 .coverage
 .coverage.*
+coverage.xml
 htmlcov/
 **/test-results/
 **/playwright-report/
+playwright/.cache/
+blob-report/
 **/playwright/.auth/
 
 # Local Supabase state and signing secrets
@@ -63,6 +106,17 @@ supabase/signing-keys.json
 
 # Runtime logs and operating-system metadata
 *.log
+logs/
+tmp/
+temp/
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*~
+.idea/
+*.code-workspace
 .DS_Store
 Thumbs.db
 Desktop.ini
