@@ -10,6 +10,21 @@ The MVP targets desktop and laptop browsers at approximately 1280–1920 px, wit
 
 **Windows teammates: open the Asgard folder in File Explorer and double-click the matching launcher.**
 
+Both launcher files are in the **top-level folder of your local checkout**, beside `README.md`. This is the folder you cloned with GitHub Desktop; its location depends on where you saved it. Open that local folder in File Explorer through GitHub Desktop to find the files.
+
+```text
+Asgard/                         Your local checkout folder
+├── README.md                   You are reading this file
+├── AGENTS.md                   Instructions for coding agents
+├── Setup-Asgard.cmd            Double-click for first-time setup
+├── Start-Asgard.cmd            Double-click for daily startup
+├── scripts/
+│   └── setup-windows.mjs       Used automatically by both launchers
+└── docs/
+    └── features/               Internal feature implementation guides
+        └── windows-one-click-onboarding.md
+```
+
 | First time | Every work session after setup |
 | --- | --- |
 | **[Setup-Asgard.cmd](Setup-Asgard.cmd)** | **[Start-Asgard.cmd](Start-Asgard.cmd)** |
@@ -115,7 +130,7 @@ Install Node 24 and Docker once; Docker Desktop may ask for administrator access
 #### Windows: first run
 
 1. Start Docker Desktop and wait until it is running Linux containers.
-2. Open the Asgard folder in File Explorer and double-click **Setup-Asgard.cmd**.
+2. Open your local checkout in File Explorer. Find `Setup-Asgard.cmd` beside `README.md` in the top-level folder and double-click it.
 3. If this is a fresh local environment, the launcher asks for approval before initializing it. Type `INITIALIZE` only when the project lead approved this machine and you are sure its Docker project has no existing data. The script creates a local signing key and restricted database password; it never copies another teammate's secrets or resets/deletes Docker data.
 4. If prompted, type `ENABLE AUTH` only when the project lead separately approved enabling local email/password Auth. After startup, check signup and Profile manually. The launcher opens the app and local email inbox.
 
@@ -125,7 +140,7 @@ See the [Windows one-click onboarding notes](docs/features/windows-one-click-onb
 
 #### Windows: daily start
 
-Start Docker Desktop, then double-click **Start-Asgard.cmd** in the Asgard folder. It starts the services and opens the app and local inbox. To stop them, follow [Daily startup and shutdown](#daily-startup-and-shutdown).
+Start Docker Desktop, then double-click **Start-Asgard.cmd**, beside `README.md` in your local checkout's top-level folder. It starts the services and opens the app and local inbox. To stop them, follow [Daily startup and shutdown](#daily-startup-and-shutdown).
 
 #### Linux
 
@@ -140,14 +155,17 @@ For a fresh Linux environment, request project-lead approval and follow [Before 
 
 ### Ask an AI coding agent to work on Asgard
 
-Give the agent one task at a time. Fill in the task and acceptance result, then paste this:
+Give the agent the tasks or features you want completed together, with the expected results. Paste this and fill in the brackets:
 
 ```text
-Work on this Asgard task: [what should change]
-Done means: [observable result or requirement/acceptance ID]
+Work on these Asgard tasks or features: [list what should change]
+Done means: [expected results or requirement/acceptance IDs for each]
 Reviewer: [project lead or assigned reviewer]
 
-Read AGENTS.md, docs/architecture.md, and the relevant docs and source first. Check the branch and existing edits. Before coding, send me a short plan listing scope, files/contracts, checks, and reviewer; wait for me to approve it. Follow the repository rules, keep the change within that plan, and do not commit, push, merge, or change auth/database/API contracts without explicit approval. When done, report changed files, check results, and anything still blocked.
+Read AGENTS.md, docs/architecture.md, and the relevant docs and source. Check the branch and existing edits.
+Before coding, show me a short plan covering the tasks, dependencies, files/contracts, focused checks, and reviewer. Wait for plan approval, then complete the agreed work.
+Document each implemented feature in docs/features/. Reuse applicable foundation verification and check the changed behavior; avoid repeating broad test suites without a reason.
+Follow repository approval rules for Git operations and auth/database/API changes. When done, report changed files, documentation links, check results, and blockers.
 ```
 
 For feature work, first check the [Stage 4 readiness gate](docs/development.md#stage-4-parallel-readiness-and-publication). An agent task does not replace required code-owner review or project-lead approval.
