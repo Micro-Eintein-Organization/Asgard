@@ -29,6 +29,16 @@ These instructions apply to human contributors and AI agents. Read this file at 
 - Once the application Git repository exists, use a separate branch or isolated worktree per contributor or agent. Agents must not commit directly to `main`. Agree on integration order for dependent changes.
 - Auth, migrations, shared API contracts, cross-module invariants, infrastructure, and core dependency changes require architecture-owner review. Follow the architecture's requirement to establish code ownership and protected PR review before independent coding agents implement features.
 - Product/scope decisions belong to the project owner. Technical approvals belong to the designated architecture reviewer. If the required reviewer is unassigned, report the missing assignment before dependent implementation; do not assume approval authority.
+- The project lead confirmed `@YakisobaNissin` as reviewer on 26 October 2026; use [.github/CODEOWNERS](.github/CODEOWNERS) for the repository mapping. This assignment does not establish completed review, remote enforcement or permission to self-approve a PR. Check the current review/publication gates in [Development](docs/development.md#stage-4-parallel-readiness-and-publication).
+
+## Portable local development and shared foundation
+
+- Use [README getting started](README.md#getting-started) for the supported workflow and prerequisite boundaries. Resolve paths from the actual checkout root; never depend on a contributor's username, absolute home path, drive letter, sync folder, editor, global packages, or access to an external historical archive.
+- Read runtime/dependency pins from `.node-version`, package manifests/locks and Dockerfiles. Use root `npm ci` for the locked Supabase CLI and Docker for application dependencies. Host Python or a global Supabase CLI is not required by this workflow. Do not upgrade versions or regenerate locks merely to match the current machine.
+- Each developer uses local resources and their own approved credentials. Loopback URLs refer to that developer's computer; project IDs refer to that Docker daemon's resources. Multiple checkouts/worktrees with the same project ID are not isolated; coordinate before starting or stopping shared local services.
+- Fresh-clone setup is not fully automated: the active Supabase config needs ignored local signing keys, and authenticated operation needs separately provisioned restricted-role credentials and environment approval. Do not copy another developer's `.env`/private keys, assume prior activation approval applies elsewhere, replace the runtime role with an administrator, or report connectivity as authenticated acceptance.
+- Read the [Stage 4 shared contracts/handoff](docs/development.md#stage-4-shared-contracts-and-handoff) before feature implementation. Versioned SQL is schema authority; generated OpenAPI/TypeScript is wire-contract authority. The scaffold's `501` responses and labeled sample fixtures are intentional until feature owners implement the corresponding behavior.
+- Keep feature logic in its owning module. Coordinate shared route registration, migrations and regenerated clients; preserve cross-feature ownership, context revisions and concurrency guards. Follow the recorded review gates before independent feature-agent implementation.
 
 ## Change boundaries
 

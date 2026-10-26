@@ -15,10 +15,10 @@ import { StatePanel } from "@/components/shared";
 import { useAuth } from "@/auth/context";
 import { LogoutBoundary, useLogout } from "./logout";
 
-function Header({ preview }: { preview: boolean }) {
+function Header() {
   const { user } = useAuth();
   const signOut = useLogout();
-  const pageRoutes = preview ? routes : appRoutes;
+  const pageRoutes = appRoutes;
   const navigation = [
     { to: pageRoutes.dashboard, label: "Dashboard" },
     { to: pageRoutes.careers, label: "Roadmap" },
@@ -67,19 +67,13 @@ function Header({ preview }: { preview: boolean }) {
     >
       <div className="header-inner">
         <Link
-          to={
-            preview
-              ? routes.dashboard
-              : user
-                ? appRoutes.dashboard
-                : routes.home
-          }
+          to={user ? appRoutes.dashboard : routes.home}
           className="brand"
           aria-label="Asgard home"
         >
           Asgard
         </Link>
-        {preview || user?.email_confirmed_at ? (
+        {user?.email_confirmed_at ? (
           <>
             <nav aria-label="Main navigation" className="desktop-navigation">
               {navigation.map((item) => (
@@ -90,13 +84,9 @@ function Header({ preview }: { preview: boolean }) {
                     isActive ||
                     (item.label === "Roadmap" &&
                       (pathname === "/roadmaps" ||
-                        pathname.startsWith(
-                          preview ? "/preview/roadmaps/" : "/roadmaps/",
-                        ))) ||
+                        pathname.startsWith("/roadmaps/"))) ||
                     (item.label === "Settings" &&
-                      pathname.startsWith(
-                        preview ? "/preview/settings/" : "/settings/",
-                      ))
+                      pathname.startsWith("/settings/"))
                       ? "active"
                       : ""
                   }
@@ -135,9 +125,7 @@ function Header({ preview }: { preview: boolean }) {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="account-menu">
-                  <DropdownMenuLabel>
-                    {preview ? "Preview account" : user?.email}
-                  </DropdownMenuLabel>
+                  <DropdownMenuLabel>{user.email}</DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem asChild>
                     <Link to={pageRoutes.profile}>Edit profile</Link>
@@ -146,20 +134,9 @@ function Header({ preview }: { preview: boolean }) {
                     <Link to={pageRoutes.account}>Account and security</Link>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
-                  {preview ? (
-                    <>
-                      <DropdownMenuItem disabled>
-                        Log out (not connected)
-                      </DropdownMenuItem>
-                      <DropdownMenuItem asChild>
-                        <Link to={routes.home}>Leave preview</Link>
-                      </DropdownMenuItem>
-                    </>
-                  ) : (
-                    <DropdownMenuItem onSelect={() => void logOut()}>
-                      Log out
-                    </DropdownMenuItem>
-                  )}
+                  <DropdownMenuItem onSelect={() => void logOut()}>
+                    Log out
+                  </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
@@ -213,15 +190,15 @@ function PageFocus() {
   return null;
 }
 
-export function AppShell({ preview = false }: { preview?: boolean }) {
+export function AppShell() {
   return (
     <LogoutBoundary>
-      <ShellContent preview={preview} />
+      <ShellContent />
     </LogoutBoundary>
   );
 }
 
-function ShellContent({ preview }: { preview: boolean }) {
+function ShellContent() {
   const { pathname } = useLocation();
   const demoPaths = [
     appRoutes.dashboard,
@@ -232,15 +209,13 @@ function ShellContent({ preview }: { preview: boolean }) {
     appRoutes.roadmaps,
   ];
   const demo =
-    preview ||
-    demoPaths.includes(pathname) ||
-    pathname.startsWith("/roadmaps/");
+    demoPaths.includes(pathname) || pathname.startsWith("/roadmaps/");
   return (
     <>
       <a className="skip-link" href="#main-content">
         Skip to content
       </a>
-      <Header preview={preview} />
+      <Header />
       {demo && (
         <div className="preview-bar">
           <div>
@@ -249,7 +224,6 @@ function ShellContent({ preview }: { preview: boolean }) {
               Sample careers, suggestions and progress. These examples are not
               your saved account data. Discovery answers are not saved.
             </span>
-            {preview && <Link to={routes.home}>Leave preview</Link>}
           </div>
         </div>
       )}
@@ -273,7 +247,6 @@ function ShellContent({ preview }: { preview: boolean }) {
           </span>
         </span>
         <div>
-          {preview && <Link to={routes.components}>UI components</Link>}
           <Link to={routes.status}>Service status</Link>
         </div>
       </footer>

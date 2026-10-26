@@ -9,10 +9,9 @@ import {
 } from "@/components/preview-states";
 import { CareerCard } from "@/components/career-card";
 import { careers } from "@/fixtures/catalog";
-import { usePageRoutes } from "@/lib/page-routes";
+import { appRoutes as pageRoutes } from "@/lib/routes";
 
 export function ResultsPage() {
-  const pageRoutes = usePageRoutes();
   const [state, setState] = useState<PreviewState>("sample");
   const samples = [careers[0], careers[2], careers[3]];
   return (

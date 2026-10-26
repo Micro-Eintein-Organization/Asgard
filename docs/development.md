@@ -1,18 +1,18 @@
 # Asgard: Development context
 
-25 October 2026. Follow the approved [architecture](architecture.md), selected [product baseline](product.md) and [decision register](decisions.md). The technical scaffold and Stage C UI previews are locally implemented. Project-lead review remains pending; product services are not integrated.
+Updated 26 October 2026. Follow the approved [architecture](architecture.md), selected [product baseline](product.md) and [decision register](decisions.md). The technical scaffold, local email/password authentication, Profile integration and canonical application UI are implemented. Career and learning pages remain labeled sample-data experiences. Project-lead review and manual Stage 3.5 acceptance remain pending; historical evidence below retains its original scope.
 
 ## Workspace
 
-The repository contains `frontend/`, `backend/`, app-service Compose configuration, CLI-managed Supabase configuration, and a cross-platform Node helper with PowerShell compatibility wrappers in `scripts/`. Public entry is at `/`, UI fixtures are isolated under `/preview/...`, and real service connectivity remains at `/status`. Historical frontend files in design/ui-reference remain unchanged references, not an executable application or approved API; no prototype backend/state behavior has been imported.
+The repository contains `frontend/`, `backend/`, app-service Compose configuration, CLI-managed Supabase configuration, and a cross-platform Node helper with PowerShell compatibility wrappers in `scripts/`. Public entry is at `/`, sample fixtures live in `frontend/src/fixtures/catalog.ts` and render within protected application pages, and real service connectivity remains at `/status`. Standalone `/preview/...` routes have been removed; historical evidence below describes their earlier implementation. Historical frontend files in design/ui-reference remain unchanged references, not an executable application or approved API; no prototype backend/state behavior has been imported. The [Stage 3.5 handoff](stage-3.5-handoff.md) records the consolidation and pending manual review.
 
 ## Local workflow
 
-[README](../README.md#getting-started) is the teammate onboarding entry point: prerequisite installation links, separate PowerShell/Bash first-time commands, daily startup, shutdown and troubleshooting. Run root `npm ci` to install the locked local CLI, then `node scripts/dev.mjs start`. Application dependencies are installed by Docker builds, not host npm/pip. No cloud credentials or manual local environment values are needed. The commands below were executed on Windows; their shared Node implementation and Linux-container checks do not establish native Linux-host acceptance.
+[README](../README.md#getting-started) is the teammate onboarding entry point: prerequisite installation links, separate PowerShell/Bash first-time commands, daily startup, shutdown and troubleshooting. Run root `npm ci` to install the locked local CLI; after the first-start provisioning prerequisite in README is satisfied, use `node scripts/dev.mjs start`. Application dependencies are installed by Docker builds, not host npm/pip. No cloud credentials are needed; the helper manages ordinary local URL/anonymous-key values, while local signing-key and authenticated application credentials need separate provisioning. The commands below were executed on Windows; their shared Node implementation and Linux-container checks do not establish native Linux-host acceptance.
 
 Windows verification used Node 24.19.0, npm 11.17.0, Docker Engine 29.8.2 and Compose 5.5.1. The backend remains Python **3.13.17** in Docker; host Python 3.14 is not used. Image digests, root/frontend npm locks, and exact hashed backend locks are preserved. No dependency or runtime upgrade was introduced by hardening.
 
-The helper checks Docker's Linux server, CLI version and port availability; creates a missing root `.env`; starts CLI-managed Supabase; regenerates local project ID, URL, anonymous key and CORS; performs a migration dry-run; starts app services with Compose health waits; and verifies connectivity. It does not print credentials, apply migrations to an existing database, reset data or stop other projects. It exits on the first failure. Existing custom environment entries survive regeneration; conflicting shell overrides are rejected. First startup may download images.
+The helper checks Docker's Linux server, CLI version and port availability; creates a missing root `.env`; starts CLI-managed Supabase; regenerates local project ID, URL, anonymous key and CORS; performs a migration dry-run; starts app services with Compose health waits; and verifies connectivity. It does not print credentials, apply migrations to an existing database, reset data or stop other projects. Supabase itself can initialize an empty database with the committed migrations during first startup; that initialization needs approval before invoking startup. The active Auth config references ignored `supabase/signing-keys.json`; neither this file nor an application database credential is generated by `scripts/dev.mjs`. A completely fresh checkout therefore has a provisioning prerequisite, even with application Auth disabled. It exits on the first failure. Existing custom environment entries survive regeneration; conflicting shell overrides are rejected. First startup may download images.
 
 These commands use the same helper in PowerShell or Bash:
 
@@ -53,9 +53,9 @@ Bind paths are repository-relative, with no user path or drive letter. Frontend 
 
 ## Contracts and migrations
 
-`node scripts/dev.mjs generate-api` exports schema/types through stdout and writes them as the host user, avoiding container UID ownership problems on bind-mounted files. Review `backend/openapi.json` and `frontend/src/api/generated/schema.d.ts` together after approved contract changes. Generated client drift is checked without changing source. Only operational health/readiness contracts exist; this setup does not define Stage 3 product DTOs.
+`node scripts/dev.mjs generate-api` exports schema/types through stdout and writes them as the host user, avoiding container UID ownership problems on bind-mounted files. Review `backend/openapi.json` and `frontend/src/api/generated/schema.d.ts` together after approved contract changes. Generated client drift is checked without changing source. Health/readiness and the working Profile API are joined by the Stage 4 contract scaffolding described below. A generated operation does not establish implemented feature behavior.
 
-Supabase SQL migrations remain the only schema authority. There are currently no application SQL migrations, and `seed.sql` inserts no rows. The CLI initializes a fresh local stack; retained local databases are never reset by the helper. Existing-database migration changes require explicit review and application. Startup checks the pinned CLI's dry-run result and stops when migrations are pending; it does not run a migration-apply command. CLI warnings about skipping `.gitkeep` in the empty migration directory are expected.
+Supabase SQL migrations remain the only schema authority. The Auth/Profile migration and additive Stage 4 migration are versioned in `supabase/migrations`; `seed.sql` inserts no rows. The CLI initializes a fresh local stack; retained local databases are never reset by the helper. Existing-database migration changes require explicit review and application. Startup checks the pinned CLI's dry-run result and stops when migrations are pending; it does not run a migration-apply command. CLI warnings about skipping `.gitkeep` are expected.
 
 The following read-only commands were executed:
 
@@ -65,7 +65,202 @@ npx --no-install supabase db push --local --dry-run
 npx --no-install supabase db lint --local --level error
 ```
 
-After owner review, migration application belongs to the CLI's explicit local push workflow. Do not use database reset, migration-history repair or seed reapplication as onboarding fixes. No database application role, grants/RLS, session-pooler or product auth workflow is established by this infrastructure check. Auth health is a reachability probe only; PostgreSQL negotiation is not authenticated SQL access from FastAPI.
+After owner review, migration application belongs to the CLI's explicit local push workflow. Do not use database reset, migration-history repair or seed reapplication as onboarding fixes. The historical infrastructure checks above did not establish application-role/RLS, session-pooler or product-auth acceptance. Stage 3 and Stage 4 evidence have their own boundaries below. Auth health is a reachability probe only; PostgreSQL negotiation is not authenticated SQL access from FastAPI.
+
+### Stage 4 shared contracts and handoff
+
+Closure task, 26 October 2026: owner Codex; required reviewer project lead, per the owner's Stage 4 Final Verification request. Bounded plan: inspect runtime-role metadata/membership read-only; adapt only the existing local rollback probe to an already-authorized fixture login; run the focused ownership/integrity check once with at most one correction/retry; review the four workstream boundaries and changed-file publication scope; record evidence here. Requirement coverage remains REQ-02–05/07–11/13 and A-05/10/11. No production grants, authentication architecture, feature behavior, dependency or migration changes are planned. Existing Stage 3.5 edits remain outside the verification fix.
+
+26 October 2026; execution reference and owner/reviewer are in the [bounded record](#stage-4-bounded-execution-record). This is foundation support for the listed requirements, not acceptance of feature workflows. The local database verification blocker is resolved; technical review and the team/publication gate remain outstanding.
+
+**Persistence.** [20261026000100_shared_foundation.sql](../supabase/migrations/20261026000100_shared_foundation.sql) is additive and was applied locally through the existing CLI. Auth/Profile data and migration `20261025000100` were preserved. No content was seeded.
+
+| Owner | Entities and shared relationships |
+| --- | --- |
+| Catalog | `asgard_catalog.releases`, `categories`, `careers`, `roadmaps`, `milestones`, `branch_groups`, `branches`, `topics`, `topic_prerequisites`, `resources`. UUID identities; career→roadmaps→milestones/topics; composite FKs keep topic/branch/prerequisite references in their authored roadmap/milestone. Positions distinguish common topics from explicit alternatives. Resources record free access, source license and review date. |
+| Discovery | Published `questionnaires`/`questions` register versioned identities without questionnaire content. Private `discovery_sessions` and `discovery_answers` retain drafts/completions and same-owner retake sources. One draft/account; accepted sessions/answers are immutable. There are no conditional question branches in the selected F-001 baseline. |
+| Learning Progress | Private `learning_state` stores explicit current roadmap, optimistic version and recommendation context revision; `topic_progress`, `branch_choices`, append-only `progress_events`, and reversible `completion_activity` preserve independent roadmap histories. One Learning topic/account; unique topic/local-date contribution. Stored local dates remain stable when preferences change timezone. |
+| Preferences | Private `preferences` stores preferred category, IANA timezone, dismissed guidance IDs and optimistic version. It does not change learning focus or recommendation context. |
+| Recommendations | Private `recommendation_runs` and immutable `recommendation_items`: same-owner completed Discovery reference, context/catalog/prompt/schema revisions, immutable versioned fact snapshot, idempotency key, deadline, safe failure codes and optional catalog destinations. One pending run/account, at most three distinct careers, relational career→roadmap→topic checks, nonempty/current/nonexpired completion guard. |
+| Analysis budget | Private `analysis_attempts` persists each reserved provider attempt (including retries); `analysis_daily_budget` stores only aggregate UTC-day counts, with no account identities. This supports a future atomic cross-account budget without exposing other accounts' private attempt rows. No quotas are claimed enforced yet. |
+
+Both schemas remain outside the PostgREST exposed schemas. `anon` and browser `authenticated` receive no access. Catalog is read-only to `asgard_app`, with drafts hidden; published and retired references remain readable for history. New private tables force owner RLS using the existing transaction-local verified identity. Runtime grants permit only needed operations: event/item/attempt records have no UPDATE/DELETE; branch-choice and activity DELETE support explicit choice clearing and undo. Ordinary app access cannot delete catalog/history. Auth deletion cascades private account rows; catalog foreign keys restrict destructive removal. Retire content instead of deleting referenced identities. Materially changed outcomes get new topic IDs; corrections increment revisions and retain identities. Content editing/publication is outside this stage.
+
+**Concurrency protocol.** Feature owners must reuse the existing restricted-role/session validation transaction pattern, apply explicit `user_id` predicates, and compare `expected_version`/`expected_revision` before writing. Zero version means insert-if-absent, never overwrite. Lock `learning_state` before learning/focus/branch changes; SQL guards serialize these mutations on that row and prohibit focus/branch switches excluding unresolved Learning. Only explicit Done/Skip/Clear resolves Learning. Update record versions/timestamps in the same transaction. Discovery saves lock the session and increment its revision once per accepted checkpoint; final acceptance atomically completes that exact revision before requesting generation. SQL rejects edits to completed answers; questionnaire option validity, exclusions and five-answer completeness remain Discovery service responsibilities. Initialize `learning_state` without a focus before creating its dependent records; this is not automatic roadmap selection.
+
+Recommendation snapshots contain versioned permitted facts and catalog release identity, never raw provider output. Before future provider calls, the Recommendations service must reserve quota atomically (shared daily counter plus owner attempts), reuse eligible identical context/catalog/prompt/schema results, resolve duplicate idempotency requests, and expire abandoned pending runs. Successful persistence must recheck account/session, relevant revisions, published catalog membership and provenance; SQL adds pending uniqueness and stale/expired-completion defense. Generation/retry and quota enforcement remain unimplemented. No transaction may span a provider call. The existing session gate remains mandatory for every protected operation, including Catalog.
+
+**API inventory.** [FastAPI route scaffolding](../backend/app/api/foundation.py) registers every operation below under `/api/v1`. All 29 operations require Bearer identity via the existing verifier and return `501 not_implemented` after successful auth/input validation. Their OpenAPI success responses describe future contracts, not fabricated implemented success. Auth-disabled requests still return 503; invalid/missing sessions return 401. Profile routes are unchanged. Common error envelope: `code`, safe `message`, `request_id`; HTTP `X-Request-ID` is preserved and private responses use `Cache-Control: no-store`. Future handlers use 404 for unknown or nonowned IDs, 409 for revision/Learning/context conflicts, 422 for invalid input, 429 with Retry-After for owned quotas, and 503 for unavailable dependencies. Do not reveal another account's resource existence.
+
+| Method and relative path | Request → response schema |
+| --- | --- |
+| GET `/discovery/questionnaire` | Current published identity registry → `Questionnaire` (content authored separately) |
+| GET `/me/discovery` | → `DiscoveryState` (draft and latest completion, both nullable) |
+| POST `/me/discovery` | `StartDiscovery` → `DiscoverySession` (create/resume compatible draft) |
+| GET `/me/discovery/{session_id}` | → `DiscoverySession`, including saved answers |
+| PATCH `/me/discovery/{session_id}/answers` | `SaveDiscovery` → `DiscoverySession`; upsert supplied round answers only, preserve other rounds |
+| POST `/me/discovery/{session_id}/complete` | `CompleteDiscovery` → `DiscoverySession` |
+| POST `/me/discovery/retake` | `RetakeDiscovery` → separate draft `DiscoverySession` copied from same-owner completion |
+| GET `/me/dashboard` | → `Dashboard` |
+| GET, PATCH `/me/preferences` | Read / `SavePreferences` → `Preferences` |
+| GET `/categories` | → `Category[]`, authored position order |
+| GET `/careers` | Optional `q`, `category_id`, `limit`, `offset` → `CareerPage`, including `catalog_release_id` |
+| GET `/careers/{career_id}` | → `Career` |
+| GET `/roadmaps/{roadmap_id}` | → nested `Roadmap` |
+| GET `/roadmaps/{roadmap_id}/milestones` | → `Milestone[]` |
+| GET `/roadmaps/{roadmap_id}/topics/{topic_id}` | → `Topic` |
+| GET `/roadmaps/{roadmap_id}/topics/{topic_id}/resources` | → `Resource[]` |
+| GET `/me/recommendations` | → `RecommendationState`, with nullable current and previous eligible success |
+| POST `/me/recommendations` | `RequestRecommendations` → 202 `RecommendationRun`; explicit update uses this same operation |
+| GET `/me/recommendations/{run_id}` | → `RecommendationRun`, including generation status |
+| POST `/me/recommendations/{run_id}/retry` | `RetryRecommendations` → 202 `RecommendationRun`; explicit retry of failed work with current revisions |
+| GET, PATCH `/me/learning` | Read / `SelectRoadmap` → `LearningState` |
+| GET `/me/roadmaps/{roadmap_id}/progress` | → `TopicProgress[]` |
+| PATCH `/me/roadmaps/{roadmap_id}/topics/{topic_id}` | `SaveTopicProgress` → `TopicProgress`; Clear uses `not_started` |
+| GET `/me/roadmaps/{roadmap_id}/branches` | → `BranchChoice[]` |
+| PATCH `/me/roadmaps/{roadmap_id}/branches/{group_id}` | `SaveBranchChoice` → `BranchChoice` |
+| GET `/me/roadmaps/{roadmap_id}/summary` | → `ProgressSummary`, authored next topics and branch-aware counts |
+| GET `/me/activity` | Required `month=YYYY-MM` → `ActivityMonth` |
+
+Shared schema primitives live in [api/contracts.py](../backend/app/api/contracts.py); feature DTOs live in each new `backend/app/modules/{discovery,careers,roadmaps,progress,recommendations}/schemas.py`. IDs are UUIDs except versioned question/option/fact/message identifiers. Unknown body fields, including owner IDs, are rejected. Versions are positive strict integers (expected version can be zero). Bounded answer/identifier fields and unique submitted questions/options are validated; authored option meanings/exclusions are not invented. Timezones use IANA names. Career search matches titles and skills, case-insensitively; category filters intersect the search. Pagination is offset-based (`offset >= 0`, default 0; `1 <= limit <= 100`, default 20), with filtered `total`; deterministic title then UUID ordering. Lists return published entries; direct historical references can return retired entries with notices. Resources/topics use authored positions; empty lists mean actual empty data, not a stand-in for backend failure.
+
+**Recommendation trust boundary.** [recommendations/schemas.py](../backend/app/modules/recommendations/schemas.py) separates `UntrustedRecommendationOutput` from `ValidatedRecommendationItem` and API `RecommendationRun`. The backend alone constructs `RecommendationContext` from immutable completed Discovery and relevant learning facts. Fact IDs resolve within the exact snapshot/revision. Optional document/analysis reference types reserve provenance only; extraction, active-document validation/removal suppression and their persistence remain the future PDF feature's responsibility. No PDF API/processing/storage was added. `validate_recommendations` rejects unknown careers, mismatched roadmap/topic relationships and unsupported evidence IDs using backend-supplied published catalog membership. No scores or extra model fields are permitted, and results contain one to three distinct careers. Safe failure/status combinations are validated. Human-readable explanation accuracy, prohibited competence/readiness claims, uncertainty/diversity policy, publication/revision/account rechecks and document suppression require service validation and the F-002 quality gate; schema validity alone does not prove them. No model calls or prompts exist. Optional starting-topic destinations are reserved contract fields; AI starting-topic advice is not enabled or approved as baseline behavior under REQ-08. Authored next-topic guidance belongs to Progress.
+
+**Frontend conventions.** [Generated schema.d.ts](../frontend/src/api/generated/schema.d.ts) is consumed by the existing typed [openapi-fetch client](../frontend/src/api/client.ts); do not duplicate DTOs. [query-keys.ts](../frontend/src/api/query-keys.ts) prefixes future feature keys with account UUID and includes every search/page dimension. Invalidate the `learning` prefix plus Dashboard/recommendations after accepted learning mutations; Discovery updates invalidate Discovery/recommendations/Dashboard; preferences only invalidate preferences/catalog defaults. These are conventions, not feature hooks. Existing Profile keys and behavior are preserved to avoid overlapping Stage 3.5 edits. AuthProvider already cancels and clears the entire QueryClient on logout/account changes, while auth transport aborts previous-account requests; retain `isCurrentAccount` guards before applying mutation results. Do not persist private query caches to browser storage.
+
+Use existing no-retry defaults for mutations and no automatic provider generation on visits/refetch. Future read adapters use TanStack's abort signal, generated error bodies and [APIRequestError](../frontend/src/api/errors.ts) to preserve status/code/request ID. Render initial loading separately from actual empty data; failed writes retain local input and never show saved state. 409 requires explicit reload/resolution, 429 respects Retry-After, and 501 shows unavailable functionality without retry loops or invented content. Render explanation strings as text. Existing shared state panels and clearly labeled `frontend/src/fixtures` sample data remain the presentation convention; feature screens have not been connected to scaffolding.
+
+**Integration boundaries.** Discovery owns accepted answer context; Catalog owns published identity/membership and authored ordering; Recommendations owns validated saved explanations/status; Progress owns focus, branch/status history, activity and calculated summaries. Dashboard composes those contracts rather than maintaining duplicate progress/recommendation rules. Profile/preference changes do not imply learning changes. Retakes/failures preserve previous eligible successful recommendations and all learning history. Document-dependent fallback results must be suppressed after removal by the future lifecycle service. No team assignments, feature schedule or additional infrastructure were created.
+
+**Verification and remaining gates.** The local additive migration applied once without reset. Initially the rollback-only [SQL probe](../backend/scripts/check_foundation.sql) failed before its RLS/integrity assertions because its `postgres` login could not assume `asgard_app`; the original correction/retry was stopped and all fixtures rolled back. The owner's separate final-verification request authorized the targeted closure below.
+
+Read-only closure inspection confirmed that FastAPI's configured connection actually logs in as `asgard_app` (`current_user = session_user = asgard_app`, superuser/bypass-RLS both false). Repository code checks that role, validates the account/session and sets transaction-local identity; it does not assume a browser Supabase role. `asgard_app` exists and can log in. `postgres` is a member but its membership has `set_option = false`, and `pg_has_role(..., 'SET')` is false. This was a verification-login mismatch, not missing application credentials or a need to elevate the application role. The existing local `supabase_admin` is already authorized to assume the restricted role. The sole probe fix uses that existing login for synthetic fixtures, then `SET LOCAL ROLE asgard_app` for ownership/integrity assertions; anonymous/browser denial checks use their actual roles. No role, grant, RLS policy, migration, password or application configuration was changed.
+
+The corrected probe passed on its first closure run and printed `PASS` followed by `ROLLBACK`. Verified: owner visibility and other-account invisibility across all 11 new account-owned tables; other-account preference update/insert denial; no-identity private access denial; anonymous private/catalog denial and browser-authenticated private denial; application catalog-write denial; mismatched roadmap/topic FK rejection; immutable completed Discovery answers; one Learning topic/account; focus/branch resolution guards; topic/local-date activity uniqueness; distinct/bounded recommendation items; one pending run/account; stale-result completion rejection and completed-result immutability. Read-only metadata also confirmed ENABLE/FORCE RLS on all 24 new tables and the existing Profile table. The aggregate daily budget deliberately contains no account data and has a backend-only policy. Administrator setup exercised the allowed fixture path; all fixtures and the temporary helper were rolled back. These are database-role/constraint assertions, not new end-to-end Auth/session tests or a simultaneous-request timing/load test. Existing DB unique indexes and common-row locking provide the tested invariant mechanisms; feature services still must follow the documented transaction protocol.
+
+The following PowerShell check was executed successfully from the repository root. It uses the existing local administrator only inside this rollback fixture probe, never as the application's runtime connection. Stop on any error; do not grant role membership to make it pass.
+
+```powershell
+Get-Content -Raw backend/scripts/check_foundation.sql |
+  docker exec -i supabase_db_asgard-foundation psql -X -U supabase_admin -d postgres --set ON_ERROR_STOP=1
+```
+
+Final focused checks passed: Ruff for changed Python modules/tests; `pytest -q -p no:cacheprovider tests/test_foundation_contracts.py` (3 passed); `node scripts/dev.mjs generate-api`; backend `python scripts/export_openapi.py --check`; frontend `npm run check:api` and `npm run typecheck`. The same narrow checks were repeated only after contract refinements; the line-length corrections passed their affected Ruff rerun. The existing Starlette/httpx deprecation warning remains; no dependency change was made. All 29 local links/anchors in this guide resolved, and the changed tracked foundation files passed `git diff --check`. The targeted tests verify authenticated stub/error behavior, strict mutation inputs, distinct/catalog-linked AI output and evidence references. No full regression suite, browser automation, Docker rebuild/restart, provider calls or extensive UI verification was run. UI/Auth preservation is supported by unchanged source boundaries and typechecking; rendered parity and prior Stage 3.5 manual acceptance remain pending, not re-certified here. No design/product specification update was needed because this stage changes shared technical contracts without changing their approved behavior or presentation.
+
+Feature business services/repositories, catalog/questionnaire authoring/publication (including graph/resource quality), quota enforcement, recommendation generation/reuse/retry, PDF lifecycle, completion/streak calculations and real feature fetching are intentionally unfinished. Hosted pooler/operations/privacy/Auth-provider gates remain scoped to their existing owners. No commit, push, merge, reset or discard was performed.
+
+### Stage 4 parallel readiness and publication
+
+Readiness: **Yes with restrictions**. The database closure passes, and no additional shared architectural redesign was identified for the four requested workstreams. Discovery/Dashboard has stable questionnaire/session/revision identities and composable summary contracts; Catalog/Roadmaps has stable authored career/path/topic relationships; Recommendations consumes accepted Discovery and published Catalog identities with persisted provenance; Progress owns learning focus/history/calculations and supplies Dashboard/roadmap summaries. Every stream uses the same generated TypeScript contracts, authenticated account identity and explicit ownership/session transaction pattern. The 29 scaffolding operations intentionally remain 501. Future feature acceptance and real-user/hosted gates are separate from foundation readiness.
+
+Feature logic belongs in its owning module. Coordinate edits to the shared route registration/scaffolding, migrations and generated schema/client through technical review; do not overwrite other streams' registrations or independently hand-edit generated DTOs. This is an integration boundary, not a new feature assignment.
+
+Before independent coding agents begin, the project lead must review the SQL/shared contracts, publish one reviewed common base, and satisfy architecture section 14's code-ownership/protected-PR gate. On 26 October 2026 the project lead confirmed `@YakisobaNissin` as reviewer in this chat (reply: “yes”); [.github/CODEOWNERS](../.github/CODEOWNERS) now assigns that account to the entire repository, including the ownership file itself. This assignment does not claim completed technical review or configured remote enforcement. The GitHub connector returned 404 for repository branch/ruleset reads, so remote protection is **unverified**, not assumed missing or configured. The local `origin/HEAD` points to `origin/main`. Verify that the account has repository write access and that the `main` rule requires PR/code-owner review and passing CI. GitHub uses CODEOWNERS from the PR's base branch, so this file must first reach that branch; it cannot retroactively enforce its own initial PR. PR authors cannot approve their own PRs, so a PR opened by the sole named owner needs another eligible reviewer/code owner rather than a self-approval claim. See [GitHub code-owner rules](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners) and [review approval rules](https://docs.github.com/en/pull-requests/how-tos/review-pull-requests/approving-a-pull-request-with-required-reviews). Teammates should start from the same approved foundation commit; existing remote feature branches are not evidence they contain this work. Prior Stage 3.5 rendered/manual acceptance remains pending under its own handoff.
+
+Publication review found 48 existing changed-file candidates (three additional tracked deletions), with no matches for current local database credential values or common private-key/provider-token patterns and no accidental build/cache/test-output files. This is a bounded candidate-file scan, not a repository-history secret audit. `.env` and `supabase/signing-keys.json` are ignored and are not commit candidates. `backend/openapi.json` and `frontend/src/api/generated/schema.d.ts` are required generated contracts, not accidental output; the new SQL migration is present. Other application/UI edits predate Stage 4 and are preserved as Stage 3.5 scope.
+
+Closure documentation checks passed: all 30 local links/anchors resolve; the two publication manifests cover all 51 changed paths exactly once (30 Stage 3.5, 21 Stage 4); the PowerShell publication block parses without executing it; changed tracked documentation passed whitespace checks. Previously passing Python/frontend/OpenAPI checks were not repeated because no corresponding implementation changed. Only the SQL probe and this guide changed during closure; the migration and generated contracts remain intact.
+
+Owner/portability follow-up, 26 October 2026: task owner Codex; required reviewer project lead, who authorized the owner mapping in this chat and raised documentation portability. Scope: A-07 code ownership and portable documentation/publication instructions (QA-11 support); affected files are `.github/CODEOWNERS`, this guide, and the historical UI reference README/audit provenance paragraphs. Replace personal checkout paths with a repository-root precondition and external-archive names, preserve historical findings and reference source, keep relative documentation links, and check owner syntax, links, publication manifests and PowerShell syntax. No application, database, dependency or remote-setting changes are authorized by this follow-up. Localhost URLs refer to each developer's own running stack; Docker service/project names are the shared configured defaults, not references to the project lead's PC. Native Linux-host onboarding still requires its separately recorded evidence.
+
+Follow-up checks passed: owner-file syntax/content, all 43 local links/anchors across the three edited Markdown files, publication PowerShell syntax (parsed only), whitespace, and exact manifest coverage of 54 changed paths (30 Stage 3.5, 24 Stage 4/follow-up). A repository Markdown scan found no remaining absolute personal filesystem paths. Database/source/browser checks were not repeated for these ownership/documentation-only edits; the Stage 3.5 handoff's manual navigation checklist remains pending.
+
+Final README/AGENTS handoff pass, 26 October 2026: authorized by the owner's request in this chat; task owner Codex, required reviewer project lead. Scope: portable README prerequisites/startup descriptions, AGENTS contributor guidance and this cumulative publication record (A-07/A-11 and QA-11 documentation support). The instructions were compared with `.node-version`, package manifests/locks, Dockerfiles, Compose, `.env.example`, active Supabase config and existing scripts. No runtime, dependency, migration, Auth configuration or service change was made. README now distinguishes host tools from container packages and first-start provisioning from ordinary startup. The active config's ignored signing-key requirement is an actual fresh-clone prerequisite not fulfilled by `scripts/dev.mjs`; its CLI generation capability was checked through help only, without generating keys. The helper also does not initialize the restricted application's password. Therefore authenticated fresh-host onboarding remains incomplete until environment-specific approved provisioning; existing local Stage 4 database verification is still valid and was not rerun. Native Linux-host acceptance and the manual Stage 3.5 navigation checklist remain pending. This pass does not authorize a new setup service or silently grant new-environment activation.
+
+Current branch: `codex/stage35-canonical-ui`. Stage 4 and its ownership/portability/documentation follow-ups own the following **26 files** (directory entries below each contain only `__init__.py` and `schemas.py`):
+
+```text
+.github/CODEOWNERS
+AGENTS.md
+README.md
+backend/app/main.py
+backend/app/api/contracts.py
+backend/app/api/foundation.py
+backend/app/modules/careers/{__init__.py,schemas.py}
+backend/app/modules/discovery/{__init__.py,schemas.py}
+backend/app/modules/progress/{__init__.py,schemas.py}
+backend/app/modules/recommendations/{__init__.py,schemas.py}
+backend/app/modules/roadmaps/{__init__.py,schemas.py}
+backend/openapi.json
+backend/scripts/check_foundation.sql
+backend/tests/test_foundation_contracts.py
+docs/development.md
+docs/design/ui-reference/README.md
+docs/design/ui-reference/audit.md
+frontend/src/api/generated/schema.d.ts
+frontend/src/api/errors.ts
+frontend/src/api/query-keys.ts
+supabase/migrations/20261026000100_shared_foundation.sql
+```
+
+`docs/development.md` and README also contain preserved Stage 3.5 context/corrections; their final cumulative states belong in the second commit below. The 29 paths in the first manifest are the pre-existing Stage 3.5 presentation/documentation changes, including the three intentional deletions. Review them through the [Stage 3.5 handoff](stage-3.5-handoff.md) before publication. Do not treat them as verification fixes. No dependency lockfile, Auth provider/transport, Profile repository/API, existing migration, infrastructure file or design asset was modified by this closure.
+
+A separate `.gitignore` modification appeared during the final README/AGENTS review. It was inspected read-only, preserved, and deliberately excluded from the two foundation/UI publication manifests because its ownership/approval is outside this task. The project lead should review it separately; do not blanket-stage it with the handoff or discard it. The manifests account for 55 intended paths (29 Stage 3.5, 26 Stage 4/documentation); this additional edit makes 56 currently changed paths.
+
+Final documentation checks passed: 85 local links/anchors across README, AGENTS and the three affected guides; runtime pins matched the repository manifests/Dockerfiles; no absolute personal filesystem paths remained in the Markdown scan; publication syntax and whitespace checks passed. The manifests cover the 55 intended paths without duplicates, with only the separately preserved `.gitignore` edit excluded. No fresh-host installation, application regression rerun, browser walkthrough, database recheck, commit or push was performed for this documentation pass.
+
+README environment-instruction follow-up, 26 October 2026: requested by the project lead in this chat; owner Codex, required reviewer project lead. Scope is README's root `.env` creation, variable ownership, managed-value refresh, existing approved credential-initializer command and activation/recovery boundaries. Source authority: `.env.example`, Compose, `scripts/dev.mjs`, `scripts/dev-config.mjs` and `scripts/provision-local-db.mjs`. Existing commands are documented without running provisioning, changing any secret, overwriting `.env`, enabling Auth or starting/restarting services. Preserve the first-start signing-key prerequisite; do not imply that editing `.env` completes fresh-host Auth validation. Documentation links, command syntax and variable coverage are the appropriate checks for this prose-only change.
+
+Environment-instruction checks passed: all 11 `.env.example` variables are documented, the seven helper-managed variables match source, referenced scripts exist, 86 local links/anchors resolve across the five affected guides, both README PowerShell blocks parse, and diff whitespace checks pass. No secret values were read for these checks; no setup/provisioning command was executed. The separate `.gitignore` edit and existing application changes remain preserved.
+
+Signing-key explanation follow-up, 26 October 2026: requested by the project lead in this chat. The locked CLI's `gen signing-key --algorithm ES256 --append` was probed in an isolated temporary directory, with no Supabase services or application environment activated. Appending with a missing file failed; one focused correction created a new empty JSON array first, and the retry produced exactly one valid ES256 private JWK in the configured file. No private key was printed, and the temporary key/directory were removed. Current Asgard keys, `.env` and database credentials were not modified. README now documents guarded first-time PowerShell key creation, the existing local credential-initializer sequence, and the stop conditions. This proves the isolated key-file command, not fresh-host Auth/session or native Linux onboarding acceptance. No application, migration, dependency or security-model change was made.
+
+After review and explicit authorization to publish, the project lead can run this PowerShell sequence from their own Asgard checkout root (the folder containing `AGENTS.md` and `compose.yaml`). Teammates may clone the repository anywhere; no personal Windows username, OneDrive folder or drive letter is required. These are proposed publication commands, **not actions performed by Codex**. They use repository-relative paths, preserve the existing branch and avoid blanket staging. Inspect each staged diff before its commit; stop on any failed command.
+
+```powershell
+if (-not (Test-Path -LiteralPath 'AGENTS.md') -or -not (Test-Path -LiteralPath 'compose.yaml')) {
+  throw 'Open PowerShell in your own Asgard checkout root before proceeding'
+}
+if ((git branch --show-current) -ne 'codex/stage35-canonical-ui') { throw 'Unexpected branch' }
+git diff --cached --quiet
+if ($LASTEXITCODE -ne 0) { throw 'Review existing staged changes before proceeding' }
+function Invoke-CheckedGit {
+  & git @args
+  if ($LASTEXITCODE -ne 0) { throw 'Git command failed; stop and review the output' }
+}
+
+$stage35Files = @(
+  'docs/decisions.md', 'docs/design.md', 'docs/pages-and-interactions.md',
+  'docs/stage-3.5-handoff.md',
+  'frontend/src/app/router.tsx', 'frontend/src/app/screens.ts', 'frontend/src/app/shell.tsx',
+  'frontend/src/components/career-card.tsx', 'frontend/src/components/preview-states.tsx',
+  'frontend/src/components/shared.tsx', 'frontend/src/components/unsaved-preview-dialog.tsx',
+  'frontend/src/features/auth/connected-page.test.tsx',
+  'frontend/src/features/auth/connected-page.tsx', 'frontend/src/features/auth/pages.tsx',
+  'frontend/src/features/dashboard/page.tsx', 'frontend/src/features/design-system/page.tsx',
+  'frontend/src/features/discovery/page.tsx',
+  'frontend/src/features/profile/authenticated-page.tsx',
+  'frontend/src/features/profile/page.tsx', 'frontend/src/features/profile/settings-layout.tsx',
+  'frontend/src/features/profile/account-page.tsx',
+  'frontend/src/features/recommendations/page.tsx', 'frontend/src/features/roadmaps/page.tsx',
+  'frontend/src/lib/page-routes.ts', 'frontend/src/lib/routes.ts', 'frontend/src/styles.css',
+  'frontend/tests/auth-ui.spec.ts', 'frontend/tests/navigation.spec.ts', 'frontend/tests/ui.spec.ts'
+)
+Invoke-CheckedGit add -- @stage35Files
+Invoke-CheckedGit diff --cached --check
+Invoke-CheckedGit diff --cached
+Invoke-CheckedGit commit -m "Consolidate Stage 3.5 canonical application UI"
+
+$stage4Files = @(
+  '.github/CODEOWNERS', 'AGENTS.md', 'README.md',
+  'backend/app/main.py', 'backend/app/api/contracts.py', 'backend/app/api/foundation.py',
+  'backend/app/modules/careers', 'backend/app/modules/discovery', 'backend/app/modules/progress',
+  'backend/app/modules/recommendations', 'backend/app/modules/roadmaps',
+  'backend/openapi.json', 'backend/scripts/check_foundation.sql',
+  'backend/tests/test_foundation_contracts.py', 'docs/development.md',
+  'docs/design/ui-reference/README.md', 'docs/design/ui-reference/audit.md',
+  'frontend/src/api/generated/schema.d.ts', 'frontend/src/api/errors.ts',
+  'frontend/src/api/query-keys.ts', 'supabase/migrations/20261026000100_shared_foundation.sql'
+)
+Invoke-CheckedGit add -- @stage4Files
+Invoke-CheckedGit diff --cached --check
+Invoke-CheckedGit diff --cached
+Invoke-CheckedGit commit -m "Establish and verify Stage 4 shared foundation"
+Invoke-CheckedGit status --short
+Invoke-CheckedGit push -u origin codex/stage35-canonical-ui
+```
+
+Open a PR against `main` using the pushed branch, obtain the required human technical review and passing hosted CI, and integrate through the protected workflow. CI includes broader checks than this bounded local closure; no hosted run is claimed here. Share the resulting reviewed/integrated commit SHA with all four workstreams. No Stage 5 assignments, issues or schedule were created.
 
 For optional browser checks, the already verified host workflow remains:
 
@@ -112,14 +307,14 @@ The isolated verification stack was stopped with Compose down followed by CLI st
 
 25 October 2026 — source implementation authorized by the project owner's “implement” reply to the bounded Stage 3 plan. Owner: Codex; technical/security reviewer: project lead. Coverage: REQ-01/13 and the name-only part of REQ-11; partial QA-01/07/09/11. The two pre-existing startup-format corrections are preserved. This remains on `foundation`; nothing is committed or pushed by the agent.
 
-The second approval gate is still closed. The [SQL draft](../supabase/review/20261025000100_auth_profile_foundation.sql) is outside the active CLI migrations directory; the [Auth configuration candidate](../supabase/config.auth.toml.pending) is not the active config file. Neither can execute through normal startup. After approval, the SQL file will move into the versioned migrations directory and the approved Auth settings will replace the live config. The live `supabase/config.toml` is unchanged, signup remains disabled, no signing key was generated and no application DB password was provisioned. `ASGARD_AUTH_ENABLED` defaults to false in both app containers. Building/testing the source does not authorize activation or a database reset.
+Historical pre-activation status, 25 October 2026: the second approval gate was closed. The SQL draft, [now versioned after local activation](../supabase/migrations/20261025000100_auth_profile_foundation.sql), was outside the active CLI migrations directory; the [Auth configuration candidate](../supabase/config.auth.toml.pending) was not the active config file. Neither could execute through normal startup at that review. Moving the SQL and activating the Auth settings required separate approval. Signup was disabled, and no signing key or application DB password had been provisioned at that point. Subsequent local-only approval and execution on 26 October are recorded in [Decisions](decisions.md#authority-and-status). `ASGARD_AUTH_ENABLED` still defaults to false in fresh environments. Building/testing source does not authorize activation elsewhere or a database reset. The evidence below retains its pre-activation scope.
 
 The credential initializer now writes the random password to ignored `.env` atomically before changing the local database role, then restores the prior `.env` if role provisioning fails. It refuses to replace an existing database URL and requires the explicit approval flag. This ordering ensures a failed `.env` write cannot leave the database role with a new password that was never saved locally.
 
 ### Implemented source boundaries
 
 - Official Supabase browser SDK owns password/OTP/session operations. Connected forms support registration, explicit code verification, resend feedback, login, SDK restoration/refresh and current-session logout. The current preview forms remain when Auth is disabled. Google, TOTP enrollment, recovery, deletion, uploads, preferences, careers and learning persistence are not implemented by this slice.
-- `/settings/profile` is the protected, temporary post-authentication destination approved for this stage. `/preview/...` continues to display isolated fixtures. Query caches and request tokens are separated by account; account changes abort old requests, and an old response cannot sign a newer account out. Browser session state is not a backend authorization boundary.
+- At Stage 3, `/settings/profile` was the protected, temporary post-authentication destination and `/preview/...` displayed isolated fixtures. Stage 3.5 supersedes those destinations: verified registration opens `/welcome`, login opens `/dashboard`, and the standalone Preview routes are removed. Query caches and request tokens remain separated by account; account changes abort old requests, and an old response cannot sign a newer account out. Browser session state is not a backend authorization boundary.
 - FastAPI verifies ES256 signature, issuer, authenticated audience/role, expiry, issued-at, UUID subject/session and assurance claims through a bounded trusted JWKS fetch/cache. No symmetric fallback, unverified JWT decoding for authorization, token-supplied key URL or custom password store is introduced. The public issuer differs from the internal Docker URL used to fetch keys. The actual local ES256 issuance/JWKS integration awaits activation testing.
 - Profile API: `GET /api/v1/me/profile` returns `{profile: null}` before first save; `PATCH` creates or updates only the authenticated owner's names. The request contains `first_name`, optional `surname` and `expected_version` (zero on creation). The successful PATCH response requires a non-null profile. Updates use a version condition; stale saves return 409, preserving recoverable edits. Client-supplied ownership fields are rejected. The generated OpenAPI/types remain the contract authority.
 - Names follow the existing 1–100/0–100 Unicode-code-point rules with trimmed whitespace and rejected control characters. Protected responses have no-store headers. Errors use code/message/request ID without echoing submitted values. CORS permits the explicit origins, Bearer header and PATCH without credentialed wildcards.
@@ -212,6 +407,14 @@ Refinement verification: 88 Chromium checks passed at the current four viewports
 - Resend SMTP is the selected initial mail provider, through Supabase custom SMTP with a verified sending domain. Domain, account, quota and deliverability are provisioning gates, not assumed resources. [Resend integration](https://resend.com/docs/send-with-supabase-smtp).
 
 ## Work order and ownership
+
+### Stage 4 bounded execution record
+
+26 October 2026. Task owner: Codex; required technical/integration reviewer: project lead (the existing architecture reviewer). Execution reference: the owner's Stage 4 brief and Autonomous Execution instruction in this chat. That instruction authorizes continuous foundation implementation and local additive migration verification without routine planning pauses; it does not establish completed technical review or merge approval. Preserve the existing uncommitted Stage 3.5 work on `codex/stage35-canonical-ui`; the task explicitly prohibits creating branches, commits, pushes and resets.
+
+Scope: shared SQL entities/ownership/concurrency constraints, Pydantic/OpenAPI scaffolding, generated TypeScript contracts, cache/error conventions and a bounded handoff. Requirements: REQ-02–05, REQ-07–11/13; foundation support for F-001-AC-07/08 and F-002-AC-01/06/08–10; A-05/10/11. Feature acceptance remains unimplemented. Affected paths: one additive `supabase/migrations` file, new backend shared/feature schema and route modules, `backend/app/main.py`, generated schema/client, frontend API conventions, focused checks and this guide. No dependency additions or Auth/Profile contract changes.
+
+Plan: (1) relational catalog/questionnaire identities, private Discovery history, learning state/activity, recommendation provenance and quota reservation storage; (2) owner-authenticated API inventory with explicit 501 responses, strict revisions and catalog/evidence validation contracts; (3) generated types and account-scoped query/error conventions using existing session cancellation; (4) one local non-reset migration application, one rollback-only integrity/RLS probe, contract synchronization, targeted Python checks and TypeScript checking. Depend on the existing local restricted role/session validation and running containers. Keep catalog publication, complete workflows, provider calls, PDF processing, progress calculations and hosted/security release gates unfinished. Review/integration order: Stage 3.5 preservation review, then Stage 4 SQL/shared-contract review, then dependent feature work after the architecture's team gate. Execution evidence and actual contract locations are recorded below when available.
 
 The project lead is the initial product/content approver, architecture reviewer and deployment owner; record real operator/contact access before external testing and name a backup operator. These role assignments do not invent a teammate or delivery date. Contributors use reviewed branches/PRs after Git setup; no direct agent merge to main.
 

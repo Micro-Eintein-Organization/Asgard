@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import type { CareerFixture } from "@/fixtures/catalog";
-import { usePageRoutes } from "@/lib/page-routes";
+import { appRoutes as pageRoutes } from "@/lib/routes";
 
 export function CareerCard({
   career,
@@ -12,7 +12,6 @@ export function CareerCard({
   reason?: string;
 }) {
   const location = useLocation();
-  const pageRoutes = usePageRoutes();
   return (
     <Card className="career-card">
       <p className="card-category">{career.work}</p>

@@ -16,10 +16,9 @@ import {
   Unavailable,
 } from "@/components/shared";
 import { findCareer, categories, sampleMilestones } from "@/fixtures/catalog";
-import { usePageRoutes } from "@/lib/page-routes";
+import { appRoutes as pageRoutes } from "@/lib/routes";
 
 export function RoadmapPage() {
-  const pageRoutes = usePageRoutes();
   const { careerId } = useParams();
   const career = findCareer(careerId);
   const location = useLocation();
@@ -57,7 +56,7 @@ export function RoadmapPage() {
           </Button>
         }
       >
-        Choose a role from the catalog to inspect its roadmap preview.
+        Choose a role from the catalog to inspect its sample roadmap.
       </StatePanel>
     );
   const category = categories.find((item) => item.id === career.category);
@@ -78,7 +77,7 @@ export function RoadmapPage() {
               <Button disabled>Set as current roadmap</Button>
             </div>
             <p className="hero-availability">
-              Focus saving is not connected in this preview.
+              Prototype: focus saving is not connected.
             </p>
           </section>
           <section className="roadmap-about">
@@ -181,7 +180,7 @@ export function RoadmapPage() {
               }
             >
               The career overview is a sample. A complete curriculum has not
-              been published for this preview.
+              been published for this prototype.
             </StatePanel>
           )}
         </div>

@@ -44,6 +44,6 @@ Figma filenames are imperfect: `Final Round_ Discovery Results.png` shows the ca
 
 ## Provenance and use
 
-Copied from `C:/Users/saave/OneDrive/Documents/Projects/AI-CAREER-DSS-NEW-docs-archive/mvp-one-day-experiment` on 25 October 2026. The five frontend files were checksum-verified against that source. The archive itself was not modified.
+Copied from the external historical archive `AI-CAREER-DSS-NEW-docs-archive/mvp-one-day-experiment` on 25 October 2026. The five frontend files were checksum-verified against that source. The archive itself was not modified. The original machine-specific path was omitted on 26 October 2026 for documentation portability; the archive name records provenance and is not a required local path. This repository contains the reference files, so teammates do not need access to that external archive to develop Asgard.
 
 Keep this snapshot separate from executable application code. A later authorized implementation may adapt reviewed presentation into the chosen architecture; this folder does not select that architecture or authorize refactoring, dependency installation, service integration, or deletion. Record any approved behavior in its owning specification rather than treating the snapshot as authority.

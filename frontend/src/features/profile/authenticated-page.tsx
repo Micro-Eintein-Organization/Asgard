@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useBlocker, useBeforeUnload } from "react-router";
+import { Link, useBlocker, useBeforeUnload } from "react-router";
+import { FileText } from "lucide-react";
 import { useAuth } from "@/auth/context";
 import { isCurrentAccount } from "@/auth/transport";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import {
   Dialog,
   DialogContent,
@@ -12,7 +14,9 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { PageHeading, StatePanel } from "@/components/shared";
+import { PageHeading, StatePanel, Unavailable } from "@/components/shared";
+import { categories } from "@/fixtures/catalog";
+import { appRoutes } from "@/lib/routes";
 import { readProfile, saveProfile } from "./api";
 import {
   SettingsLayout,
@@ -65,10 +69,12 @@ function ProfileEditor({ userId }: { userId: string }) {
       });
   }, [query.data, reset, isDirty]);
   const mutation = useMutation({ mutationFn: saveProfile });
+  const preferences = useForm<{ field: string }>();
+  const hasUnsavedChanges = isDirty || preferences.formState.isDirty;
   const blocker = useBlocker(
     ({ currentLocation, nextLocation }) =>
       isCurrentAccount(userId) &&
-      (isDirty || mutation.isPending) &&
+      (hasUnsavedChanges || mutation.isPending) &&
       currentLocation.pathname !== nextLocation.pathname,
   );
   useLogoutGuard(() => {
@@ -77,12 +83,12 @@ function ProfileEditor({ userId }: { userId: string }) {
       return false;
     }
     return (
-      !isDirty ||
+      !hasUnsavedChanges ||
       window.confirm("Discard your unsaved profile changes and log out?")
     );
   });
   useBeforeUnload((event) => {
-    if (isDirty || mutation.isPending) {
+    if (hasUnsavedChanges || mutation.isPending) {
       event.preventDefault();
       event.returnValue = "";
     }
@@ -205,10 +211,90 @@ function ProfileEditor({ userId }: { userId: string }) {
           </div>
         </form>
       </ProfileDetailsCard>
-      <p className="small-note mt-4">
-        Photo uploads, background documents and career preferences are not
-        connected in this stage.
-      </p>
+      <Card className="settings-card">
+        <header>
+          <h2>Career background</h2>
+          <p>
+            Optionally add a resume, academic record or project summary. No
+            document is required to browse or learn.
+          </p>
+        </header>
+        <div className="upload-placeholder">
+          <FileText size={28} aria-hidden="true" />
+          <h3>Add a PDF when you're ready.</h3>
+          <p>
+            A future analysis will extract explicitly stated background for
+            career suggestions. Review the provider and privacy notice before
+            uploading.
+          </p>
+          <Button disabled variant="outline">
+            Choose PDF
+          </Button>
+          <p>
+            Selectable-text PDF, up to 10 MB. Scanned or encrypted documents are
+            unsupported.
+          </p>
+        </div>
+        <Unavailable>
+          Prototype: upload, analysis, replacement and removal are not
+          connected. No files are accepted.
+        </Unavailable>
+      </Card>
+      <Card className="settings-card">
+        <header>
+          <h2>Saved Discovery suggestions</h2>
+          <p>Discovery results are separate from your current roadmap.</p>
+        </header>
+        <StatePanel
+          kind="empty"
+          title="No saved suggestions"
+          action={
+            <Button asChild variant="outline">
+              <Link to={appRoutes.welcome}>Open Discovery</Link>
+            </Button>
+          }
+        >
+          Prototype: saving suggestions is not connected. You can try the
+          questionnaire without saving or analyzing answers.
+        </StatePanel>
+      </Card>
+      <Card className="settings-card">
+        <header>
+          <h2>Preferred primary field</h2>
+          <p>
+            In the completed app, this sets the catalog's default category. It
+            does not change your current roadmap or recommendations.
+          </p>
+        </header>
+        <form
+          onSubmit={(event) => event.preventDefault()}
+          className="form-grid"
+        >
+          <fieldset>
+            <legend className="sr-only">Preferred primary field</legend>
+            <div className="preference-list">
+              {categories.map((category) => (
+                <label key={category.id}>
+                  <input
+                    type="radio"
+                    value={category.id}
+                    {...preferences.register("field")}
+                  />
+                  {category.title}
+                </label>
+              ))}
+            </div>
+          </fieldset>
+          <div>
+            <Button disabled>Save preferences</Button>
+            <Unavailable>
+              Prototype: this selection stays in this open page only. Saving
+              your profile saves your name, not this preference. Leaving or
+              refreshing clears the selection.
+            </Unavailable>
+          </div>
+        </form>
+      </Card>
       <Dialog open={reloadOpen} onOpenChange={setReloadOpen}>
         <DialogContent>
           <DialogHeader>
@@ -252,6 +338,8 @@ function ProfileEditor({ userId }: { userId: string }) {
             )}
             <DialogDescription>
               Save before leaving, discard the edits, or stay on this page.
+              {preferences.formState.isDirty &&
+                " Prototype preferences cannot be saved and will be discarded when you leave."}
             </DialogDescription>
           </DialogHeader>
           <div className="action-row">

@@ -16,7 +16,7 @@ import {
   PreviewDataState,
   type PreviewState,
 } from "@/components/preview-states";
-import { usePageRoutes } from "@/lib/page-routes";
+import { appRoutes as pageRoutes } from "@/lib/routes";
 
 function SampleCalendar() {
   const [month, setMonth] = useState(1);
@@ -78,7 +78,6 @@ function SampleCalendar() {
 }
 
 export function DashboardPage() {
-  const pageRoutes = usePageRoutes();
   const [state, setState] = useState<PreviewState>("sample");
   const [helper, setHelper] = useState(true);
   const topicLink = (id: string) =>
@@ -207,13 +206,13 @@ export function DashboardPage() {
             <div className="guidance-content">
               <div>
                 <strong>Want a different starting point?</strong>
-                <p>Try the Discovery preview, or keep browsing.</p>
+                <p>Try the Discovery prototype, or keep browsing.</p>
                 <Link to={pageRoutes.welcome}>Open Discovery</Link>
               </div>
               <Button
                 variant="ghost"
                 size="icon"
-                aria-label="Dismiss preview guidance"
+                aria-label="Dismiss sample guidance"
                 onClick={() => setHelper(false)}
               >
                 <X />
@@ -221,7 +220,7 @@ export function DashboardPage() {
             </div>
           </Notice>
           <p className="field-help mt-2">
-            This dismissal lasts only while this preview page stays open.
+            This dismissal lasts only while this page stays open.
           </p>
         </div>
       )}

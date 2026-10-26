@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { usePageRoutes } from "@/lib/page-routes";
+import { appRoutes as pageRoutes } from "@/lib/routes";
 import { validateFirstName, validateSurname } from "./validation";
 
 type NameFields = { firstName: string; surname: string };
@@ -61,7 +61,6 @@ export function ProfileNameFields({
 }
 
 export function SettingsLayout({ children }: { children: ReactNode }) {
-  const pageRoutes = usePageRoutes();
   return (
     <div className="settings-layout">
       <aside className="settings-nav">

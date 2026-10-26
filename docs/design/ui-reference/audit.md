@@ -6,7 +6,7 @@ Packaging note: this is a copy of the audit originally prepared outside both pro
 
 ## Scope and evidence
 
-Reviewed `docs/design/figma/` (all 14 PNG exports) and `docs/pages-and-interactions.md` first, then the archived prototype at `C:/Users/saave/OneDrive/Documents/Projects/AI-CAREER-DSS-NEW-docs-archive/mvp-one-day-experiment`. This is the prototype identified in the preceding discussion; no separate AsgardUI source directory was identified in the inspected project locations.
+Reviewed `docs/design/figma/` (all 14 PNG exports) and `docs/pages-and-interactions.md` first, then the external historical archive `AI-CAREER-DSS-NEW-docs-archive/mvp-one-day-experiment`. This archive name records provenance, not a required checkout path or repository link; the copied reference is retained in this folder. This is the prototype identified in the preceding discussion; no separate AsgardUI source directory was identified in the inspected project locations. The original machine-specific path was omitted on 26 October 2026 for documentation portability; the audit findings are unchanged.
 
 Source evidence: `components/prototype.tsx`, `components/career-roadmap.tsx`, `components/activity-calendar.tsx`, `app/ui.css`, application entry/error files, `lib/catalog.ts`, `lib/db.ts`, `lib/recommendations.ts`, `app/api/state/route.ts`, migration, package manifest, DESIGN.md and IMPLEMENTATION.md. Current product, Discovery, recommendation, decision and development documents supply requirement boundaries.
 

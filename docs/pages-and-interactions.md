@@ -32,9 +32,9 @@ REQ-06 and REQ-12 remain outside MVP. Career saving/comparison, tutor/chat inter
 
 ### Navigation and terminology
 
-- Preview and authenticated pages share the reference header's Dashboard, Roadmap, Settings, and account/avatar entry points. Roadmap opens the career catalog. Existing page actions lead to Discovery, recommendations and roadmap availability; progress belongs to Dashboard.
+- The authenticated application uses the reference header's Dashboard, Roadmap, Settings, and account/avatar entry points. Roadmap opens the career catalog. Existing page actions lead to Discovery, recommendations and roadmap availability; progress belongs to Dashboard. There is no separate UI Preview navigation or route tree.
 - Settings opens Profile. Its shared navigation and the account menu expose Profile and Account and security. Successful Log out returns to the public landing page at `/`. Confirm discarding dirty profile edits before logging out; an active profile save must finish first.
-- During the approved prototype phase, authenticated and public preview feature routes render the same canonical layouts, sample fixtures and visual-state controls. Label demo data clearly; sample roles, recommendations and progress must not appear to be persisted account data. Profile remains backed by the real account API.
+- During the approved prototype phase, authenticated feature routes are the canonical layouts and retain sample fixtures and visual-state controls. Label demo data clearly; sample roles, recommendations and progress must not appear to be persisted account data. Profile remains backed by the real account API; background documents, saved suggestions and preference controls remain clearly labeled prototypes within that page.
 - Protected pages require authentication. Unauthenticated access opens account entry; expired sessions provide a recoverable authentication route.
 - New authenticated users reach ENTRY-CHOICE. Returning users reach Dashboard. Unfinished Discovery produces an optional Resume Discovery action using saved answers.
 - Each roadmap detail has its own addressable URL. Animation may accompany navigation without removing that URL.

@@ -3,12 +3,11 @@ import { Link } from "react-router";
 import { BookOpen, Compass } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BackLink, Notice, Unavailable } from "@/components/shared";
-import { usePageRoutes } from "@/lib/page-routes";
+import { appRoutes as pageRoutes } from "@/lib/routes";
 import { questions } from "./questions";
 import { UnsavedPreviewDialog } from "@/components/unsaved-preview-dialog";
 
 export function WelcomePage() {
-  const pageRoutes = usePageRoutes();
   const [choice, setChoice] = useState("");
   return (
     <section className="discovery-page entry-page">
@@ -65,7 +64,7 @@ export function WelcomePage() {
         )}
       </div>
       <p className="landing-note centered">
-        Choose a path to continue. This preview does not create a saved
+        Choose a path to continue. This prototype does not create a saved
         Discovery session.
       </p>
     </section>
@@ -73,7 +72,6 @@ export function WelcomePage() {
 }
 
 export function DiscoveryPage() {
-  const pageRoutes = usePageRoutes();
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Record<number, string[]>>({});
   const [announcement, setAnnouncement] = useState("");
@@ -189,7 +187,7 @@ export function DiscoveryPage() {
         {announcement}
       </p>
       <div className="question-actions">
-        <p>Choices stay in this open preview only.</p>
+        <p>Prototype: choices stay in this open page only.</p>
         {step < 4 ? (
           <Button
             disabled={!selected.length}
@@ -216,7 +214,7 @@ export function DiscoveryPage() {
       )}
       <div className="mt-6">
         <Notice>
-          Refreshing or leaving this page clears these unsaved preview choices.
+          Refreshing or leaving this page clears these unsaved prototype choices.
         </Notice>
       </div>
     </section>

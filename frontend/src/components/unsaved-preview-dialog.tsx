@@ -28,7 +28,7 @@ export function UnsavedPreviewDialog({ when }: { when: boolean }) {
     >
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Leave your preview changes?</DialogTitle>
+          <DialogTitle>Leave your prototype changes?</DialogTitle>
           <DialogDescription>
             These changes exist only in this open page. Saving is not connected,
             so leaving will discard them.

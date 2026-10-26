@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router";
+import { Link, Navigate, useNavigate } from "react-router";
 import { useAuth } from "@/auth/context";
-import { supabase } from "@/auth/supabase";
+import { authConfigured, supabase } from "@/auth/supabase";
+import { Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Unavailable } from "@/components/shared";
 import { resendCooldown, startResendCooldown } from "@/auth/cooldown";
 import { validateNewPassword } from "@/auth/password";
-import { appRoutes } from "@/lib/routes";
+import { appRoutes, routes } from "@/lib/routes";
 
 type Fields = {
   email: string;
@@ -17,11 +19,12 @@ type Fields = {
   confirmation: string;
   code: string;
 };
-type Mode = "login" | "register" | "verify";
+type Mode = "login" | "register" | "verify" | "recovery";
 
 export function ConnectedAuthPage({ mode }: { mode: Mode }) {
   const navigate = useNavigate();
   const auth = useAuth();
+  const pendingSignupEmail = sessionStorage.getItem("asgard.signup-email");
   const {
     register,
     handleSubmit,
@@ -34,18 +37,19 @@ export function ConnectedAuthPage({ mode }: { mode: Mode }) {
   });
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const [verificationComplete, setVerificationComplete] = useState(false);
   const [visible, setVisible] = useState(false);
   const [resending, setResending] = useState(false);
   const [remaining, setRemaining] = useState(resendCooldown);
-  const [sentEmail, setSentEmail] = useState(
-    () => sessionStorage.getItem("asgard.signup-email") ?? "",
-  );
   useEffect(() => {
-    if (auth.user?.email_confirmed_at && !auth.loading)
-      void navigate(mode === "verify" ? appRoutes.welcome : appRoutes.dashboard, {
-        replace: true,
-      });
-  }, [auth.user, auth.loading, navigate]);
+    if (mode !== "recovery" && auth.user?.email_confirmed_at && !auth.loading)
+      void navigate(
+        mode === "verify" ? appRoutes.welcome : appRoutes.dashboard,
+        {
+          replace: true,
+        },
+      );
+  }, [auth.user, auth.loading, navigate, mode]);
   useEffect(() => {
     const timer = setInterval(() => setRemaining(resendCooldown()), 1000);
     return () => clearInterval(timer);
@@ -54,7 +58,7 @@ export function ConnectedAuthPage({ mode }: { mode: Mode }) {
     setRemaining(startResendCooldown());
   }
   async function submit(values: Fields) {
-    if (!supabase) return;
+    if (!supabase || mode === "recovery") return;
     setError("");
     setMessage("");
     try {
@@ -88,12 +92,15 @@ export function ConnectedAuthPage({ mode }: { mode: Mode }) {
           );
         }
         sessionStorage.setItem("asgard.signup-email", values.email.trim());
-        setSentEmail(values.email.trim());
         beginCooldown();
-        void navigate("/check-email");
+        void navigate(routes.verify);
       } else {
+        if (!pendingSignupEmail)
+          throw new Error(
+            "Start by creating an account before entering a verification code.",
+          );
         const { error } = await supabase.auth.verifyOtp({
-          email: values.email.trim(),
+          email: pendingSignupEmail,
           token: values.code,
           type: "signup",
         });
@@ -103,6 +110,7 @@ export function ConnectedAuthPage({ mode }: { mode: Mode }) {
           );
         sessionStorage.removeItem("asgard.signup-email");
         sessionStorage.removeItem("asgard.resend-at");
+        setVerificationComplete(true);
         void navigate(appRoutes.welcome, { replace: true });
       }
     } catch (cause) {
@@ -115,7 +123,8 @@ export function ConnectedAuthPage({ mode }: { mode: Mode }) {
   }
   async function resend() {
     if (!supabase || remaining > 0 || resending || isSubmitting) return;
-    const email = getValues("email").trim();
+    const email =
+      mode === "verify" ? pendingSignupEmail : getValues("email").trim();
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       setError("Enter the email address where you want the code sent.");
       return;
@@ -131,7 +140,6 @@ export function ConnectedAuthPage({ mode }: { mode: Mode }) {
           "We could not send another code. Check the email address and connection, then try again when the timer ends.",
         );
       sessionStorage.setItem("asgard.signup-email", email);
-      setSentEmail(email);
       setMessage(
         "If this address can receive a verification code, a new email is on its way.",
       );
@@ -147,7 +155,10 @@ export function ConnectedAuthPage({ mode }: { mode: Mode }) {
     login: "Welcome back.",
     register: "Create an account.",
     verify: "Check your email.",
+    recovery: "Reset your password.",
   }[mode];
+  if (mode === "verify" && !pendingSignupEmail && !verificationComplete)
+    return <Navigate to={routes.register} replace />;
   return (
     <div className="auth-container">
       <Card className="auth-card">
@@ -155,10 +166,12 @@ export function ConnectedAuthPage({ mode }: { mode: Mode }) {
           <h1>{title}</h1>
           <p>
             {mode === "verify"
-              ? sentEmail
-                ? `We sent a six-digit code to ${sentEmail}. Check your inbox and spam folder. If the address is wrong, edit it below and request a new code.`
-                : "Enter the email address you used to register and its six-digit code. Check your inbox and spam folder."
-              : "Your account keeps your saved profile private."}
+              ? `We sent a six-digit code to ${pendingSignupEmail}. Check your inbox and spam folder.`
+              : mode === "recovery"
+                ? "Password recovery is not connected yet. No recovery email will be sent."
+                : mode === "register"
+                  ? "A place to explore your options and keep your learning together."
+                  : "Sign in to return to your learning path."}
           </p>
         </header>
         <form className="form-grid" onSubmit={handleSubmit(submit)}>
@@ -168,6 +181,8 @@ export function ConnectedAuthPage({ mode }: { mode: Mode }) {
               id="email"
               type="email"
               autoComplete="email"
+              placeholder="you@example.com"
+              readOnly={mode === "verify"}
               aria-invalid={!!errors.email}
               {...register("email", {
                 required: "Enter your email.",
@@ -183,33 +198,42 @@ export function ConnectedAuthPage({ mode }: { mode: Mode }) {
               </p>
             )}
           </div>
-          {mode !== "verify" && (
+          {(mode === "login" || mode === "register") && (
             <div className="field">
               <Label htmlFor="password">Password</Label>
-              <Input
-                id="password"
-                type={visible ? "text" : "password"}
-                autoComplete={
-                  mode === "register" ? "new-password" : "current-password"
-                }
-                aria-invalid={!!errors.password}
-                {...register("password", {
-                  required: "Enter your password.",
-                  validate: (value) => mode !== "register" || validateNewPassword(value),
-                })}
-              />
-              <Button
-                type="button"
-                variant="ghost"
-                onClick={() => setVisible(!visible)}
-                aria-pressed={visible}
-              >
-                {visible ? "Hide password" : "Show password"}
-              </Button>
+              <div className="password-input">
+                <Input
+                  id="password"
+                  type={visible ? "text" : "password"}
+                  autoComplete={
+                    mode === "register" ? "new-password" : "current-password"
+                  }
+                  aria-invalid={!!errors.password}
+                  {...register("password", {
+                    required: "Enter your password.",
+                    validate: (value) =>
+                      mode !== "register" || validateNewPassword(value),
+                  })}
+                />
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setVisible(!visible)}
+                  aria-pressed={visible}
+                  aria-label={visible ? "Hide password" : "Show password"}
+                >
+                  {visible ? (
+                    <EyeOff aria-hidden="true" />
+                  ) : (
+                    <Eye aria-hidden="true" />
+                  )}
+                </Button>
+              </div>
               {mode === "register" && (
                 <p className="field-help">
-                  Use at least 8 characters. Spaces, paste and password
-                  managers are supported.
+                  Use at least 8 characters. Spaces, paste and password managers
+                  are supported.
                 </p>
               )}
               {errors.password && (
@@ -248,6 +272,7 @@ export function ConnectedAuthPage({ mode }: { mode: Mode }) {
                 inputMode="numeric"
                 autoComplete="one-time-code"
                 maxLength={6}
+                className="code-input"
                 aria-invalid={!!errors.code}
                 {...register("code", {
                   pattern: {
@@ -270,25 +295,44 @@ export function ConnectedAuthPage({ mode }: { mode: Mode }) {
             </p>
           )}
           {message && <p role="status">{message}</p>}
-          <Button type="submit" disabled={isSubmitting || resending}>
+          <Button
+            type="submit"
+            disabled={
+              !authConfigured ||
+              mode === "recovery" ||
+              isSubmitting ||
+              resending
+            }
+          >
             {isSubmitting
               ? "Please wait…"
               : mode === "login"
                 ? "Sign in"
                 : mode === "register"
                   ? "Send email code"
-                  : "Verify"}
+                  : mode === "recovery"
+                    ? "Send recovery instructions"
+                    : "Verify"}
           </Button>
+          {!authConfigured && mode !== "recovery" && (
+            <Unavailable>
+              Account access is not configured in this environment. No email
+              will be sent and no account will be created.
+            </Unavailable>
+          )}
           {mode === "verify" && (
             <div className="field">
               <p className="field-help" id="resend-help">
-                Didn’t get the email? You can request another code when the timer ends.
+                Didn’t get the email? You can request another code when the
+                timer ends.
               </p>
               <Button
                 type="button"
                 variant="outline"
                 onClick={() => void resend()}
-                disabled={remaining > 0 || resending || isSubmitting}
+                disabled={
+                  !authConfigured || remaining > 0 || resending || isSubmitting
+                }
                 aria-describedby="resend-help"
               >
                 {resending
@@ -299,6 +343,16 @@ export function ConnectedAuthPage({ mode }: { mode: Mode }) {
               </Button>
             </div>
           )}
+          {mode === "login" && (
+            <Link className="inline-link" to={routes.recovery}>
+              Forgot your password?
+            </Link>
+          )}
+          {mode === "verify" && (
+            <Link className="inline-link" to={routes.register}>
+              Use a different email address
+            </Link>
+          )}
         </form>
         <div className="form-footer">
           <Link to={mode === "login" ? "/create-account" : "/sign-in"}>
@@ -307,6 +361,9 @@ export function ConnectedAuthPage({ mode }: { mode: Mode }) {
           <p className="field-help mt-3">
             This local build supports email/password only. Password recovery is
             not connected yet.
+          </p>
+          <p className="field-help mt-3">
+            Google sign-in and authenticator setup await provider verification.
           </p>
         </div>
       </Card>

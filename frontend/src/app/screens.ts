@@ -24,13 +24,11 @@ export const RoadmapPage = lazy(async () => ({
 export const ResultsPage = lazy(async () => ({
   default: (await import("@/features/recommendations/page")).ResultsPage,
 }));
-export const SettingsPage = lazy(async () => ({
-  default: (await import("@/features/profile/page")).SettingsPage,
+export const AccountSettingsPage = lazy(async () => ({
+  default: (await import("@/features/profile/account-page"))
+    .AccountSettingsPage,
 }));
 export const AuthenticatedProfilePage = lazy(async () => ({
   default: (await import("@/features/profile/authenticated-page"))
     .AuthenticatedProfilePage,
-}));
-export const DesignSystemPage = lazy(async () => ({
-  default: (await import("@/features/design-system/page")).DesignSystemPage,
 }));

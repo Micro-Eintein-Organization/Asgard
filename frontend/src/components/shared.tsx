@@ -69,7 +69,7 @@ export function Notice({
 }
 
 export function Unavailable({
-  children = "Not available in this preview. No changes are saved.",
+  children = "Not available in this prototype. No changes are saved.",
 }: {
   children?: ReactNode;
 }) {

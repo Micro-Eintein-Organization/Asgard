@@ -9,6 +9,7 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
+from app.api.foundation import router as foundation_router
 from app.api.health import router
 from app.core.config import Settings, get_settings
 from app.core.errors import APIError, api_error
@@ -51,7 +52,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         CORSMiddleware,
         allow_origins=settings.cors_origins,
         allow_credentials=False,
-        allow_methods=["GET", "PATCH"],
+        allow_methods=["GET", "PATCH", "POST"],
         allow_headers=["Content-Type", "Authorization"],
         expose_headers=["X-Request-ID"],
     )
@@ -92,6 +93,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
 
     app.include_router(router, prefix="/api/v1")
     app.include_router(profile_router, prefix="/api/v1")
+    app.include_router(foundation_router, prefix="/api/v1")
     app.include_router(router, include_in_schema=False)
     return app
 

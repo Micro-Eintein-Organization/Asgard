@@ -60,10 +60,10 @@ export function PreviewDataState({
       }
     >
       {state === "loading"
-        ? "Loading-state example. No request is running in this preview."
+        ? "Loading-state example. No request is running for this sample."
         : state === "error"
           ? "Error-state example. Your next action should remain available when a service fails."
-          : "This is the empty-state layout. The preview has no saved account data."}
+          : "This is an empty-state example, separate from your saved account data."}
     </StatePanel>
   );
 }

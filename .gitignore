@@ -1,16 +1,68 @@
+# Environment files (commit placeholder examples only)
 .env
 .env.*
 !.env.example
+
+# Private keys and local credentials
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa
+id_ed25519
+.aws/
+.ssh/
+.netrc
+_netrc
+.pgpass
+pgpass.conf
+.pypirc
+/secrets/
+/credentials/
+
+# Local data and database exports (keep SQL migrations and seeds tracked)
+/backups/
+*.dump
+*.backup
+*.sql.gz
+*.sqlite
+*.sqlite3
+*.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm
+*.sqlite3-journal
+*.sqlite3-wal
+*.sqlite3-shm
+.local/
+
+# Dependencies, builds, and tool caches
 **/node_modules/
 **/dist/
 **/.venv/
 **/__pycache__/
+*.py[cod]
+*.tsbuildinfo
+.cache/
+.mypy_cache/
 **/.pytest_cache/
 **/.ruff_cache/
+
+# Test output and saved browser authentication
 **/coverage/
+.coverage
+.coverage.*
+htmlcov/
 **/test-results/
 **/playwright-report/
-.local/
+**/playwright/.auth/
+
+# Local Supabase state and signing secrets
 supabase/.temp/
 supabase/.branches/
 supabase/signing-keys.json
+
+# Runtime logs and operating-system metadata
+*.log
+.DS_Store
+Thumbs.db
+Desktop.ini
