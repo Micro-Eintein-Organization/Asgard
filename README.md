@@ -158,14 +158,10 @@ For a fresh Linux environment, request project-lead approval and follow [Before 
 Give the agent the tasks or features you want completed together, with the expected results. Paste this and fill in the brackets:
 
 ```text
-Work on these Asgard tasks or features: [list what should change]
-Done means: [expected results or requirement/acceptance IDs for each]
-Reviewer: [project lead or assigned reviewer]
+Read AGENTS.md and follow its instructions.
 
-Read AGENTS.md, docs/architecture.md, and the relevant docs and source. Check the branch and existing edits.
-Before coding, show me a short plan covering the tasks, dependencies, files/contracts, focused checks, and reviewer. Wait for plan approval, then complete the agreed work.
-Document each implemented feature in docs/features/. Reuse applicable foundation verification and check the changed behavior; avoid repeating broad test suites without a reason.
-Follow repository approval rules for Git operations and auth/database/API changes. When done, report changed files, documentation links, check results, and blockers.
+Here’s what I want you to do:
+[Describe the tasks or features here.]
 ```
 
 For feature work, first check the [Stage 4 readiness gate](docs/development.md#stage-4-parallel-readiness-and-publication). An agent task does not replace required code-owner review or project-lead approval.
