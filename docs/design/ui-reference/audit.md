@@ -118,11 +118,11 @@ The reference UI uses React/TypeScript, plain CSS and Lucide, so adapting presen
 
 Proposed sequence, subject to review; no step has been implemented:
 
-1. Confirm which Figma frames and visual tokens are approved, and resolve the results destination, questionnaire rules and optional-profile flow. Keep unresolved security/data/graph requirements visible.
+1. Confirm which Figma frames and visual tokens are approved, and review the authored conditional-question route, results destination and optional-profile flow. Keep unresolved security/data/graph requirements visible.
 2. Agree a bounded UI extraction task, target location, framework/runtime and required component interfaces. Do not choose a database/API schema as part of visual extraction.
 3. In that later authorized task, carry over reviewed CSS foundations and small presentation fragments first. Separate screen rendering from supplied data, navigation and named action callbacks; retain harmless local presentation state.
 4. Adapt one agreed screen at a time, using reviewed fixtures only in development. Compare rendered desktop/mobile states to the accepted references; verify keyboard/focus, long content, empty/loading/error and failed-save behavior.
 5. Connect screens only after their owning authentication, catalog, progress, recommendation and document contracts are approved. Verify account isolation and concurrent/stale requests at those integration boundaries.
 6. Submit the bounded changes with acceptance evidence for human review. Do not migrate experiment records or retire either implementation without separate authorization.
 
-Decisions requiring review: design approval/provenance and token direction; final route and return/context behavior; questionnaire content/limits/dependencies; results count/actions/refresh; graph/branch/topic-panel design and accessible navigation; catalog IDs and roadmap-specific topic identity; profile save interaction/photo validation; auth/RLS and private document lifecycle; provider/model/evaluation/spend limits; browser/viewport/accessibility verification matrix. This audit selects none of these decisions.
+Decisions requiring review: design approval/provenance and token direction; final route and return/context behavior; conditional questionnaire routes, content/limits and inactive-answer handling; results count/actions/refresh; graph/branch/topic-panel design and accessible navigation; catalog IDs and roadmap-specific topic identity; profile save interaction/photo validation; auth/RLS and private document lifecycle; provider/model/evaluation/spend limits; browser/viewport/accessibility verification matrix. This historical audit selects none of these decisions.

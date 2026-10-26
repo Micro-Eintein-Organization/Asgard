@@ -75,7 +75,10 @@ These instructions apply to human contributors and AI agents. Read this file at 
 
 ## Documentation and change records
 
-- Update affected documentation in the same change or PR as the behavior, contract, setup, or architecture change. If no documentation update is needed, explain why in the handoff or PR.
+- Every feature implementation or change must create or update its internal implementation guide at `docs/features/<feature-name>.md` in the same change or PR. Use a stable lowercase, hyphenated filename and update the existing guide when extending a feature.
+- Each feature guide must include the feature name, implementer's name, creation date, last-updated date, implementation/review status, requirement or acceptance IDs, implemented behavior, relevant source files/modules, verification results and manual steps, and known limitations or pending work. Record dates as `YYYY-MM-DD`. Use the actual contributor or agent name; never invent an author, approval, or completed check.
+- Feature guides describe the implementation and link to the owning requirements, specifications, architecture, decisions and generated contracts. Keep those sources authoritative; do not duplicate their contracts or treat an implementation guide as approval for new behavior.
+- Update affected documentation in the same change or PR as the behavior, contract, setup, or architecture change. For non-feature work that needs no documentation update, explain why in the handoff or PR.
 - Keep requirements in the product/feature documents, architecture in the architecture document, and decision status in the relevant decision register or ADR. Record approval date, approver, scope, and a review reference when approval is given. Do not infer or backfill approval.
 - Replacements of approved foundation choices require an ADR and updates to architecture, the development guide, and this file, as required by the architecture change policy.
 - Record significant changes with their date, affected documents/features, and decision or review reference. Use the task/PR record until a project changelog is established; use the changelog's Unreleased section once it exists. Keep proposals distinct from approved changes and do not log every edit.
@@ -93,6 +96,7 @@ These instructions apply to human contributors and AI agents. Read this file at 
 - Do not claim completion when acceptance criteria have not been verified.
 - Submit changes for human review before merging.
 - Include a handoff with the task/acceptance IDs, changed files, verification evidence, documentation updates, remaining blockers, and any integration order or follow-up owner needed. Leave unassigned follow-up ownership explicit.
+- For feature work, link the created or updated `docs/features/<feature-name>.md` guide in the handoff or PR. Feature work is not ready for review without this documentation.
 
 ## Conflict handling
 
@@ -103,6 +107,8 @@ Where an approved document explicitly supersedes older guidance, follow that sta
 ## Document map
 
 Before changing frontend components or layouts, consult the [implemented design system](docs/design.md) and reuse its shared components and tokens.
+
+Internal implementation guides live in `docs/features/`; the [Windows onboarding guide](docs/features/windows-one-click-onboarding.md) is the first entry. Create or update the relevant guide as part of each feature implementation, following the documentation requirements above.
 
 Start with [README.md](README.md). Use [product requirements and scope](docs/product.md), [user journeys](docs/user-journeys.md), and [pages and interactions](docs/pages-and-interactions.md) for product context. Check [decisions](docs/decisions.md) and [development context](docs/development.md) for blockers; read the relevant [Discovery](docs/specs/discovery.md) or [recommendation](docs/specs/career-recommendations.md) specification for feature work.
 

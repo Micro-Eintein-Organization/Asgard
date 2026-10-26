@@ -385,7 +385,7 @@ All seven named launch roles are the content floor; each of the six categories i
 ### Build-now boundaries
 
 - Account entry and required verification / recovery, with new versus returning routing: REQ-01, REQ-13.
-- Five-question Discovery and explained results under F-001's selected controls and five independent rounds, without conditional question branches: REQ-04, REQ-05. Persistence, authored content, service integration and comprehension/quality evidence remain required.
+- Conditional Discovery questions and explained results under F-001's selected controls, using the five existing themes as a content baseline: REQ-04, REQ-05. Later question/choice sets may depend on earlier answers. The reviewed route map, persistence, authored content, service integration and comprehension/quality evidence remain required.
 - Searchable category catalog, role explanation, curated roadmap / resources: REQ-02, REQ-03, REQ-07.
 - Explicit current roadmap, reversible independent topic states, and account-wide single Learning topic: REQ-08, REQ-09.
 - Dashboard continuation, milestone progress, groups, activity, and relevant empty / end states: REQ-10.

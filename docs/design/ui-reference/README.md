@@ -35,7 +35,7 @@ No API route, database module, migration, Supabase configuration, server recomme
 ## Known inaccuracies and gaps
 
 - Results use a selected-result/detail flow. Current F-002 instead specifies individual View roadmap actions plus full Browse careers, with no result selection prerequisite.
-- Discovery options, selection limits, six-segment wording and save timing reflect experiment choices. Current F-001 selects five independent rounds, checkbox/radio rules, exclusive uncertainty and explicit saved checkpoints; the snapshot does not implement that full contract.
+- Discovery options, selection limits, six-segment wording and save timing reflect experiment choices. The working skeleton and this snapshot do not implement the owner-selected conditional route flow. F-001 supplies baseline checkbox/radio rules, exclusive uncertainty and explicit saved checkpoints; Assignment A must author the route map and inactive-answer policy.
 - Catalog search/filter context resets on remount; catalog Back and explained recommendations are incomplete.
 - Authentication, logout, optional profile setup as a separate flow, photo/PDF actions and account-security screens are absent.
 - Topic progress assumes global topic IDs and a single local profile; the current roadmap-specific identities, learning alternatives, ownership and history rules are not represented. The current milestone-list presentation does not require a graph canvas.
