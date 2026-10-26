@@ -62,10 +62,10 @@ Clone into any directory you own. All project commands run from your checkout ro
 
 ### Install prerequisites
 
-- **Git:** install using [Git's Windows installer](https://git-scm.com/install/windows) or [Linux package instructions](https://git-scm.com/install/linux). You need access to this repository.
-- **Node.js 24.19.0 and npm 11:** install the appropriate Windows installer or Linux binary from the [Node 24.19.0 release](https://nodejs.org/dist/v24.19.0/). `.node-version` pins 24.19.0; package manifests permit Node `>=24.19.0 <25` and npm `>=11 <12`. The tested npm/package-manager pin is 11.17.0. npm comes with Node; do not substitute a newer Node major or update locks as part of onboarding.
-- **Windows 11:** install [Docker Desktop with WSL2](https://docs.docker.com/desktop/setup/install/windows-install/), complete its WSL setup/reboot if requested, then start Docker Desktop in Linux-container mode. Use PowerShell from the Windows checkout.
-- **Linux:** install [Docker Engine and its Compose plugin](https://docs.docker.com/engine/install/) for your distribution. Use Bash. Start the Docker daemon and follow Docker's [user-access setup](https://docs.docker.com/engine/install/linux-postinstall/) so `docker info` succeeds as your login user. Docker-group access grants root-level privileges; obtain your machine administrator's approval where required. Do not run the project helper or npm with `sudo`.
+- **Repository checkout:** use GitHub Desktop or your usual Git workflow to get the repository. If you already have a checkout, keep using it; no separate Git installation steps are needed here.
+- **Node.js 24.19.0 and npm 11:** if `node --version` reports v24.19.0 or later within 24.x and `npm --version` reports 11.x, skip installation. Otherwise install from the [Node 24.19.0 release](https://nodejs.org/dist/v24.19.0/); npm comes with Node. Do not use another Node major or update locks for onboarding.
+- **Docker on Windows 11:** if Docker Desktop is installed and `docker info` works, skip installation and start Docker Desktop in Linux-container mode. Otherwise install [Docker Desktop with WSL2](https://docs.docker.com/desktop/setup/install/windows-install/) and complete its WSL setup/reboot if requested. Use PowerShell from the Windows checkout.
+- **Docker on Linux:** if Docker Engine is installed and `docker info` works as your login user, skip installation. Otherwise install [Docker Engine and its Compose plugin](https://docs.docker.com/engine/install/) and follow Docker's [user-access setup](https://docs.docker.com/engine/install/linux-postinstall/). Docker-group access grants root-level privileges; get your machine administrator's approval where required. Do not run the project helper or npm with `sudo`.
 
 Use the upstream installation procedures above for your OS; prerequisite installation on a fresh OS was not exercised here. Verify the installed tools in either shell:
 
@@ -93,21 +93,25 @@ Windows 11/PowerShell and Linux/Bash are the documented development targets. Nat
 
 ### First-time setup
 
-Windows PowerShell, after starting Docker Desktop:
+Follow these steps once for a new checkout. If you already have a checkout, open its folder in a terminal. If you already ran `npm ci` and the lockfile has not changed, skip that step.
+
+1. **Get a checkout** if needed, using GitHub Desktop or your usual Git workflow. Then open PowerShell (Windows) or Bash (Linux) in the checkout root and install the pinned local tools:
 
 ```powershell
-git clone https://github.com/Micro-Eintein-Organization/Asgard.git
-Set-Location Asgard
 npm ci
 ```
 
-Linux Bash, after starting Docker Engine and verifying user access:
+The `npm ci` command is the same on Windows and Linux.
 
-```bash
-git clone https://github.com/Micro-Eintein-Organization/Asgard.git
-cd Asgard
-npm ci
+2. **For a fresh local environment, check the one-time setup gate.** The local Auth signing key and restricted database credential are environment-specific. Read [Before first startup](#before-first-startup) and coordinate its approval with the project lead. Do not copy another teammate's `.env`, signing key, or database password. If this checkout already has its own approved setup, keep those files and skip provisioning.
+
+3. **Start the local services** from the checkout root:
+
+```text
+node scripts/dev.mjs start
 ```
+
+The helper creates `.env` from `.env.example` if needed, starts the local services, and prints the addresses after its connectivity checks pass. For later work, use [Daily startup and shutdown](#daily-startup-and-shutdown).
 
 ### Create and configure `.env`
 
@@ -216,9 +220,10 @@ Fresh environments must keep `ASGARD_AUTH_ENABLED=false` until their migration, 
 | **[http://127.0.0.1:5173](http://127.0.0.1:5173)** | **Asgard website — open this first** |
 | [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) | FastAPI interactive API documentation |
 | [http://127.0.0.1:55323](http://127.0.0.1:55323) | Local Supabase Studio |
+| [http://127.0.0.1:55324](http://127.0.0.1:55324) | Local email inbox (Inbucket) for signup and verification messages |
 | [http://127.0.0.1:5173/status](http://127.0.0.1:5173/status) | Application connectivity page |
 
-These are the committed project ports; `127.0.0.1` and `localhost` refer to each developer's own computer, not a shared project-lead server. Additional ports and networking details are in [Development](docs/development.md#local-network-and-filesystem-boundaries). After environment-specific Auth activation, sign in to navigate the application. Career and learning pages use labeled sample content; email/password access and Profile saving use the connected services when local authentication is activated. Independent computers can use the same defaults, but two checkouts on one Docker daemon share resources when their project IDs match; coordinate an isolated configuration before running multiple checkouts.
+These are the committed project ports; `127.0.0.1` and `localhost` refer to each developer's own computer, not a shared project-lead server. Signup and verification emails are captured by the local inbox at **http://127.0.0.1:55324**; they are not sent to real email addresses in local development. Open that page and select the message for the signup address to read its code. Additional ports and networking details are in [Development](docs/development.md#local-network-and-filesystem-boundaries). After environment-specific Auth activation, sign in to navigate the application. Career and learning pages use labeled sample content; email/password access and Profile saving use the connected services when local authentication is activated. Independent computers can use the same defaults, but two checkouts on one Docker daemon share resources when their project IDs match; coordinate an isolated configuration before running multiple checkouts.
 
 ### Daily startup and shutdown
 
