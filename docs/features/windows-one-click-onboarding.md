@@ -20,12 +20,14 @@ Give Windows teammates a double-click path to prepare an Asgard checkout and sta
 
 ## Launchers
 
+Both `.cmd` files are in the checkout's top-level folder, beside `README.md` and `AGENTS.md`. The checkout can be saved anywhere on your computer; open its local folder in File Explorer through GitHub Desktop.
+
 | File | Use |
 | --- | --- |
 | `Setup-Asgard.cmd` | First run. Checks Node/npm/Docker, installs the locked Supabase CLI if missing, preserves local files, and guides a fresh local environment through explicit approval gates. |
 | `Start-Asgard.cmd` | Daily use. Starts the existing local stack through `scripts/dev.mjs` and opens the app and local email inbox. |
 
-Both launchers must be run from the repository checkout. See [README Getting started](../../README.md#getting-started) for the short teammate instructions.
+The launchers automatically resolve the checkout root and use `scripts/setup-windows.mjs`. This feature guide is saved at `<checkout-root>/docs/features/windows-one-click-onboarding.md`. See the [README folder tree](../../README.md#start-asgard) and [Getting started](../../README.md#getting-started) for the teammate instructions.
 
 Implementation files: [Setup-Asgard.cmd](../../Setup-Asgard.cmd), [Start-Asgard.cmd](../../Start-Asgard.cmd), and [setup-windows.mjs](../../scripts/setup-windows.mjs). The launchers reuse the [shared startup helper](../../scripts/dev.mjs) and [guarded credential initializer](../../scripts/provision-local-db.mjs). Setup authority and approval boundaries remain in [AGENTS.md](../../AGENTS.md#portable-local-development-and-shared-foundation) and the [development guide](../development.md#current-foundation-status-and-evidence).
 
