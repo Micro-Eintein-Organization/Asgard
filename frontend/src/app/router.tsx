@@ -1,16 +1,21 @@
-import { createBrowserRouter, Link } from "react-router";
+import { createBrowserRouter, Link, Navigate } from "react-router";
 import { FoundationStatus } from "./status";
 import { AppShell } from "./shell";
-import { LandingPage, AuthPage } from "./screens";
-
-import DiscoveryContainer from "../components/discovery/DiscoveryContainer";
-import RoleCatalog from "../components/catalog/RoleCatalog";
-import OptionalProfileSetup from "../components/profile/OptionalProfileSetup";
-import { DashboardScreen } from "../screens/DashboardScreen";
-import { SettingsScreen } from "../screens/SettingsScreen";
-
+import {
+  LandingPage,
+  AuthPage,
+  DashboardPage,
+  WelcomePage,
+  DiscoveryPage,
+  CatalogPage,
+  RoadmapPage,
+  ResultsPage,
+  AuthenticatedProfilePage,
+  ProfileSetupPage,
+} from "./screens";
 import { appRoutes, routes } from "@/lib/routes";
 import { StatePanel } from "@/components/shared";
+import { ProtectedRoute } from "@/auth/protected-route";
 
 export const router = createBrowserRouter([
   {
@@ -22,17 +27,40 @@ export const router = createBrowserRouter([
       { path: routes.recovery, element: <AuthPage mode="recovery" /> },
       { path: routes.verify, element: <AuthPage mode="verify" /> },
       { path: routes.status, element: <FoundationStatus /> },
-      
-      { path: "/discovery", element: <DiscoveryContainer /> },
-      { path: appRoutes.discovery, element: <DiscoveryContainer /> },
-      { path: "/catalog", element: <RoleCatalog /> },
-      { path: appRoutes.careers, element: <RoleCatalog /> },
-      { path: "/profile-setup", element: <OptionalProfileSetup /> },
-      { path: appRoutes.profile, element: <SettingsScreen /> },
-      { path: "/dashboard", element: <DashboardScreen /> },
-      { path: appRoutes.dashboard, element: <DashboardScreen /> },
-      { path: "/settings", element: <SettingsScreen /> },
-
+      {
+        element: <ProtectedRoute />,
+        children: [
+          { path: appRoutes.dashboard, element: <DashboardPage /> },
+          { path: appRoutes.welcome, element: <WelcomePage /> },
+          { path: appRoutes.discovery, element: <DiscoveryPage /> },
+          { path: appRoutes.results, element: <ResultsPage /> },
+          { path: appRoutes.careers, element: <CatalogPage /> },
+          { path: appRoutes.roadmap(":careerId"), element: <RoadmapPage /> },
+          {
+            path: appRoutes.roadmaps,
+            element: <Navigate to={appRoutes.roadmap("frontend")} replace />,
+          },
+          { path: appRoutes.profile, element: <AuthenticatedProfilePage /> },
+          {
+            path: appRoutes.account,
+            element: (
+              <Navigate to={appRoutes.profile + "#account-security"} replace />
+            ),
+          },
+          {
+            path: "/catalog",
+            element: <Navigate to={appRoutes.careers} replace />,
+          },
+          {
+            path: "/settings",
+            element: <Navigate to={appRoutes.profile} replace />,
+          },
+          {
+            path: appRoutes.profileSetup,
+            element: <ProfileSetupPage />,
+          },
+        ],
+      },
       {
         path: "*",
         element: (

@@ -7,28 +7,31 @@ export const AuthPage = lazy(async () => ({
   default: (await import("@/features/auth/pages")).AuthPage,
 }));
 export const DashboardPage = lazy(async () => ({
-  default: (await import("@/features/dashboard/page")).DashboardPage,
+  default: (await import("@/screens/DashboardScreen")).DashboardScreen,
 }));
 export const WelcomePage = lazy(async () => ({
-  default: (await import("@/features/discovery/page")).WelcomePage,
+  default: (await import("@/components/discovery/DiscoveryContainer")).default,
 }));
 export const DiscoveryPage = lazy(async () => ({
-  default: (await import("@/features/discovery/page")).DiscoveryPage,
+  default: (await import("@/components/discovery/DiscoveryWizard"))
+    .DiscoveryWizard,
 }));
 export const CatalogPage = lazy(async () => ({
-  default: (await import("@/features/catalog/page")).CatalogPage,
+  default: (await import("@/components/catalog/RoleCatalog")).default,
 }));
 export const RoadmapPage = lazy(async () => ({
   default: (await import("@/features/roadmaps/page")).RoadmapPage,
 }));
 export const ResultsPage = lazy(async () => ({
-  default: (await import("@/features/recommendations/page")).ResultsPage,
+  default: (await import("@/components/discovery/DiscoveryWizard"))
+    .DiscoveryResults,
 }));
 export const AccountSettingsPage = lazy(async () => ({
-  default: (await import("@/features/profile/account-page"))
-    .AccountSettingsPage,
+  default: (await import("@/screens/SettingsScreen")).SettingsScreen,
 }));
 export const AuthenticatedProfilePage = lazy(async () => ({
-  default: (await import("@/features/profile/authenticated-page"))
-    .AuthenticatedProfilePage,
+  default: (await import("@/screens/SettingsScreen")).SettingsScreen,
+}));
+export const ProfileSetupPage = lazy(async () => ({
+  default: (await import("@/components/profile/OptionalProfileSetup")).default,
 }));

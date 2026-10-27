@@ -1,51 +1,57 @@
-import { useState } from 'react';
+import { useState } from "react";
+import { useNavigate, useSearchParams } from "react-router";
+import { careers, categories } from "@/fixtures/catalog";
+import { appRoutes } from "@/lib/routes";
 
-interface RoleCard {
-  id: string;
-  title: string;
-  description: string;
-  category: string;
-  badge?: string;
-}
-
-const ROLES_DATA: RoleCard[] = [
-  { id: 'frontend', title: 'Frontend Developer', description: 'Create user interfaces, websites, and interactive visual elements that people interact with.', category: 'Software and AI', badge: 'User-facing Web development' },
-  { id: 'backend', title: 'Backend Developer', description: 'Build the services, rules, and data behind applications, handling logic, accounts, and databases.', category: 'Software and AI', badge: 'Systems Data processing' },
-  { id: 'ai-auto', title: 'AI Automation Specialist', description: 'Automate repetitive tasks, connect digital tools, and integrate AI workflow solutions.', category: 'Software and AI', badge: 'Workflow AI Tools' },
-  { id: 'fullstack', title: 'Full-Stack Engineer', description: 'Handle both frontend visual elements and backend system architecture, bridging both worlds.', category: 'Software and AI', badge: 'Full-cycle Development' },
-  { id: 'uiux', title: 'UI/UX Designer', description: 'Design intuitive user experiences, wireframes, and design systems for web and mobile.', category: 'Design & UX', badge: 'User Research & Figma' },
-  { id: 'product-dsn', title: 'Product Designer', description: 'End-to-end product design from user personas to high-fidelity clickable prototypes.', category: 'Design & UX', badge: 'Product Strategy' },
-  { id: 'data-eng', title: 'Data Engineer', description: 'Build scalable pipelines for data ingestion, storage, and large-scale analytics processing.', category: 'Data & Analytics', badge: 'Pipelines & SQL' },
-  { id: 'data-sci', title: 'Data Scientist', description: 'Analyze complex datasets, build predictive statistical models, and extract actionable insights.', category: 'Data & Analytics', badge: 'Machine Learning' },
-  { id: 'sec-analyst', title: 'Cybersecurity Analyst', description: 'Monitor networks for security breaches, investigate violations, and harden system defenses.', category: 'Cybersecurity', badge: 'Network Security' },
-];
-
-const CATEGORIES = ['All', 'Software and AI', 'Design & UX', 'Data & Analytics', 'Cybersecurity'];
+const ROLES_DATA = careers.map((career) => ({
+  ...career,
+  category: categories.find((category) => category.id === career.category)!
+    .title,
+  badge: career.work,
+}));
+const CATEGORIES = ["All", ...categories.map((category) => category.title)];
 
 interface RoleCatalogProps {
   onBack?: () => void;
   onSelectRole?: (roleId: string) => void;
 }
 
-export default function RoleCatalog({ onBack, onSelectRole }: RoleCatalogProps) {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<string>('All');
-  const [selectedRoleId, setSelectedRoleId] = useState<string>('frontend');
+export default function RoleCatalog({
+  onBack,
+  onSelectRole,
+}: RoleCatalogProps) {
+  const navigate = useNavigate();
+  const [params, setParams] = useSearchParams();
+  const searchQuery = params.get("q") ?? "";
+  const selectedCategory = CATEGORIES.includes(params.get("category") ?? "")
+    ? params.get("category")!
+    : "All";
+  const update = (key: string, value: string) => {
+    const next = new URLSearchParams(params);
+    if (value && value !== "All") next.set(key, value);
+    else next.delete(key);
+    setParams(next, { replace: true });
+  };
+  const [selectedRoleId, setSelectedRoleId] = useState<string>("frontend");
 
   const filteredRoles = ROLES_DATA.filter((role) => {
     const matchesSearch =
       role.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      role.description.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCategory = selectedCategory === 'All' || role.category === selectedCategory;
+      role.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      role.skills.join(" ").toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCategory =
+      selectedCategory === "All" || role.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
 
   const handleProceed = () => {
-    localStorage.setItem('asgard_selected_role', selectedRoleId);
+    if (!filteredRoles.some((role) => role.id === selectedRoleId)) return;
     if (onSelectRole) {
       onSelectRole(selectedRoleId);
     } else {
-      window.location.href = '/profile-setup';
+      void navigate(appRoutes.roadmap(selectedRoleId), {
+        state: { catalogSearch: "?" + params.toString() },
+      });
     }
   };
 
@@ -58,7 +64,7 @@ export default function RoleCatalog({ onBack, onSelectRole }: RoleCatalogProps) 
             if (onBack) {
               onBack();
             } else {
-              window.location.href = '/discovery';
+              void navigate(appRoutes.welcome);
             }
           }}
           className="text-xs font-semibold px-4 py-2 rounded-full border border-gray-200 hover:bg-gray-50 transition-colors flex items-center space-x-1 cursor-pointer"
@@ -67,11 +73,12 @@ export default function RoleCatalog({ onBack, onSelectRole }: RoleCatalogProps) 
         </button>
 
         <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider">
-          FINAL ROUND: DISCOVERY RESULTS
+          CAREER CATALOG
         </span>
 
         <button
           onClick={handleProceed}
+          disabled={!filteredRoles.some((role) => role.id === selectedRoleId)}
           className="bg-black text-white px-6 py-2.5 rounded-full text-xs font-semibold hover:bg-gray-800 transition-colors cursor-pointer shadow-sm"
         >
           Select Role & View Roadmap
@@ -86,14 +93,25 @@ export default function RoleCatalog({ onBack, onSelectRole }: RoleCatalogProps) 
       {/* Search Input Bar */}
       <div className="max-w-xl mx-auto relative">
         <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-gray-400">
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          <svg
+            className="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
           </svg>
         </div>
         <input
-          type="text"
+          type="search"
+          aria-label="Search career roles or skills"
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          onChange={(e) => update("q", e.target.value)}
           placeholder="Search career roles or skills..."
           className="w-full pl-11 pr-4 py-3 rounded-full border border-gray-200 text-xs focus:outline-none focus:border-black transition-colors shadow-xs"
         />
@@ -106,7 +124,8 @@ export default function RoleCatalog({ onBack, onSelectRole }: RoleCatalogProps) 
           return (
             <button
               key={cat}
-              onClick={() => setSelectedCategory(cat)}
+              aria-pressed={selectedCategory === cat}
+              onClick={() => update("category", cat)}
               className={
                 "px-5 py-2 rounded-full text-xs font-medium transition-colors cursor-pointer border " +
                 (isActive
@@ -120,16 +139,37 @@ export default function RoleCatalog({ onBack, onSelectRole }: RoleCatalogProps) 
         })}
       </div>
 
+      {!filteredRoles.length && (
+        <p role="status" className="text-center">
+          No matching careers.{" "}
+          <button className="underline" onClick={() => setParams({})}>
+            Clear search and filters
+          </button>
+        </p>
+      )}
       {/* Role Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-4">
+      <div
+        role="radiogroup"
+        aria-label="Choose a career to view"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-4"
+      >
         {filteredRoles.map((role) => {
           const isSelected = selectedRoleId === role.id;
           return (
             <div
               key={role.id}
+              role="radio"
+              tabIndex={0}
+              aria-checked={isSelected}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  setSelectedRoleId(role.id);
+                }
+              }}
               onClick={() => setSelectedRoleId(role.id)}
               className={
-                "cursor-pointer rounded-2xl border p-6 transition-all relative flex flex-col justify-between h-80 bg-white " +
+                "cursor-pointer rounded-2xl border p-6 transition-all relative flex flex-col justify-between min-h-80 bg-white " +
                 (isSelected
                   ? "border-emerald-500 ring-1 ring-emerald-500 shadow-md"
                   : "border-gray-200 hover:border-gray-300 shadow-xs")
@@ -142,13 +182,19 @@ export default function RoleCatalog({ onBack, onSelectRole }: RoleCatalogProps) 
               )}
 
               <div className="space-y-3 pt-2">
-                <h3 className="text-lg font-bold tracking-tight text-gray-900">{role.title}</h3>
-                <p className="text-xs text-gray-500 leading-relaxed line-clamp-4">{role.description}</p>
+                <h3 className="text-lg font-bold tracking-tight text-gray-900">
+                  {role.title}
+                </h3>
+                <p className="text-xs text-gray-500 leading-relaxed">
+                  {role.description}
+                </p>
               </div>
 
               {role.badge && (
                 <div className="pt-4 border-t border-gray-100">
-                  <span className="text-[10px] text-gray-400 font-medium">{role.badge}</span>
+                  <span className="text-[10px] text-gray-400 font-medium">
+                    {role.badge}
+                  </span>
                 </div>
               )}
             </div>

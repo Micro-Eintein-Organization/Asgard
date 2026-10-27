@@ -1,12 +1,18 @@
-import React from 'react';
+import React from "react";
 
 interface DiscoveryHeaderProps {
   currentStep: number;
+  totalSteps?: number;
   onBack: () => void;
   onSkip: () => void;
 }
 
-export const DiscoveryHeader: React.FC<DiscoveryHeaderProps> = ({ currentStep, onBack, onSkip }) => {
+export const DiscoveryHeader: React.FC<DiscoveryHeaderProps> = ({
+  currentStep,
+  totalSteps = 5,
+  onBack,
+  onSkip,
+}) => {
   return (
     <div className="max-w-4xl mx-auto w-full pt-4 pb-6 space-y-4 border-b">
       <div className="flex justify-between items-center">
@@ -17,7 +23,7 @@ export const DiscoveryHeader: React.FC<DiscoveryHeaderProps> = ({ currentStep, o
           <span>&larr; Back</span>
         </button>
 
-        {currentStep <= 5 && (
+        {currentStep <= totalSteps && (
           <button
             onClick={onSkip}
             className="text-xs text-gray-500 hover:text-black font-medium cursor-pointer"
@@ -28,17 +34,30 @@ export const DiscoveryHeader: React.FC<DiscoveryHeaderProps> = ({ currentStep, o
       </div>
 
       <div className="text-center space-y-3">
-        <h2 className="text-2xl font-bold tracking-tight">Discovery</h2>
-        {currentStep <= 5 && (
+        <h1 className="text-2xl font-bold tracking-tight">
+          {currentStep <= totalSteps ? "Discovery" : "Discovery results"}
+        </h1>
+        <p className="text-xs text-gray-500">
+          {currentStep <= totalSteps
+            ? `Prototype question ${currentStep} of ${totalSteps}`
+            : "Sample results layout"}
+        </p>
+        {currentStep <= totalSteps && (
           <div className="flex justify-center items-center space-x-2">
-            {[1, 2, 3, 4, 5].map((s) => (
-              <div
-                key={s}
-                className={`h-1.5 w-12 rounded-full transition-colors ${
-                  s < currentStep ? 'bg-emerald-500' : s === currentStep ? 'bg-emerald-500' : 'bg-gray-200'
-                }`}
-              />
-            ))}
+            {Array.from({ length: totalSteps }, (_, index) => index + 1).map(
+              (s) => (
+                <div
+                  key={s}
+                  className={`h-1.5 w-12 rounded-full transition-colors ${
+                    s < currentStep
+                      ? "bg-emerald-500"
+                      : s === currentStep
+                        ? "bg-emerald-500"
+                        : "bg-gray-200"
+                  }`}
+                />
+              ),
+            )}
           </div>
         )}
       </div>
