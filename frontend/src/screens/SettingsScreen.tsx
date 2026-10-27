@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { useAuth } from "@/auth/context";
 import { useLogout } from "@/app/logout";
 import { appRoutes } from "@/lib/routes";
 import { StatePanel } from "@/components/shared";
+import { coreApi, useCoreMutation, useCoreQuery } from "@/features/core/data";
+import { isCurrentAccount } from "@/auth/transport";
 import { useProfileEditor } from "@/features/profile/use-profile-editor";
 import { ProfileEditorDialogs } from "@/features/profile/profile-editor-dialogs";
 import {
@@ -20,9 +22,20 @@ function SettingsEditor({ userId }: { userId: string }) {
   const navigate = useNavigate();
   const { hash } = useLocation();
   const logout = useLogout();
-  const [primaryField, setPrimaryField] = useState("");
+  const [primaryField, setPrimaryField] = useState<string | null>(null);
+  const [timezoneDraft, setTimezoneDraft] = useState<string | null>(null);
+  const preferenceVersion = useRef<number | null>(null);
+  const preferences = useCoreQuery(["preferences"], coreApi.preferences);
+  const categories = useCoreQuery(["categories"], coreApi.categories);
+  const discovery = useCoreQuery(["discovery"], coreApi.discovery);
+  const preferenceSave = useCoreMutation(coreApi.savePreferences);
+  const preferenceDirty = primaryField !== null || timezoneDraft !== null;
   const [logoutError, setLogoutError] = useState("");
-  const editor = useProfileEditor(userId, primaryField !== "");
+  const editor = useProfileEditor(
+    userId,
+    preferenceDirty,
+    preferenceSave.isPending,
+  );
   const { query, mutation, persist, feedback, errorSummary, setReloadOpen } =
     editor;
   const {
@@ -188,13 +201,26 @@ function SettingsEditor({ userId }: { userId: string }) {
               <div className="border border-gray-200 rounded-2xl p-5 flex justify-between items-center bg-white shadow-2xs">
                 <div className="space-y-1">
                   <span className="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">
-                    Sample layout
+                    {discovery.isPending
+                      ? "Loading"
+                      : discovery.isError
+                        ? "Unavailable"
+                        : discovery.data?.latest_completed
+                          ? "Saved"
+                          : "Not completed"}
                   </span>
                   <h4 className="font-bold text-sm">
-                    No saved Discovery results
+                    {discovery.data?.latest_completed
+                      ? "Discovery completed"
+                      : discovery.data?.draft
+                        ? "Saved Discovery draft"
+                        : discovery.isError
+                          ? "Discovery status unavailable"
+                          : "No completed Discovery"}
                   </h4>
                   <p className="text-[10px] text-gray-400">
-                    Saving and generating suggestions are not connected yet.
+                    {discovery.error?.message ??
+                      "AI recommendations are not enabled. Your saved answers remain separate from your learning focus."}
                   </p>
                 </div>
                 <button
@@ -212,29 +238,35 @@ function SettingsEditor({ userId }: { userId: string }) {
                 Preferred Primary Field
               </span>
               <p className="text-[10px] text-gray-400">
-                Prototype selection only. Preferences are not saved and do not
-                change your roadmap.
+                Save a preferred catalog category without changing your current
+                roadmap or topic progress.
               </p>
               <div className="flex flex-wrap gap-2 pt-2">
                 {[
-                  "Software and AI",
-                  "Data & Analytics",
-                  "UI/UX Design",
-                  "Security & Infrastructure",
+                  { id: "", title: "No preference" },
+                  ...(categories.data ?? []),
                 ].map((field) => {
-                  const isSelected = primaryField === field;
+                  const isSelected =
+                    (primaryField ??
+                      preferences.data?.preferred_category_id ??
+                      "") === field.id;
                   return (
                     <button
-                      key={field}
+                      key={field.id}
                       aria-pressed={isSelected}
-                      onClick={() => setPrimaryField(field)}
+                      disabled={!preferences.data || preferenceSave.isPending}
+                      onClick={() => {
+                        preferenceVersion.current ??=
+                          preferences.data?.version ?? null;
+                        setPrimaryField(field.id);
+                      }}
                       className={`px-4 py-2 rounded-full text-xs font-medium border flex items-center space-x-2 transition-colors cursor-pointer ${
                         isSelected
                           ? "border-emerald-500 bg-emerald-50/50 text-emerald-900 font-bold"
                           : "border-gray-300 bg-white text-gray-600 hover:border-gray-400"
                       }`}
                     >
-                      <span>{field}</span>
+                      <span>{field.title}</span>
                       <span
                         className={`w-2 h-2 rounded-full ${isSelected ? "bg-emerald-500" : "bg-gray-300"}`}
                       />
@@ -244,6 +276,112 @@ function SettingsEditor({ userId }: { userId: string }) {
               </div>
             </div>
 
+            <div className="space-y-3">
+              <label
+                htmlFor="profile-timezone"
+                className="text-xs font-semibold"
+              >
+                Timezone for future activity
+              </label>
+              <input
+                id="profile-timezone"
+                value={timezoneDraft ?? preferences.data?.timezone ?? "UTC"}
+                disabled={!preferences.data || preferenceSave.isPending}
+                onChange={(event) => {
+                  preferenceVersion.current ??=
+                    preferences.data?.version ?? null;
+                  setTimezoneDraft(event.target.value);
+                }}
+                className="border rounded-lg px-3 py-2 text-sm w-full"
+              />
+              <p className="text-xs text-gray-500">
+                Use an IANA timezone such as Asia/Manila. Historical activity
+                dates stay unchanged.
+              </p>
+              <button
+                disabled={
+                  !preferences.data ||
+                  !preferenceDirty ||
+                  preferenceSave.isPending
+                }
+                className="bg-black text-white rounded-full px-5 py-2 text-xs"
+                onClick={async () => {
+                  const saved = preferences.data;
+                  if (!saved) return;
+                  try {
+                    await preferenceSave.mutateAsync({
+                      preferred_category_id:
+                        (primaryField ?? saved.preferred_category_id) || null,
+                      timezone: timezoneDraft ?? saved.timezone,
+                      dismissed_guidance: saved.dismissed_guidance,
+                      expected_version:
+                        preferenceVersion.current ?? saved.version,
+                    });
+                    if (isCurrentAccount(userId)) {
+                      preferenceVersion.current = null;
+                      setPrimaryField(null);
+                      setTimezoneDraft(null);
+                    }
+                  } catch {
+                    /* The mutation error below retains the pending selections. */
+                  }
+                }}
+              >
+                {preferenceSave.isPending ? "Saving…" : "Save preferences"}
+              </button>
+              <button
+                disabled={!preferenceDirty || preferenceSave.isPending}
+                className="border rounded-full px-5 py-2 text-xs ml-2"
+                onClick={() => {
+                  preferenceVersion.current = null;
+                  setPrimaryField(null);
+                  setTimezoneDraft(null);
+                  preferenceSave.reset();
+                }}
+              >
+                Discard preference changes
+              </button>
+              {preferenceSave.isSuccess && !preferenceDirty && (
+                <p role="status" className="text-xs">
+                  Preferences saved.
+                </p>
+              )}
+              {(preferences.error ||
+                categories.error ||
+                preferenceSave.error) && (
+                <p role="alert" className="field-error">
+                  {
+                    (
+                      preferences.error ??
+                      categories.error ??
+                      preferenceSave.error
+                    )?.message
+                  }{" "}
+                  <button
+                    disabled={preferenceSave.isPending}
+                    onClick={async () => {
+                      if (
+                        preferenceDirty &&
+                        !window.confirm(
+                          "Discard preference edits and reload saved preferences?",
+                        )
+                      )
+                        return;
+                      const loaded = await preferences.refetch();
+                      void categories.refetch();
+                      if (loaded.isSuccess && isCurrentAccount(userId)) {
+                        preferenceVersion.current = null;
+                        setPrimaryField(null);
+                        setTimezoneDraft(null);
+                        preferenceSave.reset();
+                      }
+                    }}
+                  >
+                    Reload saved preferences
+                  </button>
+                </p>
+              )}
+            </div>
             {/* Document Management Card */}
             <div className="space-y-2 pt-2 border-t">
               <span className="text-xs font-bold text-gray-700">
@@ -369,7 +507,11 @@ function SettingsEditor({ userId }: { userId: string }) {
           </section>
         </div>
       </div>
-      <ProfileEditorDialogs editor={editor} extraDirty={primaryField !== ""} />
+      <ProfileEditorDialogs
+        editor={editor}
+        extraDirty={preferenceDirty}
+        extraPending={preferenceSave.isPending}
+      />
     </div>
   );
 }

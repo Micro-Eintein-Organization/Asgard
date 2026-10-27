@@ -1,7 +1,6 @@
 import { Link, Navigate } from "react-router";
 import { Button } from "@/components/ui/button";
-import { StatusBadge, StatePanel } from "@/components/shared";
-import { sampleMilestones } from "@/fixtures/catalog";
+import { StatePanel } from "@/components/shared";
 import { appRoutes, routes } from "@/lib/routes";
 import { authConfigured } from "@/auth/supabase";
 import { ConnectedAuthPage } from "./connected-page";
@@ -55,28 +54,33 @@ export function LandingPage() {
         <div className="landing-preview">
           <p>
             {authConfigured
-              ? "Account access and profile saving are available. Career and learning screens use labeled demo content."
-              : "Account access is not configured in this environment. Career and learning screens use sample content."}
+              ? "Sign in to manage your profile and explore the published career catalog. AI recommendations and PDF uploads are unavailable."
+              : "Account access is not configured in this environment."}
           </p>
         </div>
       </div>
       <div className="path-preview">
-        <p>Inside a learning roadmap</p>
-        <h2 className="landing-roadmap-title">Frontend Developer</h2>
-        <p className="landing-roadmap-intro">Web foundations</p>
+        <p>Your learning path</p>
+        <h2 className="landing-roadmap-title">Find a place to begin</h2>
+        <p className="landing-roadmap-intro">Explore at your pace</p>
         <div className="landing-roadmap-topics">
-          {sampleMilestones[0].topics.map((topic) => (
-            <div key={topic.id}>
-              <span>{topic.title}</span>
-              <StatusBadge status={topic.status} />
+          {[
+            "Browse published careers",
+            "Choose your current roadmap",
+            "Read topics and learning resources",
+            "Record your learning progress",
+          ].map((step) => (
+            <div key={step}>
+              <span>{step}</span>
             </div>
           ))}
         </div>
         <Button asChild variant="outline" className="mt-6 w-full">
-          <Link to={appRoutes.roadmap("frontend")}>View this roadmap</Link>
+          <Link to={routes.login}>Log in to explore</Link>
         </Button>
         <p className="landing-note">
-          Sample content and statuses. Progress saving is not connected.
+          Available careers depend on the reviewed content published in this
+          environment.
         </p>
       </div>
     </section>

@@ -3,6 +3,7 @@ import React from "react";
 interface DiscoveryHeaderProps {
   currentStep: number;
   totalSteps?: number;
+  showProgress?: boolean;
   onBack: () => void;
   onSkip: () => void;
 }
@@ -10,6 +11,7 @@ interface DiscoveryHeaderProps {
 export const DiscoveryHeader: React.FC<DiscoveryHeaderProps> = ({
   currentStep,
   totalSteps = 5,
+  showProgress = true,
   onBack,
   onSkip,
 }) => {
@@ -23,7 +25,7 @@ export const DiscoveryHeader: React.FC<DiscoveryHeaderProps> = ({
           <span>&larr; Back</span>
         </button>
 
-        {currentStep <= totalSteps && (
+        {showProgress && currentStep <= totalSteps && (
           <button
             onClick={onSkip}
             className="text-xs text-gray-500 hover:text-black font-medium cursor-pointer"
@@ -38,11 +40,9 @@ export const DiscoveryHeader: React.FC<DiscoveryHeaderProps> = ({
           {currentStep <= totalSteps ? "Discovery" : "Discovery results"}
         </h1>
         <p className="text-xs text-gray-500">
-          {currentStep <= totalSteps
-            ? `Prototype question ${currentStep} of ${totalSteps}`
-            : "Sample results layout"}
+          {currentStep <= totalSteps ? "Discovery" : "Your account records"}
         </p>
-        {currentStep <= totalSteps && (
+        {showProgress && currentStep <= totalSteps && (
           <div className="flex justify-center items-center space-x-2">
             {Array.from({ length: totalSteps }, (_, index) => index + 1).map(
               (s) => (
