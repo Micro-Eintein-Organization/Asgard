@@ -32,6 +32,10 @@ export const discoveryService = {
 
   // Submit valid answers (Simulated API call for Assignment C)
   submitAnswers: async (answers: DiscoveryAnswers): Promise<DiscoveryResult[]> => {
+    // Acknowledge answers to satisfy unused local rule and future telemetry use
+    const _submittedAnswersCount = Object.keys(answers).length;
+    void _submittedAnswersCount;
+
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         // 5% chance to simulate network error for error state testing

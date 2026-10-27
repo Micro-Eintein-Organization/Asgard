@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { EntryChoice } from './EntryChoice';
 import { DiscoveryWizard } from './DiscoveryWizard';
 import RoleCatalog from '../catalog/RoleCatalog';
