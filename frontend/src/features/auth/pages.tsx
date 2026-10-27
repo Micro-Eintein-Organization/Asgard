@@ -1,10 +1,11 @@
-import { Link } from "react-router";
+import { Link, Navigate } from "react-router";
 import { Button } from "@/components/ui/button";
-import { StatusBadge } from "@/components/shared";
+import { StatusBadge, StatePanel } from "@/components/shared";
 import { sampleMilestones } from "@/fixtures/catalog";
 import { appRoutes, routes } from "@/lib/routes";
 import { authConfigured } from "@/auth/supabase";
 import { ConnectedAuthPage } from "./connected-page";
+import { useAuth } from "@/auth/context";
 
 export function AuthPage({
   mode,
@@ -15,9 +16,23 @@ export function AuthPage({
 }
 
 export function LandingPage() {
+  const { user, loading, error } = useAuth();
+  if (loading)
+    return (
+      <StatePanel kind="loading" title="Restoring your session">
+        Checking account access.
+      </StatePanel>
+    );
+  if (user?.email_confirmed_at && !error)
+    return <Navigate to={appRoutes.dashboard} replace />;
   return (
     <section className="landing">
       <div>
+        {error && (
+          <p role="alert" className="field-error">
+            {error}
+          </p>
+        )}
         <h1>
           A direction to explore.
           <br />A path to follow.

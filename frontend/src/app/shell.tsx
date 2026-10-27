@@ -27,6 +27,8 @@ function Header() {
   ];
   const location = useLocation();
   const { pathname } = location;
+  const publicPage = Object.values(routes).includes(pathname);
+  const showAppNavigation = !!user?.email_confirmed_at && !publicPage;
   const [open, setOpen] = useState(false);
   const [logoutError, setLogoutError] = useState("");
   const menuRef = useRef<HTMLButtonElement>(null);
@@ -68,13 +70,13 @@ function Header() {
     >
       <div className="header-inner">
         <Link
-          to={user ? appRoutes.dashboard : routes.home}
+          to={showAppNavigation ? appRoutes.dashboard : routes.home}
           className="brand"
           aria-label="Asgard home"
         >
           Asgard
         </Link>
-        {user?.email_confirmed_at ? (
+        {showAppNavigation ? (
           <>
             <nav aria-label="Main navigation" className="desktop-navigation">
               {navigation.map((item) => (
@@ -126,7 +128,7 @@ function Header() {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="account-menu">
-                  <DropdownMenuLabel>{user.email}</DropdownMenuLabel>
+                  <DropdownMenuLabel>{user?.email}</DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem asChild>
                     <Link to={pageRoutes.profile}>Edit profile</Link>
@@ -144,16 +146,10 @@ function Header() {
           </>
         ) : (
           <div className="public-nav">
-            {user ? (
-              <Link to={appRoutes.dashboard}>Dashboard</Link>
-            ) : (
-              <>
-                <Link to={routes.login}>Log in</Link>
-                <Button asChild>
-                  <Link to={routes.register}>Get started</Link>
-                </Button>
-              </>
-            )}
+            <Link to={routes.login}>Log in</Link>
+            <Button asChild>
+              <Link to={routes.register}>Get started</Link>
+            </Button>
           </div>
         )}
       </div>
@@ -162,7 +158,7 @@ function Header() {
           {logoutError}
         </p>
       )}
-      {open && mobileNavigation()}
+      {showAppNavigation && open && mobileNavigation()}
     </header>
   );
 }
@@ -216,7 +212,7 @@ function ShellContent() {
       <a className="skip-link" href="#main-content">
         Skip to content
       </a>
-      <Header />
+      <Header key={pathname} />
       {demo && (
         <div className="preview-bar">
           <div>
