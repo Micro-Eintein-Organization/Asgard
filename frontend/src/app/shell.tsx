@@ -15,6 +15,14 @@ import { StatePanel } from "@/components/shared";
 import { useAuth } from "@/auth/context";
 import { LogoutBoundary } from "./logout-boundary";
 import { useLogout } from "./logout";
+import { BrandLogo } from "@/components/brand-logo";
+
+const onboardingPaths = new Set([
+  appRoutes.welcome,
+  appRoutes.discovery,
+  appRoutes.results,
+  appRoutes.profileSetup,
+]);
 
 function Header() {
   const { user } = useAuth();
@@ -74,7 +82,7 @@ function Header() {
           className="brand"
           aria-label="Asgard home"
         >
-          Asgard
+          <BrandLogo />
         </Link>
         {showAppNavigation ? (
           <>
@@ -197,6 +205,7 @@ export function AppShell() {
 
 function ShellContent() {
   const { pathname } = useLocation();
+  const onboarding = onboardingPaths.has(pathname.replace(/\/+$/, ""));
   const demoPaths = [
     appRoutes.dashboard,
     appRoutes.welcome,
@@ -212,8 +221,8 @@ function ShellContent() {
       <a className="skip-link" href="#main-content">
         Skip to content
       </a>
-      <Header key={pathname} />
-      {demo && (
+      {!onboarding && <Header key={pathname} />}
+      {!onboarding && demo && (
         <div className="preview-bar">
           <div>
             <strong>Demo content</strong>
@@ -224,7 +233,16 @@ function ShellContent() {
           </div>
         </div>
       )}
-      <main id="main-content" tabIndex={-1} className="page-container">
+      <main
+        id="main-content"
+        tabIndex={-1}
+        className={
+          onboarding
+            ? "page-container onboarding-page-container"
+            : "page-container"
+        }
+      >
+        {onboarding && <BrandLogo className="onboarding-logo" />}
         <Suspense
           fallback={
             <StatePanel kind="loading" title="Opening this page">
@@ -236,17 +254,19 @@ function ShellContent() {
           <PageFocus />
         </Suspense>
       </main>
-      <footer className="site-footer">
-        <span>
-          Asgard
-          <span className="footer-purpose">
-            Career exploration, at your pace.
+      {!onboarding && (
+        <footer className="site-footer">
+          <span>
+            Asgard
+            <span className="footer-purpose">
+              Career exploration, at your pace.
+            </span>
           </span>
-        </span>
-        <div>
-          <Link to={routes.status}>Service status</Link>
-        </div>
-      </footer>
+          <div>
+            <Link to={routes.status}>Service status</Link>
+          </div>
+        </footer>
+      )}
     </>
   );
 }

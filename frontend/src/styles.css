@@ -316,6 +316,22 @@
 .brand:hover {
   text-decoration: none;
 }
+.brand-logo {
+  display: block;
+  width: clamp(6rem, 12vw, 9rem);
+  max-width: 100%;
+  height: auto;
+}
+.page-container.onboarding-page-container {
+  min-height: 100dvh;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+.onboarding-logo {
+  width: clamp(8rem, 20vw, 11rem);
+  margin-inline: auto;
+  margin-bottom: 1rem;
+}
 .desktop-navigation {
   display: none;
   align-items: center;
