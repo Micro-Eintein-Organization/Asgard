@@ -41,7 +41,15 @@ export default function RoleCatalog({ onBack, onSelectRole }: RoleCatalogProps) 
   });
 
   const handleProceed = () => {
+    const chosenRoleObj = ROLES_DATA.find((r) => r.id === selectedRoleId) || ROLES_DATA[0];
+    
+    // Save selected role data for dashboard sync
     localStorage.setItem('asgard_selected_role', selectedRoleId);
+    localStorage.setItem('asgard_active_role', JSON.stringify({
+      title: chosenRoleObj.title,
+      description: chosenRoleObj.description,
+    }));
+
     if (onSelectRole) {
       onSelectRole(selectedRoleId);
     } else {
@@ -50,8 +58,8 @@ export default function RoleCatalog({ onBack, onSelectRole }: RoleCatalogProps) 
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-8 space-y-8 bg-white min-h-screen text-gray-900">
-      {/* Top Header Navigation */}
+    <div className="max-w-6xl mx-auto px-6 py-8 space-y-8 bg-white min-h-screen text-gray-900 font-sans">
+      {/* Top Header Navigation (Cleaned up, no central badge text) */}
       <div className="flex justify-between items-center border-b pb-4">
         <button
           onClick={() => {
@@ -66,15 +74,11 @@ export default function RoleCatalog({ onBack, onSelectRole }: RoleCatalogProps) 
           <span>&larr; Back</span>
         </button>
 
-        <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider">
-          FINAL ROUND: DISCOVERY RESULTS
-        </span>
-
         <button
           onClick={handleProceed}
           className="bg-black text-white px-6 py-2.5 rounded-full text-xs font-semibold hover:bg-gray-800 transition-colors cursor-pointer shadow-sm"
         >
-          Select Role & View Roadmap
+          Select Role &amp; View Roadmap
         </button>
       </div>
 

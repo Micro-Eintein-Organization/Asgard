@@ -1,125 +1,131 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 interface OptionalProfileSetupProps {
-  onBack?: () => void;
-  onProceed?: () => void;
+  onComplete?: () => void;
   onSkip?: () => void;
 }
 
-export default function OptionalProfileSetup({ onBack, onProceed, onSkip }: OptionalProfileSetupProps) {
+export const OptionalProfileSetup: React.FC<OptionalProfileSetupProps> = ({
+  onComplete,
+  onSkip,
+}) => {
   const [fullName, setFullName] = useState('');
-  const [hasFile, setHasFile] = useState(false);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
-  const handleProceed = () => {
-    const setupData = {
-      fullName,
-      hasFile,
-      updatedAt: new Date().toISOString(),
-    };
-    localStorage.setItem('asgard_student_profile', JSON.stringify(setupData));
-
-    if (onProceed) {
-      onProceed();
-    } else {
-      window.location.href = '/dashboard';
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setSelectedFile(e.target.files[0]);
     }
   };
 
-  const handleSkip = () => {
-    if (onSkip) {
-      onSkip();
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (onComplete) {
+      onComplete();
     } else {
       window.location.href = '/dashboard';
     }
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-6 py-10 space-y-8 bg-white min-h-screen text-gray-900">
+    <div className="min-h-screen bg-white text-gray-900 flex flex-col justify-between p-6 font-sans">
       {/* Top Header */}
-      <div className="flex justify-between items-center">
+      <div className="max-w-4xl mx-auto w-full flex items-center justify-between pt-2">
         <button
-          onClick={onBack || (() => window.history.back())}
-          className="text-xs font-semibold px-4 py-2 rounded-full border border-gray-200 hover:bg-gray-50 transition-colors flex items-center space-x-1 cursor-pointer"
+          onClick={onSkip || (() => (window.location.href = '/dashboard'))}
+          className="px-4 py-1.5 border border-gray-200 rounded-full text-xs font-semibold text-gray-600 hover:bg-gray-50 cursor-pointer"
         >
-          <span>&larr; Back</span>
+          &larr; Back
         </button>
       </div>
 
-      {/* Title & Subtitle */}
-      <div className="text-center space-y-2">
-        <h1 className="text-2xl font-bold tracking-tight">Set up your student profile</h1>
-        <p className="text-xs text-gray-500 max-w-md mx-auto leading-relaxed">
-          Add your details now for deeper career recommendations, or skip and complete this anytime from your dashboard.
-        </p>
-      </div>
-
-      {/* Main Centered Card Container */}
-      <div className="max-w-md mx-auto border border-gray-200 rounded-3xl p-8 space-y-6 bg-white shadow-xs">
-        
-        {/* Upload Profile Avatar */}
-        <div className="flex flex-col items-center space-y-2">
-          <div className="w-16 h-16 rounded-full bg-gray-200 flex items-center justify-center cursor-pointer hover:bg-gray-300 transition-colors border border-gray-300">
-            <span className="text-sm">✏️</span>
-          </div>
-          <span className="text-[10px] font-medium text-gray-400">Upload Profile</span>
+      {/* Main Form Box */}
+      <div className="max-w-xl mx-auto w-full my-auto py-4 space-y-6">
+        <div className="text-center space-y-2">
+          <h1 className="text-2xl font-extrabold tracking-tight text-gray-900">
+            Set up your student profile
+          </h1>
+          <p className="text-xs text-gray-500 max-w-md mx-auto leading-relaxed">
+            Add your details now for deeper career recommendations, or skip and complete this anytime from your dashboard.
+          </p>
         </div>
 
-        {/* Full Name Field */}
-        <div className="space-y-2">
-          <label className="text-xs font-bold text-gray-900">Full Name</label>
-          <input
-            type="text"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
-            placeholder="E.G. Esmiringhoy"
-            className="w-full px-4 py-3 rounded-xl border border-gray-200 text-xs focus:outline-none focus:border-black transition-colors"
-          />
-        </div>
-
-        {/* Academic Records or Resume (Optional) */}
-        <div className="space-y-2">
-          <label className="text-xs font-bold text-gray-900">Academic Records or Resume (Optional)</label>
+        {/* Form Container */}
+        <div className="border border-gray-200 rounded-3xl p-8 space-y-6 bg-white shadow-xs">
           
-          <div
-            onClick={() => setHasFile(!hasFile)}
-            className="border-2 border-dashed border-gray-200 hover:border-gray-400 rounded-2xl p-6 text-center cursor-pointer transition-colors space-y-3 bg-gray-50/50"
-          >
-            <div className="w-10 h-10 rounded-lg bg-red-500 text-white font-bold flex items-center justify-center mx-auto text-[10px] shadow-xs">
-              PDF
+          {/* Avatar Upload Trigger with Uniform Square Edit SVG */}
+          <div className="flex flex-col items-center space-y-2">
+            <div className="relative group cursor-pointer">
+              <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center text-gray-700 group-hover:bg-gray-200 transition-colors shadow-xs border border-gray-200">
+                <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                </svg>
+              </div>
             </div>
-            <div className="space-y-1">
-              <p className="text-xs text-gray-600">
-                {hasFile ? (
-                  <span className="font-bold text-emerald-700">Evaluation_Record_Attached.pdf</span>
-                ) : (
-                  <>Drag & drop your PDF here, or <span className="underline font-semibold text-black">browse files</span></>
-                )}
-              </p>
-              <p className="text-[10px] text-gray-400">Supports PDF up to 10MB</p>
-            </div>
+            <span className="text-xs font-medium text-gray-500">Upload Profile</span>
           </div>
+
+          <form onSubmit={handleSubmit} className="space-y-5">
+            {/* Full Name Input */}
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold text-gray-800">Full Name</label>
+              <input
+                type="text"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                placeholder="e.g., Juan Dela Cruz"
+                className="w-full px-4 py-3 border border-gray-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-black/5 focus:border-gray-400 transition-all"
+              />
+            </div>
+
+            {/* PDF / Resume Upload Box */}
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold text-gray-800">
+                Academic Records or Resume <span className="font-normal text-gray-400">(Optional)</span>
+              </label>
+
+              <label className="border-2 border-dashed border-gray-200 rounded-2xl p-6 flex flex-col items-center justify-center space-y-2 cursor-pointer hover:border-gray-300 transition-colors bg-gray-50/50">
+                <input
+                  type="file"
+                  accept=".pdf"
+                  onChange={handleFileChange}
+                  className="hidden"
+                />
+                <span className="bg-red-500 text-white text-[10px] font-bold px-3 py-1 rounded-md">
+                  PDF
+                </span>
+                <p className="text-xs text-gray-600">
+                  Drag & drop your PDF here, or <span className="font-bold underline text-black">browse files</span>
+                </p>
+                <span className="text-[10px] text-gray-400">
+                  {selectedFile ? selectedFile.name : 'Supports PDF up to 10MB'}
+                </span>
+              </label>
+            </div>
+
+            {/* Action Button */}
+            <button
+              type="submit"
+              className="w-full py-3.5 bg-black text-white text-xs font-bold rounded-full hover:bg-gray-800 transition-all shadow-xs cursor-pointer mt-2"
+            >
+              Proceed
+            </button>
+          </form>
         </div>
 
-        {/* Proceed Button */}
-        <div className="pt-2">
+        {/* Skip Link */}
+        <div className="text-center pt-1">
           <button
-            onClick={handleProceed}
-            className="w-full bg-black text-white py-3 rounded-full text-xs font-semibold hover:bg-gray-800 transition-colors cursor-pointer shadow-sm"
+            onClick={onSkip || (() => (window.location.href = '/dashboard'))}
+            className="text-xs text-gray-400 hover:text-black font-medium transition-colors cursor-pointer"
           >
-            Proceed
+            I'll set this up later
           </button>
         </div>
       </div>
-
-      {/* Footer Skip Link */}
-      <div className="text-center pt-2">
-        <button
-          onClick={handleSkip}
-          className="text-xs text-gray-400 hover:text-black font-medium transition-colors cursor-pointer"
-        >
-          I'll set this up later
-        </button>
-      </div>
     </div>
   );
-}
+};
+
+// Provide default export to satisfy default imports in containers/routers
+export default OptionalProfileSetup;

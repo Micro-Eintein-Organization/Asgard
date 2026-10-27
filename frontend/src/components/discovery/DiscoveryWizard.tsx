@@ -108,11 +108,29 @@ export const DiscoveryWizard: React.FC<DiscoveryWizardProps> = ({
 
   return (
     <div className="min-h-screen bg-white text-gray-900 flex flex-col justify-between p-6">
-      <DiscoveryHeader
-        currentStep={step}
-        onBack={handleBack}
-        onSkip={onSkipToCatalog || (() => {})}
-      />
+      {/* Show header for steps 1-5, but keep it clean or custom for step 6 */}
+      {step <= 5 ? (
+        <DiscoveryHeader
+          currentStep={step}
+          onBack={handleBack}
+          onSkip={onSkipToCatalog || (() => {})}
+        />
+      ) : (
+        <div className="max-w-5xl mx-auto w-full flex items-center justify-between pt-2">
+          <button
+            onClick={handleBack}
+            className="px-4 py-1.5 border border-gray-200 rounded-full text-xs font-semibold text-gray-600 hover:bg-gray-50 cursor-pointer"
+          >
+            &larr; Back
+          </button>
+          <button
+            onClick={handleProceedToRoadmap}
+            className="px-5 py-2 bg-black text-white text-xs font-semibold rounded-full hover:bg-gray-800 transition-colors cursor-pointer shadow-sm"
+          >
+            Select Role &amp; View Roadmap
+          </button>
+        </div>
+      )}
 
       {/* Draft Resume Alert Modal */}
       {hasDraft && step === 1 && (
