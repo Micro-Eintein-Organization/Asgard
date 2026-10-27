@@ -1,15 +1,8 @@
 import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router";
-import { careers, categories } from "@/fixtures/catalog";
+import { StatePanel } from "@/components/shared";
+import { coreApi, useCoreQuery } from "@/features/core/data";
 import { appRoutes } from "@/lib/routes";
-
-const ROLES_DATA = careers.map((career) => ({
-  ...career,
-  category: categories.find((category) => category.id === career.category)!
-    .title,
-  badge: career.work,
-}));
-const CATEGORIES = ["All", ...categories.map((category) => category.title)];
 
 interface RoleCatalogProps {
   onBack?: () => void;
@@ -23,26 +16,67 @@ export default function RoleCatalog({
   const navigate = useNavigate();
   const [params, setParams] = useSearchParams();
   const searchQuery = params.get("q") ?? "";
+  const categoryQuery = useCoreQuery(["categories"], coreApi.categories);
+  const preferences = useCoreQuery(["preferences"], coreApi.preferences);
+  const categories = categoryQuery.data ?? [];
+  const CATEGORIES = ["All", ...categories.map((category) => category.title)];
+  const preferred =
+    categories.find(
+      (category) => category.id === preferences.data?.preferred_category_id,
+    )?.title ?? "All";
   const selectedCategory = CATEGORIES.includes(params.get("category") ?? "")
     ? params.get("category")!
-    : "All";
+    : preferred;
   const update = (key: string, value: string) => {
     const next = new URLSearchParams(params);
-    if (value && value !== "All") next.set(key, value);
+    if (value) next.set(key, value);
     else next.delete(key);
     setParams(next, { replace: true });
   };
-  const [selectedRoleId, setSelectedRoleId] = useState<string>("frontend");
-
-  const filteredRoles = ROLES_DATA.filter((role) => {
-    const matchesSearch =
-      role.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      role.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      role.skills.join(" ").toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCategory =
-      selectedCategory === "All" || role.category === selectedCategory;
-    return matchesSearch && matchesCategory;
-  });
+  const [selectedRoleId, setSelectedRoleId] = useState("");
+  const categoryId = categories.find(
+    (category) => category.title === selectedCategory,
+  )?.id;
+  const roles = useCoreQuery(
+    ["careers", searchQuery, categoryId],
+    () =>
+      coreApi.catalog({
+        q: searchQuery || undefined,
+        category_id: categoryId,
+        limit: 100,
+      }),
+    !categoryQuery.isPending && !preferences.isPending,
+  );
+  const filteredRoles = (roles.data?.items ?? []).map((career) => ({
+    ...career,
+    badge: career.skills.join(" · "),
+  }));
+  if (categoryQuery.isError || preferences.isError || roles.isError)
+    return (
+      <StatePanel
+        kind="error"
+        title="Careers unavailable"
+        action={
+          <button
+            onClick={() => {
+              void categoryQuery.refetch();
+              void preferences.refetch();
+              void roles.refetch();
+            }}
+          >
+            Try again
+          </button>
+        }
+      >
+        {(categoryQuery.error ?? preferences.error ?? roles.error)?.message}
+      </StatePanel>
+    );
+  if (categoryQuery.isPending || preferences.isPending || roles.isPending)
+    return (
+      <StatePanel kind="loading" title="Loading published careers">
+        Reading the career catalog.
+      </StatePanel>
+    );
 
   const handleProceed = () => {
     if (!filteredRoles.some((role) => role.id === selectedRoleId)) return;
@@ -142,7 +176,10 @@ export default function RoleCatalog({
       {!filteredRoles.length && (
         <p role="status" className="text-center">
           No matching careers.{" "}
-          <button className="underline" onClick={() => setParams({})}>
+          <button
+            className="underline"
+            onClick={() => setParams({ category: "All" })}
+          >
             Clear search and filters
           </button>
         </p>

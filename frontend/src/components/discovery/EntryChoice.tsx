@@ -15,8 +15,7 @@ export const EntryChoice: React.FC<EntryChoiceProps> = ({ onSelectChoice }) => {
         How would you like to start?
       </h1>
       <p className="mt-3 text-sm text-gray-500 max-w-lg mx-auto">
-        Choose between guided career discovery questions or browse the full role
-        catalog directly.
+        Browse published careers or check Guided Discovery availability.
       </p>
 
       <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -31,11 +30,11 @@ export const EntryChoice: React.FC<EntryChoiceProps> = ({ onSelectChoice }) => {
           </div>
           <h2 className="text-lg font-bold text-gray-900">Guided Discovery</h2>
           <p className="text-xs text-gray-500 leading-relaxed">
-            Answer questions about your interests, experience and goals. Career
-            suggestions are not connected yet.
+            Guided questions and answer saving are awaiting review. AI career
+            recommendations are unavailable.
           </p>
           <span className="text-xs font-semibold text-blue-600 hover:underline">
-            Start Questionnaire &rarr;
+            Check availability &rarr;
           </span>
         </button>
 
@@ -52,8 +51,8 @@ export const EntryChoice: React.FC<EntryChoiceProps> = ({ onSelectChoice }) => {
             Browse Role Catalog
           </h2>
           <p className="text-xs text-gray-500 leading-relaxed">
-            Jump straight to exploring all technical roles, skill roadmaps, and
-            career requirements at your own pace.
+            Explore published career roles, learning roadmaps, and career
+            requirements at your own pace.
           </p>
           <span className="text-xs font-semibold text-emerald-600 hover:underline">
             Explore Catalog &rarr;
@@ -68,7 +67,7 @@ export const EntryChoice: React.FC<EntryChoiceProps> = ({ onSelectChoice }) => {
         Continue
       </button>
       <p className="mt-4 text-xs text-gray-500">
-        Discovery is a prototype. Answers are not saved or analyzed yet.
+        Guided Discovery cannot accept answers until its review is complete.
       </p>
     </div>
   );

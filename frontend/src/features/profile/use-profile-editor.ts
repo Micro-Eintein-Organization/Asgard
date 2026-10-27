@@ -6,7 +6,11 @@ import { isCurrentAccount } from "@/auth/transport";
 import { useLogoutGuard } from "@/app/logout";
 import { readProfile, saveProfile } from "./api";
 
-export function useProfileEditor(userId: string, extraDirty = false) {
+export function useProfileEditor(
+  userId: string,
+  extraDirty = false,
+  extraPending = false,
+) {
   const queryClient = useQueryClient();
   const key = ["profile", userId];
   const query = useQuery({
@@ -52,12 +56,12 @@ export function useProfileEditor(userId: string, extraDirty = false) {
   const blocker = useBlocker(
     ({ currentLocation, nextLocation }) =>
       isCurrentAccount(userId) &&
-      (dirty || writing.current || mutation.isPending) &&
+      (dirty || extraPending || writing.current || mutation.isPending) &&
       currentLocation.pathname !== nextLocation.pathname,
   );
   useLogoutGuard(() => {
-    if (writing.current || mutation.isPending) {
-      window.alert("Wait for your profile save to finish before logging out.");
+    if (writing.current || mutation.isPending || extraPending) {
+      window.alert("Wait for your save to finish before logging out.");
       return false;
     }
     return (
@@ -66,7 +70,7 @@ export function useProfileEditor(userId: string, extraDirty = false) {
     );
   });
   useBeforeUnload((event) => {
-    if (dirty || writing.current || mutation.isPending) {
+    if (dirty || extraPending || writing.current || mutation.isPending) {
       event.preventDefault();
       event.returnValue = "";
     }
@@ -107,6 +111,7 @@ export function useProfileEditor(userId: string, extraDirty = false) {
       if (!isCurrentAccount(userId)) return false;
       baseVersion.current = data.profile?.version ?? 0;
       queryClient.setQueryData(key, data);
+      void queryClient.invalidateQueries({ queryKey: ["account", userId] });
       reset({
         firstName: data.profile?.first_name ?? "",
         surname: data.profile?.surname ?? "",

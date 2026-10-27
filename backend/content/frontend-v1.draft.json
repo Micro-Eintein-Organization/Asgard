@@ -1,0 +1,29 @@
+{
+  "status": "draft",
+  "version": 1,
+  "review": null,
+  "source_license": null,
+  "category": {"slug": "software-ai", "title": "Software and AI", "description": "Build useful digital tools.", "position": 0},
+  "career": {
+    "slug": "frontend", "title": "Frontend Developer",
+    "description": "Build the parts of a website people see and use, combining content, design and interaction.",
+    "responsibilities": ["Build accessible page structure", "Implement responsive interfaces", "Create and explain browser interactions"],
+    "skills": ["HTML", "CSS", "JavaScript", "Accessibility"],
+    "source_urls": ["https://developer.mozilla.org/en-US/docs/Learn_web_development"]
+  },
+  "roadmap": {
+    "title": "Frontend foundations", "description": "Build an accessible resource page with a working search interaction.",
+    "milestones": [
+      {"slug": "web-foundations", "title": "Web foundations", "description": "Understand browser delivery and build semantic, responsive pages.", "topics": [
+        {"slug": "how-the-web-works", "title": "How the web works", "explanation": "Explain how a browser requests a URL and receives HTML, CSS, JavaScript or data from a server.", "resources": [{"title": "How the web works", "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Web_standards/How_the_web_works", "kind": "documentation", "is_free": null, "license": null, "reviewed_at": null}]},
+        {"slug": "semantic-html", "title": "Semantic HTML", "explanation": "Structure a page using meaningful headings, navigation, main content, links and labeled form controls.", "resources": [{"title": "Structuring content with HTML", "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content", "kind": "documentation", "is_free": null, "license": null, "reviewed_at": null}]},
+        {"slug": "css-layout", "title": "CSS and layout", "explanation": "Use the box model, spacing, typography, Flexbox and Grid to build a readable page that reflows.", "resources": [{"title": "Learn CSS", "url": "https://web.dev/learn/css", "kind": "course", "is_free": null, "license": null, "reviewed_at": null}]},
+        {"slug": "accessibility", "title": "Accessible responsive pages", "explanation": "Use semantic controls, explicit labels, visible focus and sufficient contrast. Check that every interaction works by keyboard.", "resources": [{"title": "Accessibility", "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Accessibility", "kind": "documentation", "is_free": null, "license": null, "reviewed_at": null}]}
+      ]},
+      {"slug": "interactive-page", "title": "Your first interactive page", "description": "Combine structure, presentation and browser behavior in a small project.", "topics": [
+        {"slug": "javascript", "title": "JavaScript fundamentals", "explanation": "Use values, conditions, functions and events to update page content. Explain the interaction and make it keyboard operable.", "resources": [{"title": "Dynamic scripting with JavaScript", "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting", "kind": "documentation", "is_free": null, "license": null, "reviewed_at": null}]},
+        {"slug": "resource-page", "title": "Build a resource page", "explanation": "Build a responsive resource list with descriptive links and a labeled search filter. Check its empty result, keyboard and narrow-view states.", "resources": [{"title": "Your first website", "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website", "kind": "documentation", "is_free": null, "license": null, "reviewed_at": null}]}
+      ]}
+    ]
+  }
+}

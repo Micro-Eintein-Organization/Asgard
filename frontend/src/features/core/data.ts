@@ -1,0 +1,151 @@
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { api } from "@/api/client";
+import { requestError } from "@/api/errors";
+import type { components } from "@/api/generated/schema";
+import { useAuth } from "@/auth/context";
+import { isCurrentAccount } from "@/auth/transport";
+
+type Schemas = components["schemas"];
+
+async function result<T>(
+  request: Promise<{
+    data?: T;
+    error?: Schemas["ErrorBody"];
+    response: Response;
+  }>,
+): Promise<T> {
+  const response = await request;
+  if (response.error || response.data === undefined)
+    throw requestError(response.response, response.error);
+  return response.data;
+}
+
+export const coreApi = {
+  categories: () => result(api.GET("/api/v1/categories")),
+  catalog: (
+    query: {
+      q?: string;
+      category_id?: string;
+      limit?: number;
+      offset?: number;
+    } = {},
+  ) => result(api.GET("/api/v1/careers", { params: { query } })),
+  career: (id: string) =>
+    result(
+      api.GET("/api/v1/careers/{career_id}", {
+        params: { path: { career_id: id } },
+      }),
+    ),
+  roadmap: (id: string) =>
+    result(
+      api.GET("/api/v1/roadmaps/{roadmap_id}", {
+        params: { path: { roadmap_id: id } },
+      }),
+    ),
+  preferences: () => result(api.GET("/api/v1/me/preferences")),
+  savePreferences: (body: Schemas["SavePreferences"]) =>
+    result(api.PATCH("/api/v1/me/preferences", { body })),
+  learning: () => result(api.GET("/api/v1/me/learning")),
+  selectRoadmap: (body: Schemas["SelectRoadmap"]) =>
+    result(api.PATCH("/api/v1/me/learning", { body })),
+  progress: (id: string) =>
+    result(
+      api.GET("/api/v1/me/roadmaps/{roadmap_id}/progress", {
+        params: { path: { roadmap_id: id } },
+      }),
+    ),
+  branches: (id: string) =>
+    result(
+      api.GET("/api/v1/me/roadmaps/{roadmap_id}/branches", {
+        params: { path: { roadmap_id: id } },
+      }),
+    ),
+  saveBranch: ({
+    roadmapId,
+    groupId,
+    body,
+  }: {
+    roadmapId: string;
+    groupId: string;
+    body: Schemas["SaveBranchChoice"];
+  }) =>
+    result(
+      api.PATCH("/api/v1/me/roadmaps/{roadmap_id}/branches/{group_id}", {
+        params: { path: { roadmap_id: roadmapId, group_id: groupId } },
+        body,
+      }),
+    ),
+  saveProgress: ({
+    roadmapId,
+    topicId,
+    body,
+  }: {
+    roadmapId: string;
+    topicId: string;
+    body: Schemas["SaveTopicProgress"];
+  }) =>
+    result(
+      api.PATCH("/api/v1/me/roadmaps/{roadmap_id}/topics/{topic_id}", {
+        params: { path: { roadmap_id: roadmapId, topic_id: topicId } },
+        body,
+      }),
+    ),
+  summary: (id: string) =>
+    result(
+      api.GET("/api/v1/me/roadmaps/{roadmap_id}/summary", {
+        params: { path: { roadmap_id: id } },
+      }),
+    ),
+  dashboard: () => result(api.GET("/api/v1/me/dashboard")),
+  activity: (month: string) =>
+    result(api.GET("/api/v1/me/activity", { params: { query: { month } } })),
+  discovery: () => result(api.GET("/api/v1/me/discovery")),
+  async resolveCareer(reference: string): Promise<Schemas["Career"]> {
+    if (/^[0-9a-f]{8}-[0-9a-f-]{27}$/i.test(reference))
+      return coreApi.career(reference);
+    let offset = 0;
+    for (;;) {
+      const page = await coreApi.catalog({ limit: 100, offset });
+      const found = page.items.find((career) => career.slug === reference);
+      if (found) return found;
+      offset += page.items.length;
+      if (!page.items.length || offset >= page.total)
+        throw new Error("This published career is unavailable.");
+    }
+  },
+};
+
+export function useCoreQuery<T>(
+  key: readonly unknown[],
+  load: () => Promise<T>,
+  enabled = true,
+) {
+  const { user } = useAuth();
+  return useQuery({
+    queryKey: ["account", user?.id, ...key],
+    queryFn: load,
+    enabled: !!user && enabled,
+    retry: false,
+  });
+}
+
+export function useCoreMutation<TVariables, TData>(
+  save: (variables: TVariables) => Promise<TData>,
+) {
+  const { user } = useAuth();
+  const client = useQueryClient();
+  const userId = user?.id;
+  return useMutation({
+    mutationFn: (variables: TVariables) => {
+      if (!userId || !isCurrentAccount(userId))
+        throw new Error(
+          "Your account changed. Reopen this screen before saving.",
+        );
+      return save(variables);
+    },
+    onSuccess: async () => {
+      if (userId && isCurrentAccount(userId))
+        await client.invalidateQueries({ queryKey: ["account", userId] });
+    },
+  });
+}
