@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { DiscoveryAnswers, DiscoveryStep } from '../../types/discovery';
 import { DISCOVERY_QUESTIONS } from '../../data/discoveryQuestions';
 import { DiscoveryHeader } from './DiscoveryHeader';
@@ -26,14 +26,12 @@ export const DiscoveryWizard: React.FC<DiscoveryWizardProps> = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [results, setResults] = useState<DiscoveryResult[]>([]);
-  const [hasDraft, setHasDraft] = useState(false);
 
-  useEffect(() => {
+  // Lazy initialize hasDraft state to avoid effect state cascading lint issues
+  const [hasDraft, setHasDraft] = useState(() => {
     const draft = discoveryService.loadDraft();
-    if (draft && draft.currentStep > 1 && draft.currentStep <= 5) {
-      setHasDraft(true);
-    }
-  }, []);
+    return !!(draft && draft.currentStep > 1 && draft.currentStep <= 5);
+  });
 
   const handleResumeDraft = () => {
     const draft = discoveryService.loadDraft();
@@ -72,8 +70,8 @@ export const DiscoveryWizard: React.FC<DiscoveryWizardProps> = ({
         setSelectedResultIndex(0); // Default select top match
         setStep(6);
         discoveryService.clearDraft();
-      } catch (err: any) {
-        setSubmitError(err.message || 'Failed to process recommendations.');
+      } catch (err: unknown) {
+        setSubmitError(err instanceof Error ? err.message : 'Failed to process recommendations.');
       } finally {
         setIsSubmitting(false);
       }
