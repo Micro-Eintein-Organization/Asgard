@@ -7,7 +7,7 @@
 - Required human reviewer: project lead / architecture reviewer `@YakisobaNissin`, per [CODEOWNERS](../../.github/CODEOWNERS)
 - Authorization: owner's explicit “PLEASE IMPLEMENT THIS PLAN: Restore the original designs and connect the application flow” request, following confirmation that authenticated sessions go to Dashboard and feature backend wiring is deferred.
 - Requirements: REQ-01/02/03/04/05/07/10/11/13; NFR-01/02/05. These identify affected behavior, not completed requirement acceptance.
-- Branch: `codex/ui-flow-integration`; no reset, commit, push or merge.
+- Original repair branch: `codex/ui-flow-integration`, subsequently merged by the owner through PR #15. Current follow-up branch: `codex/onboarding-shell-branding`; no reset, commit, push or merge performed by this follow-up.
 
 ## Scope and authority
 
@@ -125,3 +125,43 @@ Feature backend wiring remains deferred by explicit owner instruction. Dashboard
 Conditional Discovery routing still requires its separately reviewed authored map; the current question sequence remains a labeled prototype. Canonical roles other than Frontend may explain missing curriculum on their roadmap. No backend or product readiness is inferred from the restored design.
 
 This patch is ready for designated human source review, not runtime/visual acceptance or integration. Source checks, essential security/Profile checks and guided rendered review remain required when authorized. Follow-up owner for feature backend wiring is unassigned here. No commit, push or merge was performed.
+
+## Focused onboarding and branding follow-up, 2026-10-27
+
+- Implementer/task owner: Codex; required human reviewer: `@YakisobaNissin`.
+- Authorization/review reference: owner's request for a blank opening state without top navigation/profile controls, followed by `implement` approving the focused-onboarding and existing-branding plan in this chat.
+- Status: source implementation complete; runtime and visual verification deferred. Approval to implement does not establish human technical approval or feature acceptance.
+- Coverage: REQ-01/04/11/13 and NFR-01/02. Scope is shell presentation and supplied branding only; existing authentication, guard, Profile and feature-service contracts are unchanged.
+- Starting state: clean `main` at `a481fa3`, including the merged original-screen repair and branding assets. The follow-up was isolated on `codex/onboarding-shell-branding`; no overlapping local edits were present.
+
+### Bounded implementation and files
+
+1. In [shell.tsx](../../frontend/src/app/shell.tsx), classify `/welcome`, `/discovery`, `/recommendations` and `/profile-setup` as onboarding locations. For those routes only, omit the shared application header/navigation/account menu, global demo notice and footer. Retain the skip link, main content, lazy-loading feedback, route focus and logout boundary. Route matching also tolerates a trailing slash.
+2. Place a small non-interactive logo above the onboarding content, without a header or navigation bar. Keep each restored screen's original composition and its own Back/Skip/Continue/results controls. Local questionnaire/sample/unavailable notices remain visible, so the shell change does not imply backend completion.
+3. In the regular public/application header, replace the plain wordmark with [BrandLogo](../../frontend/src/components/brand-logo.tsx). The shared component imports the existing [light-mode Snowflake + ASGARD asset](../../frontend/src/assets/Logo_Snowflake+ASGARD_lightmode.png), provides `alt="Asgard"` and intrinsic dimensions 650 × 146, and preserves the supplied image without cropping or editing. Header links retain their existing accessible home label/destination.
+4. In [styles.css](../../frontend/src/styles.css), add only logo sizing and onboarding shell spacing. Image width reflows, height stays automatic and source transparency/padding remains. No new asset, font, palette, animation, theme or dependency is introduced. Alternative logo variants remain unused.
+5. Preserve the already-empty entry/question initialization: entry `choice = null`, questionnaire `step = 1`, `answers = {}`. Continue is disabled before an entry choice; question Next is disabled without an answer. Step Back retains open-page answers. No localStorage draft, completion flag or persisted first-user classification is introduced. An explicit return visit to these routes uses the same focused shell, including a returning user's deliberate retake.
+6. Update this guide and [design.md](../design.md). No router/auth/provider, source screen markup, Profile behavior, dependency, backend or migration changes are needed for this follow-up.
+
+### Navigation and state acceptance
+
+| Action / state | Required result |
+| --- | --- |
+| Verified new registration → Welcome | Focused logo/content view; no app header, profile menu, global banner or footer; neither path preselected |
+| Choose Guided Discovery | First prototype question starts with no selected answers; own Back/Skip controls remain |
+| Back within questions | Prior open-page answers retained; no unintended reset |
+| Questions → sample results → optional setup | Focused shell remains; local sample/unavailable explanations and real Profile guards remain |
+| Setup Save/Continue/Skip/Back | Existing return to Results preserved |
+| Welcome/Discovery → Browse careers | Normal app navigation/account menu/footer restored; catalog retains its sample notice |
+| Dashboard / Settings / roadmap | Existing normal application shell and restored screen designs retained |
+| Public landing / account entry | Supplied header logo plus existing public actions/session routing retained |
+| Returning user deliberately opens Discovery | Same focused route presentation; no inferred completion flag |
+| Direct onboarding URL while signed out | Existing protected-route handling still requires account entry |
+
+### Verification and limitations
+
+Source inspection confirms the route classification, conditional shell elements, existing empty-state initialization, local content notices and unchanged navigation/guard boundaries. Formatting completed for the three changed source/style files using the existing frontend container's installed Prettier. Changed tracked files passed whitespace inspection and all 54 local paths in this guide/design documentation resolved. These are source/document checks, not visual or runtime acceptance; remote links and browser rendering were not checked.
+
+Tests, type/lint checks, builds, browser rendering, keyboard/contrast/reflow and session/ownership verification remain deferred under the owner's earlier instruction. No services are started/restarted and no provider calls are made. Future guided review should visit each route above at `http://127.0.0.1:5173/`, confirm that the normal shell returns on Careers/Dashboard, inspect logo proportions at desktop and narrow/zoomed widths, and exercise Back/Skip/unsaved cancellation. This does not replace the original repair's pending security/Profile checks.
+
+The shell is intentionally route-based because persisted onboarding completion/backend wiring is unfinished. It does not restrict this presentation to a server-proven first visit. Feature services and other brand placements remain outside the follow-up. No new product data contract or completed-verification claim is introduced.
