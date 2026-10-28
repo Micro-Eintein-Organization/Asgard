@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, useSearchParams } from "react-router";
+import { Link, useNavigate, useSearchParams } from "react-router";
 import { StatePanel } from "@/components/shared";
 import { coreApi, useCoreQuery } from "@/features/core/data";
 import { appRoutes } from "@/lib/routes";
@@ -122,6 +122,12 @@ export default function RoleCatalog({
       {/* Main Title */}
       <div className="text-center space-y-2">
         <h1 className="text-3xl font-bold tracking-tight">Role Catalog</h1>
+        <p className="text-sm text-gray-500">
+          Three starter paths with saved learning progress.{" "}
+          <Link to={appRoutes.results} className="underline">
+            View or update your career suggestions
+          </Link>
+        </p>
       </div>
 
       {/* Search Input Bar */}

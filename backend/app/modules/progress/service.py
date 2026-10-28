@@ -437,13 +437,22 @@ async def dashboard(connection, uid):
         "WHERE user_id = CAST(:uid AS uuid) AND status = 'done' ORDER BY updated_at DESC, topic_id LIMIT 10",
         parameters,
     )
+    recommendation = await one(
+        connection,
+        "SELECT r.id FROM asgard_private.recommendation_runs r "
+        "WHERE r.user_id = CAST(:uid AS uuid) AND r.status = 'completed' "
+        "AND NOT EXISTS (SELECT 1 FROM asgard_private.recommendation_items i "
+        "JOIN asgard_catalog.careers c ON c.id = i.career_id WHERE i.run_id = r.id AND c.status <> 'published') "
+        "ORDER BY r.created_at DESC, r.id DESC LIMIT 1",
+        parameters,
+    )
     return {
         "learning_state": state,
         "active_topic": active,
         "core_milestone_id": core,
         "progress": calculated,
         "recent_done": recent,
-        "recommendation_run_id": None,
+        "recommendation_run_id": recommendation["id"] if recommendation else None,
         "discovery_draft_id": draft["id"] if draft else None,
         "guidance_id": guidance,
     }

@@ -10,6 +10,20 @@ from app.api.contracts import Contract, Identifier, Revision, VersionedChange
 class QuestionReference(Contract):
     question_id: Identifier
     position: Annotated[int, Field(ge=0)]
+    stage: Literal["interests", "activities", "approach", "background", "goals"]
+    prompt: str
+    helper: str
+    multiple: bool
+    interest_option_id: Identifier | None
+    options: list["DiscoveryOption"]
+
+
+class DiscoveryOption(Contract):
+    id: Identifier
+    label: str
+    description: str
+    exclusive: bool
+    excludes: list[Identifier]
 
 
 class Questionnaire(Contract):
@@ -39,6 +53,8 @@ class DiscoverySession(Contract):
     answers: list[DiscoveryAnswer]
     created_at: datetime
     completed_at: datetime | None
+    active_question_ids: list[Identifier]
+    next_question_id: Identifier | None
 
 
 class DiscoveryState(Contract):

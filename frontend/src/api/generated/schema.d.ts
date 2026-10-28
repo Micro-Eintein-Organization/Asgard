@@ -670,8 +670,23 @@ export interface components {
             /** Question Id */
             question_id: string;
         };
+        /** DiscoveryOption */
+        DiscoveryOption: {
+            /** Description */
+            description: string;
+            /** Excludes */
+            excludes: string[];
+            /** Exclusive */
+            exclusive: boolean;
+            /** Id */
+            id: string;
+            /** Label */
+            label: string;
+        };
         /** DiscoverySession */
         DiscoverySession: {
+            /** Active Question Ids */
+            active_question_ids: string[];
             /** Answers */
             answers: components["schemas"]["DiscoveryAnswer"][];
             /** Completed At */
@@ -686,6 +701,8 @@ export interface components {
              * Format: uuid
              */
             id: string;
+            /** Next Question Id */
+            next_question_id: string | null;
             /**
              * Questionnaire Id
              * Format: uuid
@@ -839,10 +856,25 @@ export interface components {
         };
         /** QuestionReference */
         QuestionReference: {
+            /** Helper */
+            helper: string;
+            /** Interest Option Id */
+            interest_option_id: string | null;
+            /** Multiple */
+            multiple: boolean;
+            /** Options */
+            options: components["schemas"]["DiscoveryOption"][];
             /** Position */
             position: number;
+            /** Prompt */
+            prompt: string;
             /** Question Id */
             question_id: string;
+            /**
+             * Stage
+             * @enum {string}
+             */
+            stage: "interests" | "activities" | "approach" | "background" | "goals";
         };
         /** Questionnaire */
         Questionnaire: {
@@ -885,7 +917,7 @@ export interface components {
             created_at: string;
             discovery: components["schemas"]["CompletedDiscoveryReference"] | null;
             /** Failure Code */
-            failure_code: ("timeout" | "quota_exceeded" | "provider_unavailable" | "invalid_output" | "context_outdated" | "no_eligible_context") | null;
+            failure_code: ("timeout" | "quota_exceeded" | "provider_unavailable" | "invalid_output" | "context_outdated" | "no_eligible_context" | "no_supported_careers") | null;
             /** Finished At */
             finished_at: string | null;
             /**
@@ -911,8 +943,16 @@ export interface components {
         };
         /** RecommendationState */
         RecommendationState: {
+            /** Available */
+            available: boolean;
+            /** Catalog Release Id */
+            catalog_release_id: string | null;
+            /** Context Revision */
+            context_revision: number;
             current: components["schemas"]["RecommendationRun"] | null;
             previous_eligible_success: components["schemas"]["RecommendationRun"] | null;
+            /** Unavailable Reason */
+            unavailable_reason: string | null;
         };
         /** RequestRecommendations */
         RequestRecommendations: {
@@ -1224,15 +1264,6 @@ export interface operations {
                     "application/json": components["schemas"]["ErrorBody"];
                 };
             };
-            /** @description Not Implemented */
-            501: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorBody"];
-                };
-            };
             /** @description Service Unavailable */
             503: {
                 headers: {
@@ -1302,15 +1333,6 @@ export interface operations {
             };
             /** @description Too Many Requests */
             429: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorBody"];
-                };
-            };
-            /** @description Not Implemented */
-            501: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -1392,15 +1414,6 @@ export interface operations {
                     "application/json": components["schemas"]["ErrorBody"];
                 };
             };
-            /** @description Not Implemented */
-            501: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorBody"];
-                };
-            };
             /** @description Service Unavailable */
             503: {
                 headers: {
@@ -1414,7 +1427,9 @@ export interface operations {
     };
     get_discovery_questionnaire: {
         parameters: {
-            query?: never;
+            query?: {
+                questionnaire_id?: string | null;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -1468,15 +1483,6 @@ export interface operations {
             };
             /** @description Too Many Requests */
             429: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorBody"];
-                };
-            };
-            /** @description Not Implemented */
-            501: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -1580,15 +1586,6 @@ export interface operations {
                     "application/json": components["schemas"]["ErrorBody"];
                 };
             };
-            /** @description Not Implemented */
-            501: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorBody"];
-                };
-            };
             /** @description Service Unavailable */
             503: {
                 headers: {
@@ -1663,15 +1660,6 @@ export interface operations {
                     "application/json": components["schemas"]["ErrorBody"];
                 };
             };
-            /** @description Not Implemented */
-            501: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorBody"];
-                };
-            };
             /** @description Service Unavailable */
             503: {
                 headers: {
@@ -1739,15 +1727,6 @@ export interface operations {
             };
             /** @description Too Many Requests */
             429: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorBody"];
-                };
-            };
-            /** @description Not Implemented */
-            501: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -1833,15 +1812,6 @@ export interface operations {
                     "application/json": components["schemas"]["ErrorBody"];
                 };
             };
-            /** @description Not Implemented */
-            501: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorBody"];
-                };
-            };
             /** @description Service Unavailable */
             503: {
                 headers: {
@@ -1920,15 +1890,6 @@ export interface operations {
                     "application/json": components["schemas"]["ErrorBody"];
                 };
             };
-            /** @description Not Implemented */
-            501: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorBody"];
-                };
-            };
             /** @description Service Unavailable */
             503: {
                 headers: {
@@ -1998,15 +1959,6 @@ export interface operations {
             };
             /** @description Too Many Requests */
             429: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorBody"];
-                };
-            };
-            /** @description Not Implemented */
-            501: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -2094,15 +2046,6 @@ export interface operations {
                     "application/json": components["schemas"]["ErrorBody"];
                 };
             };
-            /** @description Not Implemented */
-            501: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorBody"];
-                };
-            };
             /** @description Service Unavailable */
             503: {
                 headers: {
@@ -2183,15 +2126,6 @@ export interface operations {
                     "application/json": components["schemas"]["ErrorBody"];
                 };
             };
-            /** @description Not Implemented */
-            501: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorBody"];
-                };
-            };
             /** @description Service Unavailable */
             503: {
                 headers: {
@@ -2259,15 +2193,6 @@ export interface operations {
             };
             /** @description Too Many Requests */
             429: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorBody"];
-                };
-            };
-            /** @description Not Implemented */
-            501: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -2353,15 +2278,6 @@ export interface operations {
                     "application/json": components["schemas"]["ErrorBody"];
                 };
             };
-            /** @description Not Implemented */
-            501: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorBody"];
-                };
-            };
             /** @description Service Unavailable */
             503: {
                 headers: {
@@ -2429,15 +2345,6 @@ export interface operations {
             };
             /** @description Too Many Requests */
             429: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorBody"];
-                };
-            };
-            /** @description Not Implemented */
-            501: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -2516,15 +2423,6 @@ export interface operations {
             };
             /** @description Too Many Requests */
             429: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorBody"];
-                };
-            };
-            /** @description Not Implemented */
-            501: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -2722,15 +2620,6 @@ export interface operations {
                     "application/json": components["schemas"]["ErrorBody"];
                 };
             };
-            /** @description Not Implemented */
-            501: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorBody"];
-                };
-            };
             /** @description Service Unavailable */
             503: {
                 headers: {
@@ -2809,15 +2698,6 @@ export interface operations {
                     "application/json": components["schemas"]["ErrorBody"];
                 };
             };
-            /** @description Not Implemented */
-            501: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorBody"];
-                };
-            };
             /** @description Service Unavailable */
             503: {
                 headers: {
@@ -2887,15 +2767,6 @@ export interface operations {
             };
             /** @description Too Many Requests */
             429: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorBody"];
-                };
-            };
-            /** @description Not Implemented */
-            501: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -2983,15 +2854,6 @@ export interface operations {
                     "application/json": components["schemas"]["ErrorBody"];
                 };
             };
-            /** @description Not Implemented */
-            501: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorBody"];
-                };
-            };
             /** @description Service Unavailable */
             503: {
                 headers: {
@@ -3061,15 +2923,6 @@ export interface operations {
             };
             /** @description Too Many Requests */
             429: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorBody"];
-                };
-            };
-            /** @description Not Implemented */
-            501: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -3158,15 +3011,6 @@ export interface operations {
                     "application/json": components["schemas"]["ErrorBody"];
                 };
             };
-            /** @description Not Implemented */
-            501: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorBody"];
-                };
-            };
             /** @description Service Unavailable */
             503: {
                 headers: {
@@ -3236,15 +3080,6 @@ export interface operations {
             };
             /** @description Too Many Requests */
             429: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorBody"];
-                };
-            };
-            /** @description Not Implemented */
-            501: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -3328,15 +3163,6 @@ export interface operations {
                     "application/json": components["schemas"]["ErrorBody"];
                 };
             };
-            /** @description Not Implemented */
-            501: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorBody"];
-                };
-            };
             /** @description Service Unavailable */
             503: {
                 headers: {
@@ -3411,15 +3237,6 @@ export interface operations {
             };
             /** @description Too Many Requests */
             429: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorBody"];
-                };
-            };
-            /** @description Not Implemented */
-            501: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -3532,15 +3349,6 @@ export interface operations {
                     "application/json": components["schemas"]["ErrorBody"];
                 };
             };
-            /** @description Not Implemented */
-            501: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorBody"];
-                };
-            };
             /** @description Service Unavailable */
             503: {
                 headers: {
@@ -3610,15 +3418,6 @@ export interface operations {
             };
             /** @description Too Many Requests */
             429: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorBody"];
-                };
-            };
-            /** @description Not Implemented */
-            501: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -3703,15 +3502,6 @@ export interface operations {
                     "application/json": components["schemas"]["ErrorBody"];
                 };
             };
-            /** @description Not Implemented */
-            501: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorBody"];
-                };
-            };
             /** @description Service Unavailable */
             503: {
                 headers: {
@@ -3782,15 +3572,6 @@ export interface operations {
             };
             /** @description Too Many Requests */
             429: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorBody"];
-                };
-            };
-            /** @description Not Implemented */
-            501: {
                 headers: {
                     [name: string]: unknown;
                 };

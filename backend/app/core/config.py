@@ -14,6 +14,10 @@ class Settings(BaseSettings):
     auth_enabled: bool = False
     auth_issuer: str = "http://127.0.0.1:55321/auth/v1"
     database_url: SecretStr = SecretStr("")
+    groq_enabled: bool = False
+    groq_api_key: SecretStr = SecretStr("")
+    groq_model: str = Field(default="openai/gpt-oss-120b", min_length=1, max_length=120)
+    groq_max_completion_tokens: int = Field(default=4096, ge=1024, le=8192)
 
 
 @lru_cache

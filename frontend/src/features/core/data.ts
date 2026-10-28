@@ -100,6 +100,58 @@ export const coreApi = {
   activity: (month: string) =>
     result(api.GET("/api/v1/me/activity", { params: { query: { month } } })),
   discovery: () => result(api.GET("/api/v1/me/discovery")),
+  questionnaire: (id?: string) =>
+    result(
+      api.GET("/api/v1/discovery/questionnaire", {
+        params: { query: { questionnaire_id: id } },
+      }),
+    ),
+  startDiscovery: (body: Schemas["StartDiscovery"]) =>
+    result(api.POST("/api/v1/me/discovery", { body })),
+  saveDiscovery: ({
+    id,
+    body,
+  }: {
+    id: string;
+    body: Schemas["SaveDiscovery"];
+  }) =>
+    result(
+      api.PATCH("/api/v1/me/discovery/{session_id}/answers", {
+        params: { path: { session_id: id } },
+        body,
+      }),
+    ),
+  completeDiscovery: ({
+    id,
+    body,
+  }: {
+    id: string;
+    body: Schemas["CompleteDiscovery"];
+  }) =>
+    result(
+      api.POST("/api/v1/me/discovery/{session_id}/complete", {
+        params: { path: { session_id: id } },
+        body,
+      }),
+    ),
+  retakeDiscovery: (body: Schemas["RetakeDiscovery"]) =>
+    result(api.POST("/api/v1/me/discovery/retake", { body })),
+  recommendations: () => result(api.GET("/api/v1/me/recommendations")),
+  generateRecommendations: (body: Schemas["RequestRecommendations"]) =>
+    result(api.POST("/api/v1/me/recommendations", { body })),
+  retryRecommendations: ({
+    id,
+    body,
+  }: {
+    id: string;
+    body: Schemas["RetryRecommendations"];
+  }) =>
+    result(
+      api.POST("/api/v1/me/recommendations/{run_id}/retry", {
+        params: { path: { run_id: id } },
+        body,
+      }),
+    ),
   async resolveCareer(reference: string): Promise<Schemas["Career"]> {
     if (/^[0-9a-f]{8}-[0-9a-f-]{27}$/i.test(reference))
       return coreApi.career(reference);

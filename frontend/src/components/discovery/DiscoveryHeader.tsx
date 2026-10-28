@@ -4,6 +4,7 @@ interface DiscoveryHeaderProps {
   currentStep: number;
   totalSteps?: number;
   showProgress?: boolean;
+  disabled?: boolean;
   onBack: () => void;
   onSkip: () => void;
 }
@@ -12,6 +13,7 @@ export const DiscoveryHeader: React.FC<DiscoveryHeaderProps> = ({
   currentStep,
   totalSteps = 5,
   showProgress = true,
+  disabled = false,
   onBack,
   onSkip,
 }) => {
@@ -20,6 +22,7 @@ export const DiscoveryHeader: React.FC<DiscoveryHeaderProps> = ({
       <div className="flex justify-between items-center">
         <button
           onClick={onBack}
+          disabled={disabled}
           className="text-xs font-semibold px-4 py-2 rounded-full border border-gray-200 hover:bg-gray-50 transition-colors flex items-center space-x-1 cursor-pointer"
         >
           <span>&larr; Back</span>
@@ -28,9 +31,10 @@ export const DiscoveryHeader: React.FC<DiscoveryHeaderProps> = ({
         {showProgress && currentStep <= totalSteps && (
           <button
             onClick={onSkip}
+            disabled={disabled}
             className="text-xs text-gray-500 hover:text-black font-medium cursor-pointer"
           >
-            Skip to Free Browsing &rarr;
+            Save and browse careers &rarr;
           </button>
         )}
       </div>
@@ -40,7 +44,9 @@ export const DiscoveryHeader: React.FC<DiscoveryHeaderProps> = ({
           {currentStep <= totalSteps ? "Discovery" : "Discovery results"}
         </h1>
         <p className="text-xs text-gray-500">
-          {currentStep <= totalSteps ? "Discovery" : "Your account records"}
+          {currentStep <= totalSteps
+            ? `Question ${currentStep} of ${totalSteps}`
+            : "Your saved account results"}
         </p>
         {showProgress && currentStep <= totalSteps && (
           <div className="flex justify-center items-center space-x-2">

@@ -10,10 +10,11 @@ class ErrorBody(BaseModel):
 
 
 class APIError(Exception):
-    def __init__(self, status: int, code: str, message: str):
+    def __init__(self, status: int, code: str, message: str, *, retry_after: int | None = None):
         self.status = status
         self.code = code
         self.message = message
+        self.retry_after = retry_after
 
 
 async def api_error(request: Request, error: APIError) -> JSONResponse:
@@ -24,5 +25,6 @@ async def api_error(request: Request, error: APIError) -> JSONResponse:
             message=error.message,
             request_id=request.state.request_id,
         ).model_dump(),
-        headers={"WWW-Authenticate": "Bearer"} if error.status == 401 else {},
+        headers=({"WWW-Authenticate": "Bearer"} if error.status == 401 else {})
+        | ({"Retry-After": str(error.retry_after)} if error.retry_after is not None else {}),
     )

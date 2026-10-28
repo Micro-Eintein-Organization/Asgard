@@ -220,16 +220,26 @@ function SettingsEditor({ userId }: { userId: string }) {
                   </h4>
                   <p className="text-[10px] text-gray-400">
                     {discovery.error?.message ??
-                      "AI recommendations are not enabled. Your saved answers remain separate from your learning focus."}
+                      "Your saved answers and career suggestions remain separate from your learning focus."}
                   </p>
                 </div>
                 <button
                   onClick={() => void navigate(appRoutes.discovery)}
                   className="px-4 py-2 rounded-full border border-gray-300 text-xs font-semibold hover:bg-gray-50 cursor-pointer"
                 >
-                  Retake Discovery
+                  {discovery.data?.draft
+                    ? "Resume Discovery"
+                    : discovery.data?.latest_completed
+                      ? "Retake Discovery"
+                      : "Start Discovery"}
                 </button>
               </div>
+              <Link
+                to={appRoutes.results}
+                className="inline-block text-xs underline"
+              >
+                View saved career suggestions
+              </Link>
             </div>
 
             {/* Preferred Primary Field Radio Selector */}

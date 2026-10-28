@@ -54,7 +54,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         allow_credentials=False,
         allow_methods=["GET", "PATCH", "POST"],
         allow_headers=["Content-Type", "Authorization"],
-        expose_headers=["X-Request-ID"],
+        expose_headers=["X-Request-ID", "Retry-After"],
     )
 
     @app.middleware("http")

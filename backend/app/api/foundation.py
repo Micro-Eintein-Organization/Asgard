@@ -1,11 +1,11 @@
-"""Registered feature contracts; unapproved Discovery and AI writes stay gated."""
+"""Authenticated application operations using their owning feature services."""
 
 from typing import Annotated
 from uuid import UUID
 
 from fastapi import APIRouter, Depends, Query, Request
 
-from app.core.errors import APIError, ErrorBody
+from app.core.errors import ErrorBody
 from app.core.security import Identity, current_identity
 from app.modules.careers.schemas import Career, CareerPage, Category
 from app.modules.discovery.schemas import (
@@ -39,6 +39,8 @@ from app.modules.recommendations.schemas import (
 from app.modules.roadmaps.schemas import Milestone, Resource, Roadmap, Topic
 
 from app.modules.careers import service as careers_service
+from app.modules.discovery import service as discovery_service
+from app.modules.recommendations import service as recommendations_service
 from app.modules.roadmaps import service as roadmaps_service
 from app.modules.progress import service as progress_service
 from app.modules.storage import transaction
@@ -48,12 +50,8 @@ Limit = Annotated[int, Query(ge=1, le=100)]
 Offset = Annotated[int, Query(ge=0)]
 router = APIRouter(
     tags=["foundation-contracts"],
-    responses={status: {"model": ErrorBody} for status in (401, 404, 409, 422, 429, 501, 503)},
+    responses={status: {"model": ErrorBody} for status in (401, 404, 409, 422, 429, 503)},
 )
-
-
-def unfinished():
-    raise APIError(501, "not_implemented", "This feature operation is not implemented yet.")
 
 
 @router.get(
@@ -61,18 +59,21 @@ def unfinished():
     response_model=Questionnaire,
     operation_id="get_discovery_questionnaire",
 )
-async def get_questionnaire(identity: Auth):
-    unfinished()
+async def get_questionnaire(request: Request, identity: Auth, questionnaire_id: UUID | None = None):
+    async with transaction(request, identity) as connection:
+        return await discovery_service.questionnaire(connection, questionnaire_id)
 
 
 @router.get("/me/discovery", response_model=DiscoveryState, operation_id="get_my_discovery")
-async def get_discovery(identity: Auth):
-    unfinished()
+async def get_discovery(request: Request, identity: Auth):
+    async with transaction(request, identity) as connection:
+        return await discovery_service.state(connection, identity.user_id)
 
 
 @router.post("/me/discovery", response_model=DiscoverySession, operation_id="start_my_discovery")
-async def start_discovery(body: StartDiscovery, identity: Auth):
-    unfinished()
+async def start_discovery(request: Request, body: StartDiscovery, identity: Auth):
+    async with transaction(request, identity) as connection:
+        return await discovery_service.start(connection, identity.user_id, body.questionnaire_id)
 
 
 @router.get(
@@ -80,8 +81,9 @@ async def start_discovery(body: StartDiscovery, identity: Auth):
     response_model=DiscoverySession,
     operation_id="get_my_discovery_session",
 )
-async def get_discovery_session(session_id: UUID, identity: Auth):
-    unfinished()
+async def get_discovery_session(request: Request, session_id: UUID, identity: Auth):
+    async with transaction(request, identity) as connection:
+        return await discovery_service.session(connection, identity.user_id, session_id)
 
 
 @router.patch(
@@ -89,8 +91,11 @@ async def get_discovery_session(session_id: UUID, identity: Auth):
     response_model=DiscoverySession,
     operation_id="save_my_discovery_answers",
 )
-async def save_discovery_answers(session_id: UUID, body: SaveDiscovery, identity: Auth):
-    unfinished()
+async def save_discovery_answers(
+    request: Request, session_id: UUID, body: SaveDiscovery, identity: Auth
+):
+    async with transaction(request, identity) as connection:
+        return await discovery_service.checkpoint(connection, identity.user_id, session_id, body)
 
 
 @router.post(
@@ -98,8 +103,11 @@ async def save_discovery_answers(session_id: UUID, body: SaveDiscovery, identity
     response_model=DiscoverySession,
     operation_id="complete_my_discovery",
 )
-async def complete_discovery(session_id: UUID, body: CompleteDiscovery, identity: Auth):
-    unfinished()
+async def complete_discovery(
+    request: Request, session_id: UUID, body: CompleteDiscovery, identity: Auth
+):
+    async with transaction(request, identity) as connection:
+        return await discovery_service.complete(connection, identity.user_id, session_id, body)
 
 
 @router.post(
@@ -107,8 +115,9 @@ async def complete_discovery(session_id: UUID, body: CompleteDiscovery, identity
     response_model=DiscoverySession,
     operation_id="retake_my_discovery",
 )
-async def retake_discovery(body: RetakeDiscovery, identity: Auth):
-    unfinished()
+async def retake_discovery(request: Request, body: RetakeDiscovery, identity: Auth):
+    async with transaction(request, identity) as connection:
+        return await discovery_service.retake(connection, identity.user_id, body)
 
 
 @router.get("/me/dashboard", response_model=Dashboard, operation_id="get_my_dashboard")
@@ -195,8 +204,11 @@ async def list_resources(request: Request, roadmap_id: UUID, topic_id: UUID, ide
     response_model=RecommendationState,
     operation_id="get_my_recommendations",
 )
-async def get_recommendations(identity: Auth):
-    unfinished()
+async def get_recommendations(request: Request, identity: Auth):
+    async with transaction(request, identity) as connection:
+        return await recommendations_service.state(
+            connection, identity.user_id, request.app.state.settings
+        )
 
 
 @router.post(
@@ -205,8 +217,8 @@ async def get_recommendations(identity: Auth):
     operation_id="request_my_recommendations",
     status_code=202,
 )
-async def request_recommendations(body: RequestRecommendations, identity: Auth):
-    unfinished()
+async def request_recommendations(request: Request, body: RequestRecommendations, identity: Auth):
+    return await recommendations_service.request_run(request, identity, body)
 
 
 @router.get(
@@ -214,8 +226,8 @@ async def request_recommendations(body: RequestRecommendations, identity: Auth):
     response_model=RecommendationRun,
     operation_id="get_my_recommendation_run",
 )
-async def get_recommendation_run(run_id: UUID, identity: Auth):
-    unfinished()
+async def get_recommendation_run(request: Request, run_id: UUID, identity: Auth):
+    return await recommendations_service.get_run(request, identity, run_id)
 
 
 @router.post(
@@ -224,8 +236,10 @@ async def get_recommendation_run(run_id: UUID, identity: Auth):
     operation_id="retry_my_recommendations",
     status_code=202,
 )
-async def retry_recommendations(run_id: UUID, body: RetryRecommendations, identity: Auth):
-    unfinished()
+async def retry_recommendations(
+    request: Request, run_id: UUID, body: RetryRecommendations, identity: Auth
+):
+    return await recommendations_service.retry(request, identity, run_id, body)
 
 
 @router.get("/me/learning", response_model=LearningState, operation_id="get_my_learning_state")

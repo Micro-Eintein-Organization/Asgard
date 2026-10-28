@@ -15,7 +15,8 @@ export const EntryChoice: React.FC<EntryChoiceProps> = ({ onSelectChoice }) => {
         How would you like to start?
       </h1>
       <p className="mt-3 text-sm text-gray-500 max-w-lg mx-auto">
-        Browse published careers or check Guided Discovery availability.
+        Answer guided questions about your interests, or browse the career
+        catalog directly.
       </p>
 
       <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -30,11 +31,11 @@ export const EntryChoice: React.FC<EntryChoiceProps> = ({ onSelectChoice }) => {
           </div>
           <h2 className="text-lg font-bold text-gray-900">Guided Discovery</h2>
           <p className="text-xs text-gray-500 leading-relaxed">
-            Guided questions and answer saving are awaiting review. AI career
-            recommendations are unavailable.
+            Explore your interests, experience and goals. Save your answers and
+            get career suggestions from the available catalog.
           </p>
           <span className="text-xs font-semibold text-blue-600 hover:underline">
-            Check availability &rarr;
+            Start Discovery &rarr;
           </span>
         </button>
 
@@ -67,7 +68,9 @@ export const EntryChoice: React.FC<EntryChoiceProps> = ({ onSelectChoice }) => {
         Continue
       </button>
       <p className="mt-4 text-xs text-gray-500">
-        Guided Discovery cannot accept answers until its review is complete.
+        Discovery answers save to your account. Active answers and learning
+        context can be sent to Groq for career suggestions when configured.
+        Names and contact details are excluded; browsing stays available.
       </p>
     </div>
   );
