@@ -19,8 +19,8 @@ from app.modules.recommendations.schemas import (
 )
 
 
-def test_foundation_routes_require_authentication_and_never_report_success():
-    app = create_app(Settings(auth_enabled=True))
+def test_feature_routes_require_authentication_and_fail_closed_without_storage():
+    app = create_app(Settings(auth_enabled=True, database_url=""))
     schema = app.openapi()
     operations = [
         (path, method, operation)
@@ -32,7 +32,7 @@ def test_foundation_routes_require_authentication_and_never_report_success():
     with TestClient(app) as client:
         for path, method, operation in operations:
             assert operation["security"] == [{"HTTPBearer": []}]
-            assert "501" in operation["responses"]
+            assert "503" in operation["responses"]
             if method == "get":
                 url = path
                 for parameter in operation.get("parameters", []):
@@ -43,8 +43,8 @@ def test_foundation_routes_require_authentication_and_never_report_success():
                     uuid4(), uuid4(), "aal1"
                 )
                 response = client.get(url, params={"month": "2026-10"})
-                assert response.status_code == 501
-                assert response.json()["code"] == "not_implemented"
+                assert response.status_code == 503
+                assert response.json()["code"] == "database_not_configured"
                 if path.startswith("/api/v1/me/"):
                     assert response.headers["Cache-Control"] == "no-store"
                 app.dependency_overrides.clear()
@@ -53,22 +53,34 @@ def test_foundation_routes_require_authentication_and_never_report_success():
 def test_structured_output_requires_catalog_relationships_and_exact_context_evidence():
     career, roadmap, topic = uuid4(), uuid4(), uuid4()
     context = RecommendationContext(
-        context_revision=1, discovery=None,
-        facts=[ContextFact(
-            id="focus:1", source="current_roadmap", source_id=str(roadmap),
-            source_revision=1, description="An explicitly chosen learning path.",
-        )],
+        context_revision=1,
+        discovery=None,
+        facts=[
+            ContextFact(
+                id="focus:1",
+                source="current_roadmap",
+                source_id=str(roadmap),
+                source_revision=1,
+                description="An explicitly chosen learning path.",
+            )
+        ],
     )
     item = UntrustedRecommendationItem(
-        career_id=career, reason="A direction to explore based on your selected path.",
-        evidence_fact_ids=["focus:1"], roadmap_id=roadmap, starting_topic_id=topic,
+        career_id=career,
+        reason="A direction to explore based on your selected path.",
+        evidence_fact_ids=["focus:1"],
+        roadmap_id=roadmap,
+        starting_topic_id=topic,
     )
     catalog = [PublishedCareerReference(career_id=career, roadmaps={roadmap: [topic]})]
     output = UntrustedRecommendationOutput(items=[item])
     assert validate_recommendations(output, context, catalog)[0].career_id == career
     for changed in (
-        {"career_id": uuid4()}, {"roadmap_id": uuid4()}, {"starting_topic_id": uuid4()},
-        {"roadmap_id": None}, {"evidence_fact_ids": ["another-revision:1"]},
+        {"career_id": uuid4()},
+        {"roadmap_id": uuid4()},
+        {"starting_topic_id": uuid4()},
+        {"roadmap_id": None},
+        {"evidence_fact_ids": ["another-revision:1"]},
     ):
         invalid = UntrustedRecommendationOutput(
             items=[UntrustedRecommendationItem.model_validate(item.model_dump() | changed)]
@@ -77,28 +89,35 @@ def test_structured_output_requires_catalog_relationships_and_exact_context_evid
             validate_recommendations(invalid, context, catalog)
     with pytest.raises(ValidationError):
         UntrustedRecommendationOutput(items=[item, item])
-    with pytest.raises(ValidationError):
-        UntrustedRecommendationOutput(items=[])
+    assert UntrustedRecommendationOutput(items=[]).items == []
     with pytest.raises(ValidationError):
         UntrustedRecommendationItem.model_validate(item.model_dump() | {"match_score": 99})
 
 
 def test_mutations_reject_owner_fields_duplicate_answers_and_invalid_timezones():
     with pytest.raises(ValidationError):
-        SaveDiscovery(expected_version=1, answers=[
-            {"question_id": "interests", "option_ids": ["unsure", "unsure"]}
-        ])
+        SaveDiscovery(
+            expected_version=1,
+            answers=[{"question_id": "interests", "option_ids": ["unsure", "unsure"]}],
+        )
     with pytest.raises(ValidationError):
-        SaveDiscovery(expected_version=True, answers=[
-            {"question_id": "interests", "option_ids": ["unsure"]}
-        ])
+        SaveDiscovery(
+            expected_version=True, answers=[{"question_id": "interests", "option_ids": ["unsure"]}]
+        )
     with pytest.raises(ValidationError):
         SavePreferences(
-            expected_version=0, preferred_category_id=None, timezone="invalid/timezone",
+            expected_version=0,
+            preferred_category_id=None,
+            timezone="invalid/timezone",
             dismissed_guidance=[],
         )
     with pytest.raises(ValidationError):
-        SavePreferences.model_validate({
-            "expected_version": 0, "preferred_category_id": None, "timezone": "Asia/Manila",
-            "dismissed_guidance": [], "user_id": str(uuid4()),
-        })
+        SavePreferences.model_validate(
+            {
+                "expected_version": 0,
+                "preferred_category_id": None,
+                "timezone": "Asia/Manila",
+                "dismissed_guidance": [],
+                "user_id": str(uuid4()),
+            }
+        )

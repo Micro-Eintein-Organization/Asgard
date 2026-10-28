@@ -54,7 +54,7 @@ export function LandingPage() {
         <div className="landing-preview">
           <p>
             {authConfigured
-              ? "Sign in to manage your profile and explore the published career catalog. AI recommendations and PDF uploads are unavailable."
+              ? "Save your Discovery answers, explore starter career roadmaps, and keep track of your learning. PDF uploads are unavailable."
               : "Account access is not configured in this environment."}
           </p>
         </div>

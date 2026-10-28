@@ -476,9 +476,59 @@
         "title": "DiscoveryAnswer",
         "type": "object"
       },
+      "DiscoveryOption": {
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "title": "Description",
+            "type": "string"
+          },
+          "excludes": {
+            "items": {
+              "maxLength": 100,
+              "minLength": 1,
+              "type": "string"
+            },
+            "title": "Excludes",
+            "type": "array"
+          },
+          "exclusive": {
+            "title": "Exclusive",
+            "type": "boolean"
+          },
+          "id": {
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Id",
+            "type": "string"
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "label",
+          "description",
+          "exclusive",
+          "excludes"
+        ],
+        "title": "DiscoveryOption",
+        "type": "object"
+      },
       "DiscoverySession": {
         "additionalProperties": false,
         "properties": {
+          "active_question_ids": {
+            "items": {
+              "maxLength": 100,
+              "minLength": 1,
+              "type": "string"
+            },
+            "title": "Active Question Ids",
+            "type": "array"
+          },
           "answers": {
             "items": {
               "$ref": "#/components/schemas/DiscoveryAnswer"
@@ -507,6 +557,19 @@
             "format": "uuid",
             "title": "Id",
             "type": "string"
+          },
+          "next_question_id": {
+            "anyOf": [
+              {
+                "maxLength": 100,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Question Id"
           },
           "questionnaire_id": {
             "format": "uuid",
@@ -547,7 +610,9 @@
           "revision",
           "answers",
           "created_at",
-          "completed_at"
+          "completed_at",
+          "active_question_ids",
+          "next_question_id"
         ],
         "title": "DiscoverySession",
         "type": "object"
@@ -941,21 +1006,70 @@
       "QuestionReference": {
         "additionalProperties": false,
         "properties": {
+          "helper": {
+            "title": "Helper",
+            "type": "string"
+          },
+          "interest_option_id": {
+            "anyOf": [
+              {
+                "maxLength": 100,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Interest Option Id"
+          },
+          "multiple": {
+            "title": "Multiple",
+            "type": "boolean"
+          },
+          "options": {
+            "items": {
+              "$ref": "#/components/schemas/DiscoveryOption"
+            },
+            "title": "Options",
+            "type": "array"
+          },
           "position": {
             "minimum": 0.0,
             "title": "Position",
             "type": "integer"
+          },
+          "prompt": {
+            "title": "Prompt",
+            "type": "string"
           },
           "question_id": {
             "maxLength": 100,
             "minLength": 1,
             "title": "Question Id",
             "type": "string"
+          },
+          "stage": {
+            "enum": [
+              "interests",
+              "activities",
+              "approach",
+              "background",
+              "goals"
+            ],
+            "title": "Stage",
+            "type": "string"
           }
         },
         "required": [
           "question_id",
-          "position"
+          "position",
+          "stage",
+          "prompt",
+          "helper",
+          "multiple",
+          "interest_option_id",
+          "options"
         ],
         "title": "QuestionReference",
         "type": "object"
@@ -1053,7 +1167,8 @@
                   "provider_unavailable",
                   "invalid_output",
                   "context_outdated",
-                  "no_eligible_context"
+                  "no_eligible_context",
+                  "no_supported_careers"
                 ],
                 "type": "string"
               },
@@ -1146,6 +1261,27 @@
       "RecommendationState": {
         "additionalProperties": false,
         "properties": {
+          "available": {
+            "title": "Available",
+            "type": "boolean"
+          },
+          "catalog_release_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Catalog Release Id"
+          },
+          "context_revision": {
+            "minimum": 1.0,
+            "title": "Context Revision",
+            "type": "integer"
+          },
           "current": {
             "anyOf": [
               {
@@ -1165,11 +1301,26 @@
                 "type": "null"
               }
             ]
+          },
+          "unavailable_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Unavailable Reason"
           }
         },
         "required": [
           "current",
-          "previous_eligible_success"
+          "previous_eligible_success",
+          "context_revision",
+          "catalog_release_id",
+          "available",
+          "unavailable_reason"
         ],
         "title": "RecommendationState",
         "type": "object"
@@ -1876,16 +2027,6 @@
             },
             "description": "Too Many Requests"
           },
-          "501": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description": "Not Implemented"
-          },
           "503": {
             "content": {
               "application/json": {
@@ -1984,16 +2125,6 @@
             },
             "description": "Too Many Requests"
           },
-          "501": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description": "Not Implemented"
-          },
           "503": {
             "content": {
               "application/json": {
@@ -2084,16 +2215,6 @@
             },
             "description": "Too Many Requests"
           },
-          "501": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description": "Not Implemented"
-          },
           "503": {
             "content": {
               "application/json": {
@@ -2119,6 +2240,25 @@
     "/api/v1/discovery/questionnaire": {
       "get": {
         "operationId": "get_discovery_questionnaire",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "questionnaire_id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "uuid",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Questionnaire Id"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "content": {
@@ -2179,16 +2319,6 @@
               }
             },
             "description": "Too Many Requests"
-          },
-          "501": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description": "Not Implemented"
           },
           "503": {
             "content": {
@@ -2309,16 +2439,6 @@
             },
             "description": "Too Many Requests"
           },
-          "501": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description": "Not Implemented"
-          },
           "503": {
             "content": {
               "application/json": {
@@ -2405,16 +2525,6 @@
             },
             "description": "Too Many Requests"
           },
-          "501": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description": "Not Implemented"
-          },
           "503": {
             "content": {
               "application/json": {
@@ -2500,16 +2610,6 @@
               }
             },
             "description": "Too Many Requests"
-          },
-          "501": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description": "Not Implemented"
           },
           "503": {
             "content": {
@@ -2604,16 +2704,6 @@
               }
             },
             "description": "Too Many Requests"
-          },
-          "501": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description": "Not Implemented"
           },
           "503": {
             "content": {
@@ -2710,16 +2800,6 @@
               }
             },
             "description": "Too Many Requests"
-          },
-          "501": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description": "Not Implemented"
           },
           "503": {
             "content": {
@@ -2818,16 +2898,6 @@
               }
             },
             "description": "Too Many Requests"
-          },
-          "501": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description": "Not Implemented"
           },
           "503": {
             "content": {
@@ -2937,16 +3007,6 @@
             },
             "description": "Too Many Requests"
           },
-          "501": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description": "Not Implemented"
-          },
           "503": {
             "content": {
               "application/json": {
@@ -3055,16 +3115,6 @@
             },
             "description": "Too Many Requests"
           },
-          "501": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description": "Not Implemented"
-          },
           "503": {
             "content": {
               "application/json": {
@@ -3150,16 +3200,6 @@
               }
             },
             "description": "Too Many Requests"
-          },
-          "501": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description": "Not Implemented"
           },
           "503": {
             "content": {
@@ -3255,16 +3295,6 @@
             },
             "description": "Too Many Requests"
           },
-          "501": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description": "Not Implemented"
-          },
           "503": {
             "content": {
               "application/json": {
@@ -3350,16 +3380,6 @@
               }
             },
             "description": "Too Many Requests"
-          },
-          "501": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description": "Not Implemented"
           },
           "503": {
             "content": {
@@ -3454,16 +3474,6 @@
               }
             },
             "description": "Too Many Requests"
-          },
-          "501": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description": "Not Implemented"
           },
           "503": {
             "content": {
@@ -3691,16 +3701,6 @@
             },
             "description": "Too Many Requests"
           },
-          "501": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description": "Not Implemented"
-          },
           "503": {
             "content": {
               "application/json": {
@@ -3794,16 +3794,6 @@
               }
             },
             "description": "Too Many Requests"
-          },
-          "501": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description": "Not Implemented"
           },
           "503": {
             "content": {
@@ -3902,16 +3892,6 @@
               }
             },
             "description": "Too Many Requests"
-          },
-          "501": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description": "Not Implemented"
           },
           "503": {
             "content": {
@@ -4021,16 +4001,6 @@
             },
             "description": "Too Many Requests"
           },
-          "501": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description": "Not Implemented"
-          },
           "503": {
             "content": {
               "application/json": {
@@ -4132,16 +4102,6 @@
               }
             },
             "description": "Too Many Requests"
-          },
-          "501": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description": "Not Implemented"
           },
           "503": {
             "content": {
@@ -4261,16 +4221,6 @@
             },
             "description": "Too Many Requests"
           },
-          "501": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description": "Not Implemented"
-          },
           "503": {
             "content": {
               "application/json": {
@@ -4373,16 +4323,6 @@
             },
             "description": "Too Many Requests"
           },
-          "501": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description": "Not Implemented"
-          },
           "503": {
             "content": {
               "application/json": {
@@ -4480,16 +4420,6 @@
               }
             },
             "description": "Too Many Requests"
-          },
-          "501": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description": "Not Implemented"
           },
           "503": {
             "content": {
@@ -4608,16 +4538,6 @@
               }
             },
             "description": "Too Many Requests"
-          },
-          "501": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description": "Not Implemented"
           },
           "503": {
             "content": {
@@ -4748,16 +4668,6 @@
             },
             "description": "Too Many Requests"
           },
-          "501": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description": "Not Implemented"
-          },
           "503": {
             "content": {
               "application/json": {
@@ -4859,16 +4769,6 @@
               }
             },
             "description": "Too Many Requests"
-          },
-          "501": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description": "Not Implemented"
           },
           "503": {
             "content": {
@@ -4977,16 +4877,6 @@
               }
             },
             "description": "Too Many Requests"
-          },
-          "501": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description": "Not Implemented"
           },
           "503": {
             "content": {
@@ -5099,16 +4989,6 @@
               }
             },
             "description": "Too Many Requests"
-          },
-          "501": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description": "Not Implemented"
           },
           "503": {
             "content": {

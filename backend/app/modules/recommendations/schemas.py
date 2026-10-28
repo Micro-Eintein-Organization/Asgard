@@ -7,8 +7,13 @@ from pydantic import Field, model_validator
 from app.api.contracts import Contract, Identifier, Revision
 
 FailureCode = Literal[
-    "timeout", "quota_exceeded", "provider_unavailable", "invalid_output",
-    "context_outdated", "no_eligible_context",
+    "timeout",
+    "quota_exceeded",
+    "provider_unavailable",
+    "invalid_output",
+    "context_outdated",
+    "no_eligible_context",
+    "no_supported_careers",
 ]
 
 
@@ -27,7 +32,11 @@ class DocumentContextReference(Contract):
 class ContextFact(Contract):
     id: Identifier
     source: Literal[
-        "discovery", "current_roadmap", "topic_progress", "branch_choice", "pdf_analysis",
+        "discovery",
+        "current_roadmap",
+        "topic_progress",
+        "branch_choice",
+        "pdf_analysis",
     ]
     source_id: Identifier
     source_revision: Revision
@@ -70,7 +79,7 @@ class UntrustedRecommendationItem(Contract):
 
 
 class UntrustedRecommendationOutput(Contract):
-    items: Annotated[list[UntrustedRecommendationItem], Field(min_length=1, max_length=3)]
+    items: Annotated[list[UntrustedRecommendationItem], Field(max_length=3)]
 
     @model_validator(mode="after")
     def distinct_careers(self):
@@ -155,3 +164,7 @@ class RecommendationRun(Contract):
 class RecommendationState(Contract):
     current: RecommendationRun | None
     previous_eligible_success: RecommendationRun | None
+    context_revision: Revision
+    catalog_release_id: UUID | None
+    available: bool
+    unavailable_reason: str | None

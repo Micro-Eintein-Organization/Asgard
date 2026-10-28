@@ -1,5 +1,7 @@
 # Persisted local core
 
+Superseded follow-up, 2026-10-28: the owner approved and requested the [connected prototype](connected-prototype.md), including conditional Discovery, Groq and three brief published paths. The blocked/unpublished/AI-deferred descriptions below preserve the earlier handoff status; consult the new guide for current implementation and verification limits.
+
 - Implementer/task owner: Codex
 - Created: 2026-10-27
 - Last updated: 2026-10-27

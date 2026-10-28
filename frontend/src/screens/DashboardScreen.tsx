@@ -145,6 +145,16 @@ export function DashboardScreen() {
   return (
     <div className="max-w-6xl mx-auto px-6 py-8 space-y-8 bg-white text-gray-900 min-h-screen">
       <h1 className="sr-only">Dashboard</h1>
+      <div className="flex flex-wrap gap-4 text-sm">
+        <Link to={appRoutes.results} className="underline">
+          View saved career suggestions
+        </Link>
+        <Link to={appRoutes.discovery} className="underline">
+          {overview.discovery_draft_id
+            ? "Resume Discovery"
+            : "Guided Discovery"}
+        </Link>
+      </div>
       {overview.active_topic && activeRoadmap.data && (
         <p className="border rounded-xl p-4 text-sm">
           You have a topic marked Learning.{" "}
@@ -282,7 +292,7 @@ export function DashboardScreen() {
                     {guidance === "resume_discovery"
                       ? "Review your saved Discovery draft."
                       : guidance === "start_discovery"
-                        ? "Check Guided Discovery availability."
+                        ? "Explore your interests with Guided Discovery."
                         : "Add your name in Settings. This is optional."}{" "}
                     <Link to={actionPath} className="underline">
                       Open

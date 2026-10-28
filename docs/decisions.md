@@ -68,6 +68,16 @@ Implementation order: verified email/password foundation first. AUTH-C1 blocks G
 
 ## Discovery and recommendations
 
+### Connected prototype resolution, 2026-10-28
+
+Recommendation repair follow-up, 2026-10-28: the same owner approved “Repair Groq validation and select from published roadmaps” in this task. For the limited prototype catalog, select one to three closest available published paths, with explicit caveats for weak/mixed/uncertain connections. This supersedes the earlier empty-selection catalog-gap choice below for new generations; historical gap outcomes remain readable. The provider returns request-scoped candidate/evidence keys and the backend resolves snapshot IDs. Total completion budget defaults to 4,096 tokens, configurable within 1,024–8,192; final explanations remain short. Public response fields, schemas and database grants are unchanged. Narrow tests and one synthetic live provider call are authorized; broader verification remains deferred. [Repair evidence](features/connected-prototype.md#recommendation-repair-evidence-2026-10-28) distinguishes live validation from the subsequent mocked-provider persistence replay.
+
+Approved by the project owner, identifying themselves in this task as `@YakisobaNissin`, through “PLEASE IMPLEMENT THIS PLAN: Connected prototype with saved Discovery and Groq recommendations.” This authorizes the bounded Discovery definition/persistence contracts, Groq recommendation implementation, additive catalog-gap outcome and local content publication. It is not completed runtime, model-quality or independent code-review evidence.
+
+For this local prototype, one activities stage branches after interests: single tools/design/investigation/systems interests select their authored activity variants; mixed interests or uncertainty select the general activity variant. Approach, background and goals remain shared. Inactive branch answers are retained for restoration and excluded from completion and provider context. New sessions are blank; retakes copy the prior completed answer set. This resolves AUD-09 for this bounded route; deeper branching remains deferred.
+
+Groq is now included in the prototype scope, superseding the earlier task's temporary AI deferral. Publish three brief paths (Frontend Developer, Data Analyst and UI/UX Designer), allow a truthful catalog-gap outcome instead of forced matching, and keep focus/progress changes explicit. Tests, builds, browser checks and live provider validation remain deferred by the owner. The [implementation guide](features/connected-prototype.md) records source, local publication and remaining work.
+
 | ID | Selected policy | Remaining delivery evidence |
 | --- | --- | --- |
 | D1 | Retain the five existing themes and wording areas as the content baseline; later question/choice sets may depend on earlier answers. Entry unselected; baseline checkbox/radio and uncertainty policies apply subject to the reviewed route map. Assignment A proposes routing, mixed-interest/uncertainty behavior, and inactive-answer handling. Explicit saved checkpoints, separate retake draft and version-conflict recovery | F-001 controls/persistence tests, reviewed route proposal and comprehension study |

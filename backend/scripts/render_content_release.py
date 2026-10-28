@@ -20,6 +20,8 @@ def literal(value):
         return str(value)
     if isinstance(value, list):
         return "ARRAY[" + ", ".join(literal(item) for item in value) + "]::text[]"
+    if isinstance(value, dict):
+        return literal(json.dumps(value, sort_keys=True)) + "::jsonb"
     return "'" + str(value).replace("'", "''") + "'"
 
 

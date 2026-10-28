@@ -1,5 +1,7 @@
 # Original UI integration repair
 
+Current data/service follow-up, 2026-10-28: [Connected prototype](connected-prototype.md) records saved conditional Discovery, Groq results and the three locally published starter paths. This guide preserves the original source-restoration history; earlier sample/unavailable descriptions do not override the later implementation or its deferred verification limits.
+
 - Implementer / task owner: Codex
 - Created: 2026-10-27
 - Last updated: 2026-10-27
