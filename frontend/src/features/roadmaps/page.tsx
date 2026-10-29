@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from "react";
+import practiceData from "@/assets/data/visits.csv?url";
+import practiceReference from "@/assets/data/reference.md?url";
 import { Link, useLocation, useParams, useSearchParams } from "react-router";
 import { ExternalLink, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -163,6 +165,17 @@ export function RoadmapPage() {
           <section className="roadmap-hero">
             <h1>{careerContent.title}</h1>
             <p>{content.description}</p>
+            {careerContent.slug === "data-analyst" && <p className="flex flex-wrap gap-4">
+              <a className="underline" href={practiceData} download>Download practice CSV</a>
+              <a className="underline" href={practiceReference} download>Download data dictionary and reference results</a>
+            </p>}
+            <p>
+              {overview.requires_branch_choice
+                ? `${overview.done} of ${overview.applicable} current topics done · choose a path to see total progress`
+                : overview.percentage == null
+                  ? "No active topics yet"
+                  : `${overview.done} of ${overview.applicable} topics done · ${overview.percentage}%`}
+            </p>
             <div className="action-row">
               <Button
                 disabled={
@@ -243,9 +256,11 @@ export function RoadmapPage() {
                     <AccordionItem value={milestone.id}>
                       <AccordionTrigger>
                         {milestone.title} ·{" "}
-                        {count?.percentage == null
+                        {count?.requires_branch_choice
                           ? "Choose a path"
-                          : count.percentage + "%"}
+                          : count?.percentage == null
+                            ? "No active topics"
+                            : count.percentage + "%"}
                       </AccordionTrigger>
                       <AccordionContent>
                         <p className="milestone-description">
@@ -291,6 +306,7 @@ export function RoadmapPage() {
                           .filter(
                             (item) =>
                               !item.retired_at &&
+                              (!item.branch_id || branchChoices.some(choice => choice.branch_id === item.branch_id)) &&
                               (!hideDone ||
                                 saved.find(
                                   (entry) => entry.topic_id === item.id,
@@ -320,6 +336,20 @@ export function RoadmapPage() {
                               </button>
                             );
                           })}
+
+                        {milestone.topics.some(item => item.branch_id &&
+                          !branchChoices.some(choice => choice.branch_id === item.branch_id) &&
+                          saved.some(entry => entry.topic_id === item.id)) && <details>
+                          <summary>Saved history from other tool paths</summary>
+                          {milestone.topics.filter(item => item.branch_id &&
+                            !branchChoices.some(choice => choice.branch_id === item.branch_id) &&
+                            saved.some(entry => entry.topic_id === item.id)).map(item => (
+                              <Link key={item.id} className="block underline"
+                                to={{ search: "?" + new URLSearchParams({ ...Object.fromEntries(params), topic: item.id }) }}>
+                                {item.title} · {saved.find(entry => entry.topic_id === item.id)?.status}
+                              </Link>
+                            ))}
+                        </details>}
                       </AccordionContent>
                     </AccordionItem>
                   </div>
@@ -347,7 +377,7 @@ export function RoadmapPage() {
                 </Button>
               </header>
               <section>
-                <p>{topic.explanation}</p>
+                <p className="whitespace-pre-line">{topic.explanation}</p>
                 {topic.prerequisite_ids.length > 0 && (
                   <p className="field-help">
                     Prerequisites are guidance. You may study topics in any
@@ -386,6 +416,9 @@ export function RoadmapPage() {
                     );
                     const retired =
                       !!topic.retired_at || content.status === "retired";
+                    const inactive = topic.branch_id && !branchChoices.some(
+                      choice => choice.branch_id === topic.branch_id,
+                    );
                     return (
                       <Button
                         key={status}
@@ -394,6 +427,7 @@ export function RoadmapPage() {
                         }
                         disabled={
                           pending ||
+                          (!!inactive && (current?.status !== "learning" || status === "learning")) ||
                           (retired &&
                             (current?.status !== "learning" ||
                               status === "learning"))
@@ -421,6 +455,8 @@ export function RoadmapPage() {
                   },
                 )}
               </div>
+              {topic.branch_id && !branchChoices.some(choice => choice.branch_id === topic.branch_id) &&
+                <p className="field-help">This topic belongs to another tool path and is excluded from current totals. Select that path to continue it. An existing Learning status can still be resolved.</p>}
             </>
           ) : (
             <div className="empty-topic-panel">

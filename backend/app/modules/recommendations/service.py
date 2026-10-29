@@ -18,6 +18,7 @@ from app.modules.recommendations.provider import (
 from app.modules.recommendations.schemas import (
     CompletedDiscoveryReference,
     ContextFact,
+    DocumentContextReference,
     PublishedCareerReference,
     RecommendationContext,
     RecommendationRun,
@@ -47,8 +48,9 @@ async def expire(connection, uid):
     await connection.execute(
         text(
             "UPDATE asgard_private.recommendation_runs SET status = 'failed', "
-            "failure_code = 'timeout', finished_at = statement_timestamp() WHERE user_id = CAST(:uid AS uuid) "
-            "AND status = 'pending' AND deadline_at <= statement_timestamp()"
+            "failure_code = 'timeout', finished_at = statement_timestamp() WHERE "
+            "user_id = CAST(:uid AS uuid) AND status = 'pending' AND deadline_at <="
+            " statement_timestamp()"
         ),
         {"uid": str(uid)},
     )
@@ -57,13 +59,16 @@ async def expire(connection, uid):
 async def eligible(connection, uid, run_id):
     invalid = await one(
         connection,
-        "SELECT i.career_id FROM asgard_private.recommendation_items i "
-        "JOIN asgard_catalog.careers c ON c.id = i.career_id "
-        "LEFT JOIN asgard_catalog.roadmaps r ON r.id = i.roadmap_id "
-        "LEFT JOIN asgard_catalog.topics t ON t.id = i.starting_topic_id "
-        "WHERE i.user_id = CAST(:uid AS uuid) AND i.run_id = CAST(:id AS uuid) AND "
-        "(c.status <> 'published' OR (i.roadmap_id IS NOT NULL AND r.status <> 'published') "
-        "OR (i.starting_topic_id IS NOT NULL AND t.retired_at IS NOT NULL)) LIMIT 1",
+        (
+            "SELECT i.career_id FROM asgard_private.recommendation_items i JOIN "
+            "asgard_catalog.careers c ON c.id = i.career_id LEFT JOIN "
+            "asgard_catalog.roadmaps r ON r.id = i.roadmap_id LEFT JOIN "
+            "asgard_catalog.topics t ON t.id = i.starting_topic_id WHERE i.user_id "
+            "= CAST(:uid AS uuid) AND i.run_id = CAST(:id AS uuid) AND (c.status <>"
+            " 'published' OR (i.roadmap_id IS NOT NULL AND r.status <> 'published')"
+            " OR (i.starting_topic_id IS NOT NULL AND t.retired_at IS NOT NULL)) "
+            "LIMIT 1"
+        ),
         {"uid": str(uid), "id": str(run_id)},
     )
     return invalid is None
@@ -73,8 +78,10 @@ async def run(connection, uid, run_id, context_revision, catalog_release_id):
     saved = required(
         await one(
             connection,
-            "SELECT * FROM asgard_private.recommendation_runs "
-            "WHERE user_id = CAST(:uid AS uuid) AND id = CAST(:id AS uuid)",
+            (
+                "SELECT * FROM asgard_private.recommendation_runs WHERE user_id = "
+                "CAST(:uid AS uuid) AND id = CAST(:id AS uuid)"
+            ),
             {"uid": str(uid), "id": str(run_id)},
         )
     )
@@ -87,9 +94,12 @@ async def run(connection, uid, run_id, context_revision, catalog_release_id):
     items = (
         await rows(
             connection,
-            "SELECT career_id, reason, evidence_fact_ids, uncertainty_note, roadmap_id, starting_topic_id "
-            "FROM asgard_private.recommendation_items WHERE user_id = CAST(:uid AS uuid) AND run_id = CAST(:id AS uuid) "
-            "ORDER BY position",
+            (
+                "SELECT career_id, reason, evidence_fact_ids, uncertainty_note, "
+                "roadmap_id, starting_topic_id FROM asgard_private.recommendation_items"
+                " WHERE user_id = CAST(:uid AS uuid) AND run_id = CAST(:id AS uuid) "
+                "ORDER BY position"
+            ),
             {"uid": str(uid), "id": str(run_id)},
         )
         if saved["status"] == "completed"
@@ -102,6 +112,7 @@ async def run(connection, uid, run_id, context_revision, catalog_release_id):
             questionnaire_id=saved["context_snapshot"]["context"]["discovery"]["questionnaire_id"],
         )
         if saved["discovery_session_id"]
+        and saved["context_snapshot"].get("context", {}).get("discovery")
         else None
     )
     return RecommendationRun(
@@ -122,6 +133,11 @@ async def run(connection, uid, run_id, context_revision, catalog_release_id):
         },
         discovery=reference,
         items=items,
+        evidence=[
+            fact
+            for fact in saved["context_snapshot"].get("context", {}).get("facts", [])
+            if fact["id"] in {key for item in items for key in item["evidence_fact_ids"]}
+        ],
         outdated=(
             saved["context_revision"] != context_revision
             or saved["catalog_release_id"] != catalog_release_id
@@ -137,8 +153,10 @@ async def state(connection, uid, settings):
     release = await release_id(connection)
     latest = await one(
         connection,
-        "SELECT id, status FROM asgard_private.recommendation_runs "
-        "WHERE user_id = CAST(:uid AS uuid) ORDER BY created_at DESC, id DESC LIMIT 1",
+        (
+            "SELECT id, status FROM asgard_private.recommendation_runs WHERE "
+            "user_id = CAST(:uid AS uuid) ORDER BY created_at DESC, id DESC LIMIT 1"
+        ),
         {"uid": str(uid)},
     )
     current, previous = None, None
@@ -148,17 +166,19 @@ async def state(connection, uid, settings):
         current = await run(connection, uid, latest["id"], learning["context_revision"], release)
     prior = await one(
         connection,
-        "SELECT r.id FROM asgard_private.recommendation_runs r "
-        "WHERE r.user_id = CAST(:uid AS uuid) AND r.status = 'completed' "
-        "AND (CAST(:current AS uuid) IS NULL OR r.id <> CAST(:current AS uuid)) "
-        "AND NOT EXISTS (SELECT 1 FROM asgard_private.recommendation_items i "
-        "JOIN asgard_catalog.careers c ON c.id = i.career_id "
-        "LEFT JOIN asgard_catalog.roadmaps p ON p.id = i.roadmap_id "
-        "LEFT JOIN asgard_catalog.topics t ON t.id = i.starting_topic_id "
-        "WHERE i.user_id = CAST(:uid AS uuid) AND i.run_id = r.id AND "
-        "(c.status <> 'published' OR (i.roadmap_id IS NOT NULL AND p.status <> 'published') "
-        "OR (i.starting_topic_id IS NOT NULL AND t.retired_at IS NOT NULL))) "
-        "ORDER BY r.created_at DESC, r.id DESC LIMIT 1",
+        (
+            "SELECT r.id FROM asgard_private.recommendation_runs r WHERE r.user_id "
+            "= CAST(:uid AS uuid) AND r.status = 'completed' AND (CAST(:current AS "
+            "uuid) IS NULL OR r.id <> CAST(:current AS uuid)) AND NOT EXISTS "
+            "(SELECT 1 FROM asgard_private.recommendation_items i JOIN "
+            "asgard_catalog.careers c ON c.id = i.career_id LEFT JOIN "
+            "asgard_catalog.roadmaps p ON p.id = i.roadmap_id LEFT JOIN "
+            "asgard_catalog.topics t ON t.id = i.starting_topic_id WHERE i.user_id "
+            "= CAST(:uid AS uuid) AND i.run_id = r.id AND (c.status <> 'published' "
+            "OR (i.roadmap_id IS NOT NULL AND p.status <> 'published') OR "
+            "(i.starting_topic_id IS NOT NULL AND t.retired_at IS NOT NULL))) ORDER"
+            " BY r.created_at DESC, r.id DESC LIMIT 1"
+        ),
         {"uid": str(uid), "current": str(current.id) if current else None},
     )
     if prior:
@@ -176,7 +196,10 @@ async def state(connection, uid, settings):
         "available": available,
         "unavailable_reason": None
         if available
-        else "AI suggestions need local Groq configuration and a published career catalog. Your answers and learning saves remain available.",
+        else (
+            "AI suggestions need local Groq configuration and a published career "
+            "catalog. Your answers and learning saves remain available."
+        ),
     }
 
 
@@ -235,9 +258,12 @@ async def snapshot(connection, uid, learning, release):
             )
     progress = await rows(
         connection,
-        "SELECT p.topic_id, p.status, p.version, t.title FROM asgard_private.topic_progress p "
-        "JOIN asgard_catalog.topics t ON t.id = p.topic_id WHERE p.user_id = CAST(:uid AS uuid) "
-        "AND p.roadmap_id = CAST(:roadmap AS uuid) ORDER BY p.updated_at DESC LIMIT 12",
+        (
+            "SELECT p.topic_id, p.status, p.version, t.title FROM "
+            "asgard_private.topic_progress p JOIN asgard_catalog.topics t ON t.id ="
+            " p.topic_id WHERE p.user_id = CAST(:uid AS uuid) AND p.roadmap_id = "
+            "CAST(:roadmap AS uuid) ORDER BY p.updated_at DESC LIMIT 12"
+        ),
         {
             "uid": str(uid),
             "roadmap": str(learning["current_roadmap_id"])
@@ -261,9 +287,12 @@ async def snapshot(connection, uid, learning, release):
         )
     choices = await rows(
         connection,
-        "SELECT c.group_id, c.version, b.title FROM asgard_private.branch_choices c "
-        "JOIN asgard_catalog.branches b ON b.id = c.branch_id WHERE c.user_id = CAST(:uid AS uuid) "
-        "AND c.roadmap_id = CAST(:roadmap AS uuid) ORDER BY c.group_id LIMIT 12",
+        (
+            "SELECT c.group_id, c.version, b.title FROM "
+            "asgard_private.branch_choices c JOIN asgard_catalog.branches b ON b.id"
+            " = c.branch_id WHERE c.user_id = CAST(:uid AS uuid) AND c.roadmap_id ="
+            " CAST(:roadmap AS uuid) ORDER BY c.group_id LIMIT 12"
+        ),
         {
             "uid": str(uid),
             "roadmap": str(learning["current_roadmap_id"])
@@ -281,6 +310,25 @@ async def snapshot(connection, uid, learning, release):
                 description="Explicit learning path choice: " + item["title"],
             )
         )
+    document = await one(
+        connection,
+        (
+            "SELECT id,analysis_id,revision,evidence FROM asgard_private.documents "
+            "WHERE user_id=CAST(:uid AS uuid) AND status='active'"
+        ),
+        {"uid": str(uid)},
+    )
+    if document:
+        for position, item in enumerate(document["evidence"]):
+            facts.append(
+                ContextFact(
+                    id="pdf:" + str(position),
+                    source="pdf_analysis",
+                    source_id=str(document["analysis_id"]),
+                    source_revision=document["revision"],
+                    description="Document states (" + item["kind"] + "): " + item["text"],
+                )
+            )
     if not facts:
         raise APIError(
             422,
@@ -288,6 +336,13 @@ async def snapshot(connection, uid, learning, release):
             "Complete Discovery or choose a learning roadmap before requesting suggestions.",
         )
     context = RecommendationContext(
+        document=DocumentContextReference(
+            document_id=document["id"],
+            analysis_id=document["analysis_id"],
+            revision=document["revision"],
+        )
+        if document
+        else None,
         context_revision=learning["context_revision"],
         facts=facts,
         discovery=CompletedDiscoveryReference(
@@ -300,24 +355,33 @@ async def snapshot(connection, uid, learning, release):
     )
     catalog = await rows(
         connection,
-        "SELECT c.id, c.title, c.description, c.skills, c.relevance_attributes, k.title AS category "
-        "FROM asgard_catalog.careers c JOIN asgard_catalog.categories k ON k.id = c.category_id "
-        "WHERE c.status = 'published' ORDER BY c.id",
+        (
+            "SELECT c.id, c.title, c.description, c.skills, c.relevance_attributes,"
+            " k.title AS category FROM asgard_catalog.careers c JOIN "
+            "asgard_catalog.categories k ON k.id = c.category_id WHERE c.status = "
+            "'published' ORDER BY c.id"
+        ),
     )
     references, entries = [], []
     for item in catalog:
         paths = await rows(
             connection,
-            "SELECT id, title, description FROM asgard_catalog.roadmaps WHERE career_id = CAST(:id AS uuid) "
-            "AND status = 'published' ORDER BY id",
+            (
+                "SELECT id, title, description FROM asgard_catalog.roadmaps WHERE "
+                "career_id = CAST(:id AS uuid) AND status = 'published' ORDER BY id"
+            ),
             {"id": str(item["id"])},
         )
         mapping = {}
         for path in paths:
             topics = await rows(
                 connection,
-                "SELECT t.id FROM asgard_catalog.topics t JOIN asgard_catalog.milestones m ON m.id = t.milestone_id "
-                "WHERE t.roadmap_id = CAST(:id AS uuid) AND t.retired_at IS NULL AND m.retired_at IS NULL ORDER BY m.position, t.position, t.id",
+                (
+                    "SELECT t.id FROM asgard_catalog.topics t JOIN "
+                    "asgard_catalog.milestones m ON m.id = t.milestone_id WHERE "
+                    "t.roadmap_id = CAST(:id AS uuid) AND t.retired_at IS NULL AND "
+                    "m.retired_at IS NULL ORDER BY m.position, t.position, t.id"
+                ),
                 {"id": str(path["id"])},
             )
             mapping[path["id"]] = [topic["id"] for topic in topics]
@@ -358,8 +422,12 @@ async def snapshot(connection, uid, learning, release):
 async def reserve_attempt(connection, uid, run_id, attempt):
     count = await one(
         connection,
-        "SELECT count(*) AS total FROM asgard_private.analysis_attempts "
-        "WHERE user_id = CAST(:uid AS uuid) AND reserved_at >= date_trunc('day', statement_timestamp() AT TIME ZONE 'UTC') AT TIME ZONE 'UTC'",
+        (
+            "SELECT count(*) AS total FROM asgard_private.analysis_attempts WHERE "
+            "user_id = CAST(:uid AS uuid) AND operation = 'recommendation' AND "
+            "reserved_at >= date_trunc('day', statement_timestamp() AT TIME ZONE "
+            "'UTC') AT TIME ZONE 'UTC'"
+        ),
         {"uid": str(uid)},
     )
     if count["total"] >= 10:
@@ -372,8 +440,11 @@ async def reserve_attempt(connection, uid, run_id, attempt):
     if attempt == 1:
         recent = await one(
             connection,
-            "SELECT id FROM asgard_private.analysis_attempts WHERE user_id = CAST(:uid AS uuid) "
-            "AND reserved_at > statement_timestamp() - interval '1 minute' LIMIT 1",
+            (
+                "SELECT id FROM asgard_private.analysis_attempts WHERE user_id = "
+                "CAST(:uid AS uuid) AND operation = 'recommendation' AND reserved_at > "
+                "statement_timestamp() - interval '1 minute' LIMIT 1"
+            ),
             {"uid": str(uid)},
         )
         if recent:
@@ -385,10 +456,15 @@ async def reserve_attempt(connection, uid, run_id, attempt):
             )
     budget = await one(
         connection,
-        "INSERT INTO asgard_private.analysis_daily_budget (utc_date, reserved_attempts) "
-        "VALUES ((statement_timestamp() AT TIME ZONE 'UTC')::date, 1) ON CONFLICT (utc_date) DO UPDATE "
-        "SET reserved_attempts = asgard_private.analysis_daily_budget.reserved_attempts + 1 "
-        "WHERE asgard_private.analysis_daily_budget.reserved_attempts < 100 RETURNING reserved_attempts",
+        (
+            "INSERT INTO asgard_private.analysis_daily_budget (utc_date, "
+            "reserved_attempts) VALUES ((statement_timestamp() AT TIME ZONE "
+            "'UTC')::date, 1) ON CONFLICT (utc_date) DO UPDATE SET "
+            "reserved_attempts = "
+            "asgard_private.analysis_daily_budget.reserved_attempts + 1 WHERE "
+            "asgard_private.analysis_daily_budget.reserved_attempts < 100 RETURNING"
+            " reserved_attempts"
+        ),
     )
     if budget is None:
         raise APIError(
@@ -399,9 +475,10 @@ async def reserve_attempt(connection, uid, run_id, attempt):
         )
     await connection.execute(
         text(
-            "INSERT INTO asgard_private.analysis_attempts "
-            "(user_id, recommendation_run_id, operation, attempt, reservation_key) "
-            "VALUES (CAST(:uid AS uuid), CAST(:run AS uuid), 'recommendation', :attempt, CAST(:key AS uuid))"
+            "INSERT INTO asgard_private.analysis_attempts (user_id, "
+            "recommendation_run_id, operation, attempt, reservation_key) VALUES "
+            "(CAST(:uid AS uuid), CAST(:run AS uuid), 'recommendation', :attempt, "
+            "CAST(:key AS uuid))"
         ),
         {"uid": str(uid), "run": str(run_id), "attempt": attempt, "key": str(uuid4())},
     )
@@ -425,8 +502,11 @@ async def request_run(request, identity, body):
             )
         existing = await one(
             connection,
-            "SELECT id, context_revision, catalog_release_id FROM asgard_private.recommendation_runs "
-            "WHERE user_id = CAST(:uid AS uuid) AND idempotency_key = CAST(:key AS uuid)",
+            (
+                "SELECT id, context_revision, catalog_release_id FROM "
+                "asgard_private.recommendation_runs WHERE user_id = CAST(:uid AS uuid) "
+                "AND idempotency_key = CAST(:key AS uuid)"
+            ),
             {"uid": str(uid), "key": str(body.idempotency_key)},
         )
         if existing:
@@ -442,10 +522,13 @@ async def request_run(request, identity, body):
             return await run(connection, uid, existing["id"], learning["context_revision"], release)
         reusable = await one(
             connection,
-            "SELECT id, status FROM asgard_private.recommendation_runs "
-            "WHERE user_id = CAST(:uid AS uuid) AND (status = 'pending' OR (status = 'completed' AND context_revision = :revision "
-            "AND catalog_release_id = CAST(:release AS uuid) AND prompt_version = :prompt AND schema_version = :schema)) "
-            "ORDER BY created_at DESC LIMIT 1",
+            (
+                "SELECT id, status FROM asgard_private.recommendation_runs WHERE "
+                "user_id = CAST(:uid AS uuid) AND (status = 'pending' OR (status = "
+                "'completed' AND context_revision = :revision AND catalog_release_id = "
+                "CAST(:release AS uuid) AND prompt_version = :prompt AND schema_version"
+                " = :schema)) ORDER BY created_at DESC LIMIT 1"
+            ),
             {
                 "uid": str(uid),
                 "revision": learning["context_revision"],
@@ -467,11 +550,16 @@ async def request_run(request, identity, body):
         content = await snapshot(connection, uid, learning, release)
         saved = await one(
             connection,
-            "INSERT INTO asgard_private.recommendation_runs "
-            "(user_id, discovery_session_id, discovery_revision, context_revision, catalog_release_id, prompt_version, schema_version, "
-            "idempotency_key, context_snapshot, deadline_at, model_id) VALUES (CAST(:uid AS uuid), CAST(:session AS uuid), :discovery_revision, "
-            ":revision, CAST(:release AS uuid), :prompt, :schema, CAST(:key AS uuid), CAST(:snapshot AS jsonb), statement_timestamp() + interval '30 seconds', :model) "
-            "RETURNING id, deadline_at",
+            (
+                "INSERT INTO asgard_private.recommendation_runs (user_id, "
+                "discovery_session_id, discovery_revision, context_revision, "
+                "catalog_release_id, prompt_version, schema_version, idempotency_key, "
+                "context_snapshot, deadline_at, model_id) VALUES (CAST(:uid AS uuid), "
+                "CAST(:session AS uuid), :discovery_revision, :revision, CAST(:release "
+                "AS uuid), :prompt, :schema, CAST(:key AS uuid), CAST(:snapshot AS "
+                "jsonb), statement_timestamp() + interval '30 seconds', :model) "
+                "RETURNING id, deadline_at"
+            ),
             {
                 "uid": str(uid),
                 "session": content["context"]["discovery"]["session_id"]
@@ -496,9 +584,11 @@ async def request_run(request, identity, body):
             current = await lock_account(connection, uid)
             pending = await one(
                 connection,
-                "SELECT id FROM asgard_private.recommendation_runs "
-                "WHERE user_id = CAST(:uid AS uuid) AND id = CAST(:id AS uuid) AND status = 'pending' "
-                "AND deadline_at > statement_timestamp()",
+                (
+                    "SELECT id FROM asgard_private.recommendation_runs WHERE user_id = "
+                    "CAST(:uid AS uuid) AND id = CAST(:id AS uuid) AND status = 'pending' "
+                    "AND deadline_at > statement_timestamp()"
+                ),
                 {"uid": str(uid), "id": str(saved["id"])},
             )
             if not pending or current["context_revision"] != body.expected_context_revision:
@@ -565,8 +655,11 @@ async def request_run(request, identity, body):
         pending = required(
             await one(
                 connection,
-                "SELECT status, deadline_at FROM asgard_private.recommendation_runs "
-                "WHERE user_id = CAST(:uid AS uuid) AND id = CAST(:id AS uuid) FOR UPDATE",
+                (
+                    "SELECT status, deadline_at FROM asgard_private.recommendation_runs "
+                    "WHERE user_id = CAST(:uid AS uuid) AND id = CAST(:id AS uuid) FOR "
+                    "UPDATE"
+                ),
                 {"uid": str(uid), "id": str(saved["id"])},
             )
         )
@@ -583,9 +676,11 @@ async def request_run(request, identity, body):
                     (row["career_id"], row["id"])
                     for row in await rows(
                         connection,
-                        "SELECT r.id, r.career_id FROM asgard_catalog.roadmaps r "
-                        "JOIN asgard_catalog.careers c ON c.id = r.career_id "
-                        "WHERE r.status = 'published' AND c.status = 'published'",
+                        (
+                            "SELECT r.id, r.career_id FROM asgard_catalog.roadmaps r JOIN "
+                            "asgard_catalog.careers c ON c.id = r.career_id WHERE r.status = "
+                            "'published' AND c.status = 'published'"
+                        ),
                     )
                 }
                 if any((item.career_id, item.roadmap_id) not in published for item in validated):
@@ -594,9 +689,11 @@ async def request_run(request, identity, body):
                 for position, item in enumerate(validated):
                     await connection.execute(
                         text(
-                            "INSERT INTO asgard_private.recommendation_items "
-                            "(user_id, run_id, position, career_id, roadmap_id, starting_topic_id, reason, uncertainty_note, evidence_fact_ids) "
-                            "VALUES (CAST(:uid AS uuid), CAST(:run AS uuid), :position, CAST(:career AS uuid), CAST(:roadmap AS uuid), NULL, :reason, :uncertainty, :facts)"
+                            "INSERT INTO asgard_private.recommendation_items (user_id, run_id, "
+                            "position, career_id, roadmap_id, starting_topic_id, reason, "
+                            "uncertainty_note, evidence_fact_ids) VALUES (CAST(:uid AS uuid), "
+                            "CAST(:run AS uuid), :position, CAST(:career AS uuid), CAST(:roadmap AS"
+                            " uuid), NULL, :reason, :uncertainty, :facts)"
                         ),
                         {
                             "uid": str(uid),
@@ -611,8 +708,9 @@ async def request_run(request, identity, body):
                     )
             await connection.execute(
                 text(
-                    "UPDATE asgard_private.recommendation_runs SET status = :status, failure_code = :failure, "
-                    "finished_at = statement_timestamp() WHERE user_id = CAST(:uid AS uuid) AND id = CAST(:id AS uuid)"
+                    "UPDATE asgard_private.recommendation_runs SET status = :status, "
+                    "failure_code = :failure, finished_at = statement_timestamp() WHERE "
+                    "user_id = CAST(:uid AS uuid) AND id = CAST(:id AS uuid)"
                 ),
                 {
                     "status": "failed" if failure else "completed",

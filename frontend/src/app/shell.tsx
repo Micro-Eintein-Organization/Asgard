@@ -16,6 +16,8 @@ import { useAuth } from "@/auth/context";
 import { LogoutBoundary } from "./logout-boundary";
 import { useLogout } from "./logout";
 import { BrandLogo } from "@/components/brand-logo";
+import { CareerNavigation } from "./career-navigation";
+import { GuidanceBanner } from "./guidance";
 
 const onboardingPaths = new Set([
   appRoutes.welcome,
@@ -30,7 +32,7 @@ function Header() {
   const pageRoutes = appRoutes;
   const navigation = [
     { to: pageRoutes.dashboard, label: "Dashboard" },
-    { to: pageRoutes.careers, label: "Roadmap" },
+    { to: pageRoutes.roadmaps, label: "Career" },
     { to: pageRoutes.profile, label: "Settings" },
   ];
   const location = useLocation();
@@ -56,11 +58,15 @@ function Header() {
       aria-label="Main navigation"
       className="mobile-navigation"
     >
-      {navigation.map((item) => (
-        <NavLink key={item.to} to={item.to} onClick={() => setOpen(false)}>
-          {item.label}
-        </NavLink>
-      ))}
+      {navigation.map((item) =>
+        item.label === "Career" ? (
+          <CareerNavigation key={item.to} />
+        ) : (
+          <NavLink key={item.to} to={item.to} onClick={() => setOpen(false)}>
+            {item.label}
+          </NavLink>
+        ),
+      )}
       <Link to={pageRoutes.welcome} onClick={() => setOpen(false)}>
         Discovery
       </Link>
@@ -87,24 +93,25 @@ function Header() {
         {showAppNavigation ? (
           <>
             <nav aria-label="Main navigation" className="desktop-navigation">
-              {navigation.map((item) => (
-                <NavLink
-                  key={item.to}
-                  to={item.to}
-                  className={({ isActive }) =>
-                    isActive ||
-                    (item.label === "Roadmap" &&
-                      (pathname === "/roadmaps" ||
-                        pathname.startsWith("/roadmaps/"))) ||
-                    (item.label === "Settings" &&
-                      pathname.startsWith("/settings/"))
-                      ? "active"
-                      : ""
-                  }
-                >
-                  {item.label}
-                </NavLink>
-              ))}
+              {navigation.map((item) =>
+                item.label === "Career" ? (
+                  <CareerNavigation key={item.to} />
+                ) : (
+                  <NavLink
+                    key={item.to}
+                    to={item.to}
+                    className={({ isActive }) =>
+                      isActive ||
+                      (item.label === "Settings" &&
+                        pathname.startsWith("/settings/"))
+                        ? "active"
+                        : ""
+                    }
+                  >
+                    {item.label}
+                  </NavLink>
+                ),
+              )}
             </nav>
             <div className="header-actions">
               <Button
@@ -204,6 +211,7 @@ export function AppShell() {
 }
 
 function ShellContent() {
+  const { user } = useAuth();
   const { pathname } = useLocation();
   const onboarding = onboardingPaths.has(pathname.replace(/\/+$/, ""));
   return (
@@ -229,6 +237,10 @@ function ShellContent() {
             </StatePanel>
           }
         >
+          {!onboarding &&
+            pathname !== appRoutes.dashboard &&
+            user?.email_confirmed_at &&
+            !Object.values(routes).includes(pathname) && <GuidanceBanner />}
           <Outlet />
           <PageFocus />
         </Suspense>

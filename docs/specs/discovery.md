@@ -9,6 +9,13 @@ acceptance: [F-001-AC-01, F-001-AC-02, F-001-AC-03, F-001-AC-04, F-001-AC-05, F-
 
 # Asgard: Discovery
 
+Owner-directed retake update, 2026-10-28: a retake starts with blank answers and is
+initiated from Settings. Existing completed sessions remain immutable, learning
+progress is retained, and an already-open draft is resumed. This supersedes the
+earlier copied-answer retake behavior. The refreshed screens use the Figma exports
+for presentation while retaining the server-authored questions and selection rules.
+See [the implementation guide](../features/discovery-catalog-refresh.md).
+
 Owner-approved connected-prototype boundary, 2026-10-28: the [recorded resolution](../decisions.md#connected-prototype-resolution-2026-10-28) supplies the first authored route. The activities question alone branches into tools/design/investigation/systems variants for a single corresponding interest; mixed/uncertain interests use general activities. All routes then share approach, background and goals. Inactive answers are retained and restored when their branch becomes active, but excluded from completion and recommendations. The [guide](../features/connected-prototype.md) and [versioned definition](../../backend/app/modules/discovery/definition.py) locate the implementation; generated OpenAPI remains the wire authority. Earlier statements below that the route map is unauthored describe the preceding draft status and are superseded only for this bounded local prototype. No comprehension or runtime acceptance is claimed.
 
 **Version 0.2 · 23 October 2026 · Status: Draft for review**

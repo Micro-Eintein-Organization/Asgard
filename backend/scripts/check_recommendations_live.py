@@ -1,8 +1,12 @@
-"""Explicitly opt-in, one-call local smoke check with a temporary synthetic account.
-
-Read the local admin Auth key from private stdin JSON; never print credentials or answers.
-Uses the same confirmed-user lifecycle as tests/integration/test_local_auth.py.
-"""
+(
+    "Explicitly opt-in, one-call local smoke "
+    "check with a temporary synthetic "
+    "account.\n\nRead the local admin Auth key "
+    "from private stdin JSON; never print "
+    "credentials or answers.\nUses the same "
+    "confirmed-user lifecycle as "
+    "tests/integration/test_local_auth.py.\n"
+)
 
 import argparse
 import json
@@ -35,7 +39,10 @@ class OneGroqCall(httpx.AsyncBaseTransport):
             "items": [
                 {
                     "candidate_key": payload["candidates"][0]["key"],
-                    "reason": "This published path is an introductory option for exploring the stated interests.",
+                    "reason": (
+                        "This published path is an introductory option for exploring the stated"
+                        " interests."
+                    ),
                     "evidence_keys": [payload["facts"][0]["key"]],
                     "caveat": "The connection is broad because the available catalog is limited.",
                     "weak_connection": True,

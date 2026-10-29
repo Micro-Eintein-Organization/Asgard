@@ -53,14 +53,19 @@ async def lock_account(connection, user_id):
     parameters = {"uid": str(user_id)}
     created = await one(
         connection,
-        "INSERT INTO asgard_private.learning_state (user_id) VALUES (CAST(:uid AS uuid)) "
-        "ON CONFLICT (user_id) DO NOTHING RETURNING user_id",
+        (
+            "INSERT INTO asgard_private.learning_state (user_id) VALUES (CAST(:uid "
+            "AS uuid)) ON CONFLICT (user_id) DO NOTHING RETURNING user_id"
+        ),
         parameters,
     )
     state = required(
         await one(
             connection,
-            "SELECT * FROM asgard_private.learning_state WHERE user_id = CAST(:uid AS uuid) FOR UPDATE",
+            (
+                "SELECT * FROM asgard_private.learning_state WHERE user_id = CAST(:uid "
+                "AS uuid) FOR UPDATE"
+            ),
             parameters,
         )
     )

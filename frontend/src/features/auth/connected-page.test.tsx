@@ -107,7 +107,7 @@ it("explains when a resend request fails", async () => {
 });
 
 it.each([
-  ["Browse careers", "Career catalog destination"],
+  ["Browse Role Catalog", "Career catalog destination"],
   ["Guided Discovery", "Discovery questionnaire destination"],
 ])("verified registration offers the %s path", async (choice, destination) => {
   sessionStorage.setItem("asgard.signup-email", "owner@example.test");
@@ -124,8 +124,8 @@ it.each([
     }),
   ).toBeVisible();
   expect(screen.getByRole("button", { name: "Continue" })).toBeDisabled();
-  fireEvent.click(screen.getByRole("radio", { name: new RegExp(choice) }));
-  fireEvent.click(screen.getByRole("link", { name: "Continue" }));
+  fireEvent.click(screen.getByRole("button", { name: new RegExp(choice) }));
+  fireEvent.click(screen.getByRole("button", { name: "Continue" }));
   expect(
     await screen.findByRole("heading", { name: destination }),
   ).toBeVisible();

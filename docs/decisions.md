@@ -1,5 +1,16 @@
 # Asgard: Decisions and delivery gates
 
+## Connected MVP handoff resolution (2026-10-28)
+
+Approver/reviewer: @YakisobaNissin, as identified by the owner in this task. Reference:
+the owner's explicit “PLEASE IMPLEMENT THIS PLAN: Complete the connected MVP backend
+and developer handoff” message. Scope includes additive private PDF storage/APIs,
+parser dependency, synthetic local evaluation, evidence presentation, Career navigation,
+guidance, portable publication and future-work records. Real-document privacy/model
+quality and hosted release gates remain required. No Git publication authorized.
+See [implementation and evidence](features/mvp-backend-handoff.md). Recorded task
+authorization does not imply completed code review or production approval.
+
 Updated 26 October 2026. The project owner delegated policy choices on 25 October and approved the documentation cleanup on 26 October. This register preserves existing review IDs and distinguishes selected policy from implementation evidence. [Development](development.md#current-foundation-status-and-evidence) records local foundation checks; it does not establish reviewed shared contracts, validated questionnaires, completed curricula or release acceptance.
 
 ## Password minimum resolution

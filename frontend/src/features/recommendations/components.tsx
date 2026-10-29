@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router";
 import { Button } from "@/components/ui/button";
 import { StatePanel } from "@/components/shared";
@@ -10,6 +11,10 @@ export function RecommendationCards({
 }: {
   flow: ReturnType<typeof useRecommendationFlow>;
 }) {
+  const [selection, setSelection] = useState<{
+    run: string;
+    career: string;
+  } | null>(null);
   const catalog = useCoreQuery(["recommendation-careers"], () =>
     coreApi.catalog({ limit: 100 }),
   );
@@ -129,24 +134,59 @@ export function RecommendationCards({
               return (
                 <article
                   key={item.career_id}
-                  className="rounded-2xl p-6 space-y-4 bg-white border border-gray-200 shadow-xs"
+                  className={
+                    "rounded-2xl p-6 space-y-4 bg-white border-2 " +
+                    (selection?.run === displayed.id &&
+                    selection.career === career.id
+                      ? "border-emerald-500"
+                      : "border-gray-200")
+                  }
                 >
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">
-                    Career to explore
-                  </span>
-                  <h3 className="font-bold text-lg">{career.title}</h3>
+                  <label className="flex cursor-pointer items-center gap-3">
+                    <input
+                      type="radio"
+                      name="suggested-career"
+                      checked={
+                        selection?.run === displayed.id &&
+                        selection.career === career.id
+                      }
+                      onChange={() =>
+                        setSelection({ run: displayed.id, career: career.id })
+                      }
+                      className="accent-emerald-600"
+                    />
+                    <span className="font-bold text-lg">{career.title}</span>
+                  </label>
                   <p className="text-xs text-gray-500">{career.description}</p>
-                  <div className="space-y-2">
+                  <details className="group space-y-2 text-sm">
+                    <summary className="cursor-pointer font-semibold">
+                      <span className="group-open:hidden">Read more</span>
+                      <span className="hidden group-open:inline">Read less</span>
+                    </summary>
                     <h4 className="text-xs font-bold">
                       Why this was suggested
                     </h4>
                     <p className="text-sm">{item.reason}</p>
+                    {!!displayed?.evidence?.length && (
+                      <details className="text-xs">
+                        <summary>Evidence used</summary>
+                        <ul className="mt-2 space-y-1">
+                          {displayed.evidence
+                            .filter((fact) =>
+                              item.evidence_fact_ids.includes(fact.id),
+                            )
+                            .map((fact) => (
+                              <li key={fact.id}>{fact.description}</li>
+                            ))}
+                        </ul>
+                      </details>
+                    )}
                     {item.uncertainty_note && (
                       <p className="text-xs text-gray-500">
                         {item.uncertainty_note}
                       </p>
                     )}
-                  </div>
+                  </details>
                   <div className="pt-2 border-t border-gray-100 space-y-2">
                     <h4 className="text-xs font-bold">
                       Skills used in this career
@@ -162,20 +202,35 @@ export function RecommendationCards({
                       ))}
                     </ul>
                   </div>
-                  <Button asChild variant="outline">
-                    <Link
-                      to={
-                        appRoutes.roadmap(career.id) +
-                        (item.roadmap_id ? "?roadmap=" + item.roadmap_id : "")
-                      }
-                    >
-                      View roadmap
-                    </Link>
-                  </Button>
                 </article>
               );
             })}
           </div>
+          {(() => {
+            const item = displayed.items.find(
+              (entry) =>
+                selection?.run === displayed.id &&
+                entry.career_id === selection.career,
+            );
+            return (
+              <div className="text-center">
+                <Button asChild={!!item} disabled={!item}>
+                  {item ? (
+                    <Link
+                      to={
+                        appRoutes.roadmap(item.career_id) +
+                        (item.roadmap_id ? "?roadmap=" + item.roadmap_id : "")
+                      }
+                    >
+                      View selected roadmap
+                    </Link>
+                  ) : (
+                    "View selected roadmap"
+                  )}
+                </Button>
+              </div>
+            );
+          })()}
         </>
       )}
       {!displayed && !flow.pending && !current && (
@@ -185,28 +240,30 @@ export function RecommendationCards({
         </p>
       )}
       <div className="action-row justify-center">
-        {state.available && !gap && (
-          <Button
-            disabled={flow.pending || !!flow.cooldown}
-            onClick={() => {
-              if (current?.status === "failed" && !current.outdated)
-                void flow.retryFailed();
-              else void flow.request();
-            }}
-          >
-            {flow.pending
-              ? "Preparing…"
-              : flow.cooldown
-                ? "Try again in " + flow.cooldown + "s"
-                : current?.outdated
-                  ? "Update suggestions"
-                  : current?.status === "failed"
-                    ? "Try again"
-                    : displayed
-                      ? "Reuse saved suggestions"
+        {state.available &&
+          !gap &&
+          (!displayed ||
+            !!current?.outdated ||
+            current?.status === "failed") && (
+            <Button
+              disabled={flow.pending || !!flow.cooldown}
+              onClick={() => {
+                if (current?.status === "failed" && !current.outdated)
+                  void flow.retryFailed();
+                else void flow.request();
+              }}
+            >
+              {flow.pending
+                ? "Preparing…"
+                : flow.cooldown
+                  ? "Try again in " + flow.cooldown + "s"
+                  : current?.outdated
+                    ? "Update suggestions"
+                    : current?.status === "failed"
+                      ? "Try again"
                       : "Prepare suggestions"}
-          </Button>
-        )}
+            </Button>
+          )}
       </div>
       <p className="text-center text-xs text-gray-500">
         Only three starter careers are published. Suggestions do not assess
@@ -214,8 +271,8 @@ export function RecommendationCards({
       </p>
       <p className="text-center text-xs text-gray-500">
         Preparing suggestions sends your active Discovery choices and relevant
-        saved learning context to Groq. Names, contact details and inactive
-        answers are excluded.
+        saved learning context and validated document background to Groq. Names,
+        contact details and inactive answers are excluded.
       </p>
     </div>
   );

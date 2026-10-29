@@ -4,6 +4,16 @@
 
 ## 1. Architectural decision
 
+Implementation update, 2026-10-29: the owner-approved connected core now uses
+the existing modular services for saved Discovery, validated Groq selection,
+learning summaries, three published starter paths and versioned content upgrades.
+PDF processing is deferred with a backend gate; existing removal/cleanup remains.
+Hosting configuration and non-root production startup are prepared without a
+deployment. The [acceptance record](features/deployment-preparation.md) separates
+local execution evidence, deferred human review and unverified hosted gates.
+This dated update supersedes historical scaffold-only implementation descriptions
+below; it does not alter the architecture or waive A-01–A-11.
+
 Use a **modular monolith**: one React single-page frontend, one FastAPI backend, one PostgreSQL database hosted by Supabase, and a server-side LLM provider adapter. The backend owns application business logic and protected data access. Deploy the frontend to Vercel Hobby and the backend to Render Free for the MVP. Use Docker for reproducible local development. Keep deployment providers replaceable.
 
 This supersedes historical proposals for Next.js and native-only development, including the proposal retained in the UI reference audit. The existing product and feature specifications continue to define **what** Asgard does; this document defines **how** it is structured. Owner-delegated product defaults now live in the feature/page specifications; this foundation does not certify catalog content, encoded prompts or runtime behavior.

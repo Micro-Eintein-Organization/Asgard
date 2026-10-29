@@ -203,7 +203,10 @@ def definition(questionnaire_id=None):
         "background",
         "background",
         "Which best describes your background?",
-        "Think about learning, projects, or work. You do not need a qualification or a job in technology.",
+        (
+            "Think about learning, projects, or work. You do not need a "
+            "qualification or a job in technology."
+        ),
         [
             option(
                 "new",

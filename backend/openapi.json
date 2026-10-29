@@ -50,6 +50,32 @@
         "title": "ActivityMonth",
         "type": "object"
       },
+      "AnalyzeDocument": {
+        "additionalProperties": false,
+        "properties": {
+          "expected_revision": {
+            "minimum": 1.0,
+            "title": "Expected Revision",
+            "type": "integer"
+          },
+          "idempotency_key": {
+            "format": "uuid",
+            "title": "Idempotency Key",
+            "type": "string"
+          },
+          "synthetic_document": {
+            "default": false,
+            "title": "Synthetic Document",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "expected_revision",
+          "idempotency_key"
+        ],
+        "title": "AnalyzeDocument",
+        "type": "object"
+      },
       "Branch": {
         "additionalProperties": false,
         "properties": {
@@ -352,6 +378,54 @@
         "title": "CompletedDiscoveryReference",
         "type": "object"
       },
+      "ContextFact": {
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "maxLength": 1200,
+            "minLength": 1,
+            "title": "Description",
+            "type": "string"
+          },
+          "id": {
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Id",
+            "type": "string"
+          },
+          "source": {
+            "enum": [
+              "discovery",
+              "current_roadmap",
+              "topic_progress",
+              "branch_choice",
+              "pdf_analysis"
+            ],
+            "title": "Source",
+            "type": "string"
+          },
+          "source_id": {
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Source Id",
+            "type": "string"
+          },
+          "source_revision": {
+            "minimum": 1.0,
+            "title": "Source Revision",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "source",
+          "source_id",
+          "source_revision",
+          "description"
+        ],
+        "title": "ContextFact",
+        "type": "object"
+      },
       "Dashboard": {
         "additionalProperties": false,
         "properties": {
@@ -646,6 +720,185 @@
           "latest_completed"
         ],
         "title": "DiscoveryState",
+        "type": "object"
+      },
+      "Document": {
+        "additionalProperties": false,
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/DocumentEvidence"
+            },
+            "title": "Evidence",
+            "type": "array"
+          },
+          "failure_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Failure Code"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "revision": {
+            "minimum": 1.0,
+            "title": "Revision",
+            "type": "integer"
+          },
+          "status": {
+            "enum": [
+              "uploading",
+              "uploaded",
+              "analyzing",
+              "active",
+              "failed",
+              "removed"
+            ],
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "revision",
+          "failure_code",
+          "created_at",
+          "evidence"
+        ],
+        "title": "Document",
+        "type": "object"
+      },
+      "DocumentCommand": {
+        "additionalProperties": false,
+        "properties": {
+          "expected_revision": {
+            "minimum": 1.0,
+            "title": "Expected Revision",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "expected_revision"
+        ],
+        "title": "DocumentCommand",
+        "type": "object"
+      },
+      "DocumentEvidence": {
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "enum": [
+              "skill",
+              "education",
+              "experience",
+              "project"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "page": {
+            "maximum": 50.0,
+            "minimum": 1.0,
+            "title": "Page",
+            "type": "integer"
+          },
+          "span": {
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Span",
+            "type": "string"
+          },
+          "text": {
+            "maxLength": 250,
+            "minLength": 1,
+            "title": "Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "kind",
+          "text",
+          "page",
+          "span"
+        ],
+        "title": "DocumentEvidence",
+        "type": "object"
+      },
+      "DocumentState": {
+        "additionalProperties": false,
+        "properties": {
+          "active": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Document"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "available": {
+            "title": "Available",
+            "type": "boolean"
+          },
+          "candidate": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Document"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "cleanup_pending": {
+            "title": "Cleanup Pending",
+            "type": "integer"
+          },
+          "latest_failure": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Document"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "revision": {
+            "minimum": 1.0,
+            "title": "Revision",
+            "type": "integer"
+          },
+          "synthetic_only": {
+            "title": "Synthetic Only",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "revision",
+          "active",
+          "candidate",
+          "latest_failure",
+          "available",
+          "synthetic_only",
+          "cleanup_pending"
+        ],
+        "title": "DocumentState",
         "type": "object"
       },
       "ErrorBody": {
@@ -959,9 +1212,19 @@
       "ProgressSummary": {
         "additionalProperties": false,
         "properties": {
+          "applicable": {
+            "minimum": 0.0,
+            "title": "Applicable",
+            "type": "integer"
+          },
           "content_updated": {
             "title": "Content Updated",
             "type": "boolean"
+          },
+          "done": {
+            "minimum": 0.0,
+            "title": "Done",
+            "type": "integer"
           },
           "fully_done": {
             "title": "Fully Done",
@@ -986,15 +1249,48 @@
             "title": "No Remaining Suggestions",
             "type": "boolean"
           },
+          "percentage": {
+            "anyOf": [
+              {
+                "maximum": 100.0,
+                "minimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Percentage"
+          },
+          "requires_branch_choice": {
+            "title": "Requires Branch Choice",
+            "type": "boolean"
+          },
           "roadmap_id": {
             "format": "uuid",
             "title": "Roadmap Id",
+            "type": "string"
+          },
+          "state": {
+            "enum": [
+              "empty",
+              "branch_required",
+              "in_progress",
+              "completed",
+              "review_skipped"
+            ],
+            "title": "State",
             "type": "string"
           }
         },
         "required": [
           "roadmap_id",
           "milestones",
+          "done",
+          "applicable",
+          "requires_branch_choice",
+          "percentage",
+          "state",
           "fully_done",
           "no_remaining_suggestions",
           "next_topic_ids",
@@ -1157,6 +1453,13 @@
                 "type": "null"
               }
             ]
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/ContextFact"
+            },
+            "title": "Evidence",
+            "type": "array"
           },
           "failure_code": {
             "anyOf": [
@@ -3134,6 +3437,642 @@
         "summary": "Complete Discovery",
         "tags": [
           "foundation-contracts"
+        ]
+      }
+    },
+    "/api/v1/me/documents": {
+      "get": {
+        "operationId": "get_my_documents",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentState"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Content Too Large"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Get Documents",
+        "tags": [
+          "documents"
+        ]
+      }
+    },
+    "/api/v1/me/documents/cleanup": {
+      "post": {
+        "operationId": "cleanup_my_documents",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentState"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Content Too Large"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Cleanup",
+        "tags": [
+          "documents"
+        ]
+      }
+    },
+    "/api/v1/me/documents/remove": {
+      "post": {
+        "operationId": "remove_my_documents",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DocumentCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentState"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Content Too Large"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Remove",
+        "tags": [
+          "documents"
+        ]
+      }
+    },
+    "/api/v1/me/documents/upload": {
+      "post": {
+        "operationId": "upload_my_document",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "expected_revision",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "title": "Expected Revision",
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/pdf": {
+              "schema": {
+                "format": "binary",
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentState"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Content Too Large"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Upload",
+        "tags": [
+          "documents"
+        ]
+      }
+    },
+    "/api/v1/me/documents/{document_id}/analyze": {
+      "post": {
+        "operationId": "analyze_my_document",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "document_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Document Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AnalyzeDocument"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentState"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Content Too Large"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Analyze",
+        "tags": [
+          "documents"
+        ]
+      }
+    },
+    "/api/v1/me/documents/{document_id}/download": {
+      "get": {
+        "operationId": "download_my_document",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "document_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Document Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Content Too Large"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Download",
+        "tags": [
+          "documents"
         ]
       }
     },

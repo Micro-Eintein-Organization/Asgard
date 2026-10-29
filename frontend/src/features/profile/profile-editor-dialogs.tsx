@@ -73,7 +73,7 @@ export function ProfileEditorDialogs({
                 ? "Wait for the save to finish before leaving."
                 : "Save before leaving, discard the edits, or stay on this page."}
               {extraDirty &&
-                " Save preferences using the separate Save preferences button before leaving, or discard them here."}
+                " Save preferences or upload the selected document before leaving, or discard those changes here."}
             </DialogDescription>
           </DialogHeader>
           <div className="action-row">

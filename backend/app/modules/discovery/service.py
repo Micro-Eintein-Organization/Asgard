@@ -10,14 +10,18 @@ async def questionnaire(connection, questionnaire_id=None):
     authored = definition(questionnaire_id)
     published = await one(
         connection,
-        "SELECT id, version FROM asgard_catalog.questionnaires "
-        "WHERE id = CAST(:id AS uuid) AND published_at IS NOT NULL",
+        (
+            "SELECT id, version FROM asgard_catalog.questionnaires WHERE id = "
+            "CAST(:id AS uuid) AND published_at IS NOT NULL"
+        ),
         {"id": str(authored.id)},
     )
     registry = await rows(
         connection,
-        "SELECT id, position FROM asgard_catalog.questions "
-        "WHERE questionnaire_id = CAST(:id AS uuid) ORDER BY position",
+        (
+            "SELECT id, position FROM asgard_catalog.questions WHERE "
+            "questionnaire_id = CAST(:id AS uuid) ORDER BY position"
+        ),
         {"id": str(authored.id)},
     )
     expected = [{"id": item.question_id, "position": item.position} for item in authored.questions]
@@ -32,9 +36,11 @@ async def session(connection, uid, session_id, *, locked=False):
     saved = required(
         await one(
             connection,
-            "SELECT id, questionnaire_id, source_session_id, status, revision, "
-            "created_at, completed_at FROM asgard_private.discovery_sessions "
-            "WHERE user_id = CAST(:uid AS uuid) AND id = CAST(:id AS uuid)"
+            (
+                "SELECT id, questionnaire_id, source_session_id, status, revision, "
+                "created_at, completed_at FROM asgard_private.discovery_sessions WHERE "
+                "user_id = CAST(:uid AS uuid) AND id = CAST(:id AS uuid)"
+            )
             + (" FOR UPDATE" if locked else " FOR SHARE"),
             {"uid": str(uid), "id": str(session_id)},
         )
@@ -42,9 +48,13 @@ async def session(connection, uid, session_id, *, locked=False):
     authored = await questionnaire(connection, saved["questionnaire_id"])
     answers = await rows(
         connection,
-        "SELECT a.question_id, a.option_ids FROM asgard_private.discovery_answers a "
-        "JOIN asgard_catalog.questions q ON q.questionnaire_id = a.questionnaire_id AND q.id = a.question_id "
-        "WHERE a.user_id = CAST(:uid AS uuid) AND a.session_id = CAST(:id AS uuid) ORDER BY q.position",
+        (
+            "SELECT a.question_id, a.option_ids FROM "
+            "asgard_private.discovery_answers a JOIN asgard_catalog.questions q ON "
+            "q.questionnaire_id = a.questionnaire_id AND q.id = a.question_id WHERE"
+            " a.user_id = CAST(:uid AS uuid) AND a.session_id = CAST(:id AS uuid) "
+            "ORDER BY q.position"
+        ),
         {"uid": str(uid), "id": str(session_id)},
     )
     by_id = {item["question_id"]: item["option_ids"] for item in answers}
@@ -65,9 +75,11 @@ async def state(connection, uid):
     for name, status in (("draft", "draft"), ("latest_completed", "completed")):
         row = await one(
             connection,
-            "SELECT id FROM asgard_private.discovery_sessions "
-            "WHERE user_id = CAST(:uid AS uuid) AND status = :status "
-            "ORDER BY completed_at DESC NULLS LAST, created_at DESC, id DESC LIMIT 1",
+            (
+                "SELECT id FROM asgard_private.discovery_sessions WHERE user_id = "
+                "CAST(:uid AS uuid) AND status = :status ORDER BY completed_at DESC "
+                "NULLS LAST, created_at DESC, id DESC LIMIT 1"
+            ),
             {"uid": str(uid), "status": status},
         )
         result[name] = await session(connection, uid, row["id"]) if row else None
@@ -79,8 +91,10 @@ async def start(connection, uid, questionnaire_id):
     await questionnaire(connection, questionnaire_id)
     draft = await one(
         connection,
-        "SELECT id, questionnaire_id FROM asgard_private.discovery_sessions "
-        "WHERE user_id = CAST(:uid AS uuid) AND status = 'draft'",
+        (
+            "SELECT id, questionnaire_id FROM asgard_private.discovery_sessions "
+            "WHERE user_id = CAST(:uid AS uuid) AND status = 'draft'"
+        ),
         {"uid": str(uid)},
     )
     if draft:
@@ -93,8 +107,11 @@ async def start(connection, uid, questionnaire_id):
         return await session(connection, uid, draft["id"])
     saved = await one(
         connection,
-        "INSERT INTO asgard_private.discovery_sessions (user_id, questionnaire_id) "
-        "VALUES (CAST(:uid AS uuid), CAST(:qid AS uuid)) RETURNING id",
+        (
+            "INSERT INTO asgard_private.discovery_sessions (user_id, "
+            "questionnaire_id) VALUES (CAST(:uid AS uuid), CAST(:qid AS uuid)) "
+            "RETURNING id"
+        ),
         {"uid": str(uid), "qid": str(questionnaire_id)},
     )
     return await session(connection, uid, saved["id"])
@@ -139,10 +156,13 @@ async def checkpoint(connection, uid, session_id, body):
     for answer in body.answers:
         await connection.execute(
             text(
-                "INSERT INTO asgard_private.discovery_answers "
-                "(user_id, session_id, questionnaire_id, question_id, option_ids) VALUES "
-                "(CAST(:uid AS uuid), CAST(:sid AS uuid), CAST(:qid AS uuid), :question, :options) "
-                "ON CONFLICT (session_id, question_id) DO UPDATE SET option_ids = EXCLUDED.option_ids"
+
+                    "INSERT INTO asgard_private.discovery_answers (user_id, session_id, "
+                    "questionnaire_id, question_id, option_ids) VALUES (CAST(:uid AS uuid),"
+                    " CAST(:sid AS uuid), CAST(:qid AS uuid), :question, :options) ON "
+                    "CONFLICT (session_id, question_id) DO UPDATE SET option_ids = "
+                    "EXCLUDED.option_ids"
+
             ),
             {
                 "uid": str(uid),
@@ -154,8 +174,10 @@ async def checkpoint(connection, uid, session_id, body):
         )
     await connection.execute(
         text(
-            "UPDATE asgard_private.discovery_sessions SET revision = revision + 1 "
-            "WHERE user_id = CAST(:uid AS uuid) AND id = CAST(:sid AS uuid)"
+
+                "UPDATE asgard_private.discovery_sessions SET revision = revision + 1 "
+                "WHERE user_id = CAST(:uid AS uuid) AND id = CAST(:sid AS uuid)"
+
         ),
         {"uid": str(uid), "sid": str(session_id)},
     )
@@ -181,8 +203,11 @@ async def complete(connection, uid, session_id, body):
         )
     await connection.execute(
         text(
-            "UPDATE asgard_private.discovery_sessions SET status = 'completed', "
-            "completed_at = statement_timestamp() WHERE user_id = CAST(:uid AS uuid) AND id = CAST(:id AS uuid)"
+
+                "UPDATE asgard_private.discovery_sessions SET status = 'completed', "
+                "completed_at = statement_timestamp() WHERE user_id = CAST(:uid AS "
+                "uuid) AND id = CAST(:id AS uuid)"
+
         ),
         {"uid": str(uid), "id": str(session_id)},
     )
@@ -200,8 +225,10 @@ async def retake(connection, uid, body):
         )
     draft = await one(
         connection,
-        "SELECT id, source_session_id FROM asgard_private.discovery_sessions "
-        "WHERE user_id = CAST(:uid AS uuid) AND status = 'draft'",
+        (
+            "SELECT id, source_session_id FROM asgard_private.discovery_sessions "
+            "WHERE user_id = CAST(:uid AS uuid) AND status = 'draft'"
+        ),
         {"uid": str(uid)},
     )
     if draft:
@@ -214,17 +241,11 @@ async def retake(connection, uid, body):
         return await session(connection, uid, draft["id"])
     new = await one(
         connection,
-        "INSERT INTO asgard_private.discovery_sessions "
-        "(user_id, questionnaire_id, source_session_id) VALUES (CAST(:uid AS uuid), CAST(:qid AS uuid), CAST(:source AS uuid)) RETURNING id",
-        {"uid": str(uid), "qid": str(source.questionnaire_id), "source": str(source.id)},
-    )
-    await connection.execute(
-        text(
-            "INSERT INTO asgard_private.discovery_answers "
-            "(user_id, session_id, questionnaire_id, question_id, option_ids) "
-            "SELECT user_id, CAST(:new AS uuid), questionnaire_id, question_id, option_ids "
-            "FROM asgard_private.discovery_answers WHERE user_id = CAST(:uid AS uuid) AND session_id = CAST(:source AS uuid)"
+        (
+            "INSERT INTO asgard_private.discovery_sessions (user_id, "
+            "questionnaire_id, source_session_id) VALUES (CAST(:uid AS uuid), "
+            "CAST(:qid AS uuid), CAST(:source AS uuid)) RETURNING id"
         ),
-        {"uid": str(uid), "new": str(new["id"]), "source": str(source.id)},
+        {"uid": str(uid), "qid": str(source.questionnaire_id), "source": str(source.id)},
     )
     return await session(connection, uid, new["id"])

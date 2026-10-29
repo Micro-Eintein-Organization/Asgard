@@ -16,6 +16,7 @@ import {
 import { appRoutes, routes } from "@/lib/routes";
 import { StatePanel } from "@/components/shared";
 import { ProtectedRoute } from "@/auth/protected-route";
+import { CareerDestination } from "./career-navigation";
 
 export const router = createBrowserRouter([
   {
@@ -38,7 +39,7 @@ export const router = createBrowserRouter([
           { path: appRoutes.roadmap(":careerId"), element: <RoadmapPage /> },
           {
             path: appRoutes.roadmaps,
-            element: <Navigate to={appRoutes.roadmap("frontend")} replace />,
+            element: <CareerDestination />,
           },
           { path: appRoutes.profile, element: <AuthenticatedProfilePage /> },
           {

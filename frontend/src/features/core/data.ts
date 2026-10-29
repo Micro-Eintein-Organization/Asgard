@@ -21,6 +21,32 @@ async function result<T>(
 }
 
 export const coreApi = {
+  documents: () => result(api.GET("/api/v1/me/documents")),
+  uploadDocument: ({ file, revision }: { file: File; revision: number }) =>
+    result(
+      api.POST("/api/v1/me/documents/upload", {
+        params: { query: { expected_revision: revision } },
+        body: file as unknown as string,
+        bodySerializer: (body) => body as unknown as File,
+        headers: { "Content-Type": "application/pdf" },
+      }),
+    ),
+  analyzeDocument: ({
+    id,
+    body,
+  }: {
+    id: string;
+    body: Schemas["AnalyzeDocument"];
+  }) =>
+    result(
+      api.POST("/api/v1/me/documents/{document_id}/analyze", {
+        params: { path: { document_id: id } },
+        body,
+      }),
+    ),
+  removeDocuments: (body: Schemas["DocumentCommand"]) =>
+    result(api.POST("/api/v1/me/documents/remove", { body })),
+  cleanupDocuments: () => result(api.POST("/api/v1/me/documents/cleanup")),
   categories: () => result(api.GET("/api/v1/categories")),
   catalog: (
     query: {

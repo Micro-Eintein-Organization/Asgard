@@ -4,6 +4,13 @@ Updated 28 October 2026. Follow the approved [architecture](architecture.md), se
 
 ## Workspace
 
+Current follow-up, 2026-10-29: saved core features and both content releases have
+local acceptance evidence in [deployment preparation](features/deployment-preparation.md).
+The owner explicitly selected `codex/connected-prototype` for this feature work.
+The [deployment runbook](deployment.md) prepares hosting configuration without
+deploying or waiving the remaining hosted gates. Older scaffold-only status below
+is historical; current scope and evidence are in the feature guides.
+
 The repository contains `frontend/`, `backend/`, app-service Compose configuration, CLI-managed Supabase configuration, and a cross-platform Node helper. Windows has `Setup-Asgard.cmd` for first-run setup and `Start-Asgard.cmd` for daily startup; Linux uses the documented Bash commands. The [Windows one-click onboarding guide](features/windows-one-click-onboarding.md) records launcher behavior and its review gate. Public entry is at `/`, historical sample fixtures remain in `frontend/src/fixtures/catalog.ts` but the current application screens use APIs or explicit unavailable states, and real service connectivity remains at `/status`. Standalone `/preview/...` routes have been removed; historical evidence below describes their earlier implementation. Historical frontend files in design/ui-reference remain unchanged references, not an executable application or approved API; no prototype backend/state behavior has been imported. The [Stage 3.5 handoff](stage-3.5-handoff.md) records the consolidation and pending manual review.
 
 ## Current foundation status and evidence
@@ -23,7 +30,7 @@ The [password minimum resolution](decisions.md#password-minimum-resolution) sele
 
 ### Current CI coverage
 
-[checks.yml](../.github/workflows/checks.yml) runs on pull requests and pushes to `foundation`/`main`. It defines helper tests, frontend type/lint/unit/build/client-drift checks, backend Ruff/Pytest/OpenAPI checks and Compose validation/build on an Ubuntu runner. It does not start Supabase, exercise migration/RLS reproducibility, run Playwright, perform live Auth/provider acceptance or schedule maintenance/backups. Live Auth tests are opt-in and skipped by default. Local workflow source is not evidence of a successful hosted run or native Linux onboarding. The broader requirements remain in [Architecture](architecture.md#14-foundation-verification-gates) and [Verification](verification.md).
+[checks.yml](../.github/workflows/checks.yml) runs on pull requests and pushes to `foundation`/`main`. Source checks include helper, frontend, backend, OpenAPI/client drift and container builds. The added isolated-core job starts an independent Supabase project with fresh credentials, applies migrations, verifies content-upgrade preservation/conflict rollback, and runs browser registration/verification and core flows with provider calls blocked. The production image also has a local port/non-root/shutdown check. Opt-in Auth/RLS tests retain their explicit environment gate. No hosted CI execution, native Linux run, hosted provider acceptance or backup scheduling is claimed by this source change.
 
 ## Foundation Git workflow
 

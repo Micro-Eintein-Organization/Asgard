@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+import { ProfileDocuments } from "@/features/profile/documents";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { useAuth } from "@/auth/context";
 import { useLogout } from "@/app/logout";
@@ -29,12 +30,19 @@ function SettingsEditor({ userId }: { userId: string }) {
   const categories = useCoreQuery(["categories"], coreApi.categories);
   const discovery = useCoreQuery(["discovery"], coreApi.discovery);
   const preferenceSave = useCoreMutation(coreApi.savePreferences);
+  const retake = useCoreMutation(coreApi.retakeDiscovery);
   const preferenceDirty = primaryField !== null || timezoneDraft !== null;
+  const [documentGuard, setDocumentGuard] = useState({ dirty: false, pending: false });
+  const onDocumentGuardChange = useCallback((dirty: boolean, pending: boolean) => {
+    setDocumentGuard((previous) =>
+      previous.dirty === dirty && previous.pending === pending ? previous : { dirty, pending },
+    );
+  }, []);
   const [logoutError, setLogoutError] = useState("");
   const editor = useProfileEditor(
     userId,
-    preferenceDirty,
-    preferenceSave.isPending,
+    preferenceDirty || documentGuard.dirty,
+    preferenceSave.isPending || documentGuard.pending,
   );
   const { query, mutation, persist, feedback, errorSummary, setReloadOpen } =
     editor;
@@ -86,7 +94,7 @@ function SettingsEditor({ userId }: { userId: string }) {
     );
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-8 bg-white text-gray-900 min-h-screen">
+    <div className="max-w-6xl mx-auto px-2 sm:px-6 py-8 bg-white text-gray-900 min-h-screen">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-8 border-t pt-6">
         {/* Left Sidebar */}
         <div className="md:col-span-3 space-y-2 border-r pr-6">
@@ -112,7 +120,7 @@ function SettingsEditor({ userId }: { userId: string }) {
         </div>
 
         {/* Right Main Content */}
-        <div className="md:col-span-9 space-y-10 pl-2">
+        <div className="md:col-span-9 min-w-0 space-y-10 md:pl-2">
           {logoutError && (
             <p role="alert" className="field-error">
               {logoutError}
@@ -128,11 +136,11 @@ function SettingsEditor({ userId }: { userId: string }) {
               })}
             >
               {/* Profile Inputs */}
-              <div className="flex items-center space-x-6">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
                 <div className="w-16 h-16 rounded-full bg-gray-200 flex items-center justify-center border">
                   <span title="Photo uploads are not available yet">✏️</span>
                 </div>
-                <div className="space-y-3 max-w-sm flex-1">
+                <div className="space-y-3 max-w-sm min-w-0 w-full flex-1">
                   <input
                     type="text"
                     placeholder="First Name"
@@ -224,16 +232,58 @@ function SettingsEditor({ userId }: { userId: string }) {
                   </p>
                 </div>
                 <button
-                  onClick={() => void navigate(appRoutes.discovery)}
+                  disabled={
+                    retake.isPending ||
+                    discovery.isPending ||
+                    discovery.isError ||
+                    isDirty ||
+                    preferenceDirty ||
+                    documentGuard.dirty ||
+                    documentGuard.pending ||
+                    mutation.isPending ||
+                    preferenceSave.isPending
+                  }
+                  onClick={async () => {
+                    if (
+                      discovery.data?.latest_completed &&
+                      !discovery.data.draft
+                    ) {
+                      try {
+                        await retake.mutateAsync({
+                          source_session_id: discovery.data.latest_completed.id,
+                          expected_revision:
+                            discovery.data.latest_completed.revision,
+                        });
+                      } catch {
+                        return;
+                      }
+                    }
+                    void navigate(appRoutes.discovery);
+                  }}
                   className="px-4 py-2 rounded-full border border-gray-300 text-xs font-semibold hover:bg-gray-50 cursor-pointer"
                 >
-                  {discovery.data?.draft
-                    ? "Resume Discovery"
-                    : discovery.data?.latest_completed
-                      ? "Retake Discovery"
-                      : "Start Discovery"}
+                  {retake.isPending
+                    ? "Opening…"
+                    : discovery.data?.draft
+                      ? "Resume Discovery"
+                      : discovery.data?.latest_completed
+                        ? "Retake Discovery"
+                        : "Start Discovery"}
                 </button>
               </div>
+              {retake.error && (
+                <p role="alert" className="field-error">
+                  {retake.error.message}{" "}
+                  <button onClick={() => void discovery.refetch()}>
+                    Reload Discovery
+                  </button>
+                </p>
+              )}
+              {(isDirty || preferenceDirty) && (
+                <p className="text-xs text-gray-600">
+                  Save or discard your edits before opening Discovery.
+                </p>
+              )}
               <Link
                 to={appRoutes.results}
                 className="inline-block text-xs underline"
@@ -392,41 +442,7 @@ function SettingsEditor({ userId }: { userId: string }) {
                 </p>
               )}
             </div>
-            {/* Document Management Card */}
-            <div className="space-y-2 pt-2 border-t">
-              <span className="text-xs font-bold text-gray-700">
-                Academic Profile & Document Management
-              </span>
-              <p className="text-[10px] text-gray-400">
-                PDF upload and analysis are not connected. No document is
-                required.
-              </p>
-
-              <div className="border border-gray-300 rounded-2xl p-4 flex justify-between items-center bg-white shadow-2xs">
-                <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-red-500 text-white font-bold rounded-lg flex items-center justify-center text-[10px]">
-                    PDF
-                  </div>
-                  <div>
-                    <h5 className="font-bold text-xs">No document uploaded</h5>
-                    <span className="text-[9px] font-bold text-emerald-600 px-2 py-0.5 rounded-full bg-emerald-50">
-                      Unavailable
-                    </span>
-                  </div>
-                </div>
-                <div className="flex space-x-3 text-xs font-semibold">
-                  <button disabled className="hover:underline cursor-pointer">
-                    Replace PDF
-                  </button>
-                  <button
-                    disabled
-                    className="text-red-500 hover:underline cursor-pointer"
-                  >
-                    Remove
-                  </button>
-                </div>
-              </div>
-            </div>
+            <ProfileDocuments onGuardChange={onDocumentGuardChange} />
           </section>
 
           {/* Account and Security Section */}
@@ -519,8 +535,8 @@ function SettingsEditor({ userId }: { userId: string }) {
       </div>
       <ProfileEditorDialogs
         editor={editor}
-        extraDirty={preferenceDirty}
-        extraPending={preferenceSave.isPending}
+        extraDirty={preferenceDirty || documentGuard.dirty}
+        extraPending={preferenceSave.isPending || documentGuard.pending}
       />
     </div>
   );

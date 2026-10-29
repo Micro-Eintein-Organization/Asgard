@@ -6,3 +6,4 @@ SQLAlchemy[asyncio]>=2,<3
 httpx
 PyJWT[crypto]==2.15.1
 psycopg[binary]==3.3.6
+pypdf==6.21.3

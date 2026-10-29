@@ -77,6 +77,8 @@ These instructions apply to human contributors and AI agents. Read this file at 
 
 ## Documentation and change records
 
+- Maintain `docs/future-development.md` when a task changes deferred feature scope or status. Record the decision, date and evidence; backlog entries do not authorize implementation or supersede owning specifications.
+
 - Resolve documentation paths from the checkout root: the folder containing `AGENTS.md`, `README.md`, `package.json` and `compose.yaml`. The internal feature-documentation directory is `<checkout-root>/docs/features/`; create it if needed. For example, the onboarding guide is `<checkout-root>/docs/features/windows-one-click-onboarding.md`. Use repository-relative source references and document-relative Markdown links inside guides so they work on every teammate's machine.
 - Every feature implementation or change must create or update its internal implementation guide at `docs/features/<feature-name>.md` in the same change or PR. Use a stable lowercase, hyphenated filename and update the existing guide when extending a feature.
 - Each feature guide must include the feature name, implementer's name, creation date, last-updated date, implementation/review status, requirement or acceptance IDs, implemented behavior, relevant source files/modules, verification results and manual steps, and known limitations or pending work. Record dates as `YYYY-MM-DD`. Use the actual contributor or agent name; never invent an author, approval, or completed check.

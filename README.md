@@ -1,5 +1,9 @@
 # Asgard
 
+Local feature handoff: [connected MVP backend](docs/features/mvp-backend-handoff.md).
+See [content authoring](docs/content-authoring.md) for adding roadmaps and
+[future development](docs/future-development.md) for deferred work and update rules.
+
 Asgard is a web application for exploring technology careers and following curated learning roadmaps. It connects career explanations, learning topics, and resources so users can choose a direction, track their progress, and return to their next learning step.
 
 Users can browse careers directly or complete a five-round Discovery questionnaire for explained career suggestions. The intended audience is adults aged 18 and above, from beginners to people with technical experience.
@@ -360,12 +364,14 @@ The `env` command reads the CLI's current local values without printing credenti
 | PowerShell blocks `.ps1` execution | Use `node scripts/dev.mjs start` directly; no execution-policy change is required. |
 | Settings seem ignored | Unset shell exports such as `COMPOSE_FILE`, `COMPOSE_PROJECT_NAME` or stale `ASGARD_*`/port values that override root `.env`; the helper reports conflicts without printing values. |
 
-The pinned CLI publishes local Supabase ports on host interfaces; use a trusted development machine/network and its firewall. This stack is not a production deployment. The shared application migrations exist; reviewed content, feature integration and the remaining account capabilities are unfinished. See the [development guide](docs/development.md) for verification limits and the [design guide](docs/design.md) before UI work.
+The pinned CLI publishes local Supabase ports on host interfaces; use a trusted development machine/network and its firewall. This stack is not a production deployment. Core persistence and three published starter paths are implemented; current evidence and remaining gates are in the [core handoff](docs/features/mvp-backend-handoff.md). See the [deployment runbook](docs/deployment.md) for hosting preparation and the [design guide](docs/design.md) before UI work.
 
 ## Documentation
 
 | Document | Contents |
 | --- | --- |
+| [Deployment preparation](docs/deployment.md) | Hosted configuration, administrative publication, release/rollback and external-use gates |
+| [Acceptance evidence](docs/features/deployment-preparation.md) | Isolated content upgrade, registration journey, architecture audit and check results |
 | [Product requirements](docs/product.md) | Product purpose, audience, MVP scope, and acceptance criteria |
 | [User journeys](docs/user-journeys.md) | End-to-end flows and recovery paths |
 | [Pages and interactions](docs/pages-and-interactions.md) | Page content, controls, and interface states |

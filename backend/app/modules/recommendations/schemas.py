@@ -147,6 +147,7 @@ class RecommendationRun(Contract):
     outdated: bool
     failure_code: FailureCode | None
     items: Annotated[list[ValidatedRecommendationItem], Field(max_length=3)]
+    evidence: list[ContextFact] = Field(default_factory=list)
 
     @model_validator(mode="after")
     def truthful_status(self):

@@ -94,6 +94,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app.include_router(router, prefix="/api/v1")
     app.include_router(profile_router, prefix="/api/v1")
     app.include_router(foundation_router, prefix="/api/v1")
+    from app.modules.documents.routes import router as document_router
+
+    app.include_router(document_router, prefix="/api/v1")
     app.include_router(router, include_in_schema=False)
     return app
 

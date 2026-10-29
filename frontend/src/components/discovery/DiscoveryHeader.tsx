@@ -18,12 +18,12 @@ export const DiscoveryHeader: React.FC<DiscoveryHeaderProps> = ({
   onSkip,
 }) => {
   return (
-    <div className="max-w-4xl mx-auto w-full pt-4 pb-6 space-y-4 border-b">
+    <div className="max-w-6xl mx-auto w-full pt-4 pb-6 space-y-5">
       <div className="flex justify-between items-center">
         <button
           onClick={onBack}
           disabled={disabled}
-          className="text-xs font-semibold px-4 py-2 rounded-full border border-gray-200 hover:bg-gray-50 transition-colors flex items-center space-x-1 cursor-pointer"
+          className="min-h-11 text-sm font-semibold px-5 py-2 rounded-xl border border-gray-200 hover:bg-gray-50 transition-colors flex items-center space-x-1 cursor-pointer"
         >
           <span>&larr; Back</span>
         </button>
@@ -32,7 +32,7 @@ export const DiscoveryHeader: React.FC<DiscoveryHeaderProps> = ({
           <button
             onClick={onSkip}
             disabled={disabled}
-            className="text-xs text-gray-500 hover:text-black font-medium cursor-pointer"
+            className="min-h-11 text-sm text-gray-600 hover:text-black font-medium cursor-pointer"
           >
             Save and browse careers &rarr;
           </button>
@@ -40,30 +40,36 @@ export const DiscoveryHeader: React.FC<DiscoveryHeaderProps> = ({
       </div>
 
       <div className="text-center space-y-3">
-        <h1 className="text-2xl font-bold tracking-tight">
-          {currentStep <= totalSteps ? "Discovery" : "Discovery results"}
-        </h1>
+        <h1 className="text-3xl font-bold tracking-tight">Discovery</h1>
         <p className="text-xs text-gray-500">
           {currentStep <= totalSteps
             ? `Question ${currentStep} of ${totalSteps}`
             : "Your saved account results"}
         </p>
-        {showProgress && currentStep <= totalSteps && (
-          <div className="flex justify-center items-center space-x-2">
-            {Array.from({ length: totalSteps }, (_, index) => index + 1).map(
-              (s) => (
-                <div
-                  key={s}
-                  className={`h-1.5 w-12 rounded-full transition-colors ${
-                    s < currentStep
+        {showProgress && (
+          <div
+            className="flex justify-center items-center space-x-2"
+            aria-label={
+              currentStep <= totalSteps
+                ? `Question ${currentStep} of ${totalSteps}`
+                : "Discovery complete"
+            }
+          >
+            {Array.from(
+              { length: totalSteps + 1 },
+              (_, index) => index + 1,
+            ).map((s) => (
+              <div
+                key={s}
+                className={`h-1.5 w-12 rounded-full transition-colors ${
+                  s < currentStep
+                    ? "bg-emerald-500"
+                    : s === currentStep
                       ? "bg-emerald-500"
-                      : s === currentStep
-                        ? "bg-emerald-500"
-                        : "bg-gray-200"
-                  }`}
-                />
-              ),
-            )}
+                      : "bg-gray-200"
+                }`}
+              />
+            ))}
           </div>
         )}
       </div>
