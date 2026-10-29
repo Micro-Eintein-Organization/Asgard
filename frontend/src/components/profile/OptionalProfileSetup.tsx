@@ -1,216 +1,131 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
-import { useAuth } from "@/auth/context";
-import { isCurrentAccount } from "@/auth/transport";
-import { appRoutes } from "@/lib/routes";
-import { StatePanel } from "@/components/shared";
-import { useProfileEditor } from "@/features/profile/use-profile-editor";
-import { ProfileEditorDialogs } from "@/features/profile/profile-editor-dialogs";
-import {
-  validateFirstName,
-  validateSurname,
-} from "@/features/profile/validation";
+import React, { useState } from 'react';
 
-export default function OptionalProfileSetup() {
-  const { user } = useAuth();
-  return user ? <SetupEditor key={user.id} userId={user.id} /> : null;
+interface OptionalProfileSetupProps {
+  onComplete?: () => void;
+  onSkip?: () => void;
 }
 
-function SetupEditor({ userId }: { userId: string }) {
-  const navigate = useNavigate();
-  const editor = useProfileEditor(userId);
-  const { query, mutation, persist, blocker, errorSummary, setReloadOpen } =
-    editor;
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isDirty },
-  } = editor.form;
-  const [returnRequested, setReturnRequested] = useState(false);
-  useEffect(() => {
-    if (
-      returnRequested &&
-      !isDirty &&
-      !mutation.isPending &&
-      isCurrentAccount(userId)
-    ) {
-      if (blocker.state === "blocked") {
-        blocker.reset();
-        return;
-      }
-      void navigate(appRoutes.results, { replace: true });
+export const OptionalProfileSetup: React.FC<OptionalProfileSetupProps> = ({
+  onComplete,
+  onSkip,
+}) => {
+  const [fullName, setFullName] = useState('');
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setSelectedFile(e.target.files[0]);
     }
-  }, [returnRequested, isDirty, mutation.isPending, userId, blocker, navigate]);
-  const skip = () => void navigate(appRoutes.results);
-  if (query.isPending)
-    return (
-      <StatePanel
-        kind="loading"
-        title="Loading your profile"
-        action={<button onClick={skip}>Skip to results</button>}
-      >
-        Reading your saved name.
-      </StatePanel>
-    );
-  if (query.isError)
-    return (
-      <StatePanel
-        kind="error"
-        title="Profile unavailable"
-        action={
-          <div className="action-row">
-            <button onClick={() => void query.refetch()}>Try again</button>
-            <button onClick={skip}>Skip to results</button>
-          </div>
-        }
-      >
-        {query.error.message}
-      </StatePanel>
-    );
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (onComplete) {
+      onComplete();
+    } else {
+      window.location.href = '/dashboard';
+    }
+  };
 
   return (
-    <div className="max-w-4xl mx-auto px-6 py-10 space-y-8 bg-white min-h-screen text-gray-900">
+    <div className="min-h-screen bg-white text-gray-900 flex flex-col justify-between p-6 font-sans">
       {/* Top Header */}
-      <div className="flex justify-between items-center">
+      <div className="max-w-4xl mx-auto w-full flex items-center justify-between pt-2">
         <button
-          onClick={skip}
-          disabled={mutation.isPending}
-          className="text-xs font-semibold px-4 py-2 rounded-full border border-gray-200 hover:bg-gray-50 transition-colors flex items-center space-x-1 cursor-pointer"
+          onClick={onSkip || (() => (window.location.href = '/dashboard'))}
+          className="px-4 py-1.5 border border-gray-200 rounded-full text-xs font-semibold text-gray-600 hover:bg-gray-50 cursor-pointer"
         >
-          <span>&larr; Back</span>
+          &larr; Back
         </button>
       </div>
 
-      {/* Title & Subtitle */}
-      <div className="text-center space-y-2">
-        <h1 className="text-2xl font-bold tracking-tight">
-          Set up your profile
-        </h1>
-        <p className="text-xs text-gray-500 max-w-md mx-auto leading-relaxed">
-          Add your name, or skip and complete this later in Settings. Both
-          actions return to Discovery results.
-        </p>
-      </div>
-
-      {/* Main Centered Card Container */}
-      <form
-        onSubmit={handleSubmit(async (values) => {
-          if (!isDirty && query.data.profile?.first_name)
-            setReturnRequested(true);
-          else if (await persist(values)) setReturnRequested(true);
-        })}
-        className="max-w-md mx-auto border border-gray-200 rounded-3xl p-8 space-y-6 bg-white shadow-xs"
-      >
-        {/* Photo uploads unavailable Avatar */}
-        <div className="flex flex-col items-center space-y-2">
-          <div className="w-16 h-16 rounded-full bg-gray-200 flex items-center justify-center border border-gray-300">
-            <span className="text-sm">✏️</span>
-          </div>
-          <span className="text-[10px] font-medium text-gray-400">
-            Photo uploads unavailable
-          </span>
-        </div>
-
-        {/* Full Name Field */}
-        <div className="space-y-2">
-          <label
-            htmlFor="setup-first-name"
-            className="text-xs font-bold text-gray-900"
-          >
-            First name
-          </label>
-          <input
-            type="text"
-            id="setup-first-name"
-            disabled={mutation.isPending || returnRequested}
-            aria-invalid={!!errors.firstName}
-            {...register("firstName", { validate: validateFirstName })}
-            className="w-full px-4 py-3 rounded-xl border border-gray-200 text-xs focus:outline-none focus:border-black transition-colors"
-          />
-        </div>
-
-        <div className="space-y-2">
-          <label htmlFor="setup-surname" className="text-xs font-bold">
-            Surname (optional)
-          </label>
-          <input
-            id="setup-surname"
-            disabled={mutation.isPending || returnRequested}
-            aria-invalid={!!errors.surname}
-            {...register("surname", { validate: validateSurname })}
-            className="w-full px-4 py-3 rounded-xl border border-gray-200 text-xs focus:outline-none focus:border-black transition-colors"
-          />
-        </div>
-        {(errors.firstName || errors.surname) && (
-          <p
-            ref={errorSummary}
-            role="alert"
-            tabIndex={-1}
-            className="field-error"
-          >
-            {errors.firstName?.message ?? errors.surname?.message}
+      {/* Main Form Box */}
+      <div className="max-w-xl mx-auto w-full my-auto py-4 space-y-6">
+        <div className="text-center space-y-2">
+          <h1 className="text-2xl font-extrabold tracking-tight text-gray-900">
+            Set up your student profile
+          </h1>
+          <p className="text-xs text-gray-500 max-w-md mx-auto leading-relaxed">
+            Add your details now for deeper career recommendations, or skip and complete this anytime from your dashboard.
           </p>
-        )}
-        {mutation.error && (
-          <div role="alert" className="field-error">
-            {mutation.error.message}{" "}
-            <button type="button" onClick={() => setReloadOpen(true)}>
-              Reload saved profile
-            </button>
-          </div>
-        )}
-        {/* Academic Records or Resume (Optional) */}
-        <div className="space-y-2">
-          <label className="text-xs font-bold text-gray-900">
-            Academic Records or Resume (Optional)
-          </label>
-
-          <div
-            aria-disabled="true"
-            className="border-2 border-dashed border-gray-200 hover:border-gray-400 rounded-2xl p-6 text-center transition-colors space-y-3 bg-gray-50/50"
-          >
-            <div className="w-10 h-10 rounded-lg bg-red-500 text-white font-bold flex items-center justify-center mx-auto text-[10px] shadow-xs">
-              PDF
-            </div>
-            <div className="space-y-1">
-              <p className="text-xs text-gray-600">
-                PDF upload and analysis are not available yet. No files are
-                accepted.
-              </p>
-              <p className="text-[10px] text-gray-400">
-                Supports PDF up to 10MB
-              </p>
-            </div>
-          </div>
         </div>
 
-        {/* Proceed Button */}
-        <div className="pt-2">
+        {/* Form Container */}
+        <div className="border border-gray-200 rounded-3xl p-8 space-y-6 bg-white shadow-xs">
+          
+          {/* Avatar Upload Trigger with Uniform Square Edit SVG */}
+          <div className="flex flex-col items-center space-y-2">
+            <div className="relative group cursor-pointer">
+              <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center text-gray-700 group-hover:bg-gray-200 transition-colors shadow-xs border border-gray-200">
+                <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                </svg>
+              </div>
+            </div>
+            <span className="text-xs font-medium text-gray-500">Upload Profile</span>
+          </div>
+
+          <form onSubmit={handleSubmit} className="space-y-5">
+            {/* Full Name Input */}
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold text-gray-800">Full Name</label>
+              <input
+                type="text"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                placeholder="e.g., Juan Dela Cruz"
+                className="w-full px-4 py-3 border border-gray-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-black/5 focus:border-gray-400 transition-all"
+              />
+            </div>
+
+            {/* PDF / Resume Upload Box */}
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold text-gray-800">
+                Academic Records or Resume <span className="font-normal text-gray-400">(Optional)</span>
+              </label>
+
+              <label className="border-2 border-dashed border-gray-200 rounded-2xl p-6 flex flex-col items-center justify-center space-y-2 cursor-pointer hover:border-gray-300 transition-colors bg-gray-50/50">
+                <input
+                  type="file"
+                  accept=".pdf"
+                  onChange={handleFileChange}
+                  className="hidden"
+                />
+                <span className="bg-red-500 text-white text-[10px] font-bold px-3 py-1 rounded-md">
+                  PDF
+                </span>
+                <p className="text-xs text-gray-600">
+                  Drag & drop your PDF here, or <span className="font-bold underline text-black">browse files</span>
+                </p>
+                <span className="text-[10px] text-gray-400">
+                  {selectedFile ? selectedFile.name : 'Supports PDF up to 10MB'}
+                </span>
+              </label>
+            </div>
+
+            {/* Action Button */}
+            <button
+              type="submit"
+              className="w-full py-3.5 bg-black text-white text-xs font-bold rounded-full hover:bg-gray-800 transition-all shadow-xs cursor-pointer mt-2"
+            >
+              Proceed
+            </button>
+          </form>
+        </div>
+
+        {/* Skip Link */}
+        <div className="text-center pt-1">
           <button
-            type="submit"
-            disabled={mutation.isPending || returnRequested}
-            className="w-full bg-black text-white py-3 rounded-full text-xs font-semibold hover:bg-gray-800 transition-colors cursor-pointer shadow-sm"
+            onClick={onSkip || (() => (window.location.href = '/dashboard'))}
+            className="text-xs text-gray-400 hover:text-black font-medium transition-colors cursor-pointer"
           >
-            {mutation.isPending
-              ? "Saving…"
-              : !isDirty && query.data.profile?.first_name
-                ? "Continue to results"
-                : "Save and return to results"}
+            I'll set this up later
           </button>
         </div>
-      </form>
-
-      {/* Footer Skip Link */}
-      <div className="text-center pt-2">
-        <button
-          onClick={skip}
-          disabled={mutation.isPending}
-          className="text-xs text-gray-400 hover:text-black font-medium transition-colors cursor-pointer"
-        >
-          I'll set this up later
-        </button>
       </div>
-      <ProfileEditorDialogs editor={editor} />
     </div>
   );
-}
+};
+
+// Provide default export to satisfy default imports in containers/routers
+export default OptionalProfileSetup;

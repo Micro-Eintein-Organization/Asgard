@@ -1,413 +1,309 @@
-import { useEffect, useRef } from "react";
-import { Link, useLocation, useNavigate } from "react-router";
-import type { components } from "@/api/generated/schema";
-import { DiscoveryHeader } from "./DiscoveryHeader";
-import { StatePanel } from "@/components/shared";
-import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { appRoutes } from "@/lib/routes";
-import { coreApi, useCoreMutation, useCoreQuery } from "@/features/core/data";
-import { useDiscoveryEditor } from "@/features/discovery/use-discovery-editor";
-import { RecommendationCards } from "@/features/recommendations/components";
-import { useRecommendationFlow } from "@/features/recommendations/use-recommendation-flow";
+import { useState } from 'react';
+import { DiscoveryAnswers, DiscoveryStep } from '../../types/discovery';
+import { DISCOVERY_QUESTIONS } from '../../data/discoveryQuestions';
+import { DiscoveryHeader } from './DiscoveryHeader';
+import { discoveryService, DiscoveryResult } from '../../services/discoveryService';
 
-type Schemas = components["schemas"];
-
-export function DiscoveryWizard() {
-  const navigate = useNavigate();
-  const state = useCoreQuery(["discovery"], coreApi.discovery);
-  const definition = useCoreQuery(
-    ["questionnaire", state.data?.draft?.questionnaire_id],
-    () => coreApi.questionnaire(state.data?.draft?.questionnaire_id),
-  );
-  const start = useCoreMutation(coreApi.startDiscovery);
-
-  const opening = useRef(false);
-  useEffect(() => {
-    if (
-      opening.current ||
-      !state.data ||
-      !definition.data ||
-      state.data.draft ||
-      state.data.latest_completed
-    )
-      return;
-    opening.current = true;
-    start.mutate({ questionnaire_id: definition.data.id });
-  }, [state.data, definition.data, start]);
-  const error = state.error ?? definition.error;
-  if (error)
-    return (
-      <StatePanel
-        kind="error"
-        title="Discovery unavailable"
-        action={
-          <div className="action-row">
-            <button
-              onClick={() => {
-                void state.refetch();
-                void definition.refetch();
-              }}
-            >
-              Try again
-            </button>
-            <Link to={appRoutes.careers}>Browse careers</Link>
-          </div>
-        }
-      >
-        {error.message}
-      </StatePanel>
-    );
-  if (!state.data || !definition.data)
-    return (
-      <StatePanel kind="loading" title="Loading Discovery">
-        Reading your saved answers and question version.
-      </StatePanel>
-    );
-  if (state.data.draft)
-    return (
-      <DiscoveryEditor
-        key={state.data.draft.id}
-        initial={state.data.draft}
-        definition={definition.data}
-      />
-    );
-  const completed = state.data.latest_completed;
-  const authored = definition.data;
-  if (!completed)
-    return start.error ? (
-      <StatePanel
-        kind="error"
-        title="Could not open Discovery"
-        action={
-          <button
-            disabled={start.isPending}
-            onClick={() => start.mutate({ questionnaire_id: authored.id })}
-          >
-            Try again
-          </button>
-        }
-      >
-        {start.error.message}
-      </StatePanel>
-    ) : (
-      <StatePanel kind="loading" title="Opening Discovery">
-        Creating your blank saved draft.
-      </StatePanel>
-    );
-  return (
-    <div className="min-h-screen bg-white text-gray-900 flex flex-col p-6 space-y-8">
-      <DiscoveryHeader
-        currentStep={1}
-        showProgress={false}
-        onBack={() => void navigate(appRoutes.welcome)}
-        onSkip={() => void navigate(appRoutes.careers)}
-      />
-      <div className="max-w-xl mx-auto w-full py-12 text-center space-y-6">
-        <h2 className="text-2xl font-bold">
-          {completed
-            ? "Your completed Discovery is saved"
-            : "Explore what interests you"}
-        </h2>
-        <p className="text-sm text-gray-500">
-          Five short themes include an activities question based on your
-          interests. You can choose uncertainty, save and leave, or browse
-          careers at any time.
-        </p>
-        <p className="text-xs text-gray-500">
-          Your active answers and relevant learning context can be sent to Groq
-          to suggest careers from the small published catalog. Names and contact
-          details are excluded. Suggestions are exploration options, not an
-          assessment of ability.
-        </p>
-        <Link to={appRoutes.profile} className="underline">
-          Retake Discovery in Settings
-        </Link>
-        <div className="action-row justify-center">
-          <Link to={appRoutes.careers}>Browse careers</Link>
-          {completed && <Link to={appRoutes.results}>View saved results</Link>}
-        </div>
-      </div>
-    </div>
-  );
+interface DiscoveryWizardProps {
+  onReturnToEntry?: () => void;
+  onSkipToCatalog?: () => void;
+  onProceedToProfile?: () => void;
 }
 
-function DiscoveryEditor({
-  initial,
-  definition,
-}: {
-  initial: Schemas["DiscoverySession"];
-  definition: Schemas["Questionnaire"];
-}) {
-  const editor = useDiscoveryEditor(initial, definition);
-  const heading = useRef<HTMLHeadingElement>(null);
-  const errorSummary = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    heading.current?.focus({ preventScroll: true });
-  }, [editor.question.question_id]);
-  useEffect(() => {
-    if (editor.error && editor.blocker.state !== "blocked")
-      errorSummary.current?.focus();
-  }, [editor.error, editor.blocker.state]);
+export const DiscoveryWizard: React.FC<DiscoveryWizardProps> = ({
+  onReturnToEntry,
+  onSkipToCatalog,
+  onProceedToProfile,
+}) => {
+  const [step, setStep] = useState<DiscoveryStep>(1);
+  const [answers, setAnswers] = useState<DiscoveryAnswers>({});
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+
+  // State for Results Card Selection
+  const [selectedResultIndex, setSelectedResultIndex] = useState<number>(0);
+
+  // Async submission state
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [results, setResults] = useState<DiscoveryResult[]>([]);
+
+  // Lazy initialize hasDraft state to avoid effect state cascading lint issues
+  const [hasDraft, setHasDraft] = useState(() => {
+    const draft = discoveryService.loadDraft();
+    return !!(draft && draft.currentStep > 1 && draft.currentStep <= 5);
+  });
+
+  const handleResumeDraft = () => {
+    const draft = discoveryService.loadDraft();
+    if (draft) {
+      setAnswers(draft.answers);
+      setStep(draft.currentStep as DiscoveryStep);
+      setHasDraft(false);
+    }
+  };
+
+  const handleStartFresh = () => {
+    discoveryService.clearDraft();
+    setHasDraft(false);
+    setAnswers({});
+    setSelectedOption(null);
+    setStep(1);
+  };
+
+  const handleProceed = async () => {
+    if (!selectedOption || !currentRound) return;
+
+    const updatedAnswers = { ...answers, [currentRound.id || step]: selectedOption };
+    setAnswers(updatedAnswers);
+    setSelectedOption(null);
+
+    if (step < 5) {
+      const nextStep = (step + 1) as DiscoveryStep;
+      setStep(nextStep);
+      discoveryService.saveDraft(updatedAnswers, nextStep);
+    } else {
+      setIsSubmitting(true);
+      setSubmitError(null);
+      try {
+        const data = await discoveryService.submitAnswers(updatedAnswers);
+        setResults(data);
+        setSelectedResultIndex(0); // Default select top match
+        setStep(6);
+        discoveryService.clearDraft();
+      } catch (err: unknown) {
+        setSubmitError(err instanceof Error ? err.message : 'Failed to process recommendations.');
+      } finally {
+        setIsSubmitting(false);
+      }
+    }
+  };
+
+  const handleProceedToRoadmap = () => {
+    const chosenResult = results[selectedResultIndex];
+    if (chosenResult) {
+      localStorage.setItem('asgard_active_role', JSON.stringify(chosenResult));
+    }
+
+    if (onProceedToProfile) {
+      onProceedToProfile();
+    } else {
+      window.location.href = '/profile-setup';
+    }
+  };
+
+  const handleBack = () => {
+    if (step > 1 && step <= 5) {
+      const prevStep = (step - 1) as DiscoveryStep;
+      setStep(prevStep);
+      setSelectedOption(null);
+      discoveryService.saveDraft(answers, prevStep);
+    } else if (step === 6) {
+      setStep(5);
+    } else if (onReturnToEntry) {
+      onReturnToEntry();
+    }
+  };
+
+  const currentRound = DISCOVERY_QUESTIONS[step - 1];
+
   return (
     <div className="min-h-screen bg-white text-gray-900 flex flex-col justify-between p-6">
-      <DiscoveryHeader
-        currentStep={editor.index + 1}
-        totalSteps={editor.total}
-        disabled={editor.busy}
-        onBack={() => void editor.move(-1)}
-        onSkip={() => void editor.skip()}
-      />
-      <div className="max-w-6xl mx-auto w-full my-auto py-8 space-y-8">
-        <div className="text-center space-y-2">
-          <h2
-            ref={heading}
-            tabIndex={-1}
-            className="text-2xl sm:text-3xl font-bold tracking-tight"
+      {/* Show header for steps 1-5, but keep it clean or custom for step 6 */}
+      {step <= 5 ? (
+        <DiscoveryHeader
+          currentStep={step}
+          onBack={handleBack}
+          onSkip={onSkipToCatalog || (() => {})}
+        />
+      ) : (
+        <div className="max-w-5xl mx-auto w-full flex items-center justify-between pt-2">
+          <button
+            onClick={handleBack}
+            className="px-4 py-1.5 border border-gray-200 rounded-full text-xs font-semibold text-gray-600 hover:bg-gray-50 cursor-pointer"
           >
-            {editor.question.prompt}
-          </h2>
-          <p id="question-helper" className="text-sm text-gray-500">
-            {editor.question.helper}
-          </p>
-          <p className="text-xs text-gray-500">
-            {editor.question.multiple
-              ? "Choose all that apply, or uncertainty on its own."
-              : "Choose one."}
-          </p>
+            &larr; Back
+          </button>
+          <button
+            onClick={handleProceedToRoadmap}
+            className="px-5 py-2 bg-black text-white text-xs font-semibold rounded-full hover:bg-gray-800 transition-colors cursor-pointer shadow-sm"
+          >
+            Select Role &amp; View Roadmap
+          </button>
         </div>
-        <fieldset
-          disabled={editor.busy}
-          aria-describedby="question-helper"
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 border-0 p-0"
-        >
-          <legend className="sr-only">{editor.question.prompt}</legend>
-          {editor.question.options.map((option) => {
-            const selected = editor.selected.includes(option.id);
-            return (
-              <label
-                key={option.id}
-                className={
-                  "cursor-pointer rounded-2xl border-2 p-6 transition-all relative flex flex-col min-h-72 sm:min-h-80 bg-white focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-emerald-700 " +
-                  (selected
-                    ? "border-emerald-500 ring-2 ring-emerald-500 shadow-md"
-                    : "border-gray-200 hover:border-gray-300 hover:shadow-xs")
-                }
-              >
-                <input
-                  type={editor.question.multiple ? "checkbox" : "radio"}
-                  name={editor.question.question_id}
-                  checked={selected}
-                  onChange={() => editor.toggle(option.id)}
-                  className="self-start accent-emerald-600"
-                />
-                {selected && (
-                  <span className="absolute top-3 right-3 text-[9px] font-bold uppercase px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">
-                    Selected
-                  </span>
-                )}
-                <span
-                  aria-hidden="true"
-                  className="mx-auto my-8 block size-20 rounded-full bg-gray-200"
-                />
-                <div className="text-center space-y-3 mt-auto mb-4">
-                  <span className="block text-lg font-bold leading-tight">
-                    {option.label}
-                  </span>
-                  <span className="block text-sm text-gray-600 leading-relaxed">
-                    {option.description}
-                  </span>
-                </div>
-              </label>
-            );
-          })}
-        </fieldset>
-        {editor.feedback && (
-          <p role="status" className="text-center text-xs text-gray-600">
-            {editor.feedback}
-          </p>
-        )}
-        {editor.error && (
-          <div
-            ref={errorSummary}
-            tabIndex={-1}
-            role="alert"
-            className="border border-red-200 bg-red-50 rounded-2xl p-4 text-sm space-y-3"
-          >
-            <p>{editor.error}</p>
-            <button
-              disabled={editor.busy}
-              onClick={() => void editor.reload()}
-              className="underline"
-            >
-              Reload saved answers
-            </button>
-            <button
-              disabled={editor.busy}
-              onClick={editor.leaveWithoutSaving}
-              className="underline ml-4"
-            >
-              Leave without saving
-            </button>
-          </div>
-        )}
-        <div className="text-center pt-4">
-          <Button
-            className="min-h-14 min-w-64"
-            disabled={editor.busy}
-            onClick={() => void editor.move(1)}
-          >
-            {editor.busy
-              ? "Saving…"
-              : editor.index === editor.total - 1
-                ? "Save Discovery and see suggestions"
-                : "Next"}
-          </Button>
-        </div>
-        <p className="text-center text-xs text-gray-500">
-          Saved revision {editor.saved.revision}. Only answers on your current
-          route are used for suggestions.
-        </p>
-      </div>
-      <Dialog
-        open={editor.blocker.state === "blocked"}
-        onOpenChange={(open) => {
-          if (!open && !editor.busy && editor.blocker.state === "blocked")
-            editor.blocker.reset();
-        }}
-      >
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>
-              {editor.busy ? "Saving Discovery" : "Save your Discovery edits?"}
-            </DialogTitle>
-            <DialogDescription>
-              Saved answers remain on your account. Unsaved changes exist only
-              in this tab. Save valid edits, leave without saving, or stay.
-            </DialogDescription>
-          </DialogHeader>
-          {editor.error && (
-            <p role="alert" className="field-error">
-              {editor.error}
-            </p>
-          )}
-          <div className="action-row">
-            <Button
-              disabled={editor.busy}
-              onClick={() => void editor.saveAndLeave()}
-            >
-              Save and leave
-            </Button>
-            <Button
-              variant="outline"
-              disabled={editor.busy}
-              onClick={() =>
-                editor.blocker.state === "blocked" && editor.blocker.proceed()
-              }
-            >
-              Leave without saving
-            </Button>
-            <Button
-              variant="outline"
-              disabled={editor.busy}
-              onClick={() =>
-                editor.blocker.state === "blocked" && editor.blocker.reset()
-              }
-            >
-              Stay
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
-    </div>
-  );
-}
+      )}
 
-export function DiscoveryResults() {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const state = useCoreQuery(["discovery"], coreApi.discovery);
-  const flow = useRecommendationFlow();
-  const started = useRef(false);
-  const completed = state.data?.latest_completed;
-  const generateFor =
-    typeof location.state?.generateFor === "string"
-      ? location.state.generateFor
-      : null;
-  useEffect(() => {
-    if (
-      !generateFor ||
-      started.current ||
-      !completed ||
-      !flow.query.data ||
-      flow.pending
-    )
-      return;
-    started.current = true;
-    void navigate(appRoutes.results, { replace: true, state: null });
-    if (generateFor === completed.id && flow.query.data.available)
-      void flow.request(completed.id);
-  }, [generateFor, completed, flow, navigate]);
-  return (
-    <div className="min-h-screen bg-white text-gray-900 flex flex-col p-6 space-y-8">
-      <DiscoveryHeader
-        currentStep={6}
-        totalSteps={5}
-        onBack={() => void navigate(appRoutes.dashboard)}
-        onSkip={() => void navigate(appRoutes.careers)}
-      />
-      <div className="max-w-5xl mx-auto w-full my-auto py-8 space-y-8">
-        <div className="text-center space-y-2">
-          <h2 className="text-2xl font-bold tracking-tight">
-            Here are some directions to explore
-          </h2>
-          <p className="text-sm text-gray-500">
-            {completed
-              ? "Your Discovery answers are saved. Suggestions are starting points from the available catalog."
-              : "Complete Discovery or choose a learning focus to provide context. You can browse all careers."}
-          </p>
-        </div>
-        {state.error && (
-          <StatePanel
-            kind="error"
-            title="Discovery status unavailable"
-            action={
-              <button onClick={() => void state.refetch()}>Try again</button>
-            }
-          >
-            {state.error.message}
-          </StatePanel>
-        )}
-        <RecommendationCards flow={flow} />
-        <div className="flex flex-wrap justify-center gap-4 pt-4">
-          <Link
-            to={appRoutes.careers}
-            className="bg-black text-white px-6 py-3 rounded-full text-xs"
-          >
-            Browse careers
-          </Link>
-          {state.data?.draft && (
-            <Link
-              to={appRoutes.discovery}
-              className="border px-6 py-3 rounded-full text-xs"
+      {/* Draft Resume Alert Modal */}
+      {hasDraft && step === 1 && (
+        <div className="max-w-xl mx-auto bg-emerald-50 border border-emerald-200 rounded-2xl p-4 my-4 flex items-center justify-between">
+          <div className="space-y-0.5">
+            <h4 className="text-xs font-bold text-emerald-900">In-progress assessment draft found</h4>
+            <p className="text-[10px] text-emerald-700">Would you like to resume where you left off?</p>
+          </div>
+          <div className="flex space-x-2">
+            <button
+              onClick={handleStartFresh}
+              className="px-3 py-1 text-[10px] font-semibold text-gray-600 hover:text-black cursor-pointer"
             >
-              Resume Discovery
-            </Link>
-          )}
-          <Link
-            to={appRoutes.profileSetup}
-            className="border px-6 py-3 rounded-full text-xs"
-          >
-            Set up your profile (optional)
-          </Link>
+              Start Fresh
+            </button>
+            <button
+              onClick={handleResumeDraft}
+              className="px-4 py-1 text-[10px] font-semibold bg-black text-white rounded-full hover:bg-gray-800 cursor-pointer"
+            >
+              Resume Draft
+            </button>
+          </div>
         </div>
-      </div>
+      )}
+
+      {/* Loading Overlay */}
+      {isSubmitting && (
+        <div className="max-w-md mx-auto my-auto text-center py-16 space-y-4">
+          <div className="w-12 h-12 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin mx-auto" />
+          <h3 className="font-bold text-base">Analyzing assessment payload...</h3>
+          <p className="text-xs text-gray-400">Matching your answers against career requirements...</p>
+        </div>
+      )}
+
+      {/* Error State */}
+      {submitError && !isSubmitting && (
+        <div className="max-w-md mx-auto my-auto text-center py-12 space-y-4 border border-red-200 bg-red-50 rounded-2xl p-6">
+          <span className="text-2xl">⚠️</span>
+          <h3 className="font-bold text-sm text-red-900">Submission Error</h3>
+          <p className="text-xs text-red-600">{submitError}</p>
+          <button
+            onClick={handleProceed}
+            className="px-6 py-2 bg-black text-white rounded-full text-xs font-semibold hover:bg-gray-800 cursor-pointer"
+          >
+            Retry Submission
+          </button>
+        </div>
+      )}
+
+      {/* Questionnaire Rounds 1 to 5 */}
+      {!isSubmitting && !submitError && step <= 5 && currentRound && (
+        <div className="max-w-4xl mx-auto w-full my-auto py-8 space-y-8">
+          <div className="text-center space-y-1">
+            <h3 className="text-xl font-bold tracking-tight text-gray-900">{currentRound.title}</h3>
+            <p className="text-xs text-gray-500">{currentRound.subtitle}</p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {currentRound.options.map((opt) => {
+              const isSelected = selectedOption === opt.id;
+              return (
+                <div
+                  key={opt.id}
+                  onClick={() => setSelectedOption(opt.id)}
+                  className={
+                    'cursor-pointer rounded-2xl border p-6 transition-all relative flex flex-col justify-between h-64 bg-white select-none ' +
+                    (isSelected
+                      ? 'border-emerald-500 ring-2 ring-emerald-500 shadow-md scale-[1.02]'
+                      : 'border-gray-200 hover:border-gray-300 hover:shadow-xs')
+                  }
+                >
+                  {isSelected && (
+                    <span className="absolute top-3 left-3 text-[9px] font-bold tracking-wide uppercase px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">
+                      Selected
+                    </span>
+                  )}
+
+                  <span className="self-center text-[10px] text-gray-400 border border-gray-200 px-2.5 py-0.5 rounded-full">
+                    {opt.badge || 'Domain'}
+                  </span>
+
+                  <div className={'w-14 h-14 rounded-full mx-auto transition-colors ' + (isSelected ? 'bg-emerald-50' : 'bg-gray-100')} />
+
+                  <div className="text-center space-y-1">
+                    <h4 className="text-xs font-bold leading-tight text-gray-900">{opt.title}</h4>
+                    <p className="text-[10px] text-gray-400 line-clamp-2 leading-relaxed">{opt.description}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="text-center pt-4">
+            <button
+              onClick={handleProceed}
+              disabled={!selectedOption}
+              className={
+                'px-8 py-3 text-xs font-semibold rounded-full transition-all ' +
+                (selectedOption
+                  ? 'bg-black text-white hover:bg-gray-800 cursor-pointer shadow-md'
+                  : 'bg-gray-200 text-gray-400 cursor-not-allowed')
+              }
+            >
+              {step === 5 ? 'Submit Assessment' : 'Confirm And Proceed'}
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Step 6: Interactive Results Screen */}
+      {!isSubmitting && !submitError && step === 6 && (
+        <div className="max-w-5xl mx-auto w-full my-auto py-8 space-y-8">
+          <div className="text-center space-y-2">
+            <h3 className="text-2xl font-bold tracking-tight">Here are some directions to explore !</h3>
+            <p className="text-xs text-gray-500">These suggestions are starting points based on your answers.</p>
+          </div>
+
+          {/* Clickable Direction Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {results.map((res, idx) => {
+              const isSelected = selectedResultIndex === idx;
+              return (
+                <div
+                  key={idx}
+                  onClick={() => setSelectedResultIndex(idx)}
+                  className={
+                    'cursor-pointer rounded-2xl p-6 space-y-4 bg-white relative transition-all select-none ' +
+                    (isSelected
+                      ? 'border-2 border-emerald-500 ring-2 ring-emerald-500 shadow-md scale-[1.02]'
+                      : 'border border-gray-200 hover:border-gray-300 shadow-xs')
+                  }
+                >
+                  <span
+                    className={
+                      'text-[10px] font-bold px-2 py-0.5 rounded-full ' +
+                      (isSelected ? 'bg-emerald-100 text-emerald-700' : 'bg-gray-100 text-gray-600')
+                    }
+                  >
+                    {res.matchPercentage}% Match
+                  </span>
+                  <h4 className="font-bold text-lg text-gray-900">{res.title}</h4>
+                  <p className="text-xs text-gray-500">{res.description}</p>
+                  <div className="pt-2 border-t border-gray-100 space-y-1">
+                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Key Skills</span>
+                    <div className="flex flex-wrap gap-1 pt-1">
+                      {res.keySkills.map((sk, sIdx) => (
+                        <span key={sIdx} className="text-[10px] border border-gray-200 px-2 py-0.5 rounded-full text-gray-600">
+                          {sk}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="flex justify-center space-x-4 pt-4">
+            <button
+              onClick={handleStartFresh}
+              className="px-6 py-2.5 rounded-full border border-gray-200 text-xs font-semibold hover:bg-gray-50 cursor-pointer"
+            >
+              Retake Assessment
+            </button>
+            <button
+              onClick={handleProceedToRoadmap}
+              className="px-8 py-2.5 rounded-full bg-black text-white text-xs font-semibold hover:bg-gray-800 transition-colors cursor-pointer shadow-sm"
+            >
+              Proceed to Roadmap
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
-}
+};

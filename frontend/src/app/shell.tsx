@@ -15,16 +15,6 @@ import { StatePanel } from "@/components/shared";
 import { useAuth } from "@/auth/context";
 import { LogoutBoundary } from "./logout-boundary";
 import { useLogout } from "./logout";
-import { BrandLogo } from "@/components/brand-logo";
-import { CareerNavigation } from "./career-navigation";
-import { GuidanceBanner } from "./guidance";
-
-const onboardingPaths = new Set([
-  appRoutes.welcome,
-  appRoutes.discovery,
-  appRoutes.results,
-  appRoutes.profileSetup,
-]);
 
 function Header() {
   const { user } = useAuth();
@@ -32,13 +22,11 @@ function Header() {
   const pageRoutes = appRoutes;
   const navigation = [
     { to: pageRoutes.dashboard, label: "Dashboard" },
-    { to: pageRoutes.roadmaps, label: "Career" },
+    { to: pageRoutes.careers, label: "Roadmap" },
     { to: pageRoutes.profile, label: "Settings" },
   ];
   const location = useLocation();
   const { pathname } = location;
-  const publicPage = Object.values(routes).includes(pathname);
-  const showAppNavigation = !!user?.email_confirmed_at && !publicPage;
   const [open, setOpen] = useState(false);
   const [logoutError, setLogoutError] = useState("");
   const menuRef = useRef<HTMLButtonElement>(null);
@@ -58,15 +46,11 @@ function Header() {
       aria-label="Main navigation"
       className="mobile-navigation"
     >
-      {navigation.map((item) =>
-        item.label === "Career" ? (
-          <CareerNavigation key={item.to} />
-        ) : (
-          <NavLink key={item.to} to={item.to} onClick={() => setOpen(false)}>
-            {item.label}
-          </NavLink>
-        ),
-      )}
+      {navigation.map((item) => (
+        <NavLink key={item.to} to={item.to} onClick={() => setOpen(false)}>
+          {item.label}
+        </NavLink>
+      ))}
       <Link to={pageRoutes.welcome} onClick={() => setOpen(false)}>
         Discovery
       </Link>
@@ -84,34 +68,33 @@ function Header() {
     >
       <div className="header-inner">
         <Link
-          to={showAppNavigation ? appRoutes.dashboard : routes.home}
+          to={user ? appRoutes.dashboard : routes.home}
           className="brand"
           aria-label="Asgard home"
         >
-          <BrandLogo />
+          Asgard
         </Link>
-        {showAppNavigation ? (
+        {user?.email_confirmed_at ? (
           <>
             <nav aria-label="Main navigation" className="desktop-navigation">
-              {navigation.map((item) =>
-                item.label === "Career" ? (
-                  <CareerNavigation key={item.to} />
-                ) : (
-                  <NavLink
-                    key={item.to}
-                    to={item.to}
-                    className={({ isActive }) =>
-                      isActive ||
-                      (item.label === "Settings" &&
-                        pathname.startsWith("/settings/"))
-                        ? "active"
-                        : ""
-                    }
-                  >
-                    {item.label}
-                  </NavLink>
-                ),
-              )}
+              {navigation.map((item) => (
+                <NavLink
+                  key={item.to}
+                  to={item.to}
+                  className={({ isActive }) =>
+                    isActive ||
+                    (item.label === "Roadmap" &&
+                      (pathname === "/roadmaps" ||
+                        pathname.startsWith("/roadmaps/"))) ||
+                    (item.label === "Settings" &&
+                      pathname.startsWith("/settings/"))
+                      ? "active"
+                      : ""
+                  }
+                >
+                  {item.label}
+                </NavLink>
+              ))}
             </nav>
             <div className="header-actions">
               <Button
@@ -143,7 +126,7 @@ function Header() {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="account-menu">
-                  <DropdownMenuLabel>{user?.email}</DropdownMenuLabel>
+                  <DropdownMenuLabel>{user.email}</DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem asChild>
                     <Link to={pageRoutes.profile}>Edit profile</Link>
@@ -161,10 +144,16 @@ function Header() {
           </>
         ) : (
           <div className="public-nav">
-            <Link to={routes.login}>Log in</Link>
-            <Button asChild>
-              <Link to={routes.register}>Get started</Link>
-            </Button>
+            {user ? (
+              <Link to={appRoutes.dashboard}>Dashboard</Link>
+            ) : (
+              <>
+                <Link to={routes.login}>Log in</Link>
+                <Button asChild>
+                  <Link to={routes.register}>Get started</Link>
+                </Button>
+              </>
+            )}
           </div>
         )}
       </div>
@@ -173,7 +162,7 @@ function Header() {
           {logoutError}
         </p>
       )}
-      {showAppNavigation && open && mobileNavigation()}
+      {open && mobileNavigation()}
     </header>
   );
 }
@@ -211,25 +200,35 @@ export function AppShell() {
 }
 
 function ShellContent() {
-  const { user } = useAuth();
   const { pathname } = useLocation();
-  const onboarding = onboardingPaths.has(pathname.replace(/\/+$/, ""));
+  const demoPaths = [
+    appRoutes.dashboard,
+    appRoutes.welcome,
+    appRoutes.discovery,
+    appRoutes.results,
+    appRoutes.careers,
+    appRoutes.roadmaps,
+  ];
+  const demo =
+    demoPaths.includes(pathname) || pathname.startsWith("/roadmaps/");
   return (
     <>
       <a className="skip-link" href="#main-content">
         Skip to content
       </a>
-      {!onboarding && <Header key={pathname} />}
-      <main
-        id="main-content"
-        tabIndex={-1}
-        className={
-          onboarding
-            ? "page-container onboarding-page-container"
-            : "page-container"
-        }
-      >
-        {onboarding && <BrandLogo className="onboarding-logo" />}
+      <Header />
+      {demo && (
+        <div className="preview-bar">
+          <div>
+            <strong>Demo content</strong>
+            <span>
+              Sample careers, suggestions and progress. These examples are not
+              your saved account data. Discovery answers are not saved.
+            </span>
+          </div>
+        </div>
+      )}
+      <main id="main-content" tabIndex={-1} className="page-container">
         <Suspense
           fallback={
             <StatePanel kind="loading" title="Opening this page">
@@ -237,27 +236,21 @@ function ShellContent() {
             </StatePanel>
           }
         >
-          {!onboarding &&
-            pathname !== appRoutes.dashboard &&
-            user?.email_confirmed_at &&
-            !Object.values(routes).includes(pathname) && <GuidanceBanner />}
           <Outlet />
           <PageFocus />
         </Suspense>
       </main>
-      {!onboarding && (
-        <footer className="site-footer">
-          <span>
-            Asgard
-            <span className="footer-purpose">
-              Career exploration, at your pace.
-            </span>
+      <footer className="site-footer">
+        <span>
+          Asgard
+          <span className="footer-purpose">
+            Career exploration, at your pace.
           </span>
-          <div>
-            <Link to={routes.status}>Service status</Link>
-          </div>
-        </footer>
-      )}
+        </span>
+        <div>
+          <Link to={routes.status}>Service status</Link>
+        </div>
+      </footer>
     </>
   );
 }

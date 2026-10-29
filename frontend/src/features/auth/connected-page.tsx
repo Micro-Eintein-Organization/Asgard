@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { StatePanel, Unavailable } from "@/components/shared";
+import { Unavailable } from "@/components/shared";
 import { resendCooldown, startResendCooldown } from "@/auth/cooldown";
 import { validateNewPassword } from "@/auth/password";
 import { appRoutes, routes } from "@/lib/routes";
@@ -157,12 +157,6 @@ export function ConnectedAuthPage({ mode }: { mode: Mode }) {
     verify: "Check your email.",
     recovery: "Reset your password.",
   }[mode];
-  if (auth.loading)
-    return (
-      <StatePanel kind="loading" title="Restoring your session">
-        Checking account access.
-      </StatePanel>
-    );
   if (mode === "verify" && !pendingSignupEmail && !verificationComplete)
     return <Navigate to={routes.register} replace />;
   return (

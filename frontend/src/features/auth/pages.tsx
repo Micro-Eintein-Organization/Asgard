@@ -1,10 +1,10 @@
-import { Link, Navigate } from "react-router";
+import { Link } from "react-router";
 import { Button } from "@/components/ui/button";
-import { StatePanel } from "@/components/shared";
+import { StatusBadge } from "@/components/shared";
+import { sampleMilestones } from "@/fixtures/catalog";
 import { appRoutes, routes } from "@/lib/routes";
 import { authConfigured } from "@/auth/supabase";
 import { ConnectedAuthPage } from "./connected-page";
-import { useAuth } from "@/auth/context";
 
 export function AuthPage({
   mode,
@@ -15,23 +15,9 @@ export function AuthPage({
 }
 
 export function LandingPage() {
-  const { user, loading, error } = useAuth();
-  if (loading)
-    return (
-      <StatePanel kind="loading" title="Restoring your session">
-        Checking account access.
-      </StatePanel>
-    );
-  if (user?.email_confirmed_at && !error)
-    return <Navigate to={appRoutes.dashboard} replace />;
   return (
     <section className="landing">
       <div>
-        {error && (
-          <p role="alert" className="field-error">
-            {error}
-          </p>
-        )}
         <h1>
           A direction to explore.
           <br />A path to follow.
@@ -54,33 +40,28 @@ export function LandingPage() {
         <div className="landing-preview">
           <p>
             {authConfigured
-              ? "Save your Discovery answers, explore starter career roadmaps, and keep track of your learning. PDF uploads are unavailable."
-              : "Account access is not configured in this environment."}
+              ? "Account access and profile saving are available. Career and learning screens use labeled demo content."
+              : "Account access is not configured in this environment. Career and learning screens use sample content."}
           </p>
         </div>
       </div>
       <div className="path-preview">
-        <p>Your learning path</p>
-        <h2 className="landing-roadmap-title">Find a place to begin</h2>
-        <p className="landing-roadmap-intro">Explore at your pace</p>
+        <p>Inside a learning roadmap</p>
+        <h2 className="landing-roadmap-title">Frontend Developer</h2>
+        <p className="landing-roadmap-intro">Web foundations</p>
         <div className="landing-roadmap-topics">
-          {[
-            "Browse published careers",
-            "Choose your current roadmap",
-            "Read topics and learning resources",
-            "Record your learning progress",
-          ].map((step) => (
-            <div key={step}>
-              <span>{step}</span>
+          {sampleMilestones[0].topics.map((topic) => (
+            <div key={topic.id}>
+              <span>{topic.title}</span>
+              <StatusBadge status={topic.status} />
             </div>
           ))}
         </div>
         <Button asChild variant="outline" className="mt-6 w-full">
-          <Link to={routes.login}>Log in to explore</Link>
+          <Link to={appRoutes.roadmap("frontend")}>View this roadmap</Link>
         </Button>
         <p className="landing-note">
-          Available careers depend on the reviewed content published in this
-          environment.
+          Sample content and statuses. Progress saving is not connected.
         </p>
       </div>
     </section>

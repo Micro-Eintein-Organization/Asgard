@@ -12,7 +12,6 @@ export const appRoutes = {
   welcome: "/welcome",
   discovery: "/discovery",
   results: "/recommendations",
-  profileSetup: "/profile-setup",
   careers: "/careers",
   profile: "/settings/profile",
   account: "/settings/account",

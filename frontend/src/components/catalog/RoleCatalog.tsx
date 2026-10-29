@@ -1,274 +1,163 @@
-import { useState } from "react";
-import { Link, useNavigate, useSearchParams } from "react-router";
-import { StatePanel } from "@/components/shared";
-import { coreApi, useCoreQuery } from "@/features/core/data";
-import { appRoutes } from "@/lib/routes";
+import { useState } from 'react';
+
+interface RoleCard {
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+  badge?: string;
+}
+
+const ROLES_DATA: RoleCard[] = [
+  { id: 'frontend', title: 'Frontend Developer', description: 'Create user interfaces, websites, and interactive visual elements that people interact with.', category: 'Software and AI', badge: 'User-facing Web development' },
+  { id: 'backend', title: 'Backend Developer', description: 'Build the services, rules, and data behind applications, handling logic, accounts, and databases.', category: 'Software and AI', badge: 'Systems Data processing' },
+  { id: 'ai-auto', title: 'AI Automation Specialist', description: 'Automate repetitive tasks, connect digital tools, and integrate AI workflow solutions.', category: 'Software and AI', badge: 'Workflow AI Tools' },
+  { id: 'fullstack', title: 'Full-Stack Engineer', description: 'Handle both frontend visual elements and backend system architecture, bridging both worlds.', category: 'Software and AI', badge: 'Full-cycle Development' },
+  { id: 'uiux', title: 'UI/UX Designer', description: 'Design intuitive user experiences, wireframes, and design systems for web and mobile.', category: 'Design & UX', badge: 'User Research & Figma' },
+  { id: 'product-dsn', title: 'Product Designer', description: 'End-to-end product design from user personas to high-fidelity clickable prototypes.', category: 'Design & UX', badge: 'Product Strategy' },
+  { id: 'data-eng', title: 'Data Engineer', description: 'Build scalable pipelines for data ingestion, storage, and large-scale analytics processing.', category: 'Data & Analytics', badge: 'Pipelines & SQL' },
+  { id: 'data-sci', title: 'Data Scientist', description: 'Analyze complex datasets, build predictive statistical models, and extract actionable insights.', category: 'Data & Analytics', badge: 'Machine Learning' },
+  { id: 'sec-analyst', title: 'Cybersecurity Analyst', description: 'Monitor networks for security breaches, investigate violations, and harden system defenses.', category: 'Cybersecurity', badge: 'Network Security' },
+];
+
+const CATEGORIES = ['All', 'Software and AI', 'Design & UX', 'Data & Analytics', 'Cybersecurity'];
 
 interface RoleCatalogProps {
   onBack?: () => void;
   onSelectRole?: (roleId: string) => void;
 }
-export default function RoleCatalog({
-  onBack,
-  onSelectRole,
-}: RoleCatalogProps) {
-  const navigate = useNavigate();
-  const [params, setParams] = useSearchParams();
-  const [selected, setSelected] = useState("");
-  const categories = useCoreQuery(["categories"], coreApi.categories);
-  const preferences = useCoreQuery(["preferences"], coreApi.preferences);
-  const recommendations = useCoreQuery(
-    ["recommendations"],
-    coreApi.recommendations,
-  );
-  const search = params.get("q") ?? "";
-  const category =
-    params.get("category") ??
-    categories.data?.find(
-      (c) => c.id === preferences.data?.preferred_category_id,
-    )?.title ??
-    "All";
-  const categoryId = categories.data?.find((c) => c.title === category)?.id;
-  const careers = useCoreQuery(
-    ["careers", search, categoryId],
-    () =>
-      coreApi.catalog({
-        q: search || undefined,
-        category_id: categoryId,
-        limit: 100,
-      }),
-    !categories.isPending && !preferences.isPending,
-  );
-  const update = (key: string, value: string) => {
-    const next = new URLSearchParams(params);
-    if (value) next.set(key, value);
-    else next.delete(key);
-    setParams(next, { replace: true });
-  };
-  const failure = categories.error ?? preferences.error ?? careers.error;
-  if (failure)
-    return (
-      <StatePanel
-        kind="error"
-        title="Careers unavailable"
-        action={
-          <button
-            onClick={() => {
-              void categories.refetch();
-              void preferences.refetch();
-              void careers.refetch();
-            }}
-          >
-            Try again
-          </button>
-        }
-      >
-        {failure.message}
-      </StatePanel>
-    );
-  if (categories.isPending || preferences.isPending || careers.isPending)
-    return (
-      <StatePanel kind="loading" title="Loading published careers">
-        Reading the career catalog.
-      </StatePanel>
-    );
-  const all = careers.data?.items ?? [];
-  const state = recommendations.data;
-  const run =
-    state?.current?.status === "completed"
-      ? state.current
-      : state?.previous_eligible_success;
-  const suggestedIds = new Set(run?.items.map((item) => item.career_id) ?? []);
-  const suggested = all.filter((role) => suggestedIds.has(role.id));
-  const others = all.filter((role) => !suggestedIds.has(role.id));
-  const proceed = () => {
-    const role = all.find((item) => item.id === selected);
-    if (!role) return;
-    if (onSelectRole) onSelectRole(selected);
-    else {
-      const suggestedRoadmap = run?.items.find(
-        (item) => item.career_id === selected && !!item.roadmap_id && role.roadmap_ids.includes(item.roadmap_id),
-      )?.roadmap_id;
-      const destination = appRoutes.roadmap(selected) +
-        (suggestedRoadmap ? `?roadmap=${encodeURIComponent(suggestedRoadmap)}` : "");
-      void navigate(destination, {
-        state: { catalogSearch: "?" + params.toString() },
-      });
+
+export default function RoleCatalog({ onBack, onSelectRole }: RoleCatalogProps) {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [selectedRoleId, setSelectedRoleId] = useState<string>('frontend');
+
+  const filteredRoles = ROLES_DATA.filter((role) => {
+    const matchesSearch =
+      role.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      role.description.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCategory = selectedCategory === 'All' || role.category === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
+
+  const handleProceed = () => {
+    const chosenRoleObj = ROLES_DATA.find((r) => r.id === selectedRoleId) || ROLES_DATA[0];
+    
+    // Save selected role data for dashboard sync
+    localStorage.setItem('asgard_selected_role', selectedRoleId);
+    localStorage.setItem('asgard_active_role', JSON.stringify({
+      title: chosenRoleObj.title,
+      description: chosenRoleObj.description,
+    }));
+
+    if (onSelectRole) {
+      onSelectRole(selectedRoleId);
+    } else {
+      window.location.href = '/profile-setup';
     }
   };
-  const cards = (items: typeof all) => (
-    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
-      {items.map((role) => (
-        <label
-          key={role.id}
-          className={
-            "relative flex min-h-64 cursor-pointer flex-col rounded-2xl border-2 bg-white p-6 focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-emerald-700 " +
-            (selected === role.id
-              ? "border-emerald-500"
-              : "border-gray-200 hover:border-gray-400")
-          }
-        >
-          <span className="flex items-center justify-between gap-2">
-            <input
-              type="radio"
-              name="catalog-career"
-              value={role.id}
-              checked={selected === role.id}
-              onChange={() => setSelected(role.id)}
-              className="accent-emerald-600"
-            />
-            {selected === role.id && (
-              <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs text-emerald-800">
-                Selected
-              </span>
-            )}
-          </span>
-          <strong className="mt-6 text-xl">{role.title}</strong>
-          <span className="mt-4 text-sm leading-relaxed text-gray-600">
-            {role.description}
-          </span>
-          <span className="mt-auto pt-8 text-xs text-gray-600">
-            {role.skills.join(" · ")}
-          </span>
-        </label>
-      ))}
-    </div>
-  );
+
   return (
-    <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-2 py-8 text-gray-900 md:grid-cols-[15rem_minmax(0,1fr)] md:px-6">
-      <aside className="min-w-0 space-y-4 md:border-r md:pr-5">
-        <h1 className="text-2xl font-bold">Roles Catalog</h1>
-        <input
-          type="search"
-          aria-label="Search career roles or skills"
-          value={search}
-          onChange={(e) => update("q", e.target.value)}
-          placeholder="Search career roles or skills..."
-          className="w-full rounded-full border border-gray-300 px-4 py-3 text-sm"
-        />
-        <nav
-          aria-label="Published careers"
-          className="flex max-h-56 flex-col overflow-y-auto md:max-h-none"
+    <div className="max-w-6xl mx-auto px-6 py-8 space-y-8 bg-white min-h-screen text-gray-900 font-sans">
+      {/* Top Header Navigation (Cleaned up, no central badge text) */}
+      <div className="flex justify-between items-center border-b pb-4">
+        <button
+          onClick={() => {
+            if (onBack) {
+              onBack();
+            } else {
+              window.location.href = '/discovery';
+            }
+          }}
+          className="text-xs font-semibold px-4 py-2 rounded-full border border-gray-200 hover:bg-gray-50 transition-colors flex items-center space-x-1 cursor-pointer"
         >
-          {all.map((role) => (
+          <span>&larr; Back</span>
+        </button>
+
+        <button
+          onClick={handleProceed}
+          className="bg-black text-white px-6 py-2.5 rounded-full text-xs font-semibold hover:bg-gray-800 transition-colors cursor-pointer shadow-sm"
+        >
+          Select Role &amp; View Roadmap
+        </button>
+      </div>
+
+      {/* Main Title */}
+      <div className="text-center space-y-2">
+        <h1 className="text-3xl font-bold tracking-tight">Role Catalog</h1>
+      </div>
+
+      {/* Search Input Bar */}
+      <div className="max-w-xl mx-auto relative">
+        <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-gray-400">
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </div>
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Search career roles or skills..."
+          className="w-full pl-11 pr-4 py-3 rounded-full border border-gray-200 text-xs focus:outline-none focus:border-black transition-colors shadow-xs"
+        />
+      </div>
+
+      {/* Category Filter Pills */}
+      <div className="flex justify-center flex-wrap gap-2">
+        {CATEGORIES.map((cat) => {
+          const isActive = selectedCategory === cat;
+          return (
             <button
-              key={role.id}
-              type="button"
-              onClick={() => setSelected(role.id)}
-              aria-pressed={selected === role.id}
+              key={cat}
+              onClick={() => setSelectedCategory(cat)}
               className={
-                "min-h-11 rounded px-3 text-left text-sm hover:bg-gray-100 " +
-                (selected === role.id ? "bg-gray-100 font-semibold" : "")
+                "px-5 py-2 rounded-full text-xs font-medium transition-colors cursor-pointer border " +
+                (isActive
+                  ? "bg-black text-white border-black"
+                  : "bg-white text-gray-600 border-gray-200 hover:border-gray-300")
               }
             >
-              {role.title}
+              {cat}
             </button>
-          ))}
-        </nav>
-      </aside>
-      <div className="min-w-0 space-y-8">
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <button
-            onClick={() =>
-              onBack ? onBack() : void navigate(appRoutes.dashboard)
-            }
-            className="min-h-11 rounded-full border px-5 text-sm font-semibold"
-          >
-            ← Return to dashboard
-          </button>
-          <button
-            disabled={!all.some((role) => role.id === selected)}
-            onClick={proceed}
-            className="min-h-11 rounded-full bg-emerald-700 px-6 text-sm font-semibold text-white disabled:opacity-50"
-          >
-            Select Role & View Roadmap
-          </button>
-        </div>
-        <div className="flex flex-wrap gap-2" aria-label="Career categories">
-          {["All", ...(categories.data ?? []).map((item) => item.title)].map(
-            (cat) => (
-              <button
-                key={cat}
-                onClick={() => update("category", cat)}
-                aria-pressed={category === cat}
-                className={
-                  "min-h-11 rounded-full border px-5 text-sm " +
-                  (category === cat
-                    ? "border-black bg-black text-white"
-                    : "border-gray-300 bg-white")
-                }
-              >
-                {cat}
-              </button>
-            ),
-          )}
-        </div>
-        {recommendations.isError && (
-          <p role="status" className="text-sm text-gray-600">
-            Suggestions are unavailable. You can still browse all published
-            careers.{" "}
-            <button
-              className="underline"
-              onClick={() => void recommendations.refetch()}
+          );
+        })}
+      </div>
+
+      {/* Role Cards Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-4">
+        {filteredRoles.map((role) => {
+          const isSelected = selectedRoleId === role.id;
+          return (
+            <div
+              key={role.id}
+              onClick={() => setSelectedRoleId(role.id)}
+              className={
+                "cursor-pointer rounded-2xl border p-6 transition-all relative flex flex-col justify-between h-80 bg-white " +
+                (isSelected
+                  ? "border-emerald-500 ring-1 ring-emerald-500 shadow-md"
+                  : "border-gray-200 hover:border-gray-300 shadow-xs")
+              }
             >
-              Retry
-            </button>
-          </p>
-        )}
-        {suggested.length > 0 && (
-          <section className="space-y-4">
-            <h2 className="text-2xl font-bold">Suggested careers</h2>
-            <p className="text-sm text-gray-600">
-              {run?.outdated || run !== state?.current
-                ? "These saved suggestions may be out of date."
-                : "Based on your saved Discovery and learning context."}{" "}
-              <Link className="underline" to={appRoutes.results}>
-                View suggestion details
-              </Link>
-            </p>
-            {cards(suggested)}
-          </section>
-        )}
-        {run && !suggested.length && (
-          <p className="text-sm text-gray-600">
-            No saved suggestions match these filters.{" "}
-            <Link className="underline" to={appRoutes.results}>
-              View saved suggestions
-            </Link>
-          </p>
-        )}
-        {!run && !recommendations.isPending && !recommendations.isError && (
-          <p className="text-sm text-gray-600">
-            No saved suggestions yet.{" "}
-            <Link className="underline" to={appRoutes.results}>
-              Explore Discovery results
-            </Link>
-          </p>
-        )}
-        <section className="space-y-4 border-t pt-7">
-          <h2 className="text-2xl font-bold">
-            {suggested.length ? "All other careers" : "Explore careers"}
-          </h2>
-          {others.length ? (
-            cards(others)
-          ) : (
-            <p role="status">
-              {all.length ? (
-                "All matching careers are shown above."
-              ) : (
-                <>
-                  No matching careers.{" "}
-                  <button
-                    className="underline"
-                    onClick={() => setParams({ category: "All" })}
-                  >
-                    Clear search and filters
-                  </button>
-                </>
+              {isSelected && (
+                <span className="absolute top-4 right-4 text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">
+                  SELECTED
+                </span>
               )}
-            </p>
-          )}
-        </section>
+
+              <div className="space-y-3 pt-2">
+                <h3 className="text-lg font-bold tracking-tight text-gray-900">{role.title}</h3>
+                <p className="text-xs text-gray-500 leading-relaxed line-clamp-4">{role.description}</p>
+              </div>
+
+              {role.badge && (
+                <div className="pt-4 border-t border-gray-100">
+                  <span className="text-[10px] text-gray-400 font-medium">{role.badge}</span>
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
