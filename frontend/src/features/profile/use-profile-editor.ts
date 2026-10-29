@@ -66,7 +66,7 @@ export function useProfileEditor(
     }
     return (
       !dirty ||
-      window.confirm("Discard your unsaved profile changes and log out?")
+      window.confirm("Discard your unsaved changes and log out?")
     );
   });
   useBeforeUnload((event) => {

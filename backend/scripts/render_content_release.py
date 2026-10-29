@@ -36,9 +36,12 @@ def insert(table, fields):
     while delimiter in values:
         delimiter = delimiter[:-1] + "_" + "$"
     return (
-        f"INSERT INTO asgard_catalog.{table} ({columns}) VALUES ({values}) ON CONFLICT (id) DO NOTHING;\n"
-        f"DO {delimiter} BEGIN IF EXISTS (SELECT 1 FROM asgard_catalog.{table} WHERE id = {identity} AND ({differences})) "
-        f"THEN RAISE EXCEPTION 'Published content identity already has different values'; END IF; END {delimiter};"
+        f"INSERT INTO asgard_catalog.{table} ({columns}) VALUES ({values}) "
+        "ON CONFLICT (id) DO NOTHING;\n"
+        f"DO {delimiter} BEGIN IF EXISTS (SELECT 1 FROM asgard_catalog.{table} "
+        f"WHERE id = {identity} AND ({differences})) "
+        "THEN RAISE EXCEPTION 'Published content identity already has different values'; "
+        f"END IF; END {delimiter};"
     )
 
 

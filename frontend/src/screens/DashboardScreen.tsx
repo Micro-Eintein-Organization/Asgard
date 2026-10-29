@@ -4,6 +4,7 @@ import { appRoutes } from "@/lib/routes";
 import { StatePanel } from "@/components/shared";
 import { coreApi, useCoreMutation, useCoreQuery } from "@/features/core/data";
 import { readProfile } from "@/features/profile/api";
+import { dismissGuidance } from "@/app/guidance-preferences";
 
 export function DashboardScreen() {
   const navigate = useNavigate();
@@ -31,6 +32,11 @@ export function DashboardScreen() {
   const progress = useCoreQuery(
     ["progress", roadmapId],
     () => coreApi.progress(roadmapId),
+    !!roadmapId,
+  );
+  const branches = useCoreQuery(
+    ["branches", roadmapId],
+    () => coreApi.branches(roadmapId),
     !!roadmapId,
   );
   const dismiss = useCoreMutation(coreApi.savePreferences);
@@ -73,6 +79,7 @@ export function DashboardScreen() {
     roadmap.error ??
     career.error ??
     progress.error ??
+    branches.error ??
     activeRoadmap.error;
   if (error)
     return (
@@ -89,6 +96,7 @@ export function DashboardScreen() {
               if (roadmapId) {
                 void roadmap.refetch();
                 void progress.refetch();
+                void branches.refetch();
               }
               if (careerId) void career.refetch();
               if (activeRoadmapId) void activeRoadmap.refetch();
@@ -106,7 +114,8 @@ export function DashboardScreen() {
     !preferences.data ||
     !profile.data ||
     !activity.data ||
-    (roadmapId && (!roadmap.data || !progress.data || !career.data))
+    (roadmapId &&
+      (!roadmap.data || !progress.data || !branches.data || !career.data))
   )
     return (
       <StatePanel kind="loading" title="Loading your Dashboard">
@@ -121,7 +130,14 @@ export function DashboardScreen() {
     roadmap.data?.milestones
       .filter((item) => !item.retired_at)
       .flatMap((milestone) =>
-        milestone.topics.filter((item) => !item.retired_at),
+        milestone.topics.filter(
+          (item) =>
+            !item.retired_at &&
+            (!item.branch_id ||
+              branches.data?.some(
+                (choice) => choice.branch_id === item.branch_id,
+              )),
+        ),
       ) ?? [];
   const topicStates = progress.data ?? [];
   const nextTopic = overview.progress?.next_topic_ids[0];
@@ -149,11 +165,11 @@ export function DashboardScreen() {
         <Link to={appRoutes.results} className="underline">
           View saved career suggestions
         </Link>
-        <Link to={appRoutes.discovery} className="underline">
-          {overview.discovery_draft_id
-            ? "Resume Discovery"
-            : "Guided Discovery"}
-        </Link>
+        {overview.discovery_draft_id && (
+          <Link to={appRoutes.discovery} className="underline">
+            Resume Discovery
+          </Link>
+        )}
       </div>
       {overview.active_topic && activeRoadmap.data && (
         <p className="border rounded-xl p-4 text-sm">
@@ -302,16 +318,7 @@ export function DashboardScreen() {
                     aria-label="Dismiss profile guidance"
                     disabled={dismiss.isPending}
                     onClick={() =>
-                      dismiss.mutate({
-                        expected_version: savedPreferences.version,
-                        preferred_category_id:
-                          savedPreferences.preferred_category_id,
-                        timezone: savedPreferences.timezone,
-                        dismissed_guidance: [
-                          ...savedPreferences.dismissed_guidance,
-                          guidance,
-                        ],
-                      })
+                      dismiss.mutate(dismissGuidance(savedPreferences, guidance))
                     }
                     className="text-white opacity-70 hover:opacity-100 text-xs font-bold cursor-pointer"
                   >
@@ -323,6 +330,10 @@ export function DashboardScreen() {
             {dismiss.error && (
               <p role="alert" className="field-error">
                 {dismiss.error.message}
+                {" "}<button onClick={async () => {
+                  const result = await preferences.refetch();
+                  if (result.isSuccess) dismiss.reset();
+                }}>Reload preferences</button>
               </p>
             )}
           </div>
@@ -342,33 +353,60 @@ export function DashboardScreen() {
               <button
                 onClick={() =>
                   void navigate(
-                    nextTopic
+                    nextTopic && !milestoneSummary?.requires_branch_choice
                       ? topic(nextTopic)
                       : careerId
-                        ? appRoutes.roadmap(careerId)
+                        ? appRoutes.roadmap(careerId) + "?roadmap=" + roadmapId
                         : appRoutes.careers,
                   )
                 }
                 className="text-xs text-gray-300 hover:text-white font-medium cursor-pointer"
               >
-                continue &gt;
+                {milestoneSummary?.requires_branch_choice
+                  ? "Choose your tool path"
+                  : overview.progress?.no_remaining_suggestions &&
+                      !overview.progress.fully_done
+                    ? "Review skipped topics"
+                    : overview.progress?.fully_done
+                      ? "View roadmap"
+                      : "Continue"}{" "}
+                &gt;
               </button>
             </div>
 
             <div className="space-y-2 pt-4">
+              <p className="text-xs text-gray-300">Milestone progress</p>
               <div className="flex justify-end text-xs font-bold text-gray-300">
                 <span>
-                  {milestoneSummary?.percentage == null
-                    ? "No milestone percentage yet"
-                    : milestoneSummary.percentage + "%"}
+                  {!roadmapId
+                    ? "Choose a roadmap to start"
+                    : overview.progress?.fully_done
+                      ? "Roadmap complete"
+                      : overview.progress?.no_remaining_suggestions
+                        ? "Review skipped topics"
+                        : milestoneSummary?.requires_branch_choice
+                          ? `${milestoneSummary.common_done} of ${milestoneSummary.common_total} common topics done · choose a tool path`
+                          : milestoneSummary?.percentage == null
+                            ? "No topics available yet"
+                            : milestoneSummary.percentage + "%"}
                 </span>
               </div>
-              <div className="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
-                <div
-                  className="bg-emerald-500 h-full rounded-full transition-all duration-500"
-                  style={{ width: (milestoneSummary?.percentage ?? 0) + "%" }}
-                />
-              </div>
+              {milestoneSummary?.percentage != null && (
+                <div className="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
+                  <div
+                    className="bg-emerald-500 h-full rounded-full transition-all duration-500"
+                    style={{ width: (milestoneSummary?.percentage ?? 0) + "%" }}
+                  />
+                </div>
+              )}
+              {overview.progress && <p className="text-xs text-gray-300">
+                Roadmap: {overview.progress.done} of {overview.progress.applicable} current topics Done
+                {overview.progress.requires_branch_choice
+                  ? " · choose a tool path to see the full percentage"
+                  : overview.progress.percentage == null
+                    ? " · no active topics"
+                    : " · " + overview.progress.percentage + "%"}
+              </p>}
             </div>
           </div>
 

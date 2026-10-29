@@ -3,9 +3,10 @@
 import argparse
 from pathlib import Path
 
-from app.content.prototype_v1 import REVIEWED_AT, REVIEW_REFERENCE, SOURCE_LICENSE, careers
-from app.modules.discovery.definition import definition
 from render_content_release import identifier, insert, literal
+
+from app.content.prototype_v1 import REVIEW_REFERENCE, REVIEWED_AT, SOURCE_LICENSE, careers
+from app.modules.discovery.definition import definition
 
 
 def render():
@@ -50,7 +51,9 @@ def render():
                     "editor": "Codex",
                     "source_license": SOURCE_LICENSE,
                     "source_urls": urls,
-                    "reviewed_by": "Codex (source/resource review within owner-approved local prototype scope)",
+                    "reviewed_by": (
+                        "Codex (source/resource review within owner-approved local prototype scope)"
+                    ),
                     "reviewed_at": REVIEWED_AT,
                     "revision_note": REVIEW_REFERENCE,
                 },
@@ -159,10 +162,13 @@ def render():
         # Questions have a composite key; a conflicting position aborts the transaction.
         qid, key = literal(str(questionnaire.id)), literal(question.question_id)
         statements.append(
-            f"INSERT INTO asgard_catalog.questions (questionnaire_id, id, position) VALUES ({qid}, {key}, {question.position}) "
-            f"ON CONFLICT (questionnaire_id, id) DO NOTHING;\n"
-            f"DO $registry$ BEGIN IF EXISTS (SELECT 1 FROM asgard_catalog.questions WHERE questionnaire_id = {qid} AND id = {key} "
-            f"AND position <> {question.position}) THEN RAISE EXCEPTION 'Question identity conflicts with published definition'; END IF; END $registry$;"
+            "INSERT INTO asgard_catalog.questions (questionnaire_id, id, position) "
+            f"VALUES ({qid}, {key}, {question.position}) "
+            "ON CONFLICT (questionnaire_id, id) DO NOTHING;\n"
+            "DO $registry$ BEGIN IF EXISTS (SELECT 1 FROM asgard_catalog.questions "
+            f"WHERE questionnaire_id = {qid} AND id = {key} "
+            f"AND position <> {question.position}) THEN RAISE EXCEPTION "
+            "'Question identity conflicts with published definition'; END IF; END $registry$;"
         )
     return "\n\n".join(statements + ["COMMIT;"]) + "\n"
 

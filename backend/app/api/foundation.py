@@ -7,7 +7,9 @@ from fastapi import APIRouter, Depends, Query, Request
 
 from app.core.errors import ErrorBody
 from app.core.security import Identity, current_identity
+from app.modules.careers import service as careers_service
 from app.modules.careers.schemas import Career, CareerPage, Category
+from app.modules.discovery import service as discovery_service
 from app.modules.discovery.schemas import (
     CompleteDiscovery,
     DiscoverySession,
@@ -17,6 +19,7 @@ from app.modules.discovery.schemas import (
     SaveDiscovery,
     StartDiscovery,
 )
+from app.modules.progress import service as progress_service
 from app.modules.progress.schemas import (
     ActivityMonth,
     BranchChoice,
@@ -30,19 +33,15 @@ from app.modules.progress.schemas import (
     SelectRoadmap,
     TopicProgress,
 )
+from app.modules.recommendations import service as recommendations_service
 from app.modules.recommendations.schemas import (
     RecommendationRun,
     RecommendationState,
     RequestRecommendations,
     RetryRecommendations,
 )
-from app.modules.roadmaps.schemas import Milestone, Resource, Roadmap, Topic
-
-from app.modules.careers import service as careers_service
-from app.modules.discovery import service as discovery_service
-from app.modules.recommendations import service as recommendations_service
 from app.modules.roadmaps import service as roadmaps_service
-from app.modules.progress import service as progress_service
+from app.modules.roadmaps.schemas import Milestone, Resource, Roadmap, Topic
 from app.modules.storage import transaction
 
 Auth = Annotated[Identity, Depends(current_identity)]

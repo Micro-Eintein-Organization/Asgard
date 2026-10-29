@@ -2,8 +2,12 @@ import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { fileURLToPath, URL } from "node:url";
+import { loadEnv } from "vite";
+import { validateHostedEnvironment } from "./src/lib/hosting.ts";
 
-export default defineConfig({
+export default defineConfig(({ mode }) => {
+  validateHostedEnvironment({ ...loadEnv(mode, process.cwd(), "VITE_"), ...process.env });
+  return {
   resolve: { alias: { "@": fileURLToPath(new URL("./src", import.meta.url)) } },
   plugins: [react(), tailwindcss()],
   server: {
@@ -20,4 +24,5 @@ export default defineConfig({
     include: ["src/**/*.test.{ts,tsx}"],
     restoreMocks: true,
   },
+  };
 });

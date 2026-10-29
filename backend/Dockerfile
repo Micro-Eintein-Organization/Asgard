@@ -7,7 +7,7 @@ RUN useradd --create-home --uid 10001 asgard && chown asgard:asgard /workspace
 COPY app ./app
 USER asgard
 EXPOSE 8000
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--no-access-log"]
+CMD ["python", "-m", "app.start"]
 
 FROM runtime AS development
 USER root
@@ -19,3 +19,5 @@ COPY scripts ./scripts
 COPY --chown=asgard:asgard openapi.json .
 USER asgard
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload", "--no-access-log"]
+
+FROM runtime AS production

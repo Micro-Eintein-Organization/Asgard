@@ -1,5 +1,11 @@
 # Connected prototype
 
+The owner subsequently directed blank retakes from Settings; the copied-answer
+description below is historical. See [Discovery and catalog refresh](discovery-catalog-refresh.md).
+
+The subsequent [MVP backend handoff](mvp-backend-handoff.md) records PDF lifecycle,
+Career navigation, guidance, broader local evidence and outstanding acceptance.
+
 - Implementer/task owner: Codex
 - Created: 2026-10-28
 - Last updated: 2026-10-28

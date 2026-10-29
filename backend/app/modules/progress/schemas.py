@@ -86,6 +86,11 @@ class MilestoneSummary(Contract):
 class ProgressSummary(Contract):
     roadmap_id: UUID
     milestones: list[MilestoneSummary]
+    done: Annotated[int, Field(ge=0)]
+    applicable: Annotated[int, Field(ge=0)]
+    requires_branch_choice: bool
+    percentage: Annotated[float, Field(ge=0, le=100)] | None
+    state: Literal["empty", "branch_required", "in_progress", "completed", "review_skipped"]
     fully_done: bool
     no_remaining_suggestions: bool
     next_topic_ids: list[UUID]

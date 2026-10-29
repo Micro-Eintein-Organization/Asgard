@@ -1,4 +1,4 @@
-from datetime import date, datetime, timedelta, timezone
+from datetime import UTC, date, datetime, timedelta
 from zoneinfo import ZoneInfo
 
 from sqlalchemy import text
@@ -23,16 +23,20 @@ async def learning(connection, uid):
 async def preferences(connection, uid):
     await connection.execute(
         text(
-            "INSERT INTO asgard_private.preferences (user_id) VALUES (CAST(:uid AS uuid)) "
-            "ON CONFLICT (user_id) DO NOTHING"
+
+                "INSERT INTO asgard_private.preferences (user_id) VALUES (CAST(:uid AS "
+                "uuid)) ON CONFLICT (user_id) DO NOTHING"
+
         ),
         {"uid": str(uid)},
     )
     result = required(
         await one(
             connection,
-            "SELECT preferred_category_id, timezone, dismissed_guidance, version "
-            "FROM asgard_private.preferences WHERE user_id = CAST(:uid AS uuid)",
+            (
+                "SELECT preferred_category_id, timezone, dismissed_guidance, version "
+                "FROM asgard_private.preferences WHERE user_id = CAST(:uid AS uuid)"
+            ),
             {"uid": str(uid)},
         )
     )
@@ -56,18 +60,25 @@ async def save_preferences(connection, uid, body):
     if body.expected_version == 0:
         result = await one(
             connection,
-            "INSERT INTO asgard_private.preferences "
-            "(user_id, preferred_category_id, timezone, dismissed_guidance) "
-            "VALUES (CAST(:uid AS uuid), CAST(:preferred_category_id AS uuid), :timezone, :dismissed_guidance) "
-            "ON CONFLICT (user_id) DO NOTHING RETURNING version",
+            (
+                "INSERT INTO asgard_private.preferences (user_id, "
+                "preferred_category_id, timezone, dismissed_guidance) VALUES (CAST(:uid"
+                " AS uuid), CAST(:preferred_category_id AS uuid), :timezone, "
+                ":dismissed_guidance) ON CONFLICT (user_id) DO NOTHING RETURNING "
+                "version"
+            ),
             parameters,
         )
     else:
         result = await one(
             connection,
-            "UPDATE asgard_private.preferences SET preferred_category_id = CAST(:preferred_category_id AS uuid), "
-            "timezone = :timezone, dismissed_guidance = :dismissed_guidance, version = version + 1 "
-            "WHERE user_id = CAST(:uid AS uuid) AND version = :expected_version RETURNING version",
+            (
+                "UPDATE asgard_private.preferences SET preferred_category_id = "
+                "CAST(:preferred_category_id AS uuid), timezone = :timezone, "
+                "dismissed_guidance = :dismissed_guidance, version = version + 1 WHERE "
+                "user_id = CAST(:uid AS uuid) AND version = :expected_version RETURNING"
+                " version"
+            ),
             parameters,
         )
     if result is None:
@@ -85,8 +96,10 @@ async def select_roadmap(connection, uid, body):
     target = required(
         await one(
             connection,
-            "SELECT id FROM asgard_catalog.roadmaps "
-            "WHERE id = CAST(:id AS uuid) AND status = 'published'",
+            (
+                "SELECT id FROM asgard_catalog.roadmaps WHERE id = CAST(:id AS uuid) "
+                "AND status = 'published'"
+            ),
             {"id": str(body.roadmap_id)},
         )
     )
@@ -94,8 +107,10 @@ async def select_roadmap(connection, uid, body):
         return learning_fields(state)
     if await one(
         connection,
-        "SELECT topic_id FROM asgard_private.topic_progress "
-        "WHERE user_id = CAST(:uid AS uuid) AND status = 'learning'",
+        (
+            "SELECT topic_id FROM asgard_private.topic_progress WHERE user_id = "
+            "CAST(:uid AS uuid) AND status = 'learning'"
+        ),
         {"uid": str(uid)},
     ):
         raise APIError(
@@ -105,8 +120,11 @@ async def select_roadmap(connection, uid, body):
         )
     await connection.execute(
         text(
-            "UPDATE asgard_private.learning_state SET current_roadmap_id = CAST(:id AS uuid), "
-            "version = version + 1, updated_at = statement_timestamp() WHERE user_id = CAST(:uid AS uuid)"
+
+                "UPDATE asgard_private.learning_state SET current_roadmap_id = CAST(:id"
+                " AS uuid), version = version + 1, updated_at = statement_timestamp() "
+                "WHERE user_id = CAST(:uid AS uuid)"
+
         ),
         {"uid": str(uid), "id": str(body.roadmap_id)},
     )
@@ -123,8 +141,11 @@ async def progress(connection, uid, roadmap_id):
     )
     return await rows(
         connection,
-        "SELECT roadmap_id, topic_id, status, version, updated_at FROM asgard_private.topic_progress "
-        "WHERE user_id = CAST(:uid AS uuid) AND roadmap_id = CAST(:id AS uuid) ORDER BY topic_id",
+        (
+            "SELECT roadmap_id, topic_id, status, version, updated_at FROM "
+            "asgard_private.topic_progress WHERE user_id = CAST(:uid AS uuid) AND "
+            "roadmap_id = CAST(:id AS uuid) ORDER BY topic_id"
+        ),
         {"uid": str(uid), "id": str(roadmap_id)},
     )
 
@@ -141,16 +162,22 @@ async def save_progress(connection, uid, roadmap_id, topic_id, body):
     target = required(
         await one(
             connection,
-            "SELECT t.id, t.retired_at, r.status AS roadmap_status "
-            "FROM asgard_catalog.topics t JOIN asgard_catalog.roadmaps r ON r.id = t.roadmap_id "
-            "WHERE t.id = CAST(:topic AS uuid) AND t.roadmap_id = CAST(:roadmap AS uuid)",
+            (
+                "SELECT t.id, t.retired_at, r.status AS roadmap_status FROM "
+                "asgard_catalog.topics t JOIN asgard_catalog.roadmaps r ON r.id = "
+                "t.roadmap_id WHERE t.id = CAST(:topic AS uuid) AND t.roadmap_id = "
+                "CAST(:roadmap AS uuid)"
+            ),
             parameters,
         )
     )
     old = await one(
         connection,
-        "SELECT * FROM asgard_private.topic_progress WHERE user_id = CAST(:uid AS uuid) "
-        "AND roadmap_id = CAST(:roadmap AS uuid) AND topic_id = CAST(:topic AS uuid) FOR UPDATE",
+        (
+            "SELECT * FROM asgard_private.topic_progress WHERE user_id = CAST(:uid "
+            "AS uuid) AND roadmap_id = CAST(:roadmap AS uuid) AND topic_id = "
+            "CAST(:topic AS uuid) FOR UPDATE"
+        ),
         parameters,
     )
     if (old["version"] if old else 0) != body.expected_version:
@@ -168,8 +195,11 @@ async def save_progress(connection, uid, roadmap_id, topic_id, body):
         }
     if body.status == "learning" and await one(
         connection,
-        "SELECT topic_id FROM asgard_private.topic_progress "
-        "WHERE user_id = CAST(:uid AS uuid) AND status = 'learning' AND topic_id <> CAST(:topic AS uuid)",
+        (
+            "SELECT topic_id FROM asgard_private.topic_progress WHERE user_id = "
+            "CAST(:uid AS uuid) AND status = 'learning' AND topic_id <> CAST(:topic"
+            " AS uuid)"
+        ),
         parameters,
     ):
         raise APIError(
@@ -180,31 +210,44 @@ async def save_progress(connection, uid, roadmap_id, topic_id, body):
     if old:
         saved = await one(
             connection,
-            "UPDATE asgard_private.topic_progress SET status = :status, version = version + 1, "
-            "updated_at = statement_timestamp() WHERE user_id = CAST(:uid AS uuid) AND roadmap_id = CAST(:roadmap AS uuid) "
-            "AND topic_id = CAST(:topic AS uuid) RETURNING roadmap_id, topic_id, status, version, updated_at",
+            (
+                "UPDATE asgard_private.topic_progress SET status = :status, version = "
+                "version + 1, updated_at = statement_timestamp() WHERE user_id = "
+                "CAST(:uid AS uuid) AND roadmap_id = CAST(:roadmap AS uuid) AND "
+                "topic_id = CAST(:topic AS uuid) RETURNING roadmap_id, topic_id, "
+                "status, version, updated_at"
+            ),
             parameters,
         )
     else:
         saved = await one(
             connection,
-            "INSERT INTO asgard_private.topic_progress (user_id, roadmap_id, topic_id, status) "
-            "VALUES (CAST(:uid AS uuid), CAST(:roadmap AS uuid), CAST(:topic AS uuid), :status) "
-            "RETURNING roadmap_id, topic_id, status, version, updated_at",
+            (
+                "INSERT INTO asgard_private.topic_progress (user_id, roadmap_id, "
+                "topic_id, status) VALUES (CAST(:uid AS uuid), CAST(:roadmap AS uuid), "
+                "CAST(:topic AS uuid), :status) RETURNING roadmap_id, topic_id, status,"
+                " version, updated_at"
+            ),
             parameters,
         )
     await connection.execute(
         text(
-            "INSERT INTO asgard_private.progress_events (user_id, roadmap_id, topic_id, from_status, to_status) "
-            "VALUES (CAST(:uid AS uuid), CAST(:roadmap AS uuid), CAST(:topic AS uuid), :before, :status)"
+
+                "INSERT INTO asgard_private.progress_events (user_id, roadmap_id, "
+                "topic_id, from_status, to_status) VALUES (CAST(:uid AS uuid), "
+                "CAST(:roadmap AS uuid), CAST(:topic AS uuid), :before, :status)"
+
         ),
         parameters | {"before": old["status"] if old else "not_started"},
     )
     if old and old["status"] == "done":
         await connection.execute(
             text(
-                "DELETE FROM asgard_private.completion_activity WHERE user_id = CAST(:uid AS uuid) "
-                "AND roadmap_id = CAST(:roadmap AS uuid) AND topic_id = CAST(:topic AS uuid)"
+
+                    "DELETE FROM asgard_private.completion_activity WHERE user_id = "
+                    "CAST(:uid AS uuid) AND roadmap_id = CAST(:roadmap AS uuid) AND "
+                    "topic_id = CAST(:topic AS uuid)"
+
             ),
             parameters,
         )
@@ -212,10 +255,12 @@ async def save_progress(connection, uid, roadmap_id, topic_id, body):
         pref = await preferences(connection, uid)
         await connection.execute(
             text(
-                "INSERT INTO asgard_private.completion_activity "
-                "(user_id, roadmap_id, topic_id, local_date, timezone) VALUES "
-                "(CAST(:uid AS uuid), CAST(:roadmap AS uuid), CAST(:topic AS uuid), "
-                "(statement_timestamp() AT TIME ZONE :timezone)::date, :timezone) ON CONFLICT DO NOTHING"
+
+                    "INSERT INTO asgard_private.completion_activity (user_id, roadmap_id, "
+                    "topic_id, local_date, timezone) VALUES (CAST(:uid AS uuid), "
+                    "CAST(:roadmap AS uuid), CAST(:topic AS uuid), (statement_timestamp() "
+                    "AT TIME ZONE :timezone)::date, :timezone) ON CONFLICT DO NOTHING"
+
             ),
             parameters | {"timezone": pref["timezone"]},
         )
@@ -232,8 +277,11 @@ async def branches(connection, uid, roadmap_id):
     )
     return await rows(
         connection,
-        "SELECT roadmap_id, group_id, branch_id, version FROM asgard_private.branch_choices "
-        "WHERE user_id = CAST(:uid AS uuid) AND roadmap_id = CAST(:id AS uuid) ORDER BY group_id",
+        (
+            "SELECT roadmap_id, group_id, branch_id, version FROM "
+            "asgard_private.branch_choices WHERE user_id = CAST(:uid AS uuid) AND "
+            "roadmap_id = CAST(:id AS uuid) ORDER BY group_id"
+        ),
         {"uid": str(uid), "id": str(roadmap_id)},
     )
 
@@ -250,16 +298,21 @@ async def save_branch(connection, uid, roadmap_id, group_id, body):
     required(
         await one(
             connection,
-            "SELECT b.id FROM asgard_catalog.branches b JOIN asgard_catalog.roadmaps r ON r.id = b.roadmap_id "
-            "WHERE b.roadmap_id = CAST(:roadmap AS uuid) AND b.group_id = CAST(:group AS uuid) "
-            "AND b.id = CAST(:branch AS uuid) AND r.status = 'published'",
+            (
+                "SELECT b.id FROM asgard_catalog.branches b JOIN "
+                "asgard_catalog.roadmaps r ON r.id = b.roadmap_id WHERE b.roadmap_id = "
+                "CAST(:roadmap AS uuid) AND b.group_id = CAST(:group AS uuid) AND b.id "
+                "= CAST(:branch AS uuid) AND r.status = 'published'"
+            ),
             parameters,
         )
     )
     old = await one(
         connection,
-        "SELECT * FROM asgard_private.branch_choices WHERE user_id = CAST(:uid AS uuid) "
-        "AND group_id = CAST(:group AS uuid) FOR UPDATE",
+        (
+            "SELECT * FROM asgard_private.branch_choices WHERE user_id = CAST(:uid "
+            "AS uuid) AND group_id = CAST(:group AS uuid) FOR UPDATE"
+        ),
         parameters,
     )
     if (old["version"] if old else 0) != body.expected_version:
@@ -269,15 +322,22 @@ async def save_branch(connection, uid, roadmap_id, group_id, body):
     if old:
         return await one(
             connection,
-            "UPDATE asgard_private.branch_choices SET branch_id = CAST(:branch AS uuid), version = version + 1 "
-            "WHERE user_id = CAST(:uid AS uuid) AND group_id = CAST(:group AS uuid) RETURNING roadmap_id, group_id, branch_id, version",
+            (
+                "UPDATE asgard_private.branch_choices SET branch_id = CAST(:branch AS "
+                "uuid), version = version + 1 WHERE user_id = CAST(:uid AS uuid) AND "
+                "group_id = CAST(:group AS uuid) RETURNING roadmap_id, group_id, "
+                "branch_id, version"
+            ),
             parameters,
         )
     return await one(
         connection,
-        "INSERT INTO asgard_private.branch_choices (user_id, roadmap_id, group_id, branch_id) "
-        "VALUES (CAST(:uid AS uuid), CAST(:roadmap AS uuid), CAST(:group AS uuid), CAST(:branch AS uuid)) "
-        "RETURNING roadmap_id, group_id, branch_id, version",
+        (
+            "INSERT INTO asgard_private.branch_choices (user_id, roadmap_id, "
+            "group_id, branch_id) VALUES (CAST(:uid AS uuid), CAST(:roadmap AS "
+            "uuid), CAST(:group AS uuid), CAST(:branch AS uuid)) RETURNING "
+            "roadmap_id, group_id, branch_id, version"
+        ),
         parameters,
     )
 
@@ -329,9 +389,26 @@ async def summary(connection, uid, roadmap_id):
     active = [
         topic for topic in available if states.get(topic["id"], {}).get("status") == "learning"
     ]
+    total = len(applicable)
+    done_count = sum(states.get(topic["id"], {}).get("status") == "done" for topic in applicable)
+    if pending:
+        state = "branch_required"
+    elif not total:
+        state = "empty"
+    elif done_count == total:
+        state = "completed"
+    elif not available:
+        state = "review_skipped"
+    else:
+        state = "in_progress"
     return {
         "roadmap_id": roadmap_id,
         "milestones": items,
+        "done": done_count,
+        "applicable": total,
+        "requires_branch_choice": pending,
+        "percentage": None if pending or not total else round(100 * done_count / total, 2),
+        "state": state,
         "fully_done": bool(applicable)
         and not pending
         and all(states.get(topic["id"], {}).get("status") == "done" for topic in applicable),
@@ -358,21 +435,27 @@ async def activity(connection, uid, month):
     parameters = {"uid": str(uid), "start": start, "end": end}
     days = await rows(
         connection,
-        "SELECT local_date, count(*) AS done_count FROM asgard_private.completion_activity "
-        "WHERE user_id = CAST(:uid AS uuid) AND local_date >= :start AND local_date < :end GROUP BY local_date ORDER BY local_date",
+        (
+            "SELECT local_date, count(*) AS done_count FROM "
+            "asgard_private.completion_activity WHERE user_id = CAST(:uid AS uuid) "
+            "AND local_date >= :start AND local_date < :end GROUP BY local_date "
+            "ORDER BY local_date"
+        ),
         parameters,
     )
     dates = {
         row["local_date"]
         for row in await rows(
             connection,
-            "SELECT DISTINCT local_date FROM asgard_private.completion_activity "
-            "WHERE user_id = CAST(:uid AS uuid)",
+            (
+                "SELECT DISTINCT local_date FROM asgard_private.completion_activity "
+                "WHERE user_id = CAST(:uid AS uuid)"
+            ),
             parameters,
         )
     }
     pref = await preferences(connection, uid)
-    today = datetime.now(timezone.utc).astimezone(ZoneInfo(pref["timezone"])).date()
+    today = datetime.now(UTC).astimezone(ZoneInfo(pref["timezone"])).date()
     cursor = today if today in dates else today - timedelta(days=1)
     streak = 0
     while cursor in dates:
@@ -387,13 +470,19 @@ async def dashboard(connection, uid):
     pref = await preferences(connection, uid)
     active = await one(
         connection,
-        "SELECT roadmap_id, topic_id, status, version, updated_at FROM asgard_private.topic_progress "
-        "WHERE user_id = CAST(:uid AS uuid) AND status = 'learning'",
+        (
+            "SELECT roadmap_id, topic_id, status, version, updated_at FROM "
+            "asgard_private.topic_progress WHERE user_id = CAST(:uid AS uuid) AND "
+            "status = 'learning'"
+        ),
         parameters,
     )
     draft = await one(
         connection,
-        "SELECT id FROM asgard_private.discovery_sessions WHERE user_id = CAST(:uid AS uuid) AND status = 'draft'",
+        (
+            "SELECT id FROM asgard_private.discovery_sessions WHERE user_id = "
+            "CAST(:uid AS uuid) AND status = 'draft'"
+        ),
         parameters,
     )
     profile = await one(
@@ -403,7 +492,10 @@ async def dashboard(connection, uid):
     )
     completed = await one(
         connection,
-        "SELECT id FROM asgard_private.discovery_sessions WHERE user_id = CAST(:uid AS uuid) AND status = 'completed' LIMIT 1",
+        (
+            "SELECT id FROM asgard_private.discovery_sessions WHERE user_id = "
+            "CAST(:uid AS uuid) AND status = 'completed' LIMIT 1"
+        ),
         parameters,
     )
     guidance_candidates = [
@@ -423,6 +515,9 @@ async def dashboard(connection, uid):
     if state["current_roadmap_id"]:
         calculated = await summary(connection, uid, state["current_roadmap_id"])
         next_ids = calculated["next_topic_ids"]
+        missing_branch = next(
+            (item for item in calculated["milestones"] if item["requires_branch_choice"]), None
+        )
         if next_ids:
             core = (
                 await one(
@@ -431,19 +526,34 @@ async def dashboard(connection, uid):
                     {"id": str(next_ids[0])},
                 )
             )["milestone_id"]
+        active_applies = active and active["roadmap_id"] == state["current_roadmap_id"] and (
+            active["topic_id"] in next_ids
+        )
+        if missing_branch and not active_applies:
+            ids = [item["milestone_id"] for item in calculated["milestones"]]
+            if core not in ids or ids.index(missing_branch["milestone_id"]) < ids.index(core):
+                core = missing_branch["milestone_id"]
+        if core is None and calculated["milestones"]:
+            core = calculated["milestones"][-1]["milestone_id"]
     recent = await rows(
         connection,
-        "SELECT roadmap_id, topic_id, status, version, updated_at FROM asgard_private.topic_progress "
-        "WHERE user_id = CAST(:uid AS uuid) AND status = 'done' ORDER BY updated_at DESC, topic_id LIMIT 10",
+        (
+            "SELECT roadmap_id, topic_id, status, version, updated_at FROM "
+            "asgard_private.topic_progress WHERE user_id = CAST(:uid AS uuid) AND "
+            "status = 'done' ORDER BY updated_at DESC, topic_id LIMIT 10"
+        ),
         parameters,
     )
     recommendation = await one(
         connection,
-        "SELECT r.id FROM asgard_private.recommendation_runs r "
-        "WHERE r.user_id = CAST(:uid AS uuid) AND r.status = 'completed' "
-        "AND NOT EXISTS (SELECT 1 FROM asgard_private.recommendation_items i "
-        "JOIN asgard_catalog.careers c ON c.id = i.career_id WHERE i.run_id = r.id AND c.status <> 'published') "
-        "ORDER BY r.created_at DESC, r.id DESC LIMIT 1",
+        (
+            "SELECT r.id FROM asgard_private.recommendation_runs r WHERE r.user_id "
+            "= CAST(:uid AS uuid) AND r.status = 'completed' AND NOT EXISTS (SELECT"
+            " 1 FROM asgard_private.recommendation_items i JOIN "
+            "asgard_catalog.careers c ON c.id = i.career_id WHERE i.run_id = r.id "
+            "AND c.status <> 'published') ORDER BY r.created_at DESC, r.id DESC "
+            "LIMIT 1"
+        ),
         parameters,
     )
     return {

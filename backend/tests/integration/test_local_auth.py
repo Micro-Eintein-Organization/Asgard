@@ -80,9 +80,9 @@ def confirmation_code(mail: httpx.Client, email: str) -> str:
             detail = mail.get(f"/api/v1/message/{message['ID']}")
             assert detail.is_success
             body = f"{detail.json().get('Text', '')}\n{detail.json().get('HTML', '')}"
-            tokens = re.findall(r"(?<!\d)\d{6}(?!\d)", body)
+            tokens = set(re.findall(r"(?<!\d)\d{6}(?!\d)", body))
             if len(tokens) == 1:
-                return tokens[0]
+                return next(iter(tokens))
         time.sleep(0.2)
     pytest.fail("The local signup confirmation email did not contain a six-digit code.")
 

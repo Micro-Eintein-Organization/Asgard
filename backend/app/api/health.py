@@ -1,9 +1,11 @@
+import asyncio
 from typing import Literal
 
 import httpx
 from fastapi import APIRouter, Request
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
+from sqlalchemy import text
 
 router = APIRouter(tags=["operations"])
 
@@ -42,8 +44,24 @@ async def ready(request: Request) -> ReadinessResponse | JSONResponse:
             state = "available" if response.is_success else "unavailable"
         except httpx.HTTPError:
             state = "unavailable"
+    database_ready = True
+    if settings.deployment_environment != "local":
+        repository = request.app.state.profiles
+        database_ready = False
+        if repository is not None:
+            try:
+                async with asyncio.timeout(settings.readiness_timeout_seconds):
+                    async with repository.engine.connect() as connection:
+                        database_ready = bool(await connection.scalar(text(
+                            "SELECT current_user = 'asgard_app' AND NOT rolsuper "
+                            "AND NOT rolbypassrls AND NOT rolcreaterole AND NOT rolcreatedb "
+                            "AND EXISTS(SELECT 1 FROM asgard_catalog.releases WHERE version=2) "
+                            "FROM pg_roles WHERE rolname=current_user"
+                        )))
+            except Exception:
+                database_ready = False
     result = ReadinessResponse(
-        status="ready" if state == "available" else "not_ready",
+        status="ready" if state == "available" and database_ready else "not_ready",
         supabase_api=state,
     )
     if result.status == "not_ready":

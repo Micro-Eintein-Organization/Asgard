@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
 import { describe, expect, it, vi } from "vitest";
 import { APIRequestError } from "@/api/errors";
@@ -79,14 +79,14 @@ describe("saved recommendation cards", () => {
         <RecommendationCards flow={flow()} />
       </MemoryRouter>,
     );
-    expect(
-      screen.getByRole("heading", { name: "Published career" }),
-    ).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "View roadmap" })).toHaveAttribute(
+    expect(screen.getByRole("button", { name: "View selected roadmap" })).toBeDisabled();
+    fireEvent.click(screen.getByRole("radio", { name: /Published career/ }));
+    expect(screen.getByRole("link", { name: "View selected roadmap" })).toHaveAttribute(
       "href",
       "/roadmaps/career-1?roadmap=roadmap-1",
     );
-    expect(screen.getByText("A limited catalog option.")).toBeInTheDocument();
+    fireEvent.click(screen.getByText("Read more"));
+    expect(screen.getByText("A limited catalog option.")).toBeVisible();
   });
 
   it("shows the current retry error once instead of retaining the older validation banner", () => {

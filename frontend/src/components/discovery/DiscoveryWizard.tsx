@@ -27,7 +27,7 @@ export function DiscoveryWizard() {
     () => coreApi.questionnaire(state.data?.draft?.questionnaire_id),
   );
   const start = useCoreMutation(coreApi.startDiscovery);
-  const retake = useCoreMutation(coreApi.retakeDiscovery);
+
   const opening = useRef(false);
   useEffect(() => {
     if (
@@ -126,31 +126,9 @@ export function DiscoveryWizard() {
           details are excluded. Suggestions are exploration options, not an
           assessment of ability.
         </p>
-        <Button
-          disabled={start.isPending || retake.isPending}
-          onClick={() => {
-            if (completed)
-              retake.mutate({
-                source_session_id: completed.id,
-                expected_revision: completed.revision,
-              });
-            else start.mutate({ questionnaire_id: authored.id });
-          }}
-        >
-          {start.isPending || retake.isPending
-            ? "Opening…"
-            : completed
-              ? "Retake Discovery"
-              : "Start Discovery"}
-        </Button>
-        {(start.error || retake.error) && (
-          <p role="alert" className="field-error">
-            {(start.error ?? retake.error)?.message}{" "}
-            <button onClick={() => void state.refetch()}>
-              Reload saved state
-            </button>
-          </p>
-        )}
+        <Link to={appRoutes.profile} className="underline">
+          Retake Discovery in Settings
+        </Link>
         <div className="action-row justify-center">
           <Link to={appRoutes.careers}>Browse careers</Link>
           {completed && <Link to={appRoutes.results}>View saved results</Link>}
@@ -186,12 +164,12 @@ function DiscoveryEditor({
         onBack={() => void editor.move(-1)}
         onSkip={() => void editor.skip()}
       />
-      <div className="max-w-4xl mx-auto w-full my-auto py-8 space-y-8">
+      <div className="max-w-6xl mx-auto w-full my-auto py-8 space-y-8">
         <div className="text-center space-y-2">
           <h2
             ref={heading}
             tabIndex={-1}
-            className="text-xl font-bold tracking-tight"
+            className="text-2xl sm:text-3xl font-bold tracking-tight"
           >
             {editor.question.prompt}
           </h2>
@@ -216,7 +194,7 @@ function DiscoveryEditor({
               <label
                 key={option.id}
                 className={
-                  "cursor-pointer rounded-2xl border p-6 transition-all relative flex flex-col justify-between min-h-56 bg-white " +
+                  "cursor-pointer rounded-2xl border-2 p-6 transition-all relative flex flex-col min-h-72 sm:min-h-80 bg-white focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-emerald-700 " +
                   (selected
                     ? "border-emerald-500 ring-2 ring-emerald-500 shadow-md"
                     : "border-gray-200 hover:border-gray-300 hover:shadow-xs")
@@ -234,11 +212,15 @@ function DiscoveryEditor({
                     Selected
                   </span>
                 )}
-                <div className="text-center space-y-2">
-                  <span className="block text-sm font-bold leading-tight">
+                <span
+                  aria-hidden="true"
+                  className="mx-auto my-8 block size-20 rounded-full bg-gray-200"
+                />
+                <div className="text-center space-y-3 mt-auto mb-4">
+                  <span className="block text-lg font-bold leading-tight">
                     {option.label}
                   </span>
-                  <span className="block text-xs text-gray-500 leading-relaxed">
+                  <span className="block text-sm text-gray-600 leading-relaxed">
                     {option.description}
                   </span>
                 </div>
@@ -276,7 +258,11 @@ function DiscoveryEditor({
           </div>
         )}
         <div className="text-center pt-4">
-          <Button disabled={editor.busy} onClick={() => void editor.move(1)}>
+          <Button
+            className="min-h-14 min-w-64"
+            disabled={editor.busy}
+            onClick={() => void editor.move(1)}
+          >
             {editor.busy
               ? "Saving…"
               : editor.index === editor.total - 1
@@ -373,14 +359,13 @@ export function DiscoveryResults() {
       <DiscoveryHeader
         currentStep={6}
         totalSteps={5}
-        showProgress={false}
-        onBack={() => void navigate(appRoutes.welcome)}
+        onBack={() => void navigate(appRoutes.dashboard)}
         onSkip={() => void navigate(appRoutes.careers)}
       />
       <div className="max-w-5xl mx-auto w-full my-auto py-8 space-y-8">
         <div className="text-center space-y-2">
           <h2 className="text-2xl font-bold tracking-tight">
-            Careers to explore
+            Here are some directions to explore
           </h2>
           <p className="text-sm text-gray-500">
             {completed
@@ -407,16 +392,14 @@ export function DiscoveryResults() {
           >
             Browse careers
           </Link>
-          <Link
-            to={appRoutes.discovery}
-            className="border px-6 py-3 rounded-full text-xs"
-          >
-            {state.data?.draft
-              ? "Resume Discovery"
-              : completed
-                ? "Retake Discovery"
-                : "Start Discovery"}
-          </Link>
+          {state.data?.draft && (
+            <Link
+              to={appRoutes.discovery}
+              className="border px-6 py-3 rounded-full text-xs"
+            >
+              Resume Discovery
+            </Link>
+          )}
           <Link
             to={appRoutes.profileSetup}
             className="border px-6 py-3 rounded-full text-xs"

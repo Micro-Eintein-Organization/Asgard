@@ -9,6 +9,15 @@ acceptance: [F-002-AC-01, F-002-AC-02, F-002-AC-03, F-002-AC-04, F-002-AC-05, F-
 
 # Asgard: Career recommendations
 
+Local handoff extension, 2026-10-28: the owner approved simple optional PDF
+analysis, source-backed recommendation evidence, private document lifecycle and
+synthetic evaluation in the connected MVP handoff task. Source now implements
+these services; see [handoff implementation/evidence](../features/mvp-backend-handoff.md).
+Real-document privacy activation and model-quality evaluation remain separate gates.
+Skill-gap assessment, comparisons and conversational guidance remain deferred in
+[future development](../future-development.md). This supersedes historical statements
+below that PDF and provider services remain unimplemented; their policy boundaries remain applicable.
+
 Latest bounded prototype policy, 2026-10-28: the owner-approved [repair follow-up](../decisions.md#connected-prototype-resolution-2026-10-28) supersedes the catalog-gap behavior in the preceding prototype plan. New generations choose one to three closest available published career/roadmap pairs, with explicit caveats where the connection is weak or uncertain. Selection is an exploration aid limited to current content, never an assessed fit. An empty published catalog is an availability issue; malformed, truncated or ungrounded output remains a technical failure. The private provider format uses constrained candidate/evidence keys, resolved by the backend to its saved snapshot; public result fields are unchanged. The prototype total completion budget is now configurable with a 4,096-token default (including reasoning); short explanation bounds remain. Existing deadline, quota, provenance and explicit-refresh rules continue.
 
 Owner-approved local prototype boundary, 2026-10-28: [the recorded resolution](../decisions.md#connected-prototype-resolution-2026-10-28) authorizes a Groq-backed three-career catalog (Frontend Developer, Data Analyst, UI/UX Designer) with brief roadmaps. This temporarily replaces the seven-role content expectation below for local prototype demonstration. When the available catalog does not support a suggestion, accept an empty provider selection and persist the `no_supported_careers` outcome; show a catalog limitation, not a forced fit. Completed Discovery remains saved independently. The [implementation guide](../features/connected-prototype.md) records the provider, persistence and publication. Model-quality and runtime verification remain pending; no broader release approval is implied.
