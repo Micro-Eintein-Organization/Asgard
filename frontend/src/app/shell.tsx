@@ -16,6 +16,8 @@ import { useAuth } from "@/auth/context";
 import { LogoutBoundary } from "./logout-boundary";
 import { useLogout } from "./logout";
 
+import asgardLogo from "@/assets/assets/Logo_Snowflake+ASGARD_lightmode.png";
+
 function Header() {
   const { user } = useAuth();
   const signOut = useLogout();
@@ -72,7 +74,11 @@ function Header() {
           className="brand"
           aria-label="Asgard home"
         >
-          Asgard
+          <img
+            src={asgardLogo}
+            alt="Asgard"
+            className="brand-logo"
+          />
         </Link>
         {user?.email_confirmed_at ? (
           <>

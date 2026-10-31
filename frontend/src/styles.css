@@ -309,6 +309,14 @@
   line-height: 1.4;
   padding-block: 0.25rem;
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+.brand-logo {
+  height: 2.25rem;
+  width: auto;
+  display: block;
+  object-fit: contain;
 }
 .brand span {
   color: var(--accent-foreground);
@@ -1596,6 +1604,9 @@
   }
   .brand {
     font-size: 1.375rem;
+  }
+  .brand-logo {
+    height: 1.875rem;
   }
   .footer-purpose {
     display: none;
