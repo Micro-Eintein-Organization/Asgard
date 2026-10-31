@@ -16,6 +16,7 @@ import {
   routes,
   routesWithoutNavbar,
 } from "@/lib/routes";
+import navbarLogo from "@/assets/logo-navbar.png";
 import { StatePanel } from "@/components/shared";
 import { useAuth } from "@/auth/context";
 import { LogoutBoundary } from "./logout-boundary";
@@ -73,11 +74,16 @@ function Header() {
     >
       <div className="header-inner">
         <Link
-          to={user ? appRoutes.dashboard : routes.home}
+          to={appRoutes.dashboard}
           className="brand"
-          aria-label="Asgard home"
+          aria-label="Asgard, go to dashboard"
         >
-          Asgard
+          <img
+            src={navbarLogo}
+            alt="Asgard"
+            width={650}
+            height={146}
+          />
         </Link>
         {user?.email_confirmed_at ? (
           <>

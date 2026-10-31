@@ -422,6 +422,20 @@ test.describe("canonical application presentation", () => {
         page.getByRole("button", { name: "Menu", exact: true }),
       ).toHaveAttribute("aria-expanded", "false");
     }
+    await page.setViewportSize({ width: 390, height: 844 });
+    const brandLink = page.getByRole("link", {
+      name: "Asgard, go to dashboard",
+    });
+    await expect(brandLink).toHaveAttribute("href", "/dashboard");
+    const brandImage = brandLink.getByRole("img", { name: "Asgard" });
+    await expect(brandImage).toHaveAttribute("width", "650");
+    await expect(brandImage).toHaveAttribute("height", "146");
+    const logoBox = await brandImage.boundingBox();
+    const headerBox = await page.locator(".site-header").boundingBox();
+    expect(logoBox?.height).toBeLessThanOrEqual(32);
+    expect((logoBox?.x ?? 0) + (logoBox?.width ?? 0)).toBeLessThanOrEqual(
+      (headerBox?.x ?? 0) + (headerBox?.width ?? 0),
+    );
   });
 
   test("real empty state, progress filter and calendar work", async ({ page }) => {
@@ -429,6 +443,11 @@ test.describe("canonical application presentation", () => {
     await expect(
       page.getByRole("heading", { name: "No current learning topic yet" }),
     ).toBeVisible();
+    await expect(page.getByText("Current streak 0 days")).toBeVisible();
+    await expect(
+      page.getByText("Complete a topic to start your learning streak."),
+    ).toBeVisible();
+    await expect(page.locator(".calendar-day.today")).toHaveCount(1);
     await expect(
       page.getByRole("combobox", { name: "Review layout state" }),
     ).toHaveCount(0);
@@ -438,10 +457,15 @@ test.describe("canonical application presentation", () => {
     await expect(
       page.getByRole("heading", { name: "How the web works" }),
     ).toBeVisible();
+    const pastMonthLabel = await page.evaluate(() => {
+      const current = new Date();
+      return new Intl.DateTimeFormat("en", {
+        month: "long",
+        year: "numeric",
+      }).format(new Date(current.getFullYear(), current.getMonth() - 1, 1));
+    });
     await page.getByRole("button", { name: "Previous month" }).click();
-    await expect(
-      page.getByRole("heading", { name: "September 2026" }),
-    ).toBeVisible();
+    await expect(page.getByRole("heading", { name: pastMonthLabel })).toBeVisible();
     await page.getByRole("button", { name: "Next month" }).click();
     await page.getByRole("button", { name: "Dismiss sample guidance" }).click();
     await expect(

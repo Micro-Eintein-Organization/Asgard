@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import {
   createMemoryRouter,
@@ -15,6 +17,7 @@ import { ResultsPage } from "@/features/recommendations/page";
 import { RoadmapPage } from "@/features/roadmaps/page";
 import { careers } from "@/fixtures/catalog";
 import {
+  getLocalDateKey,
   setCurrentTopicId,
   useCurrentTopicId,
 } from "@/lib/learning-state";
@@ -261,6 +264,11 @@ describe("shared current-topic state", () => {
     expect(
       screen.getByRole("heading", { name: "No current learning topic yet" }),
     ).toBeInTheDocument();
+    expect(screen.getByText("Current streak")).toBeInTheDocument();
+    expect(screen.getByText("Longest streak")).toBeInTheDocument();
+    expect(
+      screen.getByText("Complete a topic to start your learning streak."),
+    ).toBeInTheDocument();
 
     act(() => setCurrentTopicId("css-layout"));
 
@@ -273,6 +281,52 @@ describe("shared current-topic state", () => {
     expect(window.localStorage.getItem("asgard.current-learning-topic")).toBe(
       "css-layout",
     );
+  });
+
+  it("highlights active days in current and past months and marks today", () => {
+    const today = new Date();
+    const pastMonthDate = new Date(today.getFullYear(), today.getMonth() - 1, 14);
+    const currentDateKey = getLocalDateKey(today);
+    const pastDateKey = getLocalDateKey(pastMonthDate);
+    window.localStorage.setItem("asgard.current-learning-topic", "css-layout");
+    window.localStorage.setItem(
+      "asgard.topic-statuses",
+      JSON.stringify({
+        "css-layout": "Done",
+        "html-basics": "Done",
+        __completionDates: {
+          "css-layout": currentDateKey,
+          "html-basics": pastDateKey,
+        },
+      }),
+    );
+    const { container } = render(<LearningFlow initialEntry="/dashboard" />);
+
+    const currentDay = container.querySelector(".calendar-day.today");
+    expect(currentDay).toHaveClass("active-current");
+    expect(currentDay).toHaveAttribute("aria-current", "date");
+    fireEvent.click(screen.getByRole("button", { name: "Previous month" }));
+    expect(container.querySelector(".calendar-day.active-past")).toHaveTextContent(
+      String(pastMonthDate.getDate()),
+    );
+  });
+
+  it("keeps the calendar today marker and keyboard-focus styles distinguishable", () => {
+    const styles = readFileSync(
+      resolve(process.cwd(), "src/styles.css"),
+      "utf8",
+    );
+    const todayStyles = styles.match(
+      /\.calendar-grid \.today\s*\{([^}]+)\}/,
+    )?.[1];
+    const focusVisibleStyles = styles.match(
+      /:focus-visible\s*\{([^}]+)\}/,
+    )?.[1];
+
+    expect(todayStyles).toContain("inset 0 0 0 2px var(--foreground)");
+    expect(focusVisibleStyles).toContain("outline: 3px solid var(--ring)");
+    expect(focusVisibleStyles).toContain("outline-offset: 4px");
+    expect(todayStyles).not.toContain("var(--ring)");
   });
 
   it("renders actual empty and invalid-data states without the review switcher", () => {

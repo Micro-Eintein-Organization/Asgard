@@ -15,27 +15,51 @@ import { PreviewDataState } from "@/components/preview-states";
 import { appRoutes as pageRoutes } from "@/lib/routes";
 import { sampleMilestones } from "@/fixtures/catalog";
 import {
+  calculateStreaks,
+  getLocalDateKey,
+  readTopicCompletionDates,
   readTopicStatuses,
   useCurrentTopicId,
   useTopicStatuses,
 } from "@/lib/learning-state";
 
-function SampleCalendar() {
-  const [month, setMonth] = useState(1);
-  const october = month === 1;
-  const days = october ? 31 : 30;
-  const offset = october ? 4 : 2;
+function DashboardCalendar({
+  activeDateKeys,
+  currentStreak,
+  longestStreak,
+}: {
+  activeDateKeys: readonly string[];
+  currentStreak: number;
+  longestStreak: number;
+}) {
+  const [monthOffset, setMonthOffset] = useState(0);
+  const today = new Date();
+  const displayedMonth = new Date(
+    today.getFullYear(),
+    today.getMonth() + monthOffset,
+    1,
+  );
+  const days = new Date(
+    displayedMonth.getFullYear(),
+    displayedMonth.getMonth() + 1,
+    0,
+  ).getDate();
+  const offset = displayedMonth.getDay();
+  const monthLabel = new Intl.DateTimeFormat("en", {
+    month: "long",
+    year: "numeric",
+  }).format(displayedMonth);
+  const activeDates = new Set(activeDateKeys);
   return (
     <Card id="progress" className="support-card">
       <div className="calendar-title">
-        <h2>{october ? "October" : "September"} 2026</h2>
+        <h2>{monthLabel}</h2>
         <div className="flex">
           <Button
             variant="ghost"
             size="icon"
             aria-label="Previous month"
-            disabled={!october}
-            onClick={() => setMonth(0)}
+            onClick={() => setMonthOffset((value) => value - 1)}
           >
             <ChevronLeft />
           </Button>
@@ -43,14 +67,27 @@ function SampleCalendar() {
             variant="ghost"
             size="icon"
             aria-label="Next month"
-            disabled={october}
-            onClick={() => setMonth(1)}
+            disabled={monthOffset === 0}
+            onClick={() => setMonthOffset((value) => value + 1)}
           >
             <ChevronRight />
           </Button>
         </div>
       </div>
-      <div className="calendar-grid" aria-label="Sample activity calendar">
+      <div className="streak-summary" role="group" aria-label="Learning streaks">
+        <p>
+          Current streak <strong>{currentStreak} days</strong>
+        </p>
+        <p>
+          Longest streak <strong>{longestStreak} days</strong>
+        </p>
+      </div>
+      {activeDates.size === 0 && (
+        <p className="streak-empty">
+          Complete a topic to start your learning streak.
+        </p>
+      )}
+      <div className="calendar-grid" aria-label="Activity calendar">
         <span>Su</span>
         <span>Mo</span>
         <span>Tu</span>
@@ -61,19 +98,40 @@ function SampleCalendar() {
         {Array.from({ length: offset }, (_, index) => (
           <span key={`space-${index}`} aria-hidden="true" />
         ))}
-        {Array.from({ length: days }, (_, index) => (
-          <span
-            className={`calendar-day ${october && [19, 21, 23].includes(index + 1) ? "sample-active" : ""}`}
-            key={index}
-            aria-label={`${october ? "October" : "September"} ${index + 1}${october && [19, 21, 23].includes(index + 1) ? ", example Done activity" : ", no example activity"}`}
-          >
-            {index + 1}
-          </span>
-        ))}
+        {Array.from({ length: days }, (_, index) => {
+          const day = index + 1;
+          const date = new Date(
+            displayedMonth.getFullYear(),
+            displayedMonth.getMonth(),
+            day,
+          );
+          const dateKey = getLocalDateKey(date);
+          const isActive = activeDates.has(dateKey);
+          const isToday = monthOffset === 0 && day === today.getDate();
+          return (
+            <span
+              className={[
+                "calendar-day",
+                isActive
+                  ? monthOffset === 0
+                    ? "active-current"
+                    : "active-past"
+                  : "",
+                isToday ? "today" : "",
+              ]
+                .filter(Boolean)
+                .join(" ")}
+              key={dateKey}
+              aria-label={`${monthLabel} ${day}${isActive ? ", active learning day" : ", no completion"}`}
+              aria-current={isToday ? "date" : undefined}
+            >
+              {day}
+            </span>
+          );
+        })}
       </div>
       <p className="calendar-legend">
-        Sample dates only. Outlined days illustrate Done activity. No live
-        streak is calculated.
+        Orange days mark completed topics. The ring marks today.
       </p>
     </Card>
   );
@@ -81,7 +139,12 @@ function SampleCalendar() {
 
 export function DashboardPage() {
   const currentTopicId = useCurrentTopicId();
-  const topicStatuses = readTopicStatuses(useTopicStatuses());
+  const topicStatusSnapshot = useTopicStatuses();
+  const topicStatuses = readTopicStatuses(topicStatusSnapshot);
+  const activeDateKeys = [
+    ...new Set(Object.values(readTopicCompletionDates(topicStatusSnapshot))),
+  ];
+  const { currentStreak, longestStreak } = calculateStreaks(activeDateKeys);
   const [helper, setHelper] = useState(true);
   const currentMilestone = sampleMilestones.find((milestone) =>
     milestone.topics.some((topic) => topic.id === currentTopicId),
@@ -234,7 +297,11 @@ export function DashboardPage() {
                 Open roadmap
               </Link>
             </Card>
-            <SampleCalendar />
+            <DashboardCalendar
+              activeDateKeys={activeDateKeys}
+              currentStreak={currentStreak}
+              longestStreak={longestStreak}
+            />
             <Card className="support-card">
               <h2>Make it yours.</h2>
               <p>
@@ -245,6 +312,17 @@ export function DashboardPage() {
                 <Link to={pageRoutes.profile}>Edit profile</Link>
               </Button>
             </Card>
+          </aside>
+        </div>
+      )}
+      {!currentTopic && (
+        <div className="dashboard-layout">
+          <aside className="dashboard-side" aria-label="Learning activity">
+            <DashboardCalendar
+              activeDateKeys={activeDateKeys}
+              currentStreak={currentStreak}
+              longestStreak={longestStreak}
+            />
           </aside>
         </div>
       )}
