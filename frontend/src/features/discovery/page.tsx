@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
-import { BookOpen, Compass } from "lucide-react";
+import { ArrowLeft, BookOpen, Compass } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { BackLink, Notice, Unavailable } from "@/components/shared";
+import { Notice, Unavailable } from "@/components/shared";
 import { appRoutes as pageRoutes } from "@/lib/routes";
 import { questions } from "./questions";
 import { UnsavedPreviewDialog } from "@/components/unsaved-preview-dialog";
@@ -159,7 +159,7 @@ export function DiscoveryPage() {
     setAnnouncement("");
     requestAnimationFrame(() => {
       heading.current?.focus();
-      heading.current?.scrollIntoView({ block: "start" });
+      heading.current?.scrollIntoView({ block: "center" });
     });
   }
   return (
@@ -170,9 +170,15 @@ export function DiscoveryPage() {
       />
       <div className="discovery-topline">
         {step === 0 ? (
-          <BackLink to={pageRoutes.welcome} />
+          <Button variant="ghost" asChild>
+            <Link to={pageRoutes.welcome}>
+              <ArrowLeft aria-hidden="true" size={16} />
+              Back
+            </Link>
+          </Button>
         ) : (
           <Button variant="ghost" onClick={() => changeStep(step - 1)}>
+            <ArrowLeft aria-hidden="true" size={16} />
             Back
           </Button>
         )}

@@ -26,6 +26,12 @@ export const routesWithoutNavbar = new Set([
   appRoutes.results,
 ]);
 
+export const routesWithoutFooter = new Set([
+  appRoutes.welcome,
+  appRoutes.discovery,
+  appRoutes.results,
+]);
+
 export function isCareerNavigationActive(pathname: string) {
   return (
     pathname === appRoutes.careers ||

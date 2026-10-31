@@ -1,6 +1,12 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { act, fireEvent, render, screen } from "@testing-library/react";
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from "@testing-library/react";
 import {
   createMemoryRouter,
   Link,
@@ -84,9 +90,16 @@ describe("documented learning navigation", () => {
         name: "What kinds of work interest you?",
       }),
     ).toBeInTheDocument();
+    const firstQuestionBack = screen.getByRole("link", { name: "Back" });
+    expect(firstQuestionBack).toHaveAttribute("href", "/welcome");
+    expect(firstQuestionBack).toHaveAttribute("data-slot", "button");
+    expect(firstQuestionBack).toHaveAttribute("data-variant", "ghost");
 
     fireEvent.click(screen.getByLabelText(/Creating useful tools/));
     fireEvent.click(screen.getByRole("button", { name: "Next" }));
+    expect(screen.getByRole("button", { name: "Back" })).toHaveClass(
+      firstQuestionBack.className,
+    );
     fireEvent.click(screen.getByRole("button", { name: "Back" }));
     expect(screen.getByLabelText(/Creating useful tools/)).toBeChecked();
 
@@ -98,6 +111,28 @@ describe("documented learning navigation", () => {
       screen.getByRole("heading", { name: "Find a direction worth exploring." }),
     ).toBeInTheDocument();
     expect(screen.getByTestId("location")).toHaveTextContent("/careers");
+  });
+
+  it("shows an arrow on every Discovery Back control", () => {
+    render(<LearningFlow initialEntry="/discovery" />);
+    const answers = [
+      /Creating useful tools/,
+      /Building software logic/,
+      /Working on my own/,
+      /I'm new to technology/,
+      /Start learning/,
+    ];
+
+    answers.forEach((answer, index) => {
+      const back =
+        index === 0
+          ? screen.getByRole("link", { name: "Back" })
+          : screen.getByRole("button", { name: "Back" });
+      expect(back.querySelector("svg")).toBeInTheDocument();
+      fireEvent.click(screen.getByLabelText(answer));
+      if (index < answers.length - 1)
+        fireEvent.click(screen.getByRole("button", { name: "Next" }));
+    });
   });
 
   it("follows Browse careers and preserves the catalog search on roadmap Back", () => {
@@ -122,6 +157,59 @@ describe("documented learning navigation", () => {
       screen.getByRole("searchbox", { name: "Search career roles or skills" }),
     ).toHaveValue("CSS");
     catalog.unmount();
+  });
+
+  it("clears the native search input and app query button independently", () => {
+    render(
+      <LearningFlow initialEntry="/careers?category=software-ai&q=missing" />,
+    );
+    const search = screen.getByRole("searchbox", {
+      name: "Search career roles or skills",
+    });
+    expect(search).toHaveAttribute("type", "search");
+    expect(
+      screen.getAllByRole("button", {
+        name: "Clear search query",
+      }),
+    ).toHaveLength(1);
+    fireEvent.click(screen.getByRole("button", {
+      name: "Clear search query",
+    }));
+    expect(search).toHaveValue("");
+    expect(search).toHaveFocus();
+    expect(screen.getByTestId("location")).toHaveTextContent(
+      "/careers?category=software-ai",
+    );
+    expect(
+      screen.queryByRole("button", { name: "Clear search query" }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Frontend Developer" }),
+    ).toBeInTheDocument();
+
+    fireEvent.change(search, { target: { value: "keyboard-clear" } });
+    expect(
+      screen.getAllByRole("button", {
+        name: "Clear search query",
+      }),
+    ).toHaveLength(1);
+    fireEvent.keyDown(search, { key: "Escape" });
+    expect(search).toHaveValue("");
+    expect(screen.getByTestId("location")).toHaveTextContent(
+      "/careers?category=software-ai",
+    );
+    expect(
+      screen.queryByRole("button", { name: "Clear search query" }),
+    ).not.toBeInTheDocument();
+
+    fireEvent.change(search, { target: { value: "still-missing" } });
+    fireEvent.click(
+      screen.getByRole("button", { name: "Clear search query" }),
+    );
+    expect(search).toHaveValue("");
+    expect(screen.getByTestId("location")).toHaveTextContent(
+      "/careers?category=software-ai",
+    );
   });
 
   it("returns from sample results to the same Discovery step and answers", () => {
@@ -220,12 +308,12 @@ describe("shared current-topic state", () => {
 
   it("shows the selected topic, status, and calculated progress on Dashboard", () => {
     const roadmap = render(<LearningFlow initialEntry="/roadmaps/frontend" />);
-    fireEvent.click(screen.getByRole("button", { name: /CSS and layout/ }));
+    fireEvent.click(screen.getByRole("button", { name: /^CSS and layout/ }));
     expect(
       screen.getByRole("heading", { name: "CSS and layout" }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: /CSS and layout/ }),
+      screen.getByRole("button", { name: /^CSS and layout/ }),
     ).toHaveAttribute("aria-pressed", "true");
     expect(window.localStorage.getItem("asgard.current-learning-topic")).toBe(
       "css-layout",
@@ -233,6 +321,15 @@ describe("shared current-topic state", () => {
     fireEvent.click(
       screen.getByRole("button", { name: "Mark topic complete" }),
     );
+    const completedTask = screen.getByRole("button", {
+      name: /^CSS and layout/,
+    });
+    expect(completedTask.querySelector("svg.lucide-check")).toBeVisible();
+    const incompleteTask = screen.getByRole("button", {
+      name: /^Semantic HTML/,
+    });
+    expect(incompleteTask.querySelector("svg.lucide-circle")).toBeVisible();
+    expect(incompleteTask.querySelector("svg.lucide-check")).toBeNull();
     expect(
       screen.getByText("You marked this topic complete."),
     ).toBeInTheDocument();
@@ -375,7 +472,7 @@ describe("shared current-topic state", () => {
     });
 
     render(<LearningFlow initialEntry="/roadmaps/frontend" />);
-    fireEvent.click(screen.getByRole("button", { name: /CSS and layout/ }));
+    fireEvent.click(screen.getByRole("button", { name: /^CSS and layout/ }));
     expect(
       screen.getByRole("heading", { name: "CSS and layout" }),
     ).toBeInTheDocument();
@@ -386,5 +483,45 @@ describe("shared current-topic state", () => {
     expect(
       screen.getByRole("heading", { name: "CSS and layout" }),
     ).toBeInTheDocument();
+  });
+
+  it("hides and restores a topic task without changing its completion status", async () => {
+    render(<LearningFlow initialEntry="/roadmaps/frontend" />);
+    const task = document.getElementById("topic-task-how-the-web-works");
+    const taskButton = document.getElementById("topic-how-the-web-works");
+    const incompleteButton = document.getElementById("topic-semantic-html");
+    expect(task).toBeInTheDocument();
+    expect(taskButton).toHaveTextContent("Done");
+    expect(taskButton?.querySelector("svg.lucide-check")).toBeVisible();
+    expect(incompleteButton).toBeInTheDocument();
+    expect(incompleteButton?.querySelector("svg.lucide-circle")).toBeVisible();
+    expect(incompleteButton?.querySelector("svg.lucide-check")).toBeNull();
+
+    fireEvent.click(
+      screen.getByRole("button", { name: "Hide task: How the web works" }),
+    );
+    expect(task).toHaveClass("is-hidden");
+    expect(task).toHaveAttribute("aria-hidden", "true");
+    expect(task).toHaveAttribute("inert");
+    expect(taskButton).toHaveTextContent("Done");
+    expect(
+      window.localStorage.getItem("asgard.topic-statuses"),
+    ).toBeNull();
+
+    fireEvent.click(
+      screen.getByRole("button", { name: "Show task: How the web works" }),
+    );
+    expect(task).not.toHaveClass("is-hidden");
+    expect(task).toHaveAttribute("aria-hidden", "false");
+    expect(taskButton).toHaveTextContent("Done");
+    expect(taskButton?.querySelector("svg.lucide-check")).toBeVisible();
+    await waitFor(() =>
+      expect(
+        screen.getByRole("button", { name: "Hide task: How the web works" }),
+      ).toHaveFocus(),
+    );
+    expect(
+      window.localStorage.getItem("asgard.topic-statuses"),
+    ).toBeNull();
   });
 });

@@ -33,6 +33,10 @@ export function RoadmapPage() {
       : "";
   const [params, setParams] = useSearchParams();
   const [hideDone, setHideDone] = useState(false);
+  const [hiddenTopicIds, setHiddenTopicIds] = useState<Set<string>>(
+    () => new Set(),
+  );
+  const topicControlToFocus = useRef<string | null>(null);
   const [topicSaveError, setTopicSaveError] = useState(false);
   const [topicStatusSaveError, setTopicStatusSaveError] = useState(false);
   const topicStatuses = readTopicStatuses(useTopicStatuses());
@@ -43,6 +47,11 @@ export function RoadmapPage() {
   const topicStatus = topic ? topicStatuses[topic.id] ?? topic.status : null;
   const panelHeading = useRef<HTMLHeadingElement>(null);
   const opener = useRef<HTMLButtonElement | null>(null);
+  useEffect(() => {
+    if (!topicControlToFocus.current) return;
+    document.getElementById(topicControlToFocus.current)?.focus();
+    topicControlToFocus.current = null;
+  }, [hiddenTopicIds]);
   useEffect(() => {
     if (topicId && careerId === "frontend") {
       panelHeading.current?.focus({ preventScroll: true });
@@ -75,6 +84,18 @@ export function RoadmapPage() {
     } catch {
       setTopicStatusSaveError(true);
     }
+  }
+  function hideTopic(topicId: string) {
+    topicControlToFocus.current = `show-topic-${topicId}`;
+    setHiddenTopicIds((current) => new Set(current).add(topicId));
+  }
+  function showTopic(topicId: string) {
+    topicControlToFocus.current = `hide-topic-${topicId}`;
+    setHiddenTopicIds((current) => {
+      const next = new Set(current);
+      next.delete(topicId);
+      return next;
+    });
   }
   if (!career)
     return (
@@ -189,38 +210,80 @@ export function RoadmapPage() {
                         <p className="milestone-description">
                           {milestone.description}
                         </p>
+                        {milestone.topics.map((item) => {
+                          const status = topicStatuses[item.id] ?? item.status;
+                          if (hideDone && status === "Done") return null;
+                          const hidden = hiddenTopicIds.has(item.id);
+                          return (
+                            <div
+                              key={item.id}
+                              id={`topic-task-${item.id}`}
+                              className={`topic-task${hidden ? " is-hidden" : ""}`}
+                              aria-hidden={hidden}
+                              inert={hidden}
+                            >
+                              <div className="topic-task-content">
+                                <div className="topic-task-row">
+                                  <button
+                                    type="button"
+                                    id={`topic-${item.id}`}
+                                    className="topic-selector"
+                                    aria-pressed={topicId === item.id}
+                                    aria-controls="topic-details"
+                                    onClick={(event) => {
+                                      chooseTopic(
+                                        item.id,
+                                        event.currentTarget,
+                                      );
+                                    }}
+                                  >
+                                    {status === "Done" ? (
+                                      <Check size={19} aria-hidden="true" />
+                                    ) : (
+                                      <Circle size={18} aria-hidden="true" />
+                                    )}
+                                    <span>
+                                      <strong>{item.title}</strong>
+                                    </span>
+                                    <StatusBadge status={status} />
+                                  </button>
+                                  <button
+                                    type="button"
+                                    id={`hide-topic-${item.id}`}
+                                    className="topic-visibility-button"
+                                    aria-label={`Hide task: ${item.title}`}
+                                    aria-controls={`topic-${item.id}`}
+                                    onClick={() => hideTopic(item.id)}
+                                  >
+                                    <Eye size={16} aria-hidden="true" />
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
                         {milestone.topics
                           .filter((item) => {
                             const status = topicStatuses[item.id] ?? item.status;
-                            return !hideDone || status !== "Done";
-                          })
-                          .map((item) => {
-                            const status = topicStatuses[item.id] ?? item.status;
                             return (
-                              <button
-                                key={item.id}
-                                type="button"
-                                id={`topic-${item.id}`}
-                                className="topic-selector"
-                                aria-pressed={topicId === item.id}
-                                aria-controls="topic-details"
-                                onClick={(event) => {
-                                  chooseTopic(item.id, event.currentTarget);
-                                }}
-                              >
-                                {status === "Done" ? (
-                                  <Check size={19} aria-hidden="true" />
-                                ) : (
-                                  <Circle size={18} aria-hidden="true" />
-                                )}
-                                <span>
-                                  <strong>{item.title}</strong>
-                                </span>
-                                <StatusBadge status={status} />
-                                <Eye size={16} aria-hidden="true" />
-                              </button>
+                              hiddenTopicIds.has(item.id) &&
+                              (!hideDone || status !== "Done")
                             );
-                          })}
+                          })
+                          .map((item) => (
+                            <button
+                              key={item.id}
+                              type="button"
+                              id={`show-topic-${item.id}`}
+                              className="hidden-topic-reveal"
+                              aria-label={`Show task: ${item.title}`}
+                              aria-controls={`topic-${item.id}`}
+                              onClick={() => showTopic(item.id)}
+                            >
+                              <Eye size={16} aria-hidden="true" />
+                              Show task: {item.title}
+                            </button>
+                          ))}
                       </AccordionContent>
                     </AccordionItem>
                   </div>

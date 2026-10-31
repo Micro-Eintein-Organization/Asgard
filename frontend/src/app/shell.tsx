@@ -14,6 +14,7 @@ import {
   appRoutes,
   isCareerNavigationActive,
   routes,
+  routesWithoutFooter,
   routesWithoutNavbar,
 } from "@/lib/routes";
 import navbarLogo from "@/assets/logo-navbar.png";
@@ -212,6 +213,7 @@ export function AppShell() {
 function ShellContent() {
   const { pathname } = useLocation();
   const hideHeader = routesWithoutNavbar.has(pathname);
+  const hideFooter = routesWithoutFooter.has(pathname);
   return (
     <>
       <a className="skip-link" href="#main-content">
@@ -234,17 +236,19 @@ function ShellContent() {
           <PageFocus />
         </Suspense>
       </main>
-      <footer className="site-footer">
-        <span>
-          Asgard
-          <span className="footer-purpose">
-            Career exploration, at your pace.
+      {!hideFooter && (
+        <footer className="site-footer">
+          <span>
+            Asgard
+            <span className="footer-purpose">
+              Career exploration, at your pace.
+            </span>
           </span>
-        </span>
-        <div>
-          <Link to={routes.status}>Service status</Link>
-        </div>
-      </footer>
+          <div>
+            <Link to={routes.status}>Service status</Link>
+          </div>
+        </footer>
+      )}
     </>
   );
 }

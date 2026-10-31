@@ -218,6 +218,278 @@ test.describe("canonical application presentation", () => {
     ["account", "/settings/account", "Account and security"],
   ];
 
+  test("Discovery footer and shared button styling work at desktop and mobile widths", async ({
+    page,
+  }) => {
+    const footer = page.locator("footer.site-footer");
+
+    await page.goto("/welcome");
+    await expect(footer).toHaveCount(0);
+    await page.getByRole("radio", { name: /Guided Discovery/ }).check();
+    const continueLink = page.getByRole("link", {
+      name: "Continue",
+      exact: true,
+    });
+    await continueLink.hover();
+    await expect(continueLink).toHaveCSS(
+      "background-color",
+      "rgb(63, 138, 200)",
+    );
+    await continueLink.click();
+
+    await expect(footer).toHaveCount(0);
+    const firstBack = page.getByRole("link", { name: "Back" });
+    await expect(firstBack.locator("svg")).toBeVisible();
+    await expect(firstBack).toHaveAttribute("href", "/welcome");
+    await expect(firstBack).toHaveAttribute("data-variant", "ghost");
+    await expect(firstBack).toHaveCSS("border-radius", "999px");
+    await expect(firstBack).toHaveCSS("border-style", "none");
+    const firstBackLayout = await firstBack.evaluate((element) => {
+      const rect = element.getBoundingClientRect();
+      return { top: rect.top, left: rect.left };
+    });
+    const expectBackVisible = async (control: typeof firstBack) => {
+      const bounds = await control.evaluate((element) => {
+        const rect = element.getBoundingClientRect();
+        const arrow = element.querySelector("svg")?.getBoundingClientRect();
+        return {
+          top: rect.top,
+          bottom: rect.bottom,
+          arrowTop: arrow?.top ?? -1,
+          arrowBottom: arrow?.bottom ?? -1,
+        };
+      });
+      expect(bounds.top).toBeGreaterThanOrEqual(0);
+      expect(bounds.bottom).toBeLessThanOrEqual(
+        await page.evaluate(() => innerHeight),
+      );
+      expect(bounds.arrowTop).toBeGreaterThanOrEqual(0);
+      expect(bounds.arrowBottom).toBeLessThanOrEqual(
+        await page.evaluate(() => innerHeight),
+      );
+    };
+    await expectBackVisible(firstBack);
+
+    await page.locator(".skip-link").focus();
+    await page.keyboard.press("Tab");
+    await expect(firstBack).toBeFocused();
+    await expect(firstBack).toHaveCSS("outline-style", "solid");
+    await expect(firstBack).toHaveCSS("outline-width", "3px");
+
+    await page.getByRole("checkbox", { name: /Creating useful tools/ }).check();
+    await page.getByRole("button", { name: "Next", exact: true }).click();
+    const subsequentBack = page.getByRole("button", { name: "Back" });
+    await expect(subsequentBack.locator("svg")).toBeVisible();
+    await expectBackVisible(subsequentBack);
+    await expect
+      .poll(() =>
+        subsequentBack.evaluate((element) => element.getBoundingClientRect().top),
+      )
+      .toBe(firstBackLayout.top);
+    await expect(subsequentBack).toHaveAttribute(
+      "class",
+      (await firstBack.getAttribute("class")) ?? "",
+    );
+    await expect(footer).toHaveCount(0);
+
+    await subsequentBack.click();
+    await expect(
+      page.getByRole("checkbox", { name: /Creating useful tools/ }),
+    ).toBeChecked();
+    await page.getByRole("button", { name: "Next", exact: true }).click();
+    const remainingQuestions = [
+      { role: "checkbox", name: /Building software logic/, action: "Next" },
+      { role: "checkbox", name: /Working on my own/, action: "Next" },
+      { role: "checkbox", name: /I'm new to technology/, action: "Next" },
+      { role: "radio", name: /Start learning/, action: "See suggestions" },
+    ] as const;
+    for (const question of remainingQuestions) {
+      await page.getByRole(question.role, { name: question.name }).check();
+      await page
+        .getByRole("button", { name: question.action, exact: true })
+        .click();
+      await expect(footer).toHaveCount(0);
+      if (question.action === "Next") {
+        const back = page.getByRole("button", { name: "Back" });
+        await expect(
+          back.locator("svg"),
+        ).toBeVisible();
+        await expectBackVisible(back);
+      }
+    }
+    await expect(page).toHaveURL(/\/recommendations$/);
+    await expect(
+      page.getByRole("heading", { name: "Careers to explore." }),
+    ).toBeVisible();
+    await expect(footer).toHaveCount(0);
+
+    await page.goto("/careers");
+    await expect(footer).toHaveCount(1);
+    await expect(footer).toHaveCSS("background-color", "rgb(0, 0, 0)");
+    await expect(footer).toHaveCSS("color", "rgb(255, 255, 255)");
+    await expect(footer.locator("a")).toHaveCSS(
+      "color",
+      "rgb(255, 255, 255)",
+    );
+  });
+
+  test("roadmap task visibility animates and topic details stay in view", async ({
+    page,
+  }) => {
+    await page.goto("/roadmaps/frontend");
+    const footer = page.locator("footer.site-footer");
+    const footerEdges = await footer.evaluate((element) => {
+      const rect = element.getBoundingClientRect();
+      return {
+        left: rect.left,
+        right: rect.right,
+        width: rect.width,
+        marginLeft: getComputedStyle(element).marginLeft,
+      };
+    });
+    expect(footerEdges.left).toBe(0);
+    expect(footerEdges.right).toBe(await page.evaluate(() => innerWidth));
+    expect(footerEdges.width).toBe(await page.evaluate(() => innerWidth));
+    expect(footerEdges.marginLeft).toBe("0px");
+
+    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+    const footerBottom = await footer.evaluate(
+      (element) =>
+        element.getBoundingClientRect().bottom + window.scrollY,
+    );
+    expect(footerBottom).toBe(
+      await page.evaluate(() => document.documentElement.scrollHeight),
+    );
+    await page.evaluate(() => window.scrollTo(0, 0));
+
+    const task = page.locator("#topic-task-how-the-web-works");
+    const taskButton = page.locator("#topic-how-the-web-works");
+    const incompleteTaskButton = page.locator("#topic-semantic-html");
+    const hideTask = page.getByRole("button", {
+      name: "Hide task: How the web works",
+    });
+    await expect(taskButton).toContainText("Done");
+    await expect(taskButton.locator("svg.lucide-check")).toBeVisible();
+    await expect(incompleteTaskButton.locator("svg.lucide-circle")).toBeVisible();
+    await expect(incompleteTaskButton.locator("svg.lucide-check")).toHaveCount(0);
+    await expect(hideTask.locator("svg")).toBeVisible();
+    const transition = await task.evaluate((element) => ({
+      property: getComputedStyle(element).transitionProperty,
+      duration: getComputedStyle(element).transitionDuration,
+    }));
+    expect(transition.property).toContain("grid-template-rows");
+    expect(transition.duration).toContain("220ms");
+
+    await hideTask.click();
+    await expect(task).toHaveAttribute("aria-hidden", "true");
+    await expect(task).toHaveAttribute("inert", "");
+    await expect
+      .poll(() => task.evaluate((element) => element.getBoundingClientRect().height))
+      .toBe(0);
+    await expect(
+      page.getByRole("button", { name: "Show task: How the web works" }),
+    ).toBeVisible();
+    await expect(taskButton).toContainText("Done");
+    await expect(taskButton.locator("svg.lucide-check")).toBeVisible();
+
+    await page.getByRole("button", { name: "Show task: How the web works" }).click();
+    await expect(task).toHaveAttribute("aria-hidden", "false");
+    await expect
+      .poll(() => task.evaluate((element) => element.getBoundingClientRect().height))
+      .toBeGreaterThan(0);
+    await expect(taskButton).toContainText("Done");
+    await expect(taskButton.locator("svg.lucide-check")).toBeVisible();
+    expect(await page.evaluate(() => localStorage.getItem("asgard.topic-statuses"))).toBeNull();
+    expect(await page.evaluate(() => window.location.search)).toBe("");
+
+    await page.locator("#topic-css-layout").click();
+    const panel = page.locator("#topic-details");
+    await expect(
+      panel.getByRole("heading", { name: "CSS and layout" }),
+    ).toBeVisible();
+    const viewportWidth = await page.evaluate(() => innerWidth);
+    if (viewportWidth >= 1024) {
+      await page.evaluate(() => window.scrollTo(0, 400));
+      const panelLayout = await panel.evaluate((element) => {
+        const rect = element.getBoundingClientRect();
+        const header = document.querySelector(".site-header")!;
+        const headerBottom = header.getBoundingClientRect().bottom;
+        const clippedAncestors = [];
+        for (
+          let ancestor = element.parentElement;
+          ancestor;
+          ancestor = ancestor.parentElement
+        ) {
+          const overflowY = getComputedStyle(ancestor).overflowY;
+          if (overflowY !== "visible") clippedAncestors.push(overflowY);
+        }
+        return {
+          position: getComputedStyle(element).position,
+          top: rect.top,
+          bottom: rect.bottom,
+          headerBottom,
+          clippedAncestors,
+        };
+      });
+      expect(panelLayout.position).toBe("sticky");
+      expect(panelLayout.top - panelLayout.headerBottom).toBeGreaterThanOrEqual(
+        20,
+      );
+      expect(panelLayout.bottom).toBeLessThanOrEqual(
+        await page.evaluate(() => innerHeight),
+      );
+      expect(panelLayout.clippedAncestors).toEqual([]);
+      await page.evaluate(() =>
+        window.scrollTo(0, document.documentElement.scrollHeight),
+      );
+      const panelAtPageEnd = await panel.evaluate((element) => {
+        const rect = element.getBoundingClientRect();
+        const headerBottom = document
+          .querySelector(".site-header")!
+          .getBoundingClientRect().bottom;
+        return {
+          top: rect.top,
+          bottom: rect.bottom,
+          headerBottom,
+        };
+      });
+      expect(panelAtPageEnd.top - panelAtPageEnd.headerBottom).toBeGreaterThanOrEqual(
+        20,
+      );
+      expect(panelAtPageEnd.bottom).toBeLessThanOrEqual(
+        await page.evaluate(() => innerHeight),
+      );
+    } else {
+      const panelLayout = await panel.evaluate((element) => {
+        const rect = element.getBoundingClientRect();
+        const heading = element.querySelector("h2")!.getBoundingClientRect();
+        const headerBottom = document
+          .querySelector(".site-header")!
+          .getBoundingClientRect().bottom;
+        return {
+          position: getComputedStyle(element).position,
+          top: rect.top,
+          headerBottom,
+          headingTop: heading.top,
+          headingBottom: heading.bottom,
+        };
+      });
+      expect(panelLayout.position).toBe("static");
+      expect(panelLayout.top - panelLayout.headerBottom).toBeGreaterThanOrEqual(
+        20,
+      );
+      expect(panelLayout.headingTop).toBeGreaterThanOrEqual(
+        panelLayout.headerBottom,
+      );
+      expect(panelLayout.headingBottom).toBeLessThanOrEqual(
+        await page.evaluate(() => innerHeight),
+      );
+    }
+    expect(
+      await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+    ).toBe(true);
+  });
+
   for (const [name, path, heading] of screens) {
     test(`${name}: render, reflow, browser errors and automated accessibility`, async ({
       page,
@@ -299,6 +571,85 @@ test.describe("canonical application presentation", () => {
     await expect(
       page.getByRole("link", { name: /^View roadmap for/ }),
     ).toHaveCount(7);
+  });
+
+  test("catalog search renders one clear control and supports pointer and keyboard use", async ({
+    page,
+  }) => {
+    for (const viewport of [
+      { width: 1440, height: 900 },
+      { width: 390, height: 844 },
+    ]) {
+      await page.setViewportSize(viewport);
+      await page.goto("/careers?category=software-ai&q=missing");
+      const search = page.getByRole("searchbox", {
+        name: "Search career roles or skills",
+      });
+      const clearQuery = page.getByRole("button", {
+        name: "Clear search query",
+      });
+      await expect(search).toHaveValue("missing");
+      await expect(clearQuery).toBeVisible();
+      await expect(
+        page.getByRole("button", { name: "Clear search query" }),
+      ).toHaveCount(1);
+      await clearQuery.click();
+      await expect(search).toHaveValue("");
+      await expect(search).toBeFocused();
+      await expect(page).toHaveURL(
+        (url) =>
+          url.searchParams.get("category") === "software-ai" &&
+          !url.searchParams.has("q"),
+      );
+      await expect(clearQuery).toHaveCount(0);
+
+      await search.fill("still-missing");
+      await expect(
+        page.getByRole("button", { name: "Clear search query" }),
+      ).toHaveCount(1);
+      await expect(clearQuery).toBeVisible();
+      await search.focus();
+      await page.keyboard.press("Tab");
+      await expect(clearQuery).toBeFocused();
+      const focusStyle = await clearQuery.evaluate((element) => ({
+        outlineWidth: getComputedStyle(element).outlineWidth,
+        outlineStyle: getComputedStyle(element).outlineStyle,
+      }));
+      expect(focusStyle).toEqual({
+        outlineWidth: "3px",
+        outlineStyle: "solid",
+      });
+      await page.keyboard.press("Enter");
+      await expect(search).toHaveValue("");
+      await expect(page).toHaveURL(
+        (url) =>
+          url.searchParams.get("category") === "software-ai" &&
+          !url.searchParams.has("q"),
+      );
+      await expect(clearQuery).toHaveCount(0);
+
+      await search.fill("space-clears-search");
+      await search.focus();
+      await page.keyboard.press("Tab");
+      await expect(clearQuery).toBeFocused();
+      await page.keyboard.press("Space");
+      await expect(search).toHaveValue("");
+      await expect(page).toHaveURL(
+        (url) =>
+          url.searchParams.get("category") === "software-ai" &&
+          !url.searchParams.has("q"),
+      );
+
+      await search.fill("escape-clears-search");
+      await search.focus();
+      await page.keyboard.press("Escape");
+      await expect(search).toHaveValue("");
+      await expect(page).toHaveURL(
+        (url) =>
+          url.searchParams.get("category") === "software-ai" &&
+          !url.searchParams.has("q"),
+      );
+    }
   });
 
   test("Discovery choices, correction, exclusivity and discard are presentational", async ({

@@ -3,6 +3,7 @@ import {
   appRoutes,
   isCareerNavigationActive,
   routes,
+  routesWithoutFooter,
   routesWithoutNavbar,
 } from "@/lib/routes";
 
@@ -31,5 +32,23 @@ describe("navbar route configuration", () => {
     expect(isCareerNavigationActive(appRoutes.roadmaps)).toBe(true);
     expect(isCareerNavigationActive(appRoutes.roadmap("frontend"))).toBe(true);
     expect(isCareerNavigationActive(appRoutes.dashboard)).toBe(false);
+  });
+
+  it("hides the footer only on Discovery entry, questions, and results", () => {
+    expect([...routesWithoutFooter]).toEqual([
+      appRoutes.welcome,
+      appRoutes.discovery,
+      appRoutes.results,
+    ]);
+    for (const route of [
+      routes.home,
+      routes.login,
+      appRoutes.dashboard,
+      appRoutes.careers,
+      appRoutes.roadmaps,
+      appRoutes.profile,
+    ]) {
+      expect(routesWithoutFooter.has(route)).toBe(false);
+    }
   });
 });

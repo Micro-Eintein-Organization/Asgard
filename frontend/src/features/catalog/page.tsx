@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { useSearchParams } from "react-router";
 import { Search, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,6 +10,8 @@ import { PreviewDataState } from "@/components/preview-states";
 
 export function CatalogPage() {
   const [params, setParams] = useSearchParams();
+  const searchInputRef = useRef<HTMLInputElement>(null);
+  const restoreSearchFocus = useRef(false);
   const query = params.get("q") ?? "";
   const categoryId = params.get("category");
   const category = categories.find(
@@ -23,11 +26,21 @@ export function CatalogPage() {
         .toLowerCase()
         .includes(query.toLowerCase()),
   );
+  useEffect(() => {
+    if (restoreSearchFocus.current && !query) {
+      restoreSearchFocus.current = false;
+      searchInputRef.current?.focus();
+    }
+  }, [query]);
   function update(key: string, value: string) {
     const next = new URLSearchParams(params);
     if (value) next.set(key, value);
     else next.delete(key);
     setParams(next, { replace: true });
+  }
+  function clearSearch() {
+    restoreSearchFocus.current = true;
+    update("q", "");
   }
   return (
     <>
@@ -86,18 +99,25 @@ export function CatalogPage() {
                 Search career roles or skills
               </label>
               <Input
+                ref={searchInputRef}
                 id="career-search"
                 type="search"
                 placeholder="Search career roles or skills"
                 value={query}
                 onChange={(event) => update("q", event.target.value)}
+                onKeyDown={(event) => {
+                  if (event.key === "Escape" && query) {
+                    event.preventDefault();
+                    update("q", "");
+                  }
+                }}
               />
               {query && (
                 <Button
                   size="icon"
                   variant="ghost"
-                  aria-label="Clear search"
-                  onClick={() => update("q", "")}
+                  aria-label="Clear search query"
+                  onClick={clearSearch}
                 >
                   <X />
                 </Button>

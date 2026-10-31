@@ -1,6 +1,6 @@
 # Asgard: Implemented UI foundation
 
-Updated 26 October 2026. Stage 3.5 canonical application UI, retaining the Stage C visual foundation; project-lead visual review is pending. [Product](product.md), [pages](pages-and-interactions.md), [journeys](user-journeys.md) and [architecture](architecture.md) retain authority over behavior and technical boundaries. This guide describes the implemented presentation, not approval of product integrations or curricula.
+Updated 31 October 2026. Stage 3.5 canonical application UI, retaining the Stage C visual foundation; project-lead visual review is pending. [Product](product.md), [pages](pages-and-interactions.md), [journeys](user-journeys.md) and [architecture](architecture.md) retain authority over behavior and technical boundaries. This guide describes the implemented presentation, not approval of product integrations or curricula.
 
 The [later Stage 4 foundation](development.md#stage-4-shared-contracts-and-handoff) adds shared SQL/API scaffolding without connecting these sample screens. References below to Stage 3.5 not introducing contracts describe that UI task's scope; they do not mean the current repository lacks contracts. [Current foundation status](development.md#current-foundation-status-and-evidence) distinguishes source, recorded evidence and pending acceptance.
 
@@ -24,8 +24,9 @@ The source of truth is [src/styles.css](../frontend/src/styles.css), including T
 | `--accent` / `--accent-foreground` | `#edfbf5` / `#006b49` selected and contextual information |
 | `--input` / `--destructive` | `#89898e` control boundary / `#9d302c` errors |
 | `--progress` | `#00d563` against the dark milestone surface |
+| `--button-radius` | `999px` pill radius for shared buttons |
 
-Use the four-pixel spacing scale through matching Tailwind utilities or CSS rem values: 4, 8, 12, 16, 24, 32 and 48 px. Body text is 16 px with 1.6 line height; card copy is generally 14 px. Page headings scale from 30 to 44 px; the public introduction has a larger display scale. Controls have at least 44 px touch height. Primary actions use black pill buttons, following the Figma entry/Discovery references. Secondary controls, cards and dialogs use 8/14/16 px radii. Disabled actions stay neutral gray with nearby explanations; they do not appear available. Neutral gray surfaces and black-to-gray milestone gradients replace the earlier green-tinted neutrals. Green identifies selection, progress and success.
+Use the four-pixel spacing scale through matching Tailwind utilities or CSS rem values: 4, 8, 12, 16, 24, 32 and 48 px. Body text is 16 px with 1.6 line height; card copy is generally 14 px. Page headings scale from 30 to 44 px; the public introduction has a larger display scale. Controls have at least 44 px touch height. Shared buttons use a 999 px pill radius and have no decorative border; black primary buttons hover to `#3F8AC8`. Keyboard focus remains visible through the green focus ring. Cards, inputs and dialogs retain their 8/14/16 px radii. Disabled actions stay neutral gray with nearby explanations; they do not appear available. Neutral gray surfaces and black-to-gray milestone gradients replace the earlier green-tinted neutrals. Green identifies selection, progress and success.
 
 | Import location | Responsibility |
 | --- | --- |
@@ -44,6 +45,8 @@ Primitives were obtained through the [official shadcn registry](https://ui.shadc
 The MVP targets desktop/laptop widths of approximately 1280–1920 px under [NFR-02](product.md#nfr-02-desktop-compatibility-and-accessible-reflow). Content is capped at 1248 px to keep reading widths comfortable on larger displays. Desktop navigation stays visible, catalog categories sit beside a three-column grid, and roadmap details sit beside milestones. Discovery uses four choice columns; entry uses two.
 
 Existing smaller-width layouts and Menu navigation remain to preserve working code and support zoom/reflow. Further mobile-specific design and optimization are outside MVP scope. Topic details move focus to their heading; Close returns it to the selected row. Catalog query/category state lives in the URL and survives topic navigation. Overflow must remain visible and usable, not hidden to conceal layout failures.
+
+The shared footer uses a full-bleed black background with white typography.
 
 ## Interaction and honesty
 
