@@ -333,25 +333,34 @@ test.describe("canonical application presentation", () => {
       page.getByRole("checkbox", { name: /I'm new to technology/ }),
     ).not.toBeChecked();
     await page.getByRole("button", { name: "Next", exact: true }).click();
-    await page.getByRole("radio", { name: /Start learning/ }).check();
     await expect(
       page.getByRole("button", { name: "See suggestions" }),
     ).toBeDisabled();
-    await page
-      .getByRole("link", { name: "View sample results layout" })
-      .click();
-    await expect(page.getByRole("dialog")).toBeVisible();
-    await page.getByRole("button", { name: "Stay on this page" }).click();
+    await page.getByRole("radio", { name: /Start learning/ }).check();
     await expect(
-      page.getByRole("radio", { name: /Start learning/ }),
-    ).toBeChecked();
-    await page
-      .getByRole("link", { name: "View sample results layout" })
-      .click();
-    await page.getByRole("button", { name: "Discard and leave" }).click();
+      page.getByRole("button", { name: "See suggestions" }),
+    ).toBeEnabled();
+    await page.getByRole("button", { name: "See suggestions" }).click();
+    await expect(page).toHaveURL(/\/recommendations$/);
+    await expect(page.getByRole("banner")).toHaveCount(0);
+    await expect(
+      page.getByText(/These roles were not generated from your answers/),
+    ).toBeVisible();
     await expect(
       page.getByRole("heading", { name: "Careers to explore." }),
     ).toBeVisible();
+    await expect(
+      page.getByRole("combobox", { name: "Review layout state" }),
+    ).toHaveCount(0);
+    await page.getByRole("link", { name: "Back to Discovery" }).click();
+    await expect(page).toHaveURL(/\/discovery$/);
+    await expect(
+      page.getByRole("radio", { name: /Start learning/ }),
+    ).toBeChecked();
+    await page.getByRole("button", { name: "Back", exact: true }).click();
+    await expect(
+      page.getByRole("checkbox", { name: /I'm new to technology/ }),
+    ).toBeChecked();
   });
 
   test("profile enables name saves, keeps prototype actions unavailable and guards unsaved input", async ({
@@ -415,8 +424,20 @@ test.describe("canonical application presentation", () => {
     }
   });
 
-  test("sample states, progress filter and calendar work", async ({ page }) => {
+  test("real empty state, progress filter and calendar work", async ({ page }) => {
     await page.goto("/dashboard");
+    await expect(
+      page.getByRole("heading", { name: "No current learning topic yet" }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("combobox", { name: "Review layout state" }),
+    ).toHaveCount(0);
+    await page.getByRole("link", { name: "Choose a topic" }).click();
+    await page.getByRole("button", { name: /How the web works/ }).click();
+    await page.getByRole("link", { name: "Dashboard" }).click();
+    await expect(
+      page.getByRole("heading", { name: "How the web works" }),
+    ).toBeVisible();
     await page.getByRole("button", { name: "Previous month" }).click();
     await expect(
       page.getByRole("heading", { name: "September 2026" }),
@@ -426,15 +447,10 @@ test.describe("canonical application presentation", () => {
     await expect(
       page.getByRole("link", { name: "Open Discovery", exact: true }),
     ).toHaveCount(0);
-    await page
-      .getByRole("combobox", { name: "Review layout state" })
-      .selectOption("error");
+    await page.goto("/careers");
     await expect(
-      page.getByRole("heading", {
-        name: "We could not load learning activity",
-      }),
-    ).toBeVisible();
-    await page.getByRole("button", { name: "Show sample content" }).click();
+      page.getByRole("combobox", { name: "Review layout state" }),
+    ).toHaveCount(0);
     await page.goto("/roadmaps/frontend");
     await page.getByRole("checkbox", { name: "Hide completed" }).check();
     await expect(

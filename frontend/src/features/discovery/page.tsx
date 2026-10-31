@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { Link, useLocation } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { BookOpen, Compass } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BackLink, Notice, Unavailable } from "@/components/shared";
@@ -113,6 +113,7 @@ export function WelcomePage() {
 
 export function DiscoveryPage() {
   const location = useLocation();
+  const navigate = useNavigate();
   const draft = readDiscoveryDraft(location.state);
   const hasInvalidDraft =
     isRecord(location.state) &&
@@ -242,7 +243,7 @@ export function DiscoveryPage() {
         {announcement}
       </p>
       <div className="question-actions">
-        <p>Prototype: choices stay in this open page only.</p>
+        <p>Prototype: answers are transient and are not saved.</p>
         {step < 4 ? (
           <Button
             disabled={!selected.length}
@@ -251,29 +252,28 @@ export function DiscoveryPage() {
             Next
           </Button>
         ) : (
-          <Button disabled>See suggestions</Button>
+          <Button
+            disabled={!selected.length}
+            onClick={() =>
+              navigate(pageRoutes.results, {
+                state: { discoveryDraft: { step, answers } },
+              })
+            }
+          >
+            See suggestions
+          </Button>
         )}
       </div>
       {step === 4 && (
-        <>
-          <Unavailable>
-            Recommendation generation is not connected. Your choices have not
-            been saved or analyzed.
-          </Unavailable>
-          <div className="mt-4">
-            <Link
-              className="inline-link"
-              to={pageRoutes.results}
-              state={{ discoveryDraft: { step, answers } }}
-            >
-              View sample results layout
-            </Link>
-          </div>
-        </>
+        <Unavailable>
+          Recommendation generation is not connected. Your answers are not
+          analyzed; See suggestions opens sample results.
+        </Unavailable>
       )}
       <div className="mt-6">
         <Notice>
-          Refreshing or leaving this page clears these unsaved prototype choices.
+          Answers are transient navigation state, not saved to your account or
+          analyzed.
         </Notice>
       </div>
     </section>

@@ -13,11 +13,15 @@ import {
   Notice,
   StatePanel,
   StatusBadge,
-  Unavailable,
 } from "@/components/shared";
 import { findCareer, categories, sampleMilestones } from "@/fixtures/catalog";
 import { appRoutes as pageRoutes } from "@/lib/routes";
-import { setCurrentTopicId } from "@/lib/learning-state";
+import {
+  readTopicStatuses,
+  setCurrentTopicId,
+  setTopicStatus,
+  useTopicStatuses,
+} from "@/lib/learning-state";
 
 export function RoadmapPage() {
   const { careerId } = useParams();
@@ -30,10 +34,13 @@ export function RoadmapPage() {
   const [params, setParams] = useSearchParams();
   const [hideDone, setHideDone] = useState(false);
   const [topicSaveError, setTopicSaveError] = useState(false);
+  const [topicStatusSaveError, setTopicStatusSaveError] = useState(false);
+  const topicStatuses = readTopicStatuses(useTopicStatuses());
   const topicId = params.get("topic");
   const topic = sampleMilestones
     .flatMap((milestone) => milestone.topics)
     .find((item) => item.id === topicId);
+  const topicStatus = topic ? topicStatuses[topic.id] ?? topic.status : null;
   const panelHeading = useRef<HTMLHeadingElement>(null);
   const opener = useRef<HTMLButtonElement | null>(null);
   useEffect(() => {
@@ -58,6 +65,15 @@ export function RoadmapPage() {
       setTopicSaveError(false);
     } catch {
       setTopicSaveError(true);
+    }
+  }
+  function completeTopic() {
+    if (!topic) return;
+    try {
+      setTopicStatus(topic.id, "Done");
+      setTopicStatusSaveError(false);
+    } catch {
+      setTopicStatusSaveError(true);
     }
   }
   if (!career)
@@ -97,12 +113,18 @@ export function RoadmapPage() {
       <div className="roadmap-layout">
         <div className="roadmap-main">
           <Notice>
-            Browsing a roadmap does not change your focus or progress.
+            Selecting a topic sets your current topic. It does not mark the
+            topic complete.
           </Notice>
           {topicSaveError && (
             <Notice tone="error">
               Your current topic could not be saved in this browser. Try again
               or continue browsing without changing it.
+            </Notice>
+          )}
+          {topicStatusSaveError && (
+            <Notice tone="error">
+              Topic completion could not be saved in this browser. Try again.
             </Notice>
           )}
           <section className="roadmap-hero">
@@ -168,31 +190,37 @@ export function RoadmapPage() {
                           {milestone.description}
                         </p>
                         {milestone.topics
-                          .filter((item) => !hideDone || item.status !== "Done")
-                          .map((item) => (
-                            <button
-                              key={item.id}
-                              type="button"
-                              id={`topic-${item.id}`}
-                              className="topic-selector"
-                              aria-pressed={topicId === item.id}
-                              aria-controls="topic-details"
-                              onClick={(event) => {
-                                chooseTopic(item.id, event.currentTarget);
-                              }}
-                            >
-                              {item.status === "Done" ? (
-                                <Check size={19} aria-hidden="true" />
-                              ) : (
-                                <Circle size={18} aria-hidden="true" />
-                              )}
-                              <span>
-                                <strong>{item.title}</strong>
-                              </span>
-                              <StatusBadge status={item.status} />
-                              <Eye size={16} aria-hidden="true" />
-                            </button>
-                          ))}
+                          .filter((item) => {
+                            const status = topicStatuses[item.id] ?? item.status;
+                            return !hideDone || status !== "Done";
+                          })
+                          .map((item) => {
+                            const status = topicStatuses[item.id] ?? item.status;
+                            return (
+                              <button
+                                key={item.id}
+                                type="button"
+                                id={`topic-${item.id}`}
+                                className="topic-selector"
+                                aria-pressed={topicId === item.id}
+                                aria-controls="topic-details"
+                                onClick={(event) => {
+                                  chooseTopic(item.id, event.currentTarget);
+                                }}
+                              >
+                                {status === "Done" ? (
+                                  <Check size={19} aria-hidden="true" />
+                                ) : (
+                                  <Circle size={18} aria-hidden="true" />
+                                )}
+                                <span>
+                                  <strong>{item.title}</strong>
+                                </span>
+                                <StatusBadge status={status} />
+                                <Eye size={16} aria-hidden="true" />
+                              </button>
+                            );
+                          })}
                       </AccordionContent>
                     </AccordionItem>
                   </div>
@@ -237,7 +265,7 @@ export function RoadmapPage() {
                     {topic.title}
                   </h2>
                   <div className="mt-3">
-                    <StatusBadge status={topic.status} />
+                    <StatusBadge status={topicStatus ?? topic.status} />
                   </div>
                 </div>
                 <Button
@@ -280,18 +308,20 @@ export function RoadmapPage() {
                 </a>
               </section>
               <section>
-                <h3>Record your progress</h3>
-                <div className="progress-actions">
-                  {["Learning", "Done", "Skip", "Clear"].map((label) => (
-                    <Button variant="outline" disabled key={label}>
-                      {label}
-                    </Button>
-                  ))}
-                </div>
-                <Unavailable>
-                  Progress saving is not connected. Opening a resource changes
-                  nothing.
-                </Unavailable>
+                <h3>Completion</h3>
+                {topicStatus === "Done" ? (
+                  <Notice tone="success">
+                    You marked this topic complete.
+                  </Notice>
+                ) : (
+                  <>
+                    <p className="mb-3">
+                      Mark this topic complete when you feel you have finished
+                      it.
+                    </p>
+                    <Button onClick={completeTopic}>Mark topic complete</Button>
+                  </>
+                )}
               </section>
             </>
           ) : (

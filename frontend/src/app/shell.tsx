@@ -10,7 +10,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { appRoutes, routes } from "@/lib/routes";
+import {
+  appRoutes,
+  isCareerNavigationActive,
+  routes,
+  routesWithoutNavbar,
+} from "@/lib/routes";
 import { StatePanel } from "@/components/shared";
 import { useAuth } from "@/auth/context";
 import { LogoutBoundary } from "./logout-boundary";
@@ -22,7 +27,7 @@ function Header() {
   const pageRoutes = appRoutes;
   const navigation = [
     { to: pageRoutes.dashboard, label: "Dashboard" },
-    { to: pageRoutes.careers, label: "Roadmap" },
+    { to: pageRoutes.careers, label: "Career" },
     { to: pageRoutes.profile, label: "Settings" },
   ];
   const location = useLocation();
@@ -83,9 +88,8 @@ function Header() {
                   to={item.to}
                   className={({ isActive }) =>
                     isActive ||
-                    (item.label === "Roadmap" &&
-                      (pathname === "/roadmaps" ||
-                        pathname.startsWith("/roadmaps/"))) ||
+                    (item.label === "Career" &&
+                      isCareerNavigationActive(pathname)) ||
                     (item.label === "Settings" &&
                       pathname.startsWith("/settings/"))
                       ? "active"
@@ -200,13 +204,19 @@ export function AppShell() {
 }
 
 function ShellContent() {
+  const { pathname } = useLocation();
+  const hideHeader = routesWithoutNavbar.has(pathname);
   return (
     <>
       <a className="skip-link" href="#main-content">
         Skip to content
       </a>
-      <Header />
-      <main id="main-content" tabIndex={-1} className="page-container">
+      {!hideHeader && <Header />}
+      <main
+        id="main-content"
+        tabIndex={-1}
+        className={`page-container${hideHeader ? " page-container-no-header" : ""}`}
+      >
         <Suspense
           fallback={
             <StatePanel kind="loading" title="Opening this page">

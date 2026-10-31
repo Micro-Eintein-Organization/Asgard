@@ -13,6 +13,7 @@ import { CatalogPage } from "@/features/catalog/page";
 import { DiscoveryPage, WelcomePage } from "@/features/discovery/page";
 import { ResultsPage } from "@/features/recommendations/page";
 import { RoadmapPage } from "@/features/roadmaps/page";
+import { careers } from "@/fixtures/catalog";
 import {
   setCurrentTopicId,
   useCurrentTopicId,
@@ -135,17 +136,59 @@ describe("documented learning navigation", () => {
       if (index < answers.length - 1)
         fireEvent.click(screen.getByRole("button", { name: "Next" }));
     });
-    fireEvent.click(
-      screen.getByRole("link", { name: "View sample results layout" }),
-    );
+    expect(
+      screen.getByRole("button", { name: "See suggestions" }),
+    ).toBeEnabled();
+    fireEvent.click(screen.getByRole("button", { name: "See suggestions" }));
     expect(
       screen.getByRole("heading", { name: "Careers to explore." }),
     ).toBeInTheDocument();
+    expect(
+      screen.getByText(/These roles were not generated from your answers/),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByLabelText("Review layout state"),
+    ).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole("link", { name: "Back to Discovery" }));
     expect(screen.getByText(/Question 5 of 5/)).toBeInTheDocument();
     expect(screen.getByLabelText(/Start learning/)).toBeChecked();
     fireEvent.click(screen.getByRole("button", { name: "Back" }));
+    expect(screen.getByText(/Question 4 of 5/)).toBeInTheDocument();
     expect(screen.getByLabelText(/I'm new to technology/)).toBeChecked();
+  });
+
+  it("renders real empty and invalid-data results states without a state selector", () => {
+    const savedCareers = careers.splice(0);
+    let empty: ReturnType<typeof render> | undefined;
+    try {
+      empty = render(<LearningFlow initialEntry="/recommendations" />);
+      expect(
+        screen.getByText("No sample career suggestions are available."),
+      ).toBeInTheDocument();
+      expect(
+        screen.queryByLabelText("Review layout state"),
+      ).not.toBeInTheDocument();
+    } finally {
+      careers.push(...savedCareers);
+      empty?.unmount();
+    }
+
+    const career = careers[0];
+    const originalSkills = career.skills;
+    Object.assign(career, { skills: null });
+    let invalid: ReturnType<typeof render> | undefined;
+    try {
+      invalid = render(<LearningFlow initialEntry="/recommendations" />);
+      expect(
+        screen.getByText(/sample career data is invalid/i),
+      ).toBeInTheDocument();
+      expect(
+        screen.queryByLabelText("Review layout state"),
+      ).not.toBeInTheDocument();
+    } finally {
+      career.skills = originalSkills;
+      invalid?.unmount();
+    }
   });
 });
 
@@ -184,13 +227,26 @@ describe("shared current-topic state", () => {
     expect(window.localStorage.getItem("asgard.current-learning-topic")).toBe(
       "css-layout",
     );
+    fireEvent.click(
+      screen.getByRole("button", { name: "Mark topic complete" }),
+    );
+    expect(
+      screen.getByText("You marked this topic complete."),
+    ).toBeInTheDocument();
+    expect(
+      JSON.parse(window.localStorage.getItem("asgard.topic-statuses") ?? "{}"),
+    ).toMatchObject({ "css-layout": "Done" });
     fireEvent.click(screen.getByRole("link", { name: "Dashboard" }));
 
     expect(
       screen.getByRole("heading", { name: "CSS and layout" }),
     ).toBeInTheDocument();
-    expect(screen.getAllByText("Not started").length).toBeGreaterThan(0);
-    expect(screen.getByText(/1 of 4 sample topics Done/)).toBeInTheDocument();
+    expect(screen.getAllByText("Done").length).toBeGreaterThan(0);
+    expect(screen.getByText(/2 of 4 sample topics Done/)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Review topic" })).toBeInTheDocument();
+    expect(screen.getByText("Done", { selector: ".topic-status" })).toHaveClass(
+      "status-done",
+    );
     expect(screen.queryByLabelText("Review layout state")).not.toBeInTheDocument();
 
     roadmap.unmount();
@@ -210,6 +266,9 @@ describe("shared current-topic state", () => {
 
     expect(
       screen.getByRole("heading", { name: "CSS and layout" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: "Continue learning" }),
     ).toBeInTheDocument();
     expect(window.localStorage.getItem("asgard.current-learning-topic")).toBe(
       "css-layout",

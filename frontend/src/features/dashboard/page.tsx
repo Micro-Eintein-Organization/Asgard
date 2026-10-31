@@ -14,7 +14,11 @@ import { PageHeading, StatusBadge, Notice } from "@/components/shared";
 import { PreviewDataState } from "@/components/preview-states";
 import { appRoutes as pageRoutes } from "@/lib/routes";
 import { sampleMilestones } from "@/fixtures/catalog";
-import { useCurrentTopicId } from "@/lib/learning-state";
+import {
+  readTopicStatuses,
+  useCurrentTopicId,
+  useTopicStatuses,
+} from "@/lib/learning-state";
 
 function SampleCalendar() {
   const [month, setMonth] = useState(1);
@@ -77,6 +81,7 @@ function SampleCalendar() {
 
 export function DashboardPage() {
   const currentTopicId = useCurrentTopicId();
+  const topicStatuses = readTopicStatuses(useTopicStatuses());
   const [helper, setHelper] = useState(true);
   const currentMilestone = sampleMilestones.find((milestone) =>
     milestone.topics.some((topic) => topic.id === currentTopicId),
@@ -84,9 +89,13 @@ export function DashboardPage() {
   const currentTopic = currentMilestone?.topics.find(
     (topic) => topic.id === currentTopicId,
   );
+  const currentTopicStatus = currentTopic
+    ? topicStatuses[currentTopic.id] ?? currentTopic.status
+    : null;
   const completedTopics =
-    currentMilestone?.topics.filter((topic) => topic.status === "Done").length ??
-    0;
+    currentMilestone?.topics.filter(
+      (topic) => (topicStatuses[topic.id] ?? topic.status) === "Done",
+    ).length ?? 0;
   const milestoneProgress = currentMilestone
     ? Math.round((completedTopics / currentMilestone.topics.length) * 100)
     : 0;
@@ -136,12 +145,17 @@ export function DashboardPage() {
               className="milestone-hero"
               aria-labelledby="milestone-heading"
             >
-              <p className="card-category">Current learning topic</p>
+              <div className="milestone-topic-meta">
+                <p className="card-category">Current learning topic</p>
+                <StatusBadge status={currentTopicStatus ?? currentTopic.status} />
+              </div>
               <h2 id="milestone-heading">{currentTopic.title}</h2>
               <p>{currentMilestone.title}</p>
-              <StatusBadge status={currentTopic.status} />
               <Link to={topicLink(currentTopic.id)}>
-                Continue learning <ChevronRight aria-hidden="true" size={17} />
+                {currentTopicStatus === "Done"
+                  ? "Review topic"
+                  : "Continue learning"}{" "}
+                <ChevronRight aria-hidden="true" size={17} />
               </Link>
               <div className="sample-progress">
                 <div>
@@ -175,7 +189,7 @@ export function DashboardPage() {
                   ] as const
                 ).map(([status, label]) => {
                   const topics = currentMilestone.topics.filter(
-                    (topic) => topic.status === status,
+                    (topic) => (topicStatuses[topic.id] ?? topic.status) === status,
                   );
                   return (
                     <AccordionItem value={status} key={status}>
@@ -188,7 +202,9 @@ export function DashboardPage() {
                                 {topic.title}
                                 <small>{currentMilestone.title}</small>
                               </Link>
-                              <StatusBadge status={topic.status} />
+                              <StatusBadge
+                                status={topicStatuses[topic.id] ?? topic.status}
+                              />
                             </div>
                           ))
                         ) : (

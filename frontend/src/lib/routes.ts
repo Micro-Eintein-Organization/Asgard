@@ -18,3 +18,18 @@ export const appRoutes = {
   roadmaps: "/roadmaps",
   roadmap: (id: string) => `/roadmaps/${id}`,
 };
+
+export const routesWithoutNavbar = new Set([
+  routes.login,
+  appRoutes.welcome,
+  appRoutes.discovery,
+  appRoutes.results,
+]);
+
+export function isCareerNavigationActive(pathname: string) {
+  return (
+    pathname === appRoutes.careers ||
+    pathname === appRoutes.roadmaps ||
+    pathname.startsWith(`${appRoutes.roadmaps}/`)
+  );
+}

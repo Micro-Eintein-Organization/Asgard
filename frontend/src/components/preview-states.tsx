@@ -1,33 +1,7 @@
-import { useId } from "react";
 import { Button } from "@/components/ui/button";
 import { StatePanel } from "@/components/shared";
 
-export type PreviewState = "sample" | "empty" | "loading" | "error";
-export function PreviewStateControl({
-  value,
-  onChange,
-}: {
-  value: PreviewState;
-  onChange: (value: PreviewState) => void;
-}) {
-  const id = useId();
-  return (
-    <div className="preview-state-control">
-      <label htmlFor={id}>Review layout state</label>
-      <select
-        id={id}
-        value={value}
-        onChange={(event) => onChange(event.target.value as PreviewState)}
-      >
-        <option value="sample">Sample content</option>
-        <option value="empty">Empty</option>
-        <option value="loading">Loading</option>
-        <option value="error">Error</option>
-      </select>
-      <span>Visual examples only</span>
-    </div>
-  );
-}
+export type PreviewState = "empty" | "loading" | "error";
 export function PreviewDataState({
   state,
   subject,
@@ -36,7 +10,7 @@ export function PreviewDataState({
   action,
   children,
 }: {
-  state: Exclude<PreviewState, "sample">;
+  state: PreviewState;
   subject: string;
   onReset?: () => void;
   emptyAction?: React.ReactNode;
