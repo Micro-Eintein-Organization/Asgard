@@ -33,11 +33,15 @@ export function PreviewDataState({
   subject,
   onReset,
   emptyAction,
+  action,
+  children,
 }: {
   state: Exclude<PreviewState, "sample">;
   subject: string;
-  onReset: () => void;
+  onReset?: () => void;
   emptyAction?: React.ReactNode;
+  action?: React.ReactNode;
+  children?: React.ReactNode;
 }) {
   return (
     <StatePanel
@@ -49,21 +53,20 @@ export function PreviewDataState({
             ? `We could not load ${subject}`
             : `No ${subject} yet`
       }
-      action={
-        state === "empty" && emptyAction ? (
-          emptyAction
-        ) : (
+      action={action ??
+        (state === "empty" && emptyAction) ??
+        (onReset ? (
           <Button variant="outline" onClick={onReset}>
             Show sample content
           </Button>
-        )
-      }
+        ) : undefined)}
     >
-      {state === "loading"
-        ? "Loading-state example. No request is running for this sample."
-        : state === "error"
-          ? "Error-state example. Your next action should remain available when a service fails."
-          : "This is an empty-state example, separate from your saved account data."}
+      {children ??
+        (state === "loading"
+          ? `Loading ${subject}.`
+          : state === "error"
+            ? `We could not load ${subject}.`
+            : `There is no ${subject} to show.`)}
     </StatePanel>
   );
 }

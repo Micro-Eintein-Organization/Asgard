@@ -11,12 +11,10 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { PageHeading, StatusBadge, Notice } from "@/components/shared";
-import {
-  PreviewStateControl,
-  PreviewDataState,
-  type PreviewState,
-} from "@/components/preview-states";
+import { PreviewDataState } from "@/components/preview-states";
 import { appRoutes as pageRoutes } from "@/lib/routes";
+import { sampleMilestones } from "@/fixtures/catalog";
+import { useCurrentTopicId } from "@/lib/learning-state";
 
 function SampleCalendar() {
   const [month, setMonth] = useState(1);
@@ -78,10 +76,22 @@ function SampleCalendar() {
 }
 
 export function DashboardPage() {
-  const [state, setState] = useState<PreviewState>("sample");
+  const currentTopicId = useCurrentTopicId();
   const [helper, setHelper] = useState(true);
+  const currentMilestone = sampleMilestones.find((milestone) =>
+    milestone.topics.some((topic) => topic.id === currentTopicId),
+  );
+  const currentTopic = currentMilestone?.topics.find(
+    (topic) => topic.id === currentTopicId,
+  );
+  const completedTopics =
+    currentMilestone?.topics.filter((topic) => topic.status === "Done").length ??
+    0;
+  const milestoneProgress = currentMilestone
+    ? Math.round((completedTopics / currentMilestone.topics.length) * 100)
+    : 0;
   const topicLink = (id: string) =>
-    `${pageRoutes.roadmap("frontend")}?topic=${id}`;
+    `${pageRoutes.roadmap("frontend")}?topic=${encodeURIComponent(id)}`;
   return (
     <>
       <PageHeading
@@ -93,18 +103,32 @@ export function DashboardPage() {
           </Button>
         }
       />
-      <PreviewStateControl value={state} onChange={setState} />
-      {state !== "sample" ? (
+      {!currentTopicId ? (
         <PreviewDataState
-          state={state}
-          subject="learning activity"
-          onReset={() => setState("sample")}
-          emptyAction={
+          state="empty"
+          subject="current learning topic"
+          action={
             <Button asChild>
-              <Link to={pageRoutes.careers}>Browse careers</Link>
+              <Link to={pageRoutes.roadmap("frontend")}>Choose a topic</Link>
             </Button>
           }
-        />
+        >
+          Choose a topic from the Frontend roadmap to see your current step
+          here.
+        </PreviewDataState>
+      ) : !currentMilestone || !currentTopic ? (
+        <PreviewDataState
+          state="error"
+          subject="current learning topic"
+          action={
+            <Button asChild variant="outline">
+              <Link to={pageRoutes.roadmap("frontend")}>Choose a topic</Link>
+            </Button>
+          }
+        >
+          The saved topic is not part of the available roadmap. Choose another
+          topic to replace it.
+        </PreviewDataState>
       ) : (
         <div className="dashboard-layout">
           <div className="dashboard-main">
@@ -112,62 +136,70 @@ export function DashboardPage() {
               className="milestone-hero"
               aria-labelledby="milestone-heading"
             >
-              <p className="card-category">Sample current milestone</p>
-              <h2 id="milestone-heading">Web foundations</h2>
-              <p>Continue with Semantic HTML.</p>
-              <Link to={topicLink("semantic-html")}>
+              <p className="card-category">Current learning topic</p>
+              <h2 id="milestone-heading">{currentTopic.title}</h2>
+              <p>{currentMilestone.title}</p>
+              <StatusBadge status={currentTopic.status} />
+              <Link to={topicLink(currentTopic.id)}>
                 Continue learning <ChevronRight aria-hidden="true" size={17} />
               </Link>
               <div className="sample-progress">
                 <div>
-                  <span>1 of 4 sample topics Done</span>
-                  <span>25%</span>
+                  <span>
+                    {completedTopics} of {currentMilestone.topics.length} sample
+                    topics Done
+                  </span>
+                  <span>{milestoneProgress}%</span>
                 </div>
                 <Progress
-                  value={25}
-                  aria-label="Sample milestone progress, 25 percent"
+                  value={milestoneProgress}
+                  aria-label={`Sample milestone progress, ${milestoneProgress} percent`}
                 />
               </div>
             </section>
             <section>
               <div className="section-heading">
                 <h2>Your learning topics</h2>
-                <Link to={pageRoutes.roadmap("frontend")}>View milestone</Link>
+                <Link to={topicLink(currentTopic.id)}>View milestone</Link>
               </div>
-              <Accordion type="multiple" defaultValue={["learning", "next"]}>
-                <AccordionItem value="learning">
-                  <AccordionTrigger>In-Progress</AccordionTrigger>
-                  <AccordionContent>
-                    <div className="topic-row">
-                      <Link to={topicLink("semantic-html")}>
-                        Semantic HTML<small>Web foundations</small>
-                      </Link>
-                      <StatusBadge status="Learning" />
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="next">
-                  <AccordionTrigger>Not Started</AccordionTrigger>
-                  <AccordionContent>
-                    <div className="topic-row">
-                      <Link to={topicLink("css-layout")}>
-                        CSS and layout<small>Next in this sample path</small>
-                      </Link>
-                      <StatusBadge status="Not started" />
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="complete">
-                  <AccordionTrigger>Complete</AccordionTrigger>
-                  <AccordionContent>
-                    <div className="topic-row">
-                      <Link to={topicLink("how-the-web-works")}>
-                        How the web works<small>Web foundations</small>
-                      </Link>
-                      <StatusBadge status="Done" />
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
+              <Accordion
+                type="multiple"
+                defaultValue={["Learning", "Not started"]}
+              >
+                {(
+                  [
+                    ["Learning", "In-Progress"],
+                    ["Not started", "Not Started"],
+                    ["Done", "Complete"],
+                    ["Skipped", "Skipped"],
+                  ] as const
+                ).map(([status, label]) => {
+                  const topics = currentMilestone.topics.filter(
+                    (topic) => topic.status === status,
+                  );
+                  return (
+                    <AccordionItem value={status} key={status}>
+                      <AccordionTrigger>{label}</AccordionTrigger>
+                      <AccordionContent>
+                        {topics.length ? (
+                          topics.map((topic) => (
+                            <div className="topic-row" key={topic.id}>
+                              <Link to={topicLink(topic.id)}>
+                                {topic.title}
+                                <small>{currentMilestone.title}</small>
+                              </Link>
+                              <StatusBadge status={topic.status} />
+                            </div>
+                          ))
+                        ) : (
+                          <p className="field-help">
+                            No topics in this status.
+                          </p>
+                        )}
+                      </AccordionContent>
+                    </AccordionItem>
+                  );
+                })}
               </Accordion>
             </section>
           </div>
@@ -200,7 +232,7 @@ export function DashboardPage() {
           </aside>
         </div>
       )}
-      {helper && (
+      {currentTopic && helper && (
         <div className="dismissible-guidance mt-8">
           <Notice>
             <div className="guidance-content">

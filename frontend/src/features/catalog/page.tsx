@@ -1,24 +1,20 @@
 import { useSearchParams } from "react-router";
-import { useState } from "react";
 import { Search, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { PageHeading, StatePanel } from "@/components/shared";
+import { PageHeading } from "@/components/shared";
 import { categories, careers } from "@/fixtures/catalog";
 import { CareerCard } from "@/components/career-card";
-import {
-  PreviewStateControl,
-  PreviewDataState,
-  type PreviewState,
-} from "@/components/preview-states";
+import { PreviewDataState } from "@/components/preview-states";
 
 export function CatalogPage() {
-  const [state, setState] = useState<PreviewState>("sample");
   const [params, setParams] = useSearchParams();
   const query = params.get("q") ?? "";
+  const categoryId = params.get("category");
   const category = categories.find(
-    (item) => item.id === params.get("category"),
+    (item) => item.id === categoryId,
   );
+  const invalidCategory = categoryId !== null && !category;
   const results = careers.filter(
     (career) =>
       (!category || career.category === category.id) &&
@@ -39,13 +35,19 @@ export function CatalogPage() {
         title="Find a direction worth exploring."
         description="Understand the work, see the skills involved, and take a closer look at a learning path."
       />
-      <PreviewStateControl value={state} onChange={setState} />
-      {state !== "sample" ? (
+      {invalidCategory ? (
         <PreviewDataState
-          state={state}
-          subject="careers"
-          onReset={() => setState("sample")}
-        />
+          state="error"
+          subject="career catalog"
+          action={
+            <Button variant="outline" onClick={() => setParams({})}>
+              Clear invalid filter
+            </Button>
+          }
+        >
+          The selected career category is unavailable. Clear the filter to
+          return to the catalog.
+        </PreviewDataState>
       ) : (
         <div className="catalog-layout">
           <aside className="catalog-sidebar">
@@ -122,17 +124,17 @@ export function CatalogPage() {
                 ))}
               </div>
             ) : (
-              <StatePanel
-                kind="empty"
-                title="No matching careers"
-                action={
+              <PreviewDataState
+                state="empty"
+                subject="matching careers"
+                emptyAction={
                   <Button variant="outline" onClick={() => setParams({})}>
                     Clear search and filters
                   </Button>
                 }
               >
                 Try a role title or a skill, or return to all fields.
-              </StatePanel>
+              </PreviewDataState>
             )}
           </section>
         </div>

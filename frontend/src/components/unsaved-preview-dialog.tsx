@@ -8,10 +8,18 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 
-export function UnsavedPreviewDialog({ when }: { when: boolean }) {
+export function UnsavedPreviewDialog({
+  when,
+  allowedPaths = [],
+}: {
+  when: boolean;
+  allowedPaths?: string[];
+}) {
   const blocker = useBlocker(
     ({ currentLocation, nextLocation }) =>
-      when && currentLocation.pathname !== nextLocation.pathname,
+      when &&
+      currentLocation.pathname !== nextLocation.pathname &&
+      !allowedPaths.includes(nextLocation.pathname),
   );
   useBeforeUnload((event) => {
     if (when) {

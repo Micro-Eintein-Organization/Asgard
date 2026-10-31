@@ -17,6 +17,7 @@ import {
 } from "@/components/shared";
 import { findCareer, categories, sampleMilestones } from "@/fixtures/catalog";
 import { appRoutes as pageRoutes } from "@/lib/routes";
+import { setCurrentTopicId } from "@/lib/learning-state";
 
 export function RoadmapPage() {
   const { careerId } = useParams();
@@ -28,6 +29,7 @@ export function RoadmapPage() {
       : "";
   const [params, setParams] = useSearchParams();
   const [hideDone, setHideDone] = useState(false);
+  const [topicSaveError, setTopicSaveError] = useState(false);
   const topicId = params.get("topic");
   const topic = sampleMilestones
     .flatMap((milestone) => milestone.topics)
@@ -45,6 +47,19 @@ export function RoadmapPage() {
     setParams({}, { state: location.state });
     requestAnimationFrame(() => opener.current?.focus());
   }
+  function chooseTopic(
+    topicId: string,
+    openerButton: HTMLButtonElement,
+  ) {
+    opener.current = openerButton;
+    setParams({ topic: topicId }, { state: location.state });
+    try {
+      setCurrentTopicId(topicId);
+      setTopicSaveError(false);
+    } catch {
+      setTopicSaveError(true);
+    }
+  }
   if (!career)
     return (
       <StatePanel
@@ -59,6 +74,20 @@ export function RoadmapPage() {
         Choose a role from the catalog to inspect its sample roadmap.
       </StatePanel>
     );
+  if (topicId && (career.id !== "frontend" || !topic))
+    return (
+      <StatePanel
+        kind="error"
+        title="This topic is unavailable"
+        action={
+          <Button asChild variant="outline">
+            <Link to={pageRoutes.roadmap(career.id)}>Return to roadmap</Link>
+          </Button>
+        }
+      >
+        The selected topic is not part of this roadmap.
+      </StatePanel>
+    );
   const category = categories.find((item) => item.id === career.category);
   return (
     <>
@@ -70,6 +99,12 @@ export function RoadmapPage() {
           <Notice>
             Browsing a roadmap does not change your focus or progress.
           </Notice>
+          {topicSaveError && (
+            <Notice tone="error">
+              Your current topic could not be saved in this browser. Try again
+              or continue browsing without changing it.
+            </Notice>
+          )}
           <section className="roadmap-hero">
             <p>{category?.title}</p>
             <h1>{career.title}</h1>
@@ -137,16 +172,13 @@ export function RoadmapPage() {
                           .map((item) => (
                             <button
                               key={item.id}
+                              type="button"
                               id={`topic-${item.id}`}
                               className="topic-selector"
                               aria-pressed={topicId === item.id}
                               aria-controls="topic-details"
                               onClick={(event) => {
-                                opener.current = event.currentTarget;
-                                setParams(
-                                  { topic: item.id },
-                                  { state: location.state },
-                                );
+                                chooseTopic(item.id, event.currentTarget);
                               }}
                             >
                               {item.status === "Done" ? (

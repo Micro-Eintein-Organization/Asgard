@@ -386,24 +386,6 @@
   min-height: 2.75rem;
   font-weight: 600;
 }
-.preview-bar {
-  background: var(--secondary);
-  border-bottom: 1px solid var(--border);
-  font-size: 0.75rem;
-  color: var(--muted-foreground);
-}
-.preview-bar > div {
-  max-width: var(--content-width);
-  padding: 0.625rem var(--gutter);
-  margin: auto;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem 0.75rem;
-  align-items: center;
-}
-.preview-bar strong {
-  color: var(--foreground);
-}
 .site-footer {
   display: flex;
   flex-wrap: wrap;

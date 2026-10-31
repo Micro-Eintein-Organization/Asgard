@@ -1,11 +1,51 @@
 import { useRef, useState } from "react";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import { BookOpen, Compass } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BackLink, Notice, Unavailable } from "@/components/shared";
 import { appRoutes as pageRoutes } from "@/lib/routes";
 import { questions } from "./questions";
 import { UnsavedPreviewDialog } from "@/components/unsaved-preview-dialog";
+
+type DiscoveryDraft = {
+  step: number;
+  answers: Record<number, string[]>;
+};
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null;
+}
+
+function readDiscoveryDraft(value: unknown): DiscoveryDraft | null {
+  if (!isRecord(value) || !isRecord(value.discoveryDraft)) return null;
+  const draft = value.discoveryDraft;
+  if (
+    typeof draft.step !== "number" ||
+    !Number.isInteger(draft.step) ||
+    draft.step < 0 ||
+    draft.step >= questions.length ||
+    !isRecord(draft.answers)
+  )
+    return null;
+
+  const answers: Record<number, string[]> = {};
+  for (const [key, value] of Object.entries(draft.answers)) {
+    const index = Number(key);
+    if (
+      !Number.isInteger(index) ||
+      index < 0 ||
+      index >= questions.length ||
+      !Array.isArray(value) ||
+      !value.every((answer): answer is string => typeof answer === "string")
+    )
+      return null;
+    const allowed = questions[index].choices.map(([id]) => id);
+    if (index < 3) allowed.push("unsure");
+    if (value.some((answer) => !allowed.includes(answer))) return null;
+    answers[index] = value;
+  }
+  return { step: draft.step, answers };
+}
 
 export function WelcomePage() {
   const [choice, setChoice] = useState("");
@@ -72,8 +112,16 @@ export function WelcomePage() {
 }
 
 export function DiscoveryPage() {
-  const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState<Record<number, string[]>>({});
+  const location = useLocation();
+  const draft = readDiscoveryDraft(location.state);
+  const hasInvalidDraft =
+    isRecord(location.state) &&
+    "discoveryDraft" in location.state &&
+    draft === null;
+  const [step, setStep] = useState(draft?.step ?? 0);
+  const [answers, setAnswers] = useState<Record<number, string[]>>(
+    draft?.answers ?? {},
+  );
   const [announcement, setAnnouncement] = useState("");
   const heading = useRef<HTMLHeadingElement>(null);
   const question = questions[step];
@@ -117,6 +165,7 @@ export function DiscoveryPage() {
     <section className="discovery-page">
       <UnsavedPreviewDialog
         when={Object.values(answers).some((value) => value.length > 0)}
+        allowedPaths={[pageRoutes.results]}
       />
       <div className="discovery-topline">
         {step === 0 ? (
@@ -128,6 +177,12 @@ export function DiscoveryPage() {
         )}
         <Link to={pageRoutes.careers}>Skip questions and browse careers</Link>
       </div>
+      {hasInvalidDraft && (
+        <Notice tone="error">
+          The previous Discovery step could not be restored. Choose an answer
+          to continue from the beginning.
+        </Notice>
+      )}
       <header className="discovery-header">
         <div className="question-progress" aria-hidden="true">
           {questions.map((_, index) => (
@@ -206,7 +261,11 @@ export function DiscoveryPage() {
             been saved or analyzed.
           </Unavailable>
           <div className="mt-4">
-            <Link className="inline-link" to={pageRoutes.results}>
+            <Link
+              className="inline-link"
+              to={pageRoutes.results}
+              state={{ discoveryDraft: { step, answers } }}
+            >
               View sample results layout
             </Link>
           </div>

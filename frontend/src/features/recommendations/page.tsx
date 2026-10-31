@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import { Button } from "@/components/ui/button";
 import { PageHeading, BackLink, Notice } from "@/components/shared";
 import {
@@ -12,11 +12,14 @@ import { careers } from "@/fixtures/catalog";
 import { appRoutes as pageRoutes } from "@/lib/routes";
 
 export function ResultsPage() {
+  const location = useLocation();
   const [state, setState] = useState<PreviewState>("sample");
   const samples = [careers[0], careers[2], careers[3]];
   return (
     <>
-      <BackLink to={pageRoutes.discovery}>Back to Discovery</BackLink>
+      <BackLink to={pageRoutes.discovery} state={location.state}>
+        Back to Discovery
+      </BackLink>
       <PageHeading
         title="Careers to explore."
         description="Suggestions are starting points. You can explore any career in the catalog."

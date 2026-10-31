@@ -200,34 +200,12 @@ export function AppShell() {
 }
 
 function ShellContent() {
-  const { pathname } = useLocation();
-  const demoPaths = [
-    appRoutes.dashboard,
-    appRoutes.welcome,
-    appRoutes.discovery,
-    appRoutes.results,
-    appRoutes.careers,
-    appRoutes.roadmaps,
-  ];
-  const demo =
-    demoPaths.includes(pathname) || pathname.startsWith("/roadmaps/");
   return (
     <>
       <a className="skip-link" href="#main-content">
         Skip to content
       </a>
       <Header />
-      {demo && (
-        <div className="preview-bar">
-          <div>
-            <strong>Demo content</strong>
-            <span>
-              Sample careers, suggestions and progress. These examples are not
-              your saved account data. Discovery answers are not saved.
-            </span>
-          </div>
-        </div>
-      )}
       <main id="main-content" tabIndex={-1} className="page-container">
         <Suspense
           fallback={
