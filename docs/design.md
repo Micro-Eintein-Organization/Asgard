@@ -6,6 +6,13 @@ The [later Stage 4 foundation](development.md#stage-4-shared-contracts-and-hando
 
 ## Identity and hierarchy
 
+Catalog update, 2026-11-02: the owner-supplied category-sidebar reference now
+defines catalog navigation. Categories appear on the left, search above the
+cards, and each role opens its roadmap directly. This supersedes the category
+pills and selected-card descriptions below for the catalog only. See the
+[implementation guide](features/career-catalog.md) for checks and pending visual
+acceptance.
+
 Asgard uses white cards, light neutral surfaces, dark text/actions and a restrained green selection/progress accent. Arial/Helvetica matches the sans-serif character of the supplied exports without adding a font dependency. The header/onboarding wordmark uses the supplied light-mode Snowflake + ASGARD image through [BrandLogo](../frontend/src/components/brand-logo.tsx). There are no generated illustrations, invented people, testimonials or match scores.
 
 Design direction: ENERGY 1 / RHYTHM 2 / MOTION 1. Career exploration stays calm and readable; page composition varies with its task. The dark Dashboard milestone establishes the main continuation action. Its dark gradient follows the reference's hierarchy; it is not a page-wide effect. Borders group content. The restored committed screens retain their original card/banner shadows and calendar/callout accents. Functional icons identify navigation, search, account, resources and status; they do not fill empty illustration space.

@@ -1,5 +1,18 @@
 # Adding careers and roadmaps
 
+Resource update, 2026-11-02: release 4 replaces the imported generic resource lists
+with [topic-specific selections](../backend/app/content/topic-resources.json) for
+all 288 published topics. Destinations/anchors were checked; license and independent
+curriculum acceptance remain separate. Existing topic identities and saved state
+are preserved. See [release evidence](features/roadmap-content-expansion.md).
+
+Local update, 2026-11-02: release 3 imports the owner's v4 pack as supplied,
+with resource verification explicitly waived in this task. The existing publisher
+now includes this release. Imported resource access remains unverified, not
+certified free. See the [roadmap expansion guide](features/roadmap-content-expansion.md)
+for retirement, publication checks and pending acceptance. This bounded owner
+exception does not approve other unreviewed content or provider license terms.
+
 Updated 2026-10-28. Maintainer: project owner; implementation guide: Codex.
 
 Use [the catalog schema](../supabase/migrations/20261026000100_shared_foundation.sql)

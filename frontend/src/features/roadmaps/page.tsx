@@ -25,12 +25,33 @@ export function RoadmapPage() {
   const [hideDone, setHideDone] = useState(false);
   const heading = useRef<HTMLHeadingElement>(null);
   const opener = useRef<HTMLButtonElement | null>(null);
+  const panel = useRef<HTMLElement>(null);
+  const [layout, setLayout] = useState<HTMLDivElement | null>(null);
+  useEffect(() => {
+    if (!layout) return;
+    const resize = () => {
+      const top = layout.getBoundingClientRect().top + window.scrollY;
+      layout.style.setProperty("--roadmap-top", `${Math.ceil(top)}px`);
+    };
+    const observer = new ResizeObserver(resize);
+    const main = layout.closest("main");
+    if (main) observer.observe(main);
+    const header = document.querySelector(".site-header");
+    if (header) observer.observe(header);
+    window.addEventListener("resize", resize);
+    resize();
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", resize);
+    };
+  }, [layout]);
   const career = useCoreQuery(
     ["career", careerId],
     () => coreApi.resolveCareer(careerId),
     !!careerId,
   );
-  const roadmapId = params.get("roadmap") ?? career.data?.roadmap_ids[0] ?? "";
+  const roadmapId = params.get("roadmap") ?? career.data?.roadmap_ids[0] ??
+    (career.data?.slug === "ui-ux-designer" ? "27a28a6f-33b0-5d93-92de-b243c11401b0" : "");
   const roadmap = useCoreQuery(
     ["roadmap", roadmapId],
     () => coreApi.roadmap(roadmapId),
@@ -60,16 +81,18 @@ export function RoadmapPage() {
     .flatMap((milestone) => milestone.topics)
     .find((item) => item.id === topicId);
   useEffect(() => {
-    if (topic) {
+    if (topic?.id) {
+      panel.current?.scrollTo({ top: 0 });
       heading.current?.focus({ preventScroll: true });
-      heading.current?.scrollIntoView({ block: "nearest" });
+      if (!window.matchMedia("(min-width: 64rem) and (min-height: 28rem)").matches)
+        heading.current?.scrollIntoView({ block: "nearest" });
     }
-  }, [topic]);
+  }, [topic?.id]);
   function closeTopic() {
     const next = new URLSearchParams(params);
     next.delete("topic");
     setParams(next, { state: location.state });
-    requestAnimationFrame(() => opener.current?.focus());
+    requestAnimationFrame(() => opener.current?.focus({ preventScroll: true }));
   }
   const error =
     career.error ??
@@ -159,13 +182,13 @@ export function RoadmapPage() {
           <Link to={appRoutes.dashboard}>Resolve Learning on Dashboard</Link>
         </Notice>
       )}
-      <div className="roadmap-layout">
-        <div className="roadmap-main">
+      <div className="roadmap-layout" ref={setLayout}>
+        <div className="roadmap-main" role="region" aria-label="Career and roadmap milestones" tabIndex={0}>
           <Notice>Browsing does not change your focus or progress.</Notice>
           <section className="roadmap-hero">
             <h1>{careerContent.title}</h1>
             <p>{content.description}</p>
-            {careerContent.slug === "data-analyst" && <p className="flex flex-wrap gap-4">
+            {roadmapId === "a51f6aec-f3d9-5ba8-97e1-3c9e500b375d" && <p className="flex flex-wrap gap-4">
               <a className="underline" href={practiceData} download>Download practice CSV</a>
               <a className="underline" href={practiceReference} download>Download data dictionary and reference results</a>
             </p>}
@@ -199,7 +222,7 @@ export function RoadmapPage() {
             </div>
             {content.status === "retired" && (
               <p>
-                This roadmap has been retired. Existing history is retained.
+                This roadmap has been retired. Your history is retained. <Link to={appRoutes.careers}>Explore current roadmaps</Link>.
               </p>
             )}
           </section>
@@ -357,7 +380,7 @@ export function RoadmapPage() {
               })}
           </Accordion>
         </div>
-        <aside className="topic-panel" aria-label="Topic details">
+        <aside ref={panel} className="topic-panel" aria-label="Topic details" tabIndex={0}>
           {topic ? (
             <>
               <header>
@@ -398,7 +421,9 @@ export function RoadmapPage() {
                     <span>
                       {resource.title}
                       <small>
-                        {resource.is_free
+                        {resource.license.startsWith("Access unverified;")
+                          ? "Access not verified"
+                          : resource.is_free
                           ? "Free access"
                           : "Access details in resource"}{" "}
                         · {resource.kind}

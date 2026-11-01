@@ -1,0 +1,2229 @@
+{
+  "schema_version": "4.0.0-draft",
+  "career": {
+    "name": "UX Designer",
+    "slug": "ux-designer",
+    "category": "Design & UX",
+    "status": "Draft — pending human review"
+  },
+  "career_overview": {
+    "short_description": "Study people’s goals and difficulties, then design and test better experiences. Start with a small problem you can investigate ethically.",
+    "responsibilities": [
+      "Assess goals and constraints relevant to ux designer work",
+      "Apply appropriate tools and methods to a bounded task",
+      "Test, document and communicate results",
+      "Collaborate and incorporate feedback"
+    ],
+    "representative_work": [
+      "A researched, tested user-flow prototype and concise case study."
+    ],
+    "core_skills": [
+      "UX roles and evidence",
+      "Stakeholders and goals",
+      "Research ethics and consent",
+      "Research plan and questions",
+      "Interview planning",
+      "Conducting interviews",
+      "Observation and contextual inquiry",
+      "Research notes and synthesis",
+      "Affinity mapping",
+      "Personas grounded in research"
+    ]
+  },
+  "roadmap": {
+    "title": "UX Designer: beginner foundations and starter project",
+    "intended_learner": "Motivated beginner; basic computer literacy assumed, with no prior professional experience.",
+    "starting_requirements": "Computer, internet access, text editor and browser. Most tasks use free software or simulation; specialist equipment, accounts and costs are flagged for review when applicable.",
+    "final_outcome": "A researched, tested user-flow prototype and concise case study.",
+    "milestones": [
+      {
+        "id": "M01",
+        "slug": "frame-the-user-problem",
+        "title": "Frame the user problem",
+        "summary": "Learn ux roles and evidence, stakeholders and goals, research ethics and consent, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T01",
+            "slug": "ux-roles-and-evidence",
+            "title": "UX roles and evidence",
+            "milestone_id": "M01",
+            "card": {
+              "title": "UX roles and evidence",
+              "summary": "UX design investigates how people complete goals with products and services. Evidence from actual users should guide decisions, not just aesthetic preference.",
+              "prerequisite_ids": []
+            },
+            "detail": {
+              "eyebrow": "M01 · Frame the user problem",
+              "title": "UX roles and evidence",
+              "overview": "UX design investigates how people complete goals with products and services. Evidence from actual users should guide decisions, not just aesthetic preference.",
+              "learning_outcomes": [
+                "Use what you learn about ux roles and evidence to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T01-S01",
+                  "title": "Ux roles",
+                  "explanation": "Find how ux roles works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T01-S02",
+                  "title": "Evidence",
+                  "explanation": "Find how evidence works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Describe one user task and identify assumptions requiring research."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: describe one user task and identify assumptions requiring research. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on ux roles and evidence; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T01-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "UX design investigates how people complete goals with products and services. Evidence from actual users should guide decisions, not just aesthetic preference.",
+                "learn_items": [
+                  "Ux roles",
+                  "Evidence"
+                ],
+                "learning_goal": "Use what you learn about ux roles and evidence to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on ux roles and evidence; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T01-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Describe one user task and identify assumptions requiring research.",
+                "completion_check": "You can show or explain the result of this task: describe one user task and identify assumptions requiring research. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T02",
+            "slug": "stakeholders-and-goals",
+            "title": "Stakeholders and goals",
+            "milestone_id": "M01",
+            "card": {
+              "title": "Stakeholders and goals",
+              "summary": "Stakeholders have business goals, while users have tasks, limitations and contexts. A useful project brief reconciles these without assuming they align.",
+              "prerequisite_ids": [
+                "T01"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M01 · Frame the user problem",
+              "title": "Stakeholders and goals",
+              "overview": "Stakeholders have business goals, while users have tasks, limitations and contexts. A useful project brief reconciles these without assuming they align.",
+              "learning_outcomes": [
+                "Use what you learn about stakeholders and goals to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T02-S01",
+                  "title": "Stakeholders",
+                  "explanation": "Find how stakeholders works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T02-S02",
+                  "title": "Goals",
+                  "explanation": "Find how goals works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Interview a stakeholder and list user questions still unanswered."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: interview a stakeholder and list user questions still unanswered. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on stakeholders and goals; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T02-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Stakeholders have business goals, while users have tasks, limitations and contexts. A useful project brief reconciles these without assuming they align.",
+                "learn_items": [
+                  "Stakeholders",
+                  "Goals"
+                ],
+                "learning_goal": "Use what you learn about stakeholders and goals to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on stakeholders and goals; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T02-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Interview a stakeholder and list user questions still unanswered.",
+                "completion_check": "You can show or explain the result of this task: interview a stakeholder and list user questions still unanswered. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T03",
+            "slug": "research-ethics-and-consent",
+            "title": "Research ethics and consent",
+            "milestone_id": "M01",
+            "card": {
+              "title": "Research ethics and consent",
+              "summary": "User research requires informed consent, respectful handling of recordings and privacy safeguards. Avoid collecting identifying details without a real need.",
+              "prerequisite_ids": [
+                "T02"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M01 · Frame the user problem",
+              "title": "Research ethics and consent",
+              "overview": "User research requires informed consent, respectful handling of recordings and privacy safeguards. Avoid collecting identifying details without a real need.",
+              "learning_outcomes": [
+                "Use what you learn about research ethics and consent to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T03-S01",
+                  "title": "Research ethics",
+                  "explanation": "Find how research ethics works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T03-S02",
+                  "title": "Consent",
+                  "explanation": "Find how consent works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Draft a short consent statement and data-retention note for mock interviews."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: draft a short consent statement and data-retention note for mock interviews. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on research ethics and consent; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T03-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "User research requires informed consent, respectful handling of recordings and privacy safeguards. Avoid collecting identifying details without a real need.",
+                "learn_items": [
+                  "Research ethics",
+                  "Consent"
+                ],
+                "learning_goal": "Use what you learn about research ethics and consent to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on research ethics and consent; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T03-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Draft a short consent statement and data-retention note for mock interviews.",
+                "completion_check": "You can show or explain the result of this task: draft a short consent statement and data-retention note for mock interviews. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T04",
+            "slug": "research-plan-and-questions",
+            "title": "Research plan and questions",
+            "milestone_id": "M01",
+            "card": {
+              "title": "Research plan and questions",
+              "summary": "A research plan states the question, participants, method and how observations will inform a decision. Avoid methods that cannot answer the question.",
+              "prerequisite_ids": [
+                "T03"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M01 · Frame the user problem",
+              "title": "Research plan and questions",
+              "overview": "A research plan states the question, participants, method and how observations will inform a decision. Avoid methods that cannot answer the question.",
+              "learning_outcomes": [
+                "Use what you learn about research plan and questions to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T04-S01",
+                  "title": "Research plan",
+                  "explanation": "Find how research plan works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T04-S02",
+                  "title": "Questions",
+                  "explanation": "Find how questions works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Choose a research method for finding why people abandon a booking flow."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: choose a research method for finding why people abandon a booking flow. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on research plan and questions; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T04-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A research plan states the question, participants, method and how observations will inform a decision. Avoid methods that cannot answer the question.",
+                "learn_items": [
+                  "Research plan",
+                  "Questions"
+                ],
+                "learning_goal": "Use what you learn about research plan and questions to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on research plan and questions; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T04-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Choose a research method for finding why people abandon a booking flow.",
+                "completion_check": "You can show or explain the result of this task: choose a research method for finding why people abandon a booking flow. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M02",
+        "slug": "study-user-needs",
+        "title": "Study user needs",
+        "summary": "Learn interview planning, conducting interviews, observation and contextual inquiry, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T05",
+            "slug": "interview-planning",
+            "title": "Interview planning",
+            "milestone_id": "M02",
+            "card": {
+              "title": "Interview planning",
+              "summary": "Good interview prompts invite specific stories, not yes/no approval. Leading questions can push participants toward the answer the designer expects.",
+              "prerequisite_ids": [
+                "T04"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Study user needs",
+              "title": "Interview planning",
+              "overview": "Good interview prompts invite specific stories, not yes/no approval. Leading questions can push participants toward the answer the designer expects.",
+              "learning_outcomes": [
+                "Use what you learn about interview planning to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T05-S01",
+                  "title": "Interview planning: purpose and essential vocabulary",
+                  "explanation": "Find how interview planning: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T05-S02",
+                  "title": "Interview planning: application and common pitfalls",
+                  "explanation": "Find how interview planning: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Rewrite five leading questions into neutral prompts."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: rewrite five leading questions into neutral prompts. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on interview planning; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T05-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Good interview prompts invite specific stories, not yes/no approval. Leading questions can push participants toward the answer the designer expects.",
+                "learn_items": [
+                  "Interview planning: purpose and essential vocabulary",
+                  "Interview planning: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about interview planning to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on interview planning; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T05-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Rewrite five leading questions into neutral prompts.",
+                "completion_check": "You can show or explain the result of this task: rewrite five leading questions into neutral prompts. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T06",
+            "slug": "conducting-interviews",
+            "title": "Conducting interviews",
+            "milestone_id": "M02",
+            "card": {
+              "title": "Conducting interviews",
+              "summary": "During interviews, ask about past behaviour and follow up on examples. Separate what a participant said from your interpretation.",
+              "prerequisite_ids": [
+                "T05"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Study user needs",
+              "title": "Conducting interviews",
+              "overview": "During interviews, ask about past behaviour and follow up on examples. Separate what a participant said from your interpretation.",
+              "learning_outcomes": [
+                "Use what you learn about conducting interviews to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T06-S01",
+                  "title": "Conducting interviews: purpose and essential vocabulary",
+                  "explanation": "Find how conducting interviews: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T06-S02",
+                  "title": "Conducting interviews: application and common pitfalls",
+                  "explanation": "Find how conducting interviews: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Conduct a consented practice interview and capture direct observations."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: conduct a consented practice interview and capture direct observations. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on conducting interviews; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T06-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "During interviews, ask about past behaviour and follow up on examples. Separate what a participant said from your interpretation.",
+                "learn_items": [
+                  "Conducting interviews: purpose and essential vocabulary",
+                  "Conducting interviews: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about conducting interviews to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on conducting interviews; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T06-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Conduct a consented practice interview and capture direct observations.",
+                "completion_check": "You can show or explain the result of this task: conduct a consented practice interview and capture direct observations. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T07",
+            "slug": "observation-and-contextual-inquiry",
+            "title": "Observation and contextual inquiry",
+            "milestone_id": "M02",
+            "card": {
+              "title": "Observation and contextual inquiry",
+              "summary": "Observation reveals steps people may not mention in an interview. Context such as interruptions, physical constraints and workarounds matters.",
+              "prerequisite_ids": [
+                "T06"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Study user needs",
+              "title": "Observation and contextual inquiry",
+              "overview": "Observation reveals steps people may not mention in an interview. Context such as interruptions, physical constraints and workarounds matters.",
+              "learning_outcomes": [
+                "Use what you learn about observation and contextual inquiry to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T07-S01",
+                  "title": "Observation",
+                  "explanation": "Find how observation works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T07-S02",
+                  "title": "Contextual inquiry",
+                  "explanation": "Find how contextual inquiry works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Observe a willing participant doing a simple task and map the sequence."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: observe a willing participant doing a simple task and map the sequence. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on observation and contextual inquiry; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T07-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Observation reveals steps people may not mention in an interview. Context such as interruptions, physical constraints and workarounds matters.",
+                "learn_items": [
+                  "Observation",
+                  "Contextual inquiry"
+                ],
+                "learning_goal": "Use what you learn about observation and contextual inquiry to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on observation and contextual inquiry; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T07-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Observe a willing participant doing a simple task and map the sequence.",
+                "completion_check": "You can show or explain the result of this task: observe a willing participant doing a simple task and map the sequence. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T08",
+            "slug": "research-notes-and-synthesis",
+            "title": "Research notes and synthesis",
+            "milestone_id": "M02",
+            "card": {
+              "title": "Research notes and synthesis",
+              "summary": "Research notes need traceable observations and careful synthesis. Patterns deserve supporting evidence, not just repetition of designer opinions.",
+              "prerequisite_ids": [
+                "T07"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Study user needs",
+              "title": "Research notes and synthesis",
+              "overview": "Research notes need traceable observations and careful synthesis. Patterns deserve supporting evidence, not just repetition of designer opinions.",
+              "learning_outcomes": [
+                "Use what you learn about research notes and synthesis to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T08-S01",
+                  "title": "Research notes",
+                  "explanation": "Find how research notes works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T08-S02",
+                  "title": "Synthesis",
+                  "explanation": "Find how synthesis works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Group ten anonymised observations and note conflicting evidence."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: group ten anonymised observations and note conflicting evidence. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on research notes and synthesis; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T08-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Research notes need traceable observations and careful synthesis. Patterns deserve supporting evidence, not just repetition of designer opinions.",
+                "learn_items": [
+                  "Research notes",
+                  "Synthesis"
+                ],
+                "learning_goal": "Use what you learn about research notes and synthesis to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on research notes and synthesis; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T08-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Group ten anonymised observations and note conflicting evidence.",
+                "completion_check": "You can show or explain the result of this task: group ten anonymised observations and note conflicting evidence. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M03",
+        "slug": "model-tasks-and-journeys",
+        "title": "Model tasks and journeys",
+        "summary": "Learn affinity mapping, personas grounded in research, task analysis and user flows, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T09",
+            "slug": "affinity-mapping",
+            "title": "Affinity mapping",
+            "milestone_id": "M03",
+            "card": {
+              "title": "Affinity mapping",
+              "summary": "Affinity mapping clusters observations into themes while preserving links to source notes. An attractive cluster is not automatically an insight.",
+              "prerequisite_ids": [
+                "T08"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Model tasks and journeys",
+              "title": "Affinity mapping",
+              "overview": "Affinity mapping clusters observations into themes while preserving links to source notes. An attractive cluster is not automatically an insight.",
+              "learning_outcomes": [
+                "Use what you learn about affinity mapping to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T09-S01",
+                  "title": "Affinity mapping: purpose and essential vocabulary",
+                  "explanation": "Find how affinity mapping: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T09-S02",
+                  "title": "Affinity mapping: application and common pitfalls",
+                  "explanation": "Find how affinity mapping: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Cluster observations and name three evidence-backed themes."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: cluster observations and name three evidence-backed themes. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on affinity mapping; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T09-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Affinity mapping clusters observations into themes while preserving links to source notes. An attractive cluster is not automatically an insight.",
+                "learn_items": [
+                  "Affinity mapping: purpose and essential vocabulary",
+                  "Affinity mapping: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about affinity mapping to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on affinity mapping; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T09-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Cluster observations and name three evidence-backed themes.",
+                "completion_check": "You can show or explain the result of this task: cluster observations and name three evidence-backed themes. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T10",
+            "slug": "personas-grounded-in-research",
+            "title": "Personas grounded in research",
+            "milestone_id": "M03",
+            "card": {
+              "title": "Personas grounded in research",
+              "summary": "A persona is a compact representation of behaviour and needs grounded in research; fictional demographics alone are not evidence.",
+              "prerequisite_ids": [
+                "T09"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Model tasks and journeys",
+              "title": "Personas grounded in research",
+              "overview": "A persona is a compact representation of behaviour and needs grounded in research; fictional demographics alone are not evidence.",
+              "learning_outcomes": [
+                "Use what you learn about personas grounded in research to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T10-S01",
+                  "title": "Personas grounded in research: purpose and essential vocabulary",
+                  "explanation": "Find how personas grounded in research: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T10-S02",
+                  "title": "Personas grounded in research: application and common pitfalls",
+                  "explanation": "Find how personas grounded in research: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Draft a research-based persona with goals and constraints."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: draft a research-based persona with goals and constraints. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on personas grounded in research; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T10-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A persona is a compact representation of behaviour and needs grounded in research; fictional demographics alone are not evidence.",
+                "learn_items": [
+                  "Personas grounded in research: purpose and essential vocabulary",
+                  "Personas grounded in research: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about personas grounded in research to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on personas grounded in research; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T10-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Draft a research-based persona with goals and constraints.",
+                "completion_check": "You can show or explain the result of this task: draft a research-based persona with goals and constraints. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T11",
+            "slug": "task-analysis-and-user-flows",
+            "title": "Task analysis and user flows",
+            "milestone_id": "M03",
+            "card": {
+              "title": "Task analysis and user flows",
+              "summary": "Task analysis breaks a goal into user decisions and steps. User flows show what the system asks at decision points.",
+              "prerequisite_ids": [
+                "T10"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Model tasks and journeys",
+              "title": "Task analysis and user flows",
+              "overview": "Task analysis breaks a goal into user decisions and steps. User flows show what the system asks at decision points.",
+              "learning_outcomes": [
+                "Use what you learn about task analysis and user flows to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T11-S01",
+                  "title": "Task analysis",
+                  "explanation": "Find how task analysis works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T11-S02",
+                  "title": "User flows",
+                  "explanation": "Find how user flows works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Draw a flow for finding and booking an appointment."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: draw a flow for finding and booking an appointment. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on task analysis and user flows; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T11-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Task analysis breaks a goal into user decisions and steps. User flows show what the system asks at decision points.",
+                "learn_items": [
+                  "Task analysis",
+                  "User flows"
+                ],
+                "learning_goal": "Use what you learn about task analysis and user flows to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on task analysis and user flows; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T11-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Draw a flow for finding and booking an appointment.",
+                "completion_check": "You can show or explain the result of this task: draw a flow for finding and booking an appointment. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T12",
+            "slug": "journey-maps-and-opportunities",
+            "title": "Journey maps and opportunities",
+            "milestone_id": "M03",
+            "card": {
+              "title": "Journey maps and opportunities",
+              "summary": "A journey map tracks stages, actions, emotions and obstacles over time. Use it to identify opportunities rather than invent feelings.",
+              "prerequisite_ids": [
+                "T11"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Model tasks and journeys",
+              "title": "Journey maps and opportunities",
+              "overview": "A journey map tracks stages, actions, emotions and obstacles over time. Use it to identify opportunities rather than invent feelings.",
+              "learning_outcomes": [
+                "Use what you learn about journey maps and opportunities to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T12-S01",
+                  "title": "Journey maps",
+                  "explanation": "Find how journey maps works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T12-S02",
+                  "title": "Opportunities",
+                  "explanation": "Find how opportunities works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Map a user journey using only observations from practice research."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: map a user journey using only observations from practice research. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on journey maps and opportunities; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T12-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A journey map tracks stages, actions, emotions and obstacles over time. Use it to identify opportunities rather than invent feelings.",
+                "learn_items": [
+                  "Journey maps",
+                  "Opportunities"
+                ],
+                "learning_goal": "Use what you learn about journey maps and opportunities to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on journey maps and opportunities; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T12-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Map a user journey using only observations from practice research.",
+                "completion_check": "You can show or explain the result of this task: map a user journey using only observations from practice research. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M04",
+        "slug": "design-interaction-structure",
+        "title": "Design interaction structure",
+        "summary": "Learn information architecture, navigation and labeling, sketches and wireframes, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T13",
+            "slug": "information-architecture",
+            "title": "Information architecture",
+            "milestone_id": "M04",
+            "card": {
+              "title": "Information architecture",
+              "summary": "Information architecture groups and labels content so people can find it. Good structures reflect how users search, not just internal departments.",
+              "prerequisite_ids": [
+                "T12"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Design interaction structure",
+              "title": "Information architecture",
+              "overview": "Information architecture groups and labels content so people can find it. Good structures reflect how users search, not just internal departments.",
+              "learning_outcomes": [
+                "Use what you learn about information architecture to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T13-S01",
+                  "title": "Information architecture: purpose and essential vocabulary",
+                  "explanation": "Find how information architecture: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T13-S02",
+                  "title": "Information architecture: application and common pitfalls",
+                  "explanation": "Find how information architecture: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Create a sitemap and test labels against user tasks."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: create a sitemap and test labels against user tasks. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on information architecture; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T13-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Information architecture groups and labels content so people can find it. Good structures reflect how users search, not just internal departments.",
+                "learn_items": [
+                  "Information architecture: purpose and essential vocabulary",
+                  "Information architecture: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about information architecture to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on information architecture; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T13-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Create a sitemap and test labels against user tasks.",
+                "completion_check": "You can show or explain the result of this task: create a sitemap and test labels against user tasks. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T14",
+            "slug": "navigation-and-labeling",
+            "title": "Navigation and labeling",
+            "milestone_id": "M04",
+            "card": {
+              "title": "Navigation and labeling",
+              "summary": "Navigation communicates where a user is and what destinations exist. Ambiguous labels create hesitation and errors.",
+              "prerequisite_ids": [
+                "T13"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Design interaction structure",
+              "title": "Navigation and labeling",
+              "overview": "Navigation communicates where a user is and what destinations exist. Ambiguous labels create hesitation and errors.",
+              "learning_outcomes": [
+                "Use what you learn about navigation and labeling to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T14-S01",
+                  "title": "Navigation",
+                  "explanation": "Find how navigation works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T14-S02",
+                  "title": "Labeling",
+                  "explanation": "Find how labeling works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Compare two navigation labels with a brief user test."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: compare two navigation labels with a brief user test. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on navigation and labeling; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T14-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Navigation communicates where a user is and what destinations exist. Ambiguous labels create hesitation and errors.",
+                "learn_items": [
+                  "Navigation",
+                  "Labeling"
+                ],
+                "learning_goal": "Use what you learn about navigation and labeling to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on navigation and labeling; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T14-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Compare two navigation labels with a brief user test.",
+                "completion_check": "You can show or explain the result of this task: compare two navigation labels with a brief user test. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T15",
+            "slug": "sketches-and-wireframes",
+            "title": "Sketches and wireframes",
+            "milestone_id": "M04",
+            "card": {
+              "title": "Sketches and wireframes",
+              "summary": "Wireframes prioritise content and interaction before fine visual styling. Low-fidelity sketches make changes inexpensive.",
+              "prerequisite_ids": [
+                "T14"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Design interaction structure",
+              "title": "Sketches and wireframes",
+              "overview": "Wireframes prioritise content and interaction before fine visual styling. Low-fidelity sketches make changes inexpensive.",
+              "learning_outcomes": [
+                "Use what you learn about sketches and wireframes to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T15-S01",
+                  "title": "Sketches",
+                  "explanation": "Find how sketches works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T15-S02",
+                  "title": "Wireframes",
+                  "explanation": "Find how wireframes works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Sketch three alternative layouts for the same user task."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: sketch three alternative layouts for the same user task. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on sketches and wireframes; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T15-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Wireframes prioritise content and interaction before fine visual styling. Low-fidelity sketches make changes inexpensive.",
+                "learn_items": [
+                  "Sketches",
+                  "Wireframes"
+                ],
+                "learning_goal": "Use what you learn about sketches and wireframes to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on sketches and wireframes; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T15-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Sketch three alternative layouts for the same user task.",
+                "completion_check": "You can show or explain the result of this task: sketch three alternative layouts for the same user task. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T16",
+            "slug": "interaction-states-and-feedback",
+            "title": "Interaction states and feedback",
+            "milestone_id": "M04",
+            "card": {
+              "title": "Interaction states and feedback",
+              "summary": "Interaction states cover initial, active, loading, error and success conditions. The design should tell users what happened and what to do next.",
+              "prerequisite_ids": [
+                "T15"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Design interaction structure",
+              "title": "Interaction states and feedback",
+              "overview": "Interaction states cover initial, active, loading, error and success conditions. The design should tell users what happened and what to do next.",
+              "learning_outcomes": [
+                "Use what you learn about interaction states and feedback to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T16-S01",
+                  "title": "Interaction states",
+                  "explanation": "Find how interaction states works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T16-S02",
+                  "title": "Feedback",
+                  "explanation": "Find how feedback works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Annotate all states of a sign-up form."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: annotate all states of a sign-up form. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on interaction states and feedback; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T16-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Interaction states cover initial, active, loading, error and success conditions. The design should tell users what happened and what to do next.",
+                "learn_items": [
+                  "Interaction states",
+                  "Feedback"
+                ],
+                "learning_goal": "Use what you learn about interaction states and feedback to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on interaction states and feedback; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T16-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Annotate all states of a sign-up form.",
+                "completion_check": "You can show or explain the result of this task: annotate all states of a sign-up form. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M05",
+        "slug": "test-and-improve-designs",
+        "title": "Test and improve designs",
+        "summary": "Learn prototype planning, moderated usability tests, usability findings and prioritization, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T17",
+            "slug": "prototype-planning",
+            "title": "Prototype planning",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Prototype planning",
+              "summary": "A prototype simulates key user actions without requiring a finished product. Choose fidelity based on the question being tested.",
+              "prerequisite_ids": [
+                "T16"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Test and improve designs",
+              "title": "Prototype planning",
+              "overview": "A prototype simulates key user actions without requiring a finished product. Choose fidelity based on the question being tested.",
+              "learning_outcomes": [
+                "Use what you learn about prototype planning to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T17-S01",
+                  "title": "Prototype planning: purpose and essential vocabulary",
+                  "explanation": "Find how prototype planning: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T17-S02",
+                  "title": "Prototype planning: application and common pitfalls",
+                  "explanation": "Find how prototype planning: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Link a three-screen clickable prototype for one task."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: link a three-screen clickable prototype for one task. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on prototype planning; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T17-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A prototype simulates key user actions without requiring a finished product. Choose fidelity based on the question being tested.",
+                "learn_items": [
+                  "Prototype planning: purpose and essential vocabulary",
+                  "Prototype planning: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about prototype planning to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on prototype planning; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T17-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Link a three-screen clickable prototype for one task.",
+                "completion_check": "You can show or explain the result of this task: link a three-screen clickable prototype for one task. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T18",
+            "slug": "moderated-usability-tests",
+            "title": "Moderated usability tests",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Moderated usability tests",
+              "summary": "A usability test observes whether participants complete realistic tasks. Neutral facilitation avoids coaching them toward success.",
+              "prerequisite_ids": [
+                "T17"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Test and improve designs",
+              "title": "Moderated usability tests",
+              "overview": "A usability test observes whether participants complete realistic tasks. Neutral facilitation avoids coaching them toward success.",
+              "learning_outcomes": [
+                "Use what you learn about moderated usability tests to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T18-S01",
+                  "title": "Moderated usability tests: purpose and essential vocabulary",
+                  "explanation": "Find how moderated usability tests: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T18-S02",
+                  "title": "Moderated usability tests: application and common pitfalls",
+                  "explanation": "Find how moderated usability tests: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Write two task prompts and a neutral moderation script."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: write two task prompts and a neutral moderation script. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on moderated usability tests; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T18-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A usability test observes whether participants complete realistic tasks. Neutral facilitation avoids coaching them toward success.",
+                "learn_items": [
+                  "Moderated usability tests: purpose and essential vocabulary",
+                  "Moderated usability tests: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about moderated usability tests to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on moderated usability tests; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T18-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Write two task prompts and a neutral moderation script.",
+                "completion_check": "You can show or explain the result of this task: write two task prompts and a neutral moderation script. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T19",
+            "slug": "usability-findings-and-prioritization",
+            "title": "Usability findings and prioritization",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Usability findings and prioritization",
+              "summary": "Findings distinguish observed obstacles, impact and evidence. Prioritisation considers severity and frequency without treating one test as proof for all users.",
+              "prerequisite_ids": [
+                "T18"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Test and improve designs",
+              "title": "Usability findings and prioritization",
+              "overview": "Findings distinguish observed obstacles, impact and evidence. Prioritisation considers severity and frequency without treating one test as proof for all users.",
+              "learning_outcomes": [
+                "Use what you learn about usability findings and prioritization to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T19-S01",
+                  "title": "Usability findings",
+                  "explanation": "Find how usability findings works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T19-S02",
+                  "title": "Prioritization",
+                  "explanation": "Find how prioritization works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Turn test notes into three prioritised usability issues."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: turn test notes into three prioritised usability issues. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on usability findings and prioritization; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T19-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Findings distinguish observed obstacles, impact and evidence. Prioritisation considers severity and frequency without treating one test as proof for all users.",
+                "learn_items": [
+                  "Usability findings",
+                  "Prioritization"
+                ],
+                "learning_goal": "Use what you learn about usability findings and prioritization to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on usability findings and prioritization; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T19-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Turn test notes into three prioritised usability issues.",
+                "completion_check": "You can show or explain the result of this task: turn test notes into three prioritised usability issues. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T20",
+            "slug": "accessibility-and-inclusive-review",
+            "title": "Accessibility and inclusive review",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Accessibility and inclusive review",
+              "summary": "Inclusive design considers diverse abilities, situations and input methods. Inspect contrast, labels, focus and language without assuming one checklist proves usability.",
+              "prerequisite_ids": [
+                "T19"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Test and improve designs",
+              "title": "Accessibility and inclusive review",
+              "overview": "Inclusive design considers diverse abilities, situations and input methods. Inspect contrast, labels, focus and language without assuming one checklist proves usability.",
+              "learning_outcomes": [
+                "Use what you learn about accessibility and inclusive review to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T20-S01",
+                  "title": "Accessibility",
+                  "explanation": "Find how accessibility works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T20-S02",
+                  "title": "Inclusive review",
+                  "explanation": "Find how inclusive review works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Review a mockup for keyboard and readability risks."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: review a mockup for keyboard and readability risks. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on accessibility and inclusive review; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T20-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Inclusive design considers diverse abilities, situations and input methods. Inspect contrast, labels, focus and language without assuming one checklist proves usability.",
+                "learn_items": [
+                  "Accessibility",
+                  "Inclusive review"
+                ],
+                "learning_goal": "Use what you learn about accessibility and inclusive review to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on accessibility and inclusive review; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T20-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Review a mockup for keyboard and readability risks.",
+                "completion_check": "You can show or explain the result of this task: review a mockup for keyboard and readability risks. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M06",
+        "slug": "present-a-ux-case-study",
+        "title": "Present a UX case study",
+        "summary": "Learn choose a bounded problem, document evidence and decisions, revise prototype from testing, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T21",
+            "slug": "choose-a-bounded-problem",
+            "title": "Choose a bounded problem",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Choose a bounded problem",
+              "summary": "Choose a bounded challenge with a real user task and accessible research participants. State what evidence can and cannot establish.",
+              "prerequisite_ids": [
+                "T20"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Present a UX case study",
+              "title": "Choose a bounded problem",
+              "overview": "Choose a bounded challenge with a real user task and accessible research participants. State what evidence can and cannot establish.",
+              "learning_outcomes": [
+                "Use what you learn about choose a bounded problem to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T21-S01",
+                  "title": "Choose a bounded problem: purpose and essential vocabulary",
+                  "explanation": "Find how choose a bounded problem: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T21-S02",
+                  "title": "Choose a bounded problem: application and common pitfalls",
+                  "explanation": "Find how choose a bounded problem: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Write a concise UX case-study brief."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: write a concise UX case-study brief. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on choose a bounded problem; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T21-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Choose a bounded challenge with a real user task and accessible research participants. State what evidence can and cannot establish.",
+                "learn_items": [
+                  "Choose a bounded problem: purpose and essential vocabulary",
+                  "Choose a bounded problem: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about choose a bounded problem to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on choose a bounded problem; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T21-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Write a concise UX case-study brief.",
+                "completion_check": "You can show or explain the result of this task: write a concise UX case-study brief. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T22",
+            "slug": "document-evidence-and-decisions",
+            "title": "Document evidence and decisions",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Document evidence and decisions",
+              "summary": "A case study should show decisions supported by interviews, observations or tests. Document alternatives rejected and why.",
+              "prerequisite_ids": [
+                "T21"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Present a UX case study",
+              "title": "Document evidence and decisions",
+              "overview": "A case study should show decisions supported by interviews, observations or tests. Document alternatives rejected and why.",
+              "learning_outcomes": [
+                "Use what you learn about document evidence and decisions to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T22-S01",
+                  "title": "Document evidence",
+                  "explanation": "Find how document evidence works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T22-S02",
+                  "title": "Decisions",
+                  "explanation": "Find how decisions works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Connect each design decision to a research observation."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: connect each design decision to a research observation. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on document evidence and decisions; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T22-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A case study should show decisions supported by interviews, observations or tests. Document alternatives rejected and why.",
+                "learn_items": [
+                  "Document evidence",
+                  "Decisions"
+                ],
+                "learning_goal": "Use what you learn about document evidence and decisions to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on document evidence and decisions; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T22-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Connect each design decision to a research observation.",
+                "completion_check": "You can show or explain the result of this task: connect each design decision to a research observation. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T23",
+            "slug": "revise-prototype-from-testing",
+            "title": "Revise prototype from testing",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Revise prototype from testing",
+              "summary": "Iteration means changing a design based on a diagnosed problem and testing whether it improved. Avoid treating visual preference as proof.",
+              "prerequisite_ids": [
+                "T22"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Present a UX case study",
+              "title": "Revise prototype from testing",
+              "overview": "Iteration means changing a design based on a diagnosed problem and testing whether it improved. Avoid treating visual preference as proof.",
+              "learning_outcomes": [
+                "Use what you learn about revise prototype from testing to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T23-S01",
+                  "title": "Revise prototype from testing: purpose and essential vocabulary",
+                  "explanation": "Find how revise prototype from testing: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T23-S02",
+                  "title": "Revise prototype from testing: application and common pitfalls",
+                  "explanation": "Find how revise prototype from testing: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Revise a prototype and rerun one task with a participant."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: revise a prototype and rerun one task with a participant. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on revise prototype from testing; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T23-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Iteration means changing a design based on a diagnosed problem and testing whether it improved. Avoid treating visual preference as proof.",
+                "learn_items": [
+                  "Revise prototype from testing: purpose and essential vocabulary",
+                  "Revise prototype from testing: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about revise prototype from testing to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on revise prototype from testing; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T23-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Revise a prototype and rerun one task with a participant.",
+                "completion_check": "You can show or explain the result of this task: revise a prototype and rerun one task with a participant. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T24",
+            "slug": "present-case-study-and-limitations",
+            "title": "Present case study and limitations",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Present case study and limitations",
+              "summary": "A useful case study explains context, method, design changes, results and limitations. Never invent participant quotes or success statistics.",
+              "prerequisite_ids": [
+                "T23"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Present a UX case study",
+              "title": "Present case study and limitations",
+              "overview": "A useful case study explains context, method, design changes, results and limitations. Never invent participant quotes or success statistics.",
+              "learning_outcomes": [
+                "Use what you learn about present case study and limitations to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T24-S01",
+                  "title": "Present case study",
+                  "explanation": "Find how present case study works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T24-S02",
+                  "title": "Limitations",
+                  "explanation": "Find how limitations works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Present a short case study with evidence and next steps."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: present a short case study with evidence and next steps. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on present case study and limitations; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T24-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A useful case study explains context, method, design changes, results and limitations. Never invent participant quotes or success statistics.",
+                "learn_items": [
+                  "Present case study",
+                  "Limitations"
+                ],
+                "learning_goal": "Use what you learn about present case study and limitations to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on present case study and limitations; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T24-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Present a short case study with evidence and next steps.",
+                "completion_check": "You can show or explain the result of this task: present a short case study with evidence and next steps. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "display_contract": {
+    "layout": "milestone-accordion-with-topic-detail-panel",
+    "milestone_card": [
+      "title",
+      "summary",
+      "topics"
+    ],
+    "topic_row": [
+      "title",
+      "id"
+    ],
+    "topic_detail_order": [
+      "overview",
+      "learn_items",
+      "learning_goal",
+      "tools_and_setup",
+      "resources",
+      "practice",
+      "completion_check"
+    ],
+    "subtopics_are_tracked": false,
+    "prerequisites_are_advisory": true,
+    "completion_state_source": "application_only",
+    "notes": "Use topic.detail.guide; preserve legacy detail keys as compatibility aliases. No content-owned Done states."
+  },
+  "research_and_review_notes": {
+    "human_review": "Pending",
+    "content_readiness": "Not production ready; legacy generic content remains in most topics",
+    "verified_free_topic_coverage": "Not yet established for all topics"
+  }
+}

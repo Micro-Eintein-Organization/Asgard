@@ -1,0 +1,2229 @@
+{
+  "schema_version": "4.0.0-draft",
+  "career": {
+    "name": "Hardware Engineer",
+    "slug": "hardware-engineer",
+    "category": "Hardware & Embedded Systems",
+    "status": "Draft — pending human review"
+  },
+  "career_overview": {
+    "short_description": "Understand and design basic electronic and digital circuits. Learn to calculate, simulate and document safe low-voltage designs.",
+    "responsibilities": [
+      "Assess goals and constraints relevant to hardware engineer work",
+      "Apply appropriate tools and methods to a bounded task",
+      "Test, document and communicate results",
+      "Collaborate and incorporate feedback"
+    ],
+    "representative_work": [
+      "A documented and simulated introductory circuit or digital subsystem."
+    ],
+    "core_skills": [
+      "Electrical safety and limits",
+      "Voltage current and resistance",
+      "Power and energy calculations",
+      "Circuit simulation setup",
+      "Series and parallel networks",
+      "Kirchhoff laws",
+      "Capacitors and transients",
+      "Diodes and polarity",
+      "Transistors as switches",
+      "Logic gates and truth tables"
+    ]
+  },
+  "roadmap": {
+    "title": "Hardware Engineer: beginner foundations and starter project",
+    "intended_learner": "Motivated beginner; basic computer literacy assumed, with no prior professional experience.",
+    "starting_requirements": "Computer, internet access, text editor and browser. Most tasks use free software or simulation; specialist equipment, accounts and costs are flagged for review when applicable.",
+    "final_outcome": "A documented and simulated introductory circuit or digital subsystem.",
+    "milestones": [
+      {
+        "id": "M01",
+        "slug": "understand-electronics-safely",
+        "title": "Understand electronics safely",
+        "summary": "Learn electrical safety and limits, voltage current and resistance, power and energy calculations, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T01",
+            "slug": "electrical-safety-and-limits",
+            "title": "Electrical safety and limits",
+            "milestone_id": "M01",
+            "card": {
+              "title": "Electrical safety and limits",
+              "summary": "Circuit work must respect voltage and current limits. Beginners should use simulation and low-voltage supplies, never experiment directly with mains electricity.",
+              "prerequisite_ids": []
+            },
+            "detail": {
+              "eyebrow": "M01 · Understand electronics safely",
+              "title": "Electrical safety and limits",
+              "overview": "Circuit work must respect voltage and current limits. Beginners should use simulation and low-voltage supplies, never experiment directly with mains electricity.",
+              "learning_outcomes": [
+                "Use what you learn about electrical safety and limits to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T01-S01",
+                  "title": "Electrical safety",
+                  "explanation": "Find how electrical safety works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T01-S02",
+                  "title": "Limits",
+                  "explanation": "Find how limits works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "List hazards and safe limits for a simulated 5 V circuit."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: list hazards and safe limits for a simulated 5 V circuit. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Nand2Tetris",
+                  "provider": "Nand2Tetris",
+                  "url": "https://www.nand2tetris.org/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "Not verified",
+                  "use_this_for": "Consult relevant sections for background on electrical safety and limits; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T01-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Circuit work must respect voltage and current limits. Beginners should use simulation and low-voltage supplies, never experiment directly with mains electricity.",
+                "learn_items": [
+                  "Electrical safety",
+                  "Limits"
+                ],
+                "learning_goal": "Use what you learn about electrical safety and limits to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Nand2Tetris",
+                    "provider": "Nand2Tetris",
+                    "url": "https://www.nand2tetris.org/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "Not verified",
+                    "use_this_for": "Consult relevant sections for background on electrical safety and limits; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T01-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "List hazards and safe limits for a simulated 5 V circuit.",
+                "completion_check": "You can show or explain the result of this task: list hazards and safe limits for a simulated 5 V circuit. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T02",
+            "slug": "voltage-current-and-resistance",
+            "title": "Voltage current and resistance",
+            "milestone_id": "M01",
+            "card": {
+              "title": "Voltage current and resistance",
+              "summary": "Voltage measures potential difference, current measures charge flow and resistance opposes current. Ohm's law relates them under suitable conditions.",
+              "prerequisite_ids": [
+                "T01"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M01 · Understand electronics safely",
+              "title": "Voltage current and resistance",
+              "overview": "Voltage measures potential difference, current measures charge flow and resistance opposes current. Ohm's law relates them under suitable conditions.",
+              "learning_outcomes": [
+                "Use what you learn about voltage current and resistance to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T02-S01",
+                  "title": "Voltage current",
+                  "explanation": "Find how voltage current works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T02-S02",
+                  "title": "Resistance",
+                  "explanation": "Find how resistance works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Calculate current through a resistor at a specified voltage."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: calculate current through a resistor at a specified voltage. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Nand2Tetris",
+                  "provider": "Nand2Tetris",
+                  "url": "https://www.nand2tetris.org/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "Not verified",
+                  "use_this_for": "Consult relevant sections for background on voltage current and resistance; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T02-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Voltage measures potential difference, current measures charge flow and resistance opposes current. Ohm's law relates them under suitable conditions.",
+                "learn_items": [
+                  "Voltage current",
+                  "Resistance"
+                ],
+                "learning_goal": "Use what you learn about voltage current and resistance to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Nand2Tetris",
+                    "provider": "Nand2Tetris",
+                    "url": "https://www.nand2tetris.org/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "Not verified",
+                    "use_this_for": "Consult relevant sections for background on voltage current and resistance; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T02-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Calculate current through a resistor at a specified voltage.",
+                "completion_check": "You can show or explain the result of this task: calculate current through a resistor at a specified voltage. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T03",
+            "slug": "power-and-energy-calculations",
+            "title": "Power and energy calculations",
+            "milestone_id": "M01",
+            "card": {
+              "title": "Power and energy calculations",
+              "summary": "Electrical power is the rate of energy transfer; component ratings limit safe dissipation. Check both voltage and wattage constraints.",
+              "prerequisite_ids": [
+                "T02"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M01 · Understand electronics safely",
+              "title": "Power and energy calculations",
+              "overview": "Electrical power is the rate of energy transfer; component ratings limit safe dissipation. Check both voltage and wattage constraints.",
+              "learning_outcomes": [
+                "Use what you learn about power and energy calculations to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T03-S01",
+                  "title": "Power",
+                  "explanation": "Find how power works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T03-S02",
+                  "title": "Energy calculations",
+                  "explanation": "Find how energy calculations works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Estimate resistor power in a small LED example."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: estimate resistor power in a small LED example. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Nand2Tetris",
+                  "provider": "Nand2Tetris",
+                  "url": "https://www.nand2tetris.org/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "Not verified",
+                  "use_this_for": "Consult relevant sections for background on power and energy calculations; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T03-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Electrical power is the rate of energy transfer; component ratings limit safe dissipation. Check both voltage and wattage constraints.",
+                "learn_items": [
+                  "Power",
+                  "Energy calculations"
+                ],
+                "learning_goal": "Use what you learn about power and energy calculations to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Nand2Tetris",
+                    "provider": "Nand2Tetris",
+                    "url": "https://www.nand2tetris.org/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "Not verified",
+                    "use_this_for": "Consult relevant sections for background on power and energy calculations; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T03-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Estimate resistor power in a small LED example.",
+                "completion_check": "You can show or explain the result of this task: estimate resistor power in a small LED example. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T04",
+            "slug": "circuit-simulation-setup",
+            "title": "Circuit simulation setup",
+            "milestone_id": "M01",
+            "card": {
+              "title": "Circuit simulation setup",
+              "summary": "Circuit simulators estimate electrical behaviour without physical components. Model settings and assumptions still need inspection.",
+              "prerequisite_ids": [
+                "T03"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M01 · Understand electronics safely",
+              "title": "Circuit simulation setup",
+              "overview": "Circuit simulators estimate electrical behaviour without physical components. Model settings and assumptions still need inspection.",
+              "learning_outcomes": [
+                "Use what you learn about circuit simulation setup to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T04-S01",
+                  "title": "Circuit simulation setup: purpose and essential vocabulary",
+                  "explanation": "Find how circuit simulation setup: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T04-S02",
+                  "title": "Circuit simulation setup: application and common pitfalls",
+                  "explanation": "Find how circuit simulation setup: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Simulate a resistor network and compare voltages to a hand calculation."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: simulate a resistor network and compare voltages to a hand calculation. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Nand2Tetris",
+                  "provider": "Nand2Tetris",
+                  "url": "https://www.nand2tetris.org/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "Not verified",
+                  "use_this_for": "Consult relevant sections for background on circuit simulation setup; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T04-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Circuit simulators estimate electrical behaviour without physical components. Model settings and assumptions still need inspection.",
+                "learn_items": [
+                  "Circuit simulation setup: purpose and essential vocabulary",
+                  "Circuit simulation setup: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about circuit simulation setup to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Nand2Tetris",
+                    "provider": "Nand2Tetris",
+                    "url": "https://www.nand2tetris.org/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "Not verified",
+                    "use_this_for": "Consult relevant sections for background on circuit simulation setup; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T04-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Simulate a resistor network and compare voltages to a hand calculation.",
+                "completion_check": "You can show or explain the result of this task: simulate a resistor network and compare voltages to a hand calculation. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M02",
+        "slug": "analyse-basic-circuits",
+        "title": "Analyse basic circuits",
+        "summary": "Learn series and parallel networks, kirchhoff laws, capacitors and transients, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T05",
+            "slug": "series-and-parallel-networks",
+            "title": "Series and parallel networks",
+            "milestone_id": "M02",
+            "card": {
+              "title": "Series and parallel networks",
+              "summary": "Series components share current; parallel branches share voltage. Equivalent resistance depends on how components connect.",
+              "prerequisite_ids": [
+                "T04"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Analyse basic circuits",
+              "title": "Series and parallel networks",
+              "overview": "Series components share current; parallel branches share voltage. Equivalent resistance depends on how components connect.",
+              "learning_outcomes": [
+                "Use what you learn about series and parallel networks to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T05-S01",
+                  "title": "Series",
+                  "explanation": "Find how series works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T05-S02",
+                  "title": "Parallel networks",
+                  "explanation": "Find how parallel networks works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Calculate and simulate a mixed series-parallel network."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: calculate and simulate a mixed series-parallel network. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Nand2Tetris",
+                  "provider": "Nand2Tetris",
+                  "url": "https://www.nand2tetris.org/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "Not verified",
+                  "use_this_for": "Consult relevant sections for background on series and parallel networks; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T05-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Series components share current; parallel branches share voltage. Equivalent resistance depends on how components connect.",
+                "learn_items": [
+                  "Series",
+                  "Parallel networks"
+                ],
+                "learning_goal": "Use what you learn about series and parallel networks to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Nand2Tetris",
+                    "provider": "Nand2Tetris",
+                    "url": "https://www.nand2tetris.org/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "Not verified",
+                    "use_this_for": "Consult relevant sections for background on series and parallel networks; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T05-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Calculate and simulate a mixed series-parallel network.",
+                "completion_check": "You can show or explain the result of this task: calculate and simulate a mixed series-parallel network. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T06",
+            "slug": "kirchhoff-laws",
+            "title": "Kirchhoff laws",
+            "milestone_id": "M02",
+            "card": {
+              "title": "Kirchhoff laws",
+              "summary": "Kirchhoff's current and voltage laws express conservation at junctions and loops. They help solve circuits beyond simple combinations.",
+              "prerequisite_ids": [
+                "T05"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Analyse basic circuits",
+              "title": "Kirchhoff laws",
+              "overview": "Kirchhoff's current and voltage laws express conservation at junctions and loops. They help solve circuits beyond simple combinations.",
+              "learning_outcomes": [
+                "Use what you learn about kirchhoff laws to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T06-S01",
+                  "title": "Kirchhoff laws: purpose and essential vocabulary",
+                  "explanation": "Find how kirchhoff laws: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T06-S02",
+                  "title": "Kirchhoff laws: application and common pitfalls",
+                  "explanation": "Find how kirchhoff laws: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Solve a two-loop resistor circuit and check it in simulation."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: solve a two-loop resistor circuit and check it in simulation. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Nand2Tetris",
+                  "provider": "Nand2Tetris",
+                  "url": "https://www.nand2tetris.org/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "Not verified",
+                  "use_this_for": "Consult relevant sections for background on kirchhoff laws; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T06-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Kirchhoff's current and voltage laws express conservation at junctions and loops. They help solve circuits beyond simple combinations.",
+                "learn_items": [
+                  "Kirchhoff laws: purpose and essential vocabulary",
+                  "Kirchhoff laws: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about kirchhoff laws to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Nand2Tetris",
+                    "provider": "Nand2Tetris",
+                    "url": "https://www.nand2tetris.org/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "Not verified",
+                    "use_this_for": "Consult relevant sections for background on kirchhoff laws; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T06-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Solve a two-loop resistor circuit and check it in simulation.",
+                "completion_check": "You can show or explain the result of this task: solve a two-loop resistor circuit and check it in simulation. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T07",
+            "slug": "capacitors-and-transients",
+            "title": "Capacitors and transients",
+            "milestone_id": "M02",
+            "card": {
+              "title": "Capacitors and transients",
+              "summary": "Capacitors store energy in an electric field and create time-dependent charging behaviour. The RC time constant describes a simple response.",
+              "prerequisite_ids": [
+                "T06"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Analyse basic circuits",
+              "title": "Capacitors and transients",
+              "overview": "Capacitors store energy in an electric field and create time-dependent charging behaviour. The RC time constant describes a simple response.",
+              "learning_outcomes": [
+                "Use what you learn about capacitors and transients to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T07-S01",
+                  "title": "Capacitors",
+                  "explanation": "Find how capacitors works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T07-S02",
+                  "title": "Transients",
+                  "explanation": "Find how transients works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Plot capacitor voltage during simulated charging."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: plot capacitor voltage during simulated charging. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Nand2Tetris",
+                  "provider": "Nand2Tetris",
+                  "url": "https://www.nand2tetris.org/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "Not verified",
+                  "use_this_for": "Consult relevant sections for background on capacitors and transients; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T07-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Capacitors store energy in an electric field and create time-dependent charging behaviour. The RC time constant describes a simple response.",
+                "learn_items": [
+                  "Capacitors",
+                  "Transients"
+                ],
+                "learning_goal": "Use what you learn about capacitors and transients to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Nand2Tetris",
+                    "provider": "Nand2Tetris",
+                    "url": "https://www.nand2tetris.org/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "Not verified",
+                    "use_this_for": "Consult relevant sections for background on capacitors and transients; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T07-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Plot capacitor voltage during simulated charging.",
+                "completion_check": "You can show or explain the result of this task: plot capacitor voltage during simulated charging. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T08",
+            "slug": "diodes-and-polarity",
+            "title": "Diodes and polarity",
+            "milestone_id": "M02",
+            "card": {
+              "title": "Diodes and polarity",
+              "summary": "Diodes conduct mainly in one direction and have voltage-drop and reverse-voltage limits. Incorrect orientation can block a circuit or damage parts.",
+              "prerequisite_ids": [
+                "T07"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Analyse basic circuits",
+              "title": "Diodes and polarity",
+              "overview": "Diodes conduct mainly in one direction and have voltage-drop and reverse-voltage limits. Incorrect orientation can block a circuit or damage parts.",
+              "learning_outcomes": [
+                "Use what you learn about diodes and polarity to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T08-S01",
+                  "title": "Diodes",
+                  "explanation": "Find how diodes works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T08-S02",
+                  "title": "Polarity",
+                  "explanation": "Find how polarity works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Simulate diode polarity and current limiting."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: simulate diode polarity and current limiting. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Nand2Tetris",
+                  "provider": "Nand2Tetris",
+                  "url": "https://www.nand2tetris.org/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "Not verified",
+                  "use_this_for": "Consult relevant sections for background on diodes and polarity; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T08-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Diodes conduct mainly in one direction and have voltage-drop and reverse-voltage limits. Incorrect orientation can block a circuit or damage parts.",
+                "learn_items": [
+                  "Diodes",
+                  "Polarity"
+                ],
+                "learning_goal": "Use what you learn about diodes and polarity to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Nand2Tetris",
+                    "provider": "Nand2Tetris",
+                    "url": "https://www.nand2tetris.org/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "Not verified",
+                    "use_this_for": "Consult relevant sections for background on diodes and polarity; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T08-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Simulate diode polarity and current limiting.",
+                "completion_check": "You can show or explain the result of this task: simulate diode polarity and current limiting. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M03",
+        "slug": "work-with-components",
+        "title": "Work with components",
+        "summary": "Learn transistors as switches, logic gates and truth tables, digital timing basics, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T09",
+            "slug": "transistors-as-switches",
+            "title": "Transistors as switches",
+            "milestone_id": "M03",
+            "card": {
+              "title": "Transistors as switches",
+              "summary": "Transistors can act as electronically controlled switches, but ratings and drive conditions matter. A logic pin may need a transistor to control a larger load.",
+              "prerequisite_ids": [
+                "T08"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Work with components",
+              "title": "Transistors as switches",
+              "overview": "Transistors can act as electronically controlled switches, but ratings and drive conditions matter. A logic pin may need a transistor to control a larger load.",
+              "learning_outcomes": [
+                "Use what you learn about transistors as switches to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T09-S01",
+                  "title": "Transistors as switches: purpose and essential vocabulary",
+                  "explanation": "Find how transistors as switches: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T09-S02",
+                  "title": "Transistors as switches: application and common pitfalls",
+                  "explanation": "Find how transistors as switches: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Design a low-voltage LED switch using a transistor model."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: design a low-voltage LED switch using a transistor model. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Nand2Tetris",
+                  "provider": "Nand2Tetris",
+                  "url": "https://www.nand2tetris.org/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "Not verified",
+                  "use_this_for": "Consult relevant sections for background on transistors as switches; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T09-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Transistors can act as electronically controlled switches, but ratings and drive conditions matter. A logic pin may need a transistor to control a larger load.",
+                "learn_items": [
+                  "Transistors as switches: purpose and essential vocabulary",
+                  "Transistors as switches: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about transistors as switches to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Nand2Tetris",
+                    "provider": "Nand2Tetris",
+                    "url": "https://www.nand2tetris.org/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "Not verified",
+                    "use_this_for": "Consult relevant sections for background on transistors as switches; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T09-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Design a low-voltage LED switch using a transistor model.",
+                "completion_check": "You can show or explain the result of this task: design a low-voltage LED switch using a transistor model. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T10",
+            "slug": "logic-gates-and-truth-tables",
+            "title": "Logic gates and truth tables",
+            "milestone_id": "M03",
+            "card": {
+              "title": "Logic gates and truth tables",
+              "summary": "Digital gates implement logical operations such as AND, OR and NOT. Truth tables show outputs for every input combination.",
+              "prerequisite_ids": [
+                "T09"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Work with components",
+              "title": "Logic gates and truth tables",
+              "overview": "Digital gates implement logical operations such as AND, OR and NOT. Truth tables show outputs for every input combination.",
+              "learning_outcomes": [
+                "Use what you learn about logic gates and truth tables to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T10-S01",
+                  "title": "Logic gates",
+                  "explanation": "Find how logic gates works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T10-S02",
+                  "title": "Truth tables",
+                  "explanation": "Find how truth tables works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Build and test a two-input gate circuit in simulation."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: build and test a two-input gate circuit in simulation. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Nand2Tetris",
+                  "provider": "Nand2Tetris",
+                  "url": "https://www.nand2tetris.org/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "Not verified",
+                  "use_this_for": "Consult relevant sections for background on logic gates and truth tables; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T10-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Digital gates implement logical operations such as AND, OR and NOT. Truth tables show outputs for every input combination.",
+                "learn_items": [
+                  "Logic gates",
+                  "Truth tables"
+                ],
+                "learning_goal": "Use what you learn about logic gates and truth tables to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Nand2Tetris",
+                    "provider": "Nand2Tetris",
+                    "url": "https://www.nand2tetris.org/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "Not verified",
+                    "use_this_for": "Consult relevant sections for background on logic gates and truth tables; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T10-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Build and test a two-input gate circuit in simulation.",
+                "completion_check": "You can show or explain the result of this task: build and test a two-input gate circuit in simulation. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T11",
+            "slug": "digital-timing-basics",
+            "title": "Digital timing basics",
+            "milestone_id": "M03",
+            "card": {
+              "title": "Digital timing basics",
+              "summary": "Digital signals change over time, and propagation delays affect when outputs settle. Timing diagrams expose hazards not visible in static truth tables.",
+              "prerequisite_ids": [
+                "T10"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Work with components",
+              "title": "Digital timing basics",
+              "overview": "Digital signals change over time, and propagation delays affect when outputs settle. Timing diagrams expose hazards not visible in static truth tables.",
+              "learning_outcomes": [
+                "Use what you learn about digital timing basics to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T11-S01",
+                  "title": "Digital timing basics: purpose and essential vocabulary",
+                  "explanation": "Find how digital timing basics: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T11-S02",
+                  "title": "Digital timing basics: application and common pitfalls",
+                  "explanation": "Find how digital timing basics: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Draw a timing diagram for a clocked signal."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: draw a timing diagram for a clocked signal. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Nand2Tetris",
+                  "provider": "Nand2Tetris",
+                  "url": "https://www.nand2tetris.org/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "Not verified",
+                  "use_this_for": "Consult relevant sections for background on digital timing basics; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T11-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Digital signals change over time, and propagation delays affect when outputs settle. Timing diagrams expose hazards not visible in static truth tables.",
+                "learn_items": [
+                  "Digital timing basics: purpose and essential vocabulary",
+                  "Digital timing basics: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about digital timing basics to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Nand2Tetris",
+                    "provider": "Nand2Tetris",
+                    "url": "https://www.nand2tetris.org/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "Not verified",
+                    "use_this_for": "Consult relevant sections for background on digital timing basics; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T11-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Draw a timing diagram for a clocked signal.",
+                "completion_check": "You can show or explain the result of this task: draw a timing diagram for a clocked signal. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T12",
+            "slug": "reading-datasheets",
+            "title": "Reading datasheets",
+            "milestone_id": "M03",
+            "card": {
+              "title": "Reading datasheets",
+              "summary": "Datasheets specify pinouts, absolute limits, operating conditions and typical behaviour. Do not confuse maximum ratings with recommended operation.",
+              "prerequisite_ids": [
+                "T11"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Work with components",
+              "title": "Reading datasheets",
+              "overview": "Datasheets specify pinouts, absolute limits, operating conditions and typical behaviour. Do not confuse maximum ratings with recommended operation.",
+              "learning_outcomes": [
+                "Use what you learn about reading datasheets to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T12-S01",
+                  "title": "Reading datasheets: purpose and essential vocabulary",
+                  "explanation": "Find how reading datasheets: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T12-S02",
+                  "title": "Reading datasheets: application and common pitfalls",
+                  "explanation": "Find how reading datasheets: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Find supply and current limits in a sample component datasheet."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: find supply and current limits in a sample component datasheet. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Nand2Tetris",
+                  "provider": "Nand2Tetris",
+                  "url": "https://www.nand2tetris.org/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "Not verified",
+                  "use_this_for": "Consult relevant sections for background on reading datasheets; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T12-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Datasheets specify pinouts, absolute limits, operating conditions and typical behaviour. Do not confuse maximum ratings with recommended operation.",
+                "learn_items": [
+                  "Reading datasheets: purpose and essential vocabulary",
+                  "Reading datasheets: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about reading datasheets to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Nand2Tetris",
+                    "provider": "Nand2Tetris",
+                    "url": "https://www.nand2tetris.org/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "Not verified",
+                    "use_this_for": "Consult relevant sections for background on reading datasheets; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T12-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Find supply and current limits in a sample component datasheet.",
+                "completion_check": "You can show or explain the result of this task: find supply and current limits in a sample component datasheet. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M04",
+        "slug": "capture-a-design",
+        "title": "Capture a design",
+        "summary": "Learn schematic symbols and nets, component values and tolerances, design rules and erc, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T13",
+            "slug": "schematic-symbols-and-nets",
+            "title": "Schematic symbols and nets",
+            "milestone_id": "M04",
+            "card": {
+              "title": "Schematic symbols and nets",
+              "summary": "Schematics use symbols and named nets to document electrical connectivity. Good labels make the circuit understandable without following every line.",
+              "prerequisite_ids": [
+                "T12"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Capture a design",
+              "title": "Schematic symbols and nets",
+              "overview": "Schematics use symbols and named nets to document electrical connectivity. Good labels make the circuit understandable without following every line.",
+              "learning_outcomes": [
+                "Use what you learn about schematic symbols and nets to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T13-S01",
+                  "title": "Schematic symbols",
+                  "explanation": "Find how schematic symbols works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T13-S02",
+                  "title": "Nets",
+                  "explanation": "Find how nets works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Draw a labelled schematic for a simple switch circuit."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: draw a labelled schematic for a simple switch circuit. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Nand2Tetris",
+                  "provider": "Nand2Tetris",
+                  "url": "https://www.nand2tetris.org/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "Not verified",
+                  "use_this_for": "Consult relevant sections for background on schematic symbols and nets; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T13-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Schematics use symbols and named nets to document electrical connectivity. Good labels make the circuit understandable without following every line.",
+                "learn_items": [
+                  "Schematic symbols",
+                  "Nets"
+                ],
+                "learning_goal": "Use what you learn about schematic symbols and nets to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Nand2Tetris",
+                    "provider": "Nand2Tetris",
+                    "url": "https://www.nand2tetris.org/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "Not verified",
+                    "use_this_for": "Consult relevant sections for background on schematic symbols and nets; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T13-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Draw a labelled schematic for a simple switch circuit.",
+                "completion_check": "You can show or explain the result of this task: draw a labelled schematic for a simple switch circuit. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T14",
+            "slug": "component-values-and-tolerances",
+            "title": "Component values and tolerances",
+            "milestone_id": "M04",
+            "card": {
+              "title": "Component values and tolerances",
+              "summary": "Real components vary around nominal values. Tolerances affect current, timing and other circuit performance.",
+              "prerequisite_ids": [
+                "T13"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Capture a design",
+              "title": "Component values and tolerances",
+              "overview": "Real components vary around nominal values. Tolerances affect current, timing and other circuit performance.",
+              "learning_outcomes": [
+                "Use what you learn about component values and tolerances to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T14-S01",
+                  "title": "Component values",
+                  "explanation": "Find how component values works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T14-S02",
+                  "title": "Tolerances",
+                  "explanation": "Find how tolerances works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Calculate worst-case current using resistor tolerance limits."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: calculate worst-case current using resistor tolerance limits. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Nand2Tetris",
+                  "provider": "Nand2Tetris",
+                  "url": "https://www.nand2tetris.org/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "Not verified",
+                  "use_this_for": "Consult relevant sections for background on component values and tolerances; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T14-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Real components vary around nominal values. Tolerances affect current, timing and other circuit performance.",
+                "learn_items": [
+                  "Component values",
+                  "Tolerances"
+                ],
+                "learning_goal": "Use what you learn about component values and tolerances to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Nand2Tetris",
+                    "provider": "Nand2Tetris",
+                    "url": "https://www.nand2tetris.org/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "Not verified",
+                    "use_this_for": "Consult relevant sections for background on component values and tolerances; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T14-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Calculate worst-case current using resistor tolerance limits.",
+                "completion_check": "You can show or explain the result of this task: calculate worst-case current using resistor tolerance limits. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T15",
+            "slug": "design-rules-and-erc",
+            "title": "Design rules and ERC",
+            "milestone_id": "M04",
+            "card": {
+              "title": "Design rules and ERC",
+              "summary": "Electrical rule checking detects some disconnected or conflicting pins, but does not prove functional correctness. Review warnings deliberately.",
+              "prerequisite_ids": [
+                "T14"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Capture a design",
+              "title": "Design rules and ERC",
+              "overview": "Electrical rule checking detects some disconnected or conflicting pins, but does not prove functional correctness. Review warnings deliberately.",
+              "learning_outcomes": [
+                "Use what you learn about design rules and erc to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T15-S01",
+                  "title": "Design rules",
+                  "explanation": "Find how design rules works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T15-S02",
+                  "title": "Erc",
+                  "explanation": "Find how erc works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Run an ERC and explain two resulting warnings."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: run an ERC and explain two resulting warnings. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Nand2Tetris",
+                  "provider": "Nand2Tetris",
+                  "url": "https://www.nand2tetris.org/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "Not verified",
+                  "use_this_for": "Consult relevant sections for background on design rules and erc; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T15-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Electrical rule checking detects some disconnected or conflicting pins, but does not prove functional correctness. Review warnings deliberately.",
+                "learn_items": [
+                  "Design rules",
+                  "Erc"
+                ],
+                "learning_goal": "Use what you learn about design rules and erc to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Nand2Tetris",
+                    "provider": "Nand2Tetris",
+                    "url": "https://www.nand2tetris.org/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "Not verified",
+                    "use_this_for": "Consult relevant sections for background on design rules and erc; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T15-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Run an ERC and explain two resulting warnings.",
+                "completion_check": "You can show or explain the result of this task: run an ERC and explain two resulting warnings. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T16",
+            "slug": "bill-of-materials-basics",
+            "title": "Bill of materials basics",
+            "milestone_id": "M04",
+            "card": {
+              "title": "Bill of materials basics",
+              "summary": "A bill of materials lists parts, quantities and important specifications. Generic substitute parts may not share package or electrical limits.",
+              "prerequisite_ids": [
+                "T15"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Capture a design",
+              "title": "Bill of materials basics",
+              "overview": "A bill of materials lists parts, quantities and important specifications. Generic substitute parts may not share package or electrical limits.",
+              "learning_outcomes": [
+                "Use what you learn about bill of materials basics to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T16-S01",
+                  "title": "Bill of materials basics: purpose and essential vocabulary",
+                  "explanation": "Find how bill of materials basics: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T16-S02",
+                  "title": "Bill of materials basics: application and common pitfalls",
+                  "explanation": "Find how bill of materials basics: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Prepare a BOM for a simple low-voltage circuit."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: prepare a BOM for a simple low-voltage circuit. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Nand2Tetris",
+                  "provider": "Nand2Tetris",
+                  "url": "https://www.nand2tetris.org/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "Not verified",
+                  "use_this_for": "Consult relevant sections for background on bill of materials basics; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T16-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A bill of materials lists parts, quantities and important specifications. Generic substitute parts may not share package or electrical limits.",
+                "learn_items": [
+                  "Bill of materials basics: purpose and essential vocabulary",
+                  "Bill of materials basics: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about bill of materials basics to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Nand2Tetris",
+                    "provider": "Nand2Tetris",
+                    "url": "https://www.nand2tetris.org/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "Not verified",
+                    "use_this_for": "Consult relevant sections for background on bill of materials basics; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T16-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Prepare a BOM for a simple low-voltage circuit.",
+                "completion_check": "You can show or explain the result of this task: prepare a BOM for a simple low-voltage circuit. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M05",
+        "slug": "plan-a-simple-pcb",
+        "title": "Plan a simple PCB",
+        "summary": "Learn footprints and packages, pcb placement and routing, ground and power practices, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T17",
+            "slug": "footprints-and-packages",
+            "title": "Footprints and packages",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Footprints and packages",
+              "summary": "A footprint describes the physical pads used on a circuit board. It must match the actual component package and pin numbering.",
+              "prerequisite_ids": [
+                "T16"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Plan a simple PCB",
+              "title": "Footprints and packages",
+              "overview": "A footprint describes the physical pads used on a circuit board. It must match the actual component package and pin numbering.",
+              "learning_outcomes": [
+                "Use what you learn about footprints and packages to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T17-S01",
+                  "title": "Footprints",
+                  "explanation": "Find how footprints works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T17-S02",
+                  "title": "Packages",
+                  "explanation": "Find how packages works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Compare a schematic symbol's pin numbers with a selected footprint."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: compare a schematic symbol's pin numbers with a selected footprint. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Nand2Tetris",
+                  "provider": "Nand2Tetris",
+                  "url": "https://www.nand2tetris.org/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "Not verified",
+                  "use_this_for": "Consult relevant sections for background on footprints and packages; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T17-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A footprint describes the physical pads used on a circuit board. It must match the actual component package and pin numbering.",
+                "learn_items": [
+                  "Footprints",
+                  "Packages"
+                ],
+                "learning_goal": "Use what you learn about footprints and packages to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Nand2Tetris",
+                    "provider": "Nand2Tetris",
+                    "url": "https://www.nand2tetris.org/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "Not verified",
+                    "use_this_for": "Consult relevant sections for background on footprints and packages; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T17-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Compare a schematic symbol's pin numbers with a selected footprint.",
+                "completion_check": "You can show or explain the result of this task: compare a schematic symbol's pin numbers with a selected footprint. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T18",
+            "slug": "pcb-placement-and-routing",
+            "title": "PCB placement and routing",
+            "milestone_id": "M05",
+            "card": {
+              "title": "PCB placement and routing",
+              "summary": "PCB placement balances signal routing, power paths and assembly space. Keep related components close and design for reviewability.",
+              "prerequisite_ids": [
+                "T17"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Plan a simple PCB",
+              "title": "PCB placement and routing",
+              "overview": "PCB placement balances signal routing, power paths and assembly space. Keep related components close and design for reviewability.",
+              "learning_outcomes": [
+                "Use what you learn about pcb placement and routing to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T18-S01",
+                  "title": "Pcb placement",
+                  "explanation": "Find how pcb placement works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T18-S02",
+                  "title": "Routing",
+                  "explanation": "Find how routing works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Place components for a simple LED-driver board."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: place components for a simple LED-driver board. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Nand2Tetris",
+                  "provider": "Nand2Tetris",
+                  "url": "https://www.nand2tetris.org/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "Not verified",
+                  "use_this_for": "Consult relevant sections for background on pcb placement and routing; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T18-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "PCB placement balances signal routing, power paths and assembly space. Keep related components close and design for reviewability.",
+                "learn_items": [
+                  "Pcb placement",
+                  "Routing"
+                ],
+                "learning_goal": "Use what you learn about pcb placement and routing to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Nand2Tetris",
+                    "provider": "Nand2Tetris",
+                    "url": "https://www.nand2tetris.org/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "Not verified",
+                    "use_this_for": "Consult relevant sections for background on pcb placement and routing; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T18-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Place components for a simple LED-driver board.",
+                "completion_check": "You can show or explain the result of this task: place components for a simple LED-driver board. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T19",
+            "slug": "ground-and-power-practices",
+            "title": "Ground and power practices",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Ground and power practices",
+              "summary": "Ground and power connections need suitable return paths and conductor widths. Poor layout can cause noise or overheating.",
+              "prerequisite_ids": [
+                "T18"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Plan a simple PCB",
+              "title": "Ground and power practices",
+              "overview": "Ground and power connections need suitable return paths and conductor widths. Poor layout can cause noise or overheating.",
+              "learning_outcomes": [
+                "Use what you learn about ground and power practices to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T19-S01",
+                  "title": "Ground",
+                  "explanation": "Find how ground works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T19-S02",
+                  "title": "Power practices",
+                  "explanation": "Find how power practices works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Highlight current loops and return paths on a sample PCB."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: highlight current loops and return paths on a sample PCB. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Nand2Tetris",
+                  "provider": "Nand2Tetris",
+                  "url": "https://www.nand2tetris.org/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "Not verified",
+                  "use_this_for": "Consult relevant sections for background on ground and power practices; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T19-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Ground and power connections need suitable return paths and conductor widths. Poor layout can cause noise or overheating.",
+                "learn_items": [
+                  "Ground",
+                  "Power practices"
+                ],
+                "learning_goal": "Use what you learn about ground and power practices to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Nand2Tetris",
+                    "provider": "Nand2Tetris",
+                    "url": "https://www.nand2tetris.org/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "Not verified",
+                    "use_this_for": "Consult relevant sections for background on ground and power practices; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T19-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Highlight current loops and return paths on a sample PCB.",
+                "completion_check": "You can show or explain the result of this task: highlight current loops and return paths on a sample PCB. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T20",
+            "slug": "manufacturing-checks",
+            "title": "Manufacturing checks",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Manufacturing checks",
+              "summary": "Manufacturing checks inspect clearances, drills, board outlines and connectivity. A clean DRC is necessary but not a complete design review.",
+              "prerequisite_ids": [
+                "T19"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Plan a simple PCB",
+              "title": "Manufacturing checks",
+              "overview": "Manufacturing checks inspect clearances, drills, board outlines and connectivity. A clean DRC is necessary but not a complete design review.",
+              "learning_outcomes": [
+                "Use what you learn about manufacturing checks to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T20-S01",
+                  "title": "Manufacturing checks: purpose and essential vocabulary",
+                  "explanation": "Find how manufacturing checks: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T20-S02",
+                  "title": "Manufacturing checks: application and common pitfalls",
+                  "explanation": "Find how manufacturing checks: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Run a DRC and review manufacturing output previews."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: run a DRC and review manufacturing output previews. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Nand2Tetris",
+                  "provider": "Nand2Tetris",
+                  "url": "https://www.nand2tetris.org/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "Not verified",
+                  "use_this_for": "Consult relevant sections for background on manufacturing checks; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T20-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Manufacturing checks inspect clearances, drills, board outlines and connectivity. A clean DRC is necessary but not a complete design review.",
+                "learn_items": [
+                  "Manufacturing checks: purpose and essential vocabulary",
+                  "Manufacturing checks: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about manufacturing checks to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Nand2Tetris",
+                    "provider": "Nand2Tetris",
+                    "url": "https://www.nand2tetris.org/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "Not verified",
+                    "use_this_for": "Consult relevant sections for background on manufacturing checks; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T20-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Run a DRC and review manufacturing output previews.",
+                "completion_check": "You can show or explain the result of this task: run a DRC and review manufacturing output previews. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M06",
+        "slug": "deliver-a-simulated-hardware-design",
+        "title": "Deliver a simulated hardware design",
+        "summary": "Learn define low-voltage circuit, simulate and review behavior, create schematic and pcb layout, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T21",
+            "slug": "define-low-voltage-circuit",
+            "title": "Define low-voltage circuit",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Define low-voltage circuit",
+              "summary": "A project should be explicitly limited to a safe low-voltage function. Choose components with available models and datasheets.",
+              "prerequisite_ids": [
+                "T20"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Deliver a simulated hardware design",
+              "title": "Define low-voltage circuit",
+              "overview": "A project should be explicitly limited to a safe low-voltage function. Choose components with available models and datasheets.",
+              "learning_outcomes": [
+                "Use what you learn about define low-voltage circuit to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T21-S01",
+                  "title": "Define low-voltage circuit: purpose and essential vocabulary",
+                  "explanation": "Find how define low-voltage circuit: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T21-S02",
+                  "title": "Define low-voltage circuit: application and common pitfalls",
+                  "explanation": "Find how define low-voltage circuit: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Specify a simulated LED indicator and its safe input range."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: specify a simulated LED indicator and its safe input range. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Nand2Tetris",
+                  "provider": "Nand2Tetris",
+                  "url": "https://www.nand2tetris.org/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "Not verified",
+                  "use_this_for": "Consult relevant sections for background on define low-voltage circuit; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T21-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A project should be explicitly limited to a safe low-voltage function. Choose components with available models and datasheets.",
+                "learn_items": [
+                  "Define low-voltage circuit: purpose and essential vocabulary",
+                  "Define low-voltage circuit: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about define low-voltage circuit to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Nand2Tetris",
+                    "provider": "Nand2Tetris",
+                    "url": "https://www.nand2tetris.org/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "Not verified",
+                    "use_this_for": "Consult relevant sections for background on define low-voltage circuit; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T21-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Specify a simulated LED indicator and its safe input range.",
+                "completion_check": "You can show or explain the result of this task: specify a simulated LED indicator and its safe input range. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T22",
+            "slug": "simulate-and-review-behavior",
+            "title": "Simulate and review behavior",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Simulate and review behavior",
+              "summary": "Simulation checks expected voltages, currents and transients under model assumptions. Record results instead of assuming they apply perfectly to a physical board.",
+              "prerequisite_ids": [
+                "T21"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Deliver a simulated hardware design",
+              "title": "Simulate and review behavior",
+              "overview": "Simulation checks expected voltages, currents and transients under model assumptions. Record results instead of assuming they apply perfectly to a physical board.",
+              "learning_outcomes": [
+                "Use what you learn about simulate and review behavior to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T22-S01",
+                  "title": "Simulate",
+                  "explanation": "Find how simulate works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T22-S02",
+                  "title": "Review behavior",
+                  "explanation": "Find how review behavior works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Test normal and high/low component tolerance cases."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: test normal and high/low component tolerance cases. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Nand2Tetris",
+                  "provider": "Nand2Tetris",
+                  "url": "https://www.nand2tetris.org/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "Not verified",
+                  "use_this_for": "Consult relevant sections for background on simulate and review behavior; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T22-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Simulation checks expected voltages, currents and transients under model assumptions. Record results instead of assuming they apply perfectly to a physical board.",
+                "learn_items": [
+                  "Simulate",
+                  "Review behavior"
+                ],
+                "learning_goal": "Use what you learn about simulate and review behavior to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Nand2Tetris",
+                    "provider": "Nand2Tetris",
+                    "url": "https://www.nand2tetris.org/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "Not verified",
+                    "use_this_for": "Consult relevant sections for background on simulate and review behavior; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T22-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Test normal and high/low component tolerance cases.",
+                "completion_check": "You can show or explain the result of this task: test normal and high/low component tolerance cases. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T23",
+            "slug": "create-schematic-and-pcb-layout",
+            "title": "Create schematic and PCB layout",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Create schematic and PCB layout",
+              "summary": "A schematic defines circuit logic; a PCB layout implements it physically. Verify symbol-to-footprint assignments and net connectivity.",
+              "prerequisite_ids": [
+                "T22"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Deliver a simulated hardware design",
+              "title": "Create schematic and PCB layout",
+              "overview": "A schematic defines circuit logic; a PCB layout implements it physically. Verify symbol-to-footprint assignments and net connectivity.",
+              "learning_outcomes": [
+                "Use what you learn about create schematic and pcb layout to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T23-S01",
+                  "title": "Create schematic",
+                  "explanation": "Find how create schematic works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T23-S02",
+                  "title": "Pcb layout",
+                  "explanation": "Find how pcb layout works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Create both schematic and routed board files."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: create both schematic and routed board files. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Nand2Tetris",
+                  "provider": "Nand2Tetris",
+                  "url": "https://www.nand2tetris.org/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "Not verified",
+                  "use_this_for": "Consult relevant sections for background on create schematic and pcb layout; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T23-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A schematic defines circuit logic; a PCB layout implements it physically. Verify symbol-to-footprint assignments and net connectivity.",
+                "learn_items": [
+                  "Create schematic",
+                  "Pcb layout"
+                ],
+                "learning_goal": "Use what you learn about create schematic and pcb layout to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Nand2Tetris",
+                    "provider": "Nand2Tetris",
+                    "url": "https://www.nand2tetris.org/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "Not verified",
+                    "use_this_for": "Consult relevant sections for background on create schematic and pcb layout; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T23-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Create both schematic and routed board files.",
+                "completion_check": "You can show or explain the result of this task: create both schematic and routed board files. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T24",
+            "slug": "write-test-plan-and-design-notes",
+            "title": "Write test plan and design notes",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Write test plan and design notes",
+              "summary": "A test plan names inputs, expected observations, measurement points and pass criteria. Simulation does not replace physical validation.",
+              "prerequisite_ids": [
+                "T23"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Deliver a simulated hardware design",
+              "title": "Write test plan and design notes",
+              "overview": "A test plan names inputs, expected observations, measurement points and pass criteria. Simulation does not replace physical validation.",
+              "learning_outcomes": [
+                "Use what you learn about write test plan and design notes to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T24-S01",
+                  "title": "Write test plan",
+                  "explanation": "Find how write test plan works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T24-S02",
+                  "title": "Design notes",
+                  "explanation": "Find how design notes works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Write bench-test steps for a hypothetical assembled board."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: write bench-test steps for a hypothetical assembled board. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Nand2Tetris",
+                  "provider": "Nand2Tetris",
+                  "url": "https://www.nand2tetris.org/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "Not verified",
+                  "use_this_for": "Consult relevant sections for background on write test plan and design notes; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T24-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A test plan names inputs, expected observations, measurement points and pass criteria. Simulation does not replace physical validation.",
+                "learn_items": [
+                  "Write test plan",
+                  "Design notes"
+                ],
+                "learning_goal": "Use what you learn about write test plan and design notes to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Nand2Tetris",
+                    "provider": "Nand2Tetris",
+                    "url": "https://www.nand2tetris.org/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "Not verified",
+                    "use_this_for": "Consult relevant sections for background on write test plan and design notes; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T24-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Write bench-test steps for a hypothetical assembled board.",
+                "completion_check": "You can show or explain the result of this task: write bench-test steps for a hypothetical assembled board. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "display_contract": {
+    "layout": "milestone-accordion-with-topic-detail-panel",
+    "milestone_card": [
+      "title",
+      "summary",
+      "topics"
+    ],
+    "topic_row": [
+      "title",
+      "id"
+    ],
+    "topic_detail_order": [
+      "overview",
+      "learn_items",
+      "learning_goal",
+      "tools_and_setup",
+      "resources",
+      "practice",
+      "completion_check"
+    ],
+    "subtopics_are_tracked": false,
+    "prerequisites_are_advisory": true,
+    "completion_state_source": "application_only",
+    "notes": "Use topic.detail.guide; preserve legacy detail keys as compatibility aliases. No content-owned Done states."
+  },
+  "research_and_review_notes": {
+    "human_review": "Pending",
+    "content_readiness": "Not production ready; legacy generic content remains in most topics",
+    "verified_free_topic_coverage": "Not yet established for all topics"
+  }
+}
