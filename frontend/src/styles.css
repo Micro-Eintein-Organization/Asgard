@@ -69,6 +69,7 @@
   }
   html {
     scroll-padding-top: calc(var(--header-height) + 1rem);
+    scrollbar-gutter: stable;
   }
   body {
     margin: 0;
@@ -144,9 +145,13 @@
   border: none;
   border-radius: var(--button-radius);
   box-shadow: none;
+  text-decoration: none;
   transition:
     background-color 0.15s,
     border-color 0.15s;
+}
+[data-slot="button"]:hover {
+  text-decoration: none;
 }
 [data-slot="button"][data-size="icon"] {
   min-width: 2.75rem;
@@ -278,11 +283,18 @@
   gap: 1rem;
   margin-bottom: 1.25rem;
 }
-.section-heading a,
 .inline-link {
   text-decoration: underline;
   font-size: 0.875rem;
   font-weight: 600;
+}
+.section-heading a {
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.section-heading a:hover {
+  text-decoration: none;
 }
 .skip-link {
   position: fixed;
@@ -409,6 +421,10 @@
   align-items: center;
   min-height: 2.75rem;
   font-weight: 600;
+  text-decoration: none;
+}
+.public-nav > a:hover {
+  text-decoration: none;
 }
 .site-footer {
   display: flex;
@@ -944,7 +960,10 @@
   display: inline-flex;
   align-items: center;
   font-size: 0.875rem;
-  text-decoration: underline;
+  text-decoration: none;
+}
+.discovery-topline > a:last-child:hover {
+  text-decoration: none;
 }
 .question-progress {
   display: grid;
@@ -1108,6 +1127,10 @@
   font-weight: 600;
   font-size: 0.9375rem;
   margin-top: 0.75rem;
+  text-decoration: none;
+}
+.milestone-hero a:hover {
+  text-decoration: none;
 }
 .sample-progress {
   margin-top: 2rem;
@@ -1144,6 +1167,10 @@
   min-height: 2.75rem;
   min-width: 8rem;
   font-weight: 600;
+  text-decoration: none;
+}
+.topic-row > a:hover {
+  text-decoration: none;
 }
 .topic-row small {
   display: block;
