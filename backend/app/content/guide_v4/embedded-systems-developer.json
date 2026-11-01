@@ -1,0 +1,2229 @@
+{
+  "schema_version": "4.0.0-draft",
+  "career": {
+    "name": "Embedded Systems Developer",
+    "slug": "embedded-systems-developer",
+    "category": "Hardware & Embedded Systems",
+    "status": "Draft — pending human review"
+  },
+  "career_overview": {
+    "short_description": "Write software that interacts with electronic devices. Learn the basics of C, microcontrollers, inputs and timing through simulations or simple boards.",
+    "responsibilities": [
+      "Assess goals and constraints relevant to embedded systems developer work",
+      "Apply appropriate tools and methods to a bounded task",
+      "Test, document and communicate results",
+      "Collaborate and incorporate feedback"
+    ],
+    "representative_work": [
+      "A simulated or optional board-based sensor-and-output project."
+    ],
+    "core_skills": [
+      "Microcontrollers and peripherals",
+      "Voltage and safe handling",
+      "C language basics",
+      "Simulator and toolchain setup",
+      "GPIO modes",
+      "LED and button circuits",
+      "Pull resistors and debouncing",
+      "Timing without blocking",
+      "Analog to digital conversion",
+      "PWM outputs"
+    ]
+  },
+  "roadmap": {
+    "title": "Embedded Systems Developer: beginner foundations and starter project",
+    "intended_learner": "Motivated beginner; basic computer literacy assumed, with no prior professional experience.",
+    "starting_requirements": "Computer, internet access, text editor and browser. Most tasks use free software or simulation; specialist equipment, accounts and costs are flagged for review when applicable.",
+    "final_outcome": "A simulated or optional board-based sensor-and-output project.",
+    "milestones": [
+      {
+        "id": "M01",
+        "slug": "understand-embedded-computing",
+        "title": "Understand embedded computing",
+        "summary": "Learn microcontrollers and peripherals, voltage and safe handling, c language basics, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T01",
+            "slug": "microcontrollers-and-peripherals",
+            "title": "Microcontrollers and peripherals",
+            "milestone_id": "M01",
+            "card": {
+              "title": "Microcontrollers and peripherals",
+              "summary": "A microcontroller runs software that interacts with physical inputs and outputs, usually with limited memory and timing constraints. Peripherals handle tasks such as timers and serial communication.",
+              "prerequisite_ids": []
+            },
+            "detail": {
+              "eyebrow": "M01 · Understand embedded computing",
+              "title": "Microcontrollers and peripherals",
+              "overview": "A microcontroller runs software that interacts with physical inputs and outputs, usually with limited memory and timing constraints. Peripherals handle tasks such as timers and serial communication.",
+              "learning_outcomes": [
+                "Use what you learn about microcontrollers and peripherals to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T01-S01",
+                  "title": "Microcontrollers",
+                  "explanation": "Find how microcontrollers works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T01-S02",
+                  "title": "Peripherals",
+                  "explanation": "Find how peripherals works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Label CPU, memory, GPIO and timers in a block diagram."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: label CPU, memory, GPIO and timers in a block diagram. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Zephyr Getting Started",
+                  "provider": "Zephyr Project",
+                  "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on microcontrollers and peripherals; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T01-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A microcontroller runs software that interacts with physical inputs and outputs, usually with limited memory and timing constraints. Peripherals handle tasks such as timers and serial communication.",
+                "learn_items": [
+                  "Microcontrollers",
+                  "Peripherals"
+                ],
+                "learning_goal": "Use what you learn about microcontrollers and peripherals to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Zephyr Getting Started",
+                    "provider": "Zephyr Project",
+                    "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on microcontrollers and peripherals; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T01-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Label CPU, memory, GPIO and timers in a block diagram.",
+                "completion_check": "You can show or explain the result of this task: label CPU, memory, GPIO and timers in a block diagram. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T02",
+            "slug": "voltage-and-safe-handling",
+            "title": "Voltage and safe handling",
+            "milestone_id": "M01",
+            "card": {
+              "title": "Voltage and safe handling",
+              "summary": "Electronics require matching logic voltage, current limits and safe power connections. Beginners should use simulation or low-voltage kits rather than mains circuits.",
+              "prerequisite_ids": [
+                "T01"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M01 · Understand embedded computing",
+              "title": "Voltage and safe handling",
+              "overview": "Electronics require matching logic voltage, current limits and safe power connections. Beginners should use simulation or low-voltage kits rather than mains circuits.",
+              "learning_outcomes": [
+                "Use what you learn about voltage and safe handling to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T02-S01",
+                  "title": "Voltage",
+                  "explanation": "Find how voltage works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T02-S02",
+                  "title": "Safe handling",
+                  "explanation": "Find how safe handling works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Check safe supply and I/O limits in a sample datasheet."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: check safe supply and I/O limits in a sample datasheet. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Zephyr Getting Started",
+                  "provider": "Zephyr Project",
+                  "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on voltage and safe handling; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T02-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Electronics require matching logic voltage, current limits and safe power connections. Beginners should use simulation or low-voltage kits rather than mains circuits.",
+                "learn_items": [
+                  "Voltage",
+                  "Safe handling"
+                ],
+                "learning_goal": "Use what you learn about voltage and safe handling to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Zephyr Getting Started",
+                    "provider": "Zephyr Project",
+                    "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on voltage and safe handling; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T02-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Check safe supply and I/O limits in a sample datasheet.",
+                "completion_check": "You can show or explain the result of this task: check safe supply and I/O limits in a sample datasheet. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T03",
+            "slug": "c-language-basics",
+            "title": "C language basics",
+            "milestone_id": "M01",
+            "card": {
+              "title": "C language basics",
+              "summary": "Embedded C uses variables, functions and explicit types to control hardware. Integer width and memory limits matter when representing sensor values.",
+              "prerequisite_ids": [
+                "T02"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M01 · Understand embedded computing",
+              "title": "C language basics",
+              "overview": "Embedded C uses variables, functions and explicit types to control hardware. Integer width and memory limits matter when representing sensor values.",
+              "learning_outcomes": [
+                "Use what you learn about c language basics to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T03-S01",
+                  "title": "C language basics: purpose and essential vocabulary",
+                  "explanation": "Find how c language basics: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T03-S02",
+                  "title": "C language basics: application and common pitfalls",
+                  "explanation": "Find how c language basics: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Write a C function that clamps a sensor reading to a range."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: write a C function that clamps a sensor reading to a range. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Zephyr Getting Started",
+                  "provider": "Zephyr Project",
+                  "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on c language basics; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T03-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Embedded C uses variables, functions and explicit types to control hardware. Integer width and memory limits matter when representing sensor values.",
+                "learn_items": [
+                  "C language basics: purpose and essential vocabulary",
+                  "C language basics: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about c language basics to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Zephyr Getting Started",
+                    "provider": "Zephyr Project",
+                    "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on c language basics; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T03-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Write a C function that clamps a sensor reading to a range.",
+                "completion_check": "You can show or explain the result of this task: write a C function that clamps a sensor reading to a range. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T04",
+            "slug": "simulator-and-toolchain-setup",
+            "title": "Simulator and toolchain setup",
+            "milestone_id": "M01",
+            "card": {
+              "title": "Simulator and toolchain setup",
+              "summary": "A simulator allows practising firmware without buying components. A toolchain turns source code into firmware suitable for a target device.",
+              "prerequisite_ids": [
+                "T03"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M01 · Understand embedded computing",
+              "title": "Simulator and toolchain setup",
+              "overview": "A simulator allows practising firmware without buying components. A toolchain turns source code into firmware suitable for a target device.",
+              "learning_outcomes": [
+                "Use what you learn about simulator and toolchain setup to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T04-S01",
+                  "title": "Simulator",
+                  "explanation": "Find how simulator works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T04-S02",
+                  "title": "Toolchain setup",
+                  "explanation": "Find how toolchain setup works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Compile or simulate a simple LED example and record setup."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: compile or simulate a simple LED example and record setup. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Zephyr Getting Started",
+                  "provider": "Zephyr Project",
+                  "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on simulator and toolchain setup; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T04-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A simulator allows practising firmware without buying components. A toolchain turns source code into firmware suitable for a target device.",
+                "learn_items": [
+                  "Simulator",
+                  "Toolchain setup"
+                ],
+                "learning_goal": "Use what you learn about simulator and toolchain setup to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Zephyr Getting Started",
+                    "provider": "Zephyr Project",
+                    "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on simulator and toolchain setup; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T04-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Compile or simulate a simple LED example and record setup.",
+                "completion_check": "You can show or explain the result of this task: compile or simulate a simple LED example and record setup. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M02",
+        "slug": "control-digital-input-and-output",
+        "title": "Control digital input and output",
+        "summary": "Learn gpio modes, led and button circuits, pull resistors and debouncing, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T05",
+            "slug": "gpio-modes",
+            "title": "GPIO modes",
+            "milestone_id": "M02",
+            "card": {
+              "title": "GPIO modes",
+              "summary": "GPIO pins can be configured as inputs or outputs and may have alternate peripheral functions. Never assume an output can drive a load directly.",
+              "prerequisite_ids": [
+                "T04"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Control digital input and output",
+              "title": "GPIO modes",
+              "overview": "GPIO pins can be configured as inputs or outputs and may have alternate peripheral functions. Never assume an output can drive a load directly.",
+              "learning_outcomes": [
+                "Use what you learn about gpio modes to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T05-S01",
+                  "title": "GPIO modes: purpose and essential vocabulary",
+                  "explanation": "Find how gpio modes: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T05-S02",
+                  "title": "GPIO modes: application and common pitfalls",
+                  "explanation": "Find how gpio modes: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Set a simulated pin high and low to control an LED."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: set a simulated pin high and low to control an LED. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Zephyr Getting Started",
+                  "provider": "Zephyr Project",
+                  "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on gpio modes; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T05-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "GPIO pins can be configured as inputs or outputs and may have alternate peripheral functions. Never assume an output can drive a load directly.",
+                "learn_items": [
+                  "GPIO modes: purpose and essential vocabulary",
+                  "GPIO modes: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about gpio modes to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Zephyr Getting Started",
+                    "provider": "Zephyr Project",
+                    "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on gpio modes; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T05-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Set a simulated pin high and low to control an LED.",
+                "completion_check": "You can show or explain the result of this task: set a simulated pin high and low to control an LED. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T06",
+            "slug": "led-and-button-circuits",
+            "title": "LED and button circuits",
+            "milestone_id": "M02",
+            "card": {
+              "title": "LED and button circuits",
+              "summary": "An LED circuit needs current limiting, and a button creates a changing input signal. Connection polarity and resistor selection matter.",
+              "prerequisite_ids": [
+                "T05"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Control digital input and output",
+              "title": "LED and button circuits",
+              "overview": "An LED circuit needs current limiting, and a button creates a changing input signal. Connection polarity and resistor selection matter.",
+              "learning_outcomes": [
+                "Use what you learn about led and button circuits to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T06-S01",
+                  "title": "Led",
+                  "explanation": "Find how led works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T06-S02",
+                  "title": "Button circuits",
+                  "explanation": "Find how button circuits works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Build a simulated LED and button circuit."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: build a simulated LED and button circuit. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Zephyr Getting Started",
+                  "provider": "Zephyr Project",
+                  "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on led and button circuits; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T06-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "An LED circuit needs current limiting, and a button creates a changing input signal. Connection polarity and resistor selection matter.",
+                "learn_items": [
+                  "Led",
+                  "Button circuits"
+                ],
+                "learning_goal": "Use what you learn about led and button circuits to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Zephyr Getting Started",
+                    "provider": "Zephyr Project",
+                    "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on led and button circuits; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T06-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Build a simulated LED and button circuit.",
+                "completion_check": "You can show or explain the result of this task: build a simulated LED and button circuit. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T07",
+            "slug": "pull-resistors-and-debouncing",
+            "title": "Pull resistors and debouncing",
+            "milestone_id": "M02",
+            "card": {
+              "title": "Pull resistors and debouncing",
+              "summary": "Pull-up or pull-down resistors establish a defined input level; mechanical buttons often bounce between states. Debouncing prevents repeated triggers.",
+              "prerequisite_ids": [
+                "T06"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Control digital input and output",
+              "title": "Pull resistors and debouncing",
+              "overview": "Pull-up or pull-down resistors establish a defined input level; mechanical buttons often bounce between states. Debouncing prevents repeated triggers.",
+              "learning_outcomes": [
+                "Use what you learn about pull resistors and debouncing to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T07-S01",
+                  "title": "Pull resistors",
+                  "explanation": "Find how pull resistors works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T07-S02",
+                  "title": "Debouncing",
+                  "explanation": "Find how debouncing works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Observe a noisy button input and apply simple debouncing."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: observe a noisy button input and apply simple debouncing. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Zephyr Getting Started",
+                  "provider": "Zephyr Project",
+                  "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on pull resistors and debouncing; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T07-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Pull-up or pull-down resistors establish a defined input level; mechanical buttons often bounce between states. Debouncing prevents repeated triggers.",
+                "learn_items": [
+                  "Pull resistors",
+                  "Debouncing"
+                ],
+                "learning_goal": "Use what you learn about pull resistors and debouncing to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Zephyr Getting Started",
+                    "provider": "Zephyr Project",
+                    "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on pull resistors and debouncing; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T07-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Observe a noisy button input and apply simple debouncing.",
+                "completion_check": "You can show or explain the result of this task: observe a noisy button input and apply simple debouncing. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T08",
+            "slug": "timing-without-blocking",
+            "title": "Timing without blocking",
+            "milestone_id": "M02",
+            "card": {
+              "title": "Timing without blocking",
+              "summary": "Blocking delays stop other work from proceeding. A timer-based loop can check elapsed time while continuing to read inputs.",
+              "prerequisite_ids": [
+                "T07"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Control digital input and output",
+              "title": "Timing without blocking",
+              "overview": "Blocking delays stop other work from proceeding. A timer-based loop can check elapsed time while continuing to read inputs.",
+              "learning_outcomes": [
+                "Use what you learn about timing without blocking to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T08-S01",
+                  "title": "Timing without blocking: purpose and essential vocabulary",
+                  "explanation": "Find how timing without blocking: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T08-S02",
+                  "title": "Timing without blocking: application and common pitfalls",
+                  "explanation": "Find how timing without blocking: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Blink an LED while still responding to a button press."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: blink an LED while still responding to a button press. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Zephyr Getting Started",
+                  "provider": "Zephyr Project",
+                  "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on timing without blocking; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T08-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Blocking delays stop other work from proceeding. A timer-based loop can check elapsed time while continuing to read inputs.",
+                "learn_items": [
+                  "Timing without blocking: purpose and essential vocabulary",
+                  "Timing without blocking: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about timing without blocking to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Zephyr Getting Started",
+                    "provider": "Zephyr Project",
+                    "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on timing without blocking; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T08-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Blink an LED while still responding to a button press.",
+                "completion_check": "You can show or explain the result of this task: blink an LED while still responding to a button press. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M03",
+        "slug": "read-and-produce-signals",
+        "title": "Read and produce signals",
+        "summary": "Learn analog to digital conversion, pwm outputs, timers and interrupts, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T09",
+            "slug": "analog-to-digital-conversion",
+            "title": "Analog to digital conversion",
+            "milestone_id": "M03",
+            "card": {
+              "title": "Analog to digital conversion",
+              "summary": "An ADC converts an analog voltage into a digital reading over a defined range and resolution. Converting counts to physical units requires calibration assumptions.",
+              "prerequisite_ids": [
+                "T08"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Read and produce signals",
+              "title": "Analog to digital conversion",
+              "overview": "An ADC converts an analog voltage into a digital reading over a defined range and resolution. Converting counts to physical units requires calibration assumptions.",
+              "learning_outcomes": [
+                "Use what you learn about analog to digital conversion to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T09-S01",
+                  "title": "Analog to digital conversion: purpose and essential vocabulary",
+                  "explanation": "Find how analog to digital conversion: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T09-S02",
+                  "title": "Analog to digital conversion: application and common pitfalls",
+                  "explanation": "Find how analog to digital conversion: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Map sample ADC counts to an estimated voltage."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: map sample ADC counts to an estimated voltage. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Zephyr Getting Started",
+                  "provider": "Zephyr Project",
+                  "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on analog to digital conversion; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T09-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "An ADC converts an analog voltage into a digital reading over a defined range and resolution. Converting counts to physical units requires calibration assumptions.",
+                "learn_items": [
+                  "Analog to digital conversion: purpose and essential vocabulary",
+                  "Analog to digital conversion: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about analog to digital conversion to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Zephyr Getting Started",
+                    "provider": "Zephyr Project",
+                    "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on analog to digital conversion; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T09-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Map sample ADC counts to an estimated voltage.",
+                "completion_check": "You can show or explain the result of this task: map sample ADC counts to an estimated voltage. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T10",
+            "slug": "pwm-outputs",
+            "title": "PWM outputs",
+            "milestone_id": "M03",
+            "card": {
+              "title": "PWM outputs",
+              "summary": "PWM varies the fraction of time an output is on, producing controllable average power for suitable loads. It is not the same as an analog voltage.",
+              "prerequisite_ids": [
+                "T09"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Read and produce signals",
+              "title": "PWM outputs",
+              "overview": "PWM varies the fraction of time an output is on, producing controllable average power for suitable loads. It is not the same as an analog voltage.",
+              "learning_outcomes": [
+                "Use what you learn about pwm outputs to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T10-S01",
+                  "title": "PWM outputs: purpose and essential vocabulary",
+                  "explanation": "Find how pwm outputs: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T10-S02",
+                  "title": "PWM outputs: application and common pitfalls",
+                  "explanation": "Find how pwm outputs: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Change simulated LED brightness using duty cycle."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: change simulated LED brightness using duty cycle. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Zephyr Getting Started",
+                  "provider": "Zephyr Project",
+                  "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on pwm outputs; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T10-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "PWM varies the fraction of time an output is on, producing controllable average power for suitable loads. It is not the same as an analog voltage.",
+                "learn_items": [
+                  "PWM outputs: purpose and essential vocabulary",
+                  "PWM outputs: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about pwm outputs to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Zephyr Getting Started",
+                    "provider": "Zephyr Project",
+                    "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on pwm outputs; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T10-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Change simulated LED brightness using duty cycle.",
+                "completion_check": "You can show or explain the result of this task: change simulated LED brightness using duty cycle. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T11",
+            "slug": "timers-and-interrupts",
+            "title": "Timers and interrupts",
+            "milestone_id": "M03",
+            "card": {
+              "title": "Timers and interrupts",
+              "summary": "Timers count clock events and interrupts signal urgent events to firmware. Interrupt handlers should remain short and predictable.",
+              "prerequisite_ids": [
+                "T10"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Read and produce signals",
+              "title": "Timers and interrupts",
+              "overview": "Timers count clock events and interrupts signal urgent events to firmware. Interrupt handlers should remain short and predictable.",
+              "learning_outcomes": [
+                "Use what you learn about timers and interrupts to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T11-S01",
+                  "title": "Timers",
+                  "explanation": "Find how timers works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T11-S02",
+                  "title": "Interrupts",
+                  "explanation": "Find how interrupts works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Compare a polling loop with a timer-driven event."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: compare a polling loop with a timer-driven event. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Zephyr Getting Started",
+                  "provider": "Zephyr Project",
+                  "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on timers and interrupts; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T11-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Timers count clock events and interrupts signal urgent events to firmware. Interrupt handlers should remain short and predictable.",
+                "learn_items": [
+                  "Timers",
+                  "Interrupts"
+                ],
+                "learning_goal": "Use what you learn about timers and interrupts to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Zephyr Getting Started",
+                    "provider": "Zephyr Project",
+                    "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on timers and interrupts; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T11-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Compare a polling loop with a timer-driven event.",
+                "completion_check": "You can show or explain the result of this task: compare a polling loop with a timer-driven event. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T12",
+            "slug": "serial-console-diagnostics",
+            "title": "Serial console diagnostics",
+            "milestone_id": "M03",
+            "card": {
+              "title": "Serial console diagnostics",
+              "summary": "Serial logs expose program state when a screen is unavailable. Print enough context to diagnose a problem without flooding the interface.",
+              "prerequisite_ids": [
+                "T11"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Read and produce signals",
+              "title": "Serial console diagnostics",
+              "overview": "Serial logs expose program state when a screen is unavailable. Print enough context to diagnose a problem without flooding the interface.",
+              "learning_outcomes": [
+                "Use what you learn about serial console diagnostics to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T12-S01",
+                  "title": "Serial console diagnostics: purpose and essential vocabulary",
+                  "explanation": "Find how serial console diagnostics: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T12-S02",
+                  "title": "Serial console diagnostics: application and common pitfalls",
+                  "explanation": "Find how serial console diagnostics: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Log sensor readings with timestamps and detect one invalid value."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: log sensor readings with timestamps and detect one invalid value. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Zephyr Getting Started",
+                  "provider": "Zephyr Project",
+                  "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on serial console diagnostics; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T12-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Serial logs expose program state when a screen is unavailable. Print enough context to diagnose a problem without flooding the interface.",
+                "learn_items": [
+                  "Serial console diagnostics: purpose and essential vocabulary",
+                  "Serial console diagnostics: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about serial console diagnostics to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Zephyr Getting Started",
+                    "provider": "Zephyr Project",
+                    "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on serial console diagnostics; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T12-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Log sensor readings with timestamps and detect one invalid value.",
+                "completion_check": "You can show or explain the result of this task: log sensor readings with timestamps and detect one invalid value. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M04",
+        "slug": "connect-components",
+        "title": "Connect components",
+        "summary": "Learn uart communication, i2c addressing, spi basics, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T13",
+            "slug": "uart-communication",
+            "title": "UART communication",
+            "milestone_id": "M04",
+            "card": {
+              "title": "UART communication",
+              "summary": "UART exchanges serial bytes using a configured baud rate and frame format. Both ends must agree on connection settings.",
+              "prerequisite_ids": [
+                "T12"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Connect components",
+              "title": "UART communication",
+              "overview": "UART exchanges serial bytes using a configured baud rate and frame format. Both ends must agree on connection settings.",
+              "learning_outcomes": [
+                "Use what you learn about uart communication to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T13-S01",
+                  "title": "UART communication: purpose and essential vocabulary",
+                  "explanation": "Find how uart communication: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T13-S02",
+                  "title": "UART communication: application and common pitfalls",
+                  "explanation": "Find how uart communication: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Send a short message between simulated serial endpoints."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: send a short message between simulated serial endpoints. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Zephyr Getting Started",
+                  "provider": "Zephyr Project",
+                  "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on uart communication; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T13-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "UART exchanges serial bytes using a configured baud rate and frame format. Both ends must agree on connection settings.",
+                "learn_items": [
+                  "UART communication: purpose and essential vocabulary",
+                  "UART communication: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about uart communication to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Zephyr Getting Started",
+                    "provider": "Zephyr Project",
+                    "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on uart communication; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T13-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Send a short message between simulated serial endpoints.",
+                "completion_check": "You can show or explain the result of this task: send a short message between simulated serial endpoints. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T14",
+            "slug": "i2c-addressing",
+            "title": "I2C addressing",
+            "milestone_id": "M04",
+            "card": {
+              "title": "I2C addressing",
+              "summary": "I2C connects devices over shared clock and data lines using addresses. Electrical pull-ups and address conflicts affect operation.",
+              "prerequisite_ids": [
+                "T13"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Connect components",
+              "title": "I2C addressing",
+              "overview": "I2C connects devices over shared clock and data lines using addresses. Electrical pull-ups and address conflicts affect operation.",
+              "learning_outcomes": [
+                "Use what you learn about i2c addressing to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T14-S01",
+                  "title": "I2C addressing: purpose and essential vocabulary",
+                  "explanation": "Find how i2c addressing: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T14-S02",
+                  "title": "I2C addressing: application and common pitfalls",
+                  "explanation": "Find how i2c addressing: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Identify the address of a simulated I2C sensor."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: identify the address of a simulated I2C sensor. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Zephyr Getting Started",
+                  "provider": "Zephyr Project",
+                  "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on i2c addressing; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T14-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "I2C connects devices over shared clock and data lines using addresses. Electrical pull-ups and address conflicts affect operation.",
+                "learn_items": [
+                  "I2C addressing: purpose and essential vocabulary",
+                  "I2C addressing: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about i2c addressing to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Zephyr Getting Started",
+                    "provider": "Zephyr Project",
+                    "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on i2c addressing; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T14-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Identify the address of a simulated I2C sensor.",
+                "completion_check": "You can show or explain the result of this task: identify the address of a simulated I2C sensor. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T15",
+            "slug": "spi-basics",
+            "title": "SPI basics",
+            "milestone_id": "M04",
+            "card": {
+              "title": "SPI basics",
+              "summary": "SPI uses a clock and separate data paths with chip-select signals. It is common when higher throughput or simple peripheral interfaces are needed.",
+              "prerequisite_ids": [
+                "T14"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Connect components",
+              "title": "SPI basics",
+              "overview": "SPI uses a clock and separate data paths with chip-select signals. It is common when higher throughput or simple peripheral interfaces are needed.",
+              "learning_outcomes": [
+                "Use what you learn about spi basics to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T15-S01",
+                  "title": "SPI basics: purpose and essential vocabulary",
+                  "explanation": "Find how spi basics: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T15-S02",
+                  "title": "SPI basics: application and common pitfalls",
+                  "explanation": "Find how spi basics: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Sketch SPI wires between one controller and one peripheral."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: sketch SPI wires between one controller and one peripheral. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Zephyr Getting Started",
+                  "provider": "Zephyr Project",
+                  "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on spi basics; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T15-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "SPI uses a clock and separate data paths with chip-select signals. It is common when higher throughput or simple peripheral interfaces are needed.",
+                "learn_items": [
+                  "SPI basics: purpose and essential vocabulary",
+                  "SPI basics: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about spi basics to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Zephyr Getting Started",
+                    "provider": "Zephyr Project",
+                    "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on spi basics; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T15-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Sketch SPI wires between one controller and one peripheral.",
+                "completion_check": "You can show or explain the result of this task: sketch SPI wires between one controller and one peripheral. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T16",
+            "slug": "sensor-data-handling",
+            "title": "Sensor data handling",
+            "milestone_id": "M04",
+            "card": {
+              "title": "Sensor data handling",
+              "summary": "Sensor processing converts readings into meaningful units and checks plausible ranges. Filters reduce noise but introduce delay.",
+              "prerequisite_ids": [
+                "T15"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Connect components",
+              "title": "Sensor data handling",
+              "overview": "Sensor processing converts readings into meaningful units and checks plausible ranges. Filters reduce noise but introduce delay.",
+              "learning_outcomes": [
+                "Use what you learn about sensor data handling to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T16-S01",
+                  "title": "Sensor data handling: purpose and essential vocabulary",
+                  "explanation": "Find how sensor data handling: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T16-S02",
+                  "title": "Sensor data handling: application and common pitfalls",
+                  "explanation": "Find how sensor data handling: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Average several sample readings and flag impossible values."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: average several sample readings and flag impossible values. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Zephyr Getting Started",
+                  "provider": "Zephyr Project",
+                  "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on sensor data handling; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T16-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Sensor processing converts readings into meaningful units and checks plausible ranges. Filters reduce noise but introduce delay.",
+                "learn_items": [
+                  "Sensor data handling: purpose and essential vocabulary",
+                  "Sensor data handling: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about sensor data handling to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Zephyr Getting Started",
+                    "provider": "Zephyr Project",
+                    "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on sensor data handling; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T16-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Average several sample readings and flag impossible values.",
+                "completion_check": "You can show or explain the result of this task: average several sample readings and flag impossible values. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M05",
+        "slug": "build-dependable-firmware",
+        "title": "Build dependable firmware",
+        "summary": "Learn state machines, memory and data types, debugging and testing, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T17",
+            "slug": "state-machines",
+            "title": "State machines",
+            "milestone_id": "M05",
+            "card": {
+              "title": "State machines",
+              "summary": "A state machine represents modes and allowed transitions. It prevents scattered conditionals from producing inconsistent behaviour.",
+              "prerequisite_ids": [
+                "T16"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Build dependable firmware",
+              "title": "State machines",
+              "overview": "A state machine represents modes and allowed transitions. It prevents scattered conditionals from producing inconsistent behaviour.",
+              "learning_outcomes": [
+                "Use what you learn about state machines to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T17-S01",
+                  "title": "State machines: purpose and essential vocabulary",
+                  "explanation": "Find how state machines: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T17-S02",
+                  "title": "State machines: application and common pitfalls",
+                  "explanation": "Find how state machines: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Draw idle, measuring and alarm states with transition triggers."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: draw idle, measuring and alarm states with transition triggers. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Zephyr Getting Started",
+                  "provider": "Zephyr Project",
+                  "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on state machines; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T17-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A state machine represents modes and allowed transitions. It prevents scattered conditionals from producing inconsistent behaviour.",
+                "learn_items": [
+                  "State machines: purpose and essential vocabulary",
+                  "State machines: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about state machines to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Zephyr Getting Started",
+                    "provider": "Zephyr Project",
+                    "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on state machines; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T17-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Draw idle, measuring and alarm states with transition triggers.",
+                "completion_check": "You can show or explain the result of this task: draw idle, measuring and alarm states with transition triggers. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T18",
+            "slug": "memory-and-data-types",
+            "title": "Memory and data types",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Memory and data types",
+              "summary": "Stack, heap and static storage have different lifetime and memory implications. Fixed-width integer types make limits explicit.",
+              "prerequisite_ids": [
+                "T17"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Build dependable firmware",
+              "title": "Memory and data types",
+              "overview": "Stack, heap and static storage have different lifetime and memory implications. Fixed-width integer types make limits explicit.",
+              "learning_outcomes": [
+                "Use what you learn about memory and data types to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T18-S01",
+                  "title": "Memory",
+                  "explanation": "Find how memory works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T18-S02",
+                  "title": "Data types",
+                  "explanation": "Find how data types works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Find an overflow risk in a small embedded C example."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: find an overflow risk in a small embedded C example. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Zephyr Getting Started",
+                  "provider": "Zephyr Project",
+                  "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on memory and data types; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T18-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Stack, heap and static storage have different lifetime and memory implications. Fixed-width integer types make limits explicit.",
+                "learn_items": [
+                  "Memory",
+                  "Data types"
+                ],
+                "learning_goal": "Use what you learn about memory and data types to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Zephyr Getting Started",
+                    "provider": "Zephyr Project",
+                    "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on memory and data types; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T18-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Find an overflow risk in a small embedded C example.",
+                "completion_check": "You can show or explain the result of this task: find an overflow risk in a small embedded C example. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T19",
+            "slug": "debugging-and-testing",
+            "title": "Debugging and testing",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Debugging and testing",
+              "summary": "Debugging combines serial output, simulation, breakpoints and controlled test inputs. Reproduce the fault before changing code.",
+              "prerequisite_ids": [
+                "T18"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Build dependable firmware",
+              "title": "Debugging and testing",
+              "overview": "Debugging combines serial output, simulation, breakpoints and controlled test inputs. Reproduce the fault before changing code.",
+              "learning_outcomes": [
+                "Use what you learn about debugging and testing to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T19-S01",
+                  "title": "Debugging",
+                  "explanation": "Find how debugging works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T19-S02",
+                  "title": "Testing",
+                  "explanation": "Find how testing works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Create a test table for normal and invalid sensor inputs."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: create a test table for normal and invalid sensor inputs. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Zephyr Getting Started",
+                  "provider": "Zephyr Project",
+                  "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on debugging and testing; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T19-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Debugging combines serial output, simulation, breakpoints and controlled test inputs. Reproduce the fault before changing code.",
+                "learn_items": [
+                  "Debugging",
+                  "Testing"
+                ],
+                "learning_goal": "Use what you learn about debugging and testing to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Zephyr Getting Started",
+                    "provider": "Zephyr Project",
+                    "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on debugging and testing; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T19-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Create a test table for normal and invalid sensor inputs.",
+                "completion_check": "You can show or explain the result of this task: create a test table for normal and invalid sensor inputs. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T20",
+            "slug": "power-and-fault-handling",
+            "title": "Power and fault handling",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Power and fault handling",
+              "summary": "Low-power firmware reduces unnecessary work and handles disconnected peripherals safely. Safe defaults matter after resets or communication failures.",
+              "prerequisite_ids": [
+                "T19"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Build dependable firmware",
+              "title": "Power and fault handling",
+              "overview": "Low-power firmware reduces unnecessary work and handles disconnected peripherals safely. Safe defaults matter after resets or communication failures.",
+              "learning_outcomes": [
+                "Use what you learn about power and fault handling to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T20-S01",
+                  "title": "Power",
+                  "explanation": "Find how power works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T20-S02",
+                  "title": "Fault handling",
+                  "explanation": "Find how fault handling works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Define recovery behaviour when a sensor stops responding."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: define recovery behaviour when a sensor stops responding. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Zephyr Getting Started",
+                  "provider": "Zephyr Project",
+                  "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on power and fault handling; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T20-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Low-power firmware reduces unnecessary work and handles disconnected peripherals safely. Safe defaults matter after resets or communication failures.",
+                "learn_items": [
+                  "Power",
+                  "Fault handling"
+                ],
+                "learning_goal": "Use what you learn about power and fault handling to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Zephyr Getting Started",
+                    "provider": "Zephyr Project",
+                    "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on power and fault handling; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T20-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Define recovery behaviour when a sensor stops responding.",
+                "completion_check": "You can show or explain the result of this task: define recovery behaviour when a sensor stops responding. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M06",
+        "slug": "deliver-a-sensor-controller",
+        "title": "Deliver a sensor controller",
+        "summary": "Learn define simulated system, implement readings and output, add error states and tests, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T21",
+            "slug": "define-simulated-system",
+            "title": "Define simulated system",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Define simulated system",
+              "summary": "A bounded controller needs defined inputs, outputs and safe states. Simulation makes its behaviour testable without a physical kit.",
+              "prerequisite_ids": [
+                "T20"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Deliver a sensor controller",
+              "title": "Define simulated system",
+              "overview": "A bounded controller needs defined inputs, outputs and safe states. Simulation makes its behaviour testable without a physical kit.",
+              "learning_outcomes": [
+                "Use what you learn about define simulated system to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T21-S01",
+                  "title": "Define simulated system: purpose and essential vocabulary",
+                  "explanation": "Find how define simulated system: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T21-S02",
+                  "title": "Define simulated system: application and common pitfalls",
+                  "explanation": "Find how define simulated system: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Write the specification for a simulated temperature indicator."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: write the specification for a simulated temperature indicator. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Zephyr Getting Started",
+                  "provider": "Zephyr Project",
+                  "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on define simulated system; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T21-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A bounded controller needs defined inputs, outputs and safe states. Simulation makes its behaviour testable without a physical kit.",
+                "learn_items": [
+                  "Define simulated system: purpose and essential vocabulary",
+                  "Define simulated system: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about define simulated system to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Zephyr Getting Started",
+                    "provider": "Zephyr Project",
+                    "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on define simulated system; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T21-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Write the specification for a simulated temperature indicator.",
+                "completion_check": "You can show or explain the result of this task: write the specification for a simulated temperature indicator. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T22",
+            "slug": "implement-readings-and-output",
+            "title": "Implement readings and output",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Implement readings and output",
+              "summary": "Firmware reads a sensor, computes a condition and updates an output. Separate reading, decision and output functions.",
+              "prerequisite_ids": [
+                "T21"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Deliver a sensor controller",
+              "title": "Implement readings and output",
+              "overview": "Firmware reads a sensor, computes a condition and updates an output. Separate reading, decision and output functions.",
+              "learning_outcomes": [
+                "Use what you learn about implement readings and output to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T22-S01",
+                  "title": "Implement readings",
+                  "explanation": "Find how implement readings works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T22-S02",
+                  "title": "Output",
+                  "explanation": "Find how output works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Implement simulated readings and a status LED."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: implement simulated readings and a status LED. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Zephyr Getting Started",
+                  "provider": "Zephyr Project",
+                  "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on implement readings and output; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T22-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Firmware reads a sensor, computes a condition and updates an output. Separate reading, decision and output functions.",
+                "learn_items": [
+                  "Implement readings",
+                  "Output"
+                ],
+                "learning_goal": "Use what you learn about implement readings and output to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Zephyr Getting Started",
+                    "provider": "Zephyr Project",
+                    "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on implement readings and output; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T22-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Implement simulated readings and a status LED.",
+                "completion_check": "You can show or explain the result of this task: implement simulated readings and a status LED. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T23",
+            "slug": "add-error-states-and-tests",
+            "title": "Add error states and tests",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Add error states and tests",
+              "summary": "Fault states prevent invalid sensor readings from being mistaken for normal values. Test boundary conditions deliberately.",
+              "prerequisite_ids": [
+                "T22"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Deliver a sensor controller",
+              "title": "Add error states and tests",
+              "overview": "Fault states prevent invalid sensor readings from being mistaken for normal values. Test boundary conditions deliberately.",
+              "learning_outcomes": [
+                "Use what you learn about add error states and tests to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T23-S01",
+                  "title": "Add error states",
+                  "explanation": "Find how add error states works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T23-S02",
+                  "title": "Tests",
+                  "explanation": "Find how tests works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Trigger an out-of-range reading and verify safe indication."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: trigger an out-of-range reading and verify safe indication. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Zephyr Getting Started",
+                  "provider": "Zephyr Project",
+                  "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on add error states and tests; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T23-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Fault states prevent invalid sensor readings from being mistaken for normal values. Test boundary conditions deliberately.",
+                "learn_items": [
+                  "Add error states",
+                  "Tests"
+                ],
+                "learning_goal": "Use what you learn about add error states and tests to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Zephyr Getting Started",
+                    "provider": "Zephyr Project",
+                    "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on add error states and tests; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T23-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Trigger an out-of-range reading and verify safe indication.",
+                "completion_check": "You can show or explain the result of this task: trigger an out-of-range reading and verify safe indication. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T24",
+            "slug": "document-design-and-demonstration",
+            "title": "Document design and demonstration",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Document design and demonstration",
+              "summary": "A useful demonstration includes source, wiring or simulation diagram, test cases and known limitations. Avoid claiming physical reliability from simulation alone.",
+              "prerequisite_ids": [
+                "T23"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Deliver a sensor controller",
+              "title": "Document design and demonstration",
+              "overview": "A useful demonstration includes source, wiring or simulation diagram, test cases and known limitations. Avoid claiming physical reliability from simulation alone.",
+              "learning_outcomes": [
+                "Use what you learn about document design and demonstration to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T24-S01",
+                  "title": "Document design",
+                  "explanation": "Find how document design works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T24-S02",
+                  "title": "Demonstration",
+                  "explanation": "Find how demonstration works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Record a short demonstration and attach test notes."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: record a short demonstration and attach test notes. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Zephyr Getting Started",
+                  "provider": "Zephyr Project",
+                  "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on document design and demonstration; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T24-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A useful demonstration includes source, wiring or simulation diagram, test cases and known limitations. Avoid claiming physical reliability from simulation alone.",
+                "learn_items": [
+                  "Document design",
+                  "Demonstration"
+                ],
+                "learning_goal": "Use what you learn about document design and demonstration to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Zephyr Getting Started",
+                    "provider": "Zephyr Project",
+                    "url": "https://docs.zephyrproject.org/latest/develop/getting_started/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on document design and demonstration; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T24-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Record a short demonstration and attach test notes.",
+                "completion_check": "You can show or explain the result of this task: record a short demonstration and attach test notes. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "display_contract": {
+    "layout": "milestone-accordion-with-topic-detail-panel",
+    "milestone_card": [
+      "title",
+      "summary",
+      "topics"
+    ],
+    "topic_row": [
+      "title",
+      "id"
+    ],
+    "topic_detail_order": [
+      "overview",
+      "learn_items",
+      "learning_goal",
+      "tools_and_setup",
+      "resources",
+      "practice",
+      "completion_check"
+    ],
+    "subtopics_are_tracked": false,
+    "prerequisites_are_advisory": true,
+    "completion_state_source": "application_only",
+    "notes": "Use topic.detail.guide; preserve legacy detail keys as compatibility aliases. No content-owned Done states."
+  },
+  "research_and_review_notes": {
+    "human_review": "Pending",
+    "content_readiness": "Not production ready; legacy generic content remains in most topics",
+    "verified_free_topic_coverage": "Not yet established for all topics"
+  }
+}

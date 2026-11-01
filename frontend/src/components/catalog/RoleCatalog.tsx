@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router";
 import { StatePanel } from "@/components/shared";
 import { coreApi, useCoreQuery } from "@/features/core/data";
@@ -14,7 +13,6 @@ export default function RoleCatalog({
 }: RoleCatalogProps) {
   const navigate = useNavigate();
   const [params, setParams] = useSearchParams();
-  const [selected, setSelected] = useState("");
   const categories = useCoreQuery(["categories"], coreApi.categories);
   const preferences = useCoreQuery(["preferences"], coreApi.preferences);
   const recommendations = useCoreQuery(
@@ -81,7 +79,7 @@ export default function RoleCatalog({
   const suggestedIds = new Set(run?.items.map((item) => item.career_id) ?? []);
   const suggested = all.filter((role) => suggestedIds.has(role.id));
   const others = all.filter((role) => !suggestedIds.has(role.id));
-  const proceed = () => {
+  const proceed = (selected: string) => {
     const role = all.find((item) => item.id === selected);
     if (!role) return;
     if (onSelectRole) onSelectRole(selected);
@@ -99,74 +97,54 @@ export default function RoleCatalog({
   const cards = (items: typeof all) => (
     <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
       {items.map((role) => (
-        <label
+        <article
           key={role.id}
-          className={
-            "relative flex min-h-64 cursor-pointer flex-col rounded-2xl border-2 bg-white p-6 focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-emerald-700 " +
-            (selected === role.id
-              ? "border-emerald-500"
-              : "border-gray-200 hover:border-gray-400")
-          }
+          className="flex min-w-0 flex-col rounded-xl border border-gray-200 bg-white p-5"
         >
-          <span className="flex items-center justify-between gap-2">
-            <input
-              type="radio"
-              name="catalog-career"
-              value={role.id}
-              checked={selected === role.id}
-              onChange={() => setSelected(role.id)}
-              className="accent-emerald-600"
-            />
-            {selected === role.id && (
-              <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs text-emerald-800">
-                Selected
-              </span>
-            )}
-          </span>
-          <strong className="mt-6 text-xl">{role.title}</strong>
+          <p className="text-xs text-gray-600">{categories.data?.find((item) => item.id === role.category_id)?.title}</p>
+          <h3 className="mt-4 text-xl font-semibold">{role.title}</h3>
           <span className="mt-4 text-sm leading-relaxed text-gray-600">
-            {role.description}
+            {role.description.split("\n\n")[0]}
           </span>
-          <span className="mt-auto pt-8 text-xs text-gray-600">
-            {role.skills.join(" · ")}
-          </span>
-        </label>
+          <div className="mt-5 mb-6">
+            <p className="mb-2 text-xs font-semibold">Skills used in this career</p>
+            <ul className="flex flex-wrap gap-1.5">
+              {role.skills.map((skill) => <li key={skill} className="rounded bg-gray-100 px-2 py-1 text-xs text-gray-700">{skill}</li>)}
+            </ul>
+          </div>
+          <button type="button" onClick={() => proceed(role.id)} aria-label={`View ${role.title} roadmap`} className="mt-auto min-h-11 rounded-full bg-gray-100 px-4 text-sm font-medium hover:bg-gray-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-700">View roadmap</button>
+        </article>
       ))}
     </div>
   );
   return (
     <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-2 py-8 text-gray-900 md:grid-cols-[15rem_minmax(0,1fr)] md:px-6">
       <aside className="min-w-0 space-y-4 md:border-r md:pr-5">
-        <h1 className="text-2xl font-bold">Roles Catalog</h1>
-        <input
-          type="search"
-          aria-label="Search career roles or skills"
-          value={search}
-          onChange={(e) => update("q", e.target.value)}
-          placeholder="Search career roles or skills..."
-          className="w-full rounded-full border border-gray-300 px-4 py-3 text-sm"
-        />
+        <h1 className="text-lg font-semibold">Career catalog</h1>
+        <p className="text-sm text-gray-600">Browse by field</p>
         <nav
-          aria-label="Published careers"
+          aria-label="Career categories"
           className="flex max-h-56 flex-col overflow-y-auto md:max-h-none"
         >
-          {all.map((role) => (
+          {[{id: "All", title: "All fields"}, ...(categories.data ?? [])].map((item, index) => (
             <button
-              key={role.id}
+              key={item.id}
               type="button"
-              onClick={() => setSelected(role.id)}
-              aria-pressed={selected === role.id}
+              onClick={() => update("category", index === 0 ? "All" : item.title)}
+              aria-pressed={category === (index === 0 ? "All" : item.title)}
               className={
-                "min-h-11 rounded px-3 text-left text-sm hover:bg-gray-100 " +
-                (selected === role.id ? "bg-gray-100 font-semibold" : "")
+                "min-h-11 rounded-full px-3 py-2 text-left text-sm " +
+                (category === (index === 0 ? "All" : item.title) ? "bg-black text-white" : "hover:bg-gray-100")
               }
             >
-              {role.title}
+              {index > 0 && <span aria-hidden="true" className="mr-2 text-xs">{String(index).padStart(2, "0")}</span>}{item.title}
             </button>
           ))}
         </nav>
+        <p className="pt-5 text-sm text-gray-600">You can explore any field. Discovery is optional.</p>
       </aside>
       <div className="min-w-0 space-y-8">
+        <input type="search" aria-label="Search career roles or skills" value={search} onChange={(event) => update("q", event.target.value)} placeholder="Search career roles or skills" className="min-h-11 w-full rounded-lg border border-gray-400 px-4 py-3 text-sm" />
         <div className="flex flex-wrap items-center justify-between gap-4">
           <button
             onClick={() =>
@@ -176,32 +154,7 @@ export default function RoleCatalog({
           >
             ← Return to dashboard
           </button>
-          <button
-            disabled={!all.some((role) => role.id === selected)}
-            onClick={proceed}
-            className="min-h-11 rounded-full bg-emerald-700 px-6 text-sm font-semibold text-white disabled:opacity-50"
-          >
-            Select Role & View Roadmap
-          </button>
-        </div>
-        <div className="flex flex-wrap gap-2" aria-label="Career categories">
-          {["All", ...(categories.data ?? []).map((item) => item.title)].map(
-            (cat) => (
-              <button
-                key={cat}
-                onClick={() => update("category", cat)}
-                aria-pressed={category === cat}
-                className={
-                  "min-h-11 rounded-full border px-5 text-sm " +
-                  (category === cat
-                    ? "border-black bg-black text-white"
-                    : "border-gray-300 bg-white")
-                }
-              >
-                {cat}
-              </button>
-            ),
-          )}
+          <p role="status" className="text-sm text-gray-600">{careers.data?.total ?? 0} matching roles</p>
         </div>
         {recommendations.isError && (
           <p role="status" className="text-sm text-gray-600">

@@ -1,8 +1,30 @@
 # Future development
 
+Resource update, 2026-11-02: release 4 now supplies topic-specific resources for
+all 288 topics (238 distinct checked destinations), superseding the generic-link
+limitation of release 3. Independent subject-matter review, periodic link upkeep
+and authenticated browser acceptance remain follow-up work. See
+[evidence and limits](features/roadmap-content-expansion.md).
+
+Local roadmap update, 2026-11-02: the owner requested import of v4 as supplied
+and waived resource verification. Release 3 is locally published with 12 roadmaps;
+the three short paths are retired with their history retained. This supersedes
+three-path-only local inventory status. Resource relevance, curriculum quality,
+independent acceptance and browser checks remain follow-up work. See
+[roadmap content expansion](features/roadmap-content-expansion.md) for evidence.
+This local import grants no hosted publication or Git approval.
+
 Updated: 2026-10-29. Maintainer: project owner; implementation contributions: Codex.
 This backlog records intent, not approval. Product, architecture and decisions remain authoritative.
 Future tasks must update the affected entry's status, date, decisions and evidence.
+
+The [post-MVP roadmap](post-mvp-roadmap.md) records the owner's 2026-10-29 request
+for a repository-specific planning document. It separates proposed features into
+bounded work packages, dependencies and review gates. This is a planning addition;
+the entries below remain deferred and no feature implementation is approved by
+the roadmap. Its PM-Fxx/PM-Wxx references do not replace existing requirement IDs.
+The [first implementation proposal](post-mvp-first-implementation.md) provides
+the detailed foundation sequence, feasibility review and proposed acceptance gates.
 
 All entries below are deferred from the current local handoff by the owner's task
 of 2026-10-28. Owner/reviewer are unassigned unless explicitly recorded later.

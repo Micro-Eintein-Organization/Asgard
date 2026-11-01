@@ -181,6 +181,8 @@ export const coreApi = {
   async resolveCareer(reference: string): Promise<Schemas["Career"]> {
     if (/^[0-9a-f]{8}-[0-9a-f-]{27}$/i.test(reference))
       return coreApi.career(reference);
+    if (reference === "ui-ux-designer")
+      return coreApi.career("38e46141-e303-5cd6-a589-7ee57147488d");
     let offset = 0;
     for (;;) {
       const page = await coreApi.catalog({ limit: 100, offset });

@@ -1,0 +1,2229 @@
+{
+  "schema_version": "4.0.0-draft",
+  "career": {
+    "name": "Network Engineer",
+    "slug": "network-engineer",
+    "category": "Networking & Infrastructure",
+    "status": "Draft — pending human review"
+  },
+  "career_overview": {
+    "short_description": "Understand how devices connect and exchange information. Build, inspect and troubleshoot small networks using simulations and permitted test setups.",
+    "responsibilities": [
+      "Assess goals and constraints relevant to network engineer work",
+      "Apply appropriate tools and methods to a bounded task",
+      "Test, document and communicate results",
+      "Collaborate and incorporate feedback"
+    ],
+    "representative_work": [
+      "A simulated network with an addressing plan and test evidence."
+    ],
+    "core_skills": [
+      "Network roles and topologies",
+      "OSI and TCP IP models",
+      "Ethernet basics",
+      "Safe local lab setup",
+      "IPv4 addresses and masks",
+      "Subnet calculations",
+      "IPv6 fundamentals",
+      "Default gateways and routing",
+      "DNS resolution",
+      "DHCP leases"
+    ]
+  },
+  "roadmap": {
+    "title": "Network Engineer: beginner foundations and starter project",
+    "intended_learner": "Motivated beginner; basic computer literacy assumed, with no prior professional experience.",
+    "starting_requirements": "Computer, internet access, text editor and browser. Most tasks use free software or simulation; specialist equipment, accounts and costs are flagged for review when applicable.",
+    "final_outcome": "A simulated network with an addressing plan and test evidence.",
+    "milestones": [
+      {
+        "id": "M01",
+        "slug": "understand-network-communication",
+        "title": "Understand network communication",
+        "summary": "Learn network roles and topologies, osi and tcp ip models, ethernet basics, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T01",
+            "slug": "network-roles-and-topologies",
+            "title": "Network roles and topologies",
+            "milestone_id": "M01",
+            "card": {
+              "title": "Network roles and topologies",
+              "summary": "Networks connect devices so they can exchange data. A topology diagram shows devices, links and where failures could interrupt service.",
+              "prerequisite_ids": []
+            },
+            "detail": {
+              "eyebrow": "M01 · Understand network communication",
+              "title": "Network roles and topologies",
+              "overview": "Networks connect devices so they can exchange data. A topology diagram shows devices, links and where failures could interrupt service.",
+              "learning_outcomes": [
+                "Use what you learn about network roles and topologies to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T01-S01",
+                  "title": "Network roles",
+                  "explanation": "Find how network roles works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T01-S02",
+                  "title": "Topologies",
+                  "explanation": "Find how topologies works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Draw a home or office network and explain the roles of each device."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: draw a home or office network and explain the roles of each device. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Wireshark User Guide",
+                  "provider": "Wireshark",
+                  "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on network roles and topologies; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T01-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Networks connect devices so they can exchange data. A topology diagram shows devices, links and where failures could interrupt service.",
+                "learn_items": [
+                  "Network roles",
+                  "Topologies"
+                ],
+                "learning_goal": "Use what you learn about network roles and topologies to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Wireshark User Guide",
+                    "provider": "Wireshark",
+                    "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on network roles and topologies; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T01-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Draw a home or office network and explain the roles of each device.",
+                "completion_check": "You can show or explain the result of this task: draw a home or office network and explain the roles of each device. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T02",
+            "slug": "osi-and-tcp-ip-models",
+            "title": "OSI and TCP IP models",
+            "milestone_id": "M01",
+            "card": {
+              "title": "OSI and TCP IP models",
+              "summary": "OSI and TCP/IP models group communication functions into layers. Layers help you ask whether a fault concerns the physical link, addressing, transport or application.",
+              "prerequisite_ids": [
+                "T01"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M01 · Understand network communication",
+              "title": "OSI and TCP IP models",
+              "overview": "OSI and TCP/IP models group communication functions into layers. Layers help you ask whether a fault concerns the physical link, addressing, transport or application.",
+              "learning_outcomes": [
+                "Use what you learn about osi and tcp ip models to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T02-S01",
+                  "title": "Osi",
+                  "explanation": "Find how osi works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T02-S02",
+                  "title": "Tcp ip models",
+                  "explanation": "Find how tcp ip models works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Map a web request to link, internet, transport and application layers."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: map a web request to link, internet, transport and application layers. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Wireshark User Guide",
+                  "provider": "Wireshark",
+                  "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on osi and tcp ip models; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T02-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "OSI and TCP/IP models group communication functions into layers. Layers help you ask whether a fault concerns the physical link, addressing, transport or application.",
+                "learn_items": [
+                  "Osi",
+                  "Tcp ip models"
+                ],
+                "learning_goal": "Use what you learn about osi and tcp ip models to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Wireshark User Guide",
+                    "provider": "Wireshark",
+                    "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on osi and tcp ip models; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T02-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Map a web request to link, internet, transport and application layers.",
+                "completion_check": "You can show or explain the result of this task: map a web request to link, internet, transport and application layers. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T03",
+            "slug": "ethernet-basics",
+            "title": "Ethernet basics",
+            "milestone_id": "M01",
+            "card": {
+              "title": "Ethernet basics",
+              "summary": "Ethernet uses frames and MAC addresses to deliver data within a local network. Switches learn which ports lead to source MAC addresses.",
+              "prerequisite_ids": [
+                "T02"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M01 · Understand network communication",
+              "title": "Ethernet basics",
+              "overview": "Ethernet uses frames and MAC addresses to deliver data within a local network. Switches learn which ports lead to source MAC addresses.",
+              "learning_outcomes": [
+                "Use what you learn about ethernet basics to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T03-S01",
+                  "title": "Ethernet basics: purpose and essential vocabulary",
+                  "explanation": "Find how ethernet basics: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T03-S02",
+                  "title": "Ethernet basics: application and common pitfalls",
+                  "explanation": "Find how ethernet basics: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Sketch a frame moving between two devices through a switch."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: sketch a frame moving between two devices through a switch. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Wireshark User Guide",
+                  "provider": "Wireshark",
+                  "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on ethernet basics; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T03-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Ethernet uses frames and MAC addresses to deliver data within a local network. Switches learn which ports lead to source MAC addresses.",
+                "learn_items": [
+                  "Ethernet basics: purpose and essential vocabulary",
+                  "Ethernet basics: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about ethernet basics to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Wireshark User Guide",
+                    "provider": "Wireshark",
+                    "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on ethernet basics; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T03-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Sketch a frame moving between two devices through a switch.",
+                "completion_check": "You can show or explain the result of this task: sketch a frame moving between two devices through a switch. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T04",
+            "slug": "safe-local-lab-setup",
+            "title": "Safe local lab setup",
+            "milestone_id": "M01",
+            "card": {
+              "title": "Safe local lab setup",
+              "summary": "A safe lab uses simulation or a network you own and control. Document addresses before making changes to avoid disrupting others.",
+              "prerequisite_ids": [
+                "T03"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M01 · Understand network communication",
+              "title": "Safe local lab setup",
+              "overview": "A safe lab uses simulation or a network you own and control. Document addresses before making changes to avoid disrupting others.",
+              "learning_outcomes": [
+                "Use what you learn about safe local lab setup to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T04-S01",
+                  "title": "Safe local lab setup: purpose and essential vocabulary",
+                  "explanation": "Find how safe local lab setup: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T04-S02",
+                  "title": "Safe local lab setup: application and common pitfalls",
+                  "explanation": "Find how safe local lab setup: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Build a two-device simulated network with clear labels."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: build a two-device simulated network with clear labels. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Wireshark User Guide",
+                  "provider": "Wireshark",
+                  "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on safe local lab setup; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T04-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A safe lab uses simulation or a network you own and control. Document addresses before making changes to avoid disrupting others.",
+                "learn_items": [
+                  "Safe local lab setup: purpose and essential vocabulary",
+                  "Safe local lab setup: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about safe local lab setup to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Wireshark User Guide",
+                    "provider": "Wireshark",
+                    "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on safe local lab setup; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T04-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Build a two-device simulated network with clear labels.",
+                "completion_check": "You can show or explain the result of this task: build a two-device simulated network with clear labels. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M02",
+        "slug": "configure-addressing",
+        "title": "Configure addressing",
+        "summary": "Learn ipv4 addresses and masks, subnet calculations, ipv6 fundamentals, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T05",
+            "slug": "ipv4-addresses-and-masks",
+            "title": "IPv4 addresses and masks",
+            "milestone_id": "M02",
+            "card": {
+              "title": "IPv4 addresses and masks",
+              "summary": "An IPv4 address identifies an interface, while a subnet mask describes which addresses are local. CIDR prefixes express mask length compactly.",
+              "prerequisite_ids": [
+                "T04"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Configure addressing",
+              "title": "IPv4 addresses and masks",
+              "overview": "An IPv4 address identifies an interface, while a subnet mask describes which addresses are local. CIDR prefixes express mask length compactly.",
+              "learning_outcomes": [
+                "Use what you learn about ipv4 addresses and masks to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T05-S01",
+                  "title": "Ipv4 addresses",
+                  "explanation": "Find how ipv4 addresses works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T05-S02",
+                  "title": "Masks",
+                  "explanation": "Find how masks works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Identify network and host portions of three example addresses."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: identify network and host portions of three example addresses. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Wireshark User Guide",
+                  "provider": "Wireshark",
+                  "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on ipv4 addresses and masks; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T05-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "An IPv4 address identifies an interface, while a subnet mask describes which addresses are local. CIDR prefixes express mask length compactly.",
+                "learn_items": [
+                  "Ipv4 addresses",
+                  "Masks"
+                ],
+                "learning_goal": "Use what you learn about ipv4 addresses and masks to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Wireshark User Guide",
+                    "provider": "Wireshark",
+                    "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on ipv4 addresses and masks; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T05-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Identify network and host portions of three example addresses.",
+                "completion_check": "You can show or explain the result of this task: identify network and host portions of three example addresses. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T06",
+            "slug": "subnet-calculations",
+            "title": "Subnet calculations",
+            "milestone_id": "M02",
+            "card": {
+              "title": "Subnet calculations",
+              "summary": "Subnetting divides an address range into smaller networks. The number of available addresses depends on the prefix and special-purpose addresses.",
+              "prerequisite_ids": [
+                "T05"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Configure addressing",
+              "title": "Subnet calculations",
+              "overview": "Subnetting divides an address range into smaller networks. The number of available addresses depends on the prefix and special-purpose addresses.",
+              "learning_outcomes": [
+                "Use what you learn about subnet calculations to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T06-S01",
+                  "title": "Subnet calculations: purpose and essential vocabulary",
+                  "explanation": "Find how subnet calculations: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T06-S02",
+                  "title": "Subnet calculations: application and common pitfalls",
+                  "explanation": "Find how subnet calculations: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Calculate network ranges for two /27 subnets."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: calculate network ranges for two /27 subnets. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Wireshark User Guide",
+                  "provider": "Wireshark",
+                  "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on subnet calculations; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T06-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Subnetting divides an address range into smaller networks. The number of available addresses depends on the prefix and special-purpose addresses.",
+                "learn_items": [
+                  "Subnet calculations: purpose and essential vocabulary",
+                  "Subnet calculations: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about subnet calculations to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Wireshark User Guide",
+                    "provider": "Wireshark",
+                    "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on subnet calculations; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T06-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Calculate network ranges for two /27 subnets.",
+                "completion_check": "You can show or explain the result of this task: calculate network ranges for two /27 subnets. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T07",
+            "slug": "ipv6-fundamentals",
+            "title": "IPv6 fundamentals",
+            "milestone_id": "M02",
+            "card": {
+              "title": "IPv6 fundamentals",
+              "summary": "IPv6 uses longer addresses and different neighbour-discovery mechanisms. IPv6 addresses should not be treated as longer IPv4 strings.",
+              "prerequisite_ids": [
+                "T06"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Configure addressing",
+              "title": "IPv6 fundamentals",
+              "overview": "IPv6 uses longer addresses and different neighbour-discovery mechanisms. IPv6 addresses should not be treated as longer IPv4 strings.",
+              "learning_outcomes": [
+                "Use what you learn about ipv6 fundamentals to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T07-S01",
+                  "title": "IPv6 fundamentals: purpose and essential vocabulary",
+                  "explanation": "Find how ipv6 fundamentals: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T07-S02",
+                  "title": "IPv6 fundamentals: application and common pitfalls",
+                  "explanation": "Find how ipv6 fundamentals: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Identify a link-local address and a global unicast address in a lab."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: identify a link-local address and a global unicast address in a lab. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Wireshark User Guide",
+                  "provider": "Wireshark",
+                  "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on ipv6 fundamentals; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T07-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "IPv6 uses longer addresses and different neighbour-discovery mechanisms. IPv6 addresses should not be treated as longer IPv4 strings.",
+                "learn_items": [
+                  "IPv6 fundamentals: purpose and essential vocabulary",
+                  "IPv6 fundamentals: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about ipv6 fundamentals to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Wireshark User Guide",
+                    "provider": "Wireshark",
+                    "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on ipv6 fundamentals; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T07-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Identify a link-local address and a global unicast address in a lab.",
+                "completion_check": "You can show or explain the result of this task: identify a link-local address and a global unicast address in a lab. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T08",
+            "slug": "default-gateways-and-routing",
+            "title": "Default gateways and routing",
+            "milestone_id": "M02",
+            "card": {
+              "title": "Default gateways and routing",
+              "summary": "A host sends off-network packets to its default gateway. Routers choose a next hop using destination network routes.",
+              "prerequisite_ids": [
+                "T07"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Configure addressing",
+              "title": "Default gateways and routing",
+              "overview": "A host sends off-network packets to its default gateway. Routers choose a next hop using destination network routes.",
+              "learning_outcomes": [
+                "Use what you learn about default gateways and routing to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T08-S01",
+                  "title": "Default gateways",
+                  "explanation": "Find how default gateways works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T08-S02",
+                  "title": "Routing",
+                  "explanation": "Find how routing works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Trace a packet from one subnet through a router to another."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: trace a packet from one subnet through a router to another. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Wireshark User Guide",
+                  "provider": "Wireshark",
+                  "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on default gateways and routing; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T08-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A host sends off-network packets to its default gateway. Routers choose a next hop using destination network routes.",
+                "learn_items": [
+                  "Default gateways",
+                  "Routing"
+                ],
+                "learning_goal": "Use what you learn about default gateways and routing to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Wireshark User Guide",
+                    "provider": "Wireshark",
+                    "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on default gateways and routing; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T08-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Trace a packet from one subnet through a router to another.",
+                "completion_check": "You can show or explain the result of this task: trace a packet from one subnet through a router to another. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M03",
+        "slug": "understand-essential-services",
+        "title": "Understand essential services",
+        "summary": "Learn dns resolution, dhcp leases, tcp and udp, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T09",
+            "slug": "dns-resolution",
+            "title": "DNS resolution",
+            "milestone_id": "M03",
+            "card": {
+              "title": "DNS resolution",
+              "summary": "DNS translates names into records such as A, AAAA and CNAME. Resolver caches can explain why changes are not immediately visible.",
+              "prerequisite_ids": [
+                "T08"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Understand essential services",
+              "title": "DNS resolution",
+              "overview": "DNS translates names into records such as A, AAAA and CNAME. Resolver caches can explain why changes are not immediately visible.",
+              "learning_outcomes": [
+                "Use what you learn about dns resolution to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T09-S01",
+                  "title": "DNS resolution: purpose and essential vocabulary",
+                  "explanation": "Find how dns resolution: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T09-S02",
+                  "title": "DNS resolution: application and common pitfalls",
+                  "explanation": "Find how dns resolution: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Query a domain for A and AAAA records and record the answers."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: query a domain for A and AAAA records and record the answers. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Wireshark User Guide",
+                  "provider": "Wireshark",
+                  "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on dns resolution; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T09-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "DNS translates names into records such as A, AAAA and CNAME. Resolver caches can explain why changes are not immediately visible.",
+                "learn_items": [
+                  "DNS resolution: purpose and essential vocabulary",
+                  "DNS resolution: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about dns resolution to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Wireshark User Guide",
+                    "provider": "Wireshark",
+                    "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on dns resolution; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T09-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Query a domain for A and AAAA records and record the answers.",
+                "completion_check": "You can show or explain the result of this task: query a domain for A and AAAA records and record the answers. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T10",
+            "slug": "dhcp-leases",
+            "title": "DHCP leases",
+            "milestone_id": "M03",
+            "card": {
+              "title": "DHCP leases",
+              "summary": "DHCP automatically supplies addresses and configuration including gateways and DNS servers. Leases have a lifetime and can be renewed.",
+              "prerequisite_ids": [
+                "T09"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Understand essential services",
+              "title": "DHCP leases",
+              "overview": "DHCP automatically supplies addresses and configuration including gateways and DNS servers. Leases have a lifetime and can be renewed.",
+              "learning_outcomes": [
+                "Use what you learn about dhcp leases to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T10-S01",
+                  "title": "DHCP leases: purpose and essential vocabulary",
+                  "explanation": "Find how dhcp leases: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T10-S02",
+                  "title": "DHCP leases: application and common pitfalls",
+                  "explanation": "Find how dhcp leases: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Read a simulated client's DHCP lease fields."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: read a simulated client's DHCP lease fields. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Wireshark User Guide",
+                  "provider": "Wireshark",
+                  "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on dhcp leases; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T10-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "DHCP automatically supplies addresses and configuration including gateways and DNS servers. Leases have a lifetime and can be renewed.",
+                "learn_items": [
+                  "DHCP leases: purpose and essential vocabulary",
+                  "DHCP leases: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about dhcp leases to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Wireshark User Guide",
+                    "provider": "Wireshark",
+                    "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on dhcp leases; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T10-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Read a simulated client's DHCP lease fields.",
+                "completion_check": "You can show or explain the result of this task: read a simulated client's DHCP lease fields. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T11",
+            "slug": "tcp-and-udp",
+            "title": "TCP and UDP",
+            "milestone_id": "M03",
+            "card": {
+              "title": "TCP and UDP",
+              "summary": "TCP provides ordered reliable byte-stream delivery; UDP sends datagrams without that reliability guarantee. Applications choose according to their needs.",
+              "prerequisite_ids": [
+                "T10"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Understand essential services",
+              "title": "TCP and UDP",
+              "overview": "TCP provides ordered reliable byte-stream delivery; UDP sends datagrams without that reliability guarantee. Applications choose according to their needs.",
+              "learning_outcomes": [
+                "Use what you learn about tcp and udp to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T11-S01",
+                  "title": "Tcp",
+                  "explanation": "Find how tcp works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T11-S02",
+                  "title": "Udp",
+                  "explanation": "Find how udp works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Compare a browser TCP connection with a DNS UDP query."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: compare a browser TCP connection with a DNS UDP query. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Wireshark User Guide",
+                  "provider": "Wireshark",
+                  "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on tcp and udp; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T11-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "TCP provides ordered reliable byte-stream delivery; UDP sends datagrams without that reliability guarantee. Applications choose according to their needs.",
+                "learn_items": [
+                  "Tcp",
+                  "Udp"
+                ],
+                "learning_goal": "Use what you learn about tcp and udp to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Wireshark User Guide",
+                    "provider": "Wireshark",
+                    "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on tcp and udp; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T11-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Compare a browser TCP connection with a DNS UDP query.",
+                "completion_check": "You can show or explain the result of this task: compare a browser TCP connection with a DNS UDP query. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T12",
+            "slug": "common-application-protocols",
+            "title": "Common application protocols",
+            "milestone_id": "M03",
+            "card": {
+              "title": "Common application protocols",
+              "summary": "Protocols such as HTTP, HTTPS, SSH and DNS serve different application needs and commonly use recognizable ports. Port numbers alone do not prove application identity.",
+              "prerequisite_ids": [
+                "T11"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Understand essential services",
+              "title": "Common application protocols",
+              "overview": "Protocols such as HTTP, HTTPS, SSH and DNS serve different application needs and commonly use recognizable ports. Port numbers alone do not prove application identity.",
+              "learning_outcomes": [
+                "Use what you learn about common application protocols to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T12-S01",
+                  "title": "Common application protocols: purpose and essential vocabulary",
+                  "explanation": "Find how common application protocols: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T12-S02",
+                  "title": "Common application protocols: application and common pitfalls",
+                  "explanation": "Find how common application protocols: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Make a table of common protocols, transports and purposes."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: make a table of common protocols, transports and purposes. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Wireshark User Guide",
+                  "provider": "Wireshark",
+                  "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on common application protocols; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T12-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Protocols such as HTTP, HTTPS, SSH and DNS serve different application needs and commonly use recognizable ports. Port numbers alone do not prove application identity.",
+                "learn_items": [
+                  "Common application protocols: purpose and essential vocabulary",
+                  "Common application protocols: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about common application protocols to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Wireshark User Guide",
+                    "provider": "Wireshark",
+                    "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on common application protocols; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T12-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Make a table of common protocols, transports and purposes.",
+                "completion_check": "You can show or explain the result of this task: make a table of common protocols, transports and purposes. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M04",
+        "slug": "explore-switching-and-routing",
+        "title": "Explore switching and routing",
+        "summary": "Learn switching and mac tables, vlans and segmentation, static routes, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T13",
+            "slug": "switching-and-mac-tables",
+            "title": "Switching and MAC tables",
+            "milestone_id": "M04",
+            "card": {
+              "title": "Switching and MAC tables",
+              "summary": "A switch learns MAC addresses from observed traffic and forwards unknown or broadcast frames more broadly. A MAC table helps diagnose local connectivity.",
+              "prerequisite_ids": [
+                "T12"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Explore switching and routing",
+              "title": "Switching and MAC tables",
+              "overview": "A switch learns MAC addresses from observed traffic and forwards unknown or broadcast frames more broadly. A MAC table helps diagnose local connectivity.",
+              "learning_outcomes": [
+                "Use what you learn about switching and mac tables to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T13-S01",
+                  "title": "Switching",
+                  "explanation": "Find how switching works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T13-S02",
+                  "title": "Mac tables",
+                  "explanation": "Find how mac tables works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Observe MAC learning in a simulator after two hosts exchange packets."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: observe MAC learning in a simulator after two hosts exchange packets. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Wireshark User Guide",
+                  "provider": "Wireshark",
+                  "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on switching and mac tables; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T13-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A switch learns MAC addresses from observed traffic and forwards unknown or broadcast frames more broadly. A MAC table helps diagnose local connectivity.",
+                "learn_items": [
+                  "Switching",
+                  "Mac tables"
+                ],
+                "learning_goal": "Use what you learn about switching and mac tables to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Wireshark User Guide",
+                    "provider": "Wireshark",
+                    "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on switching and mac tables; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T13-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Observe MAC learning in a simulator after two hosts exchange packets.",
+                "completion_check": "You can show or explain the result of this task: observe MAC learning in a simulator after two hosts exchange packets. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T14",
+            "slug": "vlans-and-segmentation",
+            "title": "VLANs and segmentation",
+            "milestone_id": "M04",
+            "card": {
+              "title": "VLANs and segmentation",
+              "summary": "VLANs divide a switched network into separate logical broadcast domains. Communication across VLANs requires routing and intentional policy.",
+              "prerequisite_ids": [
+                "T13"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Explore switching and routing",
+              "title": "VLANs and segmentation",
+              "overview": "VLANs divide a switched network into separate logical broadcast domains. Communication across VLANs requires routing and intentional policy.",
+              "learning_outcomes": [
+                "Use what you learn about vlans and segmentation to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T14-S01",
+                  "title": "Vlans",
+                  "explanation": "Find how vlans works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T14-S02",
+                  "title": "Segmentation",
+                  "explanation": "Find how segmentation works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Design a guest and staff VLAN layout and annotate the router link."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: design a guest and staff VLAN layout and annotate the router link. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Wireshark User Guide",
+                  "provider": "Wireshark",
+                  "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on vlans and segmentation; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T14-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "VLANs divide a switched network into separate logical broadcast domains. Communication across VLANs requires routing and intentional policy.",
+                "learn_items": [
+                  "Vlans",
+                  "Segmentation"
+                ],
+                "learning_goal": "Use what you learn about vlans and segmentation to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Wireshark User Guide",
+                    "provider": "Wireshark",
+                    "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on vlans and segmentation; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T14-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Design a guest and staff VLAN layout and annotate the router link.",
+                "completion_check": "You can show or explain the result of this task: design a guest and staff VLAN layout and annotate the router link. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T15",
+            "slug": "static-routes",
+            "title": "Static routes",
+            "milestone_id": "M04",
+            "card": {
+              "title": "Static routes",
+              "summary": "A static route names a destination prefix and next hop. Incorrect routes create unreachable networks or loops.",
+              "prerequisite_ids": [
+                "T14"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Explore switching and routing",
+              "title": "Static routes",
+              "overview": "A static route names a destination prefix and next hop. Incorrect routes create unreachable networks or loops.",
+              "learning_outcomes": [
+                "Use what you learn about static routes to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T15-S01",
+                  "title": "Static routes: purpose and essential vocabulary",
+                  "explanation": "Find how static routes: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T15-S02",
+                  "title": "Static routes: application and common pitfalls",
+                  "explanation": "Find how static routes: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Configure or draw two static routes and test the expected path."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: configure or draw two static routes and test the expected path. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Wireshark User Guide",
+                  "provider": "Wireshark",
+                  "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on static routes; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T15-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A static route names a destination prefix and next hop. Incorrect routes create unreachable networks or loops.",
+                "learn_items": [
+                  "Static routes: purpose and essential vocabulary",
+                  "Static routes: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about static routes to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Wireshark User Guide",
+                    "provider": "Wireshark",
+                    "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on static routes; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T15-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Configure or draw two static routes and test the expected path.",
+                "completion_check": "You can show or explain the result of this task: configure or draw two static routes and test the expected path. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T16",
+            "slug": "routing-concepts-and-failure-paths",
+            "title": "Routing concepts and failure paths",
+            "milestone_id": "M04",
+            "card": {
+              "title": "Routing concepts and failure paths",
+              "summary": "Routing chooses among possible paths based on routes and metrics. Link failures can change the available route.",
+              "prerequisite_ids": [
+                "T15"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Explore switching and routing",
+              "title": "Routing concepts and failure paths",
+              "overview": "Routing chooses among possible paths based on routes and metrics. Link failures can change the available route.",
+              "learning_outcomes": [
+                "Use what you learn about routing concepts and failure paths to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T16-S01",
+                  "title": "Routing concepts",
+                  "explanation": "Find how routing concepts works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T16-S02",
+                  "title": "Failure paths",
+                  "explanation": "Find how failure paths works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Remove one simulated link and explain where packets stop."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: remove one simulated link and explain where packets stop. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Wireshark User Guide",
+                  "provider": "Wireshark",
+                  "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on routing concepts and failure paths; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T16-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Routing chooses among possible paths based on routes and metrics. Link failures can change the available route.",
+                "learn_items": [
+                  "Routing concepts",
+                  "Failure paths"
+                ],
+                "learning_goal": "Use what you learn about routing concepts and failure paths to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Wireshark User Guide",
+                    "provider": "Wireshark",
+                    "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on routing concepts and failure paths; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T16-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Remove one simulated link and explain where packets stop.",
+                "completion_check": "You can show or explain the result of this task: remove one simulated link and explain where packets stop. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M05",
+        "slug": "diagnose-traffic",
+        "title": "Diagnose traffic",
+        "summary": "Learn ping traceroute and lookup tools, wireshark capture filtering, packet interpretation, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T17",
+            "slug": "ping-traceroute-and-lookup-tools",
+            "title": "Ping traceroute and lookup tools",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Ping traceroute and lookup tools",
+              "summary": "Ping tests reachability using ICMP when permitted. Traceroute explores hops, while DNS lookup tools diagnose naming separately.",
+              "prerequisite_ids": [
+                "T16"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Diagnose traffic",
+              "title": "Ping traceroute and lookup tools",
+              "overview": "Ping tests reachability using ICMP when permitted. Traceroute explores hops, while DNS lookup tools diagnose naming separately.",
+              "learning_outcomes": [
+                "Use what you learn about ping traceroute and lookup tools to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T17-S01",
+                  "title": "Ping traceroute",
+                  "explanation": "Find how ping traceroute works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T17-S02",
+                  "title": "Lookup tools",
+                  "explanation": "Find how lookup tools works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Compare ping, traceroute and name lookup for one test host."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: compare ping, traceroute and name lookup for one test host. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Wireshark User Guide",
+                  "provider": "Wireshark",
+                  "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on ping traceroute and lookup tools; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T17-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Ping tests reachability using ICMP when permitted. Traceroute explores hops, while DNS lookup tools diagnose naming separately.",
+                "learn_items": [
+                  "Ping traceroute",
+                  "Lookup tools"
+                ],
+                "learning_goal": "Use what you learn about ping traceroute and lookup tools to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Wireshark User Guide",
+                    "provider": "Wireshark",
+                    "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on ping traceroute and lookup tools; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T17-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Compare ping, traceroute and name lookup for one test host.",
+                "completion_check": "You can show or explain the result of this task: compare ping, traceroute and name lookup for one test host. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T18",
+            "slug": "wireshark-capture-filtering",
+            "title": "Wireshark capture filtering",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Wireshark capture filtering",
+              "summary": "Wireshark displays captured packets and filtering narrows visible traffic. Capture only traffic you are authorised to inspect.",
+              "prerequisite_ids": [
+                "T17"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Diagnose traffic",
+              "title": "Wireshark capture filtering",
+              "overview": "Wireshark displays captured packets and filtering narrows visible traffic. Capture only traffic you are authorised to inspect.",
+              "learning_outcomes": [
+                "Use what you learn about wireshark capture filtering to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T18-S01",
+                  "title": "Wireshark capture filtering: purpose and essential vocabulary",
+                  "explanation": "Find how wireshark capture filtering: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T18-S02",
+                  "title": "Wireshark capture filtering: application and common pitfalls",
+                  "explanation": "Find how wireshark capture filtering: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Capture permitted local traffic and filter DNS packets."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: capture permitted local traffic and filter DNS packets. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Wireshark User Guide",
+                  "provider": "Wireshark",
+                  "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on wireshark capture filtering; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T18-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Wireshark displays captured packets and filtering narrows visible traffic. Capture only traffic you are authorised to inspect.",
+                "learn_items": [
+                  "Wireshark capture filtering: purpose and essential vocabulary",
+                  "Wireshark capture filtering: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about wireshark capture filtering to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Wireshark User Guide",
+                    "provider": "Wireshark",
+                    "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on wireshark capture filtering; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T18-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Capture permitted local traffic and filter DNS packets.",
+                "completion_check": "You can show or explain the result of this task: capture permitted local traffic and filter DNS packets. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T19",
+            "slug": "packet-interpretation",
+            "title": "Packet interpretation",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Packet interpretation",
+              "summary": "Packet headers reveal sender, receiver, protocol and flags; application payloads may be encrypted. Interpret headers before drawing conclusions.",
+              "prerequisite_ids": [
+                "T18"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Diagnose traffic",
+              "title": "Packet interpretation",
+              "overview": "Packet headers reveal sender, receiver, protocol and flags; application payloads may be encrypted. Interpret headers before drawing conclusions.",
+              "learning_outcomes": [
+                "Use what you learn about packet interpretation to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T19-S01",
+                  "title": "Packet interpretation: purpose and essential vocabulary",
+                  "explanation": "Find how packet interpretation: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T19-S02",
+                  "title": "Packet interpretation: application and common pitfalls",
+                  "explanation": "Find how packet interpretation: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Identify source, destination and protocol for three permitted packets."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: identify source, destination and protocol for three permitted packets. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Wireshark User Guide",
+                  "provider": "Wireshark",
+                  "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on packet interpretation; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T19-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Packet headers reveal sender, receiver, protocol and flags; application payloads may be encrypted. Interpret headers before drawing conclusions.",
+                "learn_items": [
+                  "Packet interpretation: purpose and essential vocabulary",
+                  "Packet interpretation: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about packet interpretation to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Wireshark User Guide",
+                    "provider": "Wireshark",
+                    "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on packet interpretation; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T19-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Identify source, destination and protocol for three permitted packets.",
+                "completion_check": "You can show or explain the result of this task: identify source, destination and protocol for three permitted packets. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T20",
+            "slug": "troubleshooting-workflow",
+            "title": "Troubleshooting workflow",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Troubleshooting workflow",
+              "summary": "Troubleshooting proceeds from an observed symptom to a bounded hypothesis, test and documented fix. Random changes make diagnosis harder.",
+              "prerequisite_ids": [
+                "T19"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Diagnose traffic",
+              "title": "Troubleshooting workflow",
+              "overview": "Troubleshooting proceeds from an observed symptom to a bounded hypothesis, test and documented fix. Random changes make diagnosis harder.",
+              "learning_outcomes": [
+                "Use what you learn about troubleshooting workflow to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T20-S01",
+                  "title": "Troubleshooting workflow: purpose and essential vocabulary",
+                  "explanation": "Find how troubleshooting workflow: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T20-S02",
+                  "title": "Troubleshooting workflow: application and common pitfalls",
+                  "explanation": "Find how troubleshooting workflow: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Write a test sequence for a client that can reach its gateway but not a website."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: write a test sequence for a client that can reach its gateway but not a website. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Wireshark User Guide",
+                  "provider": "Wireshark",
+                  "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on troubleshooting workflow; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T20-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Troubleshooting proceeds from an observed symptom to a bounded hypothesis, test and documented fix. Random changes make diagnosis harder.",
+                "learn_items": [
+                  "Troubleshooting workflow: purpose and essential vocabulary",
+                  "Troubleshooting workflow: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about troubleshooting workflow to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Wireshark User Guide",
+                    "provider": "Wireshark",
+                    "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on troubleshooting workflow; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T20-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Write a test sequence for a client that can reach its gateway but not a website.",
+                "completion_check": "You can show or explain the result of this task: write a test sequence for a client that can reach its gateway but not a website. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M06",
+        "slug": "design-a-starter-network",
+        "title": "Design a starter network",
+        "summary": "Learn document small office requirements, create logical topology, configure simulated addressing, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T21",
+            "slug": "document-small-office-requirements",
+            "title": "Document small office requirements",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Document small office requirements",
+              "summary": "A small-office design starts with the number of users, devices and necessary separation. Requirements influence addressing and topology.",
+              "prerequisite_ids": [
+                "T20"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Design a starter network",
+              "title": "Document small office requirements",
+              "overview": "A small-office design starts with the number of users, devices and necessary separation. Requirements influence addressing and topology.",
+              "learning_outcomes": [
+                "Use what you learn about document small office requirements to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T21-S01",
+                  "title": "Document small office requirements: purpose and essential vocabulary",
+                  "explanation": "Find how document small office requirements: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T21-S02",
+                  "title": "Document small office requirements: application and common pitfalls",
+                  "explanation": "Find how document small office requirements: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Write network requirements for a ten-person office with guest Wi-Fi."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: write network requirements for a ten-person office with guest Wi-Fi. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Wireshark User Guide",
+                  "provider": "Wireshark",
+                  "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on document small office requirements; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T21-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A small-office design starts with the number of users, devices and necessary separation. Requirements influence addressing and topology.",
+                "learn_items": [
+                  "Document small office requirements: purpose and essential vocabulary",
+                  "Document small office requirements: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about document small office requirements to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Wireshark User Guide",
+                    "provider": "Wireshark",
+                    "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on document small office requirements; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T21-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Write network requirements for a ten-person office with guest Wi-Fi.",
+                "completion_check": "You can show or explain the result of this task: write network requirements for a ten-person office with guest Wi-Fi. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T22",
+            "slug": "create-logical-topology",
+            "title": "Create logical topology",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Create logical topology",
+              "summary": "A logical topology identifies subnets, routing and VLAN boundaries without prescribing every physical cable.",
+              "prerequisite_ids": [
+                "T21"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Design a starter network",
+              "title": "Create logical topology",
+              "overview": "A logical topology identifies subnets, routing and VLAN boundaries without prescribing every physical cable.",
+              "learning_outcomes": [
+                "Use what you learn about create logical topology to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T22-S01",
+                  "title": "Create logical topology: purpose and essential vocabulary",
+                  "explanation": "Find how create logical topology: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T22-S02",
+                  "title": "Create logical topology: application and common pitfalls",
+                  "explanation": "Find how create logical topology: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Draw the planned topology with network labels and gateways."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: draw the planned topology with network labels and gateways. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Wireshark User Guide",
+                  "provider": "Wireshark",
+                  "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on create logical topology; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T22-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A logical topology identifies subnets, routing and VLAN boundaries without prescribing every physical cable.",
+                "learn_items": [
+                  "Create logical topology: purpose and essential vocabulary",
+                  "Create logical topology: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about create logical topology to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Wireshark User Guide",
+                    "provider": "Wireshark",
+                    "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on create logical topology; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T22-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Draw the planned topology with network labels and gateways.",
+                "completion_check": "You can show or explain the result of this task: draw the planned topology with network labels and gateways. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T23",
+            "slug": "configure-simulated-addressing",
+            "title": "Configure simulated addressing",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Configure simulated addressing",
+              "summary": "Simulated device interfaces need consistent masks, gateways and routes. A simple addressing table prevents conflicts.",
+              "prerequisite_ids": [
+                "T22"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Design a starter network",
+              "title": "Configure simulated addressing",
+              "overview": "Simulated device interfaces need consistent masks, gateways and routes. A simple addressing table prevents conflicts.",
+              "learning_outcomes": [
+                "Use what you learn about configure simulated addressing to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T23-S01",
+                  "title": "Configure simulated addressing: purpose and essential vocabulary",
+                  "explanation": "Find how configure simulated addressing: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T23-S02",
+                  "title": "Configure simulated addressing: application and common pitfalls",
+                  "explanation": "Find how configure simulated addressing: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Configure the example interfaces and record assigned addresses."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: configure the example interfaces and record assigned addresses. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Wireshark User Guide",
+                  "provider": "Wireshark",
+                  "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on configure simulated addressing; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T23-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Simulated device interfaces need consistent masks, gateways and routes. A simple addressing table prevents conflicts.",
+                "learn_items": [
+                  "Configure simulated addressing: purpose and essential vocabulary",
+                  "Configure simulated addressing: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about configure simulated addressing to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Wireshark User Guide",
+                    "provider": "Wireshark",
+                    "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on configure simulated addressing; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T23-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Configure the example interfaces and record assigned addresses.",
+                "completion_check": "You can show or explain the result of this task: configure the example interfaces and record assigned addresses. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T24",
+            "slug": "test-and-report-connectivity",
+            "title": "Test and report connectivity",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Test and report connectivity",
+              "summary": "A network report should demonstrate expected connectivity and intentional isolation. Record failed tests as well as successes.",
+              "prerequisite_ids": [
+                "T23"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Design a starter network",
+              "title": "Test and report connectivity",
+              "overview": "A network report should demonstrate expected connectivity and intentional isolation. Record failed tests as well as successes.",
+              "learning_outcomes": [
+                "Use what you learn about test and report connectivity to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T24-S01",
+                  "title": "Test",
+                  "explanation": "Find how test works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T24-S02",
+                  "title": "Report connectivity",
+                  "explanation": "Find how report connectivity works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Test host-to-host and guest-to-staff paths and report findings."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: test host-to-host and guest-to-staff paths and report findings. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Wireshark User Guide",
+                  "provider": "Wireshark",
+                  "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on test and report connectivity; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T24-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A network report should demonstrate expected connectivity and intentional isolation. Record failed tests as well as successes.",
+                "learn_items": [
+                  "Test",
+                  "Report connectivity"
+                ],
+                "learning_goal": "Use what you learn about test and report connectivity to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Wireshark User Guide",
+                    "provider": "Wireshark",
+                    "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on test and report connectivity; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T24-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Test host-to-host and guest-to-staff paths and report findings.",
+                "completion_check": "You can show or explain the result of this task: test host-to-host and guest-to-staff paths and report findings. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "display_contract": {
+    "layout": "milestone-accordion-with-topic-detail-panel",
+    "milestone_card": [
+      "title",
+      "summary",
+      "topics"
+    ],
+    "topic_row": [
+      "title",
+      "id"
+    ],
+    "topic_detail_order": [
+      "overview",
+      "learn_items",
+      "learning_goal",
+      "tools_and_setup",
+      "resources",
+      "practice",
+      "completion_check"
+    ],
+    "subtopics_are_tracked": false,
+    "prerequisites_are_advisory": true,
+    "completion_state_source": "application_only",
+    "notes": "Use topic.detail.guide; preserve legacy detail keys as compatibility aliases. No content-owned Done states."
+  },
+  "research_and_review_notes": {
+    "human_review": "Pending",
+    "content_readiness": "Not production ready; legacy generic content remains in most topics",
+    "verified_free_topic_coverage": "Not yet established for all topics"
+  }
+}

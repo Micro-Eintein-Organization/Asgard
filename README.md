@@ -370,6 +370,7 @@ The pinned CLI publishes local Supabase ports on host interfaces; use a trusted 
 
 | Document | Contents |
 | --- | --- |
+| [Post-MVP roadmap](docs/post-mvp-roadmap.md) | Proposed feature packages, repository assessment, dependencies and approval gates |
 | [Deployment preparation](docs/deployment.md) | Hosted configuration, administrative publication, release/rollback and external-use gates |
 | [Acceptance evidence](docs/features/deployment-preparation.md) | Isolated content upgrade, registration journey, architecture audit and check results |
 | [Product requirements](docs/product.md) | Product purpose, audience, MVP scope, and acceptance criteria |

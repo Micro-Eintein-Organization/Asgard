@@ -1588,8 +1588,7 @@
     grid-template-columns: minmax(0, 1fr) 23rem;
   }
   .topic-panel {
-    position: sticky;
-    top: 1.5rem;
+    position: static;
   }
   .results-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1598,6 +1597,21 @@
     margin-inline: auto;
     width: calc(100% - var(--gutter) * 2);
   }
+}
+@media (min-width: 64rem) and (min-height: 28rem) {
+  .roadmap-layout {
+    height: calc(100dvh - var(--roadmap-top, 12rem) - 1rem);
+    min-height: 0;
+    align-items: stretch;
+  }
+  .roadmap-layout > .roadmap-main,
+  .roadmap-layout > .topic-panel {
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    scrollbar-gutter: stable;
+  }
+  .roadmap-main { padding-right: 0.5rem; }
 }
 @media (min-width: 76rem) {
   .catalog-content .career-grid {
