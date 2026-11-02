@@ -1,8 +1,9 @@
-import { Link, useLocation } from "react-router";
+import { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router";
+import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PageHeading, BackLink, Notice } from "@/components/shared";
 import { PreviewDataState } from "@/components/preview-states";
-import { CareerCard } from "@/components/career-card";
 import { careers, type CareerFixture } from "@/fixtures/catalog";
 import { appRoutes as pageRoutes } from "@/lib/routes";
 
@@ -26,6 +27,8 @@ function isCareerFixture(value: unknown): value is CareerFixture {
 
 export function ResultsPage() {
   const location = useLocation();
+  const navigate = useNavigate();
+  const [selectedCareerId, setSelectedCareerId] = useState<string | null>(null);
   const candidates: { career: unknown; reason: string }[] = [
     {
       career: careers[0],
@@ -56,7 +59,7 @@ export function ResultsPage() {
       isCareerFixture(candidate.career),
   );
   return (
-    <>
+      <section className="recommendations-page">
       <BackLink to={pageRoutes.discovery} state={location.state}>
         Back to Discovery
       </BackLink>
@@ -90,32 +93,76 @@ export function ResultsPage() {
         </PreviewDataState>
       ) : (
         <>
-          <Notice>
-            Sample results layout. These roles were not generated from your
-            answers. The explanations below demonstrate presentation only.
-          </Notice>
-          <div className="career-grid results-grid mt-6">
-            {samples.map(({ career, reason }) => (
-              <CareerCard
-                key={career.id}
-                career={career}
-                reason={reason}
-              />
-            ))}
-          </div>
+          <Notice>You can change this later on</Notice>
+          <fieldset className="recommendation-options">
+            <legend className="sr-only">
+              Choose a career to set as your career
+            </legend>
+            <div className="career-grid results-grid mt-6">
+              {samples.map(({ career, reason }, index) => (
+                <label
+                  key={career.id}
+                  className="career-card selectable-card recommendation-card"
+                  style={{ animationDelay: `${index * 60}ms` }}
+                >
+                  <input
+                    type="radio"
+                    name="recommended-career"
+                    value={career.id}
+                    checked={selectedCareerId === career.id}
+                    onChange={() => setSelectedCareerId(career.id)}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter") {
+                        event.preventDefault();
+                        setSelectedCareerId(career.id);
+                      }
+                    }}
+                    aria-label={`Select ${career.title}`}
+                  />
+                  <span className="selection-indicator" aria-hidden="true">
+                    <Check size={16} />
+                  </span>
+                  <p className="card-category">{career.work}</p>
+                  <h2>{career.title}</h2>
+                  <p>{career.description}</p>
+                  <div className="suggestion-reason">
+                    <h3>Why this was suggested</h3>
+                    <p>{reason}</p>
+                  </div>
+                  <div className="career-skills">
+                    <h3>Skills used in this career</h3>
+                    <ul>
+                      {career.skills.map((skill) => (
+                        <li key={skill}>{skill}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </label>
+              ))}
+            </div>
+          </fieldset>
         </>
       )}
       <div className="action-row centered mt-8">
         <Button asChild variant="outline">
-          <Link to={pageRoutes.discovery}>Retake Discovery</Link>
+          <Link to={pageRoutes.discovery} state={location.state}>
+            Retake Discovery
+          </Link>
         </Button>
-        <Button asChild>
-          <Link to={pageRoutes.careers}>Browse careers</Link>
+        <Button
+          aria-disabled={!selectedCareerId}
+          disabled={!selectedCareerId}
+          onClick={() => {
+            if (selectedCareerId)
+              navigate(pageRoutes.roadmap(selectedCareerId));
+          }}
+        >
+          Set as Career
         </Button>
       </div>
       <p className="landing-note centered">
         No match scores, inferred abilities or automatic roadmap selection.
       </p>
-    </>
+    </section>
   );
 }

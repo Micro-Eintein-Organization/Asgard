@@ -39,6 +39,7 @@
   --input: #89898e;
   --ring: #007a53;
   --selected: #009c6b;
+  --selection-blue: #3F8AC8;
   --progress: #00d563;
   --calendar-active: #f97316;
   --calendar-active-past: #fed7aa;
@@ -980,11 +981,6 @@
 .question-progress span.filled {
   background: var(--selected);
 }
-.question-subject {
-  font-size: 0.8125rem;
-  color: var(--muted-foreground);
-  margin-bottom: 0.75rem;
-}
 .choice-grid {
   display: grid;
   gap: 1rem;
@@ -1003,6 +999,9 @@
   gap: 0.75rem;
   min-width: 0;
 }
+.choice-card.selectable-card {
+  padding-right: 3.5rem;
+}
 .choice-card:has(input:checked) {
   border-color: var(--selected);
   box-shadow: inset 0 0 0 1px var(--selected);
@@ -1019,11 +1018,107 @@
 }
 .choice-card strong {
   font-size: 1.125rem;
+  font-weight: 600;
   line-height: 1.35;
 }
 .choice-card > span:last-child {
   color: var(--muted-foreground);
   font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+.selectable-card {
+  min-width: 0;
+  transition:
+    transform 150ms ease-in,
+    background-color 150ms ease-in,
+    color 150ms ease-in,
+    border-color 150ms ease-in;
+}
+.selectable-card:hover {
+  transform: translateY(-4px);
+}
+.selectable-card input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.selectable-card:has(input:focus-visible) {
+  outline: 3px solid var(--ring);
+  outline-offset: 4px;
+}
+.choice-card.selectable-card:has(input:checked),
+.recommendation-card:has(input:checked) {
+  transform: translateY(-4px);
+  border-color: transparent;
+  box-shadow: none;
+  background: var(--selection-blue);
+  color: #ffffff;
+}
+.choice-card.selectable-card:has(input:checked) > strong,
+.choice-card.selectable-card:has(input:checked) > span:not(.selection-indicator) {
+  color: #ffffff;
+}
+.recommendation-card:has(input:checked)
+  :is(.card-category, h2, p, h3, li) {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.recommendation-card:has(input:checked) .suggestion-reason,
+.recommendation-card:has(input:checked) .career-skills li {
+  background: rgb(0 0 0 / 12%);
+}
+.selection-indicator {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  width: 1.75rem;
+  height: 1.75rem;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  opacity: 0;
+}
+.selectable-card:has(input:checked) .selection-indicator {
+  opacity: 1;
+}
+.recommendation-options {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.recommendation-card {
+  position: relative;
+  cursor: pointer;
+  animation: recommendation-card-enter 300ms ease-in backwards;
+}
+@keyframes recommendation-card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.discovery-page a,
+.recommendations-page a,
+.discovery-page a:hover,
+.recommendations-page a:hover,
+.discovery-page a:focus-visible,
+.recommendations-page a:focus-visible {
+  text-decoration: none;
 }
 .entry-choices .choice-card {
   padding: 1.75rem;
@@ -1050,17 +1145,13 @@
 }
 .question-actions {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
   margin-top: 1.5rem;
   padding-top: 1.5rem;
   border-top: 1px solid var(--border);
-}
-.question-actions p {
-  font-size: 0.8125rem;
-  color: var(--muted-foreground);
 }
 .dashboard-layout {
   display: grid;
@@ -1768,6 +1859,9 @@
   .brand {
     font-size: 1.375rem;
   }
+  .question-actions[data-align="end"] [data-slot="button"] {
+    width: 100%;
+  }
   .footer-purpose {
     display: none;
   }
@@ -1779,5 +1873,10 @@
     animation: none !important;
     transition: none !important;
     scroll-behavior: auto !important;
+  }
+  .selectable-card:hover,
+  .choice-card.selectable-card:has(input:checked),
+  .recommendation-card:has(input:checked) {
+    transform: none;
   }
 }

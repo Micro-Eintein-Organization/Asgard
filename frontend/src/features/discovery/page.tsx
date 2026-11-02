@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
-import { ArrowLeft, BookOpen, Compass } from "lucide-react";
+import { ArrowLeft, BookOpen, Check, Compass } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Notice, Unavailable } from "@/components/shared";
 import { appRoutes as pageRoutes } from "@/lib/routes";
@@ -173,13 +173,13 @@ export function DiscoveryPage() {
           <Button variant="ghost" asChild>
             <Link to={pageRoutes.welcome}>
               <ArrowLeft aria-hidden="true" size={16} />
-              Back
+              Return
             </Link>
           </Button>
         ) : (
           <Button variant="ghost" onClick={() => changeStep(step - 1)}>
             <ArrowLeft aria-hidden="true" size={16} />
-            Back
+            Return
           </Button>
         )}
         <Link to={pageRoutes.careers}>Skip questions and browse careers</Link>
@@ -191,14 +191,19 @@ export function DiscoveryPage() {
         </Notice>
       )}
       <header className="discovery-header">
-        <div className="question-progress" aria-hidden="true">
+        <div
+          className="question-progress"
+          role="progressbar"
+          aria-label="Discovery question progress"
+          aria-valuemin={1}
+          aria-valuemax={questions.length}
+          aria-valuenow={step + 1}
+          aria-valuetext={`Question ${step + 1} of ${questions.length}`}
+        >
           {questions.map((_, index) => (
             <span key={index} className={index <= step ? "filled" : ""} />
           ))}
         </div>
-        <p className="question-subject">
-          Question {step + 1} of 5 · {question.subject}
-        </p>
         <h1 tabIndex={-1} ref={heading}>
           {question.title}
         </h1>
@@ -210,13 +215,16 @@ export function DiscoveryPage() {
         </legend>
         <div className="choice-grid">
           {question.choices.map(([id, title, description]) => (
-            <label key={id} className="choice-card">
+            <label key={id} className="choice-card selectable-card">
               <input
                 type={step === 4 ? "radio" : "checkbox"}
                 name={`question-${step}`}
                 checked={selected.includes(id)}
                 onChange={() => select(id)}
               />
+              <span className="selection-indicator" aria-hidden="true">
+                <Check size={16} />
+              </span>
               <strong>{title}</strong>
               <span>{description}</span>
             </label>
@@ -248,8 +256,7 @@ export function DiscoveryPage() {
       <p aria-live="polite" className="field-help mt-3">
         {announcement}
       </p>
-      <div className="question-actions">
-        <p>Prototype: answers are transient and are not saved.</p>
+      <div className="question-actions" data-align="end">
         {step < 4 ? (
           <Button
             disabled={!selected.length}
@@ -276,12 +283,6 @@ export function DiscoveryPage() {
           analyzed; See suggestions opens sample results.
         </Unavailable>
       )}
-      <div className="mt-6">
-        <Notice>
-          Answers are transient navigation state, not saved to your account or
-          analyzed.
-        </Notice>
-      </div>
     </section>
   );
 }

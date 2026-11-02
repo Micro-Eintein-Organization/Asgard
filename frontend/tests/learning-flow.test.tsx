@@ -90,17 +90,17 @@ describe("documented learning navigation", () => {
         name: "What kinds of work interest you?",
       }),
     ).toBeInTheDocument();
-    const firstQuestionBack = screen.getByRole("link", { name: "Back" });
+    const firstQuestionBack = screen.getByRole("link", { name: "Return" });
     expect(firstQuestionBack).toHaveAttribute("href", "/welcome");
     expect(firstQuestionBack).toHaveAttribute("data-slot", "button");
     expect(firstQuestionBack).toHaveAttribute("data-variant", "ghost");
 
     fireEvent.click(screen.getByLabelText(/Creating useful tools/));
     fireEvent.click(screen.getByRole("button", { name: "Next" }));
-    expect(screen.getByRole("button", { name: "Back" })).toHaveClass(
+    expect(screen.getByRole("button", { name: "Return" })).toHaveClass(
       firstQuestionBack.className,
     );
-    fireEvent.click(screen.getByRole("button", { name: "Back" }));
+    fireEvent.click(screen.getByRole("button", { name: "Return" }));
     expect(screen.getByLabelText(/Creating useful tools/)).toBeChecked();
 
     fireEvent.click(
@@ -126,9 +126,25 @@ describe("documented learning navigation", () => {
     answers.forEach((answer, index) => {
       const back =
         index === 0
-          ? screen.getByRole("link", { name: "Back" })
-          : screen.getByRole("button", { name: "Back" });
+          ? screen.getByRole("link", { name: "Return" })
+          : screen.getByRole("button", { name: "Return" });
       expect(back.querySelector("svg")).toBeInTheDocument();
+      expect(screen.queryByText(/^Question \d of 5/)).not.toBeInTheDocument();
+      expect(screen.getByRole("progressbar")).toHaveAttribute(
+        "aria-valuetext",
+        `Question ${index + 1} of 5`,
+      );
+      const actionLabel = index === 4 ? "See suggestions" : "Next";
+      expect(
+        screen.getByRole("button", { name: actionLabel }).closest(".question-actions"),
+      ).toHaveAttribute("data-align", "end");
+      expect(
+        screen.queryByText(/Answers are transient navigation state/),
+      ).not.toBeInTheDocument();
+      if (index === 4)
+        expect(
+          screen.getByText(/Recommendation generation is not connected/),
+        ).toBeInTheDocument();
       fireEvent.click(screen.getByLabelText(answer));
       if (index < answers.length - 1)
         fireEvent.click(screen.getByRole("button", { name: "Next" }));
@@ -234,18 +250,92 @@ describe("documented learning navigation", () => {
     expect(
       screen.getByRole("heading", { name: "Careers to explore." }),
     ).toBeInTheDocument();
-    expect(
-      screen.getByText(/These roles were not generated from your answers/),
-    ).toBeInTheDocument();
+    expect(screen.getByText("You can change this later on")).toBeInTheDocument();
     expect(
       screen.queryByLabelText("Review layout state"),
     ).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole("link", { name: "Back to Discovery" }));
-    expect(screen.getByText(/Question 5 of 5/)).toBeInTheDocument();
+    expect(screen.getByRole("progressbar")).toHaveAttribute(
+      "aria-valuetext",
+      "Question 5 of 5",
+    );
     expect(screen.getByLabelText(/Start learning/)).toBeChecked();
-    fireEvent.click(screen.getByRole("button", { name: "Back" }));
-    expect(screen.getByText(/Question 4 of 5/)).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Return" }));
+    expect(screen.getByRole("progressbar")).toHaveAttribute(
+      "aria-valuetext",
+      "Question 4 of 5",
+    );
     expect(screen.getByLabelText(/I'm new to technology/)).toBeChecked();
+  });
+
+  it("supports single-select recommendations and enables the selected roadmap", () => {
+    render(<LearningFlow initialEntry="/recommendations" />);
+    const setCareer = screen.getByRole("button", { name: "Set as Career" });
+    expect(setCareer).toBeDisabled();
+    expect(setCareer).toHaveAttribute("aria-disabled", "true");
+
+    const frontend = screen.getByRole("radio", {
+      name: "Select Frontend Developer",
+    });
+    const uxDesigner = screen.getByRole("radio", {
+      name: "Select UX Designer",
+    });
+    expect(frontend).toHaveAttribute("name", "recommended-career");
+    expect(
+      screen.queryByRole("link", { name: /^View roadmap/ }),
+    ).not.toBeInTheDocument();
+    expect(screen.getByText("You can change this later on")).toBeInTheDocument();
+
+    fireEvent.click(frontend);
+    expect(frontend).toBeChecked();
+    expect(setCareer).toBeEnabled();
+    expect(setCareer).toHaveAttribute("aria-disabled", "false");
+    fireEvent.click(uxDesigner);
+    expect(uxDesigner).toBeChecked();
+    expect(frontend).not.toBeChecked();
+    expect(
+      uxDesigner.closest("label")?.querySelector(".selection-indicator"),
+    ).toBeInTheDocument();
+
+    frontend.focus();
+    fireEvent.keyDown(frontend, { key: "Enter" });
+    expect(frontend).toBeChecked();
+    expect(uxDesigner).not.toBeChecked();
+  });
+
+  it("navigates Set as Career to the selected career's existing roadmap route", () => {
+    render(<LearningFlow initialEntry="/recommendations" />);
+    fireEvent.click(
+      screen.getByRole("radio", { name: "Select Frontend Developer" }),
+    );
+    fireEvent.click(screen.getByRole("button", { name: "Set as Career" }));
+    expect(screen.getByTestId("location")).toHaveTextContent(
+      "/roadmaps/frontend",
+    );
+  });
+
+  it("Retake Discovery restores the draft from recommendations", () => {
+    render(<LearningFlow initialEntry="/discovery" />);
+    const answers = [
+      /Creating useful tools/,
+      /Building software logic/,
+      /Working on my own/,
+      /I'm new to technology/,
+      /Start learning/,
+    ];
+
+    answers.forEach((answer, index) => {
+      fireEvent.click(screen.getByLabelText(answer));
+      if (index < answers.length - 1)
+        fireEvent.click(screen.getByRole("button", { name: "Next" }));
+    });
+    fireEvent.click(screen.getByRole("button", { name: "See suggestions" }));
+    fireEvent.click(screen.getByRole("link", { name: "Retake Discovery" }));
+    expect(screen.getByRole("progressbar")).toHaveAttribute(
+      "aria-valuetext",
+      "Question 5 of 5",
+    );
+    expect(screen.getByLabelText(/Start learning/)).toBeChecked();
   });
 
   it("renders real empty and invalid-data results states without a state selector", () => {
