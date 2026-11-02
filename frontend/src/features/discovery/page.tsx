@@ -167,6 +167,7 @@ export function DiscoveryPage() {
       <UnsavedPreviewDialog
         when={Object.values(answers).some((value) => value.length > 0)}
         allowedPaths={[pageRoutes.results]}
+        skipPath={pageRoutes.careers}
       />
       <div className="discovery-topline">
         {step === 0 ? (

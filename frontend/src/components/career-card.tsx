@@ -7,14 +7,30 @@ import { appRoutes as pageRoutes } from "@/lib/routes";
 export function CareerCard({
   career,
   reason,
+  progressPercent,
 }: {
   career: CareerFixture;
   reason?: string;
+  progressPercent?: number;
 }) {
   const location = useLocation();
   return (
     <Card className="career-card">
-      <p className="card-category">{career.work}</p>
+      <div className="career-card-meta">
+        <p className="card-category">{career.work}</p>
+        {progressPercent !== undefined && (
+          <span
+            className="career-progress"
+            role="meter"
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-valuenow={progressPercent}
+            aria-label={`${progressPercent}% complete`}
+          >
+            {progressPercent}%
+          </span>
+        )}
+      </div>
       <h2>{career.title}</h2>
       <p>{career.description}</p>
       {reason && (

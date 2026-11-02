@@ -4,12 +4,30 @@ import { Search, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { PageHeading } from "@/components/shared";
-import { categories, careers } from "@/fixtures/catalog";
+import { categories, careers, sampleMilestones } from "@/fixtures/catalog";
 import { CareerCard } from "@/components/career-card";
 import { PreviewDataState } from "@/components/preview-states";
+import { readTopicStatuses, useTopicStatuses } from "@/lib/learning-state";
+
+function getCareerProgressPercent(
+  careerId: string,
+  statuses: ReturnType<typeof readTopicStatuses>,
+) {
+  const topics =
+    careerId === "frontend"
+      ? sampleMilestones.flatMap((milestone) => milestone.topics)
+      : [];
+  if (!topics.length || !topics.some((topic) => topic.id in statuses))
+    return undefined;
+  const completed = topics.filter(
+    (topic) => statuses[topic.id] === "Done",
+  ).length;
+  return Math.round((completed / topics.length) * 100);
+}
 
 export function CatalogPage() {
   const [params, setParams] = useSearchParams();
+  const topicStatuses = readTopicStatuses(useTopicStatuses());
   const searchInputRef = useRef<HTMLInputElement>(null);
   const restoreSearchFocus = useRef(false);
   const query = params.get("q") ?? "";
@@ -140,7 +158,14 @@ export function CatalogPage() {
             {results.length ? (
               <div className="career-grid">
                 {results.map((career) => (
-                  <CareerCard key={career.id} career={career} />
+                  <CareerCard
+                    key={career.id}
+                    career={career}
+                    progressPercent={getCareerProgressPercent(
+                      career.id,
+                      topicStatuses,
+                    )}
+                  />
                 ))}
               </div>
             ) : (

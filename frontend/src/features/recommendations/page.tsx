@@ -161,7 +161,7 @@ export function ResultsPage() {
         </Button>
       </div>
       <p className="landing-note centered">
-        No match scores, inferred abilities or automatic roadmap selection.
+        You can change your career later if you change your mind.
       </p>
     </section>
   );

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router";
-import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, SquarePen, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -166,15 +166,17 @@ export function DashboardPage() {
     `${pageRoutes.roadmap("frontend")}?topic=${encodeURIComponent(id)}`;
   return (
     <>
-      <PageHeading
-        title="Your next step is here."
-        description="Keep your focus in sight. Pick up a topic, or make room to explore something different."
-        action={
-          <Button asChild variant="outline">
-            <Link to={pageRoutes.careers}>Browse careers</Link>
-          </Button>
-        }
-      />
+      {currentTopicId && (
+        <PageHeading
+          title="Your next step is here."
+          description="Keep your focus in sight. Pick up a topic, or make room to explore something different."
+          action={
+            <Button asChild variant="outline">
+              <Link to={pageRoutes.careers}>Browse careers</Link>
+            </Button>
+          }
+        />
+      )}
       {!currentTopicId ? (
         <PreviewDataState
           state="empty"
@@ -245,18 +247,36 @@ export function DashboardPage() {
               >
                 {(
                   [
-                    ["Learning", "In-Progress"],
-                    ["Not started", "Not Started"],
-                    ["Done", "Complete"],
-                    ["Skipped", "Skipped"],
+                    ["Learning", "In progress", "in-progress"],
+                    ["Not started", "Not started", "not-started"],
+                    ["Done", "Complete", "complete"],
+                    ["Skipped", "Skipped", null],
                   ] as const
-                ).map(([status, label]) => {
+                ).map(([status, label, countColor]) => {
                   const topics = currentMilestone.topics.filter(
                     (topic) => (topicStatuses[topic.id] ?? topic.status) === status,
                   );
+                  const countLabel = `${topics.length} ${topics.length === 1 ? "topic" : "topics"}`;
                   return (
                     <AccordionItem value={status} key={status}>
-                      <AccordionTrigger>{label}</AccordionTrigger>
+                      <AccordionTrigger
+                        className="dashboard-status-trigger"
+                        aria-label={
+                          countColor ? `${label}, ${countLabel}` : undefined
+                        }
+                      >
+                        <span className="dashboard-status-heading">
+                          <span>{label}</span>
+                          {countColor && (
+                            <span
+                              className={`topic-count topic-count--${countColor}`}
+                              aria-hidden="true"
+                            >
+                              {topics.length}
+                            </span>
+                          )}
+                        </span>
+                      </AccordionTrigger>
                       <AccordionContent>
                         {topics.length ? (
                           topics.map((topic) => (
@@ -283,17 +303,27 @@ export function DashboardPage() {
             </section>
           </div>
           <aside className="dashboard-side" aria-label="Learning context">
-            <Card className="support-card">
-              <div className="section-heading">
-                <h2>Current roadmap</h2>
-                <Link to={pageRoutes.careers}>Edit</Link>
+            <Card className="support-card current-roadmap-card">
+              <div className="current-roadmap-title-group">
+                <p className="current-roadmap-label">Current roadmap</p>
+                <div className="current-roadmap-heading">
+                  <h2>Frontend Developer</h2>
+                  <Link
+                    to={pageRoutes.careers}
+                    className="current-roadmap-edit"
+                  >
+                    Edit <SquarePen aria-hidden="true" size={16} />
+                  </Link>
+                </div>
               </div>
-              <div className="focus-title">Frontend Developer</div>
               <p>
                 A sample focus for this layout. Your roadmap changes only when
                 you explicitly save a new focus.
               </p>
-              <Link to={pageRoutes.roadmap("frontend")} className="inline-link">
+              <Link
+                to={pageRoutes.roadmap("frontend")}
+                className="current-roadmap-open"
+              >
                 Open roadmap
               </Link>
             </Card>
@@ -315,7 +345,7 @@ export function DashboardPage() {
           </aside>
         </div>
       )}
-      {!currentTopic && (
+      {currentTopicId && !currentTopic && (
         <div className="dashboard-layout">
           <aside className="dashboard-side" aria-label="Learning activity">
             <DashboardCalendar

@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { useBlocker, useBeforeUnload } from "react-router";
 import {
   Dialog,
@@ -11,10 +12,13 @@ import { Button } from "@/components/ui/button";
 export function UnsavedPreviewDialog({
   when,
   allowedPaths = [],
+  skipPath,
 }: {
   when: boolean;
   allowedPaths?: string[];
+  skipPath?: string;
 }) {
+  const returnFocusTarget = useRef<HTMLElement | null>(null);
   const blocker = useBlocker(
     ({ currentLocation, nextLocation }) =>
       when &&
@@ -27,6 +31,8 @@ export function UnsavedPreviewDialog({
       event.returnValue = "";
     }
   });
+  const isSkipConfirmation =
+    blocker.state === "blocked" && blocker.location.pathname === skipPath;
   return (
     <Dialog
       open={blocker.state === "blocked"}
@@ -34,12 +40,29 @@ export function UnsavedPreviewDialog({
         if (!open && blocker.state === "blocked") blocker.reset();
       }}
     >
-      <DialogContent>
+      <DialogContent
+        onOpenAutoFocus={() => {
+          const activeElement = document.activeElement;
+          returnFocusTarget.current =
+            activeElement instanceof HTMLElement ? activeElement : null;
+        }}
+        onCloseAutoFocus={(event) => {
+          event.preventDefault();
+          const target = returnFocusTarget.current;
+          returnFocusTarget.current = null;
+          if (target?.isConnected) target.focus();
+        }}
+      >
         <DialogHeader>
-          <DialogTitle>Leave your prototype changes?</DialogTitle>
+          <DialogTitle>
+            {isSkipConfirmation
+              ? "Are you sure you want to skip?"
+              : "Leave your prototype changes?"}
+          </DialogTitle>
           <DialogDescription>
-            These changes exist only in this open page. Saving is not connected,
-            so leaving will discard them.
+            {isSkipConfirmation
+              ? "'Stay on this page' will continue questions. 'Confirm' will proceed to career catalog where you can browse all careers available."
+              : "These changes exist only in this open page. Saving is not connected, so leaving will discard them."}
           </DialogDescription>
         </DialogHeader>
         <div className="action-row">
@@ -52,7 +75,7 @@ export function UnsavedPreviewDialog({
           <Button
             onClick={() => blocker.state === "blocked" && blocker.proceed()}
           >
-            Discard and leave
+            {isSkipConfirmation ? "Confirm" : "Discard and leave"}
           </Button>
         </div>
       </DialogContent>

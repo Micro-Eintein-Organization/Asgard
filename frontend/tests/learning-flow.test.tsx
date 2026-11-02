@@ -6,6 +6,7 @@ import {
   render,
   screen,
   waitFor,
+  within,
 } from "@testing-library/react";
 import {
   createMemoryRouter,
@@ -25,6 +26,7 @@ import { careers } from "@/fixtures/catalog";
 import {
   getLocalDateKey,
   setCurrentTopicId,
+  setTopicStatus,
   useCurrentTopicId,
 } from "@/lib/learning-state";
 
@@ -76,6 +78,27 @@ function TopicSubscriber() {
   return <output data-testid="topic-id">{topicId ?? "none"}</output>;
 }
 
+function getContrastRatio(firstColor: string, secondColor: string) {
+  function luminance(color: string) {
+    const channels = color.match(/[a-f\d]{2}/gi);
+    if (!channels || channels.length !== 3)
+      throw new Error(`Expected a six-digit hex color, received ${color}`);
+    const [red = 0, green = 0, blue = 0] = channels
+      .map((channel) => Number.parseInt(channel, 16) / 255)
+      .map((channel) =>
+        channel <= 0.04045
+          ? channel / 12.92
+          : ((channel + 0.055) / 1.055) ** 2.4,
+      );
+    return 0.2126 * red + 0.7152 * green + 0.0722 * blue;
+  }
+  const firstLuminance = luminance(firstColor);
+  const secondLuminance = luminance(secondColor);
+  const lighter = Math.max(firstLuminance, secondLuminance);
+  const darker = Math.min(firstLuminance, secondLuminance);
+  return (lighter + 0.05) / (darker + 0.05);
+}
+
 beforeEach(() => {
   window.localStorage.clear();
 });
@@ -106,7 +129,7 @@ describe("documented learning navigation", () => {
     fireEvent.click(
       screen.getByRole("link", { name: /Skip questions and browse careers/ }),
     );
-    fireEvent.click(screen.getByRole("button", { name: "Discard and leave" }));
+    fireEvent.click(screen.getByRole("button", { name: "Confirm" }));
     expect(
       screen.getByRole("heading", { name: "Find a direction worth exploring." }),
     ).toBeInTheDocument();
@@ -252,6 +275,9 @@ describe("documented learning navigation", () => {
     ).toBeInTheDocument();
     expect(screen.getByText("You can change this later on")).toBeInTheDocument();
     expect(
+      screen.getByText("You can change your career later if you change your mind."),
+    ).toBeInTheDocument();
+    expect(
       screen.queryByLabelText("Review layout state"),
     ).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole("link", { name: "Back to Discovery" }));
@@ -268,11 +294,83 @@ describe("documented learning navigation", () => {
     expect(screen.getByLabelText(/I'm new to technology/)).toBeChecked();
   });
 
+  it("uses the skip confirmation only for the Skip flow and preserves answers on Stay", async () => {
+    render(<LearningFlow initialEntry="/discovery" />);
+    const answer = screen.getByLabelText(/Creating useful tools/);
+    const skipLink = screen.getByRole("link", {
+      name: /Skip questions and browse careers/,
+    });
+    fireEvent.click(answer);
+    skipLink.focus();
+    fireEvent.click(skipLink);
+
+    expect(
+      screen.getByRole("heading", { name: "Are you sure you want to skip?" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "'Stay on this page' will continue questions. 'Confirm' will proceed to career catalog where you can browse all careers available.",
+      ),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Stay on this page" }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Confirm" })).toBeInTheDocument();
+
+    fireEvent.keyDown(document, { key: "Escape" });
+    await waitFor(() =>
+      expect(screen.queryByRole("dialog")).not.toBeInTheDocument(),
+    );
+    expect(skipLink).toHaveFocus();
+    expect(answer).toBeChecked();
+
+    fireEvent.click(skipLink);
+    fireEvent.click(screen.getByRole("button", { name: "Stay on this page" }));
+    expect(answer).toBeChecked();
+    expect(screen.getByRole("progressbar")).toHaveAttribute(
+      "aria-valuetext",
+      "Question 1 of 5",
+    );
+
+    fireEvent.click(
+      screen.getByRole("link", { name: /Skip questions and browse careers/ }),
+    );
+    fireEvent.click(screen.getByRole("button", { name: "Confirm" }));
+    expect(
+      screen.getByRole("heading", { name: "Find a direction worth exploring." }),
+    ).toBeInTheDocument();
+  });
+
+  it("retains the existing confirmation copy for other blocked Discovery exits", () => {
+    render(<LearningFlow initialEntry="/discovery" />);
+    fireEvent.click(screen.getByLabelText(/Creating useful tools/));
+    fireEvent.click(screen.getByRole("link", { name: "Return" }));
+    expect(
+      screen.getByRole("heading", {
+        name: "Leave your prototype changes?",
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "These changes exist only in this open page. Saving is not connected, so leaving will discard them.",
+      ),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Discard and leave" }),
+    ).toBeInTheDocument();
+  });
+
   it("supports single-select recommendations and enables the selected roadmap", () => {
     render(<LearningFlow initialEntry="/recommendations" />);
     const setCareer = screen.getByRole("button", { name: "Set as Career" });
     expect(setCareer).toBeDisabled();
     expect(setCareer).toHaveAttribute("aria-disabled", "true");
+    fireEvent.click(setCareer);
+    fireEvent.keyDown(setCareer, { key: "Enter" });
+    fireEvent.keyDown(setCareer, { key: " " });
+    expect(screen.getByTestId("location")).toHaveTextContent(
+      "/recommendations",
+    );
 
     const frontend = screen.getByRole("radio", {
       name: "Select Frontend Developer",
@@ -285,6 +383,9 @@ describe("documented learning navigation", () => {
       screen.queryByRole("link", { name: /^View roadmap/ }),
     ).not.toBeInTheDocument();
     expect(screen.getByText("You can change this later on")).toBeInTheDocument();
+    expect(
+      screen.getByText("You can change your career later if you change your mind."),
+    ).toBeInTheDocument();
 
     fireEvent.click(frontend);
     expect(frontend).toBeChecked();
@@ -447,15 +548,25 @@ describe("shared current-topic state", () => {
   });
 
   it("updates an already-mounted Dashboard when the shared topic changes", () => {
-    render(<LearningFlow initialEntry="/dashboard" />);
+    const { container } = render(<LearningFlow initialEntry="/dashboard" />);
     expect(
       screen.getByRole("heading", { name: "No current learning topic yet" }),
     ).toBeInTheDocument();
-    expect(screen.getByText("Current streak")).toBeInTheDocument();
-    expect(screen.getByText("Longest streak")).toBeInTheDocument();
+    expect(screen.queryByText("Your next step is here.")).not.toBeInTheDocument();
+    expect(screen.queryByText("Current streak")).not.toBeInTheDocument();
+    expect(screen.queryByText("Longest streak")).not.toBeInTheDocument();
     expect(
-      screen.getByText("Complete a topic to start your learning streak."),
+      screen.queryByText("Complete a topic to start your learning streak."),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: "Choose a topic" }),
     ).toBeInTheDocument();
+    expect(
+      screen.queryByText(
+        "Keep your focus in sight. Pick up a topic, or make room to explore something different.",
+      ),
+    ).not.toBeInTheDocument();
+    expect(container.querySelector(".calendar-grid")).not.toBeInTheDocument();
 
     act(() => setCurrentTopicId("css-layout"));
 
@@ -468,6 +579,61 @@ describe("shared current-topic state", () => {
     expect(window.localStorage.getItem("asgard.current-learning-topic")).toBe(
       "css-layout",
     );
+    expect(screen.getByText("Your next step is here.")).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "Keep your focus in sight. Pick up a topic, or make room to explore something different.",
+      ),
+    ).toBeInTheDocument();
+    expect(screen.getByText("Current streak")).toBeInTheDocument();
+    expect(screen.getByText("Longest streak")).toBeInTheDocument();
+    expect(container.querySelector(".calendar-grid")).toBeInTheDocument();
+  });
+
+  it("shows status counts and updates them when a topic changes status", () => {
+    window.localStorage.setItem("asgard.current-learning-topic", "css-layout");
+    render(<LearningFlow initialEntry="/dashboard" />);
+    expect(
+      screen.getByRole("button", { name: "In progress, 1 topic" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Not started, 1 topic" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Complete, 1 topic" }),
+    ).toBeInTheDocument();
+
+    act(() => setTopicStatus("css-layout", "Done"));
+    expect(
+      screen.getByRole("button", { name: "Not started, 0 topics" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Complete, 2 topics" }),
+    ).toBeInTheDocument();
+  });
+
+  it("shows only persisted curriculum progress on the matching catalog card", () => {
+    render(<LearningFlow initialEntry="/careers" />);
+    expect(screen.queryByRole("meter")).not.toBeInTheDocument();
+
+    act(() => setTopicStatus("css-layout", "Done"));
+    const frontendLink = screen.getByRole("link", {
+      name: /View roadmap.*Frontend Developer/,
+    });
+    const frontendCard = frontendLink.closest<HTMLElement>(".career-card");
+    if (!frontendCard) throw new Error("Frontend career card was not rendered");
+    expect(
+      within(frontendCard).getByRole("meter", {
+        name: "17% complete",
+      }),
+    ).toHaveTextContent("17%");
+    const otherCareerLink = screen.getByRole("link", {
+      name: /View roadmap.*Machine Learning Engineer/,
+    });
+    const otherCareerCard = otherCareerLink.closest<HTMLElement>(".career-card");
+    if (!otherCareerCard)
+      throw new Error("Machine Learning Engineer career card was not rendered");
+    expect(within(otherCareerCard).queryByRole("meter")).not.toBeInTheDocument();
   });
 
   it("highlights active days in current and past months and marks today", () => {
@@ -514,6 +680,29 @@ describe("shared current-topic state", () => {
     expect(focusVisibleStyles).toContain("outline: 3px solid var(--ring)");
     expect(focusVisibleStyles).toContain("outline-offset: 4px");
     expect(todayStyles).not.toContain("var(--ring)");
+  });
+
+  it("removes custom text-selection colors and keeps status count contrast accessible", () => {
+    const styles = readFileSync(
+      resolve(process.cwd(), "src/styles.css"),
+      "utf8",
+    );
+    const getToken = (name: string) =>
+      styles.match(new RegExp(`${name}:\\s*(#[\\da-fA-F]{6})`))?.[1];
+    const foreground = getToken("--topic-count-foreground");
+    const fills = [
+      getToken("--topic-count-in-progress"),
+      getToken("--topic-count-not-started"),
+      getToken("--topic-count-complete"),
+    ];
+
+    expect(styles).not.toMatch(/::selection/);
+    expect(foreground).toBeDefined();
+    expect(fills.every((fill) => fill !== undefined)).toBe(true);
+    for (const fill of fills) {
+      if (foreground && fill)
+        expect(getContrastRatio(foreground, fill)).toBeGreaterThanOrEqual(4.5);
+    }
   });
 
   it("renders actual empty and invalid-data states without the review switcher", () => {
