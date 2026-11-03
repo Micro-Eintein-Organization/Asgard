@@ -1,0 +1,82 @@
+O*NET-SOC Code,Title,Item,Response,N,Percent,Date
+15-1254.00,Web Developers,Data Collection Mode,Paper,24,33.3,07/2017
+15-1254.00,Web Developers,Data Collection Mode,Web,24,66.7,07/2017
+15-1254.00,Web Developers,How Much Experience Performing Work in this Occupation,1-2 Years,24,4.2,07/2017
+15-1254.00,Web Developers,How Much Experience Performing Work in this Occupation,10+ Years,24,62.5,07/2017
+15-1254.00,Web Developers,How Much Experience Performing Work in this Occupation,3-4 Years,24,4.2,07/2017
+15-1254.00,Web Developers,How Much Experience Performing Work in this Occupation,5-9 Years,24,29.2,07/2017
+15-1254.00,Web Developers,How Much Experience Performing Work in this Occupation,<1 Year,24,0.0,07/2017
+15-1254.00,Web Developers,How Much Experience Performing Work in this Occupation,Missing,24,0.0,07/2017
+15-1254.00,Web Developers,How Much Experience Performing Work in this Occupation,Never performed work in the occupation,24,0.0,07/2017
+15-1254.00,Web Developers,OE Completeness Rate,,,92.3,07/2017
+15-1254.00,Web Developers,OE Response Rate,,,57.8,07/2017
+15-1254.00,Web Developers,Total Completed Questionnaires,,24,,07/2017
+15-1255.00,Web and Digital Interface Designers,Data Collection Mode,Paper,66,15.2,08/2026
+15-1255.00,Web and Digital Interface Designers,Data Collection Mode,Web,66,84.8,08/2026
+15-1255.00,Web and Digital Interface Designers,Employee Completeness Rate,,,72.5,08/2026
+15-1255.00,Web and Digital Interface Designers,Employee Response Rate,,,63.6,08/2026
+15-1255.00,Web and Digital Interface Designers,Establishment Eligibility Rate,,,68.3,08/2026
+15-1255.00,Web and Digital Interface Designers,Establishment Response Rate,,,27.7,08/2026
+15-1255.00,Web and Digital Interface Designers,How Long at Current Job,1-5 Years,66,42.4,08/2026
+15-1255.00,Web and Digital Interface Designers,How Long at Current Job,10 Years or More,66,34.8,08/2026
+15-1255.00,Web and Digital Interface Designers,How Long at Current Job,6-9 Years,66,18.2,08/2026
+15-1255.00,Web and Digital Interface Designers,How Long at Current Job,<1 Year,66,4.5,08/2026
+15-1255.00,Web and Digital Interface Designers,How Long at Current Job,Missing,66,0.0,08/2026
+15-1255.00,Web and Digital Interface Designers,Industry Division (Major Group Codes (SIC) within Division in parentheses),"Agriculture, Forestry, Fishing (01-09)",66,0.0,08/2026
+15-1255.00,Web and Digital Interface Designers,Industry Division (Major Group Codes (SIC) within Division in parentheses),Construction (15-17),66,0.0,08/2026
+15-1255.00,Web and Digital Interface Designers,Industry Division (Major Group Codes (SIC) within Division in parentheses),"Financial, Insurance and Real Estate (60-67)",66,6.1,08/2026
+15-1255.00,Web and Digital Interface Designers,Industry Division (Major Group Codes (SIC) within Division in parentheses),Manufacturing (20-39),66,1.5,08/2026
+15-1255.00,Web and Digital Interface Designers,Industry Division (Major Group Codes (SIC) within Division in parentheses),Mining (10-14),66,0.0,08/2026
+15-1255.00,Web and Digital Interface Designers,Industry Division (Major Group Codes (SIC) within Division in parentheses),Non-Classifiable (99),66,0.0,08/2026
+15-1255.00,Web and Digital Interface Designers,Industry Division (Major Group Codes (SIC) within Division in parentheses),Public Administration (90-97),66,25.8,08/2026
+15-1255.00,Web and Digital Interface Designers,Industry Division (Major Group Codes (SIC) within Division in parentheses),Retail Trade (52-59),66,0.0,08/2026
+15-1255.00,Web and Digital Interface Designers,Industry Division (Major Group Codes (SIC) within Division in parentheses),Services (70-89),66,66.7,08/2026
+15-1255.00,Web and Digital Interface Designers,Industry Division (Major Group Codes (SIC) within Division in parentheses),"Transportation, Communication, Electric, Gas, and Sanitary Services (40-49)",66,0.0,08/2026
+15-1255.00,Web and Digital Interface Designers,Industry Division (Major Group Codes (SIC) within Division in parentheses),Wholesale Trade (50-51),66,0.0,08/2026
+15-1255.00,Web and Digital Interface Designers,NAICS Sector,Accommodation and food services,66,0.0,08/2026
+15-1255.00,Web and Digital Interface Designers,NAICS Sector,Administrative and support and waste management and remediation services,66,0.0,08/2026
+15-1255.00,Web and Digital Interface Designers,NAICS Sector,"Agriculture, forestry, fishing and hunting",66,0.0,08/2026
+15-1255.00,Web and Digital Interface Designers,NAICS Sector,"Arts, entertainment, and recreation",66,21.2,08/2026
+15-1255.00,Web and Digital Interface Designers,NAICS Sector,Construction,66,0.0,08/2026
+15-1255.00,Web and Digital Interface Designers,NAICS Sector,Education services,66,22.7,08/2026
+15-1255.00,Web and Digital Interface Designers,NAICS Sector,Finance and insurance,66,6.1,08/2026
+15-1255.00,Web and Digital Interface Designers,NAICS Sector,Health care and social assistance,66,0.0,08/2026
+15-1255.00,Web and Digital Interface Designers,NAICS Sector,Information,66,1.5,08/2026
+15-1255.00,Web and Digital Interface Designers,NAICS Sector,Management of Companies and Enterprises,66,0.0,08/2026
+15-1255.00,Web and Digital Interface Designers,NAICS Sector,Manufacturing,66,0.0,08/2026
+15-1255.00,Web and Digital Interface Designers,NAICS Sector,Mining,66,0.0,08/2026
+15-1255.00,Web and Digital Interface Designers,NAICS Sector,"Other services, except public administration",66,0.0,08/2026
+15-1255.00,Web and Digital Interface Designers,NAICS Sector,"Professional, Scientific and Technical Services",66,22.7,08/2026
+15-1255.00,Web and Digital Interface Designers,NAICS Sector,Public administration,66,25.8,08/2026
+15-1255.00,Web and Digital Interface Designers,NAICS Sector,Real estate and rental and leasing,66,0.0,08/2026
+15-1255.00,Web and Digital Interface Designers,NAICS Sector,Retail trade,66,0.0,08/2026
+15-1255.00,Web and Digital Interface Designers,NAICS Sector,Transportation and warehousing,66,0.0,08/2026
+15-1255.00,Web and Digital Interface Designers,NAICS Sector,Unclassified,66,0.0,08/2026
+15-1255.00,Web and Digital Interface Designers,NAICS Sector,Utilities,66,0.0,08/2026
+15-1255.00,Web and Digital Interface Designers,NAICS Sector,Wholesale trade,66,0.0,08/2026
+15-1255.00,Web and Digital Interface Designers,Occupation Eligibility Rate,,,9.6,08/2026
+15-1255.00,Web and Digital Interface Designers,Total Completed Questionnaires,,66,,08/2026
+15-2051.00,Data Scientists,Data Collection Mode,Paper,25,0.0,08/2026
+15-2051.00,Data Scientists,Data Collection Mode,Web,25,100.0,08/2026
+15-2051.00,Data Scientists,How Much Experience Performing Work in this Occupation,1-2 Years,25,0.0,08/2026
+15-2051.00,Data Scientists,How Much Experience Performing Work in this Occupation,10+ Years,25,88.0,08/2026
+15-2051.00,Data Scientists,How Much Experience Performing Work in this Occupation,3-4 Years,25,0.0,08/2026
+15-2051.00,Data Scientists,How Much Experience Performing Work in this Occupation,5-9 Years,25,12.0,08/2026
+15-2051.00,Data Scientists,How Much Experience Performing Work in this Occupation,<1 Year,25,0.0,08/2026
+15-2051.00,Data Scientists,How Much Experience Performing Work in this Occupation,Missing,25,0.0,08/2026
+15-2051.00,Data Scientists,How Much Experience Performing Work in this Occupation,Never performed work in the occupation,25,0.0,08/2026
+15-2051.00,Data Scientists,OE Completeness Rate,,,92.6,08/2026
+15-2051.00,Data Scientists,OE Response Rate,,,57.5,08/2026
+15-2051.00,Data Scientists,Total Completed Questionnaires,,25,,08/2026
+15-2051.01,Business Intelligence Analysts,Data Collection Mode,Paper,22,0.0,08/2024
+15-2051.01,Business Intelligence Analysts,Data Collection Mode,Web,22,100.0,08/2024
+15-2051.01,Business Intelligence Analysts,How Much Experience Performing Work in this Occupation,1-2 Years,22,0.0,08/2024
+15-2051.01,Business Intelligence Analysts,How Much Experience Performing Work in this Occupation,10+ Years,22,77.3,08/2024
+15-2051.01,Business Intelligence Analysts,How Much Experience Performing Work in this Occupation,3-4 Years,22,9.1,08/2024
+15-2051.01,Business Intelligence Analysts,How Much Experience Performing Work in this Occupation,5-9 Years,22,13.6,08/2024
+15-2051.01,Business Intelligence Analysts,How Much Experience Performing Work in this Occupation,<1 Year,22,0.0,08/2024
+15-2051.01,Business Intelligence Analysts,How Much Experience Performing Work in this Occupation,Missing,22,0.0,08/2024
+15-2051.01,Business Intelligence Analysts,How Much Experience Performing Work in this Occupation,Never performed work in the occupation,22,0.0,08/2024
+15-2051.01,Business Intelligence Analysts,OE Completeness Rate,,,95.7,08/2024
+15-2051.01,Business Intelligence Analysts,OE Response Rate,,,40.4,08/2024
+15-2051.01,Business Intelligence Analysts,Total Completed Questionnaires,,22,,08/2024

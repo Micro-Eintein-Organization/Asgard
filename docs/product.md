@@ -21,13 +21,21 @@ requirements:
 
 # Asgard: Product requirements and scope
 
-**Version 0.3 · Updated 26 October 2026 · Status: Product baseline with recorded owner resolutions; partial foundation implemented, feature acceptance pending**
+## Current local MVP scope — 2026-11-02
 
-Consolidated 25 October 2026 from the product brief, PRD, and scope. Original requirements and acceptance statements are retained. The owner delegated outstanding choices on 25 October 2026; [decisions](decisions.md) distinguishes selected policy from provider conflicts, authored content and unrun evidence. [Journeys](user-journeys.md) describe routes and [pages and interactions](pages-and-interactions.md) describe screen behavior.
+The approved [local evaluation resolution](decisions.md#local-evaluation-mvp-resolution-2026-11-02) governs this document's current delivery scope. [Development](development.md#current-local-mvp-status-2026-11-02) records source and dated evidence. Requirements and acceptance IDs below are preserved; inclusion is not a claim that their checks passed.
+
+REQ-01/REQ-13 account recovery, Google linking and deletion; REQ-11 photo/PDF and new MFA lifecycle; REQ-08/REQ-09 shared conflict-resolution dialog; and REQ-10 chronological recent completions are deferred portions for this local MVP. Detailed Profile answer summaries and richer guidance are also deferred. Existing PDF removal/cleanup and existing session/MFA enforcement remain. Future capabilities below retain their security constraints but do not become enabled or accepted through this scope change.
+
+The current baseline includes saved Discovery and blank retakes, suggestions when Groq is configured, catalog/roadmap browsing, explicit learning saves, Dashboard summaries/calendar/streak, names and separate preferences. Conflicting Learning changes are rejected and resolved manually before retry. Twelve roadmaps are locally published; independent curriculum review and current authenticated browser acceptance remain pending. Earlier scope statements below requiring these deferred features for MVP now describe the future public-product target.
+
+**Version 0.3 · Updated 26 October 2026 · Status: Product baseline with recorded resolutions; local core implemented; review and remaining acceptance pending**
+
+Consolidated 25 October 2026 from the product brief, PRD, and scope. Original requirements and acceptance statements are retained. Policy choices were selected on 25 October 2026; [decisions](decisions.md) distinguishes selected policy from provider conflicts, authored content and unrun evidence. [Journeys](user-journeys.md) describe routes and [pages and interactions](pages-and-interactions.md) describe screen behavior.
 
 Asgard connects career explanations with curated learning paths so people can understand the work, investigate options, and choose a practical learning step. The assumed need and intended benefits still require user research. Suggestions are advisory and uncertainty must not become an inferred ability or preference.
 
-[Development](development.md#current-foundation-status-and-evidence) owns implementation status and evidence. Auth/Profile source and shared SQL/API scaffolding exist; labeled sample pages and 501 feature operations do not meet these end-to-end acceptance criteria. The [password minimum resolution](decisions.md#password-minimum-resolution) selects 8 characters; [Security and operations](security-and-operations.md) owns the complete account policy. Frontmatter still retains draft status; recorded resolutions do not approve the whole PRD. The missing originating BRIEF artifact is tracked under [decision provenance](decisions.md#documentation-authority-and-unresolved-integration-records).
+[Development](development.md#current-local-mvp-status-2026-11-02) owns current implementation and evidence. The feature APIs have service handlers; there are no intentional 501 feature stubs. Product remains draft except for recorded resolutions; the missing BRIEF provenance remains unresolved.
 
 ## Vocabulary
 
@@ -44,7 +52,7 @@ A web application for understanding technology careers, exploring learning paths
 
 Sign-in is required after the public Landing page for both guided discovery and free browsing. Free browsing means skipping Discovery, not anonymous access. The five main page families are Landing, Discovery/Setup, Dashboard, Careers/Roadmaps, and Settings.
 
-The MVP shall launch with the six categories and seven roles listed below, confirmed in the 25 October 2026 document review. Each role requires a complete curated career explanation and introductory roadmap. Authored topic/resource inventory remains to be reviewed. Minimum introductory depth and per-topic resource coverage are defined in REQ-07. F-001 selects question controls and F-002 selects input interpretation and refresh policy; catalog attributes still require authored review.
+The original public-product inventory selected the six categories and seven roles listed below; the current local MVP publishes 12 roles including these seven, confirmed in the 25 October 2026 document review. Each role requires a complete curated career explanation and introductory roadmap. Authored topic/resource inventory remains to be reviewed. Minimum introductory depth and per-topic resource coverage are defined in REQ-07. F-001 selects question controls and F-002 selects input interpretation and refresh policy; catalog attributes still require authored review.
 
 | Launch category | Launch roles |
 | --- | --- |
@@ -260,7 +268,7 @@ Live job-market scraping, market analytics, AI-generated graphs, full course del
 
 ## Publication and content revision policy
 
-The project lead is initially accountable for curriculum approval and appoints a content editor per role before publication. Store editorial source/license, reviewer, reviewed date and content version. Every launch role needs foundations, starter tools and a practical outcome; each learning topic needs its explanation and at least one free curated resource. Review links before release and every 90 days. No title-only or repeated placeholder cards qualify.
+Curricula require editorial acceptance before publication. Store editorial source/license, review evidence, reviewed date and content version. Every launch role needs foundations, starter tools and a practical outcome; each learning topic needs its explanation and at least one free curated resource. Review links before release and every 90 days. No title-only or repeated placeholder cards qualify.
 
 Assign stable identities to roles, roadmaps, milestones, branch groups and learning topics. Each learning topic belongs to exactly one milestone within a roadmap; common-path membership and mutually exclusive alternatives are explicit. Group headings are not status-bearing topics. Alternative groups provide an explanation and explicit user choice, never a silent first-option default. Common topics remain usable before choosing a branch; withhold a full-path percentage until required choices are made and show common-topic counts plus a Choose a path action. Viewing alternative content changes no selected branch.
 
@@ -268,7 +276,7 @@ Copy/resource corrections retain identity and saved state. Materially changed le
 
 ## Non-functional requirements
 
-These requirements apply across all five page groups. They specify required quality outcomes rather than a particular architecture or provider. Previously agreed accessibility, compatibility, and data/progress behavior retain their accepted status. The owner-delegated baseline below selects verification objectives and free-tier service limits. No achieved performance, availability or conformance is claimed; verification.md defines evidence.
+These requirements apply across all five page groups. They specify required quality outcomes rather than a particular architecture or provider. Previously agreed accessibility, compatibility, and data/progress behavior retain their accepted status. The selected baseline below selects verification objectives and free-tier service limits. No achieved performance, availability or conformance is claimed; verification.md defines evidence.
 
 ### NFR-01: Accessibility and usability
 
@@ -351,8 +359,9 @@ These requirements apply across all five page groups. They specify required qual
 
 Evaluate Discovery for comprehension, completion effort, uncertainty handling, and suggestion usefulness when its requirements are reviewed. Evaluate later recommendations against relevant changes in user context. Product outcomes include understanding a role, finding a relevant topic/resource, choosing outside suggestions, and resuming retained progress. F-001/F-002 and verification.md select controls, refresh and evaluation thresholds. No results are claimed; these NFRs do not validate a recommendation algorithm.
 
-
 ## Working demo and final MVP scope
+
+Historical public-product comparison: the 2026-11-02 resolution supersedes inclusion of deferred features for the local MVP. Requirements for any future enabled public service remain.
 
 Scope record: SCOPE-001 · 24 October 2026 · Draft reflecting the scope consultation.
 
@@ -370,11 +379,11 @@ Scope record: SCOPE-001 · 24 October 2026 · Draft reflecting the scope consult
 | Career coverage | All seven named launch roles, each with reviewed explanation and introductory roadmap | Same inventory; additional roles optional |
 | Recommendations | LLM-based, grounded in available catalog content, with validated career IDs and supported explanations | Same architecture, with evaluated prompts and failure behavior |
 | PDF extraction | May remain nonfunctional; any displayed unavailable action must be clearly labeled and must not claim analysis success | Working optional extraction required under REQ-11 |
-| Future agents and PDF reviewer | Future extensions; preserve separate service contracts | Not automatically included in final MVP |
+| Future orchestration and PDF analysis | Future extensions; preserve separate service contracts | Not automatically included in final MVP |
 
 The 25 October 2026 review confirms the launch categories and roles in Product scope. Earlier four-category frames are incomplete launch coverage. Hardware & Embedded Systems and Networking & Infrastructure are included; Software and AI remains combined with two distinct launch roles.
 
-Topic membership, descriptions, and resource links for all seven launch roles remain to be supplied or reviewed. A roadmap must include coherent introductory topics and resources; a title-only card does not meet the minimum.
+Topic membership, descriptions and resources are locally published; independent content review remains pending. A roadmap must include coherent introductory topics and resources; a title-only card does not meet the minimum.
 
 ### Protected end-to-end journey
 

@@ -7,15 +7,25 @@ requires: [PRD]
 
 # Asgard: Pages and interactions
 
-Status: Owner-delegated interaction baseline · Updated 26 October 2026 · Canonical presentation and Auth/Profile source implemented; feature integration and acceptance pending
+## Current local MVP scope — 2026-11-02
+
+The approved [local evaluation resolution](decisions.md#local-evaluation-mvp-resolution-2026-11-02) governs this document's current delivery scope. [Development](development.md#current-local-mvp-status-2026-11-02) records source and dated evidence. Requirements and acceptance IDs below are preserved; inclusion is not a claim that their checks passed.
+
+REQ-01/REQ-13 account recovery, Google linking and deletion; REQ-11 photo/PDF and new MFA lifecycle; REQ-08/REQ-09 shared conflict-resolution dialog; and REQ-10 chronological recent completions are deferred portions for this local MVP. Detailed Profile answer summaries and richer guidance are also deferred. Existing PDF removal/cleanup and existing session/MFA enforcement remain. Future capabilities below retain their security constraints but do not become enabled or accepted through this scope change.
+
+The current baseline includes saved Discovery and blank retakes, suggestions when Groq is configured, catalog/roadmap browsing, explicit learning saves, Dashboard summaries/calendar/streak, names and separate preferences. Conflicting Learning changes are rejected and resolved manually before retry. Twelve roadmaps are locally published; independent curriculum review and current authenticated browser acceptance remain pending. Earlier scope statements below requiring these deferred features for MVP now describe the future public-product target.
+
+Status: Selected interaction baseline · Updated 26 October 2026 · Canonical presentation and Auth/Profile source implemented; feature integration and acceptance pending
 
 This guide uses short content and interaction descriptions across five page categories: Landing / Account Entry, Discovery / Setup, Dashboard / Home, Careers / Roadmaps, and Settings.
 
-The controls below describe intended behavior unless explicitly identified as current prototype behavior. [Design](design.md) documents implemented presentation; [Development](development.md#current-foundation-status-and-evidence) distinguishes working foundation source, labeled samples, authenticated 501 stubs and pending acceptance. Current Google, MFA, recovery, upload and learning actions must not be inferred from the intended screen descriptions. The [password resolution](decisions.md#password-minimum-resolution) selects an eight-character minimum without enabling unfinished account features.
+The controls below describe intended behavior unless explicitly identified as current prototype behavior. [Design](design.md) documents implemented presentation; [Development](development.md#current-foundation-status-and-evidence) distinguishes implemented local core, dated acceptance evidence and remaining review gates. Current Google, MFA, recovery, upload and learning actions must not be inferred from the intended screen descriptions. The [password resolution](decisions.md#password-minimum-resolution) selects an eight-character minimum without enabling unfinished account features.
 
 [Product requirements](product.md) own outcomes and constraints; [journeys](user-journeys.md) own routes and [decisions](decisions.md) track open details. This guide consolidates the simple guide and unique detail from the previous page specification. [Static exports](design/figma/) supply layout references, not proof of functioning interactions, completed design, or approval. Screen IDs below are logical references rather than implementation routes or Figma node IDs.
 
 **Reading the Missing blocks:** These identify PRD-required content, controls, or states not shown or not established in the supplied frames. Some are already described in this guide as intended behavior; that description does not establish completed frame coverage. Static frames do not verify working interactions. Existing screenshot content that needs correction remains under Recorded design decisions. A missing state may be a variation of an existing screen rather than a separate page. Selected controls below replace prior provisional choices; provider compatibility and unrun tests remain evidence gates.
+
+The detailed RESOLVE-LEARNING, photo, enrichment, account lifecycle and richer guidance descriptions below are deferred target interactions where they exceed the local baseline. Current guidance offers saved-draft resume, outdated suggestions, provider unavailability, roadmap browsing and optional name completion; dismissals use account preferences.
 
 ## Screen references and requirement coverage
 
@@ -28,7 +38,6 @@ The controls below describe intended behavior unless explicitly identified as cu
 | Settings | SETTINGS-PROFILE; PROFILE-ENRICHMENT; SETTINGS-ACCOUNT; TWO-FACTOR-ENROLLMENT; RECOVERY-CODES; ACCOUNT-DELETE | REQ-11, REQ-13; REQ-04 for retakes |
 
 REQ-06 and REQ-12 remain outside MVP. Career saving/comparison, tutor/chat interfaces, and chatbot preferences are not included. NFR-01 through NFR-10 apply across all groups; the shared quality coverage at the end maps their interface effects.
-
 
 ## Shared behavior
 
@@ -44,7 +53,7 @@ REQ-06 and REQ-12 remain outside MVP. Career saving/comparison, tutor/chat inter
 
 ### Shared contextual guidance
 
-Owner-confirmed direction, 25 October 2026: use a shared informational guidance component across Dashboard, Careers, and Settings, with relevant messages rather than a universal warning.
+Accepted direction, 25 October 2026: use a shared informational guidance component across Dashboard, Careers, and Settings, with relevant messages rather than a universal warning.
 
 - Show at most one general guidance banner with one relevant action and a dismiss control. Dismissal of the same message persists across pages and future visits. Priority: Resume Discovery, unfinished basic profile, Start Discovery, optional background enrichment. Show the first eligible undismissed message. After dismissal, wait until the next navigation/visit before offering another. Persist per account/message across devices; copy edits do not reset dismissal. Career exploration stays an ordinary link in roadmap detail.
 - Until a nonempty First name is saved, offer Edit profile: “Finish setting up your profile. Adding your name is enough; a photo and PDF are optional.” Saving the name hides this basic-profile prompt everywhere.
@@ -59,7 +68,6 @@ Owner-confirmed direction, 25 October 2026: use a shared informational guidance 
 - Place validation beside its field and preserve recoverable form input after request failure.
 - Core controls require keyboard access and visible focus. Menus and panels need accessible names, a reliable close action, and focus return to their trigger.
 - Retain light neutral surfaces, dark text/actions and green progress accent from the references. Verify contrast, use semantic danger styling for errors/destructive actions, and honor reduced motion. No new visual identity is required; token values are implementation details.
-
 
 ## 1. Landing / Account Entry
 
@@ -220,7 +228,7 @@ Owner-confirmed direction, 25 October 2026: use a shared informational guidance 
 
 ### Selected account-access policy
 
-The owner delegated remaining choices on 25 October 2026. Security and operations owns the limits/lifecycle and AUTH-C1/C2 provider gates; no custom password/MFA system is authorized.
+Remaining interaction policies were selected on 25 October 2026. Security and operations owns the limits/lifecycle and AUTH-C1/C2 provider gates; no custom password/MFA system is authorized.
 
 - Explain the 18+ audience beside account entry without collecting date of birth. An age-verification mechanism is not established by this notice.
 - Submit email, authenticator, and recovery codes explicitly with Verify. Keep input available after recoverable failure; do not submit automatically on the final digit. Disable repeated submission while a request is pending and announce its outcome accessibly.
@@ -235,7 +243,7 @@ Security review references: [OWASP MFA guidance](https://cheatsheetseries.owasp.
 
 ## 2. Discovery / Setup
 
-Use the existing five themes as the content baseline, followed by results after the applicable conditional route. Later questions or choice sets may depend on earlier answers. The [Discovery copy draft](specs/discovery.md#discovery-copy-draft) owns the baseline headings, questions, card labels, descriptions, uncertainty wording, and shared messages. The 26 October 2026 owner clarification supersedes fixed-five/no-branch wording; Assignment A must propose the route map and inactive-answer behavior. The selected baseline controls and persistence in F-001 apply subject to that reviewed route; screenshots and historical prototypes do not define routing.
+Use the existing five themes as the content baseline, followed by results after the applicable conditional route. Later questions or choice sets may depend on earlier answers. The [Discovery copy draft](specs/discovery.md#discovery-copy-draft) owns the baseline headings, questions, card labels, descriptions, uncertainty wording, and shared messages. The 26 October 2026 owner clarification supersedes fixed-five/no-branch wording; The implemented bounded route uses conditional activities; inactive saved answers are retained and excluded from recommendations. The selected baseline controls and persistence in F-001 apply subject to that reviewed route; screenshots and historical prototypes do not define routing.
 
 ### Entry Choice
 
@@ -257,7 +265,7 @@ Use the existing five themes as the content baseline, followed by results after 
 #### Content Area
 
 - Discovery Heading and Progress Indicator
-  - Shows: Discovery title and progress through the active route; the current five-screen progress indicator is skeleton content and must be replaced by route-aware progress when questions are authored
+  - Shows: Discovery title and progress through the active route; progress follows the server-defined active route
 
 - Question and Instructions
   - Shows: The current question, its subject, and a short explanation of how to answer
@@ -496,7 +504,6 @@ Opening topics and expanding lists do not change topic status. Skipped topics re
 - Undoing Done removes its contribution and recalculates calendar/streak summaries. Use local dates. Preserve historical dates after timezone changes and use the new timezone for future activity.
 - The streak counts consecutive qualifying local days. Preserve yesterday's streak through today while today's activity is pending. A full inactive day breaks it. No streak freezes are included.
 - Percentages and counters describe recorded activity, not assessed competence or employability.
-
 
 ## 4. Careers / Roadmaps
 
@@ -778,7 +785,6 @@ The Roadmaps.png frame supplies the milestone-list reference. Owner-confirmed be
   - Shows: Pending, empty, success, failure, timeout, and retry feedback where applicable; recoverable input and previous successful context remain available. Recommendation or analysis failure keeps available core browsing and learning usable.
 
 Engineering requirements such as authorization, storage, backup procedures, performance measurements, and operational logging need separate implementation / verification evidence. They are not treated as missing visual controls here. Selected audience notice, conditional Discovery routing direction, security-action policies and retention deadlines apply. The route map, provider compatibility, technical review, content readiness and test evidence remain release gates. Excluded features such as comparison, bookmarking, an assistant, and data export are not missing MVP screens.
-
 
 ### Quality coverage
 

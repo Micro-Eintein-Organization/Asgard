@@ -1,0 +1,1889 @@
+{
+  "version": "curation-0.1.0",
+  "coverage": {
+    "frontend-developer": "Web development references plus broader local software roles; no single Frontend-specific proficiency target accepted.",
+    "data-analyst": "Local associate/practitioner skill maps plus supplementary BI/Data Science references; occupational equivalence pending.",
+    "ui-designer": "Local associate/practitioner/lead UI roles; O*NET shared interface category must remain distinct from UX.",
+    "ux-designer": "Local associate/practitioner UX skill maps; shared O*NET interface category is broader than user research.",
+    "data-engineer": "Local associate/practitioner/senior data engineering maps; O*NET database/software references are complementary.",
+    "machine-learning-engineer": "Local ML role and a related senior data-science reference; missing ML-specific career-level equivalence remains explicit.",
+    "network-engineer": "Local infrastructure roles cover operations; O*NET architecture/administration references distinguish functions.",
+    "cybersecurity-analyst": "O*NET security profile and local analyst task context; local skill levels withheld because role header association is ambiguous on page 65.",
+    "penetration-tester": "Local analyst/manager skill maps and O*NET penetration profile; conflicting repeated native levels require review.",
+    "hardware-engineer": "Local junior/senior circuit-design profiles and O*NET hardware; semiconductor scope is narrower than generic hardware.",
+    "embedded-systems-developer": "Local associate/engineer/architect maps with broad software/hardware O*NET references.",
+    "devops-engineer": "Related platform/infrastructure roles and broad software/administration references; no unique DevOps occupation equivalence accepted."
+  },
+  "rationales": {
+    "frontend-developer": "Web development references plus broader local software roles; no single Frontend-specific proficiency target accepted. Mapping is proposed from task/domain overlap, not a title-only match.",
+    "data-analyst": "Local associate/practitioner skill maps plus supplementary BI/Data Science references; occupational equivalence pending. Mapping is proposed from task/domain overlap, not a title-only match.",
+    "ui-designer": "Local associate/practitioner/lead UI roles; O*NET shared interface category must remain distinct from UX. Mapping is proposed from task/domain overlap, not a title-only match.",
+    "ux-designer": "Local associate/practitioner UX skill maps; shared O*NET interface category is broader than user research. Mapping is proposed from task/domain overlap, not a title-only match.",
+    "data-engineer": "Local associate/practitioner/senior data engineering maps; O*NET database/software references are complementary. Mapping is proposed from task/domain overlap, not a title-only match.",
+    "machine-learning-engineer": "Local ML role and a related senior data-science reference; missing ML-specific career-level equivalence remains explicit. Mapping is proposed from task/domain overlap, not a title-only match.",
+    "network-engineer": "Local infrastructure roles cover operations; O*NET architecture/administration references distinguish functions. Mapping is proposed from task/domain overlap, not a title-only match.",
+    "cybersecurity-analyst": "O*NET security profile and local analyst task context; local skill levels withheld because role header association is ambiguous on page 65. Mapping is proposed from task/domain overlap, not a title-only match.",
+    "penetration-tester": "Local analyst/manager skill maps and O*NET penetration profile; conflicting repeated native levels require review. Mapping is proposed from task/domain overlap, not a title-only match.",
+    "hardware-engineer": "Local junior/senior circuit-design profiles and O*NET hardware; semiconductor scope is narrower than generic hardware. Mapping is proposed from task/domain overlap, not a title-only match.",
+    "embedded-systems-developer": "Local associate/engineer/architect maps with broad software/hardware O*NET references. Mapping is proposed from task/domain overlap, not a title-only match.",
+    "devops-engineer": "Related platform/infrastructure roles and broad software/administration references; no unique DevOps occupation equivalence accepted. Mapping is proposed from task/domain overlap, not a title-only match."
+  },
+  "pdf_roles": [
+    {
+      "source_id": "SRC-16",
+      "page": 37,
+      "anchor": "Associate Data Analyst",
+      "title": "Associate Data Analyst",
+      "career_level": "associate",
+      "careers": [
+        "data-analyst"
+      ],
+      "parts": [
+        {
+          "page": 37,
+          "side": "whole"
+        }
+      ],
+      "printed_pages": "35",
+      "description": "Project description: selected Associate Data Analyst role provides source-native functional competency expectations; consult the cited role section for full responsibilities.",
+      "relationship": "related source role; scope/seniority alignment proposed",
+      "mapping_rationale": "Role tasks and functional skill map are relevant supporting evidence; the Asgard career label is not asserted equivalent. Different source roles remain alternatives, not a mandatory union.",
+      "tasks": [
+        "Project paraphrase: support collection and organization of data under supervision.",
+        "Project paraphrase: assist with analysis, reports and visualizations."
+      ]
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 38,
+      "anchor": "Data Analyst",
+      "title": "Data Analyst",
+      "career_level": "practitioner",
+      "careers": [
+        "data-analyst"
+      ],
+      "parts": [
+        {
+          "page": 38,
+          "side": "whole"
+        }
+      ],
+      "printed_pages": "36",
+      "description": "Project description: selected Data Analyst role provides source-native functional competency expectations; consult the cited role section for full responsibilities.",
+      "relationship": "related source role; scope/seniority alignment proposed",
+      "mapping_rationale": "Role tasks and functional skill map are relevant supporting evidence; the Asgard career label is not asserted equivalent. Different source roles remain alternatives, not a mandatory union.",
+      "tasks": [
+        "Project paraphrase: collect, prepare and analyze data to support business decisions.",
+        "Project paraphrase: present findings through reports and visualizations."
+      ]
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 60,
+      "anchor": "Associate Data Engineer",
+      "title": "Associate Data Engineer",
+      "career_level": "associate",
+      "careers": [
+        "data-engineer"
+      ],
+      "parts": [
+        {
+          "page": 60,
+          "side": "whole"
+        }
+      ],
+      "printed_pages": "58",
+      "description": "Project description: selected Associate Data Engineer role provides source-native functional competency expectations; consult the cited role section for full responsibilities.",
+      "relationship": "related source role; scope/seniority alignment proposed",
+      "mapping_rationale": "Role tasks and functional skill map are relevant supporting evidence; the Asgard career label is not asserted equivalent. Different source roles remain alternatives, not a mandatory union.",
+      "tasks": []
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 62,
+      "anchor": "Data Engineer",
+      "title": "Data Engineer",
+      "career_level": "practitioner",
+      "careers": [
+        "data-engineer"
+      ],
+      "parts": [
+        {
+          "page": 62,
+          "side": "whole"
+        }
+      ],
+      "printed_pages": "60",
+      "description": "Project description: selected Data Engineer role provides source-native functional competency expectations; consult the cited role section for full responsibilities.",
+      "relationship": "related source role; scope/seniority alignment proposed",
+      "mapping_rationale": "Role tasks and functional skill map are relevant supporting evidence; the Asgard career label is not asserted equivalent. Different source roles remain alternatives, not a mandatory union.",
+      "tasks": []
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 64,
+      "anchor": "Senior Data Engineer",
+      "title": "Senior Data Engineer",
+      "career_level": "senior",
+      "careers": [
+        "data-engineer"
+      ],
+      "parts": [
+        {
+          "page": 64,
+          "side": "whole"
+        }
+      ],
+      "printed_pages": "62",
+      "description": "Project description: selected Senior Data Engineer role provides source-native functional competency expectations; consult the cited role section for full responsibilities.",
+      "relationship": "related source role; scope/seniority alignment proposed",
+      "mapping_rationale": "Role tasks and functional skill map are relevant supporting evidence; the Asgard career label is not asserted equivalent. Different source roles remain alternatives, not a mandatory union.",
+      "tasks": []
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 72,
+      "anchor": "Machine Learning Engineer",
+      "title": "Machine Learning Engineer",
+      "career_level": "practitioner",
+      "careers": [
+        "machine-learning-engineer"
+      ],
+      "parts": [
+        {
+          "page": 72,
+          "side": "whole"
+        }
+      ],
+      "printed_pages": "70",
+      "description": "Project description: selected Machine Learning Engineer role provides source-native functional competency expectations; consult the cited role section for full responsibilities.",
+      "relationship": "related source role; scope/seniority alignment proposed",
+      "mapping_rationale": "Role tasks and functional skill map are relevant supporting evidence; the Asgard career label is not asserted equivalent. Different source roles remain alternatives, not a mandatory union.",
+      "tasks": []
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 76,
+      "anchor": "Senior Data Scientist",
+      "title": "Senior Data Scientist",
+      "career_level": "senior related occupation",
+      "careers": [
+        "machine-learning-engineer"
+      ],
+      "parts": [
+        {
+          "page": 76,
+          "side": "whole"
+        }
+      ],
+      "printed_pages": "74",
+      "description": "Project description: selected Senior Data Scientist role provides source-native functional competency expectations; consult the cited role section for full responsibilities.",
+      "relationship": "related source role; scope/seniority alignment proposed",
+      "mapping_rationale": "Role tasks and functional skill map are relevant supporting evidence; the Asgard career label is not asserted equivalent. Different source roles remain alternatives, not a mandatory union.",
+      "tasks": []
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 13,
+      "anchor": "Associate Infrastructure Support Engineer",
+      "title": "Associate Infrastructure Support Engineer",
+      "career_level": "associate",
+      "careers": [
+        "network-engineer",
+        "devops-engineer"
+      ],
+      "parts": [
+        {
+          "page": 13,
+          "side": "whole"
+        }
+      ],
+      "printed_pages": "22,23",
+      "description": "Project description: selected Associate Infrastructure Support Engineer role provides source-native functional competency expectations; consult the cited role section for full responsibilities.",
+      "relationship": "related source role; scope/seniority alignment proposed",
+      "mapping_rationale": "Role tasks and functional skill map are relevant supporting evidence; the Asgard career label is not asserted equivalent. Different source roles remain alternatives, not a mandatory union.",
+      "tasks": []
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 14,
+      "anchor": "Infrastructure Support Engineer",
+      "title": "Infrastructure Support Engineer",
+      "career_level": "practitioner",
+      "careers": [
+        "network-engineer",
+        "devops-engineer"
+      ],
+      "parts": [
+        {
+          "page": 14,
+          "side": "whole"
+        }
+      ],
+      "printed_pages": "24,25",
+      "description": "Project description: selected Infrastructure Support Engineer role provides source-native functional competency expectations; consult the cited role section for full responsibilities.",
+      "relationship": "related source role; scope/seniority alignment proposed",
+      "mapping_rationale": "Role tasks and functional skill map are relevant supporting evidence; the Asgard career label is not asserted equivalent. Different source roles remain alternatives, not a mandatory union.",
+      "tasks": []
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 28,
+      "anchor": "Associate User Interface (UI) Designer",
+      "title": "Associate User Interface (UI) Designer",
+      "career_level": "associate",
+      "careers": [
+        "ui-designer"
+      ],
+      "parts": [
+        {
+          "page": 28,
+          "side": "whole"
+        }
+      ],
+      "printed_pages": "52,53",
+      "description": "Project description: selected Associate User Interface (UI) Designer role provides source-native functional competency expectations; consult the cited role section for full responsibilities.",
+      "relationship": "related source role; scope/seniority alignment proposed",
+      "mapping_rationale": "Role tasks and functional skill map are relevant supporting evidence; the Asgard career label is not asserted equivalent. Different source roles remain alternatives, not a mandatory union.",
+      "tasks": []
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 29,
+      "anchor": "User Interface (UI) Designer",
+      "title": "User Interface (UI) Designer",
+      "career_level": "practitioner",
+      "careers": [
+        "ui-designer"
+      ],
+      "parts": [
+        {
+          "page": 29,
+          "side": "whole"
+        }
+      ],
+      "printed_pages": "54,55",
+      "description": "Project description: selected User Interface (UI) Designer role provides source-native functional competency expectations; consult the cited role section for full responsibilities.",
+      "relationship": "related source role; scope/seniority alignment proposed",
+      "mapping_rationale": "Role tasks and functional skill map are relevant supporting evidence; the Asgard career label is not asserted equivalent. Different source roles remain alternatives, not a mandatory union.",
+      "tasks": []
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 30,
+      "anchor": "Lead User Interface (UI) Designer",
+      "title": "Lead User Interface (UI) Designer",
+      "career_level": "lead",
+      "careers": [
+        "ui-designer"
+      ],
+      "parts": [
+        {
+          "page": 30,
+          "side": "whole"
+        }
+      ],
+      "printed_pages": "56,57",
+      "description": "Project description: selected Lead User Interface (UI) Designer role provides source-native functional competency expectations; consult the cited role section for full responsibilities.",
+      "relationship": "related source role; scope/seniority alignment proposed",
+      "mapping_rationale": "Role tasks and functional skill map are relevant supporting evidence; the Asgard career label is not asserted equivalent. Different source roles remain alternatives, not a mandatory union.",
+      "tasks": []
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 34,
+      "anchor": "User Experience (UX) Designer Associate",
+      "title": "User Experience (UX) Designer Associate",
+      "career_level": "associate",
+      "careers": [
+        "ux-designer"
+      ],
+      "parts": [
+        {
+          "page": 34,
+          "side": "left"
+        }
+      ],
+      "printed_pages": "64",
+      "description": "Project description: selected User Experience (UX) Designer Associate role provides source-native functional competency expectations; consult the cited role section for full responsibilities.",
+      "relationship": "related source role; scope/seniority alignment proposed",
+      "mapping_rationale": "Role tasks and functional skill map are relevant supporting evidence; the Asgard career label is not asserted equivalent. Different source roles remain alternatives, not a mandatory union.",
+      "tasks": []
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 36,
+      "anchor": "User Experience (UX) Designer",
+      "title": "User Experience (UX) Designer",
+      "career_level": "practitioner",
+      "careers": [
+        "ux-designer"
+      ],
+      "parts": [
+        {
+          "page": 36,
+          "side": "left"
+        }
+      ],
+      "printed_pages": "68",
+      "description": "Project description: selected User Experience (UX) Designer role provides source-native functional competency expectations; consult the cited role section for full responsibilities.",
+      "relationship": "related source role; scope/seniority alignment proposed",
+      "mapping_rationale": "Role tasks and functional skill map are relevant supporting evidence; the Asgard career label is not asserted equivalent. Different source roles remain alternatives, not a mandatory union.",
+      "tasks": []
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 54,
+      "anchor": "Associate Software Engineer",
+      "title": "Associate Software Engineer",
+      "career_level": "associate broader reference",
+      "careers": [
+        "frontend-developer"
+      ],
+      "parts": [
+        {
+          "page": 54,
+          "side": "whole"
+        },
+        {
+          "page": 55,
+          "side": "left"
+        }
+      ],
+      "printed_pages": "104,105,106",
+      "description": "Project description: selected Associate Software Engineer role provides source-native functional competency expectations; consult the cited role section for full responsibilities.",
+      "relationship": "related source role; scope/seniority alignment proposed",
+      "mapping_rationale": "Role tasks and functional skill map are relevant supporting evidence; the Asgard career label is not asserted equivalent. Different source roles remain alternatives, not a mandatory union.",
+      "tasks": [
+        "Project paraphrase: support application development, testing and secure coding.",
+        "Project paraphrase: apply version control and basic web operations."
+      ]
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 56,
+      "anchor": "Software Engineer",
+      "title": "Software Engineer",
+      "career_level": "practitioner broader reference",
+      "careers": [
+        "frontend-developer"
+      ],
+      "parts": [
+        {
+          "page": 56,
+          "side": "whole"
+        }
+      ],
+      "printed_pages": "108,109",
+      "description": "Project description: selected Software Engineer role provides source-native functional competency expectations; consult the cited role section for full responsibilities.",
+      "relationship": "related source role; scope/seniority alignment proposed",
+      "mapping_rationale": "Role tasks and functional skill map are relevant supporting evidence; the Asgard career label is not asserted equivalent. Different source roles remain alternatives, not a mandatory union.",
+      "tasks": [
+        "Project paraphrase: implement and test applications while applying software design and secure development practices."
+      ]
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 57,
+      "anchor": "Platform Engineer",
+      "title": "Platform Engineer",
+      "career_level": "practitioner related occupation",
+      "careers": [
+        "devops-engineer"
+      ],
+      "parts": [
+        {
+          "page": 57,
+          "side": "whole"
+        }
+      ],
+      "printed_pages": "110,111",
+      "description": "Project description: selected Platform Engineer role provides source-native functional competency expectations; consult the cited role section for full responsibilities.",
+      "relationship": "related source role; scope/seniority alignment proposed",
+      "mapping_rationale": "Role tasks and functional skill map are relevant supporting evidence; the Asgard career label is not asserted equivalent. Different source roles remain alternatives, not a mandatory union.",
+      "tasks": []
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 60,
+      "anchor": "Associate Embedded Systems Engineer",
+      "title": "Associate Embedded Systems Engineer",
+      "career_level": "associate",
+      "careers": [
+        "embedded-systems-developer"
+      ],
+      "parts": [
+        {
+          "page": 60,
+          "side": "whole"
+        }
+      ],
+      "printed_pages": "116,117",
+      "description": "Project description: selected Associate Embedded Systems Engineer role provides source-native functional competency expectations; consult the cited role section for full responsibilities.",
+      "relationship": "related source role; scope/seniority alignment proposed",
+      "mapping_rationale": "Role tasks and functional skill map are relevant supporting evidence; the Asgard career label is not asserted equivalent. Different source roles remain alternatives, not a mandatory union.",
+      "tasks": []
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 61,
+      "anchor": "Embedded Systems Engineer",
+      "title": "Embedded Systems Engineer",
+      "career_level": "practitioner",
+      "careers": [
+        "embedded-systems-developer"
+      ],
+      "parts": [
+        {
+          "page": 61,
+          "side": "whole"
+        }
+      ],
+      "printed_pages": "118,119",
+      "description": "Project description: selected Embedded Systems Engineer role provides source-native functional competency expectations; consult the cited role section for full responsibilities.",
+      "relationship": "related source role; scope/seniority alignment proposed",
+      "mapping_rationale": "Role tasks and functional skill map are relevant supporting evidence; the Asgard career label is not asserted equivalent. Different source roles remain alternatives, not a mandatory union.",
+      "tasks": []
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 62,
+      "anchor": "Embedded Systems Architect",
+      "title": "Embedded Systems Architect",
+      "career_level": "architect",
+      "careers": [
+        "embedded-systems-developer"
+      ],
+      "parts": [
+        {
+          "page": 62,
+          "side": "whole"
+        },
+        {
+          "page": 63,
+          "side": "left"
+        }
+      ],
+      "printed_pages": "120,121,122",
+      "description": "Project description: selected Embedded Systems Architect role provides source-native functional competency expectations; consult the cited role section for full responsibilities.",
+      "relationship": "related source role; scope/seniority alignment proposed",
+      "mapping_rationale": "Role tasks and functional skill map are relevant supporting evidence; the Asgard career label is not asserted equivalent. Different source roles remain alternatives, not a mandatory union.",
+      "tasks": []
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 65,
+      "anchor": "Security Analyst",
+      "title": "Security Analyst",
+      "career_level": "practitioner",
+      "careers": [
+        "cybersecurity-analyst"
+      ],
+      "parts": [
+        {
+          "page": 65,
+          "side": "left"
+        }
+      ],
+      "printed_pages": "126",
+      "description": "Project description: selected Security Analyst role provides source-native functional competency expectations; consult the cited role section for full responsibilities.",
+      "relationship": "related source role; scope/seniority alignment proposed",
+      "mapping_rationale": "Role tasks and functional skill map are relevant supporting evidence; the Asgard career label is not asserted equivalent. Different source roles remain alternatives, not a mandatory union.",
+      "tasks": [
+        "Project paraphrase: monitor security controls and investigate suspicious events."
+      ]
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 70,
+      "anchor": "Vulnerability Assessment and Penetration Testing Analyst",
+      "title": "Vulnerability Assessment and Penetration Testing Analyst",
+      "career_level": "analyst",
+      "careers": [
+        "penetration-tester"
+      ],
+      "parts": [
+        {
+          "page": 70,
+          "side": "left"
+        }
+      ],
+      "printed_pages": "136",
+      "description": "Project description: selected Vulnerability Assessment and Penetration Testing Analyst role provides source-native functional competency expectations; consult the cited role section for full responsibilities.",
+      "relationship": "related source role; scope/seniority alignment proposed",
+      "mapping_rationale": "Role tasks and functional skill map are relevant supporting evidence; the Asgard career label is not asserted equivalent. Different source roles remain alternatives, not a mandatory union.",
+      "tasks": []
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 71,
+      "anchor": "Vulnerability Assessment and Penetration Testing Manager",
+      "title": "Vulnerability Assessment and Penetration Testing Manager",
+      "career_level": "manager",
+      "careers": [
+        "penetration-tester"
+      ],
+      "parts": [
+        {
+          "page": 71,
+          "side": "left"
+        }
+      ],
+      "printed_pages": "138",
+      "description": "Project description: selected Vulnerability Assessment and Penetration Testing Manager role provides source-native functional competency expectations; consult the cited role section for full responsibilities.",
+      "relationship": "related source role; scope/seniority alignment proposed",
+      "mapping_rationale": "Role tasks and functional skill map are relevant supporting evidence; the Asgard career label is not asserted equivalent. Different source roles remain alternatives, not a mandatory union.",
+      "tasks": []
+    },
+    {
+      "source_id": "SRC-19",
+      "page": 22,
+      "anchor": "Junior Circuit Design Engineer",
+      "title": "Junior Circuit Design Engineer",
+      "career_level": "junior related occupation",
+      "careers": [
+        "hardware-engineer"
+      ],
+      "parts": [
+        {
+          "page": 22,
+          "side": "whole"
+        }
+      ],
+      "printed_pages": "20",
+      "description": "Project description: selected Junior Circuit Design Engineer role provides source-native functional competency expectations; consult the cited role section for full responsibilities.",
+      "relationship": "related source role; scope/seniority alignment proposed",
+      "mapping_rationale": "Role tasks and functional skill map are relevant supporting evidence; the Asgard career label is not asserted equivalent. Different source roles remain alternatives, not a mandatory union.",
+      "tasks": []
+    },
+    {
+      "source_id": "SRC-19",
+      "page": 24,
+      "anchor": "Senior Circuit Design Engineer",
+      "title": "Senior Circuit Design Engineer",
+      "career_level": "senior related occupation",
+      "careers": [
+        "hardware-engineer"
+      ],
+      "parts": [
+        {
+          "page": 24,
+          "side": "whole"
+        }
+      ],
+      "printed_pages": "22",
+      "description": "Project description: selected Senior Circuit Design Engineer role provides source-native functional competency expectations; consult the cited role section for full responsibilities.",
+      "relationship": "related source role; scope/seniority alignment proposed",
+      "mapping_rationale": "Role tasks and functional skill map are relevant supporting evidence; the Asgard career label is not asserted equivalent. Different source roles remain alternatives, not a mandatory union.",
+      "tasks": []
+    }
+  ],
+  "source_appraisal": {
+    "SRC-02": "Qualification-specific training/assessment source retained for later review. No NC level is converted to per-skill proficiency; technology-specific or servicing scope is not substituted for engineering requirements.",
+    "SRC-03": "Qualification-specific training/assessment source retained for later review. No NC level is converted to per-skill proficiency; technology-specific or servicing scope is not substituted for engineering requirements.",
+    "SRC-04": "Qualification-specific training/assessment source retained for later review. No NC level is converted to per-skill proficiency; technology-specific or servicing scope is not substituted for engineering requirements.",
+    "SRC-05": "Qualification-specific training/assessment source retained for later review. No NC level is converted to per-skill proficiency; technology-specific or servicing scope is not substituted for engineering requirements.",
+    "SRC-06": "Qualification-specific training/assessment source retained for later review. No NC level is converted to per-skill proficiency; technology-specific or servicing scope is not substituted for engineering requirements.",
+    "SRC-07": "Qualification-specific training/assessment source retained for later review. No NC level is converted to per-skill proficiency; technology-specific or servicing scope is not substituted for engineering requirements.",
+    "SRC-08": "Qualification-specific training/assessment source retained for later review. No NC level is converted to per-skill proficiency; technology-specific or servicing scope is not substituted for engineering requirements.",
+    "SRC-09": "Qualification-specific training/assessment source retained for later review. No NC level is converted to per-skill proficiency; technology-specific or servicing scope is not substituted for engineering requirements.",
+    "SRC-11": "Retained for framework interpretation; competency-level crosswalk not accepted.",
+    "SRC-12": "Retained as supporting corpus; sector overlap does not justify importing additional careers or duplicate role frameworks in v0.1.",
+    "SRC-13": "Screened as source context; this bounded release retains selected role evidence only. Other pages are not declared irrelevant or semantically validated.",
+    "SRC-14": "Retained as supporting corpus; sector overlap does not justify importing additional careers or duplicate role frameworks in v0.1.",
+    "SRC-15": "Retained as supporting corpus; sector overlap does not justify importing additional careers or duplicate role frameworks in v0.1.",
+    "SRC-16": "Screened as source context; this bounded release retains selected role evidence only. Other pages are not declared irrelevant or semantically validated.",
+    "SRC-17": "Retained as supporting corpus; sector overlap does not justify importing additional careers or duplicate role frameworks in v0.1.",
+    "SRC-18": "Retained as supporting corpus; sector overlap does not justify importing additional careers or duplicate role frameworks in v0.1.",
+    "SRC-19": "Screened as source context; this bounded release retains selected role evidence only. Other pages are not declared irrelevant or semantically validated.",
+    "SRC-20": "Retained as supporting corpus; sector overlap does not justify importing additional careers or duplicate role frameworks in v0.1."
+  },
+  "psoc_codes": {
+    "2512": [
+      "frontend-developer",
+      "embedded-systems-developer",
+      "devops-engineer"
+    ],
+    "2513": [
+      "frontend-developer",
+      "ui-designer",
+      "ux-designer"
+    ],
+    "2523": [
+      "network-engineer"
+    ],
+    "2529": [
+      "cybersecurity-analyst",
+      "penetration-tester"
+    ],
+    "2152": [
+      "hardware-engineer"
+    ]
+  },
+  "interpretation": [
+    {
+      "source_id": "SRC-11",
+      "page": 6,
+      "printed_pages": "6",
+      "anchor": "Behavioral Indicators",
+      "description": "NICS distinguishes Basic, Intermediate and Advanced using behavioral indicators and enabling knowledge; these are not PSF or O*NET level equivalents."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 100,
+      "printed_pages": "196-197",
+      "anchor": "Proficiency Level Descriptors",
+      "description": "PSF functional levels describe knowledge/abilities, autonomy/complexity and responsibility; source-native expectations are retained without conversion."
+    }
+  ],
+  "learning_links": [
+    {
+      "career": "frontend-developer",
+      "source_id": "SRC-10",
+      "competency": "Programming",
+      "topic": "html-document-structure",
+      "rationale": "This authored topic offers limited practice in one aspect of the source competency. It does not establish full occupational proficiency."
+    },
+    {
+      "career": "data-analyst",
+      "source_id": "SRC-10",
+      "competency": "Critical Thinking",
+      "topic": "business-questions-and-measures",
+      "rationale": "This authored topic offers limited practice in one aspect of the source competency. It does not establish full occupational proficiency."
+    },
+    {
+      "career": "data-engineer",
+      "source_id": "SRC-10",
+      "competency": "Programming",
+      "topic": "sql-foundations",
+      "rationale": "This authored topic offers limited practice in one aspect of the source competency. It does not establish full occupational proficiency."
+    },
+    {
+      "career": "machine-learning-engineer",
+      "source_id": "SRC-10",
+      "competency": "Programming",
+      "topic": "python-notebooks-and-environments",
+      "rationale": "This authored topic offers limited practice in one aspect of the source competency. It does not establish full occupational proficiency."
+    },
+    {
+      "career": "network-engineer",
+      "source_id": "SRC-10",
+      "competency": "Telecommunications",
+      "topic": "network-roles-and-topologies",
+      "rationale": "This authored topic offers limited practice in one aspect of the source competency. It does not establish full occupational proficiency."
+    },
+    {
+      "career": "cybersecurity-analyst",
+      "source_id": "SRC-10",
+      "competency": "Computers and Electronics",
+      "topic": "operating-systems-and-accounts",
+      "rationale": "This authored topic offers limited practice in one aspect of the source competency. It does not establish full occupational proficiency."
+    },
+    {
+      "career": "penetration-tester",
+      "source_id": "SRC-10",
+      "competency": "Computers and Electronics",
+      "topic": "operating-systems-and-terminal",
+      "rationale": "This authored topic offers limited practice in one aspect of the source competency. It does not establish full occupational proficiency."
+    },
+    {
+      "career": "hardware-engineer",
+      "source_id": "SRC-10",
+      "competency": "Engineering and Technology",
+      "topic": "circuit-simulation-setup",
+      "rationale": "This authored topic offers limited practice in one aspect of the source competency. It does not establish full occupational proficiency."
+    },
+    {
+      "career": "embedded-systems-developer",
+      "source_id": "SRC-10",
+      "competency": "Programming",
+      "topic": "c-language-basics",
+      "rationale": "This authored topic offers limited practice in one aspect of the source competency. It does not establish full occupational proficiency."
+    },
+    {
+      "career": "devops-engineer",
+      "source_id": "SRC-10",
+      "competency": "Computers and Electronics",
+      "topic": "linux-terminal-essentials",
+      "rationale": "This authored topic offers limited practice in one aspect of the source competency. It does not establish full occupational proficiency."
+    },
+    {
+      "career": "ui-designer",
+      "source_id": "SRC-10",
+      "competency": "Design",
+      "topic": "visual-hierarchy",
+      "rationale": "This authored topic offers limited practice in one aspect of the source competency. It does not establish full occupational proficiency."
+    },
+    {
+      "career": "ux-designer",
+      "source_id": "SRC-10",
+      "competency": "Active Listening",
+      "topic": "interview-planning",
+      "rationale": "This authored topic offers limited practice in one aspect of the source competency. It does not establish full occupational proficiency."
+    }
+  ],
+  "scenarios": [
+    {
+      "key": "unknown",
+      "journey": "current skill coverage",
+      "scenario": "Occupational competency has no user evidence",
+      "expected": "Show unassessed; do not infer inability"
+    },
+    {
+      "key": "zero",
+      "journey": "current skill coverage",
+      "scenario": "Explicit report of no experience",
+      "expected": "Keep distinct from unknown; do not infer certification"
+    },
+    {
+      "key": "scale",
+      "journey": "current skill coverage",
+      "scenario": "Native source levels differ",
+      "expected": "Retain separate scales; no numeric gap without accepted method"
+    },
+    {
+      "key": "conflict",
+      "journey": "current skill coverage",
+      "scenario": "Source has repeated conflicting levels or suppressed values",
+      "expected": "Expose uncertainty and withhold a definitive target"
+    },
+    {
+      "key": "shift",
+      "journey": "career transition",
+      "scenario": "Explore another career using existing records",
+      "expected": "Show related/transferable evidence without changing learning focus"
+    },
+    {
+      "key": "broad",
+      "journey": "career transition",
+      "scenario": "Source occupation is broader than target career",
+      "expected": "Explain partial mapping; no mandatory union of all source skills"
+    },
+    {
+      "key": "link",
+      "journey": "continued development",
+      "scenario": "Relevant competency has no reviewed topic",
+      "expected": "Show coverage gap; do not manufacture curriculum"
+    },
+    {
+      "key": "update",
+      "journey": "continued development",
+      "scenario": "Source evidence or user record changes",
+      "expected": "Revisit versioned evidence; no claim of live employer demand"
+    }
+  ],
+  "definitions": [
+    {
+      "source_id": "SRC-13",
+      "page": 100,
+      "label": "Aesthetic and Design Sensibility",
+      "side": "right",
+      "definition": "Imagine and develop novel, relevant and appropriate aesthetics to engage and evoke accurate and appropriate emotional and sensorial responses from target audiences."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 101,
+      "label": "Agile Coaching",
+      "side": "right",
+      "definition": "Formulate and implement Agile coaching frameworks, processes and standards to foster Agile mindset and practices within the organization and develop Agile teams."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 102,
+      "label": "Agile Software Development",
+      "side": "right",
+      "definition": "Plan and implement Agile methodology and the use of adaptive and iterative methods and techniques in the software development lifecycle to account for continuous evolution, development, and deployment to enable seamless delivery of the application to the end user"
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 103,
+      "label": "Applications Development",
+      "side": "right",
+      "definition": "Develop applications based on the design specifications; encompassing coding, testing, debugging, documenting and reviewing and/or refining it across the application development stages in accordance with defined standards for development and security. The complexity of the application may range from a basic application to a context-aware and/or augmented reality application that incorporates predictive behavior analytics, geo- spatial capabilities and other appropriate algorithms. The technical skill includes the analysis and possibly the reuse, improvement, reconfiguration, addition or integration of existing and/or new application components."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 105,
+      "label": "Applications Integration",
+      "side": "left",
+      "definition": "Integrate data or functions from one application program with that of another application program involves development of an integration plan, programming and the identification and utilization of appropriate middleware to optimize the connectivity and performance of disparate applications across target environments."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 106,
+      "label": "Applications Support and Enhancement",
+      "side": "left",
+      "definition": "Provide ongoing technical support and improvements to users of applications. This includes technical guidance and assistance related to the installation and maintenance of applications, fixing and resolution of application problems or disruptions, and response to change requests that will enhance the operations and usage of an application."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 110,
+      "label": "Audit and Compliance",
+      "side": "left",
+      "definition": "Develop compliance processes and audit strategy for the organization to review adherence to statutory regulatory and standards. Assessment and enhancement of the thoroughness of compliance and/or governance processes and organization’s internal controls to align with changing compliance standards. This also includes the actual conduct and/or performance of audit activities."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 113,
+      "label": "Budgeting",
+      "side": "left",
+      "definition": "Preparing organizational budgets to support short- and long-term business plans through forecasting, allocation and financial policy setting."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 115,
+      "label": "Business Continuity",
+      "side": "left",
+      "definition": "Develop internal infrastructure to ensure organizational resilience and maintenance of the availability, stability and integrity of critical systems, processes and stakeholders that support and drive key aspects of the business. This includes the planning, designing and testing contingency plans and setting up of internal systems and structures which are ready to respond to potential threats and maintain desired levels of continuity."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 117,
+      "label": "Business Environment Analysis",
+      "side": "left",
+      "definition": "Analyze data pertaining to the business landscape and environment, including competitor-analysis, trends and developments in laws and regulations and the impact on the business."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 118,
+      "label": "Business Innovation",
+      "side": "left",
+      "definition": "Identify and evaluate digitization and innovative business opportunities provided by new advancements in information and communication technology to establish new services or businesses to bridge the physical and digital worlds"
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 119,
+      "label": "Business Needs Analysis",
+      "side": "left",
+      "definition": "Identify and scope business requirements and priorities through rigorous information gathering and analysis as well as clarification of the solutions, initiatives and programs to enable effective delivery. This also involves the development of a compelling and defensible business case and the articulation of the potential impact of the solution to the business."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 120,
+      "label": "Business Negotiation",
+      "side": "left",
+      "definition": "Conduct negotiations to establish win-win outcomes for the organization."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 120,
+      "label": "Business Performance Management",
+      "side": "right",
+      "definition": "Implement organizational performance systems to meet business plans and objectives by establishing performance indicators, tracking progress and addressing gaps."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 121,
+      "label": "Business Presentation Delivery",
+      "side": "left",
+      "definition": "Perform required tasks to prepare and present information in various business settings involving preparation, understanding of audience, delivery and tailoring of messages to be conveyed."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 121,
+      "label": "Business Requirements Mapping",
+      "side": "right",
+      "definition": "Map business requirements to existing processes to identify gaps or opportunities for possible solutions and evaluate impact of solutions against requirements to propose adjustments as needed."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 122,
+      "label": "Business Risk Management",
+      "side": "left",
+      "definition": "Forecast and assess existing and potential IT risks which impact the operation and/or profitability to the business as well as the development and roll out company-wide strategies and processes to mitigate risks, minimize their impact or effectively manage such business risks."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 123,
+      "label": "Change Management",
+      "side": "left",
+      "definition": "Plan and systematic execution of processes to facilitate the transition of individuals, teams and organizations to a desired end state in a manner that is seamless, sustainable and aligned with business objectives. This includes the redirection of resources, business processes, finances and operating models, as well as stakeholder engagement to facilitate implementation and maximize adoption."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 124,
+      "label": "Cloud Computing",
+      "side": "left",
+      "definition": "Implement cloud solutions to enhance business performance and security of IT systems."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 126,
+      "label": "Configuration Tracking",
+      "side": "left",
+      "definition": "Track systematically and manage changes and revisions in software projects to ensure that all changes are accounted for and to protect assets against unauthorized change, diversion and inappropriate use"
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 128,
+      "label": "Continuous Improvement",
+      "side": "right",
+      "definition": "Apply continuous improvement strategies to improve products, services or processes across the organization."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 131,
+      "label": "Control System Programming",
+      "side": "right",
+      "definition": "Develop capabilities in areas of communications and remote operations by programming logic circuits and erasable programmable read-only memory for ships, rigs and/or conversions."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 132,
+      "label": "Creative Storytelling",
+      "side": "left",
+      "definition": "Convey stories, ideas or concepts in a compelling and engaging manner through creative mediums."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 133,
+      "label": "Critical Thinking",
+      "side": "left",
+      "definition": "Examine, manage and connect issues and ideas from multiple perspectives to identify reasoning in a variety of fields with differing assumptions, contents and methods."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 133,
+      "label": "Cultural Sensitivity for Design",
+      "side": "right",
+      "definition": "Develop an appreciation and thorough understanding of intended target audiences’ cultures to reflect consideration to cultural sensitivities in design."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 134,
+      "label": "Customer Behavior Analysis",
+      "side": "left",
+      "definition": "Devise customer behavior analysis tools and approaches and perform analysis on information pertaining to customer behaviors."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 136,
+      "label": "Cyber and Data Breach Incident Management",
+      "side": "left",
+      "definition": "Detect and report cyber and data-related incidents, identify affected systems and user groups, trigger alerts and announcements to relevant stakeholders and efficient resolution of the situation."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 139,
+      "label": "Cybersecurity",
+      "side": "left",
+      "definition": "Understand, develop and apply cybersecurity policies and procedures to ensure protection against cybersecurity risks and vulnerabilities, and to respond to cybersecurity breaches."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 140,
+      "label": "Data Analysis and Interpretation",
+      "side": "left",
+      "definition": "Extract meaningful patterns and insights from data to improve organizational performance and decision-making."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 141,
+      "label": "Data Analytics",
+      "side": "left",
+      "definition": "Implementing data analytics within the organization to generate business insights and intelligence through the use of statistical and computational techniques and tools, algorithms, predictive data modelling and data visualization."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 143,
+      "label": "Data Design",
+      "side": "left",
+      "definition": "Specify and create a data structure or database model, including the setting of various parameters or fields that can be modified to suit different structured or unstructured data requirements, the design of data flow, as well as the development of mechanisms for maintenance, storage and retrieval of data based on the business requirements."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 146,
+      "label": "Data Governance",
+      "side": "left",
+      "definition": "Develop and implement guidelines, laws, and regulations across the organization for the handling of data at various stages in its lifecycle as well as the provision of advice on proper data handling and resolution of data breaches in a range of complex, ambiguous or multi-faceted contexts."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 150,
+      "label": "Database Administration",
+      "side": "left",
+      "definition": "Perform Installation, coordination and upgrading of databases and database servers, performance monitoring and troubleshooting. This includes monitoring user access to database and optimization of database performance, planning for backup and recovery, archived data maintenance and reporting."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 152,
+      "label": "Design Standards and Specification",
+      "side": "left",
+      "definition": "Apply knowledge of relevant standards that govern the design requirements, and deliver design specifications according to the required standards."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 153,
+      "label": "Design Thinking Practice",
+      "side": "left",
+      "definition": "Manage design thinking methodologies and processes to solve specific challenges for the organization, and guide stakeholders through the phases of inspiration, empathy, ideation and implementation."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 154,
+      "label": "Digital and Physical Prototyping",
+      "side": "left",
+      "definition": "Construct design concepts, either digitally or physically, to develop deeper understanding of the designs and test their usability and functionality."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 155,
+      "label": "Disaster Recovery Management",
+      "side": "right",
+      "definition": "Develop and implement internal policies, processes and arrangements to guide and enable the prompt recovery of critical IT infrastructure and systems following a crisis or disaster. This includes monitoring the efficiency and effectiveness of response to significant incidents or disruptions and reviewing the organization’s disaster recovery plan and processes."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 156,
+      "label": "Embedded Systems Integration",
+      "side": "right",
+      "definition": "Implement control systems to perform predefined tasks and also real-time monitoring for the real world."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 157,
+      "label": "Embedded Systems Interface Design",
+      "side": "left",
+      "definition": "Design and set up interface and interconnections from or among sensors, through a network, to a main location, to enable transmission of information."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 157,
+      "label": "Embedded Systems Programming",
+      "side": "right",
+      "definition": "Program an embedded system using permitted programming interfaces provided by the system to support creation of devices that do not operate on traditional operating systems."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 158,
+      "label": "Emerging Technology Synthesis",
+      "side": "left",
+      "definition": "Monitor and integrate emerging technology trends and developments, structured data gathering for the identification of new and emerging technological products, services and techniques. In addition, the performance of cost-benefit analysis and evaluation of their relevance, viability, sustainability and potential value add to the business."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 159,
+      "label": "Empathetic Design",
+      "side": "left",
+      "definition": "Apply and drive empathetic-centered design thinking to better understand users’ feelings and perceptions towards products and services, as well as the emotional tone of creative design work."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 161,
+      "label": "Immersive Design",
+      "side": "left",
+      "definition": "Define the creative vision and techniques for creative immersive experiences and conceive content designs to be delivered through the use of immersive media."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 162,
+      "label": "Infrastructure Deployment",
+      "side": "right",
+      "definition": "Set up, deploy and decommission infrastructure components and associated equipment in accordance to a set plan and established safety and/or quality procedures. This includes the assessment and preparation of appropriate site locations, infrastructure, the development of an installation plan, layout at the site, the testing of on-site systems, infrastructure components, equipment and the correction of issues and/or malfunctions."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 165,
+      "label": "Infrastructure Support",
+      "side": "right",
+      "definition": "Provide services to end users by systematically identifying, classifying and troubleshooting technical issues and incidents that disrupt and impact their day-to-day business activities, within a specified timeframe. This also includes implementing an end-to-end problem management process to analyze underlying problems, advising on infrastructure related upgrades and improvements and developing user guides and training materials."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 166,
+      "label": "Innovation Management",
+      "side": "right",
+      "definition": "Manage organization’s ability to respond to internal and external opportunities by using creativity to introduce new ideas, processes and products."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 167,
+      "label": "Interaction Design Practice",
+      "side": "right",
+      "definition": "Develop digital and/or physical interactions across technology, products, space and services media to enhance relationships and engagement with users."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 169,
+      "label": "IT Governance",
+      "side": "left",
+      "definition": "Set and monitor IT infrastructure, information, digital services and associated technology. This involves developing policies and practices to govern the organization’s approach toward handling and using IT products and services in order to ensure conformance with regulations and accountability in decision making in alignment with the business strategic plans and service standards."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 170,
+      "label": "IT Standards",
+      "side": "left",
+      "definition": "Develop and review of standard operating procedures as well as service expectations for IT-related activities and processes. This includes the provision of clear guidelines for the organization to carry out IT-related tasks in a manner that is effective, efficient and consistent with the IT service standards and quality standards of the organization."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 171,
+      "label": "IT Strategy",
+      "side": "left",
+      "definition": "Plan, develop and communicate effective inward- and outward-facing IT strategies, solutions and action plans, driven by environment scanning and assessment of the business’ future needs and long-term strategic direction. This involves devising internal management strategies and models to support and sustain IT transformations and alignment of IT investments and programmes with the strategy to optimize the business value from IT."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 172,
+      "label": "Learning and Development",
+      "side": "left",
+      "definition": "Manage employees’ learning and development activities to maximize employee potential and capabilities to contribute to the organization."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 173,
+      "label": "Manpower Planning",
+      "side": "left",
+      "definition": "Estimate and fulfill manpower requirements to achieve business goals and targets."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 177,
+      "label": "Network Administration and Maintenance",
+      "side": "left",
+      "definition": "Monitor the network to provide for optimum levels of network performance and minimization of downtime. This includes detection, isolation, recovery, and limitation of the impact of failures on the network as well as provision of support to system users through ongoing maintenance information sharing and training."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 178,
+      "label": "Network Configuration",
+      "side": "left",
+      "definition": "Configure network hardware and software components according to organizational guidelines and technical requirements. This includes the implementation and configuration of multiple servers, network devices, and network management tools as well as the management of user network access to ensure stable and reliable network operations."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 179,
+      "label": "Network Security",
+      "side": "left",
+      "definition": "Design and configure network systems to ensure the integrity of network infrastructure through the use of appropriate protection, detection, and response mechanisms."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 180,
+      "label": "Networking",
+      "side": "left",
+      "definition": "Identifying, evaluating, and strategizing to seize new business opportunities to grow the organization’s business operations."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 181,
+      "label": "People and Performance Management",
+      "side": "right",
+      "definition": "Establish organization-wide performance management strategies to facilitate performance management, including identification of key performance indicators and employee performance assessment."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 182,
+      "label": "Performance Management",
+      "side": "left",
+      "definition": "Evaluate and optimize network, system, and/or software performance against user and business requirements. This involves the introduction and utilization of new tools and mechanisms to gather, analyze, and fully optimize performance data. This also includes the initiation of controls, modifications, and new investments to enhance the end-to-end performance of ICT components, systems, and services."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 184,
+      "label": "Problem Management",
+      "side": "left",
+      "definition": "Manage the lifecycle of problems to prevent problems and incidents from occurring, eliminate recurring incidents, and minimize the impact of unavoidable incidents."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 184,
+      "label": "Process Improvement and Optimization",
+      "side": "right",
+      "definition": "Establish systems to discover critical processes and maximize these processes to achieve maximum efficiency in accordance with organization procedures."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 185,
+      "label": "Procurement",
+      "side": "right",
+      "definition": "Develop and apply procurement processes related to the solicitation of technology services through external providers. This includes the review of proposals, setting of vendor selection guidelines, risk assessment through appropriate audits and tests, and selection of external service providers based on stipulated evaluation criteria."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 187,
+      "label": "Product Management",
+      "side": "left",
+      "definition": "Create and manage a product roadmap, involving the ideating, planning, forecasting, marketing, and management of a product or a suite of products throughout stages of its lifecycle, from its conceptualization to market entrance and eventual phasing-out. This includes the creation of a new product idea or concept and the definition of the product strategy based on a projection of its potential benefits to the customer as well as the review of product performance against milestones and targets set."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 188,
+      "label": "Programming and Coding",
+      "side": "right",
+      "definition": "Develop technical capabilities to understand, design and write instructions to be processed by computers as software programmes to achieve desired outcomes."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 189,
+      "label": "Project Feasibility Assessment",
+      "side": "left",
+      "definition": "Assess the business environment and organizational capabilities to evaluate and determine the feasibility of a project."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 189,
+      "label": "Project Management",
+      "side": "right",
+      "definition": "Perform planning, organization, monitoring, and control of all aspects of an IT program and the strategic utilization of resources to achieve the objectives within the agreed timelines, costs, and performance expectations. In addition, the identification, coordination, and management of project interdependencies, ensuring alignment with and achievement of business objectives."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 191,
+      "label": "Quality Assurance",
+      "side": "right",
+      "definition": "Apply quality standards to review performance through the planning and conduct of quality assurance audits to ensure that quality expectations are upheld. This includes the analysis of quality audit results and setting of follow-up actions to improve or enhance the quality of products, services or processes."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 192,
+      "label": "Quality Standards",
+      "side": "left",
+      "definition": "Develop, review and communicate clear, quality expectations and standards within an organization that are aligned to the company’s values and business objectives. This encompasses the setting and implementation of quality expectations for IT products and services delivered to both internal or external clients."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 194,
+      "label": "Research",
+      "side": "right",
+      "definition": "Research on a concept or idea to provide inputs for content development."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 198,
+      "label": "Security Assessment and Testing",
+      "side": "left",
+      "definition": "Conduct threat modeling, vulnerability assessment and penetration testing to reveal vulnerabilities or lapses in the existing systems or security mechanisms and evaluate the extent to which systems are able to protect the organization’s data and maintain functionality as intended."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 199,
+      "label": "Security Education and Awareness",
+      "side": "left",
+      "definition": "Drive security education and awareness in an organization by providing advice and guidance on potential risks, mitigation strategies and best practices. This includes development of communication strategies and training materials to ensure employee adoption and adherence to security policies and standards."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 199,
+      "label": "Security Governance",
+      "side": "right",
+      "definition": "Develop and disseminate corporate security policies, frameworks and guidelines to ensure that day-to-day business operations guard or are well protected against risks, threats and vulnerabilities"
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 200,
+      "label": "Security Operation Compliance",
+      "side": "left",
+      "definition": "Manage operations that comply with the relevant legal requirements in the security industry."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 201,
+      "label": "Security Program Management",
+      "side": "left",
+      "definition": "Develop and manage security solutions, products and services through technology innovation, experimentation and collaboration. This includes security programme planning, developing and testing new security capabilities and implementing security technologies and programmes."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 201,
+      "label": "Security Strategy",
+      "side": "right",
+      "definition": "Establish the organization’s security vision, strategy and initiatives to ensure adequate protection of assets. This involves the planning, implementation and review of enterprise-wide security controls which includes policies, processes, physical infrastructure, software and hardware functions to govern and preserve the privacy, security and confidentiality of the organization’s information and assets."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 203,
+      "label": "Security Threat Research",
+      "side": "left",
+      "definition": "Establish procedures for gathering, analyzing and interpreting information about security threats and present findings to relevant stakeholders."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 203,
+      "label": "Service Level Management",
+      "side": "right",
+      "definition": "Plan, monitor and manage service provisions for the achievement of agreed service level targets."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 204,
+      "label": "Software Configuration",
+      "side": "right",
+      "definition": "Configure software products and apply scripts and automation tools to integrate and deploy software releases to various platforms and operating environments. This includes subsequent modifications to software configuration, based on outcomes of systems and/or configuration tests."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 205,
+      "label": "Software Design",
+      "side": "right",
+      "definition": "Create and refine the overall plan for the design of software, including the design of functional specifications starting from the defined business requirements as well as the consideration and incorporation of various controls, functionality and interoperability of different elements into a design blueprint or model which describes the overall architecture in hardware, software, databases, and third party frameworks that the software will use or interact with."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 206,
+      "label": "Software Testing",
+      "side": "right",
+      "definition": "Assess and test the overall effectiveness and performance of an application, involving the setting up of suitable testing conditions, definition of test cases and/or technical criteria."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 207,
+      "label": "Solution Architecture",
+      "side": "right",
+      "definition": "Design or refine a solution blueprint or structure to guide the development of IT solutions in hardware, software, processes or related components, to meet current and future business needs. The solution architecture developed may lead to broad or specific changes to IT services, operating models and processes, and should provide a framework to guide the development and modification of solutions."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 208,
+      "label": "Stakeholder Management",
+      "side": "right",
+      "definition": "Manage stakeholder expectations and needs by aligning those with requirements and objectives of the organization. This involves planning of actions to effectively communicate with, negotiate with and influence stakeholders."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 209,
+      "label": "Strategy Implementation",
+      "side": "right",
+      "definition": "Execute and implement operational and tactical-level action plans in alignment with the organization’s business strategies."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 210,
+      "label": "Strategy Planning",
+      "side": "left",
+      "definition": "Develop organizational strategies and policies by analyzing the impact of internal and external influencing factors and seeking consultation from relevant stakeholders."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 211,
+      "label": "Systems Design",
+      "side": "right",
+      "definition": "Design systems to meet specified business and user requirements that are compatible with established system architectures, as well as organizational and performance standards."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 212,
+      "label": "Systems Thinking",
+      "side": "right",
+      "definition": "Understand complexity of cause-and-effect relationships of systems and processes across the organization, as well as evaluate systems based on the value-creation and contribution to specific issues."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 213,
+      "label": "Test Planning",
+      "side": "left",
+      "definition": "Develop a test strategy and systematic test procedures to verify and ensure that a product, system or technical solution meets its design specifications as well as the performance, load and volume levels set out. This includes the ability to define when different requirements will be verified across the product life stages, the tools used to perform the test, the data and/or resources needed to conduct the tests and testware in test cases, test scripts, test reports and test plans required."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 214,
+      "label": "Threat Analysis and Defense",
+      "side": "left",
+      "definition": "Enable and conduct analysis of malicious threats, to examine their characteristics, behaviors, capabilities, intent and interactions with the environment as well as the development of defense and mitigation strategies and techniques to effectively combat such threats."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 215,
+      "label": "Threat and Vulnerability Management",
+      "side": "left",
+      "definition": "Manage cyber threats and system vulnerabilities to minimize cyber risks."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 215,
+      "label": "Threat Intelligence and Detection",
+      "side": "right",
+      "definition": "Monitor intelligence-gathering and anticipate potential threats to an ICT system proactively. This involves the pre-emptive analysis of potential perpetrators, anomalous activities and evidence-based knowledge and inferences on perpetrators’ motivations and tactics."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 216,
+      "label": "Training, Coaching and Assessment Management",
+      "side": "right",
+      "definition": "Deliver competency-based-on-the-job training, coaching and assessment in line with the processes and procedures of the learning and development framework."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 217,
+      "label": "User Experience Design",
+      "side": "left",
+      "definition": "Conceptualise, project and make enhancement of the user’s interaction and engagement with an IT product and/or service based on a robust analysis and understanding of the product and/or service’s performance vis- a-vis the user’s desired experience and outcomes. This involves creating wire frames to adequately guide and inform subsequent planning and development processes, and making enhancements to optimize the user’s experience of the product and/or service."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 219,
+      "label": "User Interface Design",
+      "side": "left",
+      "definition": "Design user interfaces for machines and software, incorporating visual, technical and functional elements that facilitate ease of access, understanding and usage. This would involve adding, removing, modifying or enhancing elements to make the user’s interaction with the product as seamless as possible."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 219,
+      "label": "User Testing and Usability Testing",
+      "side": "right",
+      "definition": "Conduct and manage user tests to validate the feasibility of design, evaluate its functionality and ease of use as part of a user-centred design process."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 220,
+      "label": "Vendor Management",
+      "side": "right",
+      "definition": "Manage vendor relationships by ensuring performance as per contracts, operations within standards established by the organization such as adherence to safety, security, and compliance standards."
+    },
+    {
+      "source_id": "SRC-13",
+      "page": 221,
+      "label": "Visual Design and Communication Principles",
+      "side": "left",
+      "definition": "Establish appropriate visual design and communication principles and techniques, taking into account organizational needs, target market and customer perceptions."
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 116,
+      "label": "Agile Software Development",
+      "side": "whole",
+      "definition": "Plan and implement Agile methodology and the use of adaptive and iterative methods and techniques in the software development lifecycle to account for continuous evolution, development, and deployment to enable seamless delivery of the application to the end user"
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 118,
+      "label": "Applications Development",
+      "side": "whole",
+      "definition": "Develop applications based on the design specifications; encompassing coding, testing, debugging, documenting and reviewing and/or refining it across the application development stages in accordance with defined standards for development and security. The complexity of the application may range from a basic application to a context-aware and/or augmented reality application that incorporates predictive behavior analytics, geo-spatial capabilities and other appropriate algorithms. The technical skill includes the analysis and possibly the reuse, improvement, reconfiguration, addition or integration of existing and/or new application components."
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 120,
+      "label": "Applications Integration",
+      "side": "whole",
+      "definition": "Integrate data or functions from one application program with that of another application program - involves development of an integration plan, programming and the identification and utilization of appropriate middleware to optimize the connectivity and performance of disparate applications across target environments"
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 122,
+      "label": "Artificial Intelligence Ethics and Governance",
+      "side": "whole",
+      "definition": "Establish and drive Artificial Intelligence Ethics and Governance frameworks to ensure compliance, manage risks and commercial benefits in product design"
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 128,
+      "label": "Business Agility",
+      "side": "whole",
+      "definition": "Organize the business, work activities and people in ways that enable the organization to readily adapt to changes in its internal or external environment, whilst achieving desired outcomes and delivering value to customers"
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 130,
+      "label": "Business Continuity",
+      "side": "whole",
+      "definition": "Develop internal infrastructure to ensure organizational resilience and maintenance of the availability, stability and integrity of critical systems, processes and stakeholders that support and drive key aspects of the business. This includes the planning, designing and testing contingency plans and setting up of internal systems and structures which are ready to respond to potential threats and maintain desired levels of continuity."
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 134,
+      "label": "Business Innovation",
+      "side": "whole",
+      "definition": "Identify and evaluate digitization and innovative business opportunities provided by new advancements in information and communication technology to establish new services or businesses to bridge the physical and digital worlds"
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 136,
+      "label": "Business Needs Analysis",
+      "side": "whole",
+      "definition": "Identify and scope business requirements and priorities through rigorous information gathering and analysis as well as clarification of the solutions, initiatives and programs to enable effective delivery. This also involves the development of a compelling and defensible business case and the articulation of the potential impact of the solution to the business"
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 147,
+      "label": "Change Management",
+      "side": "whole",
+      "definition": "Plan and systematic execution of processes to facilitate the transition of individuals, teams and organizations to a desired end state in a manner that is seamless, sustainable and aligned with business objectives. This includes the redirection of resources, business processes, finances and operating models, as well as stakeholder engagement to facilitate implementation and maximize adoption."
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 149,
+      "label": "Cloud Computing",
+      "side": "whole",
+      "definition": "Implement cloud solutions to enhance business performance and security of IT systems"
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 153,
+      "label": "Computer Vision Technology",
+      "side": "whole",
+      "definition": "Develop and deploy vision analytics algorithm and spatial sensing and/or reasoning systems"
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 155,
+      "label": "Configuration Tracking",
+      "side": "whole",
+      "definition": "Track systematically and manage changes and revisions in software projects to ensure that all changes are accounted for and to protect assets against unauthorized change, diversion and inappropriate use"
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 161,
+      "label": "Cyber and Data Breach Incident Management",
+      "side": "whole",
+      "definition": "Detect and report cyber and data-related incidents, identify affected systems and user groups, trigger alerts and announcements to relevant stakeholders and efficient resolution of the situation."
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 165,
+      "label": "Data Analytics",
+      "side": "whole",
+      "definition": "Implementing data analytics within the organization to generate business insights and intelligence through the use of statistical and computational techniques and tools, algorithms, predictive data modeling and data visualization."
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 167,
+      "label": "Data Design",
+      "side": "whole",
+      "definition": "Specify and create a data structure or database model, including the setting of various parameters or fields that can be modified to suit different structured or unstructured data requirements, the design of data flow, as well as the development of mechanisms for maintenance, storage and retrieval of data based on the business requirements"
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 169,
+      "label": "Data Engineering",
+      "side": "whole",
+      "definition": "Develop and implement efficient and stable processes to collect, store, extract, transform, load and integrate data at various stages in the data pipeline. This also involves processing varying amounts of data from a variety of sources and preparing data in a structure that is easily access and analyzed according to business requirements"
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 171,
+      "label": "Data Ethics",
+      "side": "whole",
+      "definition": "Apply legal and ethical principles in the collection, use, storage and disposal of data"
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 175,
+      "label": "Data Migration",
+      "side": "whole",
+      "definition": "Plan and perform activities to migrate data between computer storage types or file formats"
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 183,
+      "label": "Data Visualization and Storytelling",
+      "side": "whole",
+      "definition": "Implement contemporary techniques, dynamic visual displays with illustrative and interactive graphics to present patterns, trends, analytical insights from data or new concepts in a strategic manner for the intended audience"
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 185,
+      "label": "Database Administration",
+      "side": "whole",
+      "definition": "Perform Installation, coordination and upgrading of databases and database servers, performance monitoring and troubleshooting. This includes monitoring user access to database and optimization of database performance, planning for backup and recovery, archived data maintenance and reporting"
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 187,
+      "label": "Design Thinking Practice",
+      "side": "whole",
+      "definition": "Manage design thinking methodologies and processes to solve specific challenges for the organization, and guide stakeholders through the phases of inspiration, empathy, ideation and implementation"
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 191,
+      "label": "Emerging Technology Synthesis",
+      "side": "whole",
+      "definition": "Monitor and integrate emerging technology trends and developments, structured data gathering for the identification of new and emerging technological products, services and techniques. In addition, the performance of cost-benefit analysis and evaluation of their relevance, viability, sustainability and potential value add to the business"
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 197,
+      "label": "Intelligent Reasoning",
+      "side": "whole",
+      "definition": "Design and build intelligent machine reasoning systems that can integrate, make sense of, and act upon heterogeneous sensory information sources, using domain knowledge accumulated in respective industries"
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 205,
+      "label": "Learning and Development",
+      "side": "whole",
+      "definition": "Manage employees’ learning and development activities to maximize employee’ potential and capabilities to contribute to the organization"
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 207,
+      "label": "Manpower Planning",
+      "side": "whole",
+      "definition": "Estimate and fulfill manpower requirements to achieve business goals and targets"
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 217,
+      "label": "Pattern Recognition Systems",
+      "side": "whole",
+      "definition": "Develop and apply intelligent pattern recognition systems and techniques to analyze data and derive useful hidden patterns to solve problems"
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 219,
+      "label": "People and Performance Management",
+      "side": "whole",
+      "definition": "Establish organization-wide performance management strategies to facilitate performance management, including identification of key performance indicators and employee performance assessment"
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 225,
+      "label": "Problem Management",
+      "side": "whole",
+      "definition": "Manage the lifecycle of problems to prevent problems and incidents from occurring, eliminate recurring incidents and minimize impact of unavoidable incidents"
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 233,
+      "label": "Project Management",
+      "side": "whole",
+      "definition": "Perform planning, organization, monitoring and control of all aspects of an IT program and the strategic utilization of resources to achieve the objectives within the agreed timelines, costs and performance expectations. In addition, the identification, coordination and management of project interdependencies, ensuring alignment with and achievement of business objectives"
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 237,
+      "label": "Research",
+      "side": "whole",
+      "definition": "Research on a concept or idea to provide inputs for content development"
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 239,
+      "label": "Security Architecture",
+      "side": "whole",
+      "definition": "Design security architectures and controls; either embedding of security principles into the design of architectures to mitigate the risks posed by new technologies and business practices, or the actual design and specification of implementable security components, along with the accompanying control measures, to meet defined business security needs"
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 241,
+      "label": "Self-Learning Systems",
+      "side": "whole",
+      "definition": "Design and develop self-learning systems using reinforcement learning and evolutionary learning techniques"
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 243,
+      "label": "Software Configuration",
+      "side": "whole",
+      "definition": "Configure software products and apply scripts and automation tools to integrate and deploy software releases to various platforms and operating environments. This includes subsequent modifications to software configuration, based on outcomes of systems and/or configuration tests"
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 245,
+      "label": "Software Design",
+      "side": "whole",
+      "definition": "Create and refine the overall plan for the design of software, including the design of functional specifications starting from the defined business requirements as well as the consideration and incorporation of various controls, functionality and interoperability of different elements into a design blueprint or model which describes the overall architecture in hardware, software, databases, and third party frameworks that the software will use or interact with"
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 247,
+      "label": "Software Testing",
+      "side": "whole",
+      "definition": "Assess and test the overall effectiveness and performance of an application, involving the setting up of suitable testing conditions, definition of test cases and/or technical criteria"
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 249,
+      "label": "Solution Architecture",
+      "side": "whole",
+      "definition": "Design or refine a solution blueprint or structure to guide the development of IT solutions in hardware, software, processes or related components, to meet current and future business needs. The solution architecture developed may lead to broad or specific changes to IT services, operating models and processes, and should provide a framework to guide the development and modification of solutions"
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 251,
+      "label": "Stakeholder Management",
+      "side": "whole",
+      "definition": "Manage stakeholder expectations and needs by aligning those with requirements and objectives of the organization. This involves planning of actions to effectively communicate with, negotiate with and influence stakeholders"
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 254,
+      "label": "Strategy Planning",
+      "side": "whole",
+      "definition": "Develop organizational strategies and policies by analyzing the impact of internal and external influencing factors and seeking consultation from relevant stakeholders"
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 258,
+      "label": "System Integration",
+      "side": "whole",
+      "definition": "Develop and implement a roadmap and specific integration solutions to facilitate integration of various ICT components and optimize interoperability of systems and their interfaces. This includes the integration of various architectural components such as networks, servers, system platforms and their interfaces"
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 260,
+      "label": "Systems Design",
+      "side": "whole",
+      "definition": "Design systems to meet specified business and user requirements that are compatible with established system architectures, as well as organizational and performance standards"
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 262,
+      "label": "Systems Thinking",
+      "side": "whole",
+      "definition": "Understand complexity of cause-and-effect relationships of systems and processes across the organization, as well as evaluate systems based on the value-creation and contribution to specific issues"
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 266,
+      "label": "Test Planning",
+      "side": "whole",
+      "definition": "Develop a test strategy and systematic test procedures to verify and ensure that a product, system or technical solution meets its design specifications as well as the performance, load and volume levels set out. This includes the ability to define when different requirements will be verified across the product life stages, the tools used to perform the test, the data and/or resources needed to conduct the tests and testware in test cases, test scripts, test reports and test plans required"
+    },
+    {
+      "source_id": "SRC-16",
+      "page": 268,
+      "label": "Text Analytics and Processing",
+      "side": "whole",
+      "definition": "Identify, extract and analyze text data using text analytics solutions to discover themes, patterns and trends"
+    },
+    {
+      "source_id": "SRC-19",
+      "page": 113,
+      "label": "Change Management",
+      "side": "whole",
+      "definition": "Execute business impact analysis, risk analysis, testing and exercising to ensure the currency of the organization’s business continuity plans"
+    },
+    {
+      "source_id": "SRC-19",
+      "page": 115,
+      "label": "Conflict Management",
+      "side": "whole",
+      "definition": "Perform conflict management within the organization to assist members in resolving grievances and disputes"
+    },
+    {
+      "source_id": "SRC-19",
+      "page": 117,
+      "label": "Continuous Process Improvement",
+      "side": "whole",
+      "definition": "Apply continuous improvement processes to improve products, services or processes seeking incremental improvement over time or breakthrough improvement all at once"
+    },
+    {
+      "source_id": "SRC-19",
+      "page": 119,
+      "label": "Crisis Situations Management",
+      "side": "whole",
+      "definition": "Identify crisis response and recovery activities as well as implement the recovery and business continuity strategies to minimize the impact of disruptive events to the organization"
+    },
+    {
+      "source_id": "SRC-19",
+      "page": 121,
+      "label": "Data Analytics System Design",
+      "side": "whole",
+      "definition": "Integrate the use of data analytics in the production environment for the identification of bottlenecks and system improvements"
+    },
+    {
+      "source_id": "SRC-19",
+      "page": 122,
+      "label": "Data Synthesis",
+      "side": "whole",
+      "definition": "Analyze factory automation and manufacturing data to monitor the manufacturing processes for operations and product or process flow optimization"
+    },
+    {
+      "source_id": "SRC-19",
+      "page": 125,
+      "label": "Effectiveness Management",
+      "side": "whole",
+      "definition": "Set goals with team and evaluate team’s effectiveness in achieving the defined goals and objectives"
+    },
+    {
+      "source_id": "SRC-19",
+      "page": 126,
+      "label": "Electrostatic Discharge Control",
+      "side": "whole",
+      "definition": "Implement precautionary measures required to avoid damage to sensitive electronic components as well as adopt proper components handling techniques and the use of appropriate personal grounding device"
+    },
+    {
+      "source_id": "SRC-19",
+      "page": 127,
+      "label": "Embedded Systems Integration",
+      "side": "whole",
+      "definition": "Implement control systems to perform pre-defined tasks and also real-time monitoring for the real world"
+    },
+    {
+      "source_id": "SRC-19",
+      "page": 136,
+      "label": "Innovation Management",
+      "side": "whole",
+      "definition": "Respond to external or internal opportunities by using creativity to introduce new ideas and processes or products"
+    },
+    {
+      "source_id": "SRC-19",
+      "page": 138,
+      "label": "Internet of Things Management",
+      "side": "whole",
+      "definition": "Interrelate computing devices, equipment and machines’ data in a networked environment to provide specific solutions"
+    },
+    {
+      "source_id": "SRC-19",
+      "page": 139,
+      "label": "Learning and Development",
+      "side": "whole",
+      "definition": "Plan employees’ learning and development activities to maximize employee contribution as well as building a skilled workforce"
+    },
+    {
+      "source_id": "SRC-19",
+      "page": 145,
+      "label": "New Product Introduction",
+      "side": "whole",
+      "definition": "Support new production by validating build plan to achieve cost-effective production and assembly as well as meeting design specifications"
+    },
+    {
+      "source_id": "SRC-19",
+      "page": 148,
+      "label": "Organizational Strategizing",
+      "side": "whole",
+      "definition": "Provide an overall strategic direction to the organization to support achievement of strategic needs of the organization"
+    },
+    {
+      "source_id": "SRC-19",
+      "page": 151,
+      "label": "Product Testing",
+      "side": "whole",
+      "definition": "Formulate test program structure based on product specifications as well as development a systematic approach in resolving test issues"
+    },
+    {
+      "source_id": "SRC-19",
+      "page": 162,
+      "label": "Quality Systems Management",
+      "side": "whole",
+      "definition": "Coordinate and direct the organization’s activities to meet customer and regulatory requirements as well as identify opportunities for improvement"
+    },
+    {
+      "source_id": "SRC-19",
+      "page": 164,
+      "label": "Reliability and Failure Analysis",
+      "side": "whole",
+      "definition": "Examine the electrical and physical defects evidence to verify the causes of failure as well as identify the failure modes"
+    },
+    {
+      "source_id": "SRC-19",
+      "page": 168,
+      "label": "Solutioning",
+      "side": "whole",
+      "definition": "Generate solutions by systematic analysis of the problem, proposing preventive and/or corrective measures and evaluating the effectiveness of the measures from different perspectives"
+    },
+    {
+      "source_id": "SRC-19",
+      "page": 172,
+      "label": "Workplace Safety and Health System Management",
+      "side": "whole",
+      "definition": "Ensure systematic process in the managing of Workplace Safety and Health-related activities in the workplace"
+    },
+    {
+      "source_id": "SRC-19",
+      "page": 174,
+      "label": "Yield Analysis",
+      "side": "whole",
+      "definition": "Apply yield analysis techniques to drive process and yield performance improvements"
+    }
+  ],
+  "source_metadata": {
+    "SRC-11": {
+      "publication_date": "2024-03",
+      "locator": "PDF page 1, visually inspected image-only cover explicitly states March 2024"
+    }
+  }
+}

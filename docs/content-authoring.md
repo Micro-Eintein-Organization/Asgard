@@ -1,23 +1,23 @@
 # Adding careers and roadmaps
 
+Current scope, 2026-11-02: use the [local MVP resolution](decisions.md#local-evaluation-mvp-resolution-2026-11-02) and [consolidated implementation/evidence](development.md#current-local-mvp-status-2026-11-02). Earlier inventories and proposed work below retain their dates; existing implemented core and the 12-path release must not be treated as new implementation assignments. Pending review, future proposals and hosted gates remain separate.
+
 Resource update, 2026-11-02: release 4 replaces the imported generic resource lists
 with [topic-specific selections](../backend/app/content/topic-resources.json) for
 all 288 published topics. Destinations/anchors were checked; license and independent
 curriculum acceptance remain separate. Existing topic identities and saved state
 are preserved. See [release evidence](features/roadmap-content-expansion.md).
 
-Local update, 2026-11-02: release 3 imports the owner's v4 pack as supplied,
-with resource verification explicitly waived in this task. The existing publisher
+Local update, 2026-11-02: release 3 imports the recorded v4 pack as supplied,
+with resource verification explicitly waived in the implementation record. The existing publisher
 now includes this release. Imported resource access remains unverified, not
 certified free. See the [roadmap expansion guide](features/roadmap-content-expansion.md)
-for retirement, publication checks and pending acceptance. This bounded owner
+for retirement, publication checks and pending acceptance. This bounded scope
 exception does not approve other unreviewed content or provider license terms.
 
-Updated 2026-10-28. Maintainer: project owner; implementation guide: Codex.
-
-Use [the catalog schema](../supabase/migrations/20261026000100_shared_foundation.sql)
+Updated 2026-10-28. Use [the catalog schema](../supabase/migrations/20261026000100_shared_foundation.sql)
 and [starter content source](../backend/app/content/prototype_v1.py) as the current
-contract and authored example. The owner reviews career relevance and curriculum;
+contract and authored example. The reviews career relevance and curriculum;
 generated SQL does not establish content approval.
 
 1. Author a career title, unique slug, category, description, responsibilities,

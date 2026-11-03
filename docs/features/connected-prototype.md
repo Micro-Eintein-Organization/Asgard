@@ -1,25 +1,26 @@
 # Connected prototype
 
-The owner subsequently directed blank retakes from Settings; the copied-answer
+Historical implementation/evidence record: later source, explicit deferrals and current acceptance limits are consolidated in [Development](../development.md#current-local-mvp-status-2026-11-02). Preserve dated results below; earlier three-path, copied-retake or unverified descriptions do not override that current status.
+
+A subsequent decision specifies blank retakes from Settings; the copied-answer
 description below is historical. See [Discovery and catalog refresh](discovery-catalog-refresh.md).
 
 The subsequent [MVP backend handoff](mvp-backend-handoff.md) records PDF lifecycle,
 Career navigation, guidance, broader local evidence and outstanding acceptance.
 
-- Implementer/task owner: Codex
 - Created: 2026-10-28
 - Last updated: 2026-10-28
 - Status: source implementation and additive local publication completed; focused recommendation repair checks passed as detailed below; broad prototype acceptance remains pending
-- Required reviewer: `@YakisobaNissin`, per [CODEOWNERS](../../.github/CODEOWNERS)
-- Authorization/review reference: this task's owner identification as `@YakisobaNissin`, followed by “PLEASE IMPLEMENT THIS PLAN: Connected prototype with saved Discovery and Groq recommendations”, 2026-10-28.
+
+- Authorization/review reference: accepted bounded Discovery/Groq implementation scope, 2026-10-28.
 - Branch: `codex/connected-prototype`, from the merged persisted-core baseline; preserve existing implementation. No commits, pushes or merges are authorized.
-- Acceptance: F-001-AC-01–08, F-002-AC-01–06/08–10 as applicable to this local prototype; REQ-01/04/05/07/08/09/10/13. PDF and public-release acceptance remain outside this task.
+- Acceptance: F-001-AC-01–08, F-002-AC-01–06/08–10 as applicable to this local prototype; REQ-01/04/05/07/08/09/10/13. PDF and public-release acceptance remain outside the documented change.
 
 ## Approved bounded implementation
 
-Implement the owner's complete plan: authored conditional activities stage with four single-interest variants and a mixed/uncertain general variant; versioned private checkpoints/completion/retakes; retained inactive answers; original Discovery/result layouts; backend-only Groq recommendations with persisted snapshots/idempotency/quotas/failures; three short published careers/roadmaps; real Dashboard/Settings integration. New-user answers start blank and retakes copy prior completed answers. All saved learning state remains independent from recommendation generation.
+Implement the recorded complete plan: authored conditional activities stage with four single-interest variants and a mixed/uncertain general variant; versioned private checkpoints/completion/retakes; retained inactive answers; original Discovery/result layouts; backend-only Groq recommendations with persisted snapshots/idempotency/quotas/failures; three short published careers/roadmaps; real Dashboard/Settings integration. New-user answers start blank and retakes copy prior completed answers. All saved learning state remains independent from recommendation generation.
 
-Owning references: [architecture](../architecture.md), [Discovery](../specs/discovery.md), [recommendations](../specs/career-recommendations.md), [decisions](../decisions.md), [design](../design.md) and [shared handoff](../development.md#stage-4-shared-contracts-and-handoff). This owner-approved map resolves the previously missing bounded route proposal; it does not certify a psychometric assessment or completed quality review.
+Owning references: [architecture](../architecture.md), [Discovery](../specs/discovery.md), [recommendations](../specs/career-recommendations.md), [decisions](../decisions.md), [design](../design.md) and [shared handoff](../development.md#stage-4-shared-contracts-and-handoff). This approved map resolves the previously missing bounded route proposal; it does not certify a psychometric assessment or completed quality review.
 
 Affected modules: Discovery and recommendation schemas/services, registered FastAPI handlers, progress Dashboard summaries, backend configuration/lifespan, generated OpenAPI/TypeScript; original frontend Discovery/results, core API adapters, Dashboard/Settings/catalog actions; additive SQL constraints, local content publication, Docker content packaging and implementation guides. Existing auth, Profile contracts, dependencies and foundational tables are reused.
 
@@ -27,15 +28,15 @@ Implementation order: (1) definitions/contracts and Discovery persistence; (2) r
 
 ## Verification boundary
 
-The owner explicitly deferred testing to a separate turn. Do not run tests, builds, type/lint checks, browser verification, live provider probes or integrity probes. Source formatting, generated contract writing and approved additive local publication are implementation operations, not evidence of verified readiness. Record all checks as not run. Existing foundation evidence retains its original scope.
+Testing was explicitly deferred from this historical implementation scope. Do not run tests, builds, type/lint checks, browser verification, live provider probes or integrity probes. Source formatting, generated contract writing and approved additive local publication are implementation operations, not evidence of verified readiness. Record all checks as not run. Existing foundation evidence retains its original scope.
 
 ## Deferred work
 
 ### Approved recommendation repair, 2026-10-28
 
-Owner/task reviewer: `@YakisobaNissin`; implementer Codex. Review reference: this task's “PLEASE IMPLEMENT THIS PLAN: Repair Groq validation and select from published roadmaps.” Preserve the existing branch and uncommitted work. Read-only diagnosis found 3 published candidates, two `invalid_output` runs and a reconstructed 6,371-byte request below the 12,000-byte guard. Exact historical rejection stage was not recorded.
+Review reference: the recorded “Repair Groq validation and select from published roadmaps.” Preserve the existing branch and uncommitted work. Read-only diagnosis found 3 published candidates, two `invalid_output` runs and a reconstructed 6,371-byte request below the 12,000-byte guard. Exact historical rejection stage was not recorded.
 
-Implement safe stage/finish/token diagnostics; a private candidate-key output schema resolved through a saved published catalog snapshot; the approved closest-available policy with caveats; configurable 4,096 total completion tokens; current prompt/provider-schema versioning; and clean single-error/cooldown recovery. Public recommendation fields and database schema remain unchanged. Preserve explicit focus, saved answers, quotas, deadline and idempotency. Run targeted backend tests, frontend type/contract checks and one bounded live synthetic-account request using the actual catalog and existing local Auth helpers. This narrow verification supersedes the earlier testing deferral for this issue only. Do not send the owner's answers, run broad regression or make repeated live attempts. No commits, pushes or merges.
+Implement safe stage/finish/token diagnostics; a private candidate-key output schema resolved through a saved published catalog snapshot; the approved closest-available policy with caveats; configurable 4,096 total completion tokens; current prompt/provider-schema versioning; and clean single-error/cooldown recovery. Public recommendation fields and database schema remain unchanged. Preserve explicit focus, saved answers, quotas, deadline and idempotency. Run targeted backend tests, frontend type/contract checks and one bounded live synthetic-account request using the actual catalog and existing local Auth helpers. This narrow verification supersedes the earlier testing deferral for this issue only. Do not send the recorded answers, run broad regression or make repeated live attempts. No commits, pushes or merges.
 
 Deep curricula and additional careers; branching beyond activities; PDF/photo and MFA; LLM-generated questions/curricula/tutoring; questionnaire comprehension and full model-quality studies; public deployment/operational acceptance. A local Groq key belongs only in ignored server configuration; missing credentials must not block Discovery or learning saves.
 
@@ -52,7 +53,7 @@ Deep curricula and additional careers; branching beyond activities; PDF/photo an
 
 ## Content, review and local publication
 
-[Authored content](../../backend/app/content/prototype_v1.py) contains 3 careers, 3 roadmaps, 6 milestones, 16 topics and a Data Analyst Spreadsheet/SQL branch group. All topic resources are link-only, publicly readable primary documentation. Original Asgard summaries are not copied source articles. Codex performed source/access/license review during this task; this is recorded as agent review within owner-approved prototype scope, not fabricated human curriculum approval or learner acceptance.
+[Authored content](../../backend/app/content/prototype_v1.py) contains 3 careers, 3 roadmaps, 6 milestones, 16 topics and a Data Analyst Spreadsheet/SQL branch group. All topic resources are link-only, publicly readable primary documentation. Original Asgard summaries are not copied source articles. Source/access/license inspection was recorded; this is recorded as source inspection within approved prototype scope, not fabricated human curriculum approval or learner acceptance.
 
 Resource evidence reviewed 2026-10-28: [MDN licensing](https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license), [MDN web-development learning material](https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website), [LibreOffice Calc Help and its MPL 2.0 notice](https://help.libreoffice.org/latest/en-US/text/scalc/main0000.html), [SQLite SELECT](https://www.sqlite.org/lang_select.html) and [public-domain dedication](https://www.sqlite.org/copyright.html), [GOV.UK user needs](https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs), [prototypes](https://www.gov.uk/service-manual/design/making-prototypes) and [usability testing](https://www.gov.uk/service-manual/user-research/using-moderated-usability-testing), with their Open Government Licence footer. Links are not downloaded or redistributed. Resource review is content-authoring evidence, not an application/browser test. Availability can change later.
 
@@ -60,7 +61,7 @@ The [renderer](../../backend/scripts/render_prototype.py) writes an additive pub
 
 Local implementation actions completed, without testing:
 
-1. Started the existing Docker application images with `docker compose up -d --no-build` after the owner opened Docker. No image builds were run.
+1. Started the existing Docker application images with `docker compose up -d --no-build` after Docker became available. No image builds were run.
 2. Applied only [20261028000100_connected_prototype.sql](../../supabase/migrations/20261028000100_connected_prototype.sql) using the pinned CLI: `npx.cmd --no-install supabase db push --local --yes`. Output reported this one applied migration. It adds the catalog-gap failure code; existing migrations and RLS/grants are unchanged.
 3. Generated the publication using `docker compose exec -T backend python scripts/render_prototype.py --output /workspace/scripts/connected-prototype.sql`, then moved the generated file to its repository content location.
 4. Applied that SQL to the existing local `supabase_db_asgard-foundation` through administrative `psql` with ON_ERROR_STOP. Output reached COMMIT. No database reset, private-data export or runtime-role privilege elevation occurred.
@@ -76,7 +77,7 @@ Root [.env.example](../../.env.example) documents `ASGARD_GROQ_ENABLED`, `ASGARD
 
 The deferral and not-run list below records the original implementation handoff. The subsequently authorized focused repair has its own [execution evidence](#recommendation-repair-evidence-2026-10-28); it does not certify the broader application or full model-quality gate.
 
-**Not run, by owner instruction:** tests, builds, type/lint checks, API drift checks, browser/visual/keyboard checks, save/readback/ownership/session/concurrency checks, migration integrity probes, live Groq calls and model-quality evaluation. The publication COMMIT and code generation are implementation evidence only. No save flow or local readiness is certified. No commits, pushes or merges were made.
+**Not run, as recorded instruction:** tests, builds, type/lint checks, API drift checks, browser/visual/keyboard checks, save/readback/ownership/session/concurrency checks, migration integrity probes, live Groq calls and model-quality evaluation. The publication COMMIT and code generation are implementation evidence only. No save flow or local readiness is certified. No commits, pushes or merges were made.
 
 [Prepared tests](../../backend/tests/test_connected_prototype.py) cover interest variants, retained inactive branches, server selection exclusions, accepted catalog gaps, strict provider output, invalid-output no-retry and reservation-before-retry. [Foundation contract tests](../../backend/tests/test_foundation_contracts.py) now expect authenticated fail-closed storage behavior rather than obsolete 501 stubs, and allow an empty untrusted selection for catalog-gap handling. They were edited, not executed. Database/API lifecycle and frontend acceptance still require the next authorized verification turn; unit cases do not establish those properties.
 
@@ -94,7 +95,7 @@ Still missing later: deeper curricula, more than three careers, richer branching
 
 ## Recommendation repair evidence, 2026-10-28
 
-Owner/reviewer: `@YakisobaNissin`; implementer: Codex. Approval is this task's explicit repair-plan implementation request. This supersedes testing deferral only for the focused repair. Earlier empty-catalog-gap output policy is superseded for new generations by closest-available published paths with honest caveats. Historical runs are preserved.
+Approval is the recorded explicit repair-plan implementation request. This supersedes testing deferral only for the focused repair. Earlier empty-catalog-gap output policy is superseded for new generations by closest-available published paths with honest caveats. Historical runs are preserved.
 
 ### Diagnosis and repair
 

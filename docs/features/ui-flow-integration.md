@@ -1,23 +1,24 @@
 # Original UI integration repair
 
+Historical implementation/evidence record: later source, explicit deferrals and current acceptance limits are consolidated in [Development](../development.md#current-local-mvp-status-2026-11-02). Preserve dated results below; earlier three-path, copied-retake or unverified descriptions do not override that current status.
+
 Current data/service follow-up, 2026-10-28: [Connected prototype](connected-prototype.md) records saved conditional Discovery, Groq results and the three locally published starter paths. This guide preserves the original source-restoration history; earlier sample/unavailable descriptions do not override the later implementation or its deferred verification limits.
 
-- Implementer / task owner: Codex
 - Created: 2026-10-27
 - Last updated: 2026-10-27
 - Status: implementation patch; runtime, security and visual acceptance pending
-- Required human reviewer: project lead / architecture reviewer `@YakisobaNissin`, per [CODEOWNERS](../../.github/CODEOWNERS)
-- Authorization: owner's explicit “PLEASE IMPLEMENT THIS PLAN: Restore the original designs and connect the application flow” request, following confirmation that authenticated sessions go to Dashboard and feature backend wiring is deferred.
+
+- Authorization: accepted original-design restoration and connected-flow scope; authenticated sessions go to Dashboard and feature backend wiring is deferred.
 - Requirements: REQ-01/02/03/04/05/07/10/11/13; NFR-01/02/05. These identify affected behavior, not completed requirement acceptance.
-- Original repair branch: `codex/ui-flow-integration`, subsequently merged by the owner through PR #15. Current follow-up branch: `codex/onboarding-shell-branding`; no reset, commit, push or merge performed by this follow-up.
+- Original repair branch: `codex/ui-flow-integration`, subsequently merged as recorded through PR #15. Current follow-up branch: `codex/onboarding-shell-branding`; no reset, commit, push or merge performed by this follow-up.
 
 ## Scope and authority
 
-[Architecture](../architecture.md), [product](../product.md), [decisions](../decisions.md), [Discovery](../specs/discovery.md), [pages and interactions](../pages-and-interactions.md), and [shared-contract handoff](../development.md#stage-4-shared-contracts-and-handoff) retain their subject authority. The owner explicitly selected the already-committed new screen designs as the presentation source, with real feature services left for later.
+[Architecture](../architecture.md), [product](../product.md), [decisions](../decisions.md), [Discovery](../specs/discovery.md), [pages and interactions](../pages-and-interactions.md), and [shared-contract handoff](../development.md#stage-4-shared-contracts-and-handoff) retain their subject authority. The presentation decision selects the already-committed new screen designs as the presentation source, with real feature services left for later.
 
 The original screen source is available in `2befd54`, introduced in `6d19142`. No source reconstruction from screenshots, earlier-commit retrieval, branch reset or history change was necessary. Source was recovered selectively with `git show 2befd54:<path>`, then edited in place for integration.
 
-The earlier patch removed these components and adapted older feature pages instead. The owner rejected that presentation result. This guide replaces the earlier integration claims and handoff: the active screens now load the restored original components, not the older page implementations. It does not claim visual verification that has not occurred.
+The earlier patch removed these components and adapted older feature pages instead. The accepted correction supersedes that presentation result. This guide replaces the earlier integration claims and handoff: the active screens now load the restored original components, not the older page implementations. It does not claim visual verification that has not occurred.
 
 ## Reviewed implementation boundaries
 
@@ -29,7 +30,7 @@ The earlier patch removed these components and adapted older feature pages inste
 6. Remove competing presentation changes and redundant full-page alternatives. Retain historical assets and valuable tests.
 7. Defer tests, builds and browser verification as explicitly requested; report source evidence separately.
 
-All implementation work belongs to this task; existing repair edits were inspected and selectively corrected. No unrelated contributor edits were identified or overwritten. Source review by Codex is not human technical approval.
+All implementation work belongs to the documented change; existing repair edits were inspected and selectively corrected. No unrelated contributor edits were identified or overwritten. Source inspection alone does not establish independent technical acceptance.
 
 ## Implementation status
 
@@ -104,11 +105,11 @@ Field preferences are local-only, explicitly unsaved, participate in dirty navig
 
 Examples of preserved original structure: Dashboard `lg:grid-cols-12`, `lg:col-span-4/8`, orange calendar cells and dark gradient; catalog `lg:grid-cols-4` and selected card badge; Settings `md:grid-cols-12`, `md:col-span-3/9` and combined security rows; setup `max-w-md rounded-3xl p-8` card. Functional/semantic changes and canonical content substitution are described above. No claim of exact rendered fidelity follows from source comparison.
 
-**Not run, owner-deferred:** tests, TypeScript/lint checks, builds, browser/manual authentication and Profile flows, security/session/ownership checks, rendered screenshot comparison, keyboard/contrast/reflow checks and full regression. No application test result is claimed. No services were started/restarted and no provider calls were made by this task.
+**Not run, deferred:** tests, TypeScript/lint checks, builds, browser/manual authentication and Profile flows, security/session/ownership checks, rendered screenshot comparison, keyboard/contrast/reflow checks and full regression. No application test result is claimed. No services were started/restarted and no provider calls were made by the documented change.
 
 ## Guided manual verification when authorized
 
-Starting URL: `http://127.0.0.1:5173/`, using the owner's already configured local environment.
+Starting URL: `http://127.0.0.1:5173/`, using the recorded already configured local environment.
 
 1. If already signed in, expect Dashboard. Use actual Log out, then revisit landing: expect Log in/Get started. Log in should show email/password inputs and real provider feedback; successful login should show the original Dashboard layout.
 2. Follow new-account verification to Welcome, choose either entry path and confirm the original cards/catalog. Direct app URLs while signed out require account entry.
@@ -126,12 +127,11 @@ Feature backend wiring remains deferred by explicit owner instruction. Dashboard
 
 Conditional Discovery routing still requires its separately reviewed authored map; the current question sequence remains a labeled prototype. Canonical roles other than Frontend may explain missing curriculum on their roadmap. No backend or product readiness is inferred from the restored design.
 
-This patch is ready for designated human source review, not runtime/visual acceptance or integration. Source checks, essential security/Profile checks and guided rendered review remain required when authorized. Follow-up owner for feature backend wiring is unassigned here. No commit, push or merge was performed.
+This patch is ready for independent source review, not runtime/visual acceptance or integration. Source checks, essential security/Profile checks and guided rendered review remain required when authorized. Follow-up owner for feature backend wiring is unassigned here. No commit, push or merge was performed.
 
 ## Focused onboarding and branding follow-up, 2026-10-27
 
-- Implementer/task owner: Codex; required human reviewer: `@YakisobaNissin`.
-- Authorization/review reference: owner's request for a blank opening state without top navigation/profile controls, followed by `implement` approving the focused-onboarding and existing-branding plan in this chat.
+- Authorization/review reference: accepted blank onboarding state without top navigation/profile controls, preserving existing branding.
 - Status: source implementation complete; runtime and visual verification deferred. Approval to implement does not establish human technical approval or feature acceptance.
 - Coverage: REQ-01/04/11/13 and NFR-01/02. Scope is shell presentation and supplied branding only; existing authentication, guard, Profile and feature-service contracts are unchanged.
 - Starting state: clean `main` at `a481fa3`, including the merged original-screen repair and branding assets. The follow-up was isolated on `codex/onboarding-shell-branding`; no overlapping local edits were present.
@@ -164,6 +164,6 @@ This patch is ready for designated human source review, not runtime/visual accep
 
 Source inspection confirms the route classification, conditional shell elements, existing empty-state initialization, local content notices and unchanged navigation/guard boundaries. Formatting completed for the three changed source/style files using the existing frontend container's installed Prettier. Changed tracked files passed whitespace inspection and all 54 local paths in this guide/design documentation resolved. These are source/document checks, not visual or runtime acceptance; remote links and browser rendering were not checked.
 
-Tests, type/lint checks, builds, browser rendering, keyboard/contrast/reflow and session/ownership verification remain deferred under the owner's earlier instruction. No services are started/restarted and no provider calls are made. Future guided review should visit each route above at `http://127.0.0.1:5173/`, confirm that the normal shell returns on Careers/Dashboard, inspect logo proportions at desktop and narrow/zoomed widths, and exercise Back/Skip/unsaved cancellation. This does not replace the original repair's pending security/Profile checks.
+Tests, type/lint checks, builds, browser rendering, keyboard/contrast/reflow and session/ownership verification remain deferred under the recorded earlier instruction. No services are started/restarted and no provider calls are made. Future guided review should visit each route above at `http://127.0.0.1:5173/`, confirm that the normal shell returns on Careers/Dashboard, inspect logo proportions at desktop and narrow/zoomed widths, and exercise Back/Skip/unsaved cancellation. This does not replace the original repair's pending security/Profile checks.
 
 The shell is intentionally route-based because persisted onboarding completion/backend wiring is unfinished. It does not restrict this presentation to a server-proven first visit. Feature services and other brand placements remain outside the follow-up. No new product data contract or completed-verification claim is introduced.

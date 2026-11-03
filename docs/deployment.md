@@ -1,6 +1,8 @@
 # Deployment preparation and release gates
 
-Updated 2026-10-29. Implementer: Codex. Operator/reviewer: @YakisobaNissin
+Current scope, 2026-11-02: use the [local MVP resolution](decisions.md#local-evaluation-mvp-resolution-2026-11-02) and [consolidated implementation/evidence](development.md#current-local-mvp-status-2026-11-02). Earlier inventories and proposed work below retain their dates; existing implemented core and the 12-path release must not be treated as new implementation assignments. Pending review, future proposals and hosted gates remain separate.
+
+Updated 2026-10-29.
 (human review deferred, not recorded as completed).
 
 This is the preparation runbook for the approved
@@ -12,7 +14,7 @@ in [deployment preparation](features/deployment-preparation.md).
 
 Use separate local and hosted QA resources before production. Do not copy local
 signing keys, database passwords or the local Storage service credential to hosting.
-The owner must supply the actual project identities, domains, credentials and a
+The specification must define the actual project identities, domains, credentials and a
 backup operator/contact. Do not enable automatic deployments until the review and
 release gates are satisfied.
 

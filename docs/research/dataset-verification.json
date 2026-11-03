@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-03",
+  "repeat_build": "byte-identical: 14 CSV tables and dataset.json",
+  "negative_integrity_tests": "6 passed",
+  "pdf_pages": 10,
+  "pdf_visual_review": "all 10 rendered pages inspected",
+  "pdf_source_text_parity": "all prose and table cells passed, ignoring whitespace and footers",
+  "pdf_sha256": "c79e50d80bfcdd70faa230922785290c0d695d9ba18439e6c347f7adda1af115",
+  "not_run": [
+    "Independent expert acceptance",
+    "Application/database/security/browser tests (no runtime change)",
+    "Participant study"
+  ],
+  "scope": "research artifacts only",
+  "local_reference_checks": "20 Markdown files; 265 local references and anchors; passed",
+  "nics_publication_metadata": "2024-03 verified visually on image-only cover; original hash unchanged"
+}

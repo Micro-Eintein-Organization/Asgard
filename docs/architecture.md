@@ -1,10 +1,12 @@
 # Asgard: Architecture v1.1
 
-**Status:** Approved foundational architecture by project lead (25 October 2026); owner-delegated product/operations policy is recorded in the linked specifications; provider compatibility and implementation evidence remain required. **Scope:** MVP and extensible foundation. **Implementation status, 28 October 2026:** Local scaffold, email/password and Profile source, canonical protected UI, versioned SQL and generated API scaffolding are implemented. The owner-approved connected-prototype follow-up implements the 29 feature handlers and publishes three local starter paths; runtime acceptance, provider configuration and model evaluation remain pending. See [Development](development.md#current-foundation-status-and-evidence) for recorded local evidence, pending review and unfinished acceptance. The architectural choices below are unchanged.
+Current implementation status, 2026-11-02: the [local MVP scope](decisions.md#local-evaluation-mvp-resolution-2026-11-02) and [consolidated evidence](development.md#current-local-mvp-status-2026-11-02) supersede earlier three-path/scaffold status. Twelve paths are locally published. Architecture, security invariants and hosted verification gates are unchanged.
+
+**Status:** Approved foundational architecture  (25 October 2026); selected product/operations policy is recorded in the linked specifications; provider compatibility and implementation evidence remain required. **Scope:** MVP and extensible foundation. **Historical implementation status, 28 October 2026:** Local scaffold, email/password and Profile source, canonical protected UI, versioned SQL and generated API scaffolding are implemented. The approved connected-prototype follow-up implements the 29 feature handlers and publishes three local starter paths; runtime acceptance, provider configuration and model evaluation remain pending. See [Development](development.md#current-foundation-status-and-evidence) for recorded local evidence, pending review and unfinished acceptance. The architectural choices below are unchanged.
 
 ## 1. Architectural decision
 
-Implementation update, 2026-10-29: the owner-approved connected core now uses
+Implementation update, 2026-10-29: the approved connected core now uses
 the existing modular services for saved Discovery, validated Groq selection,
 learning summaries, three published starter paths and versioned content upgrades.
 PDF processing is deferred with a backend gate; existing removal/cleanup remains.
@@ -16,7 +18,7 @@ below; it does not alter the architecture or waive A-01–A-11.
 
 Use a **modular monolith**: one React single-page frontend, one FastAPI backend, one PostgreSQL database hosted by Supabase, and a server-side LLM provider adapter. The backend owns application business logic and protected data access. Deploy the frontend to Vercel Hobby and the backend to Render Free for the MVP. Use Docker for reproducible local development. Keep deployment providers replaceable.
 
-This supersedes historical proposals for Next.js and native-only development, including the proposal retained in the UI reference audit. The existing product and feature specifications continue to define **what** Asgard does; this document defines **how** it is structured. Owner-delegated product defaults now live in the feature/page specifications; this foundation does not certify catalog content, encoded prompts or runtime behavior.
+This supersedes historical proposals for Next.js and native-only development, including the proposal retained in the UI reference audit. The existing product and feature specifications continue to define **what** Asgard does; this document defines **how** it is structured. Selected product defaults now live in the feature/page specifications; this foundation does not certify catalog content, encoded prompts or runtime behavior.
 
 ## 2. Approved stack
 
@@ -108,7 +110,7 @@ backend/app/
   api/                  # route registration / shared API conventions
 ```
 
-This is the intended responsibility layout, not a claim that every listed adapter/service file exists. Each module owns its routes, schemas, service logic, and repository interfaces. The current feature schemas are registered through shared [foundation routes](../backend/app/api/foundation.py); business services remain unfinished. Modules may share approved core primitives but must not bypass another module's business invariants through direct table manipulation. Keep asynchronous background infrastructure out of MVP until actual workloads require it.
+This is the intended responsibility layout, not a claim that every listed adapter/service file exists. Each module owns its routes, schemas, service logic, and repository interfaces. The current feature schemas are registered through shared [foundation routes](../backend/app/api/foundation.py); feature service handlers are implemented; review and acceptance limits are recorded in Development. Modules may share approved core primitives but must not bypass another module's business invariants through direct table manipulation. Keep asynchronous background infrastructure out of MVP until actual workloads require it.
 
 ## 8. AI recommendations
 
@@ -145,8 +147,8 @@ This is the intended responsibility layout, not a claim that every listed adapte
 ## 11. Team and AI-agent guardrails
 
 - Every feature task names its owner, scope, relevant acceptance criteria, files/modules, API contracts, and checks.
-- Use branches or isolated worktrees per contributor/agent, subject to the owner's later [foundation Git workflow](development.md#foundation-git-workflow): the owner's Stages 1–4 work stays on `foundation` until its reviewed PR is accepted. No agent commits directly to `main`; Git mutations require the explicit approvals in AGENTS.md.
-- Changes to auth, migrations, shared API contracts, cross-module invariants, infrastructure, and core dependencies require architecture-owner review.
+- Use branches or isolated worktrees per contributor/agent, subject to later [foundation Git workflow](development.md#foundation-git-workflow): the recorded Stages 1–4 work stays on `foundation` until its reviewed PR is accepted. No agent commits directly to `main`; Git mutations require the explicit approvals in AGENTS.md.
+- Changes to auth, migrations, shared API contracts, cross-module invariants, infrastructure, and core dependencies require architecture review.
 - Prefer generated API clients over manually invented frontend types. CI and PR review are merge gates.
 - Agents must read `AGENTS.md`, this architecture document, relevant product spec, and actual source code. If an implementation decision conflicts with an approved document, stop and escalate.
 
@@ -205,7 +207,7 @@ asgard/
 | A-04 | AI model evaluation | F-002 and verification.md select 30 synthetic profiles, three runs/model and quality thresholds; execute comparison | Before releasing recommendations |
 | A-05 | AI behavior/product contract | F-001/F-002 select controls, count, interpretation and refresh. Stage 4 encodes saved-context/run structures, validators and API scaffolding; technical review, service semantics, prompts, PDF lifecycle and quality evidence remain | Before dependent feature implementation/release |
 | A-06 | Runtime and tooling | Patches/locks/images and helper are committed; local Windows/container checks are recorded. Native Linux/independent fresh-host acceptance and hosted CI evidence remain | Scaffold implemented; remaining portability/CI gates before acceptance |
-| A-07 | Operations ownership | Project lead owns initial review/deploy/content; record real contact and backup operator, access and branch protections | Before external use/team work |
+| A-07 | Operations ownership | Require technical/content review and deployment authorization; record real contact and backup operator, access and branch protections | Before external use/team work |
 | A-08 | Data protection | Security baseline selects retention/deletion, daily backup/7-day expiry and RPO/RTO; configure and restore-test including Storage | Before real user data |
 | A-09 | Reliability targets | Verification selects warm/cold budgets, no free-tier uptime promise and local fallback; execute hosted smoke tests | Before hosted demo |
 | A-10 | Catalog and roadmap model | Stage 4 SQL encodes identities, membership and integrity constraints with a recorded local probe. Author/review seven curricula and implement publication, revision and learning calculations | Before roadmap publication/feature acceptance |
@@ -213,11 +215,11 @@ asgard/
 
 Product choices delegated on 25 October 2026 are recorded in their owning specs and decision register. Provider incompatibilities, technical contract review and unrun evidence are not resolved by choosing defaults. Screenshots are not implementation authority.
 
-## 13a. Owner-delegated planning addendum
+## 13a. Selected planning addendum
 
 The foundation stack above is unchanged. [Development](development.md), [Security and operations](security-and-operations.md) and [Verification](verification.md) resolve the former planning caveats. Shared persisted quota reservations and deletion-access checks are required behavior; SQL/API implementation still requires technical review. Verify limits on every public origin, not only Vercel; do not add an unauthenticated FastAPI password-reset proxy by default.
 
-The explicit-linking product rule conflicts with documented Supabase automatic linking. Preserve that rule and stop the affected Google integration until AUTH-C1 is resolved by evidence or an explicit owner exception. AUTH-C2 similarly gates hosted recovery availability. This addendum does not authorize a provider replacement or custom MFA.
+The explicit-linking product rule conflicts with documented Supabase automatic linking. Preserve that rule and stop the affected Google integration until AUTH-C1 is resolved by evidence or an explicit scope exception. AUTH-C2 similarly gates hosted recovery availability. This addendum does not authorize a provider replacement or custom MFA.
 
 Start the foundation with verified email/password access. Google investigation and MFA verification are independent integration tasks; keep new MFA enrollment disabled until its full lifecycle passes, without weakening enforcement for already-enrolled accounts. Interim builds must state that final-MVP account acceptance is incomplete.
 
@@ -229,7 +231,7 @@ Start the foundation with verified email/password access. Google investigation a
 4. **Contract:** OpenAPI schema generates TypeScript client and CI fails when client/contracts drift.
 5. **LLM:** a mock adapter works in CI; live Groq integration yields validated catalog-only recommendations, handles quota errors and timeouts, and preserves previous successful results.
 6. **Hosting:** Vercel frontend calls Render backend; CORS, HTTPS, environment secrets, cold starts, health checks and local demo fallback are exercised.
-7. **Team:** code owners and protected PR workflow exist before independent coding agents implement features.
+7. **Team:** reviewed module boundaries and protected PR checks exist before independent feature implementation.
 
 ## 15. References and compatibility notes
 
@@ -239,5 +241,5 @@ Start the foundation with verified email/password access. Google investigation a
 - [Groq rate limits](https://console.groq.com/docs/rate-limits)
 - [Render Free limits](https://render.com/docs/free)
 
-**Change policy:** Record replacements of approved foundation choices in an ADR and update this file, `docs/development.md`, and `AGENTS.md`. No coding agent may silently reinterpret approved stack decisions.
+**Change policy:** Record replacements of approved foundation choices in an ADR and update this file, `docs/development.md`, and `AGENTS.md`. No contributor may silently reinterpret approved stack decisions.
 

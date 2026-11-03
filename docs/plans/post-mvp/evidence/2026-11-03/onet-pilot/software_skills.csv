@@ -1,0 +1,778 @@
+O*NET-SOC Code,Title,Workplace Example,Element ID,Element Name,Hot Technology,In Demand
+15-1254.00,Web Developers,3M Post-it App,2.E.4.d,Word processing software,N,N
+15-1254.00,Web Developers,Adobe Acrobat,2.E.5.b,Document management software,Y,N
+15-1254.00,Web Developers,Adobe ActionScript,2.E.7.b,Development environment software,N,N
+15-1254.00,Web Developers,Adobe After Effects,2.E.4.c,Video creation and editing software,Y,N
+15-1254.00,Web Developers,Adobe Creative Cloud software,2.E.4.b,Graphics or photo imaging software,Y,N
+15-1254.00,Web Developers,Adobe Dreamweaver,2.E.4.g,Web page creation and editing software,N,N
+15-1254.00,Web Developers,Adobe Flex,2.E.7.h,Web platform development software,N,N
+15-1254.00,Web Developers,Adobe Illustrator,2.E.4.b,Graphics or photo imaging software,Y,N
+15-1254.00,Web Developers,Adobe InDesign,2.E.4.k,Desktop publishing software,Y,N
+15-1254.00,Web Developers,Adobe Photoshop,2.E.4.b,Graphics or photo imaging software,Y,N
+15-1254.00,Web Developers,Advanced business application programming ABAP,2.E.7.e,Object or component oriented development software,N,N
+15-1254.00,Web Developers,Airtable,2.E.6.f,Data base user interface and query software,N,N
+15-1254.00,Web Developers,AJAX,2.E.7.h,Web platform development software,Y,N
+15-1254.00,Web Developers,Amazon DynamoDB,2.E.6.d,Data base management system software,Y,N
+15-1254.00,Web Developers,Amazon Elastic Compute Cloud EC2,2.E.6.f,Data base user interface and query software,Y,N
+15-1254.00,Web Developers,Amazon Kinesis,2.E.6.d,Data base management system software,N,N
+15-1254.00,Web Developers,Amazon Redshift,2.E.6.f,Data base user interface and query software,Y,N
+15-1254.00,Web Developers,Amazon Simple Storage Service S3,2.E.12.f,Storage networking software,N,N
+15-1254.00,Web Developers,Amazon Web Services AWS CloudFormation,2.E.11.e,Cloud-based management software,Y,N
+15-1254.00,Web Developers,Amazon Web Services AWS software,2.E.6.f,Data base user interface and query software,Y,Y
+15-1254.00,Web Developers,Ansible software,2.E.1.i,Expert system software,Y,N
+15-1254.00,Web Developers,Apache Ant,2.E.7.b,Development environment software,N,N
+15-1254.00,Web Developers,Apache Cassandra,2.E.6.d,Data base management system software,Y,N
+15-1254.00,Web Developers,Apache Groovy,2.E.7.e,Object or component oriented development software,N,N
+15-1254.00,Web Developers,Apache Hadoop,2.E.6.d,Data base management system software,Y,N
+15-1254.00,Web Developers,Apache Hive,2.E.6.d,Data base management system software,Y,N
+15-1254.00,Web Developers,Apache HTTP Server,2.E.6.k,Portal server software,N,N
+15-1254.00,Web Developers,Apache Kafka,2.E.7.b,Development environment software,Y,Y
+15-1254.00,Web Developers,Apache Maven,2.E.7.b,Development environment software,Y,N
+15-1254.00,Web Developers,Apache Pig,2.E.6.d,Data base management system software,N,N
+15-1254.00,Web Developers,Apache Solr,2.E.6.d,Data base management system software,N,N
+15-1254.00,Web Developers,Apache Spark,2.E.7.e,Object or component oriented development software,Y,N
+15-1254.00,Web Developers,Apache Struts,2.E.7.h,Web platform development software,N,N
+15-1254.00,Web Developers,Apache Subversion SVN,2.E.7.b,Development environment software,Y,N
+15-1254.00,Web Developers,Apache Tomcat,2.E.7.h,Web platform development software,Y,N
+15-1254.00,Web Developers,Apple Cocoa,2.E.7.e,Object or component oriented development software,N,N
+15-1254.00,Web Developers,Apple Final Cut Pro,2.E.4.c,Video creation and editing software,N,N
+15-1254.00,Web Developers,Apple Keynote,2.E.4.f,Presentation software,N,N
+15-1254.00,Web Developers,Apple macOS,2.E.13.c,Operating system software,Y,N
+15-1254.00,Web Developers,Atlassian Bamboo,2.E.7.c,Enterprise application integration software,N,N
+15-1254.00,Web Developers,Atlassian Bitbucket,2.E.10.a,Application server software,Y,N
+15-1254.00,Web Developers,Atlassian Confluence,2.E.1.e,Project management software,Y,N
+15-1254.00,Web Developers,Atlassian HipChat,2.E.16.d,Instant messaging software,N,N
+15-1254.00,Web Developers,Atlassian JIRA,2.E.5.a,Content workflow software,Y,Y
+15-1254.00,Web Developers,Backbone.js,2.E.7.h,Web platform development software,N,N
+15-1254.00,Web Developers,Bash,2.E.13.c,Operating system software,Y,N
+15-1254.00,Web Developers,Blackboard software,2.E.6.f,Data base user interface and query software,N,N
+15-1254.00,Web Developers,Blink,2.E.16.d,Instant messaging software,N,N
+15-1254.00,Web Developers,Bootstrap,2.E.7.h,Web platform development software,Y,N
+15-1254.00,Web Developers,C,2.E.7.b,Development environment software,Y,N
+15-1254.00,Web Developers,C#,2.E.7.e,Object or component oriented development software,Y,Y
+15-1254.00,Web Developers,C++,2.E.7.e,Object or component oriented development software,Y,N
+15-1254.00,Web Developers,Cascading style sheets CSS,2.E.7.h,Web platform development software,Y,Y
+15-1254.00,Web Developers,Chef,2.E.7.a,Configuration management software,Y,N
+15-1254.00,Web Developers,Cisco Webex,2.E.16.b,Video conferencing software,Y,N
+15-1254.00,Web Developers,Common business oriented language COBOL,2.E.7.b,Development environment software,N,N
+15-1254.00,Web Developers,Common gateway interface CGI,2.E.7.c,Enterprise application integration software,N,N
+15-1254.00,Web Developers,Customer information control system CICS,2.E.6.l,Transaction server software,N,N
+15-1254.00,Web Developers,Delphi Technology,2.E.2.d,Financial analysis software,N,N
+15-1254.00,Web Developers,Django,2.E.7.h,Web platform development software,Y,N
+15-1254.00,Web Developers,Docker,2.E.10.a,Application server software,Y,Y
+15-1254.00,Web Developers,Dropbox,2.E.16.i,Cloud-based data access and sharing software,N,N
+15-1254.00,Web Developers,Drupal,2.E.7.h,Web platform development software,N,N
+15-1254.00,Web Developers,Dynamic hypertext markup language DHTML,2.E.7.h,Web platform development software,N,N
+15-1254.00,Web Developers,Eclipse IDE,2.E.7.b,Development environment software,Y,N
+15-1254.00,Web Developers,Elasticsearch,2.E.6.d,Data base management system software,Y,N
+15-1254.00,Web Developers,Enterprise JavaBeans,2.E.7.h,Web platform development software,N,N
+15-1254.00,Web Developers,Epic Systems,2.E.9.i,Medical software,Y,N
+15-1254.00,Web Developers,ESRI ArcGIS software,2.E.8.h,Geographic information system,Y,N
+15-1254.00,Web Developers,Evernote,2.E.4.d,Word processing software,N,N
+15-1254.00,Web Developers,Ext JS,2.E.7.h,Web platform development software,N,N
+15-1254.00,Web Developers,Extensible hypertext markup language XHTML,2.E.7.h,Web platform development software,N,N
+15-1254.00,Web Developers,Extensible markup language XML,2.E.7.c,Enterprise application integration software,Y,N
+15-1254.00,Web Developers,Extensible stylesheet language transformations XSLT,2.E.7.h,Web platform development software,N,N
+15-1254.00,Web Developers,Extensible stylesheet language XSL,2.E.7.c,Enterprise application integration software,N,N
+15-1254.00,Web Developers,Facebook,2.E.4.g,Web page creation and editing software,Y,N
+15-1254.00,Web Developers,Figma,2.E.7.d,Graphical user interface development software,Y,N
+15-1254.00,Web Developers,FileMaker Pro,2.E.6.f,Data base user interface and query software,N,N
+15-1254.00,Web Developers,FlexBox,2.E.7.h,Web platform development software,N,N
+15-1254.00,Web Developers,Flipgrid,2.E.4.c,Video creation and editing software,N,N
+15-1254.00,Web Developers,Geographic information system GIS software,2.E.8.h,Geographic information system,N,N
+15-1254.00,Web Developers,Git,2.E.5.c,File versioning software,Y,Y
+15-1254.00,Web Developers,GitHub,2.E.10.a,Application server software,Y,Y
+15-1254.00,Web Developers,Go,2.E.7.b,Development environment software,Y,Y
+15-1254.00,Web Developers,Google Ads,2.E.1.l,Sales and marketing software,N,N
+15-1254.00,Web Developers,Google Analytics,2.E.6.g,Data mining software,Y,N
+15-1254.00,Web Developers,Google Android,2.E.13.c,Operating system software,Y,N
+15-1254.00,Web Developers,Google Angular,2.E.7.h,Web platform development software,Y,Y
+15-1254.00,Web Developers,Google Cloud software,2.E.11.e,Cloud-based management software,N,N
+15-1254.00,Web Developers,Google Docs,2.E.4.d,Word processing software,Y,N
+15-1254.00,Web Developers,Google Drive,2.E.16.i,Cloud-based data access and sharing software,N,N
+15-1254.00,Web Developers,Google Meet,2.E.16.b,Video conferencing software,N,N
+15-1254.00,Web Developers,Google Sites,2.E.4.g,Web page creation and editing software,N,N
+15-1254.00,Web Developers,Google Slides,2.E.4.f,Presentation software,N,N
+15-1254.00,Web Developers,GraphQL,2.E.6.f,Data base user interface and query software,Y,Y
+15-1254.00,Web Developers,HashiCorp Vagrant,2.E.7.h,Web platform development software,N,N
+15-1254.00,Web Developers,Hewlett Packard HP-UX,2.E.13.c,Operating system software,N,N
+15-1254.00,Web Developers,Hewlett Packard LoadRunner,2.E.7.f,Program testing software,N,N
+15-1254.00,Web Developers,Hibernate ORM,2.E.6.j,Object oriented data base management software,Y,N
+15-1254.00,Web Developers,HubSpot software,2.E.1.l,Sales and marketing software,Y,N
+15-1254.00,Web Developers,Hypertext markup language HTML,2.E.7.h,Web platform development software,Y,Y
+15-1254.00,Web Developers,IBM Cognos Impromptu,2.E.6.m,Business intelligence and data analysis software,N,N
+15-1254.00,Web Developers,IBM Domino,2.E.12.b,Communications server software,N,N
+15-1254.00,Web Developers,IBM Informix,2.E.6.f,Data base user interface and query software,N,N
+15-1254.00,Web Developers,IBM InfoSphere DataStage,2.E.7.c,Enterprise application integration software,N,N
+15-1254.00,Web Developers,IBM Notes,2.E.16.a,Electronic mail software,N,N
+15-1254.00,Web Developers,IBM Power Systems software,2.E.17.a,Enterprise system management software,N,N
+15-1254.00,Web Developers,IBM Rational Rose XDE,2.E.7.b,Development environment software,N,N
+15-1254.00,Web Developers,IBM SPSS Statistics,2.E.9.d,Analytical or scientific software,Y,N
+15-1254.00,Web Developers,IBM WebSphere,2.E.11.e,Cloud-based management software,N,N
+15-1254.00,Web Developers,Integrated development environment IDE software,2.E.7.b,Development environment software,N,N
+15-1254.00,Web Developers,InVision software,2.E.1.p,Process mapping and design software,N,N
+15-1254.00,Web Developers,JamBoard,2.E.4.b,Graphics or photo imaging software,N,N
+15-1254.00,Web Developers,JavaScript,2.E.7.h,Web platform development software,Y,Y
+15-1254.00,Web Developers,JavaScript framework software,2.E.7.h,Web platform development software,N,Y
+15-1254.00,Web Developers,JavaScript Object Notation JSON,2.E.7.h,Web platform development software,Y,Y
+15-1254.00,Web Developers,Jekyll,2.E.7.h,Web platform development software,N,N
+15-1254.00,Web Developers,Jenkins CI,2.E.7.c,Enterprise application integration software,Y,Y
+15-1254.00,Web Developers,Jest,2.E.7.f,Program testing software,N,N
+15-1254.00,Web Developers,JetBrains PhpStorm,2.E.7.h,Web platform development software,N,N
+15-1254.00,Web Developers,Job control language JCL,2.E.13.c,Operating system software,N,N
+15-1254.00,Web Developers,jQuery,2.E.7.e,Object or component oriented development software,Y,Y
+15-1254.00,Web Developers,JUnit,2.E.7.f,Program testing software,Y,N
+15-1254.00,Web Developers,Jupyter Notebook,2.E.7.e,Object or component oriented development software,N,N
+15-1254.00,Web Developers,Kapwing,2.E.4.c,Video creation and editing software,N,N
+15-1254.00,Web Developers,KornShell,2.E.13.c,Operating system software,N,N
+15-1254.00,Web Developers,Kubernetes,2.E.10.a,Application server software,Y,Y
+15-1254.00,Web Developers,LAMP Stack,2.E.7.h,Web platform development software,N,N
+15-1254.00,Web Developers,LinkedIn,2.E.4.g,Web page creation and editing software,N,N
+15-1254.00,Web Developers,Linux,2.E.13.c,Operating system software,Y,Y
+15-1254.00,Web Developers,Marketo Marketing Automation,2.E.1.l,Sales and marketing software,Y,N
+15-1254.00,Web Developers,MarkLogic,2.E.6.f,Data base user interface and query software,N,N
+15-1254.00,Web Developers,MeteorJS,2.E.7.h,Web platform development software,N,N
+15-1254.00,Web Developers,Microservices Architecture,2.E.10.a,Application server software,N,N
+15-1254.00,Web Developers,Microsoft .NET Framework,2.E.7.b,Development environment software,Y,N
+15-1254.00,Web Developers,Microsoft Access,2.E.6.f,Data base user interface and query software,Y,N
+15-1254.00,Web Developers,Microsoft Active Server Pages ASP,2.E.7.h,Web platform development software,Y,N
+15-1254.00,Web Developers,Microsoft ActiveX,2.E.7.e,Object or component oriented development software,N,N
+15-1254.00,Web Developers,Microsoft ASP.NET,2.E.7.h,Web platform development software,Y,N
+15-1254.00,Web Developers,Microsoft ASP.NET Core MVC,2.E.7.h,Web platform development software,N,N
+15-1254.00,Web Developers,Microsoft Azure software,2.E.7.b,Development environment software,Y,Y
+15-1254.00,Web Developers,Microsoft Commerce Server,2.E.7.h,Web platform development software,N,N
+15-1254.00,Web Developers,Microsoft Dynamics,2.E.2.b,Enterprise resource planning ERP software,N,N
+15-1254.00,Web Developers,Microsoft Excel,2.E.4.i,Spreadsheet software,Y,N
+15-1254.00,Web Developers,Microsoft Internet Information Services (IIS),2.E.6.l,Transaction server software,N,N
+15-1254.00,Web Developers,Microsoft Office software,2.E.1.k,Office suite software,Y,N
+15-1254.00,Web Developers,Microsoft PowerShell,2.E.7.b,Development environment software,Y,N
+15-1254.00,Web Developers,Microsoft Project,2.E.1.e,Project management software,Y,N
+15-1254.00,Web Developers,Microsoft Publisher,2.E.4.k,Desktop publishing software,N,N
+15-1254.00,Web Developers,Microsoft SharePoint,2.E.5.b,Document management software,Y,N
+15-1254.00,Web Developers,Microsoft SQL Server,2.E.6.f,Data base user interface and query software,Y,N
+15-1254.00,Web Developers,Microsoft SQL Server Integration Services SSIS,2.E.7.c,Enterprise application integration software,Y,N
+15-1254.00,Web Developers,Microsoft SQL Server Reporting Services SSRS,2.E.6.e,Data base reporting software,Y,N
+15-1254.00,Web Developers,Microsoft Visio,2.E.1.p,Process mapping and design software,Y,N
+15-1254.00,Web Developers,Microsoft Visual Basic,2.E.7.b,Development environment software,Y,N
+15-1254.00,Web Developers,Microsoft Visual Basic for Applications VBA,2.E.7.b,Development environment software,Y,N
+15-1254.00,Web Developers,Microsoft Visual Basic Scripting Edition VBScript,2.E.7.b,Development environment software,N,N
+15-1254.00,Web Developers,Microsoft Visual Basic.NET,2.E.7.e,Object or component oriented development software,N,N
+15-1254.00,Web Developers,Microsoft Visual C# .NET,2.E.7.e,Object or component oriented development software,N,N
+15-1254.00,Web Developers,Microsoft Visual InterDev,2.E.7.h,Web platform development software,N,N
+15-1254.00,Web Developers,Microsoft Visual SourceSafe,2.E.7.b,Development environment software,N,N
+15-1254.00,Web Developers,Microsoft Visual Studio,2.E.7.b,Development environment software,Y,N
+15-1254.00,Web Developers,Microsoft Windows,2.E.13.c,Operating system software,Y,N
+15-1254.00,Web Developers,Microsoft Windows Server,2.E.13.c,Operating system software,Y,N
+15-1254.00,Web Developers,MicroStrategy,2.E.6.m,Business intelligence and data analysis software,N,N
+15-1254.00,Web Developers,MongoDB,2.E.6.d,Data base management system software,Y,Y
+15-1254.00,Web Developers,Moodle,2.E.8.b,Computer based training software,N,N
+15-1254.00,Web Developers,MySQL,2.E.6.d,Data base management system software,Y,Y
+15-1254.00,Web Developers,Nagios,2.E.11.a,Network monitoring software,N,N
+15-1254.00,Web Developers,NetSuite ERP,2.E.2.b,Enterprise resource planning ERP software,N,N
+15-1254.00,Web Developers,Node.js,2.E.7.h,Web platform development software,Y,Y
+15-1254.00,Web Developers,NortonLifeLock cybersecurity software,2.E.14.d,Transaction security and virus protection software,N,N
+15-1254.00,Web Developers,NoSQL,2.E.6.d,Data base management system software,Y,Y
+15-1254.00,Web Developers,Nunjucks,2.E.7.h,Web platform development software,N,N
+15-1254.00,Web Developers,Objective C,2.E.7.e,Object or component oriented development software,N,N
+15-1254.00,Web Developers,Oracle Business Intelligence Enterprise Edition,2.E.6.m,Business intelligence and data analysis software,N,N
+15-1254.00,Web Developers,Oracle Database,2.E.6.f,Data base user interface and query software,Y,N
+15-1254.00,Web Developers,Oracle Eloqua,2.E.6.c,Customer relationship management CRM software,N,N
+15-1254.00,Web Developers,Oracle Fusion Applications,2.E.2.b,Enterprise resource planning ERP software,N,N
+15-1254.00,Web Developers,Oracle Fusion Middleware,2.E.7.c,Enterprise application integration software,N,N
+15-1254.00,Web Developers,Oracle Java,2.E.7.e,Object or component oriented development software,Y,Y
+15-1254.00,Web Developers,Oracle Java 2 Platform Enterprise Edition J2EE,2.E.7.b,Development environment software,Y,N
+15-1254.00,Web Developers,Oracle JavaServer Pages JSP,2.E.7.h,Web platform development software,N,N
+15-1254.00,Web Developers,Oracle JD Edwards EnterpriseOne,2.E.2.b,Enterprise resource planning ERP software,N,N
+15-1254.00,Web Developers,Oracle JDBC,2.E.6.f,Data base user interface and query software,N,N
+15-1254.00,Web Developers,Oracle PL/SQL,2.E.6.d,Data base management system software,Y,N
+15-1254.00,Web Developers,Oracle Solaris,2.E.13.c,Operating system software,N,N
+15-1254.00,Web Developers,Oracle WebLogic Server,2.E.10.a,Application server software,N,N
+15-1254.00,Web Developers,Perforce Helix software,2.E.7.a,Configuration management software,N,N
+15-1254.00,Web Developers,Perl,2.E.7.e,Object or component oriented development software,Y,N
+15-1254.00,Web Developers,PhantomJS,2.E.7.h,Web platform development software,N,N
+15-1254.00,Web Developers,PHP,2.E.7.h,Web platform development software,Y,Y
+15-1254.00,Web Developers,PostgreSQL,2.E.6.j,Object oriented data base management software,Y,Y
+15-1254.00,Web Developers,Puppet,2.E.7.a,Configuration management software,Y,N
+15-1254.00,Web Developers,Python,2.E.7.e,Object or component oriented development software,Y,Y
+15-1254.00,Web Developers,Qlik Tech QlikView,2.E.6.m,Business intelligence and data analysis software,N,N
+15-1254.00,Web Developers,Quest Erwin Data Modeler,2.E.6.i,Metadata management software,N,N
+15-1254.00,Web Developers,R,2.E.7.e,Object or component oriented development software,Y,N
+15-1254.00,Web Developers,React,2.E.7.h,Web platform development software,Y,Y
+15-1254.00,Web Developers,React Redux,2.E.7.h,Web platform development software,N,N
+15-1254.00,Web Developers,Red Hat Enterprise Linux,2.E.13.c,Operating system software,Y,N
+15-1254.00,Web Developers,Red Hat OpenShift,2.E.10.a,Application server software,Y,N
+15-1254.00,Web Developers,Red Hat WildFly,2.E.10.a,Application server software,N,N
+15-1254.00,Web Developers,Redis,2.E.6.d,Data base management system software,Y,N
+15-1254.00,Web Developers,Relational database management software,2.E.6.d,Data base management system software,N,N
+15-1254.00,Web Developers,Relational database management system software,2.E.6.d,Data base management system software,N,N
+15-1254.00,Web Developers,RequireJS,2.E.7.h,Web platform development software,N,N
+15-1254.00,Web Developers,RESTful API,2.E.7.h,Web platform development software,N,Y
+15-1254.00,Web Developers,Ruby,2.E.7.b,Development environment software,Y,N
+15-1254.00,Web Developers,Ruby on Rails,2.E.7.h,Web platform development software,N,N
+15-1254.00,Web Developers,Salesforce software,2.E.6.c,Customer relationship management CRM software,Y,N
+15-1254.00,Web Developers,Salesforce Visualforce,2.E.7.d,Graphical user interface development software,N,N
+15-1254.00,Web Developers,SAP Business Objects,2.E.2.b,Enterprise resource planning ERP software,N,N
+15-1254.00,Web Developers,SAP Crystal Reports,2.E.6.e,Data base reporting software,N,N
+15-1254.00,Web Developers,SAP software,2.E.2.b,Enterprise resource planning ERP software,Y,N
+15-1254.00,Web Developers,SAS,2.E.9.d,Analytical or scientific software,Y,N
+15-1254.00,Web Developers,Scala,2.E.7.e,Object or component oriented development software,Y,N
+15-1254.00,Web Developers,Screencast-O-Matic,2.E.4.c,Video creation and editing software,N,N
+15-1254.00,Web Developers,Screencastify,2.E.4.c,Video creation and editing software,N,N
+15-1254.00,Web Developers,Selenium,2.E.7.f,Program testing software,Y,N
+15-1254.00,Web Developers,Shell script,2.E.13.c,Operating system software,Y,N
+15-1254.00,Web Developers,Sitecore CMS,2.E.5.a,Content workflow software,N,N
+15-1254.00,Web Developers,Skype,2.E.10.b,Desktop communications software,N,N
+15-1254.00,Web Developers,Slack,2.E.16.i,Cloud-based data access and sharing software,Y,N
+15-1254.00,Web Developers,SmugMug Flickr,2.E.4.b,Graphics or photo imaging software,N,N
+15-1254.00,Web Developers,Social media sites,2.E.4.g,Web page creation and editing software,N,N
+15-1254.00,Web Developers,Splunk Enterprise,2.E.11.e,Cloud-based management software,Y,N
+15-1254.00,Web Developers,Spring Boot,2.E.10.a,Application server software,Y,Y
+15-1254.00,Web Developers,Spring Framework,2.E.7.h,Web platform development software,Y,Y
+15-1254.00,Web Developers,Structured query language SQL,2.E.6.f,Data base user interface and query software,Y,Y
+15-1254.00,Web Developers,Swift,2.E.7.e,Object or component oriented development software,Y,N
+15-1254.00,Web Developers,Syntactically awesome style sheets SASS,2.E.7.h,Web platform development software,N,N
+15-1254.00,Web Developers,Tableau,2.E.6.m,Business intelligence and data analysis software,Y,N
+15-1254.00,Web Developers,Teradata Database,2.E.6.d,Data base management system software,Y,N
+15-1254.00,Web Developers,The MathWorks MATLAB,2.E.9.d,Analytical or scientific software,Y,N
+15-1254.00,Web Developers,Transact-SQL,2.E.6.f,Data base user interface and query software,Y,N
+15-1254.00,Web Developers,Travis,2.E.7.f,Program testing software,N,N
+15-1254.00,Web Developers,Trimble SketchUp Pro,2.E.4.b,Graphics or photo imaging software,Y,N
+15-1254.00,Web Developers,TypeScript,2.E.7.e,Object or component oriented development software,Y,Y
+15-1254.00,Web Developers,Ubuntu,2.E.13.c,Operating system software,N,N
+15-1254.00,Web Developers,Unified modeling language UML,2.E.7.g,Requirements analysis and system architecture software,N,N
+15-1254.00,Web Developers,UNIX,2.E.13.c,Operating system software,Y,N
+15-1254.00,Web Developers,UNIX Shell,2.E.13.c,Operating system software,Y,N
+15-1254.00,Web Developers,Vue.js,2.E.7.h,Web platform development software,Y,Y
+15-1254.00,Web Developers,Web application software,2.E.7.b,Development environment software,N,Y
+15-1254.00,Web Developers,Web content management system CMS software,2.E.4.g,Web page creation and editing software,N,N
+15-1254.00,Web Developers,webpack,2.E.7.h,Web platform development software,N,N
+15-1254.00,Web Developers,Wireshark,2.E.11.a,Network monitoring software,N,N
+15-1254.00,Web Developers,WordPress,2.E.4.g,Web page creation and editing software,Y,Y
+15-1254.00,Web Developers,YouTube,2.E.4.c,Video creation and editing software,N,N
+15-1254.00,Web Developers,Zend Framework,2.E.7.h,Web platform development software,N,N
+15-1255.00,Web and Digital Interface Designers,3M Post-it App,2.E.4.d,Word processing software,N,N
+15-1255.00,Web and Digital Interface Designers,Adobe Acrobat,2.E.5.b,Document management software,Y,N
+15-1255.00,Web and Digital Interface Designers,Adobe ActionScript,2.E.7.b,Development environment software,N,N
+15-1255.00,Web and Digital Interface Designers,Adobe After Effects,2.E.4.c,Video creation and editing software,Y,N
+15-1255.00,Web and Digital Interface Designers,Adobe Creative Cloud software,2.E.4.b,Graphics or photo imaging software,Y,Y
+15-1255.00,Web and Digital Interface Designers,Adobe Dreamweaver,2.E.4.g,Web page creation and editing software,N,N
+15-1255.00,Web and Digital Interface Designers,Adobe Flex,2.E.7.h,Web platform development software,N,N
+15-1255.00,Web and Digital Interface Designers,Adobe Illustrator,2.E.4.b,Graphics or photo imaging software,Y,Y
+15-1255.00,Web and Digital Interface Designers,Adobe InDesign,2.E.4.k,Desktop publishing software,Y,N
+15-1255.00,Web and Digital Interface Designers,Adobe Photoshop,2.E.4.b,Graphics or photo imaging software,Y,Y
+15-1255.00,Web and Digital Interface Designers,Adobe XD,2.E.4.b,Graphics or photo imaging software,N,Y
+15-1255.00,Web and Digital Interface Designers,Advanced business application programming ABAP,2.E.7.e,Object or component oriented development software,N,N
+15-1255.00,Web and Digital Interface Designers,Airtable,2.E.6.f,Data base user interface and query software,N,N
+15-1255.00,Web and Digital Interface Designers,AJAX,2.E.7.h,Web platform development software,Y,N
+15-1255.00,Web and Digital Interface Designers,Amazon DynamoDB,2.E.6.d,Data base management system software,Y,N
+15-1255.00,Web and Digital Interface Designers,Amazon Elastic Compute Cloud EC2,2.E.6.f,Data base user interface and query software,Y,N
+15-1255.00,Web and Digital Interface Designers,Amazon Kinesis,2.E.6.d,Data base management system software,N,N
+15-1255.00,Web and Digital Interface Designers,Amazon Redshift,2.E.6.f,Data base user interface and query software,Y,N
+15-1255.00,Web and Digital Interface Designers,Amazon Simple Storage Service S3,2.E.12.f,Storage networking software,N,N
+15-1255.00,Web and Digital Interface Designers,Amazon Web Services AWS CloudFormation,2.E.11.e,Cloud-based management software,Y,N
+15-1255.00,Web and Digital Interface Designers,Amazon Web Services AWS software,2.E.6.f,Data base user interface and query software,Y,N
+15-1255.00,Web and Digital Interface Designers,Ansible software,2.E.1.i,Expert system software,Y,N
+15-1255.00,Web and Digital Interface Designers,Apache Ant,2.E.7.b,Development environment software,N,N
+15-1255.00,Web and Digital Interface Designers,Apache Cassandra,2.E.6.d,Data base management system software,Y,N
+15-1255.00,Web and Digital Interface Designers,Apache Groovy,2.E.7.e,Object or component oriented development software,N,N
+15-1255.00,Web and Digital Interface Designers,Apache Hadoop,2.E.6.d,Data base management system software,Y,N
+15-1255.00,Web and Digital Interface Designers,Apache Hive,2.E.6.d,Data base management system software,Y,N
+15-1255.00,Web and Digital Interface Designers,Apache HTTP Server,2.E.6.k,Portal server software,N,N
+15-1255.00,Web and Digital Interface Designers,Apache Kafka,2.E.7.b,Development environment software,Y,N
+15-1255.00,Web and Digital Interface Designers,Apache Maven,2.E.7.b,Development environment software,Y,N
+15-1255.00,Web and Digital Interface Designers,Apache Pig,2.E.6.d,Data base management system software,N,N
+15-1255.00,Web and Digital Interface Designers,Apache Solr,2.E.6.d,Data base management system software,N,N
+15-1255.00,Web and Digital Interface Designers,Apache Spark,2.E.7.e,Object or component oriented development software,Y,N
+15-1255.00,Web and Digital Interface Designers,Apache Struts,2.E.7.h,Web platform development software,N,N
+15-1255.00,Web and Digital Interface Designers,Apache Subversion SVN,2.E.5.c,File versioning software,Y,N
+15-1255.00,Web and Digital Interface Designers,Apache Tomcat,2.E.7.h,Web platform development software,Y,N
+15-1255.00,Web and Digital Interface Designers,Apple Cocoa,2.E.7.e,Object or component oriented development software,N,N
+15-1255.00,Web and Digital Interface Designers,Apple iOS,2.E.13.c,Operating system software,Y,N
+15-1255.00,Web and Digital Interface Designers,Apple Keynote,2.E.4.f,Presentation software,N,N
+15-1255.00,Web and Digital Interface Designers,Apple macOS,2.E.13.c,Operating system software,Y,N
+15-1255.00,Web and Digital Interface Designers,Atlassian Bamboo,2.E.7.c,Enterprise application integration software,N,N
+15-1255.00,Web and Digital Interface Designers,Atlassian Confluence,2.E.1.e,Project management software,Y,N
+15-1255.00,Web and Digital Interface Designers,Atlassian JIRA,2.E.5.a,Content workflow software,Y,Y
+15-1255.00,Web and Digital Interface Designers,Axure RP,2.E.4.g,Web page creation and editing software,N,N
+15-1255.00,Web and Digital Interface Designers,Backbone.js,2.E.7.h,Web platform development software,N,N
+15-1255.00,Web and Digital Interface Designers,Bash,2.E.13.c,Operating system software,Y,N
+15-1255.00,Web and Digital Interface Designers,Blackboard software,2.E.6.f,Data base user interface and query software,N,N
+15-1255.00,Web and Digital Interface Designers,Blink,2.E.16.d,Instant messaging software,N,N
+15-1255.00,Web and Digital Interface Designers,Bootstrap,2.E.7.h,Web platform development software,Y,N
+15-1255.00,Web and Digital Interface Designers,C,2.E.7.b,Development environment software,Y,N
+15-1255.00,Web and Digital Interface Designers,C#,2.E.7.e,Object or component oriented development software,Y,N
+15-1255.00,Web and Digital Interface Designers,C++,2.E.7.e,Object or component oriented development software,Y,N
+15-1255.00,Web and Digital Interface Designers,Cascading style sheets CSS,2.E.7.h,Web platform development software,Y,Y
+15-1255.00,Web and Digital Interface Designers,Chatbot software,2.E.9.g,Industrial control software,N,N
+15-1255.00,Web and Digital Interface Designers,Chef,2.E.7.a,Configuration management software,Y,N
+15-1255.00,Web and Digital Interface Designers,Cisco Webex,2.E.16.b,Video conferencing software,Y,N
+15-1255.00,Web and Digital Interface Designers,Common business oriented language COBOL,2.E.7.b,Development environment software,N,N
+15-1255.00,Web and Digital Interface Designers,Common gateway interface CGI,2.E.7.c,Enterprise application integration software,N,N
+15-1255.00,Web and Digital Interface Designers,Customer information control system CICS,2.E.6.l,Transaction server software,N,N
+15-1255.00,Web and Digital Interface Designers,Delphi Technology,2.E.2.d,Financial analysis software,N,N
+15-1255.00,Web and Digital Interface Designers,Django,2.E.7.h,Web platform development software,Y,N
+15-1255.00,Web and Digital Interface Designers,Docker,2.E.10.a,Application server software,Y,N
+15-1255.00,Web and Digital Interface Designers,Dropbox,2.E.16.i,Cloud-based data access and sharing software,N,N
+15-1255.00,Web and Digital Interface Designers,Drupal,2.E.7.h,Web platform development software,N,N
+15-1255.00,Web and Digital Interface Designers,Dynamic hypertext markup language DHTML,2.E.7.h,Web platform development software,N,N
+15-1255.00,Web and Digital Interface Designers,Eclipse IDE,2.E.7.b,Development environment software,Y,N
+15-1255.00,Web and Digital Interface Designers,Elasticsearch,2.E.6.d,Data base management system software,Y,N
+15-1255.00,Web and Digital Interface Designers,Enterprise JavaBeans,2.E.7.h,Web platform development software,N,N
+15-1255.00,Web and Digital Interface Designers,Evernote,2.E.4.d,Word processing software,N,N
+15-1255.00,Web and Digital Interface Designers,Ext JS,2.E.7.h,Web platform development software,N,N
+15-1255.00,Web and Digital Interface Designers,Extensible hypertext markup language XHTML,2.E.7.h,Web platform development software,N,N
+15-1255.00,Web and Digital Interface Designers,Extensible markup language XML,2.E.7.c,Enterprise application integration software,Y,N
+15-1255.00,Web and Digital Interface Designers,Extensible stylesheet language transformations XSLT,2.E.7.h,Web platform development software,N,N
+15-1255.00,Web and Digital Interface Designers,Extensible stylesheet language XSL,2.E.7.c,Enterprise application integration software,N,N
+15-1255.00,Web and Digital Interface Designers,Figma,2.E.7.d,Graphical user interface development software,Y,Y
+15-1255.00,Web and Digital Interface Designers,FileMaker Pro,2.E.6.f,Data base user interface and query software,N,N
+15-1255.00,Web and Digital Interface Designers,FlexBox,2.E.7.h,Web platform development software,N,N
+15-1255.00,Web and Digital Interface Designers,Flipgrid,2.E.4.c,Video creation and editing software,N,N
+15-1255.00,Web and Digital Interface Designers,Git,2.E.5.c,File versioning software,Y,N
+15-1255.00,Web and Digital Interface Designers,GitHub,2.E.10.a,Application server software,Y,N
+15-1255.00,Web and Digital Interface Designers,Go,2.E.7.b,Development environment software,Y,N
+15-1255.00,Web and Digital Interface Designers,Google Ads,2.E.1.l,Sales and marketing software,N,N
+15-1255.00,Web and Digital Interface Designers,Google Analytics,2.E.6.g,Data mining software,Y,N
+15-1255.00,Web and Digital Interface Designers,Google Android,2.E.13.c,Operating system software,Y,N
+15-1255.00,Web and Digital Interface Designers,Google Angular,2.E.7.h,Web platform development software,Y,Y
+15-1255.00,Web and Digital Interface Designers,Google Docs,2.E.4.d,Word processing software,Y,N
+15-1255.00,Web and Digital Interface Designers,Google Drive,2.E.16.i,Cloud-based data access and sharing software,N,N
+15-1255.00,Web and Digital Interface Designers,Google Meet,2.E.16.b,Video conferencing software,N,N
+15-1255.00,Web and Digital Interface Designers,Google Sites,2.E.4.g,Web page creation and editing software,N,N
+15-1255.00,Web and Digital Interface Designers,Google Slides,2.E.4.f,Presentation software,N,N
+15-1255.00,Web and Digital Interface Designers,HashiCorp Vagrant,2.E.7.h,Web platform development software,N,N
+15-1255.00,Web and Digital Interface Designers,Hewlett Packard HP-UX,2.E.13.c,Operating system software,N,N
+15-1255.00,Web and Digital Interface Designers,Hewlett Packard LoadRunner,2.E.7.f,Program testing software,N,N
+15-1255.00,Web and Digital Interface Designers,Hibernate ORM,2.E.6.j,Object oriented data base management software,Y,N
+15-1255.00,Web and Digital Interface Designers,HubSpot software,2.E.1.l,Sales and marketing software,Y,N
+15-1255.00,Web and Digital Interface Designers,Hypertext markup language HTML,2.E.7.h,Web platform development software,Y,Y
+15-1255.00,Web and Digital Interface Designers,IBM Cognos Impromptu,2.E.6.m,Business intelligence and data analysis software,N,N
+15-1255.00,Web and Digital Interface Designers,IBM Domino,2.E.12.b,Communications server software,N,N
+15-1255.00,Web and Digital Interface Designers,IBM Informix,2.E.6.f,Data base user interface and query software,N,N
+15-1255.00,Web and Digital Interface Designers,IBM InfoSphere DataStage,2.E.7.c,Enterprise application integration software,N,N
+15-1255.00,Web and Digital Interface Designers,IBM Notes,2.E.16.a,Electronic mail software,N,N
+15-1255.00,Web and Digital Interface Designers,IBM Power Systems software,2.E.17.a,Enterprise system management software,N,N
+15-1255.00,Web and Digital Interface Designers,IBM Rational Rose XDE,2.E.7.b,Development environment software,N,N
+15-1255.00,Web and Digital Interface Designers,IBM SPSS Statistics,2.E.9.d,Analytical or scientific software,Y,N
+15-1255.00,Web and Digital Interface Designers,IBM WebSphere,2.E.11.e,Cloud-based management software,N,N
+15-1255.00,Web and Digital Interface Designers,Integrated development environment IDE software,2.E.7.b,Development environment software,N,N
+15-1255.00,Web and Digital Interface Designers,InVision software,2.E.1.p,Process mapping and design software,N,N
+15-1255.00,Web and Digital Interface Designers,JamBoard,2.E.4.b,Graphics or photo imaging software,N,N
+15-1255.00,Web and Digital Interface Designers,JavaScript,2.E.7.h,Web platform development software,Y,Y
+15-1255.00,Web and Digital Interface Designers,JavaScript Object Notation JSON,2.E.7.h,Web platform development software,Y,N
+15-1255.00,Web and Digital Interface Designers,Jekyll,2.E.7.h,Web platform development software,N,N
+15-1255.00,Web and Digital Interface Designers,JetBrains PhpStorm,2.E.7.h,Web platform development software,N,N
+15-1255.00,Web and Digital Interface Designers,Job control language JCL,2.E.13.c,Operating system software,N,N
+15-1255.00,Web and Digital Interface Designers,jQuery,2.E.7.e,Object or component oriented development software,Y,N
+15-1255.00,Web and Digital Interface Designers,JUnit,2.E.7.f,Program testing software,Y,N
+15-1255.00,Web and Digital Interface Designers,Jupyter Notebook,2.E.7.e,Object or component oriented development software,N,N
+15-1255.00,Web and Digital Interface Designers,Kapwing,2.E.4.c,Video creation and editing software,N,N
+15-1255.00,Web and Digital Interface Designers,KornShell,2.E.13.c,Operating system software,N,N
+15-1255.00,Web and Digital Interface Designers,LAMP Stack,2.E.7.h,Web platform development software,N,N
+15-1255.00,Web and Digital Interface Designers,Linux,2.E.13.c,Operating system software,Y,N
+15-1255.00,Web and Digital Interface Designers,MarkLogic,2.E.6.f,Data base user interface and query software,N,N
+15-1255.00,Web and Digital Interface Designers,MeteorJS,2.E.7.h,Web platform development software,N,N
+15-1255.00,Web and Digital Interface Designers,Microsoft .NET Framework,2.E.7.b,Development environment software,Y,N
+15-1255.00,Web and Digital Interface Designers,Microsoft Access,2.E.6.f,Data base user interface and query software,Y,N
+15-1255.00,Web and Digital Interface Designers,Microsoft Active Server Pages ASP,2.E.7.h,Web platform development software,Y,N
+15-1255.00,Web and Digital Interface Designers,Microsoft ActiveX,2.E.7.e,Object or component oriented development software,N,N
+15-1255.00,Web and Digital Interface Designers,Microsoft ASP.NET,2.E.7.h,Web platform development software,Y,N
+15-1255.00,Web and Digital Interface Designers,Microsoft ASP.NET Core MVC,2.E.7.h,Web platform development software,N,N
+15-1255.00,Web and Digital Interface Designers,Microsoft Azure software,2.E.7.b,Development environment software,Y,N
+15-1255.00,Web and Digital Interface Designers,Microsoft Commerce Server,2.E.7.h,Web platform development software,N,N
+15-1255.00,Web and Digital Interface Designers,Microsoft Dynamics,2.E.2.b,Enterprise resource planning ERP software,N,N
+15-1255.00,Web and Digital Interface Designers,Microsoft Excel,2.E.4.i,Spreadsheet software,Y,N
+15-1255.00,Web and Digital Interface Designers,Microsoft Internet Information Services (IIS),2.E.6.l,Transaction server software,N,N
+15-1255.00,Web and Digital Interface Designers,Microsoft Office software,2.E.1.k,Office suite software,Y,N
+15-1255.00,Web and Digital Interface Designers,Microsoft PowerShell,2.E.7.b,Development environment software,Y,N
+15-1255.00,Web and Digital Interface Designers,Microsoft Project,2.E.1.e,Project management software,Y,N
+15-1255.00,Web and Digital Interface Designers,Microsoft Publisher,2.E.4.k,Desktop publishing software,N,N
+15-1255.00,Web and Digital Interface Designers,Microsoft SharePoint,2.E.5.b,Document management software,Y,N
+15-1255.00,Web and Digital Interface Designers,Microsoft SQL Server,2.E.6.f,Data base user interface and query software,Y,N
+15-1255.00,Web and Digital Interface Designers,Microsoft SQL Server Integration Services SSIS,2.E.7.c,Enterprise application integration software,Y,N
+15-1255.00,Web and Digital Interface Designers,Microsoft SQL Server Reporting Services SSRS,2.E.6.e,Data base reporting software,Y,N
+15-1255.00,Web and Digital Interface Designers,Microsoft Visio,2.E.1.p,Process mapping and design software,Y,N
+15-1255.00,Web and Digital Interface Designers,Microsoft Visual Basic,2.E.7.b,Development environment software,Y,N
+15-1255.00,Web and Digital Interface Designers,Microsoft Visual Basic for Applications VBA,2.E.7.b,Development environment software,Y,N
+15-1255.00,Web and Digital Interface Designers,Microsoft Visual Basic Scripting Edition VBScript,2.E.7.b,Development environment software,N,N
+15-1255.00,Web and Digital Interface Designers,Microsoft Visual Basic.NET,2.E.7.e,Object or component oriented development software,N,N
+15-1255.00,Web and Digital Interface Designers,Microsoft Visual C# .NET,2.E.7.e,Object or component oriented development software,N,N
+15-1255.00,Web and Digital Interface Designers,Microsoft Visual InterDev,2.E.7.h,Web platform development software,N,N
+15-1255.00,Web and Digital Interface Designers,Microsoft Visual SourceSafe,2.E.7.b,Development environment software,N,N
+15-1255.00,Web and Digital Interface Designers,Microsoft Visual Studio,2.E.7.b,Development environment software,Y,N
+15-1255.00,Web and Digital Interface Designers,Microsoft Windows,2.E.13.c,Operating system software,Y,N
+15-1255.00,Web and Digital Interface Designers,Microsoft Windows Server,2.E.13.c,Operating system software,Y,N
+15-1255.00,Web and Digital Interface Designers,MicroStrategy,2.E.6.m,Business intelligence and data analysis software,N,N
+15-1255.00,Web and Digital Interface Designers,MongoDB,2.E.6.d,Data base management system software,Y,N
+15-1255.00,Web and Digital Interface Designers,Moodle,2.E.8.b,Computer based training software,N,N
+15-1255.00,Web and Digital Interface Designers,MySQL,2.E.6.d,Data base management system software,Y,N
+15-1255.00,Web and Digital Interface Designers,Nagios,2.E.11.a,Network monitoring software,N,N
+15-1255.00,Web and Digital Interface Designers,Nearpod,2.E.8.e,Multi-media educational software,N,N
+15-1255.00,Web and Digital Interface Designers,NetSuite ERP,2.E.2.b,Enterprise resource planning ERP software,N,N
+15-1255.00,Web and Digital Interface Designers,Node.js,2.E.7.h,Web platform development software,Y,N
+15-1255.00,Web and Digital Interface Designers,NortonLifeLock cybersecurity software,2.E.14.d,Transaction security and virus protection software,N,N
+15-1255.00,Web and Digital Interface Designers,NoSQL,2.E.6.d,Data base management system software,Y,N
+15-1255.00,Web and Digital Interface Designers,Nunjucks,2.E.7.h,Web platform development software,N,N
+15-1255.00,Web and Digital Interface Designers,Objective C,2.E.7.e,Object or component oriented development software,N,N
+15-1255.00,Web and Digital Interface Designers,Oracle Business Intelligence Enterprise Edition,2.E.6.m,Business intelligence and data analysis software,N,N
+15-1255.00,Web and Digital Interface Designers,Oracle Database,2.E.6.f,Data base user interface and query software,Y,N
+15-1255.00,Web and Digital Interface Designers,Oracle Eloqua,2.E.6.c,Customer relationship management CRM software,N,N
+15-1255.00,Web and Digital Interface Designers,Oracle Fusion Applications,2.E.2.b,Enterprise resource planning ERP software,N,N
+15-1255.00,Web and Digital Interface Designers,Oracle Fusion Middleware,2.E.7.c,Enterprise application integration software,N,N
+15-1255.00,Web and Digital Interface Designers,Oracle Hyperion,2.E.2.b,Enterprise resource planning ERP software,N,N
+15-1255.00,Web and Digital Interface Designers,Oracle Java,2.E.7.e,Object or component oriented development software,Y,N
+15-1255.00,Web and Digital Interface Designers,Oracle Java 2 Platform Enterprise Edition J2EE,2.E.7.b,Development environment software,Y,N
+15-1255.00,Web and Digital Interface Designers,Oracle JavaServer Pages JSP,2.E.7.h,Web platform development software,N,N
+15-1255.00,Web and Digital Interface Designers,Oracle JD Edwards EnterpriseOne,2.E.2.b,Enterprise resource planning ERP software,N,N
+15-1255.00,Web and Digital Interface Designers,Oracle JDBC,2.E.6.f,Data base user interface and query software,N,N
+15-1255.00,Web and Digital Interface Designers,Oracle PeopleSoft,2.E.2.b,Enterprise resource planning ERP software,Y,N
+15-1255.00,Web and Digital Interface Designers,Oracle PL/SQL,2.E.6.d,Data base management system software,Y,N
+15-1255.00,Web and Digital Interface Designers,Oracle Primavera Enterprise Project Portfolio Management,2.E.1.e,Project management software,Y,N
+15-1255.00,Web and Digital Interface Designers,Oracle Solaris,2.E.13.c,Operating system software,N,N
+15-1255.00,Web and Digital Interface Designers,Oracle WebLogic Server,2.E.10.a,Application server software,N,N
+15-1255.00,Web and Digital Interface Designers,Perforce Helix software,2.E.7.a,Configuration management software,N,N
+15-1255.00,Web and Digital Interface Designers,Perl,2.E.7.e,Object or component oriented development software,Y,N
+15-1255.00,Web and Digital Interface Designers,PhantomJS,2.E.7.h,Web platform development software,N,N
+15-1255.00,Web and Digital Interface Designers,PHP,2.E.7.h,Web platform development software,Y,N
+15-1255.00,Web and Digital Interface Designers,PostgreSQL,2.E.6.j,Object oriented data base management software,Y,N
+15-1255.00,Web and Digital Interface Designers,Puppet,2.E.7.a,Configuration management software,Y,N
+15-1255.00,Web and Digital Interface Designers,Python,2.E.7.e,Object or component oriented development software,Y,N
+15-1255.00,Web and Digital Interface Designers,Qlik Tech QlikView,2.E.6.m,Business intelligence and data analysis software,N,N
+15-1255.00,Web and Digital Interface Designers,Quest Erwin Data Modeler,2.E.6.i,Metadata management software,N,N
+15-1255.00,Web and Digital Interface Designers,R,2.E.7.e,Object or component oriented development software,Y,N
+15-1255.00,Web and Digital Interface Designers,React,2.E.7.h,Web platform development software,Y,Y
+15-1255.00,Web and Digital Interface Designers,Red Hat Enterprise Linux,2.E.13.c,Operating system software,Y,N
+15-1255.00,Web and Digital Interface Designers,Red Hat OpenShift,2.E.10.a,Application server software,Y,N
+15-1255.00,Web and Digital Interface Designers,Red Hat WildFly,2.E.10.a,Application server software,N,N
+15-1255.00,Web and Digital Interface Designers,Relational database management software,2.E.6.d,Data base management system software,N,N
+15-1255.00,Web and Digital Interface Designers,RequireJS,2.E.7.h,Web platform development software,N,N
+15-1255.00,Web and Digital Interface Designers,Ruby,2.E.7.b,Development environment software,Y,N
+15-1255.00,Web and Digital Interface Designers,Ruby on Rails,2.E.7.h,Web platform development software,N,N
+15-1255.00,Web and Digital Interface Designers,Salesforce software,2.E.6.c,Customer relationship management CRM software,Y,N
+15-1255.00,Web and Digital Interface Designers,Salesforce Visualforce,2.E.7.d,Graphical user interface development software,N,N
+15-1255.00,Web and Digital Interface Designers,SAP Business Objects,2.E.2.b,Enterprise resource planning ERP software,N,N
+15-1255.00,Web and Digital Interface Designers,SAP Crystal Reports,2.E.6.e,Data base reporting software,N,N
+15-1255.00,Web and Digital Interface Designers,SAP software,2.E.2.b,Enterprise resource planning ERP software,Y,N
+15-1255.00,Web and Digital Interface Designers,SAS,2.E.9.d,Analytical or scientific software,Y,N
+15-1255.00,Web and Digital Interface Designers,Scala,2.E.7.e,Object or component oriented development software,Y,N
+15-1255.00,Web and Digital Interface Designers,Screencast-O-Matic,2.E.4.c,Video creation and editing software,N,N
+15-1255.00,Web and Digital Interface Designers,Screencastify,2.E.4.c,Video creation and editing software,N,N
+15-1255.00,Web and Digital Interface Designers,Selenium,2.E.7.f,Program testing software,Y,N
+15-1255.00,Web and Digital Interface Designers,Shell script,2.E.13.c,Operating system software,Y,N
+15-1255.00,Web and Digital Interface Designers,Sitecore CMS,2.E.5.a,Content workflow software,N,N
+15-1255.00,Web and Digital Interface Designers,Skype,2.E.10.b,Desktop communications software,N,N
+15-1255.00,Web and Digital Interface Designers,Slack,2.E.16.i,Cloud-based data access and sharing software,Y,N
+15-1255.00,Web and Digital Interface Designers,SmugMug Flickr,2.E.4.b,Graphics or photo imaging software,N,N
+15-1255.00,Web and Digital Interface Designers,Social media sites,2.E.4.g,Web page creation and editing software,N,N
+15-1255.00,Web and Digital Interface Designers,Splunk Enterprise,2.E.11.e,Cloud-based management software,Y,N
+15-1255.00,Web and Digital Interface Designers,Spring Boot,2.E.10.a,Application server software,Y,N
+15-1255.00,Web and Digital Interface Designers,Spring Framework,2.E.7.h,Web platform development software,Y,N
+15-1255.00,Web and Digital Interface Designers,Structured query language SQL,2.E.6.f,Data base user interface and query software,Y,N
+15-1255.00,Web and Digital Interface Designers,Swift,2.E.7.e,Object or component oriented development software,Y,N
+15-1255.00,Web and Digital Interface Designers,Tableau,2.E.6.m,Business intelligence and data analysis software,Y,N
+15-1255.00,Web and Digital Interface Designers,Teradata Database,2.E.6.d,Data base management system software,Y,N
+15-1255.00,Web and Digital Interface Designers,The MathWorks MATLAB,2.E.9.d,Analytical or scientific software,Y,N
+15-1255.00,Web and Digital Interface Designers,Transact-SQL,2.E.6.f,Data base user interface and query software,Y,N
+15-1255.00,Web and Digital Interface Designers,Travis,2.E.7.f,Program testing software,N,N
+15-1255.00,Web and Digital Interface Designers,Trimble SketchUp Pro,2.E.4.b,Graphics or photo imaging software,Y,N
+15-1255.00,Web and Digital Interface Designers,TypeScript,2.E.7.e,Object or component oriented development software,Y,Y
+15-1255.00,Web and Digital Interface Designers,Ubuntu,2.E.13.c,Operating system software,N,N
+15-1255.00,Web and Digital Interface Designers,Unified modeling language UML,2.E.7.g,Requirements analysis and system architecture software,N,N
+15-1255.00,Web and Digital Interface Designers,UNIX,2.E.13.c,Operating system software,Y,N
+15-1255.00,Web and Digital Interface Designers,UNIX Shell,2.E.13.c,Operating system software,Y,N
+15-1255.00,Web and Digital Interface Designers,UserZoom,2.E.7.f,Program testing software,N,N
+15-1255.00,Web and Digital Interface Designers,Vue.js,2.E.7.h,Web platform development software,Y,N
+15-1255.00,Web and Digital Interface Designers,WeVideo,2.E.4.c,Video creation and editing software,N,N
+15-1255.00,Web and Digital Interface Designers,Wireshark,2.E.11.a,Network monitoring software,N,N
+15-1255.00,Web and Digital Interface Designers,YouTube,2.E.4.c,Video creation and editing software,N,N
+15-1255.00,Web and Digital Interface Designers,Zend Framework,2.E.7.h,Web platform development software,N,N
+15-2051.00,Data Scientists,Alteryx software,2.E.6.m,Business intelligence and data analysis software,Y,N
+15-2051.00,Data Scientists,Amazon Elastic Compute Cloud EC2,2.E.6.f,Data base user interface and query software,Y,N
+15-2051.00,Data Scientists,Amazon Redshift,2.E.6.f,Data base user interface and query software,Y,N
+15-2051.00,Data Scientists,Amazon Simple Storage Service S3,2.E.12.f,Storage networking software,N,N
+15-2051.00,Data Scientists,Amazon Web Services AWS SageMaker,2.E.11.e,Cloud-based management software,N,N
+15-2051.00,Data Scientists,Amazon Web Services AWS software,2.E.6.f,Data base user interface and query software,Y,Y
+15-2051.00,Data Scientists,Apache Airflow,2.E.1.o,Procedure management software,Y,N
+15-2051.00,Data Scientists,Apache Cassandra,2.E.6.d,Data base management system software,Y,N
+15-2051.00,Data Scientists,Apache Hadoop,2.E.6.d,Data base management system software,Y,Y
+15-2051.00,Data Scientists,Apache Hive,2.E.6.d,Data base management system software,Y,N
+15-2051.00,Data Scientists,Apache Kafka,2.E.7.b,Development environment software,Y,N
+15-2051.00,Data Scientists,Apache MXNet,2.E.9.g,Industrial control software,N,N
+15-2051.00,Data Scientists,Apache Pig,2.E.6.d,Data base management system software,N,N
+15-2051.00,Data Scientists,Apache Spark,2.E.6.m,Business intelligence and data analysis software,Y,Y
+15-2051.00,Data Scientists,Atlassian Confluence,2.E.1.e,Project management software,Y,N
+15-2051.00,Data Scientists,Atlassian JIRA,2.E.5.a,Content workflow software,Y,N
+15-2051.00,Data Scientists,Bash,2.E.13.c,Operating system software,Y,N
+15-2051.00,Data Scientists,BigQuery,2.E.6.f,Data base user interface and query software,N,N
+15-2051.00,Data Scientists,Business intelligence software,2.E.6.m,Business intelligence and data analysis software,N,N
+15-2051.00,Data Scientists,C,2.E.7.b,Development environment software,Y,N
+15-2051.00,Data Scientists,C#,2.E.7.e,Object or component oriented development software,Y,N
+15-2051.00,Data Scientists,C++,2.E.7.e,Object or component oriented development software,Y,Y
+15-2051.00,Data Scientists,Docker,2.E.10.a,Application server software,Y,N
+15-2051.00,Data Scientists,Elasticsearch,2.E.6.d,Data base management system software,Y,N
+15-2051.00,Data Scientists,Flask,2.E.7.b,Development environment software,N,N
+15-2051.00,Data Scientists,Geographic information system GIS systems,2.E.8.h,Geographic information system,N,N
+15-2051.00,Data Scientists,Git,2.E.5.c,File versioning software,Y,Y
+15-2051.00,Data Scientists,GitHub,2.E.10.a,Application server software,Y,N
+15-2051.00,Data Scientists,Go,2.E.7.b,Development environment software,Y,N
+15-2051.00,Data Scientists,Google Cloud software,2.E.11.e,Cloud-based management software,N,N
+15-2051.00,Data Scientists,Google Looker Analytics,2.E.6.m,Business intelligence and data analysis software,Y,N
+15-2051.00,Data Scientists,IBM SPSS Statistics,2.E.9.d,Analytical or scientific software,Y,N
+15-2051.00,Data Scientists,JavaScript,2.E.7.h,Web platform development software,Y,N
+15-2051.00,Data Scientists,JavaScript Object Notation JSON,2.E.7.h,Web platform development software,Y,N
+15-2051.00,Data Scientists,Jenkins CI,2.E.7.c,Enterprise application integration software,Y,N
+15-2051.00,Data Scientists,Julia,2.E.7.b,Development environment software,N,N
+15-2051.00,Data Scientists,Jupyter software,2.E.7.e,Object or component oriented development software,N,N
+15-2051.00,Data Scientists,Keras,2.E.13.c,Operating system software,N,N
+15-2051.00,Data Scientists,Kubeflow,2.E.9.d,Analytical or scientific software,N,N
+15-2051.00,Data Scientists,Kubernetes,2.E.10.a,Application server software,Y,N
+15-2051.00,Data Scientists,Linux,2.E.13.c,Operating system software,Y,N
+15-2051.00,Data Scientists,Management information systems MIS,2.E.2.b,Enterprise resource planning ERP software,N,N
+15-2051.00,Data Scientists,MapReduce big data software,2.E.6.m,Business intelligence and data analysis software,N,N
+15-2051.00,Data Scientists,Mathematical software,2.E.9.d,Analytical or scientific software,N,N
+15-2051.00,Data Scientists,Microsoft Access,2.E.6.f,Data base user interface and query software,Y,N
+15-2051.00,Data Scientists,Microsoft Azure software,2.E.7.b,Development environment software,Y,Y
+15-2051.00,Data Scientists,Microsoft Excel,2.E.4.i,Spreadsheet software,Y,Y
+15-2051.00,Data Scientists,Microsoft Office software,2.E.1.k,Office suite software,Y,N
+15-2051.00,Data Scientists,Microsoft Power BI,2.E.6.m,Business intelligence and data analysis software,Y,Y
+15-2051.00,Data Scientists,Microsoft PowerPoint,2.E.4.f,Presentation software,Y,Y
+15-2051.00,Data Scientists,Microsoft SQL Server,2.E.6.f,Data base user interface and query software,Y,N
+15-2051.00,Data Scientists,Mlflow,2.E.9.d,Analytical or scientific software,N,N
+15-2051.00,Data Scientists,MongoDB,2.E.6.d,Data base management system software,Y,N
+15-2051.00,Data Scientists,Neo4j,2.E.6.f,Data base user interface and query software,N,N
+15-2051.00,Data Scientists,NoSQL,2.E.6.d,Data base management system software,Y,N
+15-2051.00,Data Scientists,NumPy,2.E.6.f,Data base user interface and query software,N,Y
+15-2051.00,Data Scientists,OpenAI ChatGPT,2.E.7.b,Development environment software,N,N
+15-2051.00,Data Scientists,Oracle Java,2.E.7.e,Object or component oriented development software,Y,N
+15-2051.00,Data Scientists,pandas,2.E.6.f,Data base user interface and query software,N,Y
+15-2051.00,Data Scientists,Perl,2.E.7.e,Object or component oriented development software,Y,N
+15-2051.00,Data Scientists,PostgreSQL,2.E.6.j,Object oriented data base management software,Y,N
+15-2051.00,Data Scientists,PySpark,2.E.6.f,Data base user interface and query software,N,N
+15-2051.00,Data Scientists,Python,2.E.7.e,Object or component oriented development software,Y,Y
+15-2051.00,Data Scientists,PyTorch,2.E.6.f,Data base user interface and query software,Y,Y
+15-2051.00,Data Scientists,Qlik Tech QlikView,2.E.6.m,Business intelligence and data analysis software,N,N
+15-2051.00,Data Scientists,R,2.E.7.e,Object or component oriented development software,Y,Y
+15-2051.00,Data Scientists,Reporting software,2.E.6.e,Data base reporting software,N,N
+15-2051.00,Data Scientists,RESTful API,2.E.7.h,Web platform development software,N,N
+15-2051.00,Data Scientists,Ruby,2.E.7.b,Development environment software,Y,N
+15-2051.00,Data Scientists,SAS,2.E.9.d,Analytical or scientific software,Y,Y
+15-2051.00,Data Scientists,Scala,2.E.7.e,Object or component oriented development software,Y,N
+15-2051.00,Data Scientists,Scikit-learn,2.E.7.b,Development environment software,N,Y
+15-2051.00,Data Scientists,SciPy,2.E.7.e,Object or component oriented development software,N,N
+15-2051.00,Data Scientists,Shell script,2.E.13.c,Operating system software,Y,N
+15-2051.00,Data Scientists,Shiny,2.E.7.e,Object or component oriented development software,N,N
+15-2051.00,Data Scientists,Snowflake,2.E.6.g,Data mining software,Y,Y
+15-2051.00,Data Scientists,spaCy,2.E.7.e,Object or component oriented development software,N,N
+15-2051.00,Data Scientists,Splunk Enterprise,2.E.17.a,Enterprise system management software,Y,N
+15-2051.00,Data Scientists,StataCorp Stata,2.E.9.d,Analytical or scientific software,N,N
+15-2051.00,Data Scientists,Statistical software,2.E.9.d,Analytical or scientific software,N,N
+15-2051.00,Data Scientists,Structured query language SQL,2.E.6.f,Data base user interface and query software,Y,Y
+15-2051.00,Data Scientists,Tableau,2.E.6.m,Business intelligence and data analysis software,Y,Y
+15-2051.00,Data Scientists,TensorFlow,2.E.9.d,Analytical or scientific software,Y,Y
+15-2051.00,Data Scientists,Teradata Database,2.E.6.d,Data base management system software,Y,N
+15-2051.00,Data Scientists,The MathWorks MATLAB,2.E.9.d,Analytical or scientific software,Y,Y
+15-2051.00,Data Scientists,UNIX,2.E.13.c,Operating system software,Y,N
+15-2051.00,Data Scientists,XGBoost,2.E.7.b,Development environment software,N,N
+15-2051.01,Business Intelligence Analysts,Actuate Eclipse BIRT,2.E.6.e,Data base reporting software,N,N
+15-2051.01,Business Intelligence Analysts,Adobe Acrobat,2.E.5.b,Document management software,Y,N
+15-2051.01,Business Intelligence Analysts,Adobe ActionScript,2.E.7.b,Development environment software,N,N
+15-2051.01,Business Intelligence Analysts,Adobe Dreamweaver,2.E.4.g,Web page creation and editing software,N,N
+15-2051.01,Business Intelligence Analysts,Advanced business application programming ABAP,2.E.7.e,Object or component oriented development software,N,N
+15-2051.01,Business Intelligence Analysts,Airtable,2.E.6.f,Data base user interface and query software,N,N
+15-2051.01,Business Intelligence Analysts,AJAX,2.E.7.h,Web platform development software,Y,N
+15-2051.01,Business Intelligence Analysts,Alteryx software,2.E.6.m,Business intelligence and data analysis software,Y,N
+15-2051.01,Business Intelligence Analysts,Amazon DynamoDB,2.E.6.d,Data base management system software,Y,N
+15-2051.01,Business Intelligence Analysts,Amazon Elastic Compute Cloud EC2,2.E.6.f,Data base user interface and query software,Y,N
+15-2051.01,Business Intelligence Analysts,Amazon Redshift,2.E.6.f,Data base user interface and query software,Y,N
+15-2051.01,Business Intelligence Analysts,Amazon Web Services AWS software,2.E.6.f,Data base user interface and query software,Y,Y
+15-2051.01,Business Intelligence Analysts,Apache Ant,2.E.7.b,Development environment software,N,N
+15-2051.01,Business Intelligence Analysts,Apache Cassandra,2.E.6.d,Data base management system software,Y,N
+15-2051.01,Business Intelligence Analysts,Apache Groovy,2.E.7.e,Object or component oriented development software,N,N
+15-2051.01,Business Intelligence Analysts,Apache Hadoop,2.E.6.d,Data base management system software,Y,N
+15-2051.01,Business Intelligence Analysts,Apache Hive,2.E.6.d,Data base management system software,Y,N
+15-2051.01,Business Intelligence Analysts,Apache HTTP Server,2.E.6.k,Portal server software,N,N
+15-2051.01,Business Intelligence Analysts,Apache Kafka,2.E.7.b,Development environment software,Y,N
+15-2051.01,Business Intelligence Analysts,Apache Pig,2.E.6.d,Data base management system software,N,N
+15-2051.01,Business Intelligence Analysts,Apache Solr,2.E.6.d,Data base management system software,N,N
+15-2051.01,Business Intelligence Analysts,Apache Spark,2.E.6.m,Business intelligence and data analysis software,Y,N
+15-2051.01,Business Intelligence Analysts,Apache Struts,2.E.7.h,Web platform development software,N,N
+15-2051.01,Business Intelligence Analysts,Apache Tomcat,2.E.7.h,Web platform development software,Y,N
+15-2051.01,Business Intelligence Analysts,Atlassian Confluence,2.E.1.e,Project management software,Y,N
+15-2051.01,Business Intelligence Analysts,Atlassian JIRA,2.E.5.a,Content workflow software,Y,N
+15-2051.01,Business Intelligence Analysts,Bash,2.E.13.c,Operating system software,Y,N
+15-2051.01,Business Intelligence Analysts,Blackbaud The Raiser's Edge,2.E.6.c,Customer relationship management CRM software,N,N
+15-2051.01,Business Intelligence Analysts,Business Objects Data Integrator,2.E.7.b,Development environment software,N,N
+15-2051.01,Business Intelligence Analysts,C,2.E.7.b,Development environment software,Y,N
+15-2051.01,Business Intelligence Analysts,C#,2.E.7.e,Object or component oriented development software,Y,N
+15-2051.01,Business Intelligence Analysts,C++,2.E.7.e,Object or component oriented development software,Y,N
+15-2051.01,Business Intelligence Analysts,Citrix cloud computing software,2.E.12.a,Access software,N,N
+15-2051.01,Business Intelligence Analysts,Common business oriented language COBOL,2.E.7.b,Development environment software,N,N
+15-2051.01,Business Intelligence Analysts,Customer information control system CICS,2.E.6.l,Transaction server software,N,N
+15-2051.01,Business Intelligence Analysts,Data modeling software,2.E.6.i,Metadata management software,N,N
+15-2051.01,Business Intelligence Analysts,Data warehouse software,2.E.6.g,Data mining software,N,N
+15-2051.01,Business Intelligence Analysts,Database software,2.E.6.f,Data base user interface and query software,N,N
+15-2051.01,Business Intelligence Analysts,Delphi Technology,2.E.2.d,Financial analysis software,N,N
+15-2051.01,Business Intelligence Analysts,Django,2.E.7.h,Web platform development software,Y,N
+15-2051.01,Business Intelligence Analysts,Drupal,2.E.7.h,Web platform development software,N,N
+15-2051.01,Business Intelligence Analysts,Dynamic hypertext markup language DHTML,2.E.7.h,Web platform development software,N,N
+15-2051.01,Business Intelligence Analysts,Eclipse IDE,2.E.7.b,Development environment software,Y,N
+15-2051.01,Business Intelligence Analysts,Eko,2.E.10.b,Desktop communications software,N,N
+15-2051.01,Business Intelligence Analysts,Elasticsearch,2.E.6.d,Data base management system software,Y,N
+15-2051.01,Business Intelligence Analysts,Enterprise JavaBeans,2.E.7.h,Web platform development software,N,N
+15-2051.01,Business Intelligence Analysts,Epic Systems,2.E.9.i,Medical software,Y,N
+15-2051.01,Business Intelligence Analysts,ESRI ArcGIS software,2.E.8.h,Geographic information system,Y,N
+15-2051.01,Business Intelligence Analysts,Ext JS,2.E.7.h,Web platform development software,N,N
+15-2051.01,Business Intelligence Analysts,Extensible hypertext markup language XHTML,2.E.7.h,Web platform development software,N,N
+15-2051.01,Business Intelligence Analysts,Extensible markup language XML,2.E.7.c,Enterprise application integration software,Y,N
+15-2051.01,Business Intelligence Analysts,Facebook,2.E.4.g,Web page creation and editing software,Y,N
+15-2051.01,Business Intelligence Analysts,FileMaker Pro,2.E.6.f,Data base user interface and query software,N,N
+15-2051.01,Business Intelligence Analysts,Fund accounting software,2.E.2.a,Accounting software,N,N
+15-2051.01,Business Intelligence Analysts,Geographic information system GIS software,2.E.8.h,Geographic information system,N,N
+15-2051.01,Business Intelligence Analysts,Git,2.E.5.c,File versioning software,Y,N
+15-2051.01,Business Intelligence Analysts,GitHub,2.E.10.a,Application server software,Y,N
+15-2051.01,Business Intelligence Analysts,Go,2.E.7.b,Development environment software,Y,N
+15-2051.01,Business Intelligence Analysts,Google Ads,2.E.1.l,Sales and marketing software,N,N
+15-2051.01,Business Intelligence Analysts,Google Analytics,2.E.6.g,Data mining software,Y,N
+15-2051.01,Business Intelligence Analysts,Google Docs,2.E.4.d,Word processing software,Y,N
+15-2051.01,Business Intelligence Analysts,Google Looker Analytics,2.E.6.m,Business intelligence and data analysis software,Y,N
+15-2051.01,Business Intelligence Analysts,Google Sites,2.E.4.g,Web page creation and editing software,N,N
+15-2051.01,Business Intelligence Analysts,Google Slides,2.E.4.f,Presentation software,N,N
+15-2051.01,Business Intelligence Analysts,Healthcare common procedure coding system HCPCS,2.E.9.i,Medical software,N,N
+15-2051.01,Business Intelligence Analysts,Hewlett Packard HP-UX,2.E.13.c,Operating system software,N,N
+15-2051.01,Business Intelligence Analysts,Hewlett Packard LoadRunner,2.E.7.f,Program testing software,N,N
+15-2051.01,Business Intelligence Analysts,Hibernate ORM,2.E.6.j,Object oriented data base management software,Y,N
+15-2051.01,Business Intelligence Analysts,Human resource management software HRMS,2.E.1.c,Human resources software,N,N
+15-2051.01,Business Intelligence Analysts,Hypertext markup language HTML,2.E.7.h,Web platform development software,Y,N
+15-2051.01,Business Intelligence Analysts,IBM Cognos Impromptu,2.E.6.m,Business intelligence and data analysis software,N,N
+15-2051.01,Business Intelligence Analysts,IBM DB2,2.E.6.f,Data base user interface and query software,Y,N
+15-2051.01,Business Intelligence Analysts,IBM Domino,2.E.12.b,Communications server software,N,N
+15-2051.01,Business Intelligence Analysts,IBM InfoSphere DataStage,2.E.7.c,Enterprise application integration software,N,N
+15-2051.01,Business Intelligence Analysts,IBM Notes,2.E.16.a,Electronic mail software,N,N
+15-2051.01,Business Intelligence Analysts,IBM Power Systems software,2.E.17.a,Enterprise system management software,N,N
+15-2051.01,Business Intelligence Analysts,IBM SPSS Statistics,2.E.9.d,Analytical or scientific software,Y,N
+15-2051.01,Business Intelligence Analysts,IBM Unica Enterprise,2.E.2.d,Financial analysis software,N,N
+15-2051.01,Business Intelligence Analysts,IBM WebSphere,2.E.11.e,Cloud-based management software,N,N
+15-2051.01,Business Intelligence Analysts,Informatica Data Explorer,2.E.6.g,Data mining software,N,N
+15-2051.01,Business Intelligence Analysts,Informatica software,2.E.6.i,Metadata management software,Y,N
+15-2051.01,Business Intelligence Analysts,Information Builders WebFOCUS,2.E.6.e,Data base reporting software,N,N
+15-2051.01,Business Intelligence Analysts,Integrated development environment IDE software,2.E.7.b,Development environment software,N,N
+15-2051.01,Business Intelligence Analysts,JavaScript,2.E.7.h,Web platform development software,Y,N
+15-2051.01,Business Intelligence Analysts,JavaScript Object Notation JSON,2.E.7.h,Web platform development software,Y,N
+15-2051.01,Business Intelligence Analysts,Job control language JCL,2.E.13.c,Operating system software,N,N
+15-2051.01,Business Intelligence Analysts,jQuery,2.E.7.e,Object or component oriented development software,Y,N
+15-2051.01,Business Intelligence Analysts,Jupyter Notebook,2.E.7.e,Object or component oriented development software,N,N
+15-2051.01,Business Intelligence Analysts,KornShell,2.E.13.c,Operating system software,N,N
+15-2051.01,Business Intelligence Analysts,LexisNexis,2.E.6.h,Information retrieval or search software,N,N
+15-2051.01,Business Intelligence Analysts,Linux,2.E.13.c,Operating system software,Y,N
+15-2051.01,Business Intelligence Analysts,Marketo Marketing Automation,2.E.1.l,Sales and marketing software,Y,N
+15-2051.01,Business Intelligence Analysts,McAfee,2.E.14.d,Transaction security and virus protection software,N,N
+15-2051.01,Business Intelligence Analysts,Medical condition coding software,2.E.9.i,Medical software,N,N
+15-2051.01,Business Intelligence Analysts,Medical procedure coding software,2.E.9.i,Medical software,N,N
+15-2051.01,Business Intelligence Analysts,MEDITECH software,2.E.9.i,Medical software,Y,N
+15-2051.01,Business Intelligence Analysts,Microsoft .NET Framework,2.E.7.b,Development environment software,Y,N
+15-2051.01,Business Intelligence Analysts,Microsoft Access,2.E.6.f,Data base user interface and query software,Y,N
+15-2051.01,Business Intelligence Analysts,Microsoft Active Server Pages ASP,2.E.7.h,Web platform development software,Y,N
+15-2051.01,Business Intelligence Analysts,Microsoft ActiveX,2.E.7.e,Object or component oriented development software,N,N
+15-2051.01,Business Intelligence Analysts,Microsoft ASP.NET,2.E.7.h,Web platform development software,Y,N
+15-2051.01,Business Intelligence Analysts,Microsoft Azure software,2.E.7.b,Development environment software,Y,Y
+15-2051.01,Business Intelligence Analysts,Microsoft Dynamics,2.E.2.b,Enterprise resource planning ERP software,N,N
+15-2051.01,Business Intelligence Analysts,Microsoft Dynamics GP,2.E.2.b,Enterprise resource planning ERP software,N,N
+15-2051.01,Business Intelligence Analysts,Microsoft Excel,2.E.4.i,Spreadsheet software,Y,Y
+15-2051.01,Business Intelligence Analysts,Microsoft Exchange,2.E.16.a,Electronic mail software,N,N
+15-2051.01,Business Intelligence Analysts,Microsoft Office software,2.E.1.k,Office suite software,Y,Y
+15-2051.01,Business Intelligence Analysts,Microsoft Outlook,2.E.16.a,Electronic mail software,Y,N
+15-2051.01,Business Intelligence Analysts,Microsoft Power Automate,2.E.7.c,Enterprise application integration software,Y,N
+15-2051.01,Business Intelligence Analysts,Microsoft Power BI,2.E.6.m,Business intelligence and data analysis software,Y,Y
+15-2051.01,Business Intelligence Analysts,Microsoft Power Platform software,2.E.7.c,Enterprise application integration software,Y,N
+15-2051.01,Business Intelligence Analysts,Microsoft PowerPoint,2.E.4.f,Presentation software,Y,Y
+15-2051.01,Business Intelligence Analysts,Microsoft PowerShell,2.E.7.b,Development environment software,Y,N
+15-2051.01,Business Intelligence Analysts,Microsoft Proclarity,2.E.6.e,Data base reporting software,N,N
+15-2051.01,Business Intelligence Analysts,Microsoft Project,2.E.1.e,Project management software,Y,N
+15-2051.01,Business Intelligence Analysts,Microsoft Publisher,2.E.4.k,Desktop publishing software,N,N
+15-2051.01,Business Intelligence Analysts,Microsoft SharePoint,2.E.5.b,Document management software,Y,N
+15-2051.01,Business Intelligence Analysts,Microsoft SQL Server,2.E.6.f,Data base user interface and query software,Y,N
+15-2051.01,Business Intelligence Analysts,Microsoft SQL Server Integration Services SSIS,2.E.7.c,Enterprise application integration software,Y,N
+15-2051.01,Business Intelligence Analysts,Microsoft SQL Server Reporting Services SSRS,2.E.6.e,Data base reporting software,Y,N
+15-2051.01,Business Intelligence Analysts,Microsoft Visio,2.E.1.p,Process mapping and design software,Y,N
+15-2051.01,Business Intelligence Analysts,Microsoft Visual Basic,2.E.7.b,Development environment software,Y,N
+15-2051.01,Business Intelligence Analysts,Microsoft Visual Basic for Applications VBA,2.E.7.b,Development environment software,Y,N
+15-2051.01,Business Intelligence Analysts,Microsoft Visual Basic Scripting Edition VBScript,2.E.7.b,Development environment software,N,N
+15-2051.01,Business Intelligence Analysts,Microsoft Visual Studio,2.E.7.b,Development environment software,Y,N
+15-2051.01,Business Intelligence Analysts,Microsoft Windows Server,2.E.13.c,Operating system software,Y,N
+15-2051.01,Business Intelligence Analysts,Microsoft Word,2.E.4.d,Word processing software,Y,N
+15-2051.01,Business Intelligence Analysts,MicroStrategy,2.E.6.m,Business intelligence and data analysis software,N,N
+15-2051.01,Business Intelligence Analysts,Minitab,2.E.9.d,Analytical or scientific software,N,N
+15-2051.01,Business Intelligence Analysts,MongoDB,2.E.6.d,Data base management system software,Y,N
+15-2051.01,Business Intelligence Analysts,MySQL,2.E.6.d,Data base management system software,Y,N
+15-2051.01,Business Intelligence Analysts,Nagios,2.E.11.a,Network monitoring software,N,N
+15-2051.01,Business Intelligence Analysts,NetSuite ERP,2.E.2.b,Enterprise resource planning ERP software,N,N
+15-2051.01,Business Intelligence Analysts,NortonLifeLock cybersecurity software,2.E.14.d,Transaction security and virus protection software,N,N
+15-2051.01,Business Intelligence Analysts,NoSQL,2.E.6.d,Data base management system software,Y,N
+15-2051.01,Business Intelligence Analysts,Oracle Business Intelligence Enterprise Edition,2.E.6.m,Business intelligence and data analysis software,N,N
+15-2051.01,Business Intelligence Analysts,Oracle Cloud software,2.E.11.e,Cloud-based management software,Y,N
+15-2051.01,Business Intelligence Analysts,Oracle Database,2.E.6.f,Data base user interface and query software,Y,N
+15-2051.01,Business Intelligence Analysts,Oracle E-Business Suite Financials,2.E.2.d,Financial analysis software,N,N
+15-2051.01,Business Intelligence Analysts,Oracle Eloqua,2.E.6.c,Customer relationship management CRM software,N,N
+15-2051.01,Business Intelligence Analysts,Oracle Essbase,2.E.6.f,Data base user interface and query software,N,N
+15-2051.01,Business Intelligence Analysts,Oracle Fusion Applications,2.E.2.b,Enterprise resource planning ERP software,N,N
+15-2051.01,Business Intelligence Analysts,Oracle Hyperion,2.E.2.b,Enterprise resource planning ERP software,N,N
+15-2051.01,Business Intelligence Analysts,Oracle Java,2.E.7.e,Object or component oriented development software,Y,N
+15-2051.01,Business Intelligence Analysts,Oracle JavaServer Pages JSP,2.E.7.h,Web platform development software,N,N
+15-2051.01,Business Intelligence Analysts,Oracle JD Edwards EnterpriseOne,2.E.2.b,Enterprise resource planning ERP software,N,N
+15-2051.01,Business Intelligence Analysts,Oracle JDBC,2.E.6.f,Data base user interface and query software,N,N
+15-2051.01,Business Intelligence Analysts,Oracle PeopleSoft,2.E.2.b,Enterprise resource planning ERP software,Y,N
+15-2051.01,Business Intelligence Analysts,Oracle PeopleSoft Financials,2.E.2.b,Enterprise resource planning ERP software,N,N
+15-2051.01,Business Intelligence Analysts,Oracle PL/SQL,2.E.6.d,Data base management system software,Y,N
+15-2051.01,Business Intelligence Analysts,Oracle Primavera Enterprise Project Portfolio Management,2.E.1.e,Project management software,Y,N
+15-2051.01,Business Intelligence Analysts,Oracle Siebel Marketing Resource Management,2.E.6.c,Customer relationship management CRM software,N,N
+15-2051.01,Business Intelligence Analysts,Oracle Solaris,2.E.13.c,Operating system software,N,N
+15-2051.01,Business Intelligence Analysts,Oracle SQL Developer,2.E.7.b,Development environment software,Y,N
+15-2051.01,Business Intelligence Analysts,Oracle Taleo,2.E.1.c,Human resources software,N,N
+15-2051.01,Business Intelligence Analysts,Oracle WebLogic Server,2.E.10.a,Application server software,N,N
+15-2051.01,Business Intelligence Analysts,Panorama NovaView,2.E.6.e,Data base reporting software,N,N
+15-2051.01,Business Intelligence Analysts,Perl,2.E.7.e,Object or component oriented development software,Y,N
+15-2051.01,Business Intelligence Analysts,PHP,2.E.7.h,Web platform development software,Y,N
+15-2051.01,Business Intelligence Analysts,PostgreSQL,2.E.6.j,Object oriented data base management software,Y,N
+15-2051.01,Business Intelligence Analysts,PTC Creo Parametric,2.E.9.c,Computer aided design CAD software,N,N
+15-2051.01,Business Intelligence Analysts,Python,2.E.7.e,Object or component oriented development software,Y,Y
+15-2051.01,Business Intelligence Analysts,Qlik Tech QlikView,2.E.6.m,Business intelligence and data analysis software,N,N
+15-2051.01,Business Intelligence Analysts,Quest Erwin Data Modeler,2.E.6.i,Metadata management software,N,N
+15-2051.01,Business Intelligence Analysts,R,2.E.7.e,Object or component oriented development software,Y,Y
+15-2051.01,Business Intelligence Analysts,Red Hat Enterprise Linux,2.E.13.c,Operating system software,Y,N
+15-2051.01,Business Intelligence Analysts,Red Hat WildFly,2.E.10.a,Application server software,N,N
+15-2051.01,Business Intelligence Analysts,Relational database management software,2.E.6.d,Data base management system software,N,N
+15-2051.01,Business Intelligence Analysts,Reporting software,2.E.6.e,Data base reporting software,N,N
+15-2051.01,Business Intelligence Analysts,Rogue Wave Software IMSL Numerical Libraries,2.E.9.d,Analytical or scientific software,N,N
+15-2051.01,Business Intelligence Analysts,Ruby,2.E.7.b,Development environment software,Y,N
+15-2051.01,Business Intelligence Analysts,Ruby on Rails,2.E.7.h,Web platform development software,N,N
+15-2051.01,Business Intelligence Analysts,Salesforce software,2.E.6.c,Customer relationship management CRM software,Y,Y
+15-2051.01,Business Intelligence Analysts,Salesforce Visualforce,2.E.7.d,Graphical user interface development software,N,N
+15-2051.01,Business Intelligence Analysts,SAP Business Objects,2.E.2.b,Enterprise resource planning ERP software,N,N
+15-2051.01,Business Intelligence Analysts,SAP BusinessObjects Data Integrator,2.E.7.c,Enterprise application integration software,N,N
+15-2051.01,Business Intelligence Analysts,SAP Crystal Reports,2.E.6.e,Data base reporting software,N,N
+15-2051.01,Business Intelligence Analysts,SAP ERP,2.E.2.b,Enterprise resource planning ERP software,Y,N
+15-2051.01,Business Intelligence Analysts,SAP NetWeaver BW,2.E.6.g,Data mining software,N,N
+15-2051.01,Business Intelligence Analysts,SAP software,2.E.2.b,Enterprise resource planning ERP software,Y,Y
+15-2051.01,Business Intelligence Analysts,SAS,2.E.9.d,Analytical or scientific software,Y,Y
+15-2051.01,Business Intelligence Analysts,Scala,2.E.7.e,Object or component oriented development software,Y,N
+15-2051.01,Business Intelligence Analysts,Shell script,2.E.13.c,Operating system software,Y,N
+15-2051.01,Business Intelligence Analysts,SiSense Prism,2.E.6.e,Data base reporting software,N,N
+15-2051.01,Business Intelligence Analysts,Skype,2.E.10.b,Desktop communications software,N,N
+15-2051.01,Business Intelligence Analysts,Snowflake,2.E.6.g,Data mining software,Y,Y
+15-2051.01,Business Intelligence Analysts,Splunk Enterprise,2.E.11.e,Cloud-based management software,Y,N
+15-2051.01,Business Intelligence Analysts,StataCorp Stata,2.E.9.d,Analytical or scientific software,N,N
+15-2051.01,Business Intelligence Analysts,Structured query language SQL,2.E.6.f,Data base user interface and query software,Y,Y
+15-2051.01,Business Intelligence Analysts,Swift,2.E.7.e,Object or component oriented development software,Y,N
+15-2051.01,Business Intelligence Analysts,Tableau,2.E.6.m,Business intelligence and data analysis software,Y,Y
+15-2051.01,Business Intelligence Analysts,Tax software,2.E.2.a,Accounting software,N,N
+15-2051.01,Business Intelligence Analysts,Teradata Database,2.E.6.d,Data base management system software,Y,N
+15-2051.01,Business Intelligence Analysts,The MathWorks MATLAB,2.E.9.d,Analytical or scientific software,Y,N
+15-2051.01,Business Intelligence Analysts,Transact-SQL,2.E.6.f,Data base user interface and query software,Y,N
+15-2051.01,Business Intelligence Analysts,Ubuntu,2.E.13.c,Operating system software,N,N
+15-2051.01,Business Intelligence Analysts,Unified modeling language UML,2.E.7.g,Requirements analysis and system architecture software,N,N
+15-2051.01,Business Intelligence Analysts,UNIX,2.E.13.c,Operating system software,Y,N
+15-2051.01,Business Intelligence Analysts,UNIX Shell,2.E.13.c,Operating system software,Y,N
+15-2051.01,Business Intelligence Analysts,Veritas NetBackup,2.E.15.f,Backup or archival software,N,N
+15-2051.01,Business Intelligence Analysts,Virtual private networking VPN software,2.E.14.c,Network security and virtual private network VPN equipment software,N,N
+15-2051.01,Business Intelligence Analysts,Wireshark,2.E.11.a,Network monitoring software,N,N
+15-2051.01,Business Intelligence Analysts,YouTube,2.E.4.c,Video creation and editing software,N,N

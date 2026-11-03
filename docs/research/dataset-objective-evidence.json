@@ -1,0 +1,1002 @@
+{
+  "date": "2026-11-03",
+  "release": "curated-v0.1",
+  "dataset_sha256": "73b4154435f079f0d1a1040e1323b716464ea796fd30a1a29db839f6e61d7b32",
+  "checks_passed": [
+    "expectation source agrees with role and competency source",
+    "task references and source agree with source role",
+    "all 12 careers have candidate roles and expectation references",
+    "every learning link belongs to a candidate career expectation set"
+  ],
+  "career_evidence": [
+    {
+      "slug": "frontend-developer",
+      "title": "Frontend Developer",
+      "coverage_conclusion": "Web development references plus broader local software roles; no single Frontend-specific proficiency target accepted.",
+      "candidate_roles": [
+        {
+          "id": "1093e677-b667-587e-a48f-31e4489922e1",
+          "title": "Associate Software Engineer",
+          "source": "SRC-13",
+          "level": "associate broader reference",
+          "expectation_rows": 30
+        },
+        {
+          "id": "3d3499f3-0197-5d63-8447-7d32825396ae",
+          "title": "Software Engineer",
+          "source": "SRC-13",
+          "level": "practitioner broader reference",
+          "expectation_rows": 36
+        },
+        {
+          "id": "57391502-771b-5da9-bf40-d44947b339e3",
+          "title": "Web Developers",
+          "source": "SRC-10",
+          "level": "not separated by this source occupation",
+          "expectation_rows": 469
+        },
+        {
+          "id": "6ee687f1-6626-567d-bad0-fced02326c48",
+          "title": "SOFTWARE DEVELOPERS",
+          "source": "SRC-01",
+          "level": "not specified",
+          "expectation_rows": 0
+        },
+        {
+          "id": "b8565c07-2105-5ab6-9419-e534abcb5cc8",
+          "title": "WEB AND MULTIMEDIA DEVELOPERS",
+          "source": "SRC-01",
+          "level": "not specified",
+          "expectation_rows": 0
+        },
+        {
+          "id": "d891fcf6-bc9d-53b8-b8d9-4747d35f8440",
+          "title": "Web and Digital Interface Designers",
+          "source": "SRC-10",
+          "level": "not separated by this source occupation",
+          "expectation_rows": 454
+        }
+      ],
+      "unique_reference_items": 407,
+      "reference_types": {
+        "work_activities": 41,
+        "knowledge": 33,
+        "technology_example": 261,
+        "transferable_skills": 25,
+        "functional_competency": 37,
+        "essential_skills": 10
+      },
+      "local_expectation_rows": 66,
+      "unique_local_labels": 37,
+      "local_definition_gaps": [
+        "User Interface (UI) Design",
+        "System Integration"
+      ],
+      "task_rows": 62,
+      "learning_links": 1,
+      "linked_expectation_labels": 1,
+      "accepted_role_mappings": 0
+    },
+    {
+      "slug": "data-analyst",
+      "title": "Data Analyst",
+      "coverage_conclusion": "Local associate/practitioner skill maps plus supplementary BI/Data Science references; occupational equivalence pending.",
+      "candidate_roles": [
+        {
+          "id": "322affab-1007-5c8f-8eea-8ebb685e53a9",
+          "title": "Associate Data Analyst",
+          "source": "SRC-16",
+          "level": "associate",
+          "expectation_rows": 11
+        },
+        {
+          "id": "3be2bad0-78fa-5482-a6f3-f403fa54d367",
+          "title": "Data Scientists",
+          "source": "SRC-10",
+          "level": "not separated by this source occupation",
+          "expectation_rows": 305
+        },
+        {
+          "id": "76cca67f-30e4-5e67-af09-5161a24f7adc",
+          "title": "Business Intelligence Analysts",
+          "source": "SRC-10",
+          "level": "not separated by this source occupation",
+          "expectation_rows": 421
+        },
+        {
+          "id": "a97ab878-3853-5c0e-a975-4028bf9677c3",
+          "title": "Data Analyst",
+          "source": "SRC-16",
+          "level": "practitioner",
+          "expectation_rows": 13
+        }
+      ],
+      "unique_reference_items": 359,
+      "reference_types": {
+        "work_activities": 41,
+        "technology_example": 237,
+        "knowledge": 33,
+        "transferable_skills": 25,
+        "functional_competency": 13,
+        "essential_skills": 10
+      },
+      "local_expectation_rows": 24,
+      "unique_local_labels": 13,
+      "local_definition_gaps": [],
+      "task_rows": 37,
+      "learning_links": 1,
+      "linked_expectation_labels": 1,
+      "accepted_role_mappings": 0
+    },
+    {
+      "slug": "ui-designer",
+      "title": "UI Designer",
+      "coverage_conclusion": "Local associate/practitioner/lead UI roles; O*NET shared interface category must remain distinct from UX.",
+      "candidate_roles": [
+        {
+          "id": "32e4babd-3cf2-5936-973f-8a292079bdd5",
+          "title": "User Interface (UI) Designer",
+          "source": "SRC-13",
+          "level": "practitioner",
+          "expectation_rows": 23
+        },
+        {
+          "id": "b8565c07-2105-5ab6-9419-e534abcb5cc8",
+          "title": "WEB AND MULTIMEDIA DEVELOPERS",
+          "source": "SRC-01",
+          "level": "not specified",
+          "expectation_rows": 0
+        },
+        {
+          "id": "c12a69bc-b991-52c1-aa21-c25782aba3c5",
+          "title": "Associate User Interface (UI) Designer",
+          "source": "SRC-13",
+          "level": "associate",
+          "expectation_rows": 23
+        },
+        {
+          "id": "c3e17b3b-deb7-5178-b025-4ee34231a873",
+          "title": "Lead User Interface (UI) Designer",
+          "source": "SRC-13",
+          "level": "lead",
+          "expectation_rows": 26
+        },
+        {
+          "id": "d891fcf6-bc9d-53b8-b8d9-4747d35f8440",
+          "title": "Web and Digital Interface Designers",
+          "source": "SRC-10",
+          "level": "not separated by this source occupation",
+          "expectation_rows": 454
+        }
+      ],
+      "unique_reference_items": 373,
+      "reference_types": {
+        "work_activities": 41,
+        "knowledge": 33,
+        "technology_example": 236,
+        "transferable_skills": 25,
+        "functional_competency": 28,
+        "essential_skills": 10
+      },
+      "local_expectation_rows": 72,
+      "unique_local_labels": 28,
+      "local_definition_gaps": [
+        "Aesthetic and Design Sensibilities",
+        "Customization and Localization",
+        "Design Standards and Specifications",
+        "Customisation and Localisation"
+      ],
+      "task_rows": 30,
+      "learning_links": 1,
+      "linked_expectation_labels": 1,
+      "accepted_role_mappings": 0
+    },
+    {
+      "slug": "ux-designer",
+      "title": "UX Designer",
+      "coverage_conclusion": "Local associate/practitioner UX skill maps; shared O*NET interface category is broader than user research.",
+      "candidate_roles": [
+        {
+          "id": "4da4fbaf-c4e9-5003-a9c4-dda5032b4d8a",
+          "title": "User Experience (UX) Designer Associate",
+          "source": "SRC-13",
+          "level": "associate",
+          "expectation_rows": 24
+        },
+        {
+          "id": "b8565c07-2105-5ab6-9419-e534abcb5cc8",
+          "title": "WEB AND MULTIMEDIA DEVELOPERS",
+          "source": "SRC-01",
+          "level": "not specified",
+          "expectation_rows": 0
+        },
+        {
+          "id": "d891fcf6-bc9d-53b8-b8d9-4747d35f8440",
+          "title": "Web and Digital Interface Designers",
+          "source": "SRC-10",
+          "level": "not separated by this source occupation",
+          "expectation_rows": 454
+        },
+        {
+          "id": "e01c9646-1535-5966-94b5-d60f54f207fb",
+          "title": "User Experience (UX) Designer",
+          "source": "SRC-13",
+          "level": "practitioner",
+          "expectation_rows": 24
+        }
+      ],
+      "unique_reference_items": 369,
+      "reference_types": {
+        "work_activities": 41,
+        "knowledge": 33,
+        "technology_example": 236,
+        "transferable_skills": 25,
+        "functional_competency": 24,
+        "essential_skills": 10
+      },
+      "local_expectation_rows": 48,
+      "unique_local_labels": 24,
+      "local_definition_gaps": [
+        "User Interface (UI) Design",
+        "Customisation and Localisation"
+      ],
+      "task_rows": 30,
+      "learning_links": 1,
+      "linked_expectation_labels": 1,
+      "accepted_role_mappings": 0
+    },
+    {
+      "slug": "data-engineer",
+      "title": "Data Engineer",
+      "coverage_conclusion": "Local associate/practitioner/senior data engineering maps; O*NET database/software references are complementary.",
+      "candidate_roles": [
+        {
+          "id": "13afc0fc-5a73-591f-81c9-719fde4d5b3c",
+          "title": "Senior Data Engineer",
+          "source": "SRC-16",
+          "level": "senior",
+          "expectation_rows": 31
+        },
+        {
+          "id": "31789b38-cca8-5012-a4d6-62172f3849da",
+          "title": "Database Architects",
+          "source": "SRC-10",
+          "level": "not separated by this source occupation",
+          "expectation_rows": 540
+        },
+        {
+          "id": "4c57b3a6-a64e-5dce-830a-e8a5bae98fee",
+          "title": "Data Engineer",
+          "source": "SRC-16",
+          "level": "practitioner",
+          "expectation_rows": 24
+        },
+        {
+          "id": "8b14e7eb-8f39-5efb-b57b-9b563bbf912f",
+          "title": "Associate Data Engineer",
+          "source": "SRC-16",
+          "level": "associate",
+          "expectation_rows": 20
+        },
+        {
+          "id": "bf7b4b04-7335-5251-a179-af20030d3a6d",
+          "title": "Software Developers",
+          "source": "SRC-10",
+          "level": "not separated by this source occupation",
+          "expectation_rows": 648
+        }
+      ],
+      "unique_reference_items": 676,
+      "reference_types": {
+        "work_activities": 41,
+        "technology_example": 536,
+        "knowledge": 33,
+        "transferable_skills": 25,
+        "functional_competency": 31,
+        "essential_skills": 10
+      },
+      "local_expectation_rows": 75,
+      "unique_local_labels": 31,
+      "local_definition_gaps": [
+        "Continuous Integration and Continuous Deployment"
+      ],
+      "task_rows": 42,
+      "learning_links": 1,
+      "linked_expectation_labels": 1,
+      "accepted_role_mappings": 0
+    },
+    {
+      "slug": "machine-learning-engineer",
+      "title": "Machine Learning Engineer",
+      "coverage_conclusion": "Local ML role and a related senior data-science reference; missing ML-specific career-level equivalence remains explicit.",
+      "candidate_roles": [
+        {
+          "id": "3be2bad0-78fa-5482-a6f3-f403fa54d367",
+          "title": "Data Scientists",
+          "source": "SRC-10",
+          "level": "not separated by this source occupation",
+          "expectation_rows": 305
+        },
+        {
+          "id": "bf7b4b04-7335-5251-a179-af20030d3a6d",
+          "title": "Software Developers",
+          "source": "SRC-10",
+          "level": "not separated by this source occupation",
+          "expectation_rows": 648
+        },
+        {
+          "id": "f0296f53-2f1e-5bf5-9ce9-968750539116",
+          "title": "Senior Data Scientist",
+          "source": "SRC-16",
+          "level": "senior related occupation",
+          "expectation_rows": 40
+        },
+        {
+          "id": "fdc6d041-511b-5a72-acb5-24c8d141153b",
+          "title": "Machine Learning Engineer",
+          "source": "SRC-16",
+          "level": "practitioner",
+          "expectation_rows": 29
+        }
+      ],
+      "unique_reference_items": 605,
+      "reference_types": {
+        "work_activities": 41,
+        "technology_example": 454,
+        "knowledge": 33,
+        "functional_competency": 42,
+        "transferable_skills": 25,
+        "essential_skills": 10
+      },
+      "local_expectation_rows": 69,
+      "unique_local_labels": 42,
+      "local_definition_gaps": [
+        "Continuous Integration and Continuous Deployment",
+        "Computational Modelling"
+      ],
+      "task_rows": 33,
+      "learning_links": 1,
+      "linked_expectation_labels": 1,
+      "accepted_role_mappings": 0
+    },
+    {
+      "slug": "network-engineer",
+      "title": "Network Engineer",
+      "coverage_conclusion": "Local infrastructure roles cover operations; O*NET architecture/administration references distinguish functions.",
+      "candidate_roles": [
+        {
+          "id": "4e143f2b-ef1a-5698-a3db-3abe97cc8586",
+          "title": "Associate Infrastructure Support Engineer",
+          "source": "SRC-13",
+          "level": "associate",
+          "expectation_rows": 11
+        },
+        {
+          "id": "7fe5b8e3-70e5-5423-98f4-0f900f9f43ea",
+          "title": "COMPUTER NETWORK PROFESSIONALS",
+          "source": "SRC-01",
+          "level": "not specified",
+          "expectation_rows": 0
+        },
+        {
+          "id": "948e7f5c-b33a-52a2-96d1-6e352b440514",
+          "title": "Computer Network Architects",
+          "source": "SRC-10",
+          "level": "not separated by this source occupation",
+          "expectation_rows": 496
+        },
+        {
+          "id": "9da8920c-9a5a-5305-9b84-42db57cc9510",
+          "title": "Infrastructure Support Engineer",
+          "source": "SRC-13",
+          "level": "practitioner",
+          "expectation_rows": 16
+        },
+        {
+          "id": "f49b7b1e-df8f-5653-a8de-dc64205fc149",
+          "title": "Network and Computer Systems Administrators",
+          "source": "SRC-10",
+          "level": "not separated by this source occupation",
+          "expectation_rows": 479
+        }
+      ],
+      "unique_reference_items": 478,
+      "reference_types": {
+        "work_activities": 41,
+        "technology_example": 353,
+        "knowledge": 33,
+        "transferable_skills": 25,
+        "functional_competency": 16,
+        "essential_skills": 10
+      },
+      "local_expectation_rows": 27,
+      "unique_local_labels": 16,
+      "local_definition_gaps": [],
+      "task_rows": 53,
+      "learning_links": 1,
+      "linked_expectation_labels": 1,
+      "accepted_role_mappings": 0
+    },
+    {
+      "slug": "cybersecurity-analyst",
+      "title": "Cybersecurity Analyst",
+      "coverage_conclusion": "O*NET security profile and local analyst task context; local skill levels withheld because role header association is ambiguous on page 65.",
+      "candidate_roles": [
+        {
+          "id": "81107617-8c29-5cee-8e05-bdcf8de48052",
+          "title": "DATABASE AND NETWORK PROFESSIONALS NOT ELSEWHERE CLASSIFIED",
+          "source": "SRC-01",
+          "level": "not specified",
+          "expectation_rows": 0
+        },
+        {
+          "id": "969d4096-79e4-58bf-b7ea-d163b3a3a08d",
+          "title": "Security Analyst",
+          "source": "SRC-13",
+          "level": "practitioner",
+          "expectation_rows": 0
+        },
+        {
+          "id": "a8518ed4-5127-5b0c-87c8-c579ba0e3189",
+          "title": "Information Security Analysts",
+          "source": "SRC-10",
+          "level": "not separated by this source occupation",
+          "expectation_rows": 463
+        }
+      ],
+      "unique_reference_items": 354,
+      "reference_types": {
+        "work_activities": 41,
+        "knowledge": 33,
+        "technology_example": 245,
+        "transferable_skills": 25,
+        "essential_skills": 10
+      },
+      "local_expectation_rows": 0,
+      "unique_local_labels": 0,
+      "local_definition_gaps": [],
+      "task_rows": 12,
+      "learning_links": 1,
+      "linked_expectation_labels": 1,
+      "accepted_role_mappings": 0
+    },
+    {
+      "slug": "penetration-tester",
+      "title": "Penetration Tester",
+      "coverage_conclusion": "Local analyst/manager skill maps and O*NET penetration profile; conflicting repeated native levels require review.",
+      "candidate_roles": [
+        {
+          "id": "6c00f582-3e65-5b6d-ab1a-1b4c033cf94f",
+          "title": "Vulnerability Assessment and Penetration Testing Analyst",
+          "source": "SRC-13",
+          "level": "analyst",
+          "expectation_rows": 39
+        },
+        {
+          "id": "81107617-8c29-5cee-8e05-bdcf8de48052",
+          "title": "DATABASE AND NETWORK PROFESSIONALS NOT ELSEWHERE CLASSIFIED",
+          "source": "SRC-01",
+          "level": "not specified",
+          "expectation_rows": 0
+        },
+        {
+          "id": "a3b0fbb8-d67c-5c02-b2b9-b1cd17207caa",
+          "title": "Vulnerability Assessment and Penetration Testing Manager",
+          "source": "SRC-13",
+          "level": "manager",
+          "expectation_rows": 39
+        },
+        {
+          "id": "f16cc97a-5a3a-552c-b694-9a5a6c06362c",
+          "title": "Penetration Testers",
+          "source": "SRC-10",
+          "level": "not separated by this source occupation",
+          "expectation_rows": 285
+        }
+      ],
+      "unique_reference_items": 215,
+      "reference_types": {
+        "work_activities": 41,
+        "functional_competency": 39,
+        "knowledge": 33,
+        "technology_example": 67,
+        "transferable_skills": 25,
+        "essential_skills": 10
+      },
+      "local_expectation_rows": 78,
+      "unique_local_labels": 39,
+      "local_definition_gaps": [
+        "Threat Analysis and Defence"
+      ],
+      "task_rows": 22,
+      "learning_links": 1,
+      "linked_expectation_labels": 1,
+      "accepted_role_mappings": 0
+    },
+    {
+      "slug": "hardware-engineer",
+      "title": "Hardware Engineer",
+      "coverage_conclusion": "Local junior/senior circuit-design profiles and O*NET hardware; semiconductor scope is narrower than generic hardware.",
+      "candidate_roles": [
+        {
+          "id": "28199590-44c5-5f7a-9eae-6985f1d96080",
+          "title": "Junior Circuit Design Engineer",
+          "source": "SRC-19",
+          "level": "junior related occupation",
+          "expectation_rows": 16
+        },
+        {
+          "id": "388a53aa-f352-513e-b5b5-9dcd1a93954d",
+          "title": "ELECTRONICS ENGINEERS",
+          "source": "SRC-01",
+          "level": "not specified",
+          "expectation_rows": 0
+        },
+        {
+          "id": "50e87b2b-b55b-5282-8d16-06219e1cb2b9",
+          "title": "Senior Circuit Design Engineer",
+          "source": "SRC-19",
+          "level": "senior related occupation",
+          "expectation_rows": 19
+        },
+        {
+          "id": "e4d0d189-d866-54ea-9e27-2843ceca13c3",
+          "title": "Computer Hardware Engineers",
+          "source": "SRC-10",
+          "level": "not separated by this source occupation",
+          "expectation_rows": 330
+        }
+      ],
+      "unique_reference_items": 242,
+      "reference_types": {
+        "work_activities": 41,
+        "technology_example": 112,
+        "knowledge": 33,
+        "transferable_skills": 25,
+        "functional_competency": 21,
+        "essential_skills": 10
+      },
+      "local_expectation_rows": 35,
+      "unique_local_labels": 21,
+      "local_definition_gaps": [
+        "Workplace Safety and Health System Implementation"
+      ],
+      "task_rows": 18,
+      "learning_links": 1,
+      "linked_expectation_labels": 1,
+      "accepted_role_mappings": 0
+    },
+    {
+      "slug": "embedded-systems-developer",
+      "title": "Embedded Systems Developer",
+      "coverage_conclusion": "Local associate/engineer/architect maps with broad software/hardware O*NET references.",
+      "candidate_roles": [
+        {
+          "id": "6ee687f1-6626-567d-bad0-fced02326c48",
+          "title": "SOFTWARE DEVELOPERS",
+          "source": "SRC-01",
+          "level": "not specified",
+          "expectation_rows": 0
+        },
+        {
+          "id": "a0abfb6b-9735-5aa3-b306-4c654aba692b",
+          "title": "Associate Embedded Systems Engineer",
+          "source": "SRC-13",
+          "level": "associate",
+          "expectation_rows": 24
+        },
+        {
+          "id": "bf7b4b04-7335-5251-a179-af20030d3a6d",
+          "title": "Software Developers",
+          "source": "SRC-10",
+          "level": "not separated by this source occupation",
+          "expectation_rows": 648
+        },
+        {
+          "id": "d7ec5cb3-c045-5790-a1f1-17a877374cb5",
+          "title": "Embedded Systems Architect",
+          "source": "SRC-13",
+          "level": "architect",
+          "expectation_rows": 42
+        },
+        {
+          "id": "e4d0d189-d866-54ea-9e27-2843ceca13c3",
+          "title": "Computer Hardware Engineers",
+          "source": "SRC-10",
+          "level": "not separated by this source occupation",
+          "expectation_rows": 330
+        },
+        {
+          "id": "f810b62b-0813-5028-978f-5ace7e417ef8",
+          "title": "Embedded Systems Engineer",
+          "source": "SRC-13",
+          "level": "practitioner",
+          "expectation_rows": 32
+        }
+      ],
+      "unique_reference_items": 668,
+      "reference_types": {
+        "work_activities": 41,
+        "functional_competency": 43,
+        "technology_example": 516,
+        "knowledge": 33,
+        "transferable_skills": 25,
+        "essential_skills": 10
+      },
+      "local_expectation_rows": 98,
+      "unique_local_labels": 43,
+      "local_definition_gaps": [
+        "System Integration",
+        "Organizational Analysis"
+      ],
+      "task_rows": 35,
+      "learning_links": 1,
+      "linked_expectation_labels": 1,
+      "accepted_role_mappings": 0
+    },
+    {
+      "slug": "devops-engineer",
+      "title": "DevOps Engineer",
+      "coverage_conclusion": "Related platform/infrastructure roles and broad software/administration references; no unique DevOps occupation equivalence accepted.",
+      "candidate_roles": [
+        {
+          "id": "4e143f2b-ef1a-5698-a3db-3abe97cc8586",
+          "title": "Associate Infrastructure Support Engineer",
+          "source": "SRC-13",
+          "level": "associate",
+          "expectation_rows": 11
+        },
+        {
+          "id": "5ebad193-690f-579e-b40d-16806db4bb56",
+          "title": "Platform Engineer",
+          "source": "SRC-13",
+          "level": "practitioner related occupation",
+          "expectation_rows": 36
+        },
+        {
+          "id": "6ee687f1-6626-567d-bad0-fced02326c48",
+          "title": "SOFTWARE DEVELOPERS",
+          "source": "SRC-01",
+          "level": "not specified",
+          "expectation_rows": 0
+        },
+        {
+          "id": "9da8920c-9a5a-5305-9b84-42db57cc9510",
+          "title": "Infrastructure Support Engineer",
+          "source": "SRC-13",
+          "level": "practitioner",
+          "expectation_rows": 16
+        },
+        {
+          "id": "bf7b4b04-7335-5251-a179-af20030d3a6d",
+          "title": "Software Developers",
+          "source": "SRC-10",
+          "level": "not separated by this source occupation",
+          "expectation_rows": 648
+        },
+        {
+          "id": "f49b7b1e-df8f-5653-a8de-dc64205fc149",
+          "title": "Network and Computer Systems Administrators",
+          "source": "SRC-10",
+          "level": "not separated by this source occupation",
+          "expectation_rows": 479
+        }
+      ],
+      "unique_reference_items": 671,
+      "reference_types": {
+        "work_activities": 41,
+        "knowledge": 33,
+        "technology_example": 515,
+        "transferable_skills": 25,
+        "functional_competency": 47,
+        "essential_skills": 10
+      },
+      "local_expectation_rows": 63,
+      "unique_local_labels": 47,
+      "local_definition_gaps": [
+        "System Integration"
+      ],
+      "task_rows": 37,
+      "learning_links": 1,
+      "linked_expectation_labels": 1,
+      "accepted_role_mappings": 0
+    }
+  ],
+  "candidate_transition_overlap": [
+    {
+      "from": "data-analyst",
+      "to": "data-engineer",
+      "shared_source_qualified_items": 307,
+      "shared_types": {
+        "work_activities": 41,
+        "knowledge": 33,
+        "technology_example": 186,
+        "transferable_skills": 25,
+        "functional_competency": 12,
+        "essential_skills": 10
+      },
+      "shared_local_labels": [
+        "Applications Development",
+        "Applications Integration",
+        "Artificial Intelligence Ethics and Governance",
+        "Business Needs Analysis",
+        "Configuration Tracking",
+        "Cyber and Data Breach Incident Management",
+        "Data Engineering",
+        "Data Ethics",
+        "Data Visualization and Storytelling",
+        "Design Thinking Practice",
+        "Software Testing",
+        "Stakeholder Management"
+      ],
+      "interpretation": "candidate reference overlap only; no transferability or readiness conclusion"
+    },
+    {
+      "from": "frontend-developer",
+      "to": "ui-designer",
+      "shared_source_qualified_items": 355,
+      "shared_types": {
+        "work_activities": 41,
+        "knowledge": 33,
+        "technology_example": 236,
+        "transferable_skills": 25,
+        "functional_competency": 10,
+        "essential_skills": 10
+      },
+      "shared_local_labels": [
+        "Critical Thinking",
+        "Design Thinking Practice",
+        "Learning and Development",
+        "Project Management",
+        "Quality Assurance",
+        "Quality Standards",
+        "Stakeholder Management",
+        "Systems Design",
+        "User Experience Design",
+        "User Interface Design"
+      ],
+      "interpretation": "candidate reference overlap only; no transferability or readiness conclusion"
+    },
+    {
+      "from": "ui-designer",
+      "to": "ux-designer",
+      "shared_source_qualified_items": 366,
+      "shared_types": {
+        "work_activities": 41,
+        "knowledge": 33,
+        "technology_example": 236,
+        "transferable_skills": 25,
+        "functional_competency": 21,
+        "essential_skills": 10
+      },
+      "shared_local_labels": [
+        "Aesthetic and Design Sensibility",
+        "Business Presentation Delivery",
+        "Creative Storytelling",
+        "Critical Thinking",
+        "Cultural Sensitivity for Design",
+        "Customer Behavior Analysis",
+        "Customisation and Localisation",
+        "Design Thinking Practice",
+        "Digital and Physical Prototyping",
+        "Empathetic Design",
+        "Immersive Design",
+        "Interaction Design Practice",
+        "Learning and Development",
+        "Project Management",
+        "Quality Assurance",
+        "Research",
+        "Stakeholder Management",
+        "Systems Design",
+        "User Experience Design",
+        "User Testing and Usability Testing",
+        "Visual Design and Communication Principles"
+      ],
+      "interpretation": "candidate reference overlap only; no transferability or readiness conclusion"
+    },
+    {
+      "from": "cybersecurity-analyst",
+      "to": "penetration-tester",
+      "shared_source_qualified_items": 151,
+      "shared_types": {
+        "work_activities": 41,
+        "knowledge": 33,
+        "transferable_skills": 25,
+        "technology_example": 42,
+        "essential_skills": 10
+      },
+      "shared_local_labels": [],
+      "interpretation": "candidate reference overlap only; no transferability or readiness conclusion"
+    }
+  ],
+  "common_items_all_careers": 120,
+  "source_contributions": {
+    "SRC-01": {
+      "source_occupations": 5,
+      "competencies": 0,
+      "expectations": 0,
+      "tasks": 0,
+      "interpretation": 0
+    },
+    "SRC-02": {
+      "source_occupations": 0,
+      "competencies": 0,
+      "expectations": 0,
+      "tasks": 0,
+      "interpretation": 0
+    },
+    "SRC-03": {
+      "source_occupations": 0,
+      "competencies": 0,
+      "expectations": 0,
+      "tasks": 0,
+      "interpretation": 0
+    },
+    "SRC-04": {
+      "source_occupations": 0,
+      "competencies": 0,
+      "expectations": 0,
+      "tasks": 0,
+      "interpretation": 0
+    },
+    "SRC-05": {
+      "source_occupations": 0,
+      "competencies": 0,
+      "expectations": 0,
+      "tasks": 0,
+      "interpretation": 0
+    },
+    "SRC-06": {
+      "source_occupations": 0,
+      "competencies": 0,
+      "expectations": 0,
+      "tasks": 0,
+      "interpretation": 0
+    },
+    "SRC-07": {
+      "source_occupations": 0,
+      "competencies": 0,
+      "expectations": 0,
+      "tasks": 0,
+      "interpretation": 0
+    },
+    "SRC-08": {
+      "source_occupations": 0,
+      "competencies": 0,
+      "expectations": 0,
+      "tasks": 0,
+      "interpretation": 0
+    },
+    "SRC-09": {
+      "source_occupations": 0,
+      "competencies": 0,
+      "expectations": 0,
+      "tasks": 0,
+      "interpretation": 0
+    },
+    "SRC-10": {
+      "source_occupations": 11,
+      "competencies": 1016,
+      "expectations": 4890,
+      "tasks": 238,
+      "interpretation": 0
+    },
+    "SRC-11": {
+      "source_occupations": 0,
+      "competencies": 0,
+      "expectations": 0,
+      "tasks": 0,
+      "interpretation": 1
+    },
+    "SRC-12": {
+      "source_occupations": 0,
+      "competencies": 0,
+      "expectations": 0,
+      "tasks": 0,
+      "interpretation": 0
+    },
+    "SRC-13": {
+      "source_occupations": 16,
+      "competencies": 103,
+      "expectations": 425,
+      "tasks": 4,
+      "interpretation": 1
+    },
+    "SRC-14": {
+      "source_occupations": 0,
+      "competencies": 0,
+      "expectations": 0,
+      "tasks": 0,
+      "interpretation": 0
+    },
+    "SRC-15": {
+      "source_occupations": 0,
+      "competencies": 0,
+      "expectations": 0,
+      "tasks": 0,
+      "interpretation": 0
+    },
+    "SRC-16": {
+      "source_occupations": 7,
+      "competencies": 45,
+      "expectations": 168,
+      "tasks": 4,
+      "interpretation": 0
+    },
+    "SRC-17": {
+      "source_occupations": 0,
+      "competencies": 0,
+      "expectations": 0,
+      "tasks": 0,
+      "interpretation": 0
+    },
+    "SRC-18": {
+      "source_occupations": 0,
+      "competencies": 0,
+      "expectations": 0,
+      "tasks": 0,
+      "interpretation": 0
+    },
+    "SRC-19": {
+      "source_occupations": 2,
+      "competencies": 21,
+      "expectations": 35,
+      "tasks": 0,
+      "interpretation": 0
+    },
+    "SRC-20": {
+      "source_occupations": 0,
+      "competencies": 0,
+      "expectations": 0,
+      "tasks": 0,
+      "interpretation": 0
+    }
+  },
+  "types": {
+    "work_activities": 41,
+    "functional_competency": 169,
+    "technology_example": 907,
+    "knowledge": 33,
+    "transferable_skills": 25,
+    "essential_skills": 10
+  },
+  "expectation_scales": {
+    "IM": 1199,
+    "LV": 1199,
+    "technology example; no proficiency scale": 2492,
+    "PSF functional competency level": 628
+  },
+  "suppression_flags": {
+    "N": 1153,
+    "Y": 61,
+    "": 4304
+  },
+  "not_relevant_flags": {
+    "": 4319,
+    "N": 1027,
+    "Y": 172
+  },
+  "observation_dates": {
+    "07/2017": 218,
+    "08/2018": 218,
+    "08/2021": 218,
+    "08/2023": 218,
+    "08/2024": 436,
+    "08/2025": 218,
+    "08/2026": 872
+  },
+  "undated_expectation_rows": 3120,
+  "sources_unknown_publication_date": 19,
+  "sources_unknown_download_date": 20,
+  "crosswalk_review_states": {
+    "proposed": 59
+  },
+  "comparison_case_status": "96 proposed reference cases; not executed skill-comparison behavior",
+  "not_tested": [
+    "individual competence",
+    "application comparison logic",
+    "independent role equivalence",
+    "Philippine employer demand or technology freshness",
+    "learning effectiveness"
+  ]
+}

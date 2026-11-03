@@ -1,33 +1,32 @@
 # Asgard: Post-MVP roadmap and repository assessment
 
-Author: Codex. Created: 2026-10-29. Last updated: 2026-10-30.
+Current scope, 2026-11-02: use the [local MVP resolution](decisions.md#local-evaluation-mvp-resolution-2026-11-02) and [consolidated implementation/evidence](development.md#current-local-mvp-status-2026-11-02). Earlier inventories and proposed work below retain their dates; existing implemented core and the 12-path release must not be treated as new implementation assignments. Pending review, future proposals and hosted gates remain separate.
+
+Created: 2026-10-29. Last updated: 2026-11-03.
 Version: 1.0. Status: proposed roadmap; feature implementation is not authorized.
 Follow-up: [feasibility review and first implementation plan](post-mvp-first-implementation.md)
-records the owner's later audience/input clarifications and a proposed bounded
-competency-comparison increment. Shared implementation waits for an accepted MVP
-baseline; planning and reviewed data preparation may proceed now.
-Required product/architecture reviewer: project lead, currently @YakisobaNissin
-under [CODEOWNERS](../.github/CODEOWNERS). Human review remains pending.
+records later audience/input clarifications and a proposed bounded
+competency-comparison increment. Shared implementation requires review of affected contracts and focused preservation checks against the November 2 local baseline. Planning and reviewed data preparation may proceed independently of unrelated hosted gates.
 
 ## Purpose and how to use this document
 
-This is a durable, repository-specific interpretation of the owner-supplied
+This is a durable, repository-specific interpretation of the supplied
 "ASGARD - Post-MVP Methodology, Architecture & Feature Change Plan", version 1.0,
 dated 2026-10-29, and the subsequent feasibility review. It records proposed
 direction, implementation comments and bounded work packages. It is not a claim
 that the supplied plan, earlier papers or missing specifications are approved.
 
-The owner requested this document in the current chat on 2026-10-29. That request
+The documented scope covers this document in the dated planning record on 2026-10-29. That request
 authorizes writing this roadmap and navigation links, not implementing its features.
-Documentation owner: Codex. Scope: this file, the README documentation index and
-the future-development cross-reference. Documentation acceptance: PM-DOC-01
+
+Documentation scope: this roadmap, README navigation and the future-development cross-reference. Acceptance: PM-DOC-01
 (separate proposals from current behavior), PM-DOC-02 (map features to existing
 modules and backlog), PM-DOC-03 (record dependencies, decisions and checks), and
 PM-DOC-04 (portable, resolving local references). No application contracts change.
 
 **The features are separated into work packages within one application.** They do
 not require ten applications, ten services or ten agents. Shared evidence and
-identity contracts are reviewed first; each package then has its own owner,
+identity contracts are reviewed first; each package has explicit scope,
 bounded plan, acceptance evidence and implementation guide.
 
 When returning to this document:
@@ -46,17 +45,17 @@ The [product requirements](product.md), [architecture](architecture.md),
 [verification requirements](verification.md) retain their existing authority.
 This roadmap does not supersede them. It does not certify that the MVP has shipped.
 
-Inspection baseline: local branch `codex/connected-prototype`, commit `6a10653`,
-clean working tree before this documentation task. The development guide records
-the owner's selection of this feature branch. Remote state and protected-review
+Historical inspection baseline (2026-10-29): local branch `codex/connected-prototype`, commit `6a10653`,
+clean working tree before this documentation change. The development guide records
+the recorded selection of this feature branch. Remote state and protected-review
 enforcement were not verified. Do not switch branches or apply the historical
 foundation workflow to future work without checking the current approved scope.
 Commits, pushes, merges and other restricted Git operations require their separate
-owner authorization under [AGENTS.md](../AGENTS.md).
+explicit authorization under [AGENTS.md](../AGENTS.md).
 
-Current source includes authenticated React/FastAPI workflows for Profile, saved
+Historical inspection, 2026-10-29: source included authenticated React/FastAPI workflows for Profile, saved
 conditional Discovery, catalog exploration, Groq recommendations, preferences,
-roadmaps, focus and reversible learning progress. Three starter careers are
+roadmaps, focus and reversible learning progress. At that inspection, three starter careers were
 recorded as published locally; the broader seven-role MVP inventory is not an
 architectural maximum. PDF extraction/storage code exists, but processing is
 deferred and disabled by default.
@@ -65,7 +64,7 @@ The [core handoff](features/mvp-backend-handoff.md) and
 [local acceptance record](features/deployment-preparation.md) own execution
 evidence. Local acceptance does not establish model quality, completed human
 review, independent-host acceptance or hosted release readiness. Docker was
-unavailable during the current-state review; no new runtime acceptance is claimed.
+unavailable during that historical review; no new runtime acceptance is claimed.
 Existing hosted and account-provider gates remain independent work.
 
 ## Proposed direction and scope changes
@@ -86,7 +85,7 @@ delivery dates and operating capacity have not been established.
 | Continuous nationwide market coverage | Replan as permitted, dated observations with explicit coverage | Source access and evidence quality remain external dependencies |
 | Full ESCO/O*NET import before useful work | Use capability-specific reviewed subsets | Expandable storage does not imply every occupation has every capability |
 
-**Codex assessment:** this is a functional expansion as well as a methodology
+**Engineering assessment:** this is a functional expansion as well as a methodology
 revision. It can extend current code, but several capabilities need new data
 models, contracts and screens. A broad framework installation is not the first
 implementation step.
@@ -100,16 +99,16 @@ New acceptance IDs must be assigned in the owning specification when approved.
 
 | Roadmap feature | Reuse | Proposed addition or change | Backlog / packages |
 | --- | --- | --- | --- |
-| PM-F01 Discovery and assessment | Versioned conditional questionnaire, saved answers, resume/retake | Reviewed revised questions; optional official interest assessment | FUT-05; W05, W09 |
-| PM-F02 Competency profile | Profile ownership/revision patterns; document evidence | Editable normalized competencies, confirmation, self-report and history | FUT-01, FUT-13; W02, W03, W10 |
-| PM-F03 Occupational knowledge | Catalog identities, publication and review metadata | Versioned source imports, competency relationships and mappings | FUT-01, FUT-07; W01, W02 |
-| PM-F04 Recommendations | Saved context, candidate validation, quotas and explanations | Retrieved candidates, new evidence types, distinct method labels | REQ-05 / F-002; W04, W09 |
-| PM-F05 Skill comparison | Existing account and transaction boundary | Deterministic evidence comparison and reviewed topic links | FUT-01; W04 |
-| PM-F06 Career comparison | Career details and roadmap reads | Side-by-side alternatives, saved shortlist/decisions and priorities | FUT-02; W06 |
-| PM-F07 Personal learning guidance | Curated roadmaps, branches, topic resources | Separate personal suggestions linked to development needs | FUT-06, FUT-07; W07 |
-| PM-F08 Progress and reflection | Persisted reversible states, activity and concurrency guards | Optional reflection and explicit reassessment | FUT-03; W07 |
-| PM-F09 AI counselor | Groq transport patterns and domain services | Bounded authorized tools, contextual guidance and optional confirmed writes | FUT-04; W08 |
-| PM-F10 Philippine market context | Catalog destinations and evidence presentation patterns | Permitted observations, extraction, deduplication and freshness | FUT-08; W11 |
+| [PM-F01 Discovery and assessment](plans/post-mvp/pm-f01-discovery-assessment.md) | Versioned conditional questionnaire, saved answers, resume/retake | Reviewed revised questions; optional official interest assessment | FUT-05; W05, W09 |
+| [PM-F02 Competency profile](plans/post-mvp/pm-f02-competency-profile.md) | Profile ownership/revision patterns; document evidence | Editable normalized competencies, confirmation, self-report and history | FUT-01, FUT-13; W02, W03, W10 |
+| [PM-F03 Occupational knowledge](plans/post-mvp/pm-f03-occupational-knowledge.md) | Catalog identities, publication and review metadata | Versioned source imports, competency relationships and mappings | FUT-01, FUT-07; W01, W02 |
+| [PM-F04 Recommendations](plans/post-mvp/pm-f04-recommendations.md) | Saved context, candidate validation, quotas and explanations | Retrieved candidates, new evidence types, distinct method labels | REQ-05 / F-002; W04, W09 |
+| [PM-F05 Skill comparison](plans/post-mvp/pm-f05-skill-comparison.md) | Existing account and transaction boundary | Deterministic evidence comparison and reviewed topic links | FUT-01; W04 |
+| [PM-F06 Career comparison](plans/post-mvp/pm-f06-career-comparison.md) | Career details and roadmap reads | Side-by-side alternatives, saved shortlist/decisions and priorities | FUT-02; W06 |
+| [PM-F07 Personal learning guidance](plans/post-mvp/pm-f07-learning-guidance.md) | Curated roadmaps, branches, topic resources | Separate personal suggestions linked to development needs | FUT-06, FUT-07; W07 |
+| [PM-F08 Progress and reflection](plans/post-mvp/pm-f08-reflection.md) | Persisted reversible states, activity and concurrency guards | Optional reflection and explicit reassessment | FUT-03; W07 |
+| [PM-F09 AI counselor](plans/post-mvp/pm-f09-ai-counselor.md) | Groq transport patterns and domain services | Bounded authorized tools, contextual guidance and optional confirmed writes | FUT-04; W08 |
+| [PM-F10 Philippine market context](plans/post-mvp/pm-f10-market-context.md) | Catalog destinations and evidence presentation patterns | Permitted observations, extraction, deduplication and freshness | FUT-08; W11 |
 
 Wxx in the table means PM-Wxx below. Backlog entries remain deferred unless their
 owning approval/status is explicitly changed. Google/MFA, photos, OCR and hosted
@@ -117,177 +116,94 @@ operations retain their separate FUT entries; this plan does not remove them.
 
 ## Delivery increments and dependencies
 
-Recommended first usable increment: **a user can record confirmed skills, compare
-them with a small reviewed occupation profile, distinguish unknown information,
-and open relevant existing roadmap topics.** It needs no agent or resume upload.
+Recommended next action: review the [all-career curated dataset and methodology findings](research/dataset-review.md) through the [shared acquisition plan](plans/post-mvp/datasets.md). The user expanded data preparation to all 12 careers; the [paper](research/dataset-methodology.md) records selection and limitations. This does not expand study decisions or waive feature gates. No source mapping or proficiency methodology has been accepted. ESCO is not supplied and does not block independent work on the received sources.
 
-| Increment | Packages | Result |
+First integrated journey: reviewed pilot -> PM-F03 occupational knowledge -> PM-F02 manual records -> PM-F05 categorical comparison -> PM-F07 reviewed topic links. See the [integration plan](post-mvp-first-implementation.md) for the combined checklist. This delivers only the initial portions of W01-W04 and topic-link coverage, not full recommendation integration or all personal guidance.
+
+| Feature path | Actual prerequisites | Independent preparation |
 | --- | --- | --- |
-| A: evidence and comparison | W01-W04 | Reviewed source subset, competency management and trustworthy comparisons |
-| B: exploration and guidance | W05-W08, selected individually | Better exploration, career comparison, personal suggestions and a counselor |
-| C: optional integrations | W09-W11, selected individually | Official assessment, confirmation-based document enrichment and market observations |
-| Evaluation throughout | W12 | Defined expected results before coding, then technical and participant evidence |
+| Occupational knowledge, manual profile, comparison | Source inspection, accepted pilot evidence, then reviewed affected contracts | Source research and evaluation cases |
+| Informal Discovery | Reviewed content and session compatibility; contract review where changed | Wording and comprehension study |
+| Career comparison | Reviewed current catalog; ownership contracts for saved alternatives | Basic comparison without skill enrichment |
+| Learning guidance | Accepted comparison evidence and reviewed topic associations | Current curriculum coverage review |
+| Reflection | Reviewed prompts, interpretation and retention | Content design independent of occupational imports |
+| Recommendations | Accepted evidence and retrieval/context contracts; competency services only for that enrichment | Retrieval and quality evaluation design |
+| Read-only counselor | Its own architecture/tool review and available domain services | Existing read-only services; new tools wait for their owning features |
+| Official assessment | Instrument access, faithful scoring and reviewed occupation mappings | Separate acquisition/research proposal |
+| Philippine market context | Permitted sources, reviewed mappings, coverage and refresh responsibility | Source-access research |
 
-Dependency outline:
-
-```text
-W01 shared decisions/contracts
-  -> W02 reviewed occupational evidence -> W03 user competencies -> W04 comparisons
-  -> W05 Discovery revision (independent content work can begin earlier)
-  -> W06 career comparison (basic comparison can precede competency enrichment)
-W04 -> W07 development-aware learning guidance
-Existing domain reads + W01 tool boundaries -> W08 bounded counselor
-W02 reviewed occupation mappings -> W09 official assessment integration
-W03 + document/privacy decisions -> W10 document enrichment
-W02 + permitted source access -> W11 market observations
-W12 evaluation design starts with W01 and accompanies every package
-```
-
-Source acquisition and evaluation design must precede dependent claims. The
-counselor can begin with existing read-only services before all new features
-exist; unavailable capabilities must be explicit. It must not become the only
-way to use Discovery, catalog, comparisons, roadmaps or progress.
+These paths replace the A/B/C grouping as scheduling guidance. They do not waive feature-specific review. PM-W12 evaluation begins during planning for every feature. PDF enrichment remains a later PM-F02 increment with its own privacy/removal gates. Current 18+ eligibility remains; broader audience policy, rubric and retention are unresolved decisions.
 
 ## Bounded work packages
 
-All packages below are **proposed**. Implementation owners are unassigned.
-The project lead is the required product/architecture reviewer; named data and
-research reviewers must be assigned before their dependent publication or study.
+All packages below are **proposed**. Implementation is not authorized.
+Product and architecture review are required; data and research review must complete before dependent publication or study.
 
 ### PM-W01: Reconcile scope and shared contracts
 
-- Decide the first increment, target population and research contribution.
-- Reconcile the supplied v0.x document references, which were not found in the
-  checkout. Do not describe an undocumented rubric or approval as existing.
-- Approve stable competency identity, evidence types, source versions, mapping
-  multiplicity, correction/removal effects and context invalidation.
-- Record the architecture change for the counselor/tool boundary through the
-  required ADR and architecture/development/AGENTS updates before dependent work.
-- Resolve affected SQL/OpenAPI/generated-client changes through architecture review.
-- Exit: bounded reviewed contracts, package owners, acceptance IDs and evaluation
-  fixtures. This package does not create speculative tables for all future features.
+Owning plans: [dataset readiness](plans/post-mvp/datasets.md), [occupational knowledge](plans/post-mvp/pm-f03-occupational-knowledge.md) and the [integration plan](post-mvp-first-implementation.md).
+
+Define initial evidence needs and bounded scope before acquisition. Finalize only affected contracts after source inspection and pilot review. Counselor architecture is gated under W08, not here. Feature behavior, decisions and acceptance live in the linked plans; this package records coordination and integration boundaries.
 
 ### PM-W02: Reviewed occupational evidence
 
-- Depends on W01. Start with a bounded subset selected by the owner/data reviewer.
-- Reuse catalog identity and publication. Add reproducible imports/manifests,
-  source versions, competency records and reviewed occupation relationships.
-- Preserve ESCO and O*NET identifiers separately from internal IDs. Crosswalks
-  may be one-to-many or unresolved; never equate occupations by title alone.
-- Expose capabilities independently: browsing, interest matching, skill comparison,
-  roadmap availability and reviewed local evidence. Occupations without roadmaps
-  need explicit UI behavior and revised recommendation eligibility.
-- Exit checks: repeat import, duplicate/conflict rejection, reference integrity,
-  reproducible source versions and human-reviewed mappings. Fixtures are labelled.
+Owning plans: [occupational knowledge](plans/post-mvp/pm-f03-occupational-knowledge.md) and [shared datasets](plans/post-mvp/datasets.md).
+
+Separate source inspection/pilot review from later application ingestion/publication. Inspection precedes final W01 contracts; publication follows contract and data review. Feature behavior, decisions and acceptance live in the linked plans; this package records coordination and integration boundaries.
 
 ### PM-W03: User-confirmed competency profile
 
-- Depends on W01/W02. Add manual competency management, evidence links, correction
-  and history using the existing account/session/revision boundary.
-- The proposed 0-4 rubric requires product approval and clear self-report labels;
-  it is not a validated certification. Unknown must remain distinct from Level 0.
-- Store presence/confirmation, proficiency, evidence and target availability as
-  separate attributes. They cannot be represented by one exclusive status enum.
-- Exit checks: owner/other-user/anonymous access, stale writes, unknown readback,
-  corrections and removal, and profile history consistent with retention policy.
-- Does not depend on PDF activation or infer levels from titles, institutions or Done.
+Owning plans: [competency profile](plans/post-mvp/pm-f02-competency-profile.md).
+
+Manual records depend on reviewed skill identities and ownership/revision/retention contracts; PDF activation is a later increment. Feature behavior, decisions and acceptance live in the linked plans; this package records coordination and integration boundaries.
 
 ### PM-W04: Skill comparison and recommendation integration
 
-- Depends on W02/W03. Compare reviewed occupation relationships with confirmed
-  user records. Missing profile entries mean needs assessment, not inability.
-- Begin with categorical comparisons. Numerical differences on an ordinal rubric
-  must not imply equal distances or validated readiness. Target levels need an
-  approved compatible rubric, occupational context, version and reviewer.
-- Reuse recommendation snapshots and explicit generation controls. New context
-  types require reviewed contract evolution and invalidation on corrections.
-- Retrieve a bounded candidate set before AI generation. Current recommendation
-  code includes the candidate catalog in the request and rejects bodies above
-  12,000 bytes; importing many occupations without changing retrieval will not scale.
-- Exit checks: exact expected comparisons, unknown/target-unavailable cases,
-  stale evidence, valid references, provider failure and no accidental progress writes.
+Owning plans: [skill comparison](plans/post-mvp/pm-f05-skill-comparison.md) and [recommendations](plans/post-mvp/pm-f04-recommendations.md).
+
+Comparison is the initial deliverable. Retrieval, new AI evidence and recommendation invalidation are later, separately reviewed deliverables. Comparison completion never means all W04 work is complete. Feature behavior, decisions and acceptance live in the linked plans; this package records coordination and integration boundaries.
 
 ### PM-W05: Discovery revision
 
-- Depends on approved content and W01 where contracts change. Preserve existing
-  five-theme conditional sessions; the proposed 8-10-question route is new content.
-- Review wording, branches, ambiguity, inactive answers and old-session support
-  before publishing a new questionnaire version. Do not mutate saved meanings.
-- Exit checks: blank entry, conditional Back/edit, save/resume, version compatibility,
-  explicit retakes and exclusion of inactive answers from recommendation context.
-- Official assessment is W09, not a score inferred from informal Discovery answers.
+Owning plans: [Discovery and assessment](plans/post-mvp/pm-f01-discovery-assessment.md).
+
+Informal content revision is separate from W09 official instrument integration. Feature behavior, decisions and acceptance live in the linked plans; this package records coordination and integration boundaries.
 
 ### PM-W06: Career comparison and saved alternatives
 
-- Depends on catalog reads; W03/W04 are needed only for competency enrichment.
-- Begin with source-backed career activities, learning coverage and user priorities.
-  Add saved alternatives through reviewed account-owned contracts.
-- Preserve current focus/progress when viewing, comparing or shortlisting careers.
-- Exit checks: actual records, unavailable capabilities, saved-state isolation,
-  refresh persistence and manual comprehension of compare versus select focus.
+Owning plans: [career comparison](plans/post-mvp/pm-f06-career-comparison.md).
+
+Basic catalog comparison can precede skill enrichment. Saved alternatives need reviewed account-owned contracts. Feature behavior, decisions and acceptance live in the linked plans; this package records coordination and integration boundaries.
 
 ### PM-W07: Personal learning guidance and reflection
 
-- Reuse authored sequence, selected branches, resources, next-topic behavior and
-  the account-wide single-Learning-topic invariant. Prerequisites remain advisory
-  unless the owner explicitly changes that policy.
-- W04 enables development-aware suggestions. Store personal plans separately;
-  do not rewrite canonical roadmaps or mark topics complete from known skills.
-- Add optional reflection/reassessment with a separately reviewed lifecycle.
-  Never generate recommendations merely because a page was opened.
-- Exit checks: progress survives content revisions, branch/focus guards hold,
-  unsupported skill-to-topic mappings are disclosed, and Done never increases proficiency.
+Owning plans: [learning guidance](plans/post-mvp/pm-f07-learning-guidance.md) and [reflection](plans/post-mvp/pm-f08-reflection.md).
+
+These are separate deliverables: competency-linked guidance depends on reviewed comparisons/topic mappings; optional reflection has its own content and retention review. Neither auto-completes learning or proves proficiency. Feature behavior, decisions and acceptance live in the linked plans; this package records coordination and integration boundaries.
 
 ### PM-W08: One bounded AI counselor
 
-- Depends on the W01 architecture decision and available domain services. Begin
-  with read-only tools over existing capabilities; add confirmed writes separately.
-- Extend the provider boundary instead of duplicating domain logic. LangChain,
-  LangGraph, pgvector and tracing platforms are optional, separately justified dependencies.
-- Derive account context server-side. Validate arguments and returned evidence;
-  treat uploaded/retrieved text as untrusted data. No arbitrary SQL or unrestricted tools.
-- Bind write confirmation to the exact proposed action and revision. Require
-  replay protection, idempotency and stale-state rejection, not a generic chat approval.
-- Bound calls, bytes/tokens, runtime and retry budgets across the whole interaction.
-  Specify recovery, cancellation, trace redaction and retention before persistent memory.
-- Exit checks: tool authorization, prompt injection, stale/replayed confirmations,
-  context removal, outages, task success, latency and cost against a non-agent baseline.
-- Specialist agents remain deferred until measured benefit justifies them.
+Owning plans: [AI counselor](plans/post-mvp/pm-f09-ai-counselor.md).
+
+Own the counselor/tool-boundary architecture decision here, including any required ADR and architecture/development/AGENTS updates. Read-only access precedes separately reviewed confirmed writes. Feature behavior, decisions and acceptance live in the linked plans; this package records coordination and integration boundaries.
 
 ### PM-W09: Optional official interest assessment
 
-- Depends on selected official instrument/integration, access terms and reviewed
-  mappings to Asgard occupations. Keep assessment results separate from Quick Discovery.
-- Preserve official questions, response options, scoring, attribution and version.
-  Do not claim that faithful integration establishes Philippine population validity.
-- Exit checks: official reference cases, result persistence, mapping ambiguity,
-  service outage and continued catalog access without taking the assessment.
+Owning plans: [Discovery and assessment](plans/post-mvp/pm-f01-discovery-assessment.md).
+
+Require separate instrument acquisition, administration/scoring and mapping review. It is not an informal Discovery score. Feature behavior, decisions and acceptance live in the linked plans; this package records coordination and integration boundaries.
 
 ### PM-W10: Document enrichment and confirmation
 
-- Depends on W03 and explicit decisions about confirmation, consent and retention.
-  Reuse the existing private document lifecycle rather than adding another uploader.
-- Resolve the change from current derived-context policy to candidate/confirmed
-  competencies. Define rejected extraction, independent self-report and removal
-  semantics before migration. Source deletion must not leave hidden quoted content.
-- Existing PDF/provider privacy gates remain. This package does not activate real
-  personal-document processing, add OCR or broaden file formats automatically.
-- Exit checks: extraction/reference quality, replacement/removal races, failed
-  cleanup, cross-account denial and invalidation of dependent outputs.
+Owning plans: [competency profile](plans/post-mvp/pm-f02-competency-profile.md).
+
+Resolve confirmation, privacy/provider activation, retention and replacement/removal before PDF enrichment. Existing cleanup remains required. Feature behavior, decisions and acceptance live in the linked plans; this package records coordination and integration boundaries.
 
 ### PM-W11: Philippine labor-market observations
 
-- Depends on permitted source access, W02 mappings, a collection scope and an
-  assigned data reviewer. Start with a bounded dated batch before automation.
-- Record source, observation date, geography, employer/listing counts, duplicates,
-  extraction quality and coverage. Separate observed advertisements from general
-  occupational relationships; neither automatically defines proficiency targets.
-- Scope covers descriptive evidence. Job application/placement or employer tools
-  are not authorized by a mention of job discovery in the supplied plan.
-- Exit checks: permission record, provenance, deduplication, extraction samples,
-  stale/missing evidence behavior and rejection of unsupported market generalizations.
-- Ongoing refresh needs an operator and maintenance design, not a process timer
-  assumed reliable on the current free hosting plan.
+Owning plans: [Philippine market context](plans/post-mvp/pm-f10-market-context.md).
+
+Separate permitted local observations from general occupational classifications; review coverage and ongoing refresh ownership before publication. Feature behavior, decisions and acceptance live in the linked plans; this package records coordination and integration boundaries.
 
 ### PM-W12: Evaluation and research record
 
@@ -346,7 +262,7 @@ recheck model support, terms and release versions before implementation.
 
 ## Approval, assignment and completion rules
 
-Before promoting a package, record its owner, reviewer, requirement/acceptance IDs,
+Before promoting a package, record its scope, technical review requirements, requirement/acceptance IDs,
 affected modules, shared contracts, dependencies, verification and integration order.
 The lead may assign separate contributors after shared boundaries are reviewed;
 this document does not authorize parallel agents or assign people by job title.
@@ -357,7 +273,7 @@ decision register. Proposed conceptual entities and JSON examples are not schema
 authority. Versioned SQL and generated OpenAPI/TypeScript retain their authority.
 
 Every implemented feature needs its internal guide under `docs/features/`, with
-author/dates, status, IDs, behavior, sources, verification, manual steps and limits
+dates, status, IDs, behavior, sources, verification, manual steps and limits
 as required by AGENTS.md. This planning-only change creates no feature guide
 because it changes no feature behavior.
 
@@ -375,17 +291,23 @@ checks separately. Never mark a package completed because its code exists alone.
 | Item | Status on 2026-10-29 |
 | --- | --- |
 | Repository feasibility review | Source and official-documentation review completed; no new runtime/load acceptance |
-| This roadmap | Written at owner's request; pending human review |
+| This roadmap | Planning record; independent review pending |
 | PM-W01 through PM-W12 | Proposed; implementation owners and package approval references unassigned |
 | Existing FUT entries | Deferred; roadmap links do not promote them |
 | Hosted operation, PDF activation and specialist agents | No new authorization |
 
-2026-10-29: Codex recorded the supplied revision and repository assessment as
+2026-10-29: The record captures the supplied revision and repository assessment as
 separate proposed packages, with dependencies, source links and approval gates.
-Reference: the owner's request in this chat to create a durable post-MVP document
+Reference: the recorded request in the decision record to create a durable post-MVP document
 with repository-aware comments. No application, dependency, SQL or API changes.
 Local documentation verification is recorded in the task handoff.
 
 Update this document when scope, package status or integration evidence changes.
 Keep it a roadmap: link to approved detailed specifications and implementation
 guides instead of creating a competing copy of their contracts.
+
+## Planning restructuring record (2026-11-03)
+
+The user approved the bounded documentation plan: separate PM-F01-PM-F10 plans, a shared dataset plan, a two-career pilot after a 12-career coverage assessment, linked acceptance ownership and independent dependency paths. Scope: this roadmap, planning documents, README navigation and future-development cross-references. Acceptance: PM-DOC-01 through PM-DOC-04. This is approval of documentation restructuring, not feature implementation, source selection, mappings, schema/API changes or publication.
+
+Approval status: feature packages remain proposed; affected FUT entries remain deferred. Implementation status: documentation reorganized; future capabilities unchanged. Verification status: document checks belong in the task handoff; no new runtime, source acquisition or participant acceptance is claimed. No implementation guide is added because this change implements no feature behavior. Human review remains required before integration.

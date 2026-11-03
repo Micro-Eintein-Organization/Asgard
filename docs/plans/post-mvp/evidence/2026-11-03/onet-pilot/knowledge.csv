@@ -1,0 +1,265 @@
+O*NET-SOC Code,Title,Element ID,Element Name,Scale ID,Scale Name,Data Value,N,Standard Error,Lower CI Bound,Upper CI Bound,Recommend Suppress,Not Relevant,Date,Domain Source
+15-1254.00,Web Developers,2.C.1.a,Administration and Management,IM,Importance,2.38,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.1.a,Administration and Management,LV,Level,2.92,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.1.b,Administrative,IM,Importance,2.38,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.1.b,Administrative,LV,Level,3.25,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.1.c,Economics and Accounting,IM,Importance,1.75,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.1.c,Economics and Accounting,LV,Level,1.75,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.1.d,Sales and Marketing,IM,Importance,2.25,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.1.d,Sales and Marketing,LV,Level,2.33,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.1.e,Customer and Personal Service,IM,Importance,2.96,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.1.e,Customer and Personal Service,LV,Level,3.25,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.1.f,Personnel and Human Resources,IM,Importance,1.54,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.1.f,Personnel and Human Resources,LV,Level,1.33,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.2.a,Production and Processing,IM,Importance,1.75,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.2.a,Production and Processing,LV,Level,1.33,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.2.b,Food Production,IM,Importance,1.04,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.2.b,Food Production,LV,Level,0.12,24,,,,,Y,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.3.a,Computers and Electronics,IM,Importance,4.38,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.3.a,Computers and Electronics,LV,Level,5.75,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.3.b,Engineering and Technology,IM,Importance,2.58,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.3.b,Engineering and Technology,LV,Level,2.91,23,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.3.c,Design,IM,Importance,2.96,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.3.c,Design,LV,Level,3.22,23,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.3.d,Building and Construction,IM,Importance,1.00,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.3.d,Building and Construction,LV,Level,0.00,24,,,,,Y,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.3.e,Mechanical,IM,Importance,1.08,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.3.e,Mechanical,LV,Level,0.21,24,,,,,Y,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.4.a,Mathematics,IM,Importance,3.35,23,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.4.a,Mathematics,LV,Level,3.91,23,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.4.b,Physics,IM,Importance,1.29,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.4.b,Physics,LV,Level,0.62,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.4.c,Chemistry,IM,Importance,1.00,23,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.4.c,Chemistry,LV,Level,0.00,23,,,,,Y,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.4.d,Biology,IM,Importance,1.08,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.4.d,Biology,LV,Level,0.21,24,,,,,Y,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.4.e,Psychology,IM,Importance,1.92,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.4.e,Psychology,LV,Level,1.62,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.4.f,Sociology and Anthropology,IM,Importance,1.75,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.4.f,Sociology and Anthropology,LV,Level,1.58,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.4.g,Geography,IM,Importance,1.42,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.4.g,Geography,LV,Level,1.12,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.5.a,Medicine and Dentistry,IM,Importance,1.04,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.5.a,Medicine and Dentistry,LV,Level,0.08,24,,,,,Y,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.5.b,Therapy and Counseling,IM,Importance,1.08,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.5.b,Therapy and Counseling,LV,Level,0.25,24,,,,,Y,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.6,Education and Training,IM,Importance,2.25,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.6,Education and Training,LV,Level,2.83,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.7.a,English Language,IM,Importance,3.54,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.7.a,English Language,LV,Level,4.00,23,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.7.b,Foreign Language,IM,Importance,1.33,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.7.b,Foreign Language,LV,Level,0.58,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.7.c,Fine Arts,IM,Importance,2.04,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.7.c,Fine Arts,LV,Level,1.83,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.7.d,History and Archeology,IM,Importance,1.17,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.7.d,History and Archeology,LV,Level,0.46,24,,,,,Y,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.7.e,Philosophy and Theology,IM,Importance,1.58,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.7.e,Philosophy and Theology,LV,Level,1.21,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.8.a,Public Safety and Security,IM,Importance,1.96,23,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.8.a,Public Safety and Security,LV,Level,1.17,23,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.8.b,Law and Government,IM,Importance,1.79,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.8.b,Law and Government,LV,Level,1.46,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.9.a,Telecommunications,IM,Importance,2.46,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.9.a,Telecommunications,LV,Level,2.12,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.9.b,Communications and Media,IM,Importance,3.21,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.9.b,Communications and Media,LV,Level,3.12,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.10,Transportation,IM,Importance,1.12,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,2.C.10,Transportation,LV,Level,0.25,24,,,,,Y,07/2017,Occupational Expert
+15-1255.00,Web and Digital Interface Designers,2.C.1.a,Administration and Management,IM,Importance,3.11,17,0.2572,2.5622,3.6527,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.1.a,Administration and Management,LV,Level,4.04,17,0.3750,3.2444,4.8343,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.1.b,Administrative,IM,Importance,2.39,17,0.1442,2.0831,2.6947,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.1.b,Administrative,LV,Level,3.48,17,0.3805,2.6730,4.2861,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.1.c,Economics and Accounting,IM,Importance,2.28,17,0.3261,1.5851,2.9677,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.1.c,Economics and Accounting,LV,Level,2.12,17,0.5452,0.9654,3.2769,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.1.d,Sales and Marketing,IM,Importance,2.89,17,0.4214,1.9951,3.7818,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.1.d,Sales and Marketing,LV,Level,3.58,17,0.6987,2.1022,5.0647,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.1.e,Customer and Personal Service,IM,Importance,3.57,17,0.3047,2.9240,4.2158,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.1.e,Customer and Personal Service,LV,Level,4.36,17,0.4607,3.3795,5.3327,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.1.f,Personnel and Human Resources,IM,Importance,2.29,16,0.3188,1.6056,2.9644,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.1.f,Personnel and Human Resources,LV,Level,3.34,17,0.7187,1.8176,4.8647,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.2.a,Production and Processing,IM,Importance,2.40,17,0.3436,1.6728,3.1297,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.2.a,Production and Processing,LV,Level,3.36,17,0.3482,2.6239,4.1001,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.2.b,Food Production,IM,Importance,1.00,17,0.0000,,,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.2.b,Food Production,LV,Level,0.00,17,0.0000,,,N,Y,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.3.a,Computers and Electronics,IM,Importance,3.96,17,0.2314,3.4646,4.4456,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.3.a,Computers and Electronics,LV,Level,5.54,17,0.4519,4.5809,6.4967,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.3.b,Engineering and Technology,IM,Importance,2.11,17,0.4527,1.1524,3.0718,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.3.b,Engineering and Technology,LV,Level,1.98,17,0.4706,0.9812,2.9765,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.3.c,Design,IM,Importance,2.78,17,0.2716,2.1995,3.3509,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.3.c,Design,LV,Level,4.17,17,0.4117,3.2997,5.0454,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.3.d,Building and Construction,IM,Importance,1.00,17,0.0000,,,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.3.d,Building and Construction,LV,Level,0.00,17,0.0000,,,N,Y,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.3.e,Mechanical,IM,Importance,1.00,17,0.0000,,,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.3.e,Mechanical,LV,Level,0.00,17,0.0000,,,N,Y,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.4.a,Mathematics,IM,Importance,2.38,17,0.2978,1.7469,3.0097,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.4.a,Mathematics,LV,Level,3.41,17,0.4130,2.5306,4.2815,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.4.b,Physics,IM,Importance,1.01,17,0.0063,1.0000,1.0187,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.4.b,Physics,LV,Level,0.01,17,0.0125,0.0000,0.0375,Y,Y,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.4.c,Chemistry,IM,Importance,1.00,17,0.0000,,,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.4.c,Chemistry,LV,Level,0.00,17,0.0000,,,N,Y,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.4.d,Biology,IM,Importance,1.01,17,0.0125,1.0000,1.0371,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.4.d,Biology,LV,Level,0.02,17,0.0249,0.0000,0.0743,Y,Y,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.4.e,Psychology,IM,Importance,1.25,17,0.1826,1.0000,1.6391,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.4.e,Psychology,LV,Level,0.44,17,0.3358,0.0000,1.1536,Y,Y,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.4.f,Sociology and Anthropology,IM,Importance,1.24,17,0.1786,1.0000,1.6210,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.4.f,Sociology and Anthropology,LV,Level,0.45,17,0.3388,0.0000,1.1665,Y,Y,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.4.g,Geography,IM,Importance,1.56,16,0.2103,1.1130,2.0094,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.4.g,Geography,LV,Level,0.98,16,0.6060,0.0000,2.2720,Y,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.5.a,Medicine and Dentistry,IM,Importance,1.00,17,0.0000,,,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.5.a,Medicine and Dentistry,LV,Level,0.00,17,0.0000,,,N,Y,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.5.b,Therapy and Counseling,IM,Importance,1.01,17,0.0063,1.0000,1.0187,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.5.b,Therapy and Counseling,LV,Level,0.01,17,0.0125,0.0000,0.0375,Y,Y,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.6,Education and Training,IM,Importance,2.02,17,0.3872,1.2018,2.8434,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.6,Education and Training,LV,Level,2.38,17,0.6795,0.9437,3.8248,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.7.a,English Language,IM,Importance,3.84,17,0.1608,3.4979,4.1795,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.7.a,English Language,LV,Level,4.95,17,0.3978,4.1063,5.7929,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.7.b,Foreign Language,IM,Importance,1.05,17,0.0367,1.0000,1.1267,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.7.b,Foreign Language,LV,Level,0.09,17,0.0671,0.0000,0.2295,Y,Y,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.7.c,Fine Arts,IM,Importance,1.14,17,0.0978,1.0000,1.3439,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.7.c,Fine Arts,LV,Level,0.23,17,0.1639,0.0000,0.5795,Y,Y,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.7.d,History and Archeology,IM,Importance,1.04,17,0.0266,1.0000,1.0934,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.7.d,History and Archeology,LV,Level,0.07,17,0.0532,0.0000,0.1869,Y,Y,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.7.e,Philosophy and Theology,IM,Importance,1.02,17,0.0259,1.0000,1.0789,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.7.e,Philosophy and Theology,LV,Level,0.04,17,0.0404,0.0000,0.1252,Y,Y,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.8.a,Public Safety and Security,IM,Importance,1.36,17,0.2995,1.0000,1.9966,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.8.a,Public Safety and Security,LV,Level,0.86,17,0.7325,0.0000,2.4101,Y,Y,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.8.b,Law and Government,IM,Importance,1.90,17,0.2106,1.4504,2.3435,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.8.b,Law and Government,LV,Level,1.87,17,0.5065,0.7977,2.9454,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.9.a,Telecommunications,IM,Importance,2.17,17,0.2818,1.5693,2.7642,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.9.a,Telecommunications,LV,Level,2.30,17,0.5730,1.0895,3.5189,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.9.b,Communications and Media,IM,Importance,2.35,17,0.1933,1.9353,2.7549,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.9.b,Communications and Media,LV,Level,2.72,17,0.3924,1.8845,3.5483,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.10,Transportation,IM,Importance,1.42,17,0.1095,1.1900,1.6543,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,2.C.10,Transportation,LV,Level,0.69,17,0.3329,0.0000,1.3964,N,N,08/2026,Incumbent
+15-2051.00,Data Scientists,2.C.1.a,Administration and Management,IM,Importance,2.12,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.1.a,Administration and Management,LV,Level,3.04,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.1.b,Administrative,IM,Importance,1.96,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.1.b,Administrative,LV,Level,2.44,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.1.c,Economics and Accounting,IM,Importance,1.84,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.1.c,Economics and Accounting,LV,Level,1.60,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.1.d,Sales and Marketing,IM,Importance,1.92,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.1.d,Sales and Marketing,LV,Level,2.08,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.1.e,Customer and Personal Service,IM,Importance,1.92,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.1.e,Customer and Personal Service,LV,Level,2.24,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.1.f,Personnel and Human Resources,IM,Importance,1.80,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.1.f,Personnel and Human Resources,LV,Level,2.16,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.2.a,Production and Processing,IM,Importance,1.84,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.2.a,Production and Processing,LV,Level,2.00,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.2.b,Food Production,IM,Importance,1.20,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.2.b,Food Production,LV,Level,0.48,25,,,,,Y,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.3.a,Computers and Electronics,IM,Importance,4.24,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.3.a,Computers and Electronics,LV,Level,5.84,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.3.b,Engineering and Technology,IM,Importance,2.88,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.3.b,Engineering and Technology,LV,Level,3.52,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.3.c,Design,IM,Importance,2.12,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.3.c,Design,LV,Level,2.48,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.3.d,Building and Construction,IM,Importance,1.33,24,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.3.d,Building and Construction,LV,Level,0.67,24,,,,,Y,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.3.e,Mechanical,IM,Importance,1.36,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.3.e,Mechanical,LV,Level,0.50,24,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.4.a,Mathematics,IM,Importance,4.52,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.4.a,Mathematics,LV,Level,5.68,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.4.b,Physics,IM,Importance,1.84,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.4.b,Physics,LV,Level,1.92,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.4.c,Chemistry,IM,Importance,1.28,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.4.c,Chemistry,LV,Level,0.64,25,,,,,Y,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.4.d,Biology,IM,Importance,1.28,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.4.d,Biology,LV,Level,0.80,25,,,,,Y,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.4.e,Psychology,IM,Importance,1.92,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.4.e,Psychology,LV,Level,2.04,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.4.f,Sociology and Anthropology,IM,Importance,1.72,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.4.f,Sociology and Anthropology,LV,Level,1.84,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.4.g,Geography,IM,Importance,1.52,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.4.g,Geography,LV,Level,1.68,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.5.a,Medicine and Dentistry,IM,Importance,1.44,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.5.a,Medicine and Dentistry,LV,Level,1.00,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.5.b,Therapy and Counseling,IM,Importance,1.20,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.5.b,Therapy and Counseling,LV,Level,0.52,25,,,,,Y,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.6,Education and Training,IM,Importance,2.28,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.6,Education and Training,LV,Level,2.92,24,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.7.a,English Language,IM,Importance,3.00,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.7.a,English Language,LV,Level,3.44,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.7.b,Foreign Language,IM,Importance,1.12,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.7.b,Foreign Language,LV,Level,0.36,25,,,,,Y,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.7.c,Fine Arts,IM,Importance,1.12,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.7.c,Fine Arts,LV,Level,0.20,25,,,,,Y,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.7.d,History and Archeology,IM,Importance,1.24,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.7.d,History and Archeology,LV,Level,0.60,25,,,,,Y,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.7.e,Philosophy and Theology,IM,Importance,1.40,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.7.e,Philosophy and Theology,LV,Level,0.92,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.8.a,Public Safety and Security,IM,Importance,1.56,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.8.a,Public Safety and Security,LV,Level,1.04,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.8.b,Law and Government,IM,Importance,1.68,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.8.b,Law and Government,LV,Level,1.60,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.9.a,Telecommunications,IM,Importance,1.48,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.9.a,Telecommunications,LV,Level,1.24,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.9.b,Communications and Media,IM,Importance,2.20,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.9.b,Communications and Media,LV,Level,2.08,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.10,Transportation,IM,Importance,1.28,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,2.C.10,Transportation,LV,Level,0.80,25,,,,,Y,08/2026,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.1.a,Administration and Management,IM,Importance,3.14,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.1.a,Administration and Management,LV,Level,4.14,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.1.b,Administrative,IM,Importance,2.43,21,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.1.b,Administrative,LV,Level,3.64,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.1.c,Economics and Accounting,IM,Importance,3.00,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.1.c,Economics and Accounting,LV,Level,3.59,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.1.d,Sales and Marketing,IM,Importance,2.45,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.1.d,Sales and Marketing,LV,Level,3.14,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.1.e,Customer and Personal Service,IM,Importance,3.10,21,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.1.e,Customer and Personal Service,LV,Level,3.76,21,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.1.f,Personnel and Human Resources,IM,Importance,1.91,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.1.f,Personnel and Human Resources,LV,Level,2.23,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.2.a,Production and Processing,IM,Importance,1.75,20,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.2.a,Production and Processing,LV,Level,1.57,21,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.2.b,Food Production,IM,Importance,1.14,21,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.2.b,Food Production,LV,Level,0.55,22,,,,,Y,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.3.a,Computers and Electronics,IM,Importance,4.29,21,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.3.a,Computers and Electronics,LV,Level,5.41,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.3.b,Engineering and Technology,IM,Importance,2.36,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.3.b,Engineering and Technology,LV,Level,2.77,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.3.c,Design,IM,Importance,2.43,21,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.3.c,Design,LV,Level,2.50,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.3.d,Building and Construction,IM,Importance,1.14,21,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.3.d,Building and Construction,LV,Level,0.45,22,,,,,Y,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.3.e,Mechanical,IM,Importance,1.14,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.3.e,Mechanical,LV,Level,0.32,22,,,,,Y,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.4.a,Mathematics,IM,Importance,3.82,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.4.a,Mathematics,LV,Level,4.67,21,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.4.b,Physics,IM,Importance,1.09,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.4.b,Physics,LV,Level,0.27,22,,,,,Y,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.4.c,Chemistry,IM,Importance,1.09,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.4.c,Chemistry,LV,Level,0.27,22,,,,,Y,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.4.d,Biology,IM,Importance,1.09,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.4.d,Biology,LV,Level,0.36,22,,,,,Y,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.4.e,Psychology,IM,Importance,2.18,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.4.e,Psychology,LV,Level,2.41,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.4.f,Sociology and Anthropology,IM,Importance,2.23,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.4.f,Sociology and Anthropology,LV,Level,2.59,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.4.g,Geography,IM,Importance,2.23,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.4.g,Geography,LV,Level,3.45,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.5.a,Medicine and Dentistry,IM,Importance,1.18,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.5.a,Medicine and Dentistry,LV,Level,0.45,22,,,,,Y,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.5.b,Therapy and Counseling,IM,Importance,1.18,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.5.b,Therapy and Counseling,LV,Level,0.32,22,,,,,Y,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.6,Education and Training,IM,Importance,2.50,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.6,Education and Training,LV,Level,3.32,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.7.a,English Language,IM,Importance,3.77,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.7.a,English Language,LV,Level,4.41,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.7.b,Foreign Language,IM,Importance,1.36,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.7.b,Foreign Language,LV,Level,0.77,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.7.c,Fine Arts,IM,Importance,1.50,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.7.c,Fine Arts,LV,Level,1.00,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.7.d,History and Archeology,IM,Importance,1.73,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.7.d,History and Archeology,LV,Level,1.77,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.7.e,Philosophy and Theology,IM,Importance,1.45,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.7.e,Philosophy and Theology,LV,Level,1.23,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.8.a,Public Safety and Security,IM,Importance,1.55,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.8.a,Public Safety and Security,LV,Level,1.00,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.8.b,Law and Government,IM,Importance,2.14,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.8.b,Law and Government,LV,Level,2.36,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.9.a,Telecommunications,IM,Importance,1.55,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.9.a,Telecommunications,LV,Level,1.14,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.9.b,Communications and Media,IM,Importance,2.59,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.9.b,Communications and Media,LV,Level,2.95,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.10,Transportation,IM,Importance,1.18,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,2.C.10,Transportation,LV,Level,0.55,22,,,,,Y,08/2024,Occupational Expert

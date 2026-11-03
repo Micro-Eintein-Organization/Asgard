@@ -1,9 +1,20 @@
-# Post-MVP feasibility review and first implementation plan
+# Post-MVP first-increment integration plan
 
-Author: Codex. Created and updated: 2026-10-30.
+Current scope, 2026-11-02: use the [local MVP resolution](decisions.md#local-evaluation-mvp-resolution-2026-11-02) and [consolidated implementation/evidence](development.md#current-local-mvp-status-2026-11-02). Earlier inventories and proposed work below retain their dates; existing implemented core and the 12-path release must not be treated as new implementation assignments. Pending review, future proposals and hosted gates remain separate.
+
+Created: 2026-10-30. Last updated: 2026-11-03.
 Status: proposed; planning authorized, implementation not authorized.
-Required product/architecture reviewer: @YakisobaNissin per
-[CODEOWNERS](../.github/CODEOWNERS). Implementation and data-review owners: unassigned.
+
+
+## Feature ownership and readiness
+
+All-career preparation update, 2026-11-03: the user authorized a [curated research release](../data/post-mvp/releases/curated-v0.1/README.md) covering all 12 current careers, with a [methodology paper](research/dataset-methodology.md). This expands data preparation beyond the initial pilot, not implementation/student-study acceptance. Review [remaining source and methodology findings](research/dataset-review.md) before dependent contract finalization.
+
+Source preparation update, 2026-11-03: the [received-source plan](plans/post-mvp/source-readiness.md) records hashes, structural inspection, candidate coverage and a provisional pilot from supplied Philippine sources and O*NET. ESCO remains unavailable as reported by the user. The next gate is review of the evidence and comparison interpretation; no source selection or shared-contract acceptance is inferred from these fixtures.
+
+Approved planning sequence: [reviewed dataset pilot](plans/post-mvp/datasets.md) -> [occupational knowledge](plans/post-mvp/pm-f03-occupational-knowledge.md) -> [manual competency records](plans/post-mvp/pm-f02-competency-profile.md) -> [deterministic comparison](plans/post-mvp/pm-f05-skill-comparison.md) -> [reviewed topic links](plans/post-mvp/pm-f07-learning-guidance.md). Feature plans own their acceptance definitions; this document owns the combined journey and PM-I1-12 handoff criterion. All feature acceptance remains pending.
+
+Inspect actual data before finalizing dependent contracts. Counselor architecture belongs to PM-W08; recommendation integration is a later PM-W04 deliverable. Neither blocks the manual pilot. Contract proposals below are conceptual responsibilities, not approved interfaces. Current AI recommendations retain their current eligible context.
 
 ## Decision summary
 
@@ -11,16 +22,16 @@ The [post-MVP roadmap](post-mvp-roadmap.md) is technically feasible as staged
 extensions of the React/FastAPI/Supabase application. The first implementation
 should establish reviewed occupational competencies, account-owned self-assessment
 and a working comparison journey. No new agent framework is necessary for this
-increment. Complete and accept the team's MVP baseline before shared code changes.
+increment. Use the November 2 local MVP scope and current source evidence as the baseline. Before shared changes, review the affected contracts and plan focused preservation checks; unrelated hosted and provider gates do not block this increment.
 
-This document records the owner's request for a comprehensive review and a first
+This document records the recorded request for a comprehensive review and a first
 implementation plan. It is a documentation deliverable, not an architecture
 approval, schema specification or instruction to begin coding. It supplements
 the roadmap and [future-development register](future-development.md).
 
-## Latest owner direction
+## Latest proposed direction
 
-The owner clarified the intended post-MVP audience as all ages and skill levels,
+The resolution specifies the intended post-MVP audience as all ages and skill levels,
 and inputs as either manual information or a resume PDF. Record this as product
 direction; it changes the current 18+ eligibility boundary. Operational decisions
 for younger users, account eligibility, consent, research participation and provider
@@ -30,9 +41,7 @@ broader user rollout depends on the resolved policy in the owning documents.
 
 The pasted plan proposes self-report levels 0-4: no experience, familiar with
 concepts, basic tasks with guidance, ordinary tasks independently, and advanced
-tasks/troubleshooting. Unknown is separate. The owner asked what the plan specified
-but did not explicitly approve this rubric in the subsequent discussion. Preserve
-it as a proposal, not a validated scale or completed decision.
+tasks/troubleshooting. Unknown is separate. The rubric remains proposed; it has not been accepted or validated.
 
 The intended comparison identifies relevant occupational skills, reported
 experience, unassessed areas and supported development opportunities. It does not
@@ -84,7 +93,7 @@ Proposed outcome: a user selects a reviewed skill, records experience or leaves
 proficiency unknown, saves and refreshes, selects a supported career, sees a truthful
 comparison, and opens a reviewed existing roadmap topic where coverage exists.
 
-This is one vertical implementation of PM-W01-W04 with minimal UI. It supplies real
+This integration uses the initial deliverables of PM-W01-W04 with minimal UI; it does not complete every deliverable of those packages. It supplies real
 services for later features rather than contract stubs. Evaluation preparation from
 PM-W12 runs alongside it. It is not a broad UI redesign or a completion claim for
 all ten post-MVP features.
@@ -154,8 +163,8 @@ comparison readback immediately and invalidate relevant frontend cached queries.
 
 | Step | Concrete deliverable | Exit gate |
 | --- | --- | --- |
-| 0: baseline and decisions | Accepted MVP reference, actual ownership map, reviewed scope/rubric/data source/contracts | Product and architecture approval recorded; branch selected by owner |
-| 1: evidence fixture | Reviewed occupation/competency subset, import manifest and expected comparisons | Data reviewer accepts provenance and mappings |
+| 0: baseline and evidence needs | Current local MVP reference, ownership, bounded scope and required evidence | Planning review; no final contract approval before data inspection |
+| 1: dataset pilot and contracts | Source inspection, 12-career coverage assessment, two-career pilot and expected comparisons; then dependent contract design | Data/content review followed by product/architecture review of affected contracts |
 | 2: persistence and services | Additive migrations, grants/RLS, domain operations and deterministic comparisons | Migration, ownership, session and data-integrity checks pass |
 | 3: frontend connection | Generated types, account-scoped hooks, minimal editor/comparison UI | Real save/refresh/readback; useful empty/error states |
 | 4: acceptance and handoff | Existing MVP preservation checks, focused journey and implementation guide | Human review and all first-increment acceptance IDs satisfied |
@@ -167,8 +176,8 @@ design is preparatory work; placeholder 501 responses are not foundation readine
 Keep MVP content IDs, text skill labels and publication semantics compatible.
 Add reviewed mappings alongside authored content. Existing careers must continue
 working when they have no competency enrichment. The current publication helper
-recognizes releases 1 and 2; any new content release sequence must be coordinated
-with the content owner rather than edited independently by multiple contributors.
+recognizes releases 1 through 4; any new content release sequence must be coordinated
+through coordinated content review rather than overlapping edits.
 
 Use isolated approved test resources for new migrations. A separate checkout does
 not isolate Supabase when the project ID is shared. Do not reset or reprovision the
@@ -194,17 +203,17 @@ The following are proposed first-increment acceptance IDs. They are not passed t
 
 | ID | Required result | Verification |
 | --- | --- | --- |
-| PM-I1-01 | Stable reviewed identifiers; repeat import does not duplicate or rewrite published meaning | Import/reference tests and data review |
-| PM-I1-02 | Existing careers and roadmaps work without mappings; existing content IDs/progress survive | Focused content upgrade/preservation check |
-| PM-I1-03 | Anonymous and other accounts cannot read or mutate user competency records | API/session and actual restricted-role isolation tests |
-| PM-I1-04 | Unknown and 0 remain distinct; invalid levels fail; confirmed presence does not assert mastery | Schema and persistence cases |
-| PM-I1-05 | Duplicate/stale writes cannot overwrite newer state | Concurrency, revision and retry tests |
-| PM-I1-06 | Comparison matches reviewed cases, including missing profile information and missing targets | Deterministic service fixtures reviewed by humans |
-| PM-I1-07 | Removal/correction updates comparison and clears stale account caches | Service and frontend interaction tests |
-| PM-I1-08 | Topic links resolve and never change progress automatically | Integration and guided manual journey |
-| PM-I1-09 | Generated API/client agree; existing MVP contracts remain compatible | Existing drift/type checks and affected regression checks |
-| PM-I1-10 | Save, refresh, revisit, empty/error states and account switch work | Browser/manual acceptance and relevant UI tests |
-| PM-I1-11 | No unsupported suitability/readiness claims; source and uncertainty are understandable | Human content/comprehension review |
+| PM-I1-01 | [Owning feature: PM-F03](plans/post-mvp/pm-f03-occupational-knowledge.md#acceptance-and-evaluation) | Required in the combined journey; see owner for definition and evidence |
+| PM-I1-02 | [Owning feature: PM-F03](plans/post-mvp/pm-f03-occupational-knowledge.md#acceptance-and-evaluation) | Required in the combined journey; see owner for definition and evidence |
+| PM-I1-03 | [Owning feature: PM-F02](plans/post-mvp/pm-f02-competency-profile.md#acceptance-and-evaluation) | Required in the combined journey; see owner for definition and evidence |
+| PM-I1-04 | [Owning feature: PM-F02](plans/post-mvp/pm-f02-competency-profile.md#acceptance-and-evaluation) | Required in the combined journey; see owner for definition and evidence |
+| PM-I1-05 | [Owning feature: PM-F02](plans/post-mvp/pm-f02-competency-profile.md#acceptance-and-evaluation) | Required in the combined journey; see owner for definition and evidence |
+| PM-I1-06 | [Owning feature: PM-F05](plans/post-mvp/pm-f05-skill-comparison.md#acceptance-and-evaluation) | Required in the combined journey; see owner for definition and evidence |
+| PM-I1-07 | [Owning feature: PM-F05](plans/post-mvp/pm-f05-skill-comparison.md#acceptance-and-evaluation) | Required in the combined journey; see owner for definition and evidence |
+| PM-I1-08 | [Owning feature: PM-F07](plans/post-mvp/pm-f07-learning-guidance.md#acceptance-and-evaluation) | Required in the combined journey; see owner for definition and evidence |
+| PM-I1-09 | [Owning feature: PM-F03](plans/post-mvp/pm-f03-occupational-knowledge.md#acceptance-and-evaluation) | Required in the combined journey; see owner for definition and evidence |
+| PM-I1-10 | [Owning feature: PM-F02](plans/post-mvp/pm-f02-competency-profile.md#acceptance-and-evaluation) | Required in the combined journey; see owner for definition and evidence |
+| PM-I1-11 | [Owning feature: PM-F05](plans/post-mvp/pm-f05-skill-comparison.md#acceptance-and-evaluation) | Required in the combined journey; see owner for definition and evidence |
 | PM-I1-12 | Feature guide, evidence, limitations and integration ownership are complete | Handoff review |
 
 Proposed manual journey at the existing local app: sign in with a synthetic account,
@@ -221,17 +230,17 @@ their applicable security checks even if prior MVP evidence exists.
 
 ## Decisions before implementation
 
-| Decision | Proposed default / unresolved boundary | Responsible reviewer |
+| Decision | Proposed default / unresolved boundary | Required review area |
 | --- | --- | --- |
-| First increment | Manual competency comparison first; PDF follows as a separate package | Project owner |
-| Audience | All ages/levels requested; deployment eligibility and younger-user policies unresolved | Project owner and designated privacy/research reviewers |
-| Rubric | Nullable 0-4 self-report proposed; no numeric career readiness | Project owner and research reviewer |
-| Dataset | One reviewed source subset first; ESCO candidate; O*NET only where capability needs it | Data reviewer, unassigned |
-| Role mapping | Existing career identity preserved; publish reviewed relationship scope | Content/data reviewer, unassigned |
-| Private history | Retention and correction/removal effects must be selected | Architecture/privacy reviewers |
-| UI | Minimal editor and comparison; exact entry points coordinated after MVP acceptance | Existing frontend owners and project owner |
-| Technical contracts | Additive schema, ownership, revisions and generated APIs | Architecture reviewer |
-| Work assignment | Foundation owner, content reviewer, UI integrator and accepted branch baseline | Project lead |
+| First increment | Manual competency comparison first; PDF follows as a separate package | Product review |
+| Audience | All ages/levels requested; deployment eligibility and younger-user policies unresolved | Privacy/research review |
+| Rubric | Nullable 0-4 self-report proposed; no numeric career readiness | Research review |
+| Dataset | One reviewed source subset first; ESCO candidate; O*NET only where capability needs it | Data review pending |
+| Role mapping | Existing career identity preserved; publish reviewed relationship scope | Content/data review pending |
+| Private history | Retention and correction/removal effects must be selected | Architecture/privacy review |
+| UI | Minimal editor and comparison; exact entry points reviewed for this increment | Product/UI review |
+| Technical contracts | Additive schema, ownership, revisions and generated APIs | Architecture review |
+| Work assignment | Shared foundation, content review, UI integration and accepted baseline | Integration review |
 
 Missing decisions block dependent implementation, not continued research and
 planning. Do not request or infer blanket approval for all post-MVP features.
@@ -243,13 +252,15 @@ an architectural rewrite, agent framework or vector database. The largest risks
 are occupational mapping quality, semantic confusion about proficiency, and changes
 to shared contracts while the MVP team is still working.
 
-This assessment uses source inspection, the supplied plan, owner clarifications,
+This assessment uses source inspection, the supplied plan, recorded scope clarifications,
 and the prior official-source checks linked in the roadmap. Existing local runtime
 evidence is owned by the [acceptance guide](features/deployment-preparation.md).
 No new runtime, provider, migration, performance or participant checks were executed
-for this documentation task. No implementation estimate is established without
-owners, dataset scope and the accepted MVP baseline.
+for this documentation change. No implementation estimate is established without
+owners, dataset scope and the reviewed affected-contract baseline.
 
-2026-10-30 change record: created at the owner's request for comprehensive review
-and first implementation planning. Documentation author: Codex. Human review
+2026-10-30 change record: created at the recorded request for comprehensive review
+and first implementation planning. Human review
 pending; no changes to application code, dependencies, schemas, APIs or eligibility.
+
+2026-11-03 change record: documentation restructuring implements the user-reviewed feature-based, dataset-first planning plan (PM-DOC-01 through PM-DOC-04). Feature acceptance definitions now live in their owning plans; PM-I1-12 remains the integration handoff criterion. No source acquisition, runtime changes or new acceptance evidence.

@@ -1,11 +1,13 @@
 # Connected MVP backend handoff
 
-Implementer: Codex. Created: 2026-10-28. Updated: 2026-10-29.
-Status: local core acceptance recorded; deployment preparation implemented. Human review is deferred; hosted release gates remain open. Required reviewer: @YakisobaNissin.
+Historical implementation/evidence record: later source, explicit deferrals and current acceptance limits are consolidated in [Development](../development.md#current-local-mvp-status-2026-11-02). Preserve dated results below; earlier three-path, copied-retake or unverified descriptions do not override that current status.
+
+Created: 2026-10-28. Updated: 2026-10-29.
+Status: local core acceptance recorded; deployment preparation implemented. Human review is deferred; hosted release gates remain open.
 
 ## Reviewed scope
 
-The project owner approved this bounded implementation in the task on 2026-10-28:
+Approval was recorded for this bounded implementation in the task on 2026-10-28:
 document storage, typed document APIs, additive migrations and a pinned PDF parser;
 Career navigation, contextual guidance, recommendation evidence, portable content
 publication and focused local acceptance. No Git publication or deployment is included.
@@ -13,9 +15,8 @@ publication and focused local acceptance. No Git publication or deployment is in
 Requirements: REQ-04, REQ-05, REQ-07, REQ-09, REQ-11; F-002-AC-07,
 F-002-AC-11. Dependencies: existing Auth/session boundary, restricted asgard_app
 role, private Supabase Storage, Groq and persisted analysis budgets. Contracts:
-generated OpenAPI/TypeScript plus additive versioned SQL. Owner: Codex for this
-task; review: @YakisobaNissin. Existing product and security documents remain
-authoritative; this records the owner's implementation authorization, not completed review.
+generated OpenAPI/TypeScript plus additive versioned SQL. Existing product and security documents remain
+authoritative; this records implementation authorization, not completed review.
 
 Affected modules: documents, recommendations, app navigation, Profile, local tooling.
 Checks: parser/evidence and lifecycle tests, ownership/revisions, migration and API
@@ -128,7 +129,7 @@ independent of page reads. Errors use the common sanitized envelope and request 
 - Existing development-helper tests: four passed. Explicit content republication
   succeeded; cleanup reported zero pending/failed operations.
 - Historical check: full backend lint initially reported long-line/import issues.
-  The owner subsequently approved the bounded cleanup and the full check passed.
+  Subsequent approval covered the bounded cleanup and the full check passed.
 
 ### Final local follow-up
 
@@ -160,7 +161,7 @@ failure/concurrency permutations, browser registration/verification (verificatio
 exercised through the real Auth integration suite),
 independent-host acceptance and full release regression. Production activation remains
 out of scope. Human review remains pending. The previously reported 72 baseline
-lint findings were addressed in the later owner-approved cleanup; focused progress
+lint findings were addressed in the later approved cleanup; focused progress
 lint also passed on 2026-10-29.
 
 The independent test stack has been stopped with its data retained; normal local

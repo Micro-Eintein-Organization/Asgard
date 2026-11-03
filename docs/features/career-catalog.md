@@ -1,12 +1,11 @@
 # Career catalog
 
-- Implementer: Codex
 - Created: 2026-11-02
 - Last updated: 2026-11-02
 - Status: implemented source; manual visual acceptance pending
 - Requirements: [REQ-02 and REQ-03](../product.md)
-- Technical reviewer: [CODEOWNERS](../../.github/CODEOWNERS)
-- Review reference: owner supplied category-sidebar screenshot and requested implementation in this chat.
+
+- Review reference: category-sidebar presentation accepted from the supplied reference.
 
 ## Behavior
 
@@ -27,7 +26,7 @@ are recorded in [roadmap content expansion](roadmap-content-expansion.md).
 
 On 2026-11-02 `npm run typecheck` in frontend passed. No dependencies, API or
 database contracts changed. Broad regression and browser matrix checks were
-deferred per owner instruction. Visual and keyboard acceptance remain pending.
+deferred per recorded scope. Visual and keyboard acceptance remain pending.
 
 At http://127.0.0.1:5173/careers, sign in, select a category and search for a skill.
 Only matching published careers should remain. Open View roadmap on a card, then

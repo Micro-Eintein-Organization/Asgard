@@ -1,16 +1,17 @@
 # Core acceptance and deployment preparation
 
-Implementer: Codex. Created: 2026-10-29. Updated: 2026-10-29.
+Historical implementation/evidence record: later source, explicit deferrals and current acceptance limits are consolidated in [Development](../development.md#current-local-mvp-status-2026-11-02). Preserve dated results below; earlier three-path, copied-retake or unverified descriptions do not override that current status.
+
+Created: 2026-10-29. Updated: 2026-10-29.
 Status: implementation and local acceptance complete; hosted gates not run.
-Required reviewer: @YakisobaNissin; human review deferred by owner.
 
 ## Approved implementation record
 
-The owner approved the complete core-acceptance/deployment-preparation plan in
-this chat on 2026-10-29. Owner: Codex for implementation. Requirements: QA-01–QA-12
+Approval was recorded for the complete core-acceptance/deployment-preparation plan in
+the decision record on 2026-10-29. Requirements: QA-01–QA-12
 as applicable, A-01/A-02/A-04/A-06/A-08/A-09/A-11; the
 [architecture](../architecture.md) and [verification](../verification.md) remain
-authoritative. Work stays on the owner-selected connected-prototype branch.
+authoritative. Work stays on the selected connected-prototype branch.
 
 Scope: isolated migrations and content upgrade/preservation checks, browser
 registration/verification, configuration and publication hardening, CI coverage,

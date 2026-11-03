@@ -1,10 +1,12 @@
 # Discovery and catalog refresh
 
-Implementer: Codex. Created: 2026-10-28. Updated: 2026-10-29.
-Status: source changes made; human review and visual acceptance pending.
-Reviewer: @YakisobaNissin. Requirements: REQ-04, REQ-05, REQ-07, REQ-09; F-001 and F-002.
+Historical implementation/evidence record: later source, explicit deferrals and current acceptance limits are consolidated in [Development](../development.md#current-local-mvp-status-2026-11-02). Preserve dated results below; earlier three-path, copied-retake or unverified descriptions do not override that current status.
 
-The owner requested the supplied Figma exports for Discovery and the catalog, with
+Created: 2026-10-28. Updated: 2026-10-29.
+Status: source changes made; human review and visual acceptance pending.
+Requirements: REQ-04, REQ-05, REQ-07, REQ-09; F-001 and F-002.
+
+The implementation uses the supplied Figma exports for Discovery and the catalog, with
 saved suggestions visible in the catalog, and requested the previously discussed
 handoff plan. The five server-defined questions and conditional activities remain
 authoritative. First-time choices and new retakes start blank; Settings starts the

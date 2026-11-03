@@ -14,7 +14,7 @@ The MVP targets desktop and laptop browsers at approximately 1280–1920 px, wit
 
 **Windows teammates: open the Asgard folder in File Explorer and double-click the matching launcher.**
 
-Both launcher files are in the **top-level folder of your local checkout**, beside `README.md`. This is the folder you cloned with GitHub Desktop; its location depends on where you saved it. Open that local folder in File Explorer through GitHub Desktop to find the files.
+Both launcher files are in the **top-level folder of your local checkout**, beside `README.md`. The checkout location depends on where the repository was cloned. Open the checkout root to find both files.
 
 ```text
 Asgard/                         Your local checkout folder
@@ -36,23 +36,21 @@ Asgard/                         Your local checkout folder
 
 1. Install [Node 24 and Docker Desktop](#install-prerequisites) once, if needed.
 2. Start Docker Desktop and wait until Linux containers are ready.
-3. Double-click the launcher. For a fresh environment, obtain project-lead approval before confirming initialization or Auth activation. See the [Windows first-run instructions](#windows-first-run).
+3. Double-click the launcher. For a fresh environment, obtain explicit approval before confirming initialization or Auth activation. See the [Windows first-run instructions](#windows-first-run).
 
 **Local addresses:** [Asgard website](http://127.0.0.1:5173) · [Verification-email inbox](http://127.0.0.1:55324). Local verification emails appear in that inbox rather than your real email account.
 
-**Linux:** follow the [Linux setup steps](#linux). **Developing with an agent:** copy the [short agent prompt](#ask-an-ai-coding-agent-to-work-on-asgard).
+**Linux:** follow the [Linux setup steps](#linux). **Developing with an agent:** copy the [short agent prompt](#prepare-an-implementation-task).
 
 ## Project status
 
-Asgard is under development. The authenticated React/FastAPI application is the single implementation of Dashboard, Discovery, career exploration, roadmaps and Settings. Current source replaces runtime demo fixtures with account API reads/writes or explicit unavailable states; standalone UI Preview routes have been removed. Email/password access and private Profile integration are implemented, with local-only activation recorded in the decision register; fresh environments remain disabled by default. The connected prototype implements saved Discovery, Groq recommendations, preferences and learning workflows, with three brief career roadmaps published locally. Groq needs backend-only enablement and your own key in ignored environment configuration; uploads remain unavailable. All new behavior is unverified because testing was deferred. See the [connected-prototype guide](docs/features/connected-prototype.md) for configuration, publication and pending acceptance. See the [Stage 3.5 handoff](docs/stage-3.5-handoff.md) for preservation details and pending manual acceptance.
+Asgard's current MVP is the selected **local evaluation build**. Saved Discovery, recommendations, catalog/roadmaps, learning progress, Dashboard and Profile names/preferences are implemented. The catalog now publishes 12 roadmaps. [Current status and evidence](docs/development.md#current-local-mvp-status-2026-11-02) distinguishes recorded acceptance, current limitations and pending review.
 
-Stage 4 adds the shared SQL foundation, 29 authenticated API contract stubs, generated TypeScript contracts and query/error conventions. The local integrity/RLS probe passed; all 29 current feature operations now have service handlers and no intentional 501 stubs; those handlers have not passed the new feature acceptance checks. See the [Stage 4 handoff](docs/development.md#stage-4-shared-contracts-and-handoff) for contracts, verification and review/publication gates.
+Photos, PDF upload/analysis, unfinished account features and richer interaction flows are explicitly deferred in the [scope resolution](docs/decisions.md#local-evaluation-mvp-resolution-2026-11-02). Groq requires this developer's backend-only configuration; missing provider access does not block learning saves. Hosting preparation is not deployment or public-release acceptance.
 
-The [current foundation status](docs/development.md#current-foundation-status-and-evidence) separates source, recorded checks and remaining acceptance. The owner selected an [8-character password minimum](docs/decisions.md#password-minimum-resolution) on 26 October 2026; existing local source/configuration already uses that value.
+## Product capabilities and future target
 
-Local runtime and UI checks cover only part of the required evidence. Provider compatibility, reviewed roadmap content, feature integration and release verification remain prerequisites for the final MVP. Planned hosting below is not a claim of deployment.
-
-## Planned features
+The list below describes the broader product; the scope resolution above identifies capabilities deferred from the local MVP.
 
 - **Career exploration:** browse and search careers across software and AI, design and UX, data and analytics, cybersecurity, hardware and embedded systems, and networking and infrastructure.
 - **Guided Discovery:** answer five rounds of questions about interests, activities, work approach, background, and goals to receive explained career suggestions.
@@ -98,7 +96,7 @@ Clone into any directory you own. All project commands run from your checkout ro
 
 ### Install prerequisites
 
-- **Repository checkout:** use GitHub Desktop or your usual Git workflow to get the repository. If you already have a checkout, keep using it; no separate Git installation steps are needed here.
+- **Repository checkout:** use a Git client to get the repository. If you already have a checkout, keep using it; no separate Git installation steps are needed here.
 - **Node.js 24.19.0 and npm 11:** if `node --version` reports v24.19.0 or later within 24.x and `npm --version` reports 11.x, skip installation. Otherwise install from the [Node 24.19.0 release](https://nodejs.org/dist/v24.19.0/); npm comes with Node. Do not use another Node major or update locks for onboarding.
 - **Docker on Windows 11:** if Docker Desktop is installed and `docker info` works, skip installation and start Docker Desktop in Linux-container mode. Otherwise install [Docker Desktop with WSL2](https://docs.docker.com/desktop/setup/install/windows-install/) and complete its WSL setup/reboot if requested. Use PowerShell from the Windows checkout.
 - **Docker on Linux:** if Docker Engine is installed and `docker info` works as your login user, skip installation. Otherwise install [Docker Engine and its Compose plugin](https://docs.docker.com/engine/install/) and follow Docker's [user-access setup](https://docs.docker.com/engine/install/linux-postinstall/). Docker-group access grants root-level privileges; get your machine administrator's approval where required. Do not run the project helper or npm with `sudo`.
@@ -129,14 +127,14 @@ Windows 11/PowerShell and Linux/Bash are the documented development targets. Nat
 
 ### First-time setup
 
-Install Node 24 and Docker once; Docker Desktop may ask for administrator access or a restart. Get the repository with GitHub Desktop. These prerequisites are installed separately because Docker setup can require administrator access or a restart. Then follow the matching steps below.
+Install Node 24 and Docker once; Docker Desktop may ask for administrator access or a restart. Clone the repository with a Git client. These prerequisites are installed separately because Docker setup can require administrator access or a restart. Then follow the matching steps below.
 
 #### Windows: first run
 
 1. Start Docker Desktop and wait until it is running Linux containers.
 2. Open your local checkout in File Explorer. Find `Setup-Asgard.cmd` beside `README.md` in the top-level folder and double-click it.
-3. If this is a fresh local environment, the launcher asks for approval before initializing it. Type `INITIALIZE` only when the project lead approved this machine and you are sure its Docker project has no existing data. The script creates a local signing key and restricted database password; it never copies another teammate's secrets or resets/deletes Docker data.
-4. If prompted, type `ENABLE AUTH` only when the project lead separately approved enabling local email/password Auth. After startup, check signup and Profile manually. The launcher opens the app and local email inbox.
+3. If this is a fresh local environment, the launcher asks for approval before initializing it. Type `INITIALIZE` only when initialization is explicitly authorized for this environment and you are sure its Docker project has no existing data. The script creates a local signing key and restricted database password; it never copies another teammate's secrets or resets/deletes Docker data.
+4. If prompted, type `ENABLE AUTH` only when local email/password Auth activation is separately authorized. After startup, check signup and Profile manually. The launcher opens the app and local email inbox.
 
 If the checkout already has its own approved `.env`, signing key and database credential, the launcher keeps them and starts the app. It does not turn Auth on without approval.
 
@@ -155,20 +153,11 @@ npm ci
 node scripts/dev.mjs start
 ```
 
-For a fresh Linux environment, request project-lead approval and follow [Before first startup](#before-first-startup) before starting the services. Native Linux-host onboarding is still awaiting independent verification. For later sessions, run `node scripts/dev.mjs start` again. See [Install prerequisites](#install-prerequisites) for installation links and skip conditions.
+For a fresh Linux environment, request explicit approval and follow [Before first startup](#before-first-startup) before starting the services. Native Linux-host onboarding is still awaiting independent verification. For later sessions, run `node scripts/dev.mjs start` again. See [Install prerequisites](#install-prerequisites) for installation links and skip conditions.
 
-### Ask an AI coding agent to work on Asgard
+### Prepare an implementation task
 
-Give the agent the tasks or features you want completed together, with the expected results. Paste this and fill in the brackets:
-
-```text
-Read AGENTS.md and follow its instructions.
-
-Here’s what I want you to do:
-[Describe the tasks or features here.]
-```
-
-For feature work, first check the [Stage 4 readiness gate](docs/development.md#stage-4-parallel-readiness-and-publication). An agent task does not replace required code-owner review or project-lead approval.
+Describe the problem, intended outcome, scope, affected components/contracts, dependencies, implementation steps, acceptance criteria and verification. Read [AGENTS.md](AGENTS.md) and the relevant specifications first. For feature work, check the [Stage 4 readiness gate](docs/development.md#stage-4-parallel-readiness-and-publication). Task assignment does not replace technical review or environment-specific authorization.
 
 ### Create and configure `.env`
 
@@ -206,7 +195,7 @@ Keep the copied defaults initially, including `ASGARD_AUTH_ENABLED=false` and an
 | `ASGARD_AUTH_ENABLED` | Keep `false` until this environment's Auth provisioning is approved and complete |
 | `ASGARD_DATABASE_URL` | Keep blank until the approved local credential initializer writes the restricted `asgard_app` connection; never put this value in a `VITE_*` variable |
 
-For a fresh environment, follow [Before first startup](#before-first-startup) in order: approved signing-key creation, Supabase/migration checks, connectivity synchronization, then restricted-role credential provisioning. The `env` helper fills managed connectivity rows without printing credentials; it does not create either secret or enable Auth. The credential initializer requires environment-specific project-lead approval, an existing migrated `asgard_app` role, root `.env` and an empty `ASGARD_DATABASE_URL`. It changes local credential state, not schema or grants, and is not an approval grant by itself.
+For a fresh environment, follow [Before first startup](#before-first-startup) in order: approved signing-key creation, Supabase/migration checks, connectivity synchronization, then restricted-role credential provisioning. The `env` helper fills managed connectivity rows without printing credentials; it does not create either secret or enable Auth. The credential initializer requires environment-specific explicit approval, an existing migrated `asgard_app` role, root `.env` and an empty `ASGARD_DATABASE_URL`. It changes local credential state, not schema or grants, and is not an approval grant by itself.
 
 Once signing keys, migrations, credentials and local Auth/session validation are approved for this environment, edit the existing line in **your own** root `.env` to:
 
@@ -292,7 +281,7 @@ Fresh environments must keep `ASGARD_AUTH_ENABLED=false` until their migration, 
 | [http://127.0.0.1:55324](http://127.0.0.1:55324) | Local email inbox (Inbucket) for signup and verification messages |
 | [http://127.0.0.1:5173/status](http://127.0.0.1:5173/status) | Application connectivity page |
 
-These are the committed project ports; `127.0.0.1` and `localhost` refer to each developer's own computer, not a shared project-lead server. Signup and verification emails are captured by the local inbox at **http://127.0.0.1:55324**; they are not sent to real email addresses in local development. Open that page and select the message for the signup address to read its code. Additional ports and networking details are in [Development](docs/development.md#local-network-and-filesystem-boundaries). After environment-specific Auth activation, sign in to navigate the application. Career and learning pages now use the API and require reviewed published content; email/password access and Profile saving retain their connected services when local authentication is activated. The persisted-core follow-up remains unverified. Independent computers can use the same defaults, but two checkouts on one Docker daemon share resources when their project IDs match; coordinate an isolated configuration before running multiple checkouts.
+These are the committed project ports; `127.0.0.1` and `localhost` refer to each developer's own computer, not a shared technical server. Signup and verification emails are captured by the local inbox at **http://127.0.0.1:55324**; they are not sent to real email addresses in local development. Open that page and select the message for the signup address to read its code. Additional ports and networking details are in [Development](docs/development.md#local-network-and-filesystem-boundaries). After environment-specific Auth activation, sign in to navigate the application. Career and learning pages now use the API and require reviewed published content; email/password access and Profile saving retain their connected services when local authentication is activated. The persisted-core follow-up remains unverified. Independent computers can use the same defaults, but two checkouts on one Docker daemon share resources when their project IDs match; coordinate an isolated configuration before running multiple checkouts.
 
 ### Daily startup and shutdown
 
@@ -354,11 +343,11 @@ The `env` command reads the CLI's current local values without printing credenti
 | --- | --- |
 | Docker unavailable / permission denied | Start Docker Desktop with Linux containers or start the Linux daemon. Check `docker info` in the same shell. On Linux, complete the upstream user-access procedure and log in again; do not use `sudo npm` or loosen socket permissions. |
 | Node/CLI missing or wrong version | Check `.node-version`, install Node 24 with npm 11, and run root `npm ci`. Do not install the latest global CLI. |
-| Missing `supabase/signing-keys.json` / Auth not configured on a fresh clone | Complete the environment-specific provisioning prerequisite above with the project lead. The helper does not generate signing keys or application DB credentials. Do not copy another developer's secrets or enable the Auth flag to bypass setup. |
+| Missing `supabase/signing-keys.json` / Auth not configured on a fresh clone | Complete the environment-specific provisioning prerequisite above with explicit environment authorization. The helper does not generate signing keys or application DB credentials. Do not copy another developer's secrets or enable the Auth flag to bypass setup. |
 | Port unavailable | The helper names the port and stops. Identify its owner and resolve it manually; do not stop unrelated containers. Defaults reserve 5173, 8000 and 55320–55324. |
 | External Supabase network missing | Run Supabase first, then `node scripts/dev.mjs env`. CLI and Compose must use the same local Docker daemon/context. Do not mix a remote Docker context with a local browser or two independent Windows/WSL daemons. |
 | Readiness fails / Studio cannot query | Run `docker compose logs --tail 100`, `npx --no-install supabase status` and `node scripts/dev.mjs verify`. CLI status can display local credentials; do not paste its raw output into tickets. Regenerate `.env` as above if stale. |
-| Pending migrations | Startup stops after a dry-run. Have the owner review them before explicitly applying local migrations; never reset the database as a quick fix. See Development. |
+| Pending migrations | Startup stops after a dry-run. Have the review them before explicitly applying local migrations; never reset the database as a quick fix. See Development. |
 | Changes do not appear | Source reload is limited to the documented bind mounts. Rerun startup for package, lock, test or configuration changes; both app dependencies are installed inside their images. |
 | Linux file permission or import error | Keep the checkout owned/readable by your login user. Do not copy Windows `node_modules` to Linux. Preserve filename/import case. Contract generation writes files as the host user; see Development. |
 | PowerShell blocks `.ps1` execution | Use `node scripts/dev.mjs start` directly; no execution-policy change is required. |
@@ -370,7 +359,12 @@ The pinned CLI publishes local Supabase ports on host interfaces; use a trusted 
 
 | Document | Contents |
 | --- | --- |
-| [Post-MVP roadmap](docs/post-mvp-roadmap.md) | Proposed feature packages, repository assessment, dependencies and approval gates |
+| [Post-MVP roadmap](docs/post-mvp-roadmap.md) | Index of ten feature plans, dependencies, package boundaries and approval gates |
+| [Dataset acquisition plan](docs/plans/post-mvp/datasets.md) | Source inspection, 12-career coverage assessment and proposed two-career pilot |
+| [Received-source readiness](docs/plans/post-mvp/source-readiness.md) | Supplied-file inventory, structural evidence, candidate pilot and next review steps |
+| [Curated research dataset](data/post-mvp/releases/curated-v0.1/README.md) | All-12-career CSV/JSON evidence, source-native levels, preparation commands and limitations |
+| [Dataset methodology paper](docs/research/dataset-methodology.md) | Readable source selection, processing, feature use and preparation results; [review findings](docs/research/dataset-review.md) |
+| [First-increment integration](docs/post-mvp-first-implementation.md) | Dataset-first manual competency/comparison journey and linked acceptance checklist |
 | [Deployment preparation](docs/deployment.md) | Hosted configuration, administrative publication, release/rollback and external-use gates |
 | [Acceptance evidence](docs/features/deployment-preparation.md) | Isolated content upgrade, registration journey, architecture audit and check results |
 | [Product requirements](docs/product.md) | Product purpose, audience, MVP scope, and acceptance criteria |
@@ -384,10 +378,9 @@ The pinned CLI publishes local Supabase ports on host interfaces; use a trusted 
 | [Security and operations](docs/security-and-operations.md) | Account security, privacy, retention, backups, and operational controls |
 | [Verification](docs/verification.md) | Functional, accessibility, AI quality, and release checks |
 | [Decision register](docs/decisions.md) | Recorded decisions, compatibility blockers, and remaining evidence |
-| [Documentation audit and handoff](docs/documentation-audit-plan.md) | Reviewed cleanup scope, findings, verification and outstanding documentation/integration follow-ups |
 
 Static design exports are in [docs/design/figma](docs/design/figma/). The [historical frontend reference](docs/design/ui-reference/README.md) provides design context and reuse notes; it is not the current application.
 
 ## Contributing
 
-Read [AGENTS.md](AGENTS.md), the product requirements, architecture, and development guide before proposing implementation changes. Keep changes focused, preserve the shared Stage 4 contracts, update affected documentation, and include the relevant verification results in a pull request. Report checks that could not be run. The confirmed project-lead reviewer is recorded in [.github/CODEOWNERS](.github/CODEOWNERS); required-review enforcement still depends on repository settings and the file reaching the PR base branch.
+Read [AGENTS.md](AGENTS.md), the product requirements, architecture, and development guide before proposing implementation changes. Keep changes focused, preserve the shared Stage 4 contracts, update affected documentation, and include the relevant verification results in a pull request. Report checks that could not be run. Changes require independent technical review appropriate to the affected components. Remote review enforcement must be verified separately.

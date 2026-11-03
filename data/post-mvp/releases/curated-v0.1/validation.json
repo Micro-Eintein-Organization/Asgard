@@ -1,0 +1,112 @@
+{
+  "status": "artifact checks passed; independent semantics/publication review pending",
+  "release": "curated-v0.1",
+  "counts": {
+    "careers": 12,
+    "comparison_cases": 96,
+    "competencies": 1185,
+    "crosswalks": 59,
+    "decisions": 2949,
+    "expectations": 5518,
+    "interpretation": 2,
+    "learning_associations": 12,
+    "native_records": 12512,
+    "source_locators": 183,
+    "source_occupations": 41,
+    "sources": 20,
+    "tasks": 246,
+    "transformations": 20
+  },
+  "source_checks": "passed: source hashes, ZIP CRC, selected O*NET rows and exact field preservation",
+  "local_definition_gaps": 11,
+  "conflicting_native_expectations": [
+    {
+      "occupation_id": "6c00f582-3e65-5b6d-ab1a-1b4c033cf94f",
+      "competency_id": "aa944a76-e99f-5cf8-9717-20f1605c93e2",
+      "native_levels": [
+        "4",
+        "6"
+      ],
+      "expectation_ids": [
+        "08b671ea-f05a-5e4b-bba2-20f284d6d915",
+        "60fd17ee-ff6d-5ac7-b4c0-6a31082a1963"
+      ],
+      "action": "withhold definitive target; independent review pending"
+    },
+    {
+      "occupation_id": "6c00f582-3e65-5b6d-ab1a-1b4c033cf94f",
+      "competency_id": "c97e0a79-d4ee-5710-8719-42de6384b82c",
+      "native_levels": [
+        "3",
+        "4"
+      ],
+      "expectation_ids": [
+        "14e21b20-84e7-5684-9b0f-96a02235c373",
+        "fc67f30f-93c6-59fd-9191-bbbc85ec5a83"
+      ],
+      "action": "withhold definitive target; independent review pending"
+    },
+    {
+      "occupation_id": "6c00f582-3e65-5b6d-ab1a-1b4c033cf94f",
+      "competency_id": "ccd3405c-7599-577f-a425-f11a3b76baae",
+      "native_levels": [
+        "3",
+        "4"
+      ],
+      "expectation_ids": [
+        "df50c859-a24c-50ca-8701-826ca240cbb9",
+        "5cc3c955-ac24-5a2f-8704-5e4f231a3195"
+      ],
+      "action": "withhold definitive target; independent review pending"
+    },
+    {
+      "occupation_id": "6c00f582-3e65-5b6d-ab1a-1b4c033cf94f",
+      "competency_id": "dc94ea10-e072-50f0-937f-523f26947555",
+      "native_levels": [
+        "4",
+        "5-6"
+      ],
+      "expectation_ids": [
+        "45dc54dc-6a0d-52ca-b05a-179f7f8e7d9d",
+        "20dc3036-d55e-57b6-aa53-8edb9aaabb2c"
+      ],
+      "action": "withhold definitive target; independent review pending"
+    },
+    {
+      "occupation_id": "6c00f582-3e65-5b6d-ab1a-1b4c033cf94f",
+      "competency_id": "50ab4581-4564-5970-8034-dd1f895302a3",
+      "native_levels": [
+        "4",
+        "5"
+      ],
+      "expectation_ids": [
+        "56784e89-3cc5-5864-ab47-6856775baeff",
+        "76f32dff-ecee-58f3-85f3-6d99522dfdd2"
+      ],
+      "action": "withhold definitive target; independent review pending"
+    }
+  ],
+  "not_run": [
+    "Independent expert/content acceptance",
+    "User competence assessment",
+    "Application/database/browser/security tests",
+    "Participant study",
+    "Full local competency definition transcription"
+  ],
+  "artifact_sha256": {
+    "careers.csv": "a175cc40f15c101f3097c77b099ae05e9cd00c568b482eaba80a9e66817fc707",
+    "comparison_cases.csv": "ba5b199e2c92c09c4c4d9efb21e50da86089852cb7d5dadb8b1db80e9056c77a",
+    "competencies.csv": "9e6058b35a92a464a778006383ba64aa940078fefdce011654d6a388fb3256fb",
+    "crosswalks.csv": "3ac403b13cc143d59a2946df5be22f3ae423250e796b2614a00b2ce813dc4c4e",
+    "decisions.csv": "ccc67867164dc32d6474914dc28b97df3f05d8979fe947b3ab8354e74b9cd0c1",
+    "expectations.csv": "699080fa1ebb9def8bf2cbb545c80d99e8f980005ae9a4b9bfc85a48c065f48d",
+    "interpretation.csv": "0444c8645ae80fae6ffc11e107b69a0830f63dd541106088d92431d17253a078",
+    "learning_associations.csv": "39fb1ddb75e16cf6779a5e6d4622ca82e3607bbd256add270d3ff13c56e8bde0",
+    "native_records.csv": "8931c33016e7d43e1c369ffe7031601ed05dcf6d54347ca98eafc265f2ab392d",
+    "source_locators.csv": "63f2070eb436e4cefdda04a78a2a805d8d14ca0cac12de61676c4669b91636ca",
+    "source_occupations.csv": "e476443d9ab09bae4548e70f2be773cb913fbda7bf6ea459899347a0cb1631c2",
+    "sources.csv": "c946f00990dd6db7fded12bba96e6ee6c01a1518a9c0ab2042d7ebf361319fdd",
+    "tasks.csv": "45a191984e798c224f0a8115198f541ea563810f48fe736d507ee782cf581a36",
+    "transformations.csv": "c20c86b981992fd9547ea259d5e4e21b740e7923cdf1b54df0711f761fcd8c11"
+  }
+}

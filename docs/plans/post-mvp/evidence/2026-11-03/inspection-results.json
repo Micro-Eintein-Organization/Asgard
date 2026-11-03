@@ -1,0 +1,30 @@
+{
+  "source_files": 20,
+  "pdfs": 18,
+  "pdf_pages": 2894,
+  "unique_source_hashes": 20,
+  "zip_crc": "passed",
+  "csv_tables": 45,
+  "malformed_csv_tables": [],
+  "rating_reference_errors": 0,
+  "reference_check_scope": "All essential_skills, transferable_skills, knowledge and work_activities rows reference existing occupation, scale and content element IDs. Other relationships not validated.",
+  "candidate_career_count": 12,
+  "pilot_occupation_codes": [
+    "15-1254.00",
+    "15-1255.00",
+    "15-2051.00",
+    "15-2051.01"
+  ],
+  "pilot_filtered_counts": {
+    "occupation_data": 4,
+    "essential_skills": 80,
+    "transferable_skills": 200,
+    "knowledge": 264,
+    "software_skills": 777,
+    "task_statements": 92,
+    "task_ratings": 810,
+    "work_activities": 328,
+    "occupation_level_metadata": 81
+  },
+  "review_status": "automated structural evidence only; mappings, semantics, dates and rights still pending"
+}

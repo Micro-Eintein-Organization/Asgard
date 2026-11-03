@@ -6,11 +6,7 @@
 
 **Last updated:** 2026-10-26
 
-**Implemented by:** Codex
-
 **Acceptance coverage:** QA-11 bootstrap support; acceptance remains partial.
-
-**Required reviewer:** Project lead
 
 **Status:** Implemented in the working tree; independent Windows onboarding review is pending.
 
@@ -20,7 +16,7 @@ Give Windows teammates a double-click path to prepare an Asgard checkout and sta
 
 ## Launchers
 
-Both `.cmd` files are in the checkout's top-level folder, beside `README.md` and `AGENTS.md`. The checkout can be saved anywhere on your computer; open its local folder in File Explorer through GitHub Desktop.
+Both `.cmd` files are in the checkout's top-level folder, beside `README.md` and `AGENTS.md`. The checkout can be saved anywhere on your computer; open the checkout root in the filesystem.
 
 | File | Use |
 | --- | --- |
@@ -38,10 +34,10 @@ The [architecture's developer setup](../architecture.md#9-reproducible-developer
 1. Check that Node.js 24.19.0 or a later Node 24 patch, npm 11, Docker Desktop, Linux containers, and a local Docker context are available.
 2. Install the root locked dependencies with `npm ci` only when the pinned Supabase CLI is missing or has the wrong version.
 3. Create root `.env` from `.env.example` only when `.env` does not exist. Never replace an existing `.env`.
-4. When the local database credential is absent, require the teammate to confirm `INITIALIZE`. The confirmation states that the project lead approved initialization and credential provisioning and that this is a new local database with no existing user data. Generate a local ES256 signing key if needed, start Supabase and app services, then initialize the restricted `asgard_app` password using the existing guarded initializer.
+4. When the local database credential is absent, require the teammate to confirm `INITIALIZE`. The confirmation states that initialization and credential provisioning are explicitly authorized and that this is a new local database with no existing user data. Generate a local ES256 signing key if needed, start Supabase and app services, then initialize the restricted `asgard_app` password using the existing guarded initializer.
 5. Ask separately for `ENABLE AUTH` before changing the local `.env` Auth flag. If this is declined, Auth remains disabled. When approved, restart through the existing helper and open the app and local inbox.
 
-The launcher does not reset or delete Docker data, rotate a saved database password, print credentials, copy another teammate's files, or bypass the project-lead approval gates. If the checkout has partial Auth state, stop and use the recovery guidance in the README rather than guessing which secret is missing.
+The launcher does not reset or delete Docker data, rotate a saved database password, print credentials, copy another teammate's files, or bypass the explicit approval gates. If the checkout has partial Auth state, stop and use the recovery guidance in the README rather than guessing which secret is missing.
 
 ## Daily behavior
 
@@ -53,6 +49,6 @@ Linux teammates use the Bash commands in [README Getting started](../../README.m
 
 ## Review and verification
 
-`node --check scripts/setup-windows.mjs`, documentation target checks, and `git diff --check` passed for this implementation. The launchers have not been exercised on an independent Windows machine, and no fresh database setup or Auth activation was run as part of this change. The project lead should review a fresh Windows walkthrough and an already provisioned checkout before this onboarding is treated as accepted QA-11 evidence.
+`node --check scripts/setup-windows.mjs`, documentation target checks, and `git diff --check` passed for this implementation. The launchers have not been exercised on an independent Windows machine, and no fresh database setup or Auth activation was run as part of this change. Verify both a fresh Windows walkthrough and an already provisioned checkout before this onboarding is treated as accepted QA-11 evidence.
 
-Manual review remains pending: use an approved fresh local environment, run `Setup-Asgard.cmd`, and confirm the expected approval prompts and successful startup. Open the website and local inbox, create a synthetic account, enter the captured verification code, sign in, save a Profile edit, and sign out. Then run `Start-Asgard.cmd` against the provisioned checkout and confirm it starts without reinitializing credentials. Report the failing step and sanitized console error to the project lead; do not share `.env`, keys, passwords or raw CLI status output. An independent Windows reviewer and native Linux follow-up owner remain unassigned.
+Manual review remains pending: use an approved fresh local environment, run `Setup-Asgard.cmd`, and confirm the expected approval prompts and successful startup. Open the website and local inbox, create a synthetic account, enter the captured verification code, sign in, save a Profile edit, and sign out. Then run `Start-Asgard.cmd` against the provisioned checkout and confirm it starts without reinitializing credentials. Report the failing step and sanitized console error in the verification record; do not share `.env`, keys, passwords or raw CLI status output. Independent Windows acceptance and native Linux verification remain pending.

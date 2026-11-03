@@ -1,0 +1,329 @@
+O*NET-SOC Code,Title,Element ID,Element Name,Scale ID,Scale Name,Data Value,N,Standard Error,Lower CI Bound,Upper CI Bound,Recommend Suppress,Not Relevant,Date,Domain Source
+15-1254.00,Web Developers,4.A.1.a.1,Getting Information,IM,Importance,4.48,23,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.1.a.1,Getting Information,LV,Level,4.35,23,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.1.a.2,"Monitoring Processes, Materials, or Surroundings",IM,Importance,2.96,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.1.a.2,"Monitoring Processes, Materials, or Surroundings",LV,Level,3.50,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.1.b.1,"Identifying Objects, Actions, and Events",IM,Importance,3.67,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.1.b.1,"Identifying Objects, Actions, and Events",LV,Level,4.00,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.1.b.2,"Inspecting Equipment, Structures, or Materials",IM,Importance,2.46,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.1.b.2,"Inspecting Equipment, Structures, or Materials",LV,Level,2.38,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.1.b.3,"Estimating the Quantifiable Characteristics of Products, Events, or Information",IM,Importance,3.33,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.1.b.3,"Estimating the Quantifiable Characteristics of Products, Events, or Information",LV,Level,3.38,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.2.a.1,"Judging the Qualities of Objects, Services, or People",IM,Importance,3.04,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.2.a.1,"Judging the Qualities of Objects, Services, or People",LV,Level,3.50,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.2.a.2,Processing Information,IM,Importance,4.13,23,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.2.a.2,Processing Information,LV,Level,5.17,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.2.a.3,Evaluating Information to Determine Compliance with Standards,IM,Importance,3.33,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.2.a.3,Evaluating Information to Determine Compliance with Standards,LV,Level,3.79,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.2.a.4,Analyzing Data or Information,IM,Importance,3.54,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.2.a.4,Analyzing Data or Information,LV,Level,4.25,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.2.b.1,Making Decisions and Solving Problems,IM,Importance,4.25,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.2.b.1,Making Decisions and Solving Problems,LV,Level,4.96,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.2.b.2,Thinking Creatively,IM,Importance,4.38,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.2.b.2,Thinking Creatively,LV,Level,5.75,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.2.b.3,Updating and Using Relevant Knowledge,IM,Importance,4.29,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.2.b.3,Updating and Using Relevant Knowledge,LV,Level,5.50,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.2.b.4,Developing Objectives and Strategies,IM,Importance,3.33,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.2.b.4,Developing Objectives and Strategies,LV,Level,3.83,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.2.b.5,Scheduling Work and Activities,IM,Importance,3.46,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.2.b.5,Scheduling Work and Activities,LV,Level,4.21,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.2.b.6,"Organizing, Planning, and Prioritizing Work",IM,Importance,3.91,22,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.2.b.6,"Organizing, Planning, and Prioritizing Work",LV,Level,5.00,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.3.a.1,Performing General Physical Activities,IM,Importance,1.42,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.3.a.1,Performing General Physical Activities,LV,Level,0.42,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.3.a.2,Handling and Moving Objects,IM,Importance,1.25,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.3.a.2,Handling and Moving Objects,LV,Level,0.75,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.3.a.3,Controlling Machines and Processes,IM,Importance,2.00,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.3.a.3,Controlling Machines and Processes,LV,Level,1.46,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.3.a.4,"Operating Vehicles, Mechanized Devices, or Equipment",IM,Importance,1.21,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.3.a.4,"Operating Vehicles, Mechanized Devices, or Equipment",LV,Level,0.38,24,,,,,Y,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.3.b.1,Working with Computers,IM,Importance,4.88,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.3.b.1,Working with Computers,LV,Level,4.79,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.3.b.2,"Drafting, Laying Out, and Specifying Technical Devices, Parts, and Equipment",IM,Importance,1.58,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.3.b.2,"Drafting, Laying Out, and Specifying Technical Devices, Parts, and Equipment",LV,Level,1.12,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.3.b.4,Repairing and Maintaining Mechanical Equipment,IM,Importance,1.08,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.3.b.4,Repairing and Maintaining Mechanical Equipment,LV,Level,0.17,24,,,,,Y,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.3.b.5,Repairing and Maintaining Electronic Equipment,IM,Importance,1.67,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.3.b.5,Repairing and Maintaining Electronic Equipment,LV,Level,1.50,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.3.b.6,Documenting/Recording Information,IM,Importance,3.46,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.3.b.6,Documenting/Recording Information,LV,Level,3.62,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.4.a.1,Interpreting the Meaning of Information for Others,IM,Importance,3.33,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.4.a.1,Interpreting the Meaning of Information for Others,LV,Level,3.54,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.4.a.2,"Communicating with Supervisors, Peers, or Subordinates",IM,Importance,3.88,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.4.a.2,"Communicating with Supervisors, Peers, or Subordinates",LV,Level,4.38,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.4.a.3,Communicating with People Outside the Organization,IM,Importance,3.04,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.4.a.3,Communicating with People Outside the Organization,LV,Level,3.71,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.4.a.4,Establishing and Maintaining Interpersonal Relationships,IM,Importance,3.54,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.4.a.4,Establishing and Maintaining Interpersonal Relationships,LV,Level,4.62,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.4.a.5,Assisting and Caring for Others,IM,Importance,1.92,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.4.a.5,Assisting and Caring for Others,LV,Level,1.33,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.4.a.6,Selling or Influencing Others,IM,Importance,2.29,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.4.a.6,Selling or Influencing Others,LV,Level,2.54,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.4.a.7,Resolving Conflicts and Negotiating with Others,IM,Importance,2.88,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.4.a.7,Resolving Conflicts and Negotiating with Others,LV,Level,3.08,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.4.a.8,Performing for or Working Directly with the Public,IM,Importance,1.79,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.4.a.8,Performing for or Working Directly with the Public,LV,Level,1.46,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.4.b.1,Coordinating the Work and Activities of Others,IM,Importance,2.79,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.4.b.1,Coordinating the Work and Activities of Others,LV,Level,3.42,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.4.b.2,Developing and Building Teams,IM,Importance,3.25,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.4.b.2,Developing and Building Teams,LV,Level,3.21,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.4.b.3,Training and Teaching Others,IM,Importance,2.83,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.4.b.3,Training and Teaching Others,LV,Level,3.29,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.4.b.4,"Guiding, Directing, and Motivating Subordinates",IM,Importance,2.67,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.4.b.4,"Guiding, Directing, and Motivating Subordinates",LV,Level,3.25,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.4.b.5,Coaching and Developing Others,IM,Importance,2.50,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.4.b.5,Coaching and Developing Others,LV,Level,2.96,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.4.b.6,Providing Consultation and Advice to Others,IM,Importance,3.29,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.4.b.6,Providing Consultation and Advice to Others,LV,Level,4.29,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.4.c.1,Performing Administrative Activities,IM,Importance,2.58,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.4.c.1,Performing Administrative Activities,LV,Level,3.00,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.4.c.2,Staffing Organizational Units,IM,Importance,2.00,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.4.c.2,Staffing Organizational Units,LV,Level,2.25,24,,,,,N,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.4.c.3,Monitoring and Controlling Resources,IM,Importance,2.42,24,,,,,,07/2017,Occupational Expert
+15-1254.00,Web Developers,4.A.4.c.3,Monitoring and Controlling Resources,LV,Level,2.46,24,,,,,N,07/2017,Occupational Expert
+15-1255.00,Web and Digital Interface Designers,4.A.1.a.1,Getting Information,IM,Importance,4.78,26,0.1059,4.5597,4.9960,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.1.a.1,Getting Information,LV,Level,5.21,26,0.1817,4.8308,5.5793,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.1.a.2,"Monitoring Processes, Materials, or Surroundings",IM,Importance,3.63,26,0.5031,2.5893,4.6615,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.1.a.2,"Monitoring Processes, Materials, or Surroundings",LV,Level,4.07,26,0.6983,2.6343,5.5106,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.1.b.1,"Identifying Objects, Actions, and Events",IM,Importance,4.53,26,0.2481,4.0222,5.0000,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.1.b.1,"Identifying Objects, Actions, and Events",LV,Level,4.57,26,0.4576,3.6241,5.5088,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.1.b.2,"Inspecting Equipment, Structures, or Materials",IM,Importance,2.52,26,0.7412,1.0000,4.0511,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.1.b.2,"Inspecting Equipment, Structures, or Materials",LV,Level,2.03,26,0.9877,0.0006,4.0690,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.1.b.3,"Estimating the Quantifiable Characteristics of Products, Events, or Information",IM,Importance,3.03,26,0.5490,1.8989,4.1603,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.1.b.3,"Estimating the Quantifiable Characteristics of Products, Events, or Information",LV,Level,3.34,26,0.8901,1.5083,5.1746,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.2.a.1,"Judging the Qualities of Objects, Services, or People",IM,Importance,3.46,26,0.3183,2.8070,4.1181,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.2.a.1,"Judging the Qualities of Objects, Services, or People",LV,Level,3.97,26,0.3277,3.2970,4.6466,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.2.a.2,Processing Information,IM,Importance,4.26,26,0.4002,3.4386,5.0000,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.2.a.2,Processing Information,LV,Level,5.18,26,0.7269,3.6813,6.6754,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.2.a.3,Evaluating Information to Determine Compliance with Standards,IM,Importance,3.50,26,0.2855,2.9099,4.0858,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.2.a.3,Evaluating Information to Determine Compliance with Standards,LV,Level,3.94,26,0.2717,3.3772,4.4962,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.2.a.4,Analyzing Data or Information,IM,Importance,4.11,26,0.6171,2.8343,5.0000,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.2.a.4,Analyzing Data or Information,LV,Level,4.91,26,1.0823,2.6849,7.0000,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.2.b.1,Making Decisions and Solving Problems,IM,Importance,4.53,26,0.3091,3.8953,5.0000,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.2.b.1,Making Decisions and Solving Problems,LV,Level,5.24,26,0.7136,3.7722,6.7114,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.2.b.2,Thinking Creatively,IM,Importance,4.33,26,0.1948,3.9288,4.7312,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.2.b.2,Thinking Creatively,LV,Level,5.97,26,0.1237,5.7107,6.2203,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.2.b.3,Updating and Using Relevant Knowledge,IM,Importance,3.70,26,0.3566,2.9691,4.4378,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.2.b.3,Updating and Using Relevant Knowledge,LV,Level,5.57,26,0.1636,5.2359,5.9096,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.2.b.4,Developing Objectives and Strategies,IM,Importance,3.38,26,0.2496,2.8633,3.8914,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.2.b.4,Developing Objectives and Strategies,LV,Level,3.87,26,0.2311,3.3895,4.3416,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.2.b.5,Scheduling Work and Activities,IM,Importance,2.92,26,0.4605,1.9759,3.8727,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.2.b.5,Scheduling Work and Activities,LV,Level,2.98,26,0.6338,1.6792,4.2898,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.2.b.6,"Organizing, Planning, and Prioritizing Work",IM,Importance,3.98,26,0.2203,3.5305,4.4379,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.2.b.6,"Organizing, Planning, and Prioritizing Work",LV,Level,4.62,26,0.5056,3.5823,5.6648,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.3.a.1,Performing General Physical Activities,IM,Importance,1.09,26,0.0584,1.0000,1.2106,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.3.a.1,Performing General Physical Activities,LV,Level,0.17,26,0.1099,0.0000,0.3985,Y,Y,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.3.a.2,Handling and Moving Objects,IM,Importance,1.07,26,0.0445,1.0000,1.1587,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.3.a.2,Handling and Moving Objects,LV,Level,0.14,26,0.0899,0.0000,0.3229,Y,Y,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.3.a.3,Controlling Machines and Processes,IM,Importance,1.81,26,0.3788,1.0288,2.5891,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.3.a.3,Controlling Machines and Processes,LV,Level,1.33,26,0.6305,0.0285,2.6258,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.3.a.4,"Operating Vehicles, Mechanized Devices, or Equipment",IM,Importance,1.05,26,0.0387,1.0000,1.1336,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.3.a.4,"Operating Vehicles, Mechanized Devices, or Equipment",LV,Level,0.11,26,0.0796,0.0000,0.2755,Y,Y,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.3.b.1,Working with Computers,IM,Importance,4.98,26,0.0158,4.9443,5.0000,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.3.b.1,Working with Computers,LV,Level,5.09,26,0.5689,3.9228,6.2662,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.3.b.2,"Drafting, Laying Out, and Specifying Technical Devices, Parts, and Equipment",IM,Importance,2.09,26,0.3309,1.4057,2.7688,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.3.b.2,"Drafting, Laying Out, and Specifying Technical Devices, Parts, and Equipment",LV,Level,1.84,26,0.5298,0.7448,2.9270,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.3.b.4,Repairing and Maintaining Mechanical Equipment,IM,Importance,1.07,26,0.0563,1.0000,1.1836,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.3.b.4,Repairing and Maintaining Mechanical Equipment,LV,Level,0.17,26,0.1412,0.0000,0.4608,Y,Y,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.3.b.5,Repairing and Maintaining Electronic Equipment,IM,Importance,1.56,26,0.2519,1.0424,2.0801,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.3.b.5,Repairing and Maintaining Electronic Equipment,LV,Level,1.30,26,0.6286,0.0099,2.5991,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.3.b.6,Documenting/Recording Information,IM,Importance,3.19,26,0.3328,2.5078,3.8787,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.3.b.6,Documenting/Recording Information,LV,Level,4.20,26,0.4603,3.2497,5.1456,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.4.a.1,Interpreting the Meaning of Information for Others,IM,Importance,4.09,25,0.4710,3.1180,5.0000,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.4.a.1,Interpreting the Meaning of Information for Others,LV,Level,4.00,25,0.2637,3.4602,4.5489,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.4.a.2,"Communicating with Supervisors, Peers, or Subordinates",IM,Importance,3.79,25,0.4711,2.8155,4.7601,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.4.a.2,"Communicating with Supervisors, Peers, or Subordinates",LV,Level,4.24,26,0.4187,3.3811,5.1055,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.4.a.3,Communicating with People Outside the Organization,IM,Importance,3.28,26,0.6202,1.9991,4.5536,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.4.a.3,Communicating with People Outside the Organization,LV,Level,3.18,26,0.7156,1.7074,4.6548,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.4.a.4,Establishing and Maintaining Interpersonal Relationships,IM,Importance,3.15,26,0.2854,2.5623,3.7380,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.4.a.4,Establishing and Maintaining Interpersonal Relationships,LV,Level,4.16,26,0.1880,3.7714,4.5457,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.4.a.5,Assisting and Caring for Others,IM,Importance,2.04,26,0.3507,1.3199,2.7646,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.4.a.5,Assisting and Caring for Others,LV,Level,1.56,26,0.4823,0.5643,2.5509,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.4.a.6,Selling or Influencing Others,IM,Importance,1.91,26,0.3608,1.1624,2.6487,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.4.a.6,Selling or Influencing Others,LV,Level,1.63,26,0.7318,0.1181,3.1325,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.4.a.7,Resolving Conflicts and Negotiating with Others,IM,Importance,1.78,26,0.2753,1.2121,2.3463,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.4.a.7,Resolving Conflicts and Negotiating with Others,LV,Level,1.52,26,0.4798,0.5291,2.5055,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.4.a.8,Performing for or Working Directly with the Public,IM,Importance,1.43,26,0.3088,1.0000,2.0647,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.4.a.8,Performing for or Working Directly with the Public,LV,Level,0.53,26,0.3518,0.0000,1.2567,Y,Y,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.4.b.1,Coordinating the Work and Activities of Others,IM,Importance,2.18,26,0.1250,1.9233,2.4383,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.4.b.1,Coordinating the Work and Activities of Others,LV,Level,2.79,26,0.1732,2.4312,3.1444,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.4.b.2,Developing and Building Teams,IM,Importance,2.56,26,0.2788,1.9826,3.1309,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.4.b.2,Developing and Building Teams,LV,Level,2.51,26,0.2872,1.9190,3.1021,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.4.b.3,Training and Teaching Others,IM,Importance,2.32,26,0.2341,1.8337,2.7981,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.4.b.3,Training and Teaching Others,LV,Level,2.03,26,0.3260,1.3559,2.6986,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.4.b.4,"Guiding, Directing, and Motivating Subordinates",IM,Importance,1.92,26,0.2625,1.3837,2.4648,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.4.b.4,"Guiding, Directing, and Motivating Subordinates",LV,Level,1.75,26,0.4436,0.8332,2.6605,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.4.b.5,Coaching and Developing Others,IM,Importance,2.38,26,0.2189,1.9255,2.8273,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.4.b.5,Coaching and Developing Others,LV,Level,2.73,26,0.2588,2.1942,3.2603,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.4.b.6,Providing Consultation and Advice to Others,IM,Importance,3.07,26,0.3786,2.2876,3.8472,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.4.b.6,Providing Consultation and Advice to Others,LV,Level,3.99,26,0.4916,2.9825,5.0073,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.4.c.1,Performing Administrative Activities,IM,Importance,2.01,26,0.1683,1.6587,2.3521,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.4.c.1,Performing Administrative Activities,LV,Level,1.60,26,0.3176,0.9478,2.2562,N,N,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.4.c.2,Staffing Organizational Units,IM,Importance,1.16,26,0.1009,1.0000,1.3635,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.4.c.2,Staffing Organizational Units,LV,Level,0.24,26,0.1514,0.0000,0.5494,Y,Y,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.4.c.3,Monitoring and Controlling Resources,IM,Importance,1.61,26,0.2515,1.0917,2.1278,N,,08/2026,Incumbent
+15-1255.00,Web and Digital Interface Designers,4.A.4.c.3,Monitoring and Controlling Resources,LV,Level,1.02,26,0.4030,0.1877,1.8479,N,N,08/2026,Incumbent
+15-2051.00,Data Scientists,4.A.1.a.1,Getting Information,IM,Importance,4.33,24,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.1.a.1,Getting Information,LV,Level,5.20,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.1.a.2,"Monitoring Processes, Materials, or Surroundings",IM,Importance,2.92,24,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.1.a.2,"Monitoring Processes, Materials, or Surroundings",LV,Level,3.72,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.1.b.1,"Identifying Objects, Actions, and Events",IM,Importance,3.71,24,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.1.b.1,"Identifying Objects, Actions, and Events",LV,Level,4.52,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.1.b.2,"Inspecting Equipment, Structures, or Materials",IM,Importance,1.83,24,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.1.b.2,"Inspecting Equipment, Structures, or Materials",LV,Level,1.56,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.1.b.3,"Estimating the Quantifiable Characteristics of Products, Events, or Information",IM,Importance,3.22,23,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.1.b.3,"Estimating the Quantifiable Characteristics of Products, Events, or Information",LV,Level,3.96,24,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.2.a.1,"Judging the Qualities of Objects, Services, or People",IM,Importance,2.12,24,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.2.a.1,"Judging the Qualities of Objects, Services, or People",LV,Level,2.32,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.2.a.2,Processing Information,IM,Importance,4.71,24,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.2.a.2,Processing Information,LV,Level,6.32,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.2.a.3,Evaluating Information to Determine Compliance with Standards,IM,Importance,2.70,23,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.2.a.3,Evaluating Information to Determine Compliance with Standards,LV,Level,3.00,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.2.a.4,Analyzing Data or Information,IM,Importance,4.83,24,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.2.a.4,Analyzing Data or Information,LV,Level,6.48,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.2.b.1,Making Decisions and Solving Problems,IM,Importance,4.33,24,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.2.b.1,Making Decisions and Solving Problems,LV,Level,5.32,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.2.b.2,Thinking Creatively,IM,Importance,3.83,24,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.2.b.2,Thinking Creatively,LV,Level,5.48,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.2.b.3,Updating and Using Relevant Knowledge,IM,Importance,4.33,24,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.2.b.3,Updating and Using Relevant Knowledge,LV,Level,6.04,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.2.b.4,Developing Objectives and Strategies,IM,Importance,3.21,24,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.2.b.4,Developing Objectives and Strategies,LV,Level,3.64,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.2.b.5,Scheduling Work and Activities,IM,Importance,2.79,24,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.2.b.5,Scheduling Work and Activities,LV,Level,3.44,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.2.b.6,"Organizing, Planning, and Prioritizing Work",IM,Importance,3.54,24,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.2.b.6,"Organizing, Planning, and Prioritizing Work",LV,Level,4.80,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.3.a.1,Performing General Physical Activities,IM,Importance,1.08,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.3.a.1,Performing General Physical Activities,LV,Level,0.16,25,,,,,Y,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.3.a.2,Handling and Moving Objects,IM,Importance,1.24,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.3.a.2,Handling and Moving Objects,LV,Level,0.60,25,,,,,Y,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.3.a.3,Controlling Machines and Processes,IM,Importance,1.29,24,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.3.a.3,Controlling Machines and Processes,LV,Level,0.54,24,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.3.a.4,"Operating Vehicles, Mechanized Devices, or Equipment",IM,Importance,1.04,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.3.a.4,"Operating Vehicles, Mechanized Devices, or Equipment",LV,Level,0.08,25,,,,,Y,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.3.b.1,Working with Computers,IM,Importance,4.75,24,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.3.b.1,Working with Computers,LV,Level,4.92,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.3.b.2,"Drafting, Laying Out, and Specifying Technical Devices, Parts, and Equipment",IM,Importance,1.38,24,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.3.b.2,"Drafting, Laying Out, and Specifying Technical Devices, Parts, and Equipment",LV,Level,0.75,24,,,,,Y,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.3.b.4,Repairing and Maintaining Mechanical Equipment,IM,Importance,1.04,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.3.b.4,Repairing and Maintaining Mechanical Equipment,LV,Level,0.08,25,,,,,Y,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.3.b.5,Repairing and Maintaining Electronic Equipment,IM,Importance,1.24,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.3.b.5,Repairing and Maintaining Electronic Equipment,LV,Level,0.48,25,,,,,Y,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.3.b.6,Documenting/Recording Information,IM,Importance,3.88,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.3.b.6,Documenting/Recording Information,LV,Level,4.60,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.4.a.1,Interpreting the Meaning of Information for Others,IM,Importance,4.48,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.4.a.1,Interpreting the Meaning of Information for Others,LV,Level,5.52,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.4.a.2,"Communicating with Supervisors, Peers, or Subordinates",IM,Importance,4.00,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.4.a.2,"Communicating with Supervisors, Peers, or Subordinates",LV,Level,4.92,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.4.a.3,Communicating with People Outside the Organization,IM,Importance,2.56,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.4.a.3,Communicating with People Outside the Organization,LV,Level,3.20,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.4.a.4,Establishing and Maintaining Interpersonal Relationships,IM,Importance,3.08,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.4.a.4,Establishing and Maintaining Interpersonal Relationships,LV,Level,4.08,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.4.a.5,Assisting and Caring for Others,IM,Importance,1.71,24,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.4.a.5,Assisting and Caring for Others,LV,Level,1.32,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.4.a.6,Selling or Influencing Others,IM,Importance,2.36,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.4.a.6,Selling or Influencing Others,LV,Level,2.68,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.4.a.7,Resolving Conflicts and Negotiating with Others,IM,Importance,2.04,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.4.a.7,Resolving Conflicts and Negotiating with Others,LV,Level,2.64,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.4.a.8,Performing for or Working Directly with the Public,IM,Importance,1.32,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.4.a.8,Performing for or Working Directly with the Public,LV,Level,0.72,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.4.b.1,Coordinating the Work and Activities of Others,IM,Importance,2.80,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.4.b.1,Coordinating the Work and Activities of Others,LV,Level,3.56,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.4.b.2,Developing and Building Teams,IM,Importance,2.72,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.4.b.2,Developing and Building Teams,LV,Level,3.16,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.4.b.3,Training and Teaching Others,IM,Importance,2.80,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.4.b.3,Training and Teaching Others,LV,Level,3.88,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.4.b.4,"Guiding, Directing, and Motivating Subordinates",IM,Importance,2.48,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.4.b.4,"Guiding, Directing, and Motivating Subordinates",LV,Level,3.56,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.4.b.5,Coaching and Developing Others,IM,Importance,2.50,24,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.4.b.5,Coaching and Developing Others,LV,Level,3.68,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.4.b.6,Providing Consultation and Advice to Others,IM,Importance,3.60,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.4.b.6,Providing Consultation and Advice to Others,LV,Level,5.08,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.4.c.1,Performing Administrative Activities,IM,Importance,2.04,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.4.c.1,Performing Administrative Activities,LV,Level,2.16,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.4.c.2,Staffing Organizational Units,IM,Importance,2.12,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.4.c.2,Staffing Organizational Units,LV,Level,2.96,25,,,,,N,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.4.c.3,Monitoring and Controlling Resources,IM,Importance,1.88,25,,,,,,08/2026,Occupational Expert
+15-2051.00,Data Scientists,4.A.4.c.3,Monitoring and Controlling Resources,LV,Level,1.84,25,,,,,N,08/2026,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.1.a.1,Getting Information,IM,Importance,4.50,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.1.a.1,Getting Information,LV,Level,5.41,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.1.a.2,"Monitoring Processes, Materials, or Surroundings",IM,Importance,2.76,21,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.1.a.2,"Monitoring Processes, Materials, or Surroundings",LV,Level,3.29,21,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.1.b.1,"Identifying Objects, Actions, and Events",IM,Importance,3.91,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.1.b.1,"Identifying Objects, Actions, and Events",LV,Level,4.73,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.1.b.2,"Inspecting Equipment, Structures, or Materials",IM,Importance,1.23,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.1.b.2,"Inspecting Equipment, Structures, or Materials",LV,Level,0.55,22,,,,,Y,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.1.b.3,"Estimating the Quantifiable Characteristics of Products, Events, or Information",IM,Importance,3.27,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.1.b.3,"Estimating the Quantifiable Characteristics of Products, Events, or Information",LV,Level,3.82,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.2.a.1,"Judging the Qualities of Objects, Services, or People",IM,Importance,2.91,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.2.a.1,"Judging the Qualities of Objects, Services, or People",LV,Level,3.76,21,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.2.a.2,Processing Information,IM,Importance,4.64,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.2.a.2,Processing Information,LV,Level,5.73,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.2.a.3,Evaluating Information to Determine Compliance with Standards,IM,Importance,3.24,21,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.2.a.3,Evaluating Information to Determine Compliance with Standards,LV,Level,3.68,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.2.a.4,Analyzing Data or Information,IM,Importance,4.73,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.2.a.4,Analyzing Data or Information,LV,Level,6.09,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.2.b.1,Making Decisions and Solving Problems,IM,Importance,3.82,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.2.b.1,Making Decisions and Solving Problems,LV,Level,4.59,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.2.b.2,Thinking Creatively,IM,Importance,3.77,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.2.b.2,Thinking Creatively,LV,Level,5.05,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.2.b.3,Updating and Using Relevant Knowledge,IM,Importance,4.05,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.2.b.3,Updating and Using Relevant Knowledge,LV,Level,5.36,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.2.b.4,Developing Objectives and Strategies,IM,Importance,3.05,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.2.b.4,Developing Objectives and Strategies,LV,Level,3.68,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.2.b.5,Scheduling Work and Activities,IM,Importance,2.77,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.2.b.5,Scheduling Work and Activities,LV,Level,3.55,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.2.b.6,"Organizing, Planning, and Prioritizing Work",IM,Importance,3.95,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.2.b.6,"Organizing, Planning, and Prioritizing Work",LV,Level,4.82,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.3.a.1,Performing General Physical Activities,IM,Importance,1.09,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.3.a.1,Performing General Physical Activities,LV,Level,0.09,22,,,,,Y,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.3.a.2,Handling and Moving Objects,IM,Importance,1.09,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.3.a.2,Handling and Moving Objects,LV,Level,0.18,22,,,,,Y,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.3.a.3,Controlling Machines and Processes,IM,Importance,1.05,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.3.a.3,Controlling Machines and Processes,LV,Level,0.09,22,,,,,Y,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.3.a.4,"Operating Vehicles, Mechanized Devices, or Equipment",IM,Importance,1.05,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.3.a.4,"Operating Vehicles, Mechanized Devices, or Equipment",LV,Level,0.09,22,,,,,Y,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.3.b.1,Working with Computers,IM,Importance,4.68,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.3.b.1,Working with Computers,LV,Level,4.86,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.3.b.2,"Drafting, Laying Out, and Specifying Technical Devices, Parts, and Equipment",IM,Importance,1.09,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.3.b.2,"Drafting, Laying Out, and Specifying Technical Devices, Parts, and Equipment",LV,Level,0.23,22,,,,,Y,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.3.b.4,Repairing and Maintaining Mechanical Equipment,IM,Importance,1.00,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.3.b.4,Repairing and Maintaining Mechanical Equipment,LV,Level,0.00,22,,,,,Y,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.3.b.5,Repairing and Maintaining Electronic Equipment,IM,Importance,1.05,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.3.b.5,Repairing and Maintaining Electronic Equipment,LV,Level,0.05,22,,,,,Y,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.3.b.6,Documenting/Recording Information,IM,Importance,3.50,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.3.b.6,Documenting/Recording Information,LV,Level,3.95,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.4.a.1,Interpreting the Meaning of Information for Others,IM,Importance,4.55,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.4.a.1,Interpreting the Meaning of Information for Others,LV,Level,5.36,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.4.a.2,"Communicating with Supervisors, Peers, or Subordinates",IM,Importance,4.23,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.4.a.2,"Communicating with Supervisors, Peers, or Subordinates",LV,Level,5.23,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.4.a.3,Communicating with People Outside the Organization,IM,Importance,3.00,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.4.a.3,Communicating with People Outside the Organization,LV,Level,4.09,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.4.a.4,Establishing and Maintaining Interpersonal Relationships,IM,Importance,3.64,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.4.a.4,Establishing and Maintaining Interpersonal Relationships,LV,Level,4.55,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.4.a.5,Assisting and Caring for Others,IM,Importance,1.86,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.4.a.5,Assisting and Caring for Others,LV,Level,1.41,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.4.a.6,Selling or Influencing Others,IM,Importance,2.41,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.4.a.6,Selling or Influencing Others,LV,Level,2.55,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.4.a.7,Resolving Conflicts and Negotiating with Others,IM,Importance,2.55,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.4.a.7,Resolving Conflicts and Negotiating with Others,LV,Level,3.18,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.4.a.8,Performing for or Working Directly with the Public,IM,Importance,1.59,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.4.a.8,Performing for or Working Directly with the Public,LV,Level,1.27,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.4.b.1,Coordinating the Work and Activities of Others,IM,Importance,2.73,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.4.b.1,Coordinating the Work and Activities of Others,LV,Level,3.41,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.4.b.2,Developing and Building Teams,IM,Importance,2.68,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.4.b.2,Developing and Building Teams,LV,Level,3.09,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.4.b.3,Training and Teaching Others,IM,Importance,2.95,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.4.b.3,Training and Teaching Others,LV,Level,4.00,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.4.b.4,"Guiding, Directing, and Motivating Subordinates",IM,Importance,2.68,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.4.b.4,"Guiding, Directing, and Motivating Subordinates",LV,Level,3.41,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.4.b.5,Coaching and Developing Others,IM,Importance,2.95,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.4.b.5,Coaching and Developing Others,LV,Level,4.14,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.4.b.6,Providing Consultation and Advice to Others,IM,Importance,3.41,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.4.b.6,Providing Consultation and Advice to Others,LV,Level,4.86,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.4.c.1,Performing Administrative Activities,IM,Importance,2.50,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.4.c.1,Performing Administrative Activities,LV,Level,2.82,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.4.c.2,Staffing Organizational Units,IM,Importance,1.90,21,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.4.c.2,Staffing Organizational Units,LV,Level,2.23,22,,,,,N,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.4.c.3,Monitoring and Controlling Resources,IM,Importance,2.09,22,,,,,,08/2024,Occupational Expert
+15-2051.01,Business Intelligence Analysts,4.A.4.c.3,Monitoring and Controlling Resources,LV,Level,2.14,22,,,,,N,08/2024,Occupational Expert

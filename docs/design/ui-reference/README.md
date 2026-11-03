@@ -1,6 +1,6 @@
 # Asgard frontend reference
 
-25 October 2026 · Historical UI source snapshot for agent and developer context
+25 October 2026 · Historical UI source snapshot for implementation context
 
 This folder preserves useful frontend work from the one-day experiment: screen markup, layout, shared CSS, visual states and sample content. It is a reference implementation, not the main application, an approved architecture, or an accurate specification of every design and interaction. Reuse requires review against the current task and governing documents.
 
@@ -35,7 +35,7 @@ No API route, database module, migration, Supabase configuration, server recomme
 ## Known inaccuracies and gaps
 
 - Results use a selected-result/detail flow. Current F-002 instead specifies individual View roadmap actions plus full Browse careers, with no result selection prerequisite.
-- Discovery options, selection limits, six-segment wording and save timing reflect experiment choices. The working skeleton and this snapshot do not implement the owner-selected conditional route flow. F-001 supplies baseline checkbox/radio rules, exclusive uncertainty and explicit saved checkpoints; Assignment A must author the route map and inactive-answer policy.
+- Discovery options, selection limits, six-segment wording and save timing reflect experiment choices. The working skeleton and this snapshot do not implement the selected conditional route flow. F-001 supplies baseline checkbox/radio rules, exclusive uncertainty and explicit saved checkpoints; Assignment A must author the route map and inactive-answer policy.
 - Catalog search/filter context resets on remount; catalog Back and explained recommendations are incomplete.
 - Authentication, logout, optional profile setup as a separate flow, photo/PDF actions and account-security screens are absent.
 - Topic progress assumes global topic IDs and a single local profile; the current roadmap-specific identities, learning alternatives, ownership and history rules are not represented. The current milestone-list presentation does not require a graph canvas.

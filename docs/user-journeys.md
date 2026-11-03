@@ -7,19 +7,19 @@ requires: [BRIEF, PRD]
 
 # User journeys
 
-**Version 0.2 · Updated 26 October 2026 · Status: Intended journeys with recorded owner resolutions; feature acceptance pending**
+## Current local MVP scope — 2026-11-02
+
+The approved [local evaluation resolution](decisions.md#local-evaluation-mvp-resolution-2026-11-02) governs this document's current delivery scope. [Development](development.md#current-local-mvp-status-2026-11-02) records source and dated evidence. Requirements and acceptance IDs below are preserved; inclusion is not a claim that their checks passed.
+
+REQ-01/REQ-13 account recovery, Google linking and deletion; REQ-11 photo/PDF and new MFA lifecycle; REQ-08/REQ-09 shared conflict-resolution dialog; and REQ-10 chronological recent completions are deferred portions for this local MVP. Detailed Profile answer summaries and richer guidance are also deferred. Existing PDF removal/cleanup and existing session/MFA enforcement remain. Future capabilities below retain their security constraints but do not become enabled or accepted through this scope change.
+
+The current baseline includes saved Discovery and blank retakes, suggestions when Groq is configured, catalog/roadmap browsing, explicit learning saves, Dashboard summaries/calendar/streak, names and separate preferences. Conflicting Learning changes are rejected and resolved manually before retry. Twelve roadmaps are locally published; independent curriculum review and current authenticated browser acceptance remain pending. Earlier scope statements below requiring these deferred features for MVP now describe the future public-product target.
+
+**Version 0.2 · Updated 26 October 2026 · Status: Intended journeys with recorded resolutions; feature acceptance pending**
 
 These draft journeys describe intended actions, responses, and recovery, not observed research or implemented behavior. [Product requirements](product.md) own requirements; [pages and interactions](pages-and-interactions.md) own screen details. The flow and student example below illustrate the same journeys without guaranteeing particular recommendations.
 
-[Development](development.md#current-foundation-status-and-evidence) records the implemented local foundation and unfinished integrations. Google/MFA/recovery, saved Discovery, learning/progress and PDF steps below remain intended capabilities; their presence in a journey does not establish runtime support. The originating BRIEF/review provenance gap is recorded in [Decisions](decisions.md#documentation-authority-and-unresolved-integration-records).
-
-## Review boundaries
-
-- The initial release is for adults aged 18 and above across all experience levels; students are the initial design-evaluation group.
-- The unfinished Discovery skeleton shows five baseline themes; the intended flow may show different later questions or choice sets based on earlier answers. Assignment A's reviewed route map and F-001 persistence integration remain unfinished; comprehension and quality remain unverified. Earlier questionnaire alternatives are historical references, not additional user choices.
-- Canonical roadmap/milestone/topic presentation exists under [Design](design.md); visual approval, current-app manual review and feature interactions remain pending. The journeys describe required behavior, not completed acceptance.
-- Six categories and seven launch roles are selected in Product. Authored topic sequences, milestones, learning alternatives and resources still require editorial review/publication. Named examples are not approved curricula.
-- Selected profile/security/lifecycle policy is recorded in the [decision register](decisions.md) and security baseline. Provider compatibility and unrun evidence remain release gates.
+Current source implements the core journeys below. The [local acceptance record](features/deployment-preparation.md) covers October flows; the [November expansion](features/roadmap-content-expansion.md) has separate publication evidence and pending browser acceptance. Future/deferred steps are governed by the scope note above. Journeys are expected behavior, not user-research findings or automatic acceptance.
 
 ## J-01: Sign in and browse directly
 
@@ -158,7 +158,6 @@ These draft journeys describe intended actions, responses, and recovery, not obs
 - Current roadmap changes only by Set as current roadmap. Topic states change only through explicit saved actions. Neither profile edits nor recommendations silently reset learning.
 - Career comparison, standalone bookmarking, conversational tutoring, AI-generated roadmaps, and career videos are not introduced by these journeys.
 - Accessibility, responsive presentation, reliability, security, service-failure behavior, and selected quality targets remain governed by NFR-01 through NFR-10.
-
 
 ## Navigation flow
 

@@ -9,20 +9,26 @@ acceptance: [F-001-AC-01, F-001-AC-02, F-001-AC-03, F-001-AC-04, F-001-AC-05, F-
 
 # Asgard: Discovery
 
-Owner-directed retake update, 2026-10-28: a retake starts with blank answers and is
+## Current local MVP scope — 2026-11-02
+
+The approved [local evaluation resolution](../decisions.md#local-evaluation-mvp-resolution-2026-11-02) governs this document's current delivery scope. [Development](../development.md#current-local-mvp-status-2026-11-02) records source and dated evidence. Requirements and acceptance IDs below are preserved; inclusion is not a claim that their checks passed.
+
+REQ-01/REQ-13 account recovery, Google linking and deletion; REQ-11 photo/PDF and new MFA lifecycle; REQ-08/REQ-09 shared conflict-resolution dialog; and REQ-10 chronological recent completions are deferred portions for this local MVP. Detailed Profile answer summaries and richer guidance are also deferred. Existing PDF removal/cleanup and existing session/MFA enforcement remain. Future capabilities below retain their security constraints but do not become enabled or accepted through this scope change.
+
+The current baseline includes saved Discovery and blank retakes, suggestions when Groq is configured, catalog/roadmap browsing, explicit learning saves, Dashboard summaries/calendar/streak, names and separate preferences. Conflicting Learning changes are rejected and resolved manually before retry. Twelve roadmaps are locally published; independent curriculum review and current authenticated browser acceptance remain pending. Earlier scope statements below requiring these deferred features for MVP now describe the future public-product target.
+
+Recorded retake update, 2026-10-28: a retake starts with blank answers and is
 initiated from Settings. Existing completed sessions remain immutable, learning
 progress is retained, and an already-open draft is resumed. This supersedes the
 earlier copied-answer retake behavior. The refreshed screens use the Figma exports
 for presentation while retaining the server-authored questions and selection rules.
 See [the implementation guide](../features/discovery-catalog-refresh.md).
 
-Owner-approved connected-prototype boundary, 2026-10-28: the [recorded resolution](../decisions.md#connected-prototype-resolution-2026-10-28) supplies the first authored route. The activities question alone branches into tools/design/investigation/systems variants for a single corresponding interest; mixed/uncertain interests use general activities. All routes then share approach, background and goals. Inactive answers are retained and restored when their branch becomes active, but excluded from completion and recommendations. The [guide](../features/connected-prototype.md) and [versioned definition](../../backend/app/modules/discovery/definition.py) locate the implementation; generated OpenAPI remains the wire authority. Earlier statements below that the route map is unauthored describe the preceding draft status and are superseded only for this bounded local prototype. No comprehension or runtime acceptance is claimed.
+Approved connected-prototype boundary, 2026-10-28: the [recorded resolution](../decisions.md#connected-prototype-resolution-2026-10-28) supplies the first authored route. The activities question alone branches into tools/design/investigation/systems variants for a single corresponding interest; mixed/uncertain interests use general activities. All routes then share approach, background and goals. Inactive answers are retained and restored when their branch becomes active, but excluded from completion and recommendations. The [guide](../features/connected-prototype.md) and [versioned definition](../../backend/app/modules/discovery/definition.py) locate the implementation; generated OpenAPI remains the wire authority. Earlier statements below that the route map is unauthored describe the preceding draft status and are superseded only for this bounded local prototype. No comprehension or runtime acceptance is claimed.
 
 **Version 0.2 · 23 October 2026 · Status: Draft for review**
 
-Implementation pointers updated 26 October 2026. Stage 4 provides [Discovery schemas](../../backend/app/modules/discovery/schemas.py), generic saved-session/answer envelopes, a versioned identity registry and generated API scaffolding. The [shared handoff](../development.md#stage-4-shared-contracts-and-handoff) defines ownership/revision boundaries; feature handlers still return 501. Authored question/option publication, service-level meaning/exclusion validation and persisted UI integration remain unfinished. Local selection screens do not establish saved Discovery acceptance. The BRIEF provenance gap is recorded in [Decisions](../decisions.md#documentation-authority-and-unresolved-integration-records).
-
-This specification follows [Product](../product.md), [pages](../pages-and-interactions.md), and [journeys](../user-journeys.md). The five existing themes and wording areas remain the content baseline; the owner clarified on 26 October 2026 that later question or choice sets may depend on earlier answers. The current UI is an unfinished skeleton, not the route authority. Assignment A must propose a reviewed route map before branch-dependent implementation. Controls and persistence below are baseline policies, subject to that route map; comprehension/evaluation are required evidence, not completed work. Earlier short/expanded questionnaires remain historical, not additional app modes.
+Current implementation uses the versioned [definition](../../backend/app/modules/discovery/definition.py) and [service](../../backend/app/modules/discovery/service.py): single-interest activity variants, general mixed/uncertain activities, then shared approach/background/goals. Saved inactive answers are retained/restored but excluded from completion and recommendation input. Local core acceptance is recorded; comprehension and full failure/concurrency acceptance remain pending. Copy tables below are editorial references; the versioned definition owns runtime labels and IDs.
 
 ## Purpose
 
@@ -36,7 +42,7 @@ Use the existing themes as the question-content baseline: general interests, act
 
 ### Source and writing rules
 
-The owner requested simpler wording while retaining the five existing themes as the content baseline. The baseline exports show five questions followed by results; they do not settle the conditional route map. The historical frontend snapshot has different question choices and does not supply questionnaire authority. Tables below pair each original card title with revised copy so the meaning can be reviewed. These titles are editorial references, not answer identifiers or a data contract.
+The documented scope covers simpler wording while retaining the five existing themes as the content baseline. The baseline exports show five questions followed by results; they do not settle the conditional route map. The historical frontend snapshot has different question choices and does not supply questionnaire authority. Tables below pair each original card title with revised copy so the meaning can be reviewed. These titles are editorial references, not answer identifiers or a data contract.
 
 - Use familiar words with specific descriptions of the activity. Keep meaningful distinctions such as software logic, data handling, and security; do not replace every option with a vague phrase such as solving problems.
 - Address adults with different experience levels. Avoid slang, personality types, skill rankings, and language suggesting that prior technical experience is necessary.
@@ -185,7 +191,7 @@ Before releasing the copy, ask beginners and experienced technical readers to ex
 - Returning sign-in reaches Dashboard. Unfinished saved answers support an optional Resume Discovery action; the questions do not reopen automatically.
 - Back retains answers. Skip questions and browse careers opens the catalog without fabricating responses.
 - Profile / Active Discovery Results provides a Retake Discovery action and displays available successful context. Its empty state does not fabricate a result.
-- Preserve saved answers where applicable on resume/retake and recoverable input after request failure. Save each valid round on Next or Back before navigation; explicit Skip questions saves valid pending answers first, or offers Leave without saving if persistence fails. The concurrency policy below applies.
+- Preserve saved answers on resume; start retakes blank and recoverable input after request failure. Save each valid round on Next or Back before navigation; explicit Skip questions saves valid pending answers first, or offers Leave without saving if persistence fails. The concurrency policy below applies.
 - Failed retakes preserve previous successful recommendations. Successful updates do not reset current roadmap or topic progress.
 
 ## Question and interpretation boundaries
@@ -195,7 +201,7 @@ Before releasing the copy, ask beginners and experienced technical readers to ex
 - Do not interpret uncertainty as dislike or low ability. A profession, qualification or activity preference does not establish unreported competence.
 - Software interest is not necessarily AI interest; automation does not necessarily use AI. Broad interest in building software does not establish a precise frontend/backend preference.
 - Later question or choice sets may depend on earlier answers. Editing an earlier answer recomputes the active route; recommendations use only answers active on that route. Assignment A must propose whether inactive answers are retained for possible restoration, revisited, or cleared, and define save/resume and Back behavior before implementation. Do not silently clear or remap answers.
-- Preserve the five themes and their intended order where applicable. Comprehension tests and reviewed catalog relevance attributes are release evidence; they do not replace the owner-reviewed route proposal.
+- Preserve the five themes and their intended order where applicable. Comprehension tests and reviewed catalog relevance attributes are release evidence; they do not replace the reviewed route proposal.
 
 ## Results and recommendations
 
@@ -259,7 +265,7 @@ No optional free-text fields are introduced. Conditional questions and choice se
 
 Save valid answers at explicit Next/Back/Skip checkpoints, with pending/success/failure feedback; do not autosave every click. Invalid current-round answers may return via Back without discarding earlier saved rounds; preserve the current local draft while the tab stays open. Closing an unsaved draft or navigating elsewhere offers Save and leave (if valid), Leave without saving, or Stay. Do not claim unsubmitted changes survived a closed tab. Warn on unsaved browser exit where supported, without relying on that warning as persistence.
 
-Use a versioned saved draft. A stale tab must not overwrite a newer revision; show that answers changed elsewhere and offer Reload saved answers or an explicit reviewed overwrite after seeing both versions. No silent last-write-wins. Retake starts from the last successful answer set in a separate draft; the previous successful result remains until eligible replacement. Final submission atomically accepts the answer revision before generation; generation failure preserves it for explicit retry.
+Use a versioned saved draft. A stale tab must not overwrite a newer revision; show that answers changed elsewhere and offer Reload saved answers or an explicit reviewed overwrite after seeing both versions. No silent last-write-wins. Retake starts blank in a separate draft from Settings, retaining the prior completed session; the previous successful result remains until eligible replacement. Final submission atomically accepts the answer revision before generation; generation failure preserves it for explicit retry.
 
 ## Additional acceptance scenarios
 

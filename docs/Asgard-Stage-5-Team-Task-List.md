@@ -1,9 +1,23 @@
 # Stage 5 — Team Task List
 
+## Current assignment status — 2026-11-02
+
+The original unchecked assignments below are retained as the historical work breakdown, not a current completion report. Delivery was revised to the [local evaluation MVP](decisions.md#local-evaluation-mvp-resolution-2026-11-02). “Implemented” means source exists, not completed independent review.
+
+| Assignment | Current disposition | Evidence / outstanding work |
+| --- | --- | --- |
+| A: Discovery/Dashboard/Profile | Partially implemented against original list | [Discovery](features/discovery-catalog-refresh.md) and [handoff](features/mvp-backend-handoff.md): saved branching/results, account Dashboard, names/preferences and guidance implemented. Photos/PDF processing, detailed Profile context and chronological recent completions deferred; cross-device and current visual review pending. |
+| B: Catalog/Roadmaps | Implemented source; awaiting content/browser review | [12-roadmap expansion](features/roadmap-content-expansion.md) and [catalog](features/career-catalog.md): all seven original roles represented; publication/search/resources/state controls exist. Independent curriculum/license review and November authenticated keyboard/visual checks pending. |
+| C: Recommendations/PDF | Partially implemented; PDF processing deferred | [Handoff](features/mvp-backend-handoff.md): provider/validation/persistence/evidence/quota controls implemented with bounded synthetic evidence. Removal/cleanup retained. Full model-quality/privacy acceptance pending. |
+| D: Learning/activity | Implemented core; shared dialog deferred | [Acceptance](features/deployment-preparation.md): focus/branch/state, calculations/activity and preservation have local evidence. Conflict actions reject and require manual resolution/retry. Exhaustive concurrency/cross-tab/failure coverage pending. |
+| Lead/shared operations | Awaiting review; hosted work deferred | Independent technical review is required; completed review/protected enforcement not assumed. Password minimum resolved by PASSWORD-01. Content and operations follow-up ownership remains unassigned unless separately recorded. |
+
+Do not mark an assignment complete from source presence alone. The old “Done when” statements below describe the original target; deferred portions are no longer local-MVP acceptance blockers, while security and truthful state handling remain mandatory.
+
 ## Ownership
 
 - Each feature owner designs and implements their feature end-to-end: UI, interactions, backend logic, persistence, integration and tests.
-- Assignment A owns Discovery questions and branching rules. The project lead reviews the proposal; they do not have to write the questions or logic.
+- Assignment A owns Discovery questions and branching rules. The proposal requires product and technical review before implementation.
 - The Stage 4 implementation owner builds the shared database/API foundation. Feature owners propose any missing contract needs for technical review.
 - Feature owners can prepare designs, content and tests now. Implementation that depends on an unfinished contract waits for that contract.
 - Keep the existing application UI and authentication. Changes to shared contracts, migrations or security require the designated technical review.
@@ -41,7 +55,7 @@
   - Network Engineer
 - [ ] Add milestones, topic explanations, starter tools, practical outcomes and free resources.
 - [ ] Define topic order, common paths, alternative branches and advisory prerequisites.
-- [ ] Record content sources, licenses, reviewer, dates and versions.
+- [ ] Record content sources, licenses, review evidence, dates and versions.
 - [ ] Implement catalog/roadmap content loading and publication checks using approved contracts.
 - [ ] Connect categories, role/skill search, filters and clear-filter actions.
 - [ ] Own catalog and roadmap pages, including dedicated URLs and career explanations.
@@ -93,20 +107,20 @@
 
 **Done when:** learning rules and saved summaries remain consistent across sessions, tabs, Dashboard and Roadmaps.
 
-## Project Lead — Review and Coordination
+## Review and Coordination
 
-The project lead approves scope and coordinates delivery. They are not automatically the implementation owner.
+Scope approval, integration sequencing and verification are separate from implementation.
 
-- [ ] Assign a named owner and reviewer to every feature and shared task.
+- [ ] Define scope, affected interfaces, dependencies, acceptance criteria and review requirements for each work package.
 - [ ] Review A’s branching proposal and B’s authored content.
-- [ ] Coordinate review of contract needs proposed by A–D with the Stage 4 owner.
+- [ ] Coordinate review of contract needs proposed by A–D with the shared-foundation integration process.
 - [ ] Record product decisions, including the password-policy mismatch.
 - [ ] Arrange Stage 3.5 manual acceptance and review shared-security/release evidence.
 - [ ] Coordinate integration order and approve release readiness.
 
 ## Shared Security and Operations — Assign Owners Before Starting
 
-These tasks are not implicitly assigned to the project lead or any of A–D. The project lead must name an implementation owner and reviewer for each group.
+These work packages require explicit scope, dependency ordering and review in the relevant technical area before implementation.
 
 | Task group | Implementation work |
 | --- | --- |

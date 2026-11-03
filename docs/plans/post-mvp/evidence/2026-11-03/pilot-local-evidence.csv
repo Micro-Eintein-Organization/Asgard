@@ -1,0 +1,9 @@
+source_role,source_id,pdf_page_1based,printed_pages,source_competency_label,source_level_verbatim,interpretation_limit
+Data Analyst,SRC-16,38,36,Data Analytics,2,Exact local role label; competency-to-Asgard mapping pending
+Data Analyst,SRC-16,38,36,Data Visualization and Storytelling,3,Same source role; preserve source level
+Data Analyst,SRC-16,38,36,Data Engineering,2,Same source role; not equivalent to a Data Engineer role
+Data Analyst,SRC-16,38,36,Data Ethics,3,Same source role; independent competency
+Data Analyst,SRC-16,38,36,Software Testing,2,Same source role; broad occupational expectation
+Associate Software Engineer,SRC-13,54,104-105,Applications Development,3,Broader candidate reference for Frontend; not accepted as equivalent
+Associate Software Engineer,SRC-13,54,104-105,Data Design,3,Broader software role; requires relevance review
+Associate Software Engineer,SRC-13,54,104-105,Applications Support and Enhancement,1-2,Range retained; no midpoint or 0-4 conversion

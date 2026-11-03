@@ -9,20 +9,15 @@ acceptance: [F-002-AC-01, F-002-AC-02, F-002-AC-03, F-002-AC-04, F-002-AC-05, F-
 
 # Asgard: Career recommendations
 
-Local handoff extension, 2026-10-28: the owner approved simple optional PDF
-analysis, source-backed recommendation evidence, private document lifecycle and
-synthetic evaluation in the connected MVP handoff task. Source now implements
-these services; see [handoff implementation/evidence](../features/mvp-backend-handoff.md).
-Real-document privacy activation and model-quality evaluation remain separate gates.
-Skill-gap assessment, comparisons and conversational guidance remain deferred in
-[future development](../future-development.md). This supersedes historical statements
-below that PDF and provider services remain unimplemented; their policy boundaries remain applicable.
+## Current local MVP scope — 2026-11-02
 
-Latest bounded prototype policy, 2026-10-28: the owner-approved [repair follow-up](../decisions.md#connected-prototype-resolution-2026-10-28) supersedes the catalog-gap behavior in the preceding prototype plan. New generations choose one to three closest available published career/roadmap pairs, with explicit caveats where the connection is weak or uncertain. Selection is an exploration aid limited to current content, never an assessed fit. An empty published catalog is an availability issue; malformed, truncated or ungrounded output remains a technical failure. The private provider format uses constrained candidate/evidence keys, resolved by the backend to its saved snapshot; public result fields are unchanged. The prototype total completion budget is now configurable with a 4,096-token default (including reasoning); short explanation bounds remain. Existing deadline, quota, provenance and explicit-refresh rules continue.
+The approved [local evaluation resolution](../decisions.md#local-evaluation-mvp-resolution-2026-11-02) governs this document's current delivery scope. [Development](../development.md#current-local-mvp-status-2026-11-02) records source and dated evidence. Requirements and acceptance IDs below are preserved; inclusion is not a claim that their checks passed.
 
-Owner-approved local prototype boundary, 2026-10-28: [the recorded resolution](../decisions.md#connected-prototype-resolution-2026-10-28) authorizes a Groq-backed three-career catalog (Frontend Developer, Data Analyst, UI/UX Designer) with brief roadmaps. This temporarily replaces the seven-role content expectation below for local prototype demonstration. When the available catalog does not support a suggestion, accept an empty provider selection and persist the `no_supported_careers` outcome; show a catalog limitation, not a forced fit. Completed Discovery remains saved independently. The [implementation guide](../features/connected-prototype.md) records the provider, persistence and publication. Model-quality and runtime verification remain pending; no broader release approval is implied.
+REQ-01/REQ-13 account recovery, Google linking and deletion; REQ-11 photo/PDF and new MFA lifecycle; REQ-08/REQ-09 shared conflict-resolution dialog; and REQ-10 chronological recent completions are deferred portions for this local MVP. Detailed Profile answer summaries and richer guidance are also deferred. Existing PDF removal/cleanup and existing session/MFA enforcement remain. Future capabilities below retain their security constraints but do not become enabled or accepted through this scope change.
 
-Updated 26 October 2026. Product defaults selected under owner delegation; Stage 4 storage, validation schemas and API scaffolding exist. Provider/PDF services, prompts, quality evaluation and feature acceptance remain unfinished. [Product](../product.md) owns scope; [architecture](../architecture.md) owns the React/FastAPI foundation. This replaces historical TypeScript-server proposals and deferred refresh/count choices. The originating BRIEF provenance gap is tracked in [Decisions](../decisions.md#documentation-authority-and-unresolved-integration-records).
+The current baseline includes saved Discovery and blank retakes, suggestions when Groq is configured, catalog/roadmap browsing, explicit learning saves, Dashboard summaries/calendar/streak, names and separate preferences. Conflicting Learning changes are rejected and resolved manually before retry. Twelve roadmaps are locally published; independent curriculum review and current authenticated browser acceptance remain pending. Earlier scope statements below requiring these deferred features for MVP now describe the future public-product target.
+
+Current source implements the backend Groq adapter, validated published-candidate selection, saved generations, idempotency, quotas and explicit refresh/retry. Results contain one to three available paths with weak/uncertain caveats; provider configuration is backend-only. The older three-career and empty-selection prototype policies are historical and superseded by the repair and November catalog releases. PDF processing is gated off; removal/cleanup remains. See [handoff evidence](../features/mvp-backend-handoff.md) and [content expansion](../features/roadmap-content-expansion.md). Model-quality evaluation and real-data provider/privacy gates remain pending.
 
 ## Goal and boundaries
 

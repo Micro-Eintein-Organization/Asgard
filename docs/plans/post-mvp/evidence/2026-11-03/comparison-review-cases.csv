@@ -1,0 +1,11 @@
+case_id,scenario,proposed_expected_behavior,status
+CASE-01,No user record for an occupational competency,Show unassessed; do not assert inability,proposed; human review pending; not an executed application test
+CASE-02,User confirms skill but leaves level unknown,Keep confirmation and unknown level independently,proposed; human review pending; not an executed application test
+CASE-03,User explicitly reports no experience,Keep distinct from unknown; zero exists only if rubric is approved,proposed; human review pending; not an executed application test
+CASE-04,PSF level 3 and NICS Intermediate have similar labels,Do not equate or convert levels without an accepted crosswalk,proposed; human review pending; not an executed application test
+CASE-05,"O*NET rating is suppressed, irrelevant or missing",Preserve flag and uncertainty; no fabricated target,proposed; human review pending; not an executed application test
+CASE-06,Broader Software Engineer source proposed for Frontend,Expose candidate breadth; do not import unrelated requirements as mandatory,proposed; human review pending; not an executed application test
+CASE-07,User corrects/removes experience,Recompute comparison and invalidate dependent cached evidence,proposed; human review pending; not an executed application test
+CASE-08,Occupational skill lacks a reviewed topic link,Show coverage limitation; do not fabricate curriculum,proposed; human review pending; not an executed application test
+CASE-09,User explores a different career,Compare transferable evidence without changing current learning focus,proposed; human review pending; not an executed application test
+CASE-10,A source release updates technology information,Display source/version/date; do not claim live Philippine employer demand,proposed; human review pending; not an executed application test

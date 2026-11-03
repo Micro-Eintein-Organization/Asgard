@@ -1,6 +1,8 @@
-# Asgard — AI Engineering Instructions
+# Asgard — Engineering Instructions
 
-These instructions apply to human contributors and AI agents. Read this file at the start of a task and follow any applicable instructions in the affected subtree.
+Current documentation baseline (2026-11-02): [Decisions](docs/decisions.md#local-evaluation-mvp-resolution-2026-11-02) defines the local evaluation MVP and explicit deferrals. [Development](docs/development.md#current-local-mvp-status-2026-11-02) separates current implementation from historical records. Review has no named assignment; technical review, Git restrictions and the foundation branch rule remain. The current feature follow-up uses `codex/connected-prototype`.
+
+These instructions apply to all contributors. Read this file at the start of a task and follow any applicable instructions in the affected subtree.
 
 ## Project authority
 
@@ -24,14 +26,14 @@ These instructions apply to human contributors and AI agents. Read this file at 
 
 ## Team coordination
 
-- Before implementation, record the task owner, scope, requirement/acceptance IDs, affected files or modules, dependencies, shared contracts, planned checks, and required reviewer in the task or implementation plan.
-- Check for existing edits and overlapping assignments before changing files. Coordinate overlapping work with the contributor and reviewer; preserve edits that are outside the task.
-- For the project owner's Stages 1–4 foundation work, use the existing `foundation` development branch until its pull request is accepted. `main` is the stable integration branch and receives foundation work only through a reviewed PR with base `main`, compare `foundation`. Do not create `codex/...` or other task branches automatically for this work. This owner-approved workflow (26 October 2026) supersedes the earlier per-agent branch rule for the owner's foundation work; it does not change the approved application architecture.
-- Check the active branch before editing. If it is not `foundation` for the owner's foundation work, explain the discrepancy and wait for direction; never silently switch branches. Teammates may use their own feature branches from the agreed reviewed baseline. Coordinate overlapping work and integration order.
-- Do not merge, rebase, cherry-pick, reset, force-push, delete branches, rewrite history, create commits or push without explicit owner approval for the specific operation. Approval to edit files is not approval to commit or publish. Never redirect foundation development into `main` or change this workflow without explicit owner approval. See the [foundation Git workflow](docs/development.md#foundation-git-workflow).
-- Auth, migrations, shared API contracts, cross-module invariants, infrastructure, and core dependency changes require architecture-owner review. Follow the architecture's requirement to establish code ownership and protected PR review before independent coding agents implement features.
-- Product/scope decisions belong to the project owner. Technical approvals belong to the designated architecture reviewer. If the required reviewer is unassigned, report the missing assignment before dependent implementation; do not assume approval authority.
-- The project lead confirmed the reviewer assignment on 26 October 2026; use [.github/CODEOWNERS](.github/CODEOWNERS) for the current repository account mapping. This assignment does not establish completed review, remote enforcement or permission to self-approve a PR. Check the current review/publication gates in [Development](docs/development.md#stage-4-parallel-readiness-and-publication).
+- Before implementation, record the problem, scope, requirement/acceptance IDs, affected components/contracts, dependencies, implementation steps, planned checks, acceptance criteria and unresolved questions.
+- Check for existing edits and overlapping assignments before changing files. Coordinate overlapping edits and review; preserve edits that are outside the task.
+- For Stages 1–4 foundation work, use the existing `foundation` development branch until its pull request is accepted. `main` is the stable integration branch and receives foundation work only through a reviewed PR with base `main`, compare `foundation`. Do not create additional task branches automatically for this work. This approved workflow (26 October 2026) supersedes the earlier per-agent branch rule for foundation work; it does not change the approved application architecture.
+- Check the active branch before editing. If it is not `foundation` for foundation work, explain the discrepancy and wait for direction; never silently switch branches. Teammates may use their own feature branches from the agreed reviewed baseline. Coordinate overlapping work and integration order.
+- Do not merge, rebase, cherry-pick, reset, force-push, delete branches, rewrite history, create commits or push without explicit approval for the specific operation. Approval to edit files is not approval to commit or publish. Never redirect foundation development into `main` or change this workflow without explicit approval. See the [foundation Git workflow](docs/development.md#foundation-git-workflow).
+- Auth, migrations, shared API contracts, cross-module invariants, infrastructure, and core dependency changes require architecture review. Follow the architecture's requirement to establish module boundaries and protected PR review before independent feature implementation.
+- Record product/scope decisions separately from technical acceptance. Any contributor may independently review changes; architecture, security, schema and shared-contract changes still require review in the relevant technical area before integration.
+- Review requires no named assignment. Preserve the protected-PR and verification gates in [Development](docs/development.md#stage-4-parallel-readiness-and-publication); review status must reflect evidence, not a metadata label.
 
 ## Portable local development and shared foundation
 
@@ -81,10 +83,10 @@ These instructions apply to human contributors and AI agents. Read this file at 
 
 - Resolve documentation paths from the checkout root: the folder containing `AGENTS.md`, `README.md`, `package.json` and `compose.yaml`. The internal feature-documentation directory is `<checkout-root>/docs/features/`; create it if needed. For example, the onboarding guide is `<checkout-root>/docs/features/windows-one-click-onboarding.md`. Use repository-relative source references and document-relative Markdown links inside guides so they work on every teammate's machine.
 - Every feature implementation or change must create or update its internal implementation guide at `docs/features/<feature-name>.md` in the same change or PR. Use a stable lowercase, hyphenated filename and update the existing guide when extending a feature.
-- Each feature guide must include the feature name, implementer's name, creation date, last-updated date, implementation/review status, requirement or acceptance IDs, implemented behavior, relevant source files/modules, verification results and manual steps, and known limitations or pending work. Record dates as `YYYY-MM-DD`. Use the actual contributor or agent name; never invent an author, approval, or completed check.
+- Each feature guide must include the feature name, creation/last-updated dates, implementation/review status, requirement or acceptance IDs, implemented behavior, relevant components/contracts, configuration, verification results/manual steps, and limitations or pending work. Use YYYY-MM-DD dates. Do not require personal attribution or invent completed checks.
 - Feature guides describe the implementation and link to the owning requirements, specifications, architecture, decisions and generated contracts. Keep those sources authoritative; do not duplicate their contracts or treat an implementation guide as approval for new behavior.
 - Update affected documentation in the same change or PR as the behavior, contract, setup, or architecture change. For non-feature work that needs no documentation update, explain why in the handoff or PR.
-- Keep requirements in the product/feature documents, architecture in the architecture document, and decision status in the relevant decision register or ADR. Record approval date, approver, scope, and a review reference when approval is given. Do not infer or backfill approval.
+- Keep requirements in product/feature documents, architecture in architecture documents, and decision status in the decision register or ADR. Record decision date, status, scope, rationale, consequences and superseded behavior with stable references. Do not infer approval from implementation.
 - Replacements of approved foundation choices require an ADR and updates to architecture, the development guide, and this file, as required by the architecture change policy.
 - Record significant changes with their date, affected documents/features, and decision or review reference. Use the task/PR record until a project changelog is established; use the changelog's Unreleased section once it exists. Keep proposals distinct from approved changes and do not log every edit.
 - A changelog summarizes history; it does not replace owning documents, approval evidence, task assignments, or verification. Generated entries must be checked against the actual change before review.
@@ -100,14 +102,14 @@ These instructions apply to human contributors and AI agents. Read this file at 
 - Report unresolved assumptions and integration risks.
 - Do not claim completion when acceptance criteria have not been verified.
 - Submit changes for human review before merging.
-- Include a handoff with the task/acceptance IDs, changed files, verification evidence, documentation updates, remaining blockers, and any integration order or follow-up owner needed. Leave unassigned follow-up ownership explicit.
+- Include a handoff with the task/acceptance IDs, changed files, verification evidence, documentation updates, remaining blockers, and any integration order or follow-up work needed. Leave unresolved dependencies explicit.
 - For feature work, link the created or updated `docs/features/<feature-name>.md` guide in the handoff or PR. Feature work is not ready for review without this documentation.
 
 ## Conflict handling
 
-When instructions disagree, do not silently select one. Identify the conflicting sources, preserve existing approved behavior, and request a decision from the responsible owner.
+When instructions disagree, do not silently select one. Identify the conflicting sources, preserve existing approved behavior, and request a documented resolution.
 
-Where an approved document explicitly supersedes older guidance, follow that stated boundary and report the stale reference. Otherwise, pause only the work that depends on the conflict and continue independent authorized work. Record the owner's resolution in the owning document and update affected references before resuming dependent work.
+Where an approved document explicitly supersedes older guidance, follow that stated boundary and report the stale reference. Otherwise, pause only the work that depends on the conflict and continue independent authorized work. Record the recorded resolution in the owning document and update affected references before resuming dependent work.
 
 ## Document map
 
@@ -117,6 +119,6 @@ Internal implementation guides live in `docs/features/`; the [Windows onboarding
 
 Start with [README.md](README.md). Use [product requirements and scope](docs/product.md), [user journeys](docs/user-journeys.md), and [pages and interactions](docs/pages-and-interactions.md) for product context. Check [decisions](docs/decisions.md) and [development context](docs/development.md) for blockers; read the relevant [Discovery](docs/specs/discovery.md) or [recommendation](docs/specs/career-recommendations.md) specification for feature work.
 
-Read [architecture](docs/architecture.md) for the approved stack, runtime/data/API boundaries, team guardrails, and A-01 through A-11 follow-up items. [Development](docs/development.md#current-foundation-status-and-evidence) separates current source from dated execution records. The [password minimum resolution](docs/decisions.md#password-minimum-resolution) records the owner's eight-character requirement. Consult [frontend reference instructions](docs/design/ui-reference/AGENTS.md) before using the historical UI snapshot.
+Read [architecture](docs/architecture.md) for the approved stack, runtime/data/API boundaries, team guardrails, and A-01 through A-11 follow-up items. [Development](docs/development.md#current-foundation-status-and-evidence) separates current source from dated execution records. The [password minimum resolution](docs/decisions.md#password-minimum-resolution) records the recorded eight-character requirement. Consult [frontend reference instructions](docs/design/ui-reference/AGENTS.md) before using the historical UI snapshot.
 
 Drafts and historical material do not establish implementation approval. Static Figma exports do not verify working behavior. Legacy starter instructions apply to that kit, not automatically to Asgard.

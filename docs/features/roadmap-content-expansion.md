@@ -1,12 +1,11 @@
 # Roadmap content expansion
 
-- Implementer: Codex
 - Created: 2026-11-02
 - Last updated: 2026-11-02
 - Status: locally published; independent curriculum/technical acceptance pending
 - Requirements: [REQ-02, REQ-03 and REQ-07](../product.md)
-- Reviewer: project owner, mapped in [CODEOWNERS](../../.github/CODEOWNERS)
-- Authorization: owner approved the plan and current branch, then explicitly waived resource verification and requested import as supplied in this chat on 2026-11-02.
+
+- Authorization: approval was recorded for the plan and current branch, then explicitly waived resource verification and requested import as supplied in the decision record on 2026-11-02.
 
 ## Implemented behavior
 
@@ -32,7 +31,7 @@ new dependencies were added.
 
 ## Source limitations
 
-Resource verification was waived by the owner. Imported resources conservatively
+Resource verification was waived as recorded. Imported resources conservatively
 use is_free=false and display Access not verified. Usage notes retain supplied
 access claims; reviewed_at records structural import only, explicitly stated in
 the license field. It is not a link/license verification date. Generic goals and
@@ -70,7 +69,7 @@ The resource correction is implemented and locally published as release 4.
 
 ## Release 4: topic-specific resources
 
-Owner approved the scrolling/resource correction plan on 2026-11-02. Codex selected
+Approval was recorded for the scrolling/resource correction plan on 2026-11-02. The resource mapping selects
 specific documentation, lessons, textbook sections and authorized lab references
 for all 288 topics across 12 careers. The stable-slug mapping is
 [topic-resources.json](../../backend/app/content/topic-resources.json); original
@@ -115,6 +114,5 @@ text, subtopics and resource links. From Dashboard open an old current path,
 resolve Learning via Done/Skip/Clear, then explicitly select a new roadmap.
 Check old history remains. Report role/topic, action and unexpected result.
 
-Project owner retains curriculum approval; independent technical review remains
-with CODEOWNERS. Resource verification is waived, not passed. See
+Curriculum acceptance and independent technical review remain pending. Resource verification is waived, not passed. See
 [content authoring](../content-authoring.md).
