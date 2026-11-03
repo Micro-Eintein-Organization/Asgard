@@ -7,9 +7,6 @@
 .recommendation-card label::after { content:""; position:absolute; inset:0; cursor:pointer; }
 .recommendation-card details { position:relative; z-index:1; }
 .result-selected { background:var(--selection-blue); color:white; }
-.entry-choice-card[aria-pressed="true"] :is(span,strong,svg) { color:white; }
-.current-roadmap-card button { color:white; }
-.current-roadmap-card .current-roadmap-open { color:white; }
 
 @theme inline {
   --color-background: var(--background);
@@ -642,19 +639,27 @@
   font-size: 0.8125rem;
   border: 1px solid var(--border);
   background: white;
+  height: auto;
+  min-height: 2.75rem;
+  min-width: 0;
+  white-space: normal;
+  gap: 0.75rem;
 }
 .catalog-sidebar nav button[aria-pressed="true"] {
   color: white;
   background: var(--primary);
   border-color: var(--primary);
 }
-.catalog-sidebar nav button > span:last-child:not(.category-number) {
-  margin-left: auto;
+.catalog-sidebar .category-name {
+  min-width: 0;
+  flex: 1;
 }
 .category-number {
   display: none;
   color: var(--muted-foreground);
   font-size: 0.75rem;
+  flex: 0 0 1.5rem;
+  font-variant-numeric: tabular-nums;
 }
 .catalog-sidebar button[aria-pressed="true"] .category-number {
   color: #dedee1;
@@ -769,6 +774,11 @@
 }
 .career-skills {
   margin-top: 0.5rem;
+}
+.catalog-more-skills {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
 }
 .career-skills h3 {
   font-size: 0.75rem;
@@ -1017,6 +1027,17 @@
 .choice-grid {
   display: grid;
   gap: 1rem;
+}
+.discovery-page:has(.question-choices) {
+  max-width: 78rem;
+}
+@media (min-width: 80rem) {
+  .discovery-page .choice-grid.question-choices {
+    grid-template-columns: repeat(var(--choice-count), minmax(0, 1fr));
+  }
+  .question-choices .choice-card.selectable-card {
+    padding: 1.25rem 2.75rem 1.25rem 1.25rem;
+  }
 }
 .choice-card {
   display: flex;
@@ -1742,6 +1763,27 @@
 }
 .settings-content > [data-slot="card"] + [data-slot="card"] {
   margin-top: 1.5rem;
+}
+.settings-profile-content > [data-slot="card"] + [data-slot="card"],
+.settings-account-content > [data-slot="card"] + [data-slot="card"] {
+  margin-top: 1.5rem;
+}
+.settings-card[id],
+.settings-page-heading[id],
+.settings-account-content,
+.milestone-card[id] {
+  scroll-margin-top: calc(var(--header-height) + 1.5rem);
+}
+.streak-summary strong.streak-unavailable {
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+.topic-practice {
+  margin-block: 1rem;
+}
+.topic-practice h4 {
+  font-size: 0.8125rem;
+  margin-bottom: 0.5rem;
 }
 .settings-card {
   padding: 1.5rem;

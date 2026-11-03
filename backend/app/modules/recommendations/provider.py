@@ -10,6 +10,7 @@ import httpx
 from pydantic import ValidationError
 
 from app.modules.recommendations.selection import SelectionOutput
+from app.modules.recommendations.token_budget import TOKEN_LIMIT, input_tokens
 
 PROMPT_VERSION = "discovery-exploration-2"
 SCHEMA_VERSION = "3"
@@ -57,6 +58,7 @@ def diagnostic(context, stage, **metadata):
         "completion_tokens",
         "reasoning_tokens",
         "request_bytes",
+        "estimated_input_tokens",
     ):
         value = metadata.get(key)
         if isinstance(value, int) and not isinstance(value, bool) and 0 <= value <= 10000000:
@@ -76,15 +78,9 @@ def strict_schema(payload):
     return schema
 
 
-async def generate(
-    client, settings, payload, reserve_retry, remaining_seconds, *, diagnostics=None
-):
-    def fail(code, stage, **metadata):
-        diagnostic(diagnostics, stage, **metadata)
-        raise ProviderFailure(code, stage)
-
+def prepare_request(settings, payload, *, diagnostics=None):
     if not payload["candidates"] or not payload["facts"]:
-        fail("provider_unavailable", "empty_candidates_or_evidence")
+        raise ProviderFailure("provider_unavailable", "empty_candidates_or_evidence")
     body = {
         "model": settings.groq_model,
         "messages": [
@@ -102,10 +98,31 @@ async def generate(
             },
         },
     }
-    size = len(json.dumps(body, ensure_ascii=False).encode("utf-8"))
-    diagnostic(diagnostics, "request_prepared", request_bytes=size)
-    if size > 12000:
-        fail("invalid_output", "input_budget", request_bytes=size)
+    serialized = json.dumps(body, ensure_ascii=False)
+    size = len(serialized.encode("utf-8"))
+    try:
+        tokens = input_tokens(serialized)
+    except (OSError, ValueError):
+        raise ProviderFailure("provider_unavailable", "tokenizer_not_bundled") from None
+    diagnostic(
+        diagnostics, "request_prepared", request_bytes=size, estimated_input_tokens=tokens
+    )
+    if tokens > TOKEN_LIMIT:
+        raise ProviderFailure("invalid_output", "input_budget")
+    return body
+
+
+async def generate(
+    client, settings, payload, reserve_retry, remaining_seconds, *, diagnostics=None,
+    prepared=None,
+):
+    def fail(code, stage, **metadata):
+        diagnostic(diagnostics, stage, **metadata)
+        raise ProviderFailure(code, stage)
+
+    body = prepared if prepared is not None else prepare_request(
+        settings, payload, diagnostics=diagnostics
+    )
     deadline = monotonic() + min(DEADLINE_SECONDS, remaining_seconds)
     for attempt in range(2):
         remaining = deadline - monotonic()

@@ -1,550 +1,104 @@
 import { useState } from "react";
-import { ChevronLeft, ChevronRight, SquarePen } from "lucide-react";
-import { Link, useNavigate } from "react-router";
-import { appRoutes } from "@/lib/routes";
-import { StatePanel } from "@/components/shared";
+import { Link } from "react-router";
+import { ChevronLeft, ChevronRight, SquarePen, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Notice, PageHeading, StatePanel, StatusBadge } from "@/components/shared";
 import { coreApi, useCoreMutation, useCoreQuery } from "@/features/core/data";
-import { readProfile } from "@/features/profile/api";
 import { dismissGuidance } from "@/app/guidance-preferences";
+import { appRoutes } from "@/lib/routes";
+
+const groups = [
+  ["learning", "Learning", "In progress", "in-progress"],
+  ["not_started", "Not started", "Not started", "not-started"],
+  ["done", "Done", "Complete", "complete"],
+  ["skipped", "Skipped", "Skipped", null],
+] as const;
 
 export function DashboardScreen() {
-  const navigate = useNavigate();
   const dashboard = useCoreQuery(["dashboard"], coreApi.dashboard);
   const preferences = useCoreQuery(["preferences"], coreApi.preferences);
-  const profile = useCoreQuery(["profile-context"], () => readProfile());
-  const roadmapId = dashboard.data?.learning_state.current_roadmap_id ?? "";
-  const activeRoadmapId = dashboard.data?.active_topic?.roadmap_id ?? "";
-  const activeRoadmap = useCoreQuery(
-    ["roadmap", activeRoadmapId],
-    () => coreApi.roadmap(activeRoadmapId),
-    !!activeRoadmapId,
-  );
-  const roadmap = useCoreQuery(
-    ["roadmap", roadmapId],
-    () => coreApi.roadmap(roadmapId),
-    !!roadmapId,
-  );
+  const id = dashboard.data?.learning_state.current_roadmap_id ?? "";
+  const roadmap = useCoreQuery(["roadmap", id], () => coreApi.roadmap(id), !!id);
   const careerId = roadmap.data?.career_id ?? "";
-  const career = useCoreQuery(
-    ["career", careerId],
-    () => coreApi.career(careerId),
-    !!careerId,
-  );
-  const progress = useCoreQuery(
-    ["progress", roadmapId],
-    () => coreApi.progress(roadmapId),
-    !!roadmapId,
-  );
-  const branches = useCoreQuery(
-    ["branches", roadmapId],
-    () => coreApi.branches(roadmapId),
-    !!roadmapId,
-  );
+  const career = useCoreQuery(["career", careerId], () => coreApi.career(careerId), !!careerId);
+  const progress = useCoreQuery(["progress", id], () => coreApi.progress(id), !!id);
+  const branches = useCoreQuery(["branches", id], () => coreApi.branches(id), !!id);
+  const activeId = dashboard.data?.active_topic?.roadmap_id ?? "";
+  const activeRoadmap = useCoreQuery(["roadmap", activeId], () => coreApi.roadmap(activeId), !!activeId);
   const dismiss = useCoreMutation(coreApi.savePreferences);
   const [monthOffset, setMonthOffset] = useState(0);
-  const parts = new Intl.DateTimeFormat("en", {
-    year: "numeric",
-    month: "2-digit",
-    timeZone: preferences.data?.timezone ?? "UTC",
-  }).formatToParts(new Date());
-  const calendar = new Date(
-    Date.UTC(
-      Number(parts.find((part) => part.type === "year")?.value),
-      Number(parts.find((part) => part.type === "month")?.value) -
-        1 +
-        monthOffset,
-      1,
-    ),
-  );
-  const month = calendar.toISOString().slice(0, 7);
-  const activity = useCoreQuery(["activity", month], () =>
-    coreApi.activity(month),
-  );
-  const topic = (id: string) =>
-    `${appRoutes.roadmap(careerId)}?roadmap=${roadmapId}&topic=${id}`;
-  const [openSections, setOpenSections] = useState({
-    notStarted: true,
-    inProgress: true,
-    complete: true,
-  });
-
-  const toggleSection = (key: keyof typeof openSections) => {
-    setOpenSections((prev) => ({ ...prev, [key]: !prev[key] }));
-  };
-
-  const error =
-    dashboard.error ??
-    preferences.error ??
-    profile.error ??
-    activity.error ??
-    roadmap.error ??
-    career.error ??
-    progress.error ??
-    branches.error ??
-    activeRoadmap.error;
-  if (error)
-    return (
-      <StatePanel
-        kind="error"
-        title="Dashboard unavailable"
-        action={
-          <button
-            onClick={() => {
-              void dashboard.refetch();
-              void preferences.refetch();
-              void profile.refetch();
-              void activity.refetch();
-              if (roadmapId) {
-                void roadmap.refetch();
-                void progress.refetch();
-                void branches.refetch();
-              }
-              if (careerId) void career.refetch();
-              if (activeRoadmapId) void activeRoadmap.refetch();
-            }}
-          >
-            Try again
-          </button>
-        }
-      >
-        {error.message}
-      </StatePanel>
-    );
-  if (
-    !dashboard.data ||
-    !preferences.data ||
-    !profile.data ||
-    !activity.data ||
-    (roadmapId &&
-      (!roadmap.data || !progress.data || !branches.data || !career.data))
-  )
-    return (
-      <StatePanel kind="loading" title="Loading your Dashboard">
-        Reading your saved learning state.
-      </StatePanel>
-    );
+  const dateParts = new Intl.DateTimeFormat("en", {year:"numeric",month:"2-digit",day:"2-digit",timeZone:preferences.data?.timezone ?? "UTC"}).formatToParts(new Date());
+  const part = (name: string) => dateParts.find(item => item.type === name)?.value ?? "01";
+  const today = `${part("year")}-${part("month")}-${part("day")}`;
+  const calendar = new Date(Date.UTC(Number(part("year")), Number(part("month")) - 1 + monthOffset, 1));
+  const month = calendar.toISOString().slice(0,7);
+  const activity = useCoreQuery(["activity",month], () => coreApi.activity(month));
+  const queries = [dashboard,preferences,roadmap,career,progress,branches,activeRoadmap,activity];
+  const error = queries.find(query => query.error)?.error;
+  if (error) return <StatePanel kind="error" title="Dashboard unavailable" action={<Button onClick={() => queries.forEach(query => {if (query.data || query.error) void query.refetch();})}>Try again</Button>}>{error.message}</StatePanel>;
+  if (!dashboard.data || !preferences.data || !activity.data || (id && (!roadmap.data || !career.data || !progress.data || !branches.data))) return <StatePanel kind="loading" title="Loading your Dashboard">Reading your saved learning state.</StatePanel>;
   const overview = dashboard.data;
   const savedPreferences = preferences.data;
   const savedActivity = activity.data;
-  const savedProfile = profile.data;
-  const allTopics =
-    roadmap.data?.milestones
-      .filter((item) => !item.retired_at)
-      .flatMap((milestone) =>
-        milestone.topics.filter(
-          (item) =>
-            !item.retired_at &&
-            (!item.branch_id ||
-              branches.data?.some(
-                (choice) => choice.branch_id === item.branch_id,
-              )),
-        ),
-      ) ?? [];
-  const topicStates = progress.data ?? [];
-  const nextTopic = overview.progress?.next_topic_ids[0];
-  const milestone = roadmap.data?.milestones.find(
-    (item) => item.id === overview.core_milestone_id,
-  );
-  const milestoneSummary = overview.progress?.milestones.find(
-    (item) => item.milestone_id === milestone?.id,
-  );
+  const content = roadmap.data;
+  const topics = content?.milestones.filter(item => !item.retired_at).flatMap(milestone => milestone.topics.filter(item => !item.retired_at && (!item.branch_id || branches.data?.some(choice => choice.branch_id === item.branch_id)))) ?? [];
+  const nextId = overview.progress?.next_topic_ids[0];
+  const next = topics.find(item => item.id === nextId);
+  const milestone = content?.milestones.find(item => item.id === overview.core_milestone_id);
+  const summary = overview.progress?.milestones.find(item => item.milestone_id === milestone?.id);
+  const stateOf = (topicId: string) => progress.data?.find(item => item.topic_id === topicId)?.status ?? "not_started";
+  const topicLink = (topicId?: string) => id && careerId ? `${appRoutes.roadmap(careerId)}?roadmap=${id}${topicId ? `&topic=${topicId}` : ""}` : appRoutes.careers;
   const guidance = overview.guidance_id;
-  const actionPath =
-    guidance === "basic_profile"
-      ? appRoutes.profile
-      : guidance === "resume_discovery" || guidance === "start_discovery"
-        ? appRoutes.discovery
-        : appRoutes.careers;
-  const days = new Date(
-    Date.UTC(calendar.getUTCFullYear(), calendar.getUTCMonth() + 1, 0),
-  ).getUTCDate();
-
-  const todayParts = new Intl.DateTimeFormat("en", {year: "numeric", month: "2-digit", day: "2-digit", timeZone: savedPreferences.timezone}).formatToParts(new Date());
-  const today = ["year", "month", "day"].map(key => todayParts.find(part => part.type === key)?.value).join("-");
-  const countStatus = (status: string) => allTopics.filter(item => (topicStates.find(entry => entry.topic_id === item.id)?.status ?? "not_started") === status).length;
-  if (!roadmapId && !overview.active_topic) return <StatePanel kind="empty" title="Choose your first roadmap" action={<Link to={appRoutes.careers}>Browse careers</Link>}>Choose a roadmap to see your learning topics and progress here.</StatePanel>;
-  return (
-    <div className="max-w-6xl mx-auto px-6 py-8 space-y-8 bg-white text-gray-900 min-h-screen">
-      <h1 className="sr-only">Dashboard</h1>
-      <div className="flex flex-wrap gap-4 text-sm">
-        <Link to={appRoutes.results} className="underline">
-          View saved career suggestions
-        </Link>
-        {overview.discovery_draft_id && (
-          <Link to={appRoutes.discovery} className="underline">
-            Resume Discovery
-          </Link>
-        )}
+  const guidancePath = guidance === "basic_profile" ? appRoutes.profile : appRoutes.discovery;
+  const days = new Date(Date.UTC(calendar.getUTCFullYear(),calendar.getUTCMonth()+1,0)).getUTCDate();
+  const monthLabel = calendar.toLocaleDateString("en",{month:"long",year:"numeric",timeZone:"UTC"});
+  if (!id && !overview.active_topic) return <StatePanel kind="empty" title="Choose your first roadmap" action={<Button asChild><Link to={appRoutes.careers}>Browse careers</Link></Button>}>Choose a roadmap to see your learning topics and progress here.</StatePanel>;
+  return <>
+    <PageHeading title="Your next step is here." description="Keep your focus in sight. Pick up a topic, or make room to explore something different." action={<Button asChild variant="outline"><Link to={appRoutes.careers}>Browse careers</Link></Button>} />
+    {overview.active_topic && activeRoadmap.data && <Notice><Link to={`${appRoutes.roadmap(activeRoadmap.data.career_id)}?roadmap=${activeId}&topic=${overview.active_topic.topic_id}`}>Continue or resolve your existing Learning topic before switching focus.</Link></Notice>}
+    <div className="dashboard-layout">
+      <div className="dashboard-main">
+        <section className="milestone-hero" aria-labelledby="milestone-heading">
+          <div className="milestone-topic-meta"><p className="card-category">{next ? "Current learning topic" : "Your learning progress"}</p>{next && <StatusBadge status={groups.find(group => group[0] === stateOf(next.id))![1]} />}</div>
+          <h2 id="milestone-heading">{next?.title ?? milestone?.title ?? "Choose a learning path"}</h2>
+          {milestone && <p>{milestone.title}</p>}
+          <Link to={topicLink(summary?.requires_branch_choice ? undefined : nextId)}>{summary?.requires_branch_choice ? "Choose your tool path" : overview.progress?.fully_done ? "View roadmap" : overview.progress?.no_remaining_suggestions ? "Review skipped topics" : "Continue learning"} <ChevronRight aria-hidden="true" size={17} /></Link>
+          <div className="sample-progress"><div><span>{summary?.requires_branch_choice ? `${summary.common_done} of ${summary.common_total} common topics Done · choose a tool path` : `${summary?.done ?? 0} of ${summary?.applicable ?? 0} topics Done`}</span><span>{summary?.percentage != null ? `${summary.percentage}%` : ""}</span></div>{summary?.percentage != null && <Progress value={summary.percentage} aria-label={`Milestone progress, ${summary.percentage} percent`} />}</div>
+          {overview.progress?.requires_branch_choice && <p>Choose the remaining tool paths to see full-roadmap progress.</p>}
+        </section>
+        <section>
+          <div className="section-heading"><h2>Your learning topics</h2><Link to={topicLink() + (milestone ? `#milestone-${milestone.id}` : "")}>{milestone ? "View milestone" : "View roadmap"}</Link></div>
+          <Accordion type="multiple" defaultValue={["learning","not_started"]}>
+            {groups.map(([status,label,heading,color]) => {
+              const matching = topics.filter(item => stateOf(item.id) === status);
+              return <AccordionItem value={status} key={status}><AccordionTrigger className="dashboard-status-trigger" aria-label={`${heading}, ${matching.length} topics`}><span className="dashboard-status-heading"><span>{heading}</span>{color && <span className={`topic-count topic-count--${color}`} aria-hidden="true">{matching.length}</span>}</span></AccordionTrigger><AccordionContent>{matching.length ? matching.map(item => <div className="topic-row" key={item.id}><Link to={topicLink(item.id)}>{item.title}<small>{content?.milestones.find(entry => entry.topics.some(topic => topic.id === item.id))?.title}</small></Link><StatusBadge status={label} /></div>) : <p className="field-help">No topics in this status.</p>}</AccordionContent></AccordionItem>;
+            })}
+          </Accordion>
+        </section>
       </div>
-      {overview.active_topic && activeRoadmap.data && (
-        <p className="border rounded-xl p-4 text-sm">
-          You have a topic marked Learning.{" "}
-          <Link
-            className="underline"
-            to={
-              appRoutes.roadmap(activeRoadmap.data.career_id) +
-              "?roadmap=" +
-              activeRoadmapId +
-              "&topic=" +
-              overview.active_topic.topic_id
-            }
-          >
-            Continue or resolve this topic
-          </Link>{" "}
-          before switching focus.
-        </p>
-      )}
-      {/* Main Grid: Left Column (Role + Calendar) & Right Column (Milestone Banner + Foundations) */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        {/* LEFT COLUMN (4 Cols) */}
-        <div className="lg:col-span-4 space-y-6">
-          {/* Selected Role Card */}
-          <div className="current-roadmap-card border rounded-2xl p-6 space-y-3 relative">
-            <div className="flex justify-between items-center text-xs font-semibold text-gray-500">
-              <span className="current-roadmap-label">Current roadmap</span>
-              <button
-                onClick={() => void navigate(appRoutes.careers)}
-                className="hover:text-black flex items-center space-x-1 cursor-pointer"
-              >
-                <span>edit</span>
-                <SquarePen size={16} aria-hidden="true" />
-              </button>
-            </div>
-            <div className="text-white font-bold text-lg">
-              {career.data?.title ?? "No roadmap selected"}
-            </div>
-            <p className="text-xs leading-relaxed">
-              {roadmap.data
-                ? "Your saved learning focus."
-                : "Browse careers and explicitly choose a roadmap to begin."}
-            </p>
-            {careerId && <Link className="current-roadmap-open" to={appRoutes.roadmap(careerId) + "?roadmap=" + roadmapId}>Open roadmap</Link>}
-          </div>
-          {/* Activity / Streak Calendar Widget */}
-          <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6 space-y-4">
-            <div className="flex justify-between items-center">
-              <h3 className="font-bold text-sm">
-                {calendar.toLocaleDateString("en", {
-                  month: "long",
-                  year: "numeric",
-                  timeZone: "UTC",
-                })}
-              </h3>
-              <span className="bg-white border border-gray-200 px-3 py-1 rounded-full text-xs font-bold flex items-center space-x-1 shadow-2xs">
-                <span>{savedActivity.streak_days}</span>
-                <span>day streak</span>
-              </span>
-            </div>
-
-            <div className="flex justify-between text-xs">
-              <button aria-label="Previous month" onClick={() => setMonthOffset(monthOffset - 1)}>
-                <ChevronLeft aria-hidden="true" />
-              </button>
-              <button
-                aria-label="Next month"
-                disabled={monthOffset === 0}
-                onClick={() => setMonthOffset(monthOffset + 1)}
-              >
-                <ChevronRight aria-hidden="true" />
-              </button>
-            </div>
-            {/* Days Header */}
-            <div className="grid grid-cols-7 gap-1 text-center text-[10px] font-bold text-gray-400">
-              <span>S</span>
-              <span>M</span>
-              <span>T</span>
-              <span>W</span>
-              <span>TH</span>
-              <span>F</span>
-              <span>S</span>
-            </div>
-
-            {/* Calendar Heatmap Grid */}
-            <div className="grid grid-cols-7 gap-1.5 pt-1">
-              {Array.from(
-                { length: calendar.getUTCDay() + days },
-                (_, index) => {
-                  const day = index - calendar.getUTCDay() + 1;
-                  const date = month + "-" + String(day).padStart(2, "0");
-                  const count =
-                    savedActivity.days.find(
-                      (entry) => entry.local_date === date,
-                    )?.done_count ?? 0;
-                  return (
-                    <div
-                      key={index}
-                      aria-current={day > 0 && date === today ? "date" : undefined}
-                      title={
-                        day > 0 ? date + ": " + count + " Done" : undefined
-                      }
-                      className={
-                        day < 1
-                          ? "h-6"
-                          : "h-6 rounded-md text-center text-xs " + (date === today ? "ring-2 ring-gray-900 " : "") +
-                            (count > 1
-                              ? "bg-orange-500"
-                              : count > 0
-                                ? "bg-orange-200"
-                                : "bg-gray-200")
-                      }
-                    >
-                      {day > 0 ? day : ""}
-                    </div>
-                  );
-                },
-              )}
-            </div>
-          </div>
-
-          {/* Profile Enrichment Callout & Banner */}
-          <div className="relative pt-2">
-            {!savedProfile.profile?.first_name && (
-              <button
-                onClick={() => void navigate(appRoutes.profile)}
-                className="w-full bg-black text-white font-semibold py-3 px-6 rounded-full text-xs hover:bg-gray-800 transition-colors shadow-md cursor-pointer"
-              >
-                Profile Enrichment
-              </button>
-            )}
-
-            {guidance && (
-              <div className="mt-3 bg-blue-600 text-white p-4 rounded-xl text-xs relative shadow-lg space-y-2">
-                <div className="absolute -top-2 left-8 w-0 h-0 border-l-8 border-l-transparent border-r-8 border-r-transparent border-b-8 border-b-blue-600" />
-                <div className="flex justify-between items-start">
-                  <p className="pr-4 leading-relaxed font-medium">
-                    {guidance === "resume_discovery"
-                      ? "Review your saved Discovery draft."
-                      : guidance === "start_discovery"
-                        ? "Explore your interests with Guided Discovery."
-                        : "Add your name in Settings. This is optional."}{" "}
-                    <Link to={actionPath} className="underline">
-                      Open
-                    </Link>
-                  </p>
-                  <button
-                    aria-label="Dismiss profile guidance"
-                    disabled={dismiss.isPending}
-                    onClick={() =>
-                      dismiss.mutate(dismissGuidance(savedPreferences, guidance))
-                    }
-                    className="text-white opacity-70 hover:opacity-100 text-xs font-bold cursor-pointer"
-                  >
-                    ✕
-                  </button>
-                </div>
-              </div>
-            )}
-            {dismiss.error && (
-              <p role="alert" className="field-error">
-                {dismiss.error.message}
-                {" "}<button onClick={async () => {
-                  const result = await preferences.refetch();
-                  if (result.isSuccess) dismiss.reset();
-                }}>Reload preferences</button>
-              </p>
-            )}
-          </div>
-        </div>
-
-        {/* RIGHT COLUMN (8 Cols) */}
-        <div className="lg:col-span-8 space-y-8">
-          {/* Milestone Hero Banner */}
-          <div className="bg-gradient-to-r from-gray-900 to-black text-white rounded-2xl p-8 space-y-6 shadow-md relative overflow-hidden">
-            <div className="space-y-2">
-              <h2 className="text-2xl font-extrabold tracking-tight">
-                {allTopics.find(item => item.id === nextTopic)?.title ?? milestone?.title ??
-                  (roadmapId
-                    ? "Your learning progress"
-                    : "Choose your first roadmap")}
-              </h2>
-              {nextTopic && <p className="text-sm">{milestone?.title} · {topicStates.find(item => item.topic_id === nextTopic)?.status.replace("_", " ") ?? "Not started"}</p>}
-              <button
-                onClick={() =>
-                  void navigate(
-                    nextTopic && !milestoneSummary?.requires_branch_choice
-                      ? topic(nextTopic)
-                      : careerId
-                        ? appRoutes.roadmap(careerId) + "?roadmap=" + roadmapId
-                        : appRoutes.careers,
-                  )
-                }
-                className="text-xs text-gray-300 hover:text-white font-medium cursor-pointer"
-              >
-                {milestoneSummary?.requires_branch_choice
-                  ? "Choose your tool path"
-                  : overview.progress?.no_remaining_suggestions &&
-                      !overview.progress.fully_done
-                    ? "Review skipped topics"
-                    : overview.progress?.fully_done
-                      ? "View roadmap"
-                      : "Continue"}{" "}
-                &gt;
-              </button>
-            </div>
-
-            <div className="space-y-2 pt-4">
-              <p className="text-xs text-gray-300">Milestone progress</p>
-              <div className="flex justify-end text-xs font-bold text-gray-300">
-                <span>
-                  {!roadmapId
-                    ? "Choose a roadmap to start"
-                    : overview.progress?.fully_done
-                      ? "Roadmap complete"
-                      : overview.progress?.no_remaining_suggestions
-                        ? "Review skipped topics"
-                        : milestoneSummary?.requires_branch_choice
-                          ? `${milestoneSummary.common_done} of ${milestoneSummary.common_total} common topics done · choose a tool path`
-                          : milestoneSummary?.percentage == null
-                            ? "No topics available yet"
-                            : milestoneSummary.percentage + "%"}
-                </span>
-              </div>
-              {milestoneSummary?.percentage != null && (
-                <div className="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
-                  <div
-                    className="bg-emerald-500 h-full rounded-full transition-all duration-500"
-                    style={{ width: (milestoneSummary?.percentage ?? 0) + "%" }}
-                  />
-                </div>
-              )}
-              {overview.progress && <p className="text-xs text-gray-300">
-                Roadmap: {overview.progress.done} of {overview.progress.applicable} current topics Done
-                {overview.progress.requires_branch_choice
-                  ? " · choose a tool path to see the full percentage"
-                  : overview.progress.percentage == null
-                    ? " · no active topics"
-                    : " · " + overview.progress.percentage + "%"}
-              </p>}
-            </div>
-          </div>
-
-          {/* Software Development Foundations List */}
-          <div className="space-y-6">
-            <h3 className="font-bold text-lg tracking-tight">
-              {roadmap.data?.title ?? "Your learning topics"}
-            </h3>
-
-            {/* Not Started Section */}
-            <div className="space-y-3">
-              <button
-                onClick={() => toggleSection("notStarted")}
-                aria-expanded={openSections.notStarted}
-                className="flex items-center space-x-2 text-xs font-bold text-gray-700 hover:text-black cursor-pointer"
-              >
-                <span>Not Started</span><span className="topic-count topic-count--not-started">{countStatus("not_started")}</span>
-                <span
-                  className={`transform transition-transform ${openSections.notStarted ? "rotate-180" : ""}`}
-                >
-                  ▼
-                </span>
-              </button>
-              <div className="h-px bg-gray-200" />
-
-              {openSections.notStarted && (
-                <div className="pl-4 space-y-3 pt-1">
-                  {allTopics
-                    .filter(
-                      (item) =>
-                        (topicStates.find((entry) => entry.topic_id === item.id)
-                          ?.status ?? "not_started") === "not_started",
-                    )
-                    .map((item) => (
-                      <Link
-                        key={item.id}
-                        to={topic(item.id)}
-                        className="flex items-center space-x-3 text-xs font-semibold text-gray-800 hover:text-emerald-600"
-                      >
-                        <span className="w-4 h-4 border-2 border-gray-400 rounded-full flex-none" />
-                        <span>{item.title}</span>
-                      </Link>
-                    ))}
-                </div>
-              )}
-            </div>
-
-            {/* In-Progress Section */}
-            <div className="space-y-3">
-              <button
-                onClick={() => toggleSection("inProgress")}
-                aria-expanded={openSections.inProgress}
-                className="flex items-center space-x-2 text-xs font-bold text-gray-700 hover:text-black cursor-pointer"
-              >
-                <span>In-Progress</span><span className="topic-count topic-count--in-progress">{countStatus("learning")}</span>
-                <span
-                  className={`transform transition-transform ${openSections.inProgress ? "rotate-180" : ""}`}
-                >
-                  ▼
-                </span>
-              </button>
-              <div className="h-px bg-gray-200" />
-
-              {openSections.inProgress && (
-                <div className="pl-4 space-y-3 pt-1">
-                  {allTopics
-                    .filter(
-                      (item) =>
-                        (topicStates.find((entry) => entry.topic_id === item.id)
-                          ?.status ?? "not_started") === "learning",
-                    )
-                    .map((item) => (
-                      <Link
-                        key={item.id}
-                        to={topic(item.id)}
-                        className="flex items-center space-x-3 text-xs font-semibold text-gray-800 hover:text-emerald-600"
-                      >
-                        <span className="w-4 h-4 border-2 border-gray-400 rounded-full flex-none" />
-                        <span>{item.title}</span>
-                      </Link>
-                    ))}
-                </div>
-              )}
-            </div>
-
-            {(["not_started", "learning", "done"] as const).map(status => countStatus(status) === 0 && <p key={status} className="field-help">No {status.replace("_", " ")} topics yet.</p>)}
-            <details open><summary className="font-semibold">Skipped · {countStatus("skipped")}</summary>
-              {allTopics.filter(item => topicStates.find(entry => entry.topic_id === item.id)?.status === "skipped").map(item => <Link className="block py-3" key={item.id} to={topic(item.id)}>{item.title}</Link>)}
-              {!countStatus("skipped") && <p className="field-help">No skipped topics.</p>}
-            </details>
-            {/* Complete Section */}
-            <div className="space-y-3">
-              <button
-                onClick={() => toggleSection("complete")}
-                aria-expanded={openSections.complete}
-                className="flex items-center space-x-2 text-xs font-bold text-gray-700 hover:text-black cursor-pointer"
-              >
-                <span>Complete</span><span className="topic-count topic-count--complete">{countStatus("done")}</span>
-                <span
-                  className={`transform transition-transform ${openSections.complete ? "rotate-180" : ""}`}
-                >
-                  ▼
-                </span>
-              </button>
-              <div className="h-px bg-gray-200" />
-
-              {openSections.complete && (
-                <div className="pl-4 space-y-3 pt-1">
-                  {allTopics
-                    .filter(
-                      (item) =>
-                        (topicStates.find((entry) => entry.topic_id === item.id)
-                          ?.status ?? "not_started") === "done",
-                    )
-                    .map((item) => (
-                      <Link
-                        key={item.id}
-                        to={topic(item.id)}
-                        className="flex items-center space-x-3 text-xs font-semibold text-gray-800 hover:text-emerald-600"
-                      >
-                        <span className="w-4 h-4 border-2 border-gray-400 rounded-full flex-none" />
-                        <span>{item.title}</span>
-                      </Link>
-                    ))}
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
+      <aside className="dashboard-side" aria-label="Learning context">
+        <Card className="support-card current-roadmap-card">
+          <div className="current-roadmap-title-group"><p className="current-roadmap-label">Current roadmap</p><div className="current-roadmap-heading"><h2>{career.data?.title ?? "No roadmap selected"}</h2><Link to={appRoutes.careers} className="current-roadmap-edit">Edit <SquarePen aria-hidden="true" size={16} /></Link></div></div>
+          <p>Your roadmap changes only when you explicitly save a new focus.</p>
+          <Link to={id ? topicLink() : appRoutes.careers} className="current-roadmap-open">Open roadmap</Link>
+        </Card>
+        <Card id="progress" className="support-card">
+          <div className="calendar-title"><h2>{monthLabel}</h2><div className="flex"><Button variant="ghost" size="icon" aria-label="Previous month" onClick={() => setMonthOffset(value => value-1)}><ChevronLeft /></Button><Button variant="ghost" size="icon" aria-label="Next month" disabled={monthOffset === 0} onClick={() => setMonthOffset(value => value+1)}><ChevronRight /></Button></div></div>
+          <div className="streak-summary" role="group" aria-label="Learning streak"><p>Current streak <strong>{savedActivity.streak_days} days</strong></p><p>Longest streak <strong className="streak-unavailable">Not available</strong></p></div>
+          {!savedActivity.days.length && <p className="streak-empty">Complete a topic to start your learning streak.</p>}
+          <div className="calendar-grid" aria-label="Activity calendar">{["Su","Mo","Tu","We","Th","Fr","Sa"].map(day => <span key={day}>{day}</span>)}{Array.from({length:calendar.getUTCDay()},(_,i) => <span key={`space-${i}`} aria-hidden="true" />)}{Array.from({length:days},(_,i) => {
+            const date = `${month}-${String(i+1).padStart(2,"0")}`;
+            const active = savedActivity.days.some(day => day.local_date === date && day.done_count > 0);
+            return <span key={date} className={`calendar-day ${active ? monthOffset === 0 ? "active-current" : "active-past" : ""} ${date === today ? "today" : ""}`} aria-label={`${date}, ${active ? "active learning day" : "no completion"}`} aria-current={date === today ? "date" : undefined}>{i+1}</span>;
+          })}</div><p className="calendar-legend">Orange days mark completed topics. The ring marks today.</p>
+        </Card>
+        <Card className="support-card"><h2>Make it yours.</h2><p>Your name is enough to complete a basic profile.</p><Button asChild variant="outline"><Link to={appRoutes.profile}>Edit profile</Link></Button></Card>
+      </aside>
     </div>
-  );
+    {guidance && <div className="dismissible-guidance mt-8"><Notice><div className="guidance-content"><div><strong>{guidance === "resume_discovery" ? "Continue your saved Discovery" : guidance === "basic_profile" ? "Make it yours" : "Want a different starting point?"}</strong><p>{guidance === "basic_profile" ? "Add your name in Settings. This is optional." : "Explore your interests, or keep browsing."}</p><Link to={guidancePath}>{guidance === "basic_profile" ? "Edit profile" : "Open Discovery"}</Link></div><Button variant="ghost" size="icon" aria-label="Dismiss profile guidance" disabled={dismiss.isPending} onClick={() => dismiss.mutate(dismissGuidance(savedPreferences,guidance))}><X /></Button></div></Notice>{dismiss.error && <p role="alert" className="field-error">{dismiss.error.message} <Button onClick={async () => {const result = await preferences.refetch(); if(result.isSuccess) dismiss.reset();}}>Reload preferences</Button></p>}</div>}
+    <p className="mt-6"><Link className="inline-link" to={appRoutes.results}>View saved career suggestions</Link></p>
+  </>;
 }

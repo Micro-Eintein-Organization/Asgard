@@ -1,5 +1,17 @@
 # Asgard: Development context
 
+Local repair, 2026-11-03: the owner approved the
+[Discovery/startup implementation plan](plans/discovery-startup-repair-2026-11-03.md)
+on `codex/cabusao-ui-integration`, preserving its existing uncommitted UI work.
+Startup now separates Supabase bootstrap from application readiness and offers
+explicit guided local content publication. `READY` checks local restricted-role
+access and published content as well as connectivity; Groq is reported separately.
+No public readiness/schema/Auth contract changed. See the
+[onboarding evidence](features/windows-one-click-onboarding.md#application-readiness-and-publication-repair-2026-11-03)
+and [recommendation repair](features/connected-prototype.md#request-budget-repair-2026-11-03).
+Older protocol-only readiness descriptions below are dated foundation evidence.
+Independent Windows setup, technical review and hosted gates remain pending.
+
 Updated 28 October 2026. Follow the approved [architecture](architecture.md), selected [product baseline](product.md) and [decision register](decisions.md). The technical scaffold, local email/password authentication, Profile integration and canonical application UI are implemented. The persisted-core source follow-up replaces runtime samples with account APIs; it remains unverified and is not a readiness claim. The owner-approved connected prototype adds saved conditional Discovery, Groq and three locally published career roadmaps. See the [current implementation guide](features/connected-prototype.md) for implementation actions, missing provider configuration and deferred acceptance. Project-lead review and manual Stage 3.5 acceptance remain pending; historical evidence below retains its original scope.
 
 ## Workspace

@@ -1,9 +1,12 @@
 import { Link, useNavigate, useSearchParams } from "react-router";
 import { useEffect, useRef } from "react";
 import { Search, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { PageHeading, StatePanel } from "@/components/shared";
 import { coreApi, useCoreQuery } from "@/features/core/data";
 import { appRoutes } from "@/lib/routes";
+import { careerSummary } from "@/lib/career-summary";
 
 interface RoleCatalogProps {
   onBack?: () => void;
@@ -111,58 +114,55 @@ export default function RoleCatalog({
     }
   };
   const cards = (items: typeof all) => (
-    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+    <div className="career-grid">
       {items.map((role) => (
-        <article
+        <Card
           key={role.id}
-          className="flex min-w-0 flex-col rounded-xl border border-gray-200 bg-white p-5"
+          className="career-card catalog-career-card"
         >
-          <div className="career-card-meta"><p className="text-xs text-gray-600">{categories.data?.find((item) => item.id === role.category_id)?.title}</p>
+          <div className="career-card-meta"><p className="card-category">{categories.data?.find((item) => item.id === role.category_id)?.title}</p>
           <RoadmapProgress id={run?.items.find(item => item.career_id === role.id && !!item.roadmap_id && role.roadmap_ids.includes(item.roadmap_id))?.roadmap_id ?? role.roadmap_ids[0] ?? ""} /></div>
-          <h3 className="mt-4 text-xl font-semibold">{role.title}</h3>
-          <span className="mt-4 text-sm leading-relaxed text-gray-600">
-            {role.description.split("\n\n")[0]}
-          </span>
-          <div className="mt-5 mb-6">
-            <p className="mb-2 text-xs font-semibold">Skills used in this career</p>
-            <ul className="flex flex-wrap gap-1.5">
-              {role.skills.map((skill) => <li key={skill} className="rounded bg-gray-100 px-2 py-1 text-xs text-gray-700">{skill}</li>)}
+          <h2>{role.title}</h2>
+          <p>
+            {careerSummary(role.description)}
+          </p>
+          <div className="career-skills">
+            <h3>Skills used in this career</h3>
+            <ul>
+              {role.skills.slice(0, 3).map((skill) => <li key={skill}>{skill}</li>)}
             </ul>
+            {role.skills.length > 3 && <p className="catalog-more-skills">{role.skills.length - 3} more skills in this roadmap</p>}
           </div>
-          <button type="button" onClick={() => proceed(role.id)} aria-label={`View ${role.title} roadmap`} className="mt-auto min-h-11 rounded-full bg-gray-100 px-4 text-sm font-medium hover:bg-gray-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-700">View roadmap</button>
-        </article>
+          <Button variant="outline" className="card-action" onClick={() => proceed(role.id)} aria-label={`View ${role.title} roadmap`}>View roadmap</Button>
+        </Card>
       ))}
     </div>
   );
   return (
     <>
     <PageHeading title="Find a direction worth exploring." description="Understand the work, see the skills involved, and explore a learning path." />
-    <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-2 py-8 text-gray-900 md:grid-cols-[15rem_minmax(0,1fr)] md:px-6">
-      <aside className="min-w-0 space-y-4 md:border-r md:pr-5">
-        <h1 className="text-lg font-semibold">Career catalog</h1>
+    <div className="catalog-layout">
+      <aside className="catalog-sidebar">
+        <h2>Career catalog</h2>
         <p className="text-sm text-gray-600">Browse by field</p>
         <nav
           aria-label="Career categories"
-          className="flex max-h-56 flex-col overflow-y-auto md:max-h-none"
         >
           {[{id: "All", title: "All fields"}, ...(categories.data ?? [])].map((item, index) => (
-            <button
+            <Button variant="ghost"
               key={item.id}
               type="button"
               onClick={() => update("category", index === 0 ? "All" : item.title)}
               aria-pressed={category === (index === 0 ? "All" : item.title)}
-              className={
-                "min-h-11 rounded-full px-3 py-2 text-left text-sm " +
-                (category === (index === 0 ? "All" : item.title) ? "bg-black text-white" : "hover:bg-gray-100")
-              }
             >
-              {index > 0 && <span aria-hidden="true" className="mr-2 text-xs">{String(index).padStart(2, "0")}</span>}{item.title}
-            </button>
+              <span aria-hidden="true" className="category-number">{index > 0 ? String(index).padStart(2, "0") : ""}</span>
+              <span className="category-name">{item.title}</span>
+            </Button>
           ))}
         </nav>
         <p className="pt-5 text-sm text-gray-600">You can explore any field. Discovery is optional.</p>
       </aside>
-      <div className="min-w-0 space-y-8">
+      <div className="catalog-content space-y-8">
         <div className="search-field"><Search size={19} aria-hidden="true" />
         <input ref={searchInput} id="career-search" type="search" aria-label="Search career roles or skills" value={search} onChange={(event) => update("q", event.target.value)} onKeyDown={event => {if (event.key === "Escape") {event.preventDefault(); update("q", "");}}} placeholder="Search career roles or skills" className="min-h-11 w-full px-4 py-3 text-sm" />
         {search && <button type="button" aria-label="Clear search query" onClick={() => {restoreFocus.current = true; update("q", "");}}><X size={19} /></button>}

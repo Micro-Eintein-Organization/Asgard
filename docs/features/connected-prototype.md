@@ -8,11 +8,11 @@ Career navigation, guidance, broader local evidence and outstanding acceptance.
 
 - Implementer/task owner: Codex
 - Created: 2026-10-28
-- Last updated: 2026-10-28
+- Last updated: 2026-11-03
 - Status: source implementation and additive local publication completed; focused recommendation repair checks passed as detailed below; broad prototype acceptance remains pending
 - Required reviewer: `@YakisobaNissin`, per [CODEOWNERS](../../.github/CODEOWNERS)
 - Authorization/review reference: this task's owner identification as `@YakisobaNissin`, followed by “PLEASE IMPLEMENT THIS PLAN: Connected prototype with saved Discovery and Groq recommendations”, 2026-10-28.
-- Branch: `codex/connected-prototype`, from the merged persisted-core baseline; preserve existing implementation. No commits, pushes or merges are authorized.
+- Original branch: `codex/connected-prototype`, from the merged persisted-core baseline. The 2026-11-03 repair builds on `codex/cabusao-ui-integration` and its existing edits. No commits, pushes or merges are authorized.
 - Acceptance: F-001-AC-01–08, F-002-AC-01–06/08–10 as applicable to this local prototype; REQ-01/04/05/07/08/09/10/13. PDF and public-release acceptance remain outside this task.
 
 ## Approved bounded implementation
@@ -126,6 +126,56 @@ The one live Groq request returned HTTP **200**, `finish_reason=stop`, **1,292 p
 The focused correction removed that catalog row lock while retaining published-pair validation, foreign keys, the existing database publication guards and account locks. No grant or migration was added. No second live Groq call was made.
 
 The same local check was then run in **mocked replay** mode through real Auth/session validation and restricted-role API persistence. It passed: 3 published candidates; completed saved result; 1 exact roadmap destination returned 200; same-key replay and same-context reuse returned the same run; saved answers were preserved; learning state was unchanged; zero external provider calls. The replay also exercises final persistence with the read-only catalog permissions that caused the live-check failure. Both temporary accounts were successfully removed. The aggregate daily AI budget retains normal reservation accounting for these checks; no production quota was bypassed or reset.
+
+## Request budget repair, 2026-11-03
+
+Implementer: Codex. Created/updated: 2026-11-03. Required reviewer:
+@YakisobaNissin. Status: implemented with focused local evidence; human review
+and model-quality evaluation remain pending. Owner authorization: “PLEASE IMPLEMENT
+THIS PLAN: Repair Discovery recommendations and teammate startup.” See the
+[bounded plan](../plans/discovery-startup-repair-2026-11-03.md).
+Acceptance: F-001-AC-05–08 and F-002 generation, provenance, recovery and quota
+requirements. [F-002](../specs/career-recommendations.md#refresh-concurrency-and-recovery)
+and [Architecture](../architecture.md#8-ai-recommendations) remain authoritative.
+
+The observed failure prepared 23,257 bytes and rejected them against a 12,000-byte
+guard before contacting Groq. A later retry hit the legitimate one-minute limit.
+The guard now enforces the existing 12,000-token application budget with pinned
+tiktoken 0.12.0/o200k_harmony. The complete serialized envelope is counted with a
+256-token framing allowance; this conservative local estimate is not exact Groq
+billing. All published candidates and evidence remain included. Model selection,
+4,096 completion-token default, deadlines and quota policy are unchanged.
+
+Preparation happens before inserting a run or reserving an attempt. Over-budget
+input returns an actionable 422 in the existing error envelope without spending
+quota. Missing/corrupt bundled vocabulary fails closed with a recoverable 503.
+Docker fetches the upstream hash-verified vocabulary at build time; runtime checks
+the packaged file before loading it and requires no tokenizer download.
+Public schemas, SQL and existing saved results are unchanged.
+
+Sources: backend recommendation provider/service and token_budget modules,
+backend Dockerfile and hashed requirement locks. No existing dependency version
+was upgraded; additions are tiktoken and its required transitive packages.
+
+Verification on 2026-11-03: 19 focused backend tests passed, including >12-KB
+12-candidate input, exact budget boundary, Unicode/special-token text, missing and
+corrupt tokenizer data, and preflight rejection before insert/reservation/provider
+activity. The tests also passed with Docker networking disabled. Backend lint,
+hashed Docker build and OpenAPI drift check passed.
+
+Exactly one synthetic live Groq request passed against the local restricted role
+and current 12-career catalog. It saved three valid career/roadmap destinations;
+same-key replay and same-context reuse returned the saved run. Answers were
+preserved, learning state was unchanged, and the temporary account was removed.
+The normal persisted attempt budget was used. This is execution/persistence
+evidence, not a completed recommendation-quality or provider-account review.
+
+Manual check: at the configured local website (default `http://127.0.0.1:5173`),
+complete `/discovery` and choose **See suggestions**. Expect a loading state then
+real saved cards or an explained failure with explicit retry. Refresh
+`/recommendations`; expect saved state without another generation. Report the
+failing step and request ID, excluding answers and credentials. Real-provider
+outages/quotas remain possible and do not block independent learning operations.
 
 Evidence limit: live provider parsing/selection passed, and corrected persistence/reuse/link behavior passed with a mocked provider response. A second fully live end-to-end generation after the SQL correction was deliberately not performed because the approved live-call budget was one. The browser-level rendered flow, broad regression, full session/concurrency matrix and model-quality study remain pending. The existing Starlette/httpx TestClient deprecation warning remains; no dependency was changed.
 

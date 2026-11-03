@@ -27,7 +27,9 @@ describe("roadmap task visibility", () => {
     expect(hide.closest("[inert]")).not.toBeNull();
     fireEvent.click(show);
     await waitFor(() => expect(screen.getByRole("button",{name:"Hide task: Saved task"})).toHaveFocus());
-    expect(screen.getByText("done")).toBeVisible();
+    expect(screen.getByText("Done")).toBeVisible();
+    expect(screen.getByText("Done")).toHaveClass("topic-status", "status-done");
+    expect(document.querySelector(".milestone-list #milestone-milestone")).not.toBeNull();
     expect(save).not.toHaveBeenCalled();
   });
 });

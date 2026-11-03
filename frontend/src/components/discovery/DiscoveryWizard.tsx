@@ -1,8 +1,8 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type CSSProperties } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import type { components } from "@/api/generated/schema";
 import { DiscoveryHeader } from "./DiscoveryHeader";
-import { StatePanel } from "@/components/shared";
+import { BackLink, PageHeading, StatePanel } from "@/components/shared";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -102,7 +102,7 @@ export function DiscoveryWizard() {
       </StatePanel>
     );
   return (
-    <div className="min-h-screen bg-white text-gray-900 flex flex-col p-6 space-y-8">
+    <div className="discovery-page">
       <DiscoveryHeader
         currentStep={1}
         showProgress={false}
@@ -156,7 +156,7 @@ function DiscoveryEditor({
       errorSummary.current?.focus();
   }, [editor.error, editor.blocker.state]);
   return (
-    <div className="min-h-screen bg-white text-gray-900 flex flex-col justify-between p-6">
+    <section className="discovery-page">
       <DiscoveryHeader
         currentStep={editor.index + 1}
         totalSteps={editor.total}
@@ -164,15 +164,14 @@ function DiscoveryEditor({
         onBack={() => void editor.move(-1)}
         onSkip={() => void editor.skip()}
       />
-      <div className="max-w-6xl mx-auto w-full my-auto py-8 space-y-8">
-        <div className="text-center space-y-2">
-          <h2
+      <div>
+        <header className="discovery-header">
+          <h1
             ref={heading}
             tabIndex={-1}
-            className="text-2xl sm:text-3xl font-bold tracking-tight"
           >
             {editor.question.prompt}
-          </h2>
+          </h1>
           <p id="question-helper" className="text-sm text-gray-500">
             {editor.question.helper}
           </p>
@@ -181,11 +180,12 @@ function DiscoveryEditor({
               ? "Choose all that apply, or uncertainty on its own."
               : "Choose one."}
           </p>
-        </div>
+        </header>
         <fieldset
           disabled={editor.busy}
           aria-describedby="question-helper"
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 border-0 p-0"
+          className="choice-grid question-choices border-0 p-0"
+          style={{ "--choice-count": editor.question.options.length } as CSSProperties}
         >
           <legend className="sr-only">{editor.question.prompt}</legend>
           {editor.question.options.map((option) => {
@@ -193,12 +193,7 @@ function DiscoveryEditor({
             return (
               <label
                 key={option.id}
-                className={
-                  "choice-card selectable-card cursor-pointer rounded-2xl border-2 p-6 relative flex flex-col min-h-72 sm:min-h-80 focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-emerald-700 " +
-                  (selected
-                    ? "border-emerald-500 ring-2 ring-emerald-500 shadow-md"
-                    : "border-gray-200 hover:border-gray-300 hover:shadow-xs")
-                }
+                className="choice-card selectable-card"
               >
                 <input
                   type={editor.question.multiple ? "checkbox" : "radio"}
@@ -212,18 +207,12 @@ function DiscoveryEditor({
                     ✓
                   </span>
                 )}
-                <span
-                  aria-hidden="true"
-                  className="mx-auto my-8 block size-20 rounded-full bg-gray-200"
-                />
-                <div className="text-center space-y-3 mt-auto mb-4">
-                  <span className="block text-lg font-bold leading-tight">
+                  <strong>
                     {option.label}
-                  </span>
-                  <span className="block text-sm text-gray-600 leading-relaxed">
+                  </strong>
+                  <span>
                     {option.description}
                   </span>
-                </div>
               </label>
             );
           })}
@@ -257,16 +246,15 @@ function DiscoveryEditor({
             </button>
           </div>
         )}
-        <div className="text-center pt-4">
+        <div className="question-actions" data-align="end">
           <Button
-            className="min-h-14 min-w-64"
             disabled={editor.busy}
             onClick={() => void editor.move(1)}
           >
             {editor.busy
               ? "Saving…"
               : editor.index === editor.total - 1
-                ? "Save Discovery and see suggestions"
+                ? "See suggestions"
                 : "Next"}
           </Button>
         </div>
@@ -325,7 +313,7 @@ function DiscoveryEditor({
           </div>
         </DialogContent>
       </Dialog>
-    </div>
+    </section>
   );
 }
 
@@ -345,34 +333,26 @@ export function DiscoveryResults() {
       !generateFor ||
       started.current ||
       !completed ||
+      generateFor !== completed.id ||
       !flow.query.data ||
+      state.isFetching ||
+      flow.query.isFetching ||
       flow.pending
     )
       return;
     started.current = true;
     void navigate(appRoutes.results, { replace: true, state: null });
-    if (generateFor === completed.id && flow.query.data.available)
+    const current = flow.query.data.current;
+    const alreadyPrepared = current?.discovery?.session_id === completed.id &&
+      current.discovery.revision === completed.revision && !current.outdated;
+    if (flow.query.data.available && !alreadyPrepared)
       void flow.request(completed.id);
-  }, [generateFor, completed, flow, navigate]);
+  }, [generateFor, completed, flow, navigate, state.isFetching]);
   return (
-    <div className="min-h-screen bg-white text-gray-900 flex flex-col p-6 space-y-8">
-      <DiscoveryHeader
-        currentStep={6}
-        totalSteps={5}
-        onBack={() => void navigate(appRoutes.dashboard)}
-        onSkip={() => void navigate(appRoutes.careers)}
-      />
-      <div className="max-w-5xl mx-auto w-full my-auto py-8 space-y-8">
-        <div className="text-center space-y-2">
-          <h2 className="text-2xl font-bold tracking-tight">
-            Here are some directions to explore
-          </h2>
-          <p className="text-sm text-gray-500">
-            {completed
-              ? "Your Discovery answers are saved. Suggestions are starting points from the available catalog."
-              : "Complete Discovery or choose a learning focus to provide context. You can browse all careers."}
-          </p>
-        </div>
+    <section className="recommendations-page">
+      <BackLink to={appRoutes.discovery}>Back to Discovery</BackLink>
+      <div>
+        <PageHeading title="Careers to explore." description={completed ? "Your Discovery answers are saved. Suggestions are starting points. You can explore any career in the catalog." : "Complete Discovery or choose a learning focus to provide context. You can browse all careers."} />
         {state.error && (
           <StatePanel
             kind="error"
@@ -384,7 +364,7 @@ export function DiscoveryResults() {
             {state.error.message}
           </StatePanel>
         )}
-        <RecommendationCards flow={flow} />
+        <RecommendationCards flow={flow} allowInitialRequest={false} />
         <div className="flex flex-wrap justify-center gap-4 pt-4">
           <Link
             to={appRoutes.careers}
@@ -408,6 +388,6 @@ export function DiscoveryResults() {
           </Link>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

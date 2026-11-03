@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { NavLink } from "react-router";
+import { Link, NavLink, useLocation } from "react-router";
 import { UserRound } from "lucide-react";
 import type { FieldErrors, UseFormRegister } from "react-hook-form";
 import { Button } from "@/components/ui/button";
@@ -60,15 +60,27 @@ export function ProfileNameFields({
   );
 }
 
-export function SettingsLayout({ children }: { children: ReactNode }) {
+export function SettingsLayout({ children, accountAnchor, action }: {
+  children: ReactNode;
+  accountAnchor?: string;
+  action?: ReactNode;
+}) {
+  const { hash } = useLocation();
+  const accountActive = !!accountAnchor && hash === accountAnchor;
   return (
     <div className="settings-layout">
       <aside className="settings-nav">
         <h2>Settings</h2>
         <nav aria-label="Settings sections">
-          <NavLink to={pageRoutes.profile}>Profile</NavLink>
-          <NavLink to={pageRoutes.account}>Account and security</NavLink>
+          {accountAnchor ? <>
+            <Link to={pageRoutes.profile} aria-current={!accountActive ? "page" : undefined}>Profile</Link>
+            <Link to={pageRoutes.profile + accountAnchor} aria-current={accountActive ? "page" : undefined}>Account and security</Link>
+          </> : <>
+            <NavLink to={pageRoutes.profile}>Profile</NavLink>
+            <NavLink to={pageRoutes.account}>Account and security</NavLink>
+          </>}
         </nav>
+        {action}
       </aside>
       <div className="settings-content">{children}</div>
     </div>

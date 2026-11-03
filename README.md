@@ -44,7 +44,7 @@ Asgard/                         Your local checkout folder
 
 ## Project status
 
-Asgard is under development. The authenticated React/FastAPI application is the single implementation of Dashboard, Discovery, career exploration, roadmaps and Settings. Current source replaces runtime demo fixtures with account API reads/writes or explicit unavailable states; standalone UI Preview routes have been removed. Email/password access and private Profile integration are implemented, with local-only activation recorded in the decision register; fresh environments remain disabled by default. The connected prototype implements saved Discovery, Groq recommendations, preferences and learning workflows, with three brief career roadmaps published locally. Groq needs backend-only enablement and your own key in ignored environment configuration; uploads remain unavailable. All new behavior is unverified because testing was deferred. See the [connected-prototype guide](docs/features/connected-prototype.md) for configuration, publication and pending acceptance. See the [Stage 3.5 handoff](docs/stage-3.5-handoff.md) for preservation details and pending manual acceptance.
+Asgard is under development. The authenticated React/FastAPI application is the single implementation of Dashboard, Discovery, career exploration, roadmaps and Settings. Current source replaces runtime demo fixtures with account API reads/writes or explicit unavailable states; standalone UI Preview routes have been removed. Email/password access and private Profile integration are implemented, with local-only activation recorded in the decision register; fresh environments remain disabled by default. The connected prototype implements saved Discovery, Groq recommendations, preferences and learning workflows, with published career roadmaps available locally. Groq needs backend-only enablement and your own key in ignored environment configuration; uploads remain unavailable. Focused local evidence and remaining acceptance are recorded in the linked guides; release acceptance remains incomplete. See the [connected-prototype guide](docs/features/connected-prototype.md) for configuration, publication and pending acceptance. See the [Stage 3.5 handoff](docs/stage-3.5-handoff.md) for preservation details and pending manual acceptance.
 
 Stage 4 adds the shared SQL foundation, 29 authenticated API contract stubs, generated TypeScript contracts and query/error conventions. The local integrity/RLS probe passed; all 29 current feature operations now have service handlers and no intentional 501 stubs; those handlers have not passed the new feature acceptance checks. See the [Stage 4 handoff](docs/development.md#stage-4-shared-contracts-and-handoff) for contracts, verification and review/publication gates.
 
@@ -137,6 +137,7 @@ Install Node 24 and Docker once; Docker Desktop may ask for administrator access
 2. Open your local checkout in File Explorer. Find `Setup-Asgard.cmd` beside `README.md` in the top-level folder and double-click it.
 3. If this is a fresh local environment, the launcher asks for approval before initializing it. Type `INITIALIZE` only when the project lead approved this machine and you are sure its Docker project has no existing data. The script creates a local signing key and restricted database password; it never copies another teammate's secrets or resets/deletes Docker data.
 4. If prompted, type `ENABLE AUTH` only when the project lead separately approved enabling local email/password Auth. After startup, check signup and Profile manually. The launcher opens the app and local email inbox.
+5. Confirm `PUBLISH CONTENT` to install this checkout's reviewed local career/roadmap release with the existing guarded publisher. It preserves account state and stops on content conflicts. Declining leaves content unchanged; missing required content prevents application readiness.
 
 If the checkout already has its own approved `.env`, signing key and database credential, the launcher keeps them and starts the app. It does not turn Auth on without approval.
 
@@ -145,6 +146,13 @@ See the [Windows one-click onboarding notes](docs/features/windows-one-click-onb
 #### Windows: daily start
 
 Start Docker Desktop, then double-click **Start-Asgard.cmd**, beside `README.md` in your local checkout's top-level folder. It starts the services and opens the app and local inbox. To stop them, follow [Daily startup and shutdown](#daily-startup-and-shutdown).
+
+Startup reports `READY` only after checking Auth configuration/health, restricted
+application database access, migration status and the expected published content.
+Connectivity alone is insufficient. Groq is optional for Dashboard and roadmaps;
+its configuration is reported separately. Each teammate provisions their own
+environment and creates their own local account. A new account's Dashboard asks
+them to choose a roadmap before showing learning progress.
 
 #### Linux
 
@@ -359,6 +367,10 @@ The `env` command reads the CLI's current local values without printing credenti
 | External Supabase network missing | Run Supabase first, then `node scripts/dev.mjs env`. CLI and Compose must use the same local Docker daemon/context. Do not mix a remote Docker context with a local browser or two independent Windows/WSL daemons. |
 | Readiness fails / Studio cannot query | Run `docker compose logs --tail 100`, `npx --no-install supabase status` and `node scripts/dev.mjs verify`. CLI status can display local credentials; do not paste its raw output into tickets. Regenerate `.env` as above if stale. |
 | Pending migrations | Startup stops after a dry-run. Have the owner review them before explicitly applying local migrations; never reset the database as a quick fix. See Development. |
+| Login or protected pages show setup unavailable | Run `Setup-Asgard.cmd` and complete this machine's approved Auth/credential setup. Do not copy another teammate's `.env`, keys or password. |
+| Missing careers/roadmaps or content-readiness failure | Run `Setup-Asgard.cmd` and confirm `PUBLISH CONTENT`, or explicitly run `node scripts/publish-local-content.mjs` after reviewing the local publication step. Do not reset the database. See the [onboarding guide](docs/features/windows-one-click-onboarding.md#application-readiness-and-publication-repair-2026-11-03). |
+| Groq is not configured | Set `ASGARD_GROQ_ENABLED=true` and your own `ASGARD_GROQ_API_KEY` in ignored backend `.env`, then rerun startup to recreate the backend. These are optional for Dashboard, careers and roadmaps; never put the key in `VITE_` settings. |
+| Suggestions show a cooldown after a failure | The original saved failure remains visible. Retry explicitly after the displayed delay. See the [request-budget repair](docs/features/connected-prototype.md#request-budget-repair-2026-11-03); the 12,000-token ceiling no longer treats bytes as tokens. |
 | Changes do not appear | Source reload is limited to the documented bind mounts. Rerun startup for package, lock, test or configuration changes; both app dependencies are installed inside their images. |
 | Linux file permission or import error | Keep the checkout owned/readable by your login user. Do not copy Windows `node_modules` to Linux. Preserve filename/import case. Contract generation writes files as the host user; see Development. |
 | PowerShell blocks `.ps1` execution | Use `node scripts/dev.mjs start` directly; no execution-policy change is required. |
