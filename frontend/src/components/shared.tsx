@@ -36,12 +36,14 @@ export function PageHeading({
 export function BackLink({
   to,
   children = "Back",
+  state,
 }: {
   to: string;
   children?: ReactNode;
+  state?: unknown;
 }) {
   return (
-    <Link to={to} className="back-link">
+    <Link to={to} state={state} className="back-link">
       <ArrowLeft aria-hidden="true" size={16} />
       {children}
     </Link>

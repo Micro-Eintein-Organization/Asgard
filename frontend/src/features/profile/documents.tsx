@@ -3,8 +3,9 @@ import { Link } from "react-router";
 import { coreApi, useCoreMutation, useCoreQuery } from "@/features/core/data";
 import { appRoutes } from "@/lib/routes";
 
-export function ProfileDocuments({ onGuardChange }: {
+export function ProfileDocuments({ onGuardChange, compact = false }: {
   onGuardChange?: (dirty: boolean, pending: boolean) => void;
+  compact?: boolean;
 }) {
   const query = useCoreQuery(["documents"], coreApi.documents);
   const remove = useCoreMutation(coreApi.removeDocuments);
@@ -16,10 +17,11 @@ export function ProfileDocuments({ onGuardChange }: {
     return () => onGuardChange?.(false, false);
   }, [onGuardChange, pending]);
   const error = query.error ?? remove.error ?? cleanup.error;
+  if (compact && state && !state.active && !state.candidate && !state.cleanup_pending && !pending && !error && !remove.isSuccess) return null;
   return (
-    <section className="space-y-3 pt-2 border-t" id="documents">
-      <h3 className="text-sm font-semibold">Academic profile and document management</h3>
-      <p className="text-sm">PDF upload and analysis: Coming later.</p>
+    <section className={compact ? "space-y-3" : "space-y-3 pt-2 border-t"} id="documents">
+      {!compact && <><h3 className="text-sm font-semibold">Academic profile and document management</h3>
+      <p className="text-sm">PDF upload and analysis: Coming later.</p></>}
       {!state && !error && <p role="status">Loading document state…</p>}
       {state?.active && <div>
         <p>Saved document background remains available until you remove it.</p>

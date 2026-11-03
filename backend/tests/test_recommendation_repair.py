@@ -1,5 +1,6 @@
 import asyncio
 import copy
+import hashlib
 import json
 import logging
 from contextlib import asynccontextmanager
@@ -13,8 +14,14 @@ import pytest
 from pydantic import ValidationError
 
 from app.core.config import Settings
-from app.modules.recommendations import service
-from app.modules.recommendations.provider import ProviderFailure, generate, strict_schema
+from app.core.errors import APIError
+from app.modules.recommendations import service, token_budget
+from app.modules.recommendations.provider import (
+    ProviderFailure,
+    generate,
+    prepare_request,
+    strict_schema,
+)
 from app.modules.recommendations.schemas import (
     ContextFact,
     PublishedCareerReference,
@@ -320,3 +327,63 @@ def test_failed_generation_writes_only_its_run_and_preserves_input(monkeypatch):
     assert "UPDATE asgard_private.recommendation_runs" in statements[0]
     assert "WHERE user_id" in statements[0] and "id = CAST(:id AS uuid)" in statements[0]
     assert connection.execute.await_args.args[1]["id"] == str(saved["id"])
+
+
+def test_twelve_careers_over_twelve_kilobytes_keep_all_context():
+    content = fixture_content()
+    content["catalog"] *= 12
+    payload, _, _ = provider_payload(content)
+    for index, item in enumerate(payload["candidates"]):
+        item["title"] = f"Published career {index}"
+        item["description"] = "Explore tools, workflows and practical projects. " * 20
+    payload["facts"][0]["description"] = "兴趣 <|startoftext|> café 🚀"
+    body = prepare_request(Settings(), payload)
+    encoded = json.dumps(body, ensure_ascii=False)
+    assert len(encoded.encode()) > 12000
+    assert token_budget.input_tokens(encoded) < 12000
+    assert json.loads(body["messages"][1]["content"]) == payload
+    assert len(payload["candidates"]) == 12
+
+
+def test_token_limit_boundary(monkeypatch):
+    from app.modules.recommendations import provider
+
+    payload, _, _ = provider_payload(fixture_content())
+    monkeypatch.setattr(provider, "input_tokens", lambda _: 12000)
+    assert prepare_request(Settings(), payload)
+    monkeypatch.setattr(provider, "input_tokens", lambda _: 12001)
+    with pytest.raises(ProviderFailure, match="invalid_output") as error:
+        prepare_request(Settings(), payload)
+    assert error.value.stage == "input_budget"
+
+
+def test_oversized_preflight_does_not_insert_reserve_or_call_provider(monkeypatch):
+    content = fixture_content()
+    fact = content["context"]["facts"][0]
+    content["context"]["facts"] = [
+        fact | {"id": f"focus:{index}", "description": "different token " * 70}
+        for index in range(150)
+    ]
+    request, identity, body, connection = service_boundary(monkeypatch, content, [None, None])
+    provider = AsyncMock()
+    monkeypatch.setattr(service, "generate", provider)
+    with pytest.raises(APIError) as error:
+        asyncio.run(service.request_run(request, identity, body))
+    assert error.value.status == 422
+    assert error.value.code == "recommendation_input_too_large"
+    service.reserve_attempt.assert_not_awaited()
+    connection.execute.assert_not_awaited()
+    assert service.one.await_count == 2
+    provider.assert_not_awaited()
+
+
+def test_missing_tokenizer_data_fails_without_network(monkeypatch, tmp_path):
+    token_budget.tokenizer.cache_clear()
+    monkeypatch.setenv("TIKTOKEN_CACHE_DIR", str(tmp_path))
+    with pytest.raises(ValueError, match="tokenizer_not_bundled"):
+        token_budget.input_tokens("test")
+    filename = hashlib.sha1(token_budget.VOCAB_URL.encode()).hexdigest()
+    (tmp_path / filename).write_text("corrupt")
+    with pytest.raises(ValueError, match="tokenizer_not_bundled"):
+        token_budget.input_tokens("test")
+    token_budget.tokenizer.cache_clear()

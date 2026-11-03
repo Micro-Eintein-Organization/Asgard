@@ -20,6 +20,17 @@ import { CareerDestination } from "./career-navigation";
 
 export const router = createBrowserRouter([
   {
+    errorElement: (
+      <main className="page-container">
+        <StatePanel
+          kind="error"
+          title="This page could not be loaded"
+          action={<Link to={routes.home}>Return to Asgard</Link>}
+        >
+          An unexpected error prevented this screen from opening.
+        </StatePanel>
+      </main>
+    ),
     element: <AppShell />,
     children: [
       { path: routes.home, element: <LandingPage /> },

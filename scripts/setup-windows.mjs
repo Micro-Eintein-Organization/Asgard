@@ -12,6 +12,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseEnv } from "node:util";
 import { checkedPort, localConfig } from "./dev-config.mjs";
+import { prepareLocalSetup } from "./local-readiness.mjs";
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const envPath = join(root, ".env");
@@ -213,7 +214,7 @@ async function main() {
     throw new Error("Usage: node scripts/setup-windows.mjs [setup|start]");
   checkPrerequisites();
   installLockedCli();
-  let values = readEnvironment();
+  const values = readEnvironment();
   checkShellOverrides(values);
   if (mode === "start") {
     runNode([join(root, "scripts/dev.mjs"), "start"]);
@@ -226,41 +227,24 @@ async function main() {
   const rl = createInterface({ input: stdin, output: stdout });
 
   try {
-    if (!hasDatabaseCredential) {
-      console.log(
-        "\nFresh local setup will keep or generate this checkout's private signing key, start Supabase (which may initialize the committed migrations), and create a restricted local database password. It will not reset or delete Docker data.",
-      );
-      const approved = await confirm(
-        rl,
-        "Continue only if this is a brand-new local database, or the same fresh setup previously started by this script with no user data, and the project lead approved initialization and credential provisioning. If this Docker project may contain existing data, stop and ask the project lead.",
-        "INITIALIZE",
-      );
-      if (!approved) {
-        console.log("Stopped without initializing Supabase or changing database credentials.");
-        process.exitCode = 1;
-        return;
-      }
-      if (!hasKey) createSigningKey();
-      runNode([join(root, "scripts/dev.mjs"), "start"]);
-      runNode([
-        join(root, "scripts/provision-local-db.mjs"),
-        "--approve-local-password",
-      ]);
-      values = readEnvironment();
-    } else if (hasKey !== hasDatabaseCredential) {
-      throw new Error(
-        "This checkout has partial local Auth state (only a signing key or only a database credential). Do not initialize or replace either one-click. Follow README.md's recovery instructions or ask the project lead.",
-      );
-    }
-
-    if (values.ASGARD_AUTH_ENABLED !== "true") {
-      const approved = await confirm(
-        rl,
-        "Has the project lead approved enabling local email/password Auth for this environment? The script will save that setting in your ignored .env, then start the app for your manual signup, verification, sign-in, and Profile checks.",
-        "ENABLE AUTH",
-      );
-      if (approved) enableLocalAuth();
-      else console.log("Auth remains disabled. The local stack will start without app sign-in.");
+    const completed = await prepareLocalSetup(
+      { hasKey, hasDatabaseCredential, authEnabled: values.ASGARD_AUTH_ENABLED === "true" },
+      {
+        confirm: (question, requiredText) => confirm(rl, question, requiredText),
+        createSigningKey,
+        bootstrap: () => runNode([join(root, "scripts/dev.mjs"), "bootstrap"]),
+        provision: () => runNode([
+          join(root, "scripts/provision-local-db.mjs"),
+          "--approve-local-password",
+        ]),
+        enableAuth: enableLocalAuth,
+        publish: () => runNode([join(root, "scripts/publish-local-content.mjs")]),
+      },
+    );
+    if (!completed) {
+      console.log("Stopped without initializing Supabase or changing database credentials.");
+      process.exitCode = 1;
+      return;
     }
   } finally {
     rl.close();

@@ -1,43 +1,21 @@
-import { useId } from "react";
 import { Button } from "@/components/ui/button";
 import { StatePanel } from "@/components/shared";
 
-export type PreviewState = "sample" | "empty" | "loading" | "error";
-export function PreviewStateControl({
-  value,
-  onChange,
-}: {
-  value: PreviewState;
-  onChange: (value: PreviewState) => void;
-}) {
-  const id = useId();
-  return (
-    <div className="preview-state-control">
-      <label htmlFor={id}>Review layout state</label>
-      <select
-        id={id}
-        value={value}
-        onChange={(event) => onChange(event.target.value as PreviewState)}
-      >
-        <option value="sample">Sample content</option>
-        <option value="empty">Empty</option>
-        <option value="loading">Loading</option>
-        <option value="error">Error</option>
-      </select>
-      <span>Visual examples only</span>
-    </div>
-  );
-}
+export type PreviewState = "empty" | "loading" | "error";
 export function PreviewDataState({
   state,
   subject,
   onReset,
   emptyAction,
+  action,
+  children,
 }: {
-  state: Exclude<PreviewState, "sample">;
+  state: PreviewState;
   subject: string;
-  onReset: () => void;
+  onReset?: () => void;
   emptyAction?: React.ReactNode;
+  action?: React.ReactNode;
+  children?: React.ReactNode;
 }) {
   return (
     <StatePanel
@@ -49,21 +27,20 @@ export function PreviewDataState({
             ? `We could not load ${subject}`
             : `No ${subject} yet`
       }
-      action={
-        state === "empty" && emptyAction ? (
-          emptyAction
-        ) : (
+      action={action ??
+        (state === "empty" ? emptyAction : undefined) ??
+        (onReset ? (
           <Button variant="outline" onClick={onReset}>
             Show sample content
           </Button>
-        )
-      }
+        ) : undefined)}
     >
-      {state === "loading"
-        ? "Loading-state example. No request is running for this sample."
-        : state === "error"
-          ? "Error-state example. Your next action should remain available when a service fails."
-          : "This is an empty-state example, separate from your saved account data."}
+      {children ??
+        (state === "loading"
+          ? `Loading ${subject}.`
+          : state === "error"
+            ? `We could not load ${subject}.`
+            : `There is no ${subject} to show.`)}
     </StatePanel>
   );
 }

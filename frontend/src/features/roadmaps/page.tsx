@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import practiceData from "@/assets/data/visits.csv?url";
 import practiceReference from "@/assets/data/reference.md?url";
 import { Link, useLocation, useParams, useSearchParams } from "react-router";
-import { ExternalLink, X } from "lucide-react";
+import { Check, Circle, Eye, ExternalLink, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Accordion,
@@ -10,9 +10,10 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { BackLink, Notice, StatePanel } from "@/components/shared";
+import { BackLink, Notice, StatePanel, StatusBadge } from "@/components/shared";
 import { appRoutes } from "@/lib/routes";
 import { coreApi, useCoreMutation, useCoreQuery } from "@/features/core/data";
+import { topicPresentation } from "./topic-presentation";
 
 export function RoadmapPage() {
   const { careerId = "" } = useParams();
@@ -23,33 +24,30 @@ export function RoadmapPage() {
       : "";
   const [params, setParams] = useSearchParams();
   const [hideDone, setHideDone] = useState(false);
+  const [hiddenTopics, setHiddenTopics] = useState<Set<string>>(() => new Set());
+  const visibilityFocus = useRef<string | null>(null);
+  useEffect(() => {
+    if (visibilityFocus.current) document.getElementById(visibilityFocus.current)?.focus();
+    visibilityFocus.current = null;
+  }, [hiddenTopics]);
+  function toggleVisibility(id: string) {
+    const hiding = !hiddenTopics.has(id);
+    visibilityFocus.current = `${hiding ? "show" : "hide"}-topic-${id}`;
+    setHiddenTopics(previous => {
+      const next = new Set(previous);
+      if (hiding) next.add(id); else next.delete(id);
+      return next;
+    });
+  }
   const heading = useRef<HTMLHeadingElement>(null);
   const opener = useRef<HTMLButtonElement | null>(null);
   const panel = useRef<HTMLElement>(null);
-  const [layout, setLayout] = useState<HTMLDivElement | null>(null);
-  useEffect(() => {
-    if (!layout) return;
-    const resize = () => {
-      const top = layout.getBoundingClientRect().top + window.scrollY;
-      layout.style.setProperty("--roadmap-top", `${Math.ceil(top)}px`);
-    };
-    const observer = new ResizeObserver(resize);
-    const main = layout.closest("main");
-    if (main) observer.observe(main);
-    const header = document.querySelector(".site-header");
-    if (header) observer.observe(header);
-    window.addEventListener("resize", resize);
-    resize();
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("resize", resize);
-    };
-  }, [layout]);
   const career = useCoreQuery(
     ["career", careerId],
     () => coreApi.resolveCareer(careerId),
     !!careerId,
   );
+  const categories = useCoreQuery(["categories"], coreApi.categories);
   const roadmapId = params.get("roadmap") ?? career.data?.roadmap_ids[0] ??
     (career.data?.slug === "ui-ux-designer" ? "27a28a6f-33b0-5d93-92de-b243c11401b0" : "");
   const roadmap = useCoreQuery(
@@ -80,14 +78,24 @@ export function RoadmapPage() {
   const topic = roadmap.data?.milestones
     .flatMap((milestone) => milestone.topics)
     .find((item) => item.id === topicId);
+  const contentReady = !!(career.data && learning.data && roadmap.data && progress.data && summary.data && branches.data);
   useEffect(() => {
     if (topic?.id) {
       panel.current?.scrollTo({ top: 0 });
       heading.current?.focus({ preventScroll: true });
-      if (!window.matchMedia("(min-width: 64rem) and (min-height: 28rem)").matches)
+      if (!window.matchMedia("(min-width: 64rem)").matches)
         heading.current?.scrollIntoView({ block: "nearest" });
     }
   }, [topic?.id]);
+  useEffect(() => {
+    if (!contentReady || !location.hash.startsWith("#milestone-")) return;
+    const frame = requestAnimationFrame(() => {
+      const milestone = document.getElementById(location.hash.slice(1));
+      milestone?.scrollIntoView({ block: "start" });
+      milestone?.focus({ preventScroll: true });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [contentReady, location.hash]);
   function closeTopic() {
     const next = new URLSearchParams(params);
     next.delete("topic");
@@ -154,6 +162,12 @@ export function RoadmapPage() {
   const focusState = learning.data;
   const careerContent = career.data;
   const saved = progress.data;
+  const statuses = { not_started: "Not started", learning: "Learning", done: "Done", skipped: "Skipped" } as const;
+  const topicMilestone = content.milestones.find(milestone => milestone.topics.some(item => item.id === topic?.id));
+  const careerText = careerContent.description?.replace(/\r\n?/g, "\n");
+  const exampleProject = careerText?.match(/(?:^|\n\n)Representative work:\s*([^\n]+)/)?.[1];
+  const careerDescription = careerText?.replace(/\n\nRepresentative work:\s*[^\n]+/, "");
+  const topicCopy = topic ? topicPresentation(topic.explanation) : null;
   if (content.career_id !== careerContent.id)
     return (
       <StatePanel kind="error" title="Roadmap unavailable">
@@ -182,12 +196,12 @@ export function RoadmapPage() {
           <Link to={appRoutes.dashboard}>Resolve Learning on Dashboard</Link>
         </Notice>
       )}
-      <div className="roadmap-layout" ref={setLayout}>
+      <div className="roadmap-layout">
         <div className="roadmap-main" role="region" aria-label="Career and roadmap milestones" tabIndex={0}>
           <Notice>Browsing does not change your focus or progress.</Notice>
           <section className="roadmap-hero">
+            <p>{categories.data?.find(category => category.id === careerContent.category_id)?.title}</p>
             <h1>{careerContent.title}</h1>
-            <p>{content.description}</p>
             {roadmapId === "a51f6aec-f3d9-5ba8-97e1-3c9e500b375d" && <p className="flex flex-wrap gap-4">
               <a className="underline" href={practiceData} download>Download practice CSV</a>
               <a className="underline" href={practiceReference} download>Download data dictionary and reference results</a>
@@ -228,14 +242,16 @@ export function RoadmapPage() {
           </section>
           <section className="roadmap-about">
             <h2>About this career</h2>
-            <p>{careerContent.description}</p>
+            <p>{careerDescription}</p>
             <details>
               <summary>Read more about the work</summary>
+              <p className="whitespace-pre-line"><strong>About this roadmap:</strong> {content.description}</p>
               <ul>
                 {careerContent.responsibilities.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>
+              {exampleProject && <p><strong>Example project:</strong> {exampleProject}</p>}
               <ul className="skill-list">
                 {careerContent.skills.map((skill) => (
                   <li key={skill}>{skill}</li>
@@ -266,19 +282,24 @@ export function RoadmapPage() {
           </div>
           <Accordion
             type="multiple"
-            defaultValue={content.milestones.map((milestone) => milestone.id)}
+            className="milestone-list"
+            defaultValue={[
+              topicMilestone?.id ??
+              content.milestones.find(milestone => `#milestone-${milestone.id}` === location.hash)?.id ??
+              content.milestones.find(milestone => !milestone.retired_at)?.id,
+            ].filter((id): id is string => !!id)}
           >
             {content.milestones
               .filter((milestone) => !milestone.retired_at)
-              .map((milestone) => {
+              .map((milestone, index) => {
                 const count = overview.milestones.find(
                   (item) => item.milestone_id === milestone.id,
                 );
                 return (
-                  <div className="milestone-card" key={milestone.id}>
+                  <div className="milestone-card" key={milestone.id} id={`milestone-${milestone.id}`} tabIndex={-1}>
                     <AccordionItem value={milestone.id}>
                       <AccordionTrigger>
-                        {milestone.title} ·{" "}
+                        {index + 1}. {milestone.title} ·{" "}
                         {count?.requires_branch_choice
                           ? "Choose a path"
                           : count?.percentage == null
@@ -340,9 +361,13 @@ export function RoadmapPage() {
                               (entry) => entry.topic_id === item.id,
                             );
                             return (
+                              <div key={item.id}>
+                              <div id={`topic-task-${item.id}`} className={`topic-task${hiddenTopics.has(item.id) ? " is-hidden" : ""}`} inert={hiddenTopics.has(item.id)} aria-hidden={hiddenTopics.has(item.id)}>
+                              <div className="topic-task-content"><div className="topic-task-row">
                               <button
-                                key={item.id}
                                 className="topic-selector"
+                                id={`topic-${item.id}`}
+                                aria-controls="topic-details"
                                 aria-pressed={topicId === item.id}
                                 onClick={(event) => {
                                   opener.current = event.currentTarget;
@@ -351,12 +376,14 @@ export function RoadmapPage() {
                                   setParams(next, { state: location.state });
                                 }}
                               >
-                                <strong>{item.title}</strong>
-                                <span>
-                                  {state?.status.replace("_", " ") ??
-                                    "not started"}
-                                </span>
+                                {state?.status === "done" ? <Check size={19} aria-hidden="true" /> : <Circle size={18} aria-hidden="true" />}
+                                <span><strong>{item.title}</strong></span>
+                                <StatusBadge status={statuses[state?.status ?? "not_started"]} />
                               </button>
+                              <button id={`hide-topic-${item.id}`} type="button" className="topic-visibility-button" aria-label={`Hide task: ${item.title}`} onClick={() => toggleVisibility(item.id)}><Eye size={16} /></button>
+                              </div></div></div>
+                              {hiddenTopics.has(item.id) && <button id={`show-topic-${item.id}`} type="button" className="hidden-topic-reveal" onClick={() => toggleVisibility(item.id)}>Show task: {item.title}</button>}
+                              </div>
                             );
                           })}
 
@@ -380,15 +407,16 @@ export function RoadmapPage() {
               })}
           </Accordion>
         </div>
-        <aside ref={panel} className="topic-panel" aria-label="Topic details" tabIndex={0}>
+        <aside id="topic-details" ref={panel} className="topic-panel" aria-label="Topic details" tabIndex={0}>
           {topic ? (
             <>
               <header>
                 <div>
-                  <p>Topic</p>
+                  <p>Topic · {topicMilestone?.title}</p>
                   <h2 ref={heading} tabIndex={-1}>
                     {topic.title}
                   </h2>
+                  <div className="mt-3"><StatusBadge status={statuses[saved.find(item => item.topic_id === topic.id)?.status ?? "not_started"]} /></div>
                 </div>
                 <Button
                   size="icon"
@@ -400,7 +428,8 @@ export function RoadmapPage() {
                 </Button>
               </header>
               <section>
-                <p className="whitespace-pre-line">{topic.explanation}</p>
+                <h3>Overview</h3>
+                <p className="whitespace-pre-line">{topicCopy?.overview}</p>
                 {topic.prerequisite_ids.length > 0 && (
                   <p className="field-help">
                     Prerequisites are guidance. You may study topics in any
@@ -409,7 +438,15 @@ export function RoadmapPage() {
                 )}
               </section>
               <section>
-                <h3>Resources</h3>
+                <h3>Learning outcome</h3>
+                <p className="whitespace-pre-line">{topicCopy?.outcome || "A separate learning outcome has not been provided for this topic."}</p>
+              </section>
+              <section>
+                <h3>Tools and setup</h3>
+                <p className="whitespace-pre-line">{topicCopy?.setup || "No separate setup guidance is available for this topic."}</p>
+              </section>
+              <section>
+                <h3>Links and resources</h3>
                 {topic.resources.map((resource) => (
                   <a
                     className="resource-link"
@@ -433,6 +470,13 @@ export function RoadmapPage() {
                   </a>
                 ))}
               </section>
+              <section>
+              <h3>Completion</h3>
+              {topicCopy?.practice && <div className="topic-practice"><h4>Practice</h4><p className="whitespace-pre-line">{topicCopy.practice}</p></div>}
+              {topicCopy?.completion && <p className="whitespace-pre-line">{topicCopy.completion}</p>}
+              {saved.find(item => item.topic_id === topic.id)?.status === "done"
+                ? <Notice tone="success">You marked this topic complete.</Notice>
+                : <p>Record your current status when you are ready. You can change it later.</p>}
               <div className="progress-actions">
                 {(["learning", "done", "skipped", "not_started"] as const).map(
                   (status) => {
@@ -480,13 +524,15 @@ export function RoadmapPage() {
                   },
                 )}
               </div>
+              </section>
               {topic.branch_id && !branchChoices.some(choice => choice.branch_id === topic.branch_id) &&
                 <p className="field-help">This topic belongs to another tool path and is excluded from current totals. Select that path to continue it. An existing Learning status can still be resolved.</p>}
             </>
           ) : (
             <div className="empty-topic-panel">
-              <h2>{topicId ? "Topic unavailable" : "Choose a topic"}</h2>
-              <p>Open a topic to read its explanation and resources.</p>
+              <Eye size={28} aria-hidden="true" />
+              <h2>{topicId ? "Topic unavailable" : "Take a closer look."}</h2>
+              <p>Select a topic to read its overview, learning guidance and resources.</p>
             </div>
           )}
         </aside>

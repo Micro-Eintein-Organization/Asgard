@@ -3,6 +3,8 @@ ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PIP_DISABLE_PIP_VERSION_CHECK=1
 WORKDIR /workspace
 COPY requirements.lock .
 RUN pip install --no-cache-dir --require-hashes -r requirements.lock
+ENV TIKTOKEN_CACHE_DIR=/opt/asgard-tokenizer
+RUN python -c "import tiktoken; tiktoken.get_encoding('o200k_harmony')" && chmod -R a+rX /opt/asgard-tokenizer
 RUN useradd --create-home --uid 10001 asgard && chown asgard:asgard /workspace
 COPY app ./app
 USER asgard

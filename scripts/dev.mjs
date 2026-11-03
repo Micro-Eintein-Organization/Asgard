@@ -11,6 +11,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseEnv } from "node:util";
 import { localConfig, checkedPort, updateEnvironment } from "./dev-config.mjs";
+import { applicationIssues } from "./local-readiness.mjs";
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const config = localConfig(
@@ -41,7 +42,7 @@ function run(command, args, { capture = false, privateOutput = false } = {}) {
 const docker = (args, options) => run("docker", args, options);
 const cli = (args, options) =>
   run(process.execPath, [cliPath, ...args], options);
-const compose = (args) => docker(["compose", ...args]);
+const compose = (args, options) => docker(["compose", ...args], options);
 
 function preflight() {
   const [major, minor] = process.versions.node.split(".").map(Number);
@@ -258,6 +259,16 @@ with socket.create_connection(('supabase_db_${config.project}',5432),timeout=5) 
  assert s.recv(1) in (b'S',b'N'), 'PostgreSQL protocol probe failed'
 print('Backend -> Supabase Auth health and PostgreSQL protocol: PASS')`;
   compose(["exec", "-T", "backend", "python", "-c", probe]);
+  const report = JSON.parse(compose(
+    ["exec", "-T", "backend", "python", "scripts/check_local_readiness.py"],
+    { capture: true },
+  ));
+  const issues = applicationIssues(env, report);
+  if (issues.length) {
+    console.log("CONNECTIVITY PASS; APPLICATION SETUP INCOMPLETE");
+    for (const issue of issues) console.log(issue);
+    throw new Error("Finish the application setup steps above before signing in or opening Dashboard/roadmaps.");
+  }
   console.log(
     "Frontend, proxy -> FastAPI, FastAPI -> Supabase REST, and Studio -> database SELECT 1: PASS",
   );
@@ -265,8 +276,11 @@ print('Backend -> Supabase Auth health and PostgreSQL protocol: PASS')`;
     `READY\nAsgard website: ${frontend}\nFastAPI docs:   ${backend}/docs\nSupabase Studio: http://127.0.0.1:${config.studio}\nConnectivity:   ${frontend}/status`,
   );
   console.log(
-    "Database probe verifies reachability/protocol, not an application DB role, grants or RLS. No product auth workflow is enabled.",
+    "Application prerequisites passed with restricted database access and published content. Signup/login and account isolation still require the guided acceptance walkthrough.",
   );
+  console.log(report.groq_configured
+    ? "Groq: configured; provider availability and result quality require a separate check."
+    : "Groq: not configured (optional). Dashboard, careers and roadmaps remain available. Set backend-only ASGARD_GROQ_ENABLED and your own ASGARD_GROQ_API_KEY for suggestions.");
 }
 
 function check() {
@@ -325,14 +339,14 @@ function generate() {
 
 try {
   if (
-    !["start", "env", "verify", "check", "generate-api"].includes(action) ||
+    !["bootstrap", "start", "env", "verify", "check", "generate-api"].includes(action) ||
     process.argv.length > 3
   )
     throw new Error(
-      "Usage: node scripts/dev.mjs [start|env|verify|check|generate-api]",
+      "Usage: node scripts/dev.mjs [bootstrap|start|env|verify|check|generate-api]",
     );
   preflight();
-  if (action === "start") {
+  if (action === "start" || action === "bootstrap") {
     await checkPorts();
     console.log(
       "Starting CLI-managed Supabase (first run may download images).",
@@ -340,13 +354,20 @@ try {
     cli(["start"], { privateOutput: true });
     syncEnvironment();
     checkMigrations();
-    compose(["config", "--quiet"]);
-    compose(["up", "--build", "--detach", "--wait", "--wait-timeout", "180"]);
-    await verify();
+    if (action === "bootstrap") {
+      console.log("SUPABASE BOOTSTRAP COMPLETE. Application credentials, Auth activation and content publication are separate setup steps.");
+    } else {
+      compose(["config", "--quiet"]);
+      compose(["up", "--build", "--detach", "--wait", "--wait-timeout", "180"]);
+      await verify();
+    }
   } else if (action === "env") syncEnvironment();
   else {
     assertLocalEnvironment();
-    if (action === "verify") await verify();
+    if (action === "verify") {
+      checkMigrations();
+      await verify();
+    }
     else if (action === "check") check();
     else generate();
   }

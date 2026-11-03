@@ -12,11 +12,12 @@ vi.mock("@/features/core/data", () => ({
 }));
 
 function flow(failed = false) {
-  vi.mocked(useCoreQuery).mockReturnValue({
+  const catalog = {
     data: {
       items: [
         {
           id: "career-1",
+          category_id: "software",
           title: "Published career",
           description: "Starter path",
           skills: ["HTML"],
@@ -24,7 +25,10 @@ function flow(failed = false) {
       ],
     },
     error: null,
-  } as never);
+  };
+  vi.mocked(useCoreQuery).mockImplementation(key => (key[0] === "recommendation-categories"
+    ? { data: [{ id: "software", title: "Software and AI" }], error: null }
+    : catalog) as never);
   return {
     query: {
       data: {
@@ -85,11 +89,13 @@ describe("saved recommendation cards", () => {
       "href",
       "/roadmaps/career-1?roadmap=roadmap-1",
     );
-    fireEvent.click(screen.getByText("Read more"));
+    expect(screen.getByText("Why this was suggested")).toBeVisible();
     expect(screen.getByText("A limited catalog option.")).toBeVisible();
+    expect(screen.getByText("Software and AI")).toHaveClass("card-category");
+    expect(screen.getByRole("link", { name: "Retake Discovery" })).toHaveAttribute("href", "/settings/profile#saved-discovery");
   });
 
-  it("shows the current retry error once instead of retaining the older validation banner", () => {
+  it("keeps the saved failure visible alongside retry cooldown feedback", () => {
     const current = flow(true);
     current.error = new APIRequestError(
       429,
@@ -111,9 +117,15 @@ describe("saved recommendation cards", () => {
     );
     expect(
       screen.queryByText(/returned suggestions could not be validated/),
-    ).not.toBeInTheDocument();
+    ).toBeInTheDocument();
     expect(
       screen.getByRole("button", { name: "Try again in 45s" }),
     ).toBeDisabled();
+  });
+  it("does not require an initial generate button in the Discovery results flow", () => {
+    const current = flow();
+    current.query.data!.current = null;
+    render(<MemoryRouter><RecommendationCards flow={current} allowInitialRequest={false} /></MemoryRouter>);
+    expect(screen.queryByRole("button", { name: "Prepare suggestions" })).not.toBeInTheDocument();
   });
 });

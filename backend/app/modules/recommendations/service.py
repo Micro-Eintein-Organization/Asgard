@@ -14,6 +14,7 @@ from app.modules.recommendations.provider import (
     ProviderFailure,
     diagnostic,
     generate,
+    prepare_request,
 )
 from app.modules.recommendations.schemas import (
     CompletedDiscoveryReference,
@@ -548,6 +549,27 @@ async def request_run(request, identity, body):
                 "Groq is not configured locally. Your Discovery answers are saved.",
             )
         content = await snapshot(connection, uid, learning, release)
+        payload, candidate_map, fact_map = provider_payload(content)
+        try:
+            prepared = prepare_request(settings, payload, diagnostics={
+                "request_id": getattr(request.state, "request_id", ""),
+                "model_id": settings.groq_model,
+            })
+        except ProviderFailure as exc:
+            diagnostic(
+                {"request_id": getattr(request.state, "request_id", "")}, exc.stage
+            )
+            if exc.stage == "input_budget":
+                raise APIError(
+                    422, "recommendation_input_too_large",
+                    "The saved context exceeds the suggestion input budget. Your answers "
+                    "are saved; browse careers while the project lead reviews this limit.",
+                ) from None
+            raise APIError(
+                503, "provider_unavailable",
+                "Suggestion preparation is unavailable. Your answers are saved; "
+                "ask the project lead to check the backend tokenizer installation.",
+            ) from None
         saved = await one(
             connection,
             (
@@ -607,7 +629,6 @@ async def request_run(request, identity, body):
         "model_id": settings.groq_model,
     }
     try:
-        payload, candidate_map, fact_map = provider_payload(content)
         result = await generate(
             request.app.state.http,
             settings,
@@ -615,6 +636,7 @@ async def request_run(request, identity, body):
             reserve_retry,
             (saved["deadline_at"] - datetime.now(UTC)).total_seconds(),
             diagnostics=diagnostics,
+            prepared=prepared,
         )
         resolved = resolve_selection(result, candidate_map, fact_map)
         context = RecommendationContext.model_validate(content["context"])

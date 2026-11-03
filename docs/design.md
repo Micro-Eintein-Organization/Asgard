@@ -1,5 +1,38 @@
 # Asgard: Implemented UI foundation
 
+Catalog correction/review, 2026-11-03: catalog cards use a short authored opening
+sentence and up to three skill chips; category numbers/labels have separate,
+left-aligned wrapping columns. See [catalog evidence](features/career-catalog.md#compact-cards-and-sidebar-correction-2026-11-03).
+The renewed [Cabusao gap review](plans/cabusao-ui-gap-review-2026-11-03.md) recorded
+Settings, roadmap, Results and Dashboard composition gaps. Those scoped corrections
+are now implemented: shared Settings cards and account view, published topic
+guidance sections/status, Results metadata/navigation and milestone shortcuts.
+See [completion evidence](features/cabusao-ui-integration.md#agreed-ui-completion-2026-11-03).
+Human reference-fidelity review remains pending.
+
+Discovery update, 2026-11-03: questionnaire choices use one row at 1280–1920 px,
+including uncertainty, with a question-specific column count and a wider existing
+page container. Welcome retains two choices; narrower effective widths wrap for
+accessible reflow. The last-question action is **See suggestions**: save and
+complete first, then request once and open results without another initial generate
+button. Errors retain explicit retry and saved-state recovery. See the
+[repair evidence](features/cabusao-ui-integration.md#discovery-flow-repair-2026-11-03).
+
+Correction, 2026-11-03: Cabusao component structure is the presentation baseline,
+not merely its stylesheet. The first integration retained competing newer markup
+and did not establish fidelity. Dashboard, onboarding, results and catalog now
+restore reference structure around current data/services. See the
+[correction record](features/cabusao-ui-integration.md#presentation-correction-2026-11-03)
+for exceptions and pending screenshot/authenticated acceptance.
+
+Integration update, 2026-11-03: the approved Cabusao presentation integration uses
+a fixed header, full-width black footer, shared pill controls, selected cards and
+sticky roadmap details. Selection blue is `#286b9f` to support white text.
+The Career dropdown and account-backed focus, progress, Discovery and suggestion
+services remain current. See [integration evidence](features/cabusao-ui-integration.md)
+for implementation and pending acceptance; historical inventories below do not
+certify this merged presentation.
+
 Updated 27 October 2026. Stage 3.5 canonical application UI with the later UI-flow repair; project-lead visual review is pending. [Product](product.md), [pages](pages-and-interactions.md), [journeys](user-journeys.md) and [architecture](architecture.md) retain authority over behavior and technical boundaries. This guide describes the implemented presentation, not approval of product integrations or curricula.
 
 The [later Stage 4 foundation](development.md#stage-4-shared-contracts-and-handoff) added shared SQL/API scaffolding. The [persisted-core follow-up](features/persisted-core.md) replaces runtime fixtures with existing-contract APIs and unavailable states in unverified source. The later [connected prototype](features/connected-prototype.md) restores the authored conditional questionnaire and actual saved recommendation cards, with three starter paths published locally; all runtime/visual acceptance remains deferred. Earlier sample-screen descriptions below record the preceding UI work and do not describe current runtime data. References below to Stage 3.5 not introducing contracts describe that UI task's scope; they do not mean the current repository lacks contracts. [Current foundation status](development.md#current-foundation-status-and-evidence) distinguishes source, recorded evidence and pending acceptance.
@@ -48,7 +81,7 @@ Primitives were obtained through the [official shadcn registry](https://ui.shadc
 
 [AppShell](../frontend/src/app/shell.tsx) supplies the compact Dashboard / Roadmap / Settings header, account menu, skip link and footer to the authenticated application. Roadmap opens the catalog; Discovery, recommendations and roadmap availability are reached through page actions. Settings opens the original combined Profile and security page; Account and security navigation targets its security section. [Routes](../frontend/src/lib/routes.ts) centralize public entry and protected application addresses; screen bundles load separately. Email/password account access and the profile API are connected. Protected feature routes load the restored committed screen layouts with account API data or genuine unavailable states. The shared Demo content notice and landing sample progress were removed by the persisted-core follow-up. Standalone `/preview/...` routes and the component gallery are removed; `/status` retains the technical connectivity check.
 
-The MVP targets desktop/laptop widths of approximately 1280–1920 px under [NFR-02](product.md#nfr-02-desktop-compatibility-and-accessible-reflow). Content is capped at 1248 px to keep reading widths comfortable on larger displays. Desktop application navigation stays visible. The catalog has centered search and wrapping category pills above a four-column grid at wide desktop widths; smaller widths retain one or two columns. Roadmap details sit beside milestones. Discovery uses four choice columns; entry uses two.
+The MVP targets desktop/laptop widths of approximately 1280–1920 px under [NFR-02](product.md#nfr-02-desktop-compatibility-and-accessible-reflow). Content is capped at 1248 px to keep reading widths comfortable on larger displays. Desktop application navigation stays visible. The catalog has centered search and wrapping category pills above a four-column grid at wide desktop widths; smaller widths retain one or two columns. Roadmap details sit beside milestones. Discovery uses one desktop row for the current question's choices; entry uses two columns.
 
 ## Original screen restoration, 27 October 2026
 
