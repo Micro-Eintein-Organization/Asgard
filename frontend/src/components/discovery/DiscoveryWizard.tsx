@@ -194,7 +194,7 @@ function DiscoveryEditor({
               <label
                 key={option.id}
                 className={
-                  "cursor-pointer rounded-2xl border-2 p-6 transition-all relative flex flex-col min-h-72 sm:min-h-80 bg-white focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-emerald-700 " +
+                  "choice-card selectable-card cursor-pointer rounded-2xl border-2 p-6 relative flex flex-col min-h-72 sm:min-h-80 focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-emerald-700 " +
                   (selected
                     ? "border-emerald-500 ring-2 ring-emerald-500 shadow-md"
                     : "border-gray-200 hover:border-gray-300 hover:shadow-xs")
@@ -208,8 +208,8 @@ function DiscoveryEditor({
                   className="self-start accent-emerald-600"
                 />
                 {selected && (
-                  <span className="absolute top-3 right-3 text-[9px] font-bold uppercase px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">
-                    Selected
+                  <span className="selection-indicator" aria-hidden="true">
+                    ✓
                   </span>
                 )}
                 <span

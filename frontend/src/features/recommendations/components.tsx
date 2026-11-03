@@ -135,10 +135,10 @@ export function RecommendationCards({
                 <article
                   key={item.career_id}
                   className={
-                    "rounded-2xl p-6 space-y-4 bg-white border-2 " +
+                    "recommendation-card selectable-card rounded-2xl p-6 space-y-4 border-2 " +
                     (selection?.run === displayed.id &&
                     selection.career === career.id
-                      ? "border-emerald-500"
+                      ? "result-selected"
                       : "border-gray-200")
                   }
                 >
@@ -156,6 +156,7 @@ export function RecommendationCards({
                       className="accent-emerald-600"
                     />
                     <span className="font-bold text-lg">{career.title}</span>
+                    <span className="selection-indicator" aria-hidden="true">✓</span>
                   </label>
                   <p className="text-xs text-gray-500">{career.description}</p>
                   <details className="group space-y-2 text-sm">
@@ -266,7 +267,7 @@ export function RecommendationCards({
           )}
       </div>
       <p className="text-center text-xs text-gray-500">
-        Only three starter careers are published. Suggestions do not assess
+        Suggestions use the published career catalog. They do not assess
         proficiency, guarantee suitability, or change your learning focus.
       </p>
       <p className="text-center text-xs text-gray-500">

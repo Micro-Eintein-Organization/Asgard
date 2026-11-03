@@ -25,7 +25,7 @@ export const DiscoveryHeader: React.FC<DiscoveryHeaderProps> = ({
           disabled={disabled}
           className="min-h-11 text-sm font-semibold px-5 py-2 rounded-xl border border-gray-200 hover:bg-gray-50 transition-colors flex items-center space-x-1 cursor-pointer"
         >
-          <span>&larr; Back</span>
+          <span>&larr; Return</span>
         </button>
 
         {showProgress && currentStep <= totalSteps && (
@@ -49,6 +49,10 @@ export const DiscoveryHeader: React.FC<DiscoveryHeaderProps> = ({
         {showProgress && (
           <div
             className="flex justify-center items-center space-x-2"
+            role="progressbar"
+            aria-valuemin={0}
+            aria-valuemax={totalSteps}
+            aria-valuenow={Math.min(currentStep, totalSteps)}
             aria-label={
               currentStep <= totalSteps
                 ? `Question ${currentStep} of ${totalSteps}`
@@ -56,7 +60,7 @@ export const DiscoveryHeader: React.FC<DiscoveryHeaderProps> = ({
             }
           >
             {Array.from(
-              { length: totalSteps + 1 },
+              { length: totalSteps },
               (_, index) => index + 1,
             ).map((s) => (
               <div

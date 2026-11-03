@@ -1,5 +1,13 @@
 # Asgard: Implemented UI foundation
 
+Integration update, 2026-11-03: the approved Cabusao presentation integration uses
+a fixed header, full-width black footer, shared pill controls, selected cards and
+sticky roadmap details. Selection blue is `#286b9f` to support white text.
+The Career dropdown and account-backed focus, progress, Discovery and suggestion
+services remain current. See [integration evidence](features/cabusao-ui-integration.md)
+for implementation and pending acceptance; historical inventories below do not
+certify this merged presentation.
+
 Updated 27 October 2026. Stage 3.5 canonical application UI with the later UI-flow repair; project-lead visual review is pending. [Product](product.md), [pages](pages-and-interactions.md), [journeys](user-journeys.md) and [architecture](architecture.md) retain authority over behavior and technical boundaries. This guide describes the implemented presentation, not approval of product integrations or curricula.
 
 The [later Stage 4 foundation](development.md#stage-4-shared-contracts-and-handoff) added shared SQL/API scaffolding. The [persisted-core follow-up](features/persisted-core.md) replaces runtime fixtures with existing-contract APIs and unavailable states in unverified source. The later [connected prototype](features/connected-prototype.md) restores the authored conditional questionnaire and actual saved recommendation cards, with three starter paths published locally; all runtime/visual acceptance remains deferred. Earlier sample-screen descriptions below record the preceding UI work and do not describe current runtime data. References below to Stage 3.5 not introducing contracts describe that UI task's scope; they do not mean the current repository lacks contracts. [Current foundation status](development.md#current-foundation-status-and-evidence) distinguishes source, recorded evidence and pending acceptance.

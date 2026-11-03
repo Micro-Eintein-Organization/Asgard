@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { BookOpen, Compass } from "lucide-react";
 interface EntryChoiceProps {
   onSelectChoice: (choice: "wizard" | "catalog") => void;
 }
@@ -42,8 +43,8 @@ export const EntryChoice: React.FC<EntryChoiceProps> = ({ onSelectChoice }) => {
             aria-pressed={choice === option.id}
             onClick={() => setChoice(option.id)}
             className={
-              "relative flex min-h-72 sm:min-h-96 flex-col items-center justify-center gap-8 rounded-2xl border-2 p-6 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-700 " +
-              (choice === option.id ? "border-emerald-500" : "border-gray-200")
+              "entry-choice-card relative flex min-h-72 sm:min-h-96 flex-col items-center justify-center gap-8 rounded-2xl border-2 p-6 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-700 " +
+              (choice === option.id ? "result-selected" : "border-gray-200")
             }
           >
             {choice === option.id && (
@@ -55,7 +56,7 @@ export const EntryChoice: React.FC<EntryChoiceProps> = ({ onSelectChoice }) => {
               aria-hidden="true"
               className="text-7xl leading-none text-gray-300"
             >
-              {option.shape}
+              {option.id === "wizard" ? <Compass size={48} /> : <BookOpen size={48} />}
             </span>
             <span className="space-y-3">
               <strong className="block text-xl">{option.title}</strong>

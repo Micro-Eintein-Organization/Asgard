@@ -1,5 +1,7 @@
 import { Link, useNavigate, useSearchParams } from "react-router";
-import { StatePanel } from "@/components/shared";
+import { useEffect, useRef } from "react";
+import { Search, X } from "lucide-react";
+import { PageHeading, StatePanel } from "@/components/shared";
 import { coreApi, useCoreQuery } from "@/features/core/data";
 import { appRoutes } from "@/lib/routes";
 
@@ -7,12 +9,20 @@ interface RoleCatalogProps {
   onBack?: () => void;
   onSelectRole?: (roleId: string) => void;
 }
+function RoadmapProgress({ id }: { id: string }) {
+  const progress = useCoreQuery(["progress", id], () => coreApi.progress(id), !!id);
+  const summary = useCoreQuery(["summary", id], () => coreApi.summary(id), !!id);
+  if (!progress.data?.length || summary.data?.percentage == null || summary.data.requires_branch_choice) return null;
+  return <span className="career-progress" role="meter" aria-label="Roadmap completion" aria-valuemin={0} aria-valuemax={100} aria-valuenow={summary.data.percentage}>{Math.round(summary.data.percentage)}%</span>;
+}
 export default function RoleCatalog({
   onBack,
   onSelectRole,
 }: RoleCatalogProps) {
   const navigate = useNavigate();
   const [params, setParams] = useSearchParams();
+  const searchInput = useRef<HTMLInputElement>(null);
+  const restoreFocus = useRef(false);
   const categories = useCoreQuery(["categories"], coreApi.categories);
   const preferences = useCoreQuery(["preferences"], coreApi.preferences);
   const recommendations = useCoreQuery(
@@ -20,6 +30,12 @@ export default function RoleCatalog({
     coreApi.recommendations,
   );
   const search = params.get("q") ?? "";
+  useEffect(() => {
+    if (!search && restoreFocus.current) {
+      searchInput.current?.focus();
+      restoreFocus.current = false;
+    }
+  }, [search]);
   const category =
     params.get("category") ??
     categories.data?.find(
@@ -101,7 +117,8 @@ export default function RoleCatalog({
           key={role.id}
           className="flex min-w-0 flex-col rounded-xl border border-gray-200 bg-white p-5"
         >
-          <p className="text-xs text-gray-600">{categories.data?.find((item) => item.id === role.category_id)?.title}</p>
+          <div className="career-card-meta"><p className="text-xs text-gray-600">{categories.data?.find((item) => item.id === role.category_id)?.title}</p>
+          <RoadmapProgress id={run?.items.find(item => item.career_id === role.id && !!item.roadmap_id && role.roadmap_ids.includes(item.roadmap_id))?.roadmap_id ?? role.roadmap_ids[0] ?? ""} /></div>
           <h3 className="mt-4 text-xl font-semibold">{role.title}</h3>
           <span className="mt-4 text-sm leading-relaxed text-gray-600">
             {role.description.split("\n\n")[0]}
@@ -118,6 +135,8 @@ export default function RoleCatalog({
     </div>
   );
   return (
+    <>
+    <PageHeading title="Find a direction worth exploring." description="Understand the work, see the skills involved, and explore a learning path." />
     <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-2 py-8 text-gray-900 md:grid-cols-[15rem_minmax(0,1fr)] md:px-6">
       <aside className="min-w-0 space-y-4 md:border-r md:pr-5">
         <h1 className="text-lg font-semibold">Career catalog</h1>
@@ -144,7 +163,10 @@ export default function RoleCatalog({
         <p className="pt-5 text-sm text-gray-600">You can explore any field. Discovery is optional.</p>
       </aside>
       <div className="min-w-0 space-y-8">
-        <input type="search" aria-label="Search career roles or skills" value={search} onChange={(event) => update("q", event.target.value)} placeholder="Search career roles or skills" className="min-h-11 w-full rounded-lg border border-gray-400 px-4 py-3 text-sm" />
+        <div className="search-field"><Search size={19} aria-hidden="true" />
+        <input ref={searchInput} id="career-search" type="search" aria-label="Search career roles or skills" value={search} onChange={(event) => update("q", event.target.value)} onKeyDown={event => {if (event.key === "Escape") {event.preventDefault(); update("q", "");}}} placeholder="Search career roles or skills" className="min-h-11 w-full px-4 py-3 text-sm" />
+        {search && <button type="button" aria-label="Clear search query" onClick={() => {restoreFocus.current = true; update("q", "");}}><X size={19} /></button>}
+        </div>
         <div className="flex flex-wrap items-center justify-between gap-4">
           <button
             onClick={() =>
@@ -224,5 +246,6 @@ export default function RoleCatalog({
         </section>
       </div>
     </div>
+    </>
   );
 }

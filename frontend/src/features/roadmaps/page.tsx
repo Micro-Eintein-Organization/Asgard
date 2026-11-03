@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import practiceData from "@/assets/data/visits.csv?url";
 import practiceReference from "@/assets/data/reference.md?url";
 import { Link, useLocation, useParams, useSearchParams } from "react-router";
-import { ExternalLink, X } from "lucide-react";
+import { Check, Circle, Eye, ExternalLink, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Accordion,
@@ -23,28 +23,24 @@ export function RoadmapPage() {
       : "";
   const [params, setParams] = useSearchParams();
   const [hideDone, setHideDone] = useState(false);
+  const [hiddenTopics, setHiddenTopics] = useState<Set<string>>(() => new Set());
+  const visibilityFocus = useRef<string | null>(null);
+  useEffect(() => {
+    if (visibilityFocus.current) document.getElementById(visibilityFocus.current)?.focus();
+    visibilityFocus.current = null;
+  }, [hiddenTopics]);
+  function toggleVisibility(id: string) {
+    const hiding = !hiddenTopics.has(id);
+    visibilityFocus.current = `${hiding ? "show" : "hide"}-topic-${id}`;
+    setHiddenTopics(previous => {
+      const next = new Set(previous);
+      if (hiding) next.add(id); else next.delete(id);
+      return next;
+    });
+  }
   const heading = useRef<HTMLHeadingElement>(null);
   const opener = useRef<HTMLButtonElement | null>(null);
   const panel = useRef<HTMLElement>(null);
-  const [layout, setLayout] = useState<HTMLDivElement | null>(null);
-  useEffect(() => {
-    if (!layout) return;
-    const resize = () => {
-      const top = layout.getBoundingClientRect().top + window.scrollY;
-      layout.style.setProperty("--roadmap-top", `${Math.ceil(top)}px`);
-    };
-    const observer = new ResizeObserver(resize);
-    const main = layout.closest("main");
-    if (main) observer.observe(main);
-    const header = document.querySelector(".site-header");
-    if (header) observer.observe(header);
-    window.addEventListener("resize", resize);
-    resize();
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("resize", resize);
-    };
-  }, [layout]);
   const career = useCoreQuery(
     ["career", careerId],
     () => coreApi.resolveCareer(careerId),
@@ -84,7 +80,7 @@ export function RoadmapPage() {
     if (topic?.id) {
       panel.current?.scrollTo({ top: 0 });
       heading.current?.focus({ preventScroll: true });
-      if (!window.matchMedia("(min-width: 64rem) and (min-height: 28rem)").matches)
+      if (!window.matchMedia("(min-width: 64rem)").matches)
         heading.current?.scrollIntoView({ block: "nearest" });
     }
   }, [topic?.id]);
@@ -182,7 +178,7 @@ export function RoadmapPage() {
           <Link to={appRoutes.dashboard}>Resolve Learning on Dashboard</Link>
         </Notice>
       )}
-      <div className="roadmap-layout" ref={setLayout}>
+      <div className="roadmap-layout">
         <div className="roadmap-main" role="region" aria-label="Career and roadmap milestones" tabIndex={0}>
           <Notice>Browsing does not change your focus or progress.</Notice>
           <section className="roadmap-hero">
@@ -340,8 +336,10 @@ export function RoadmapPage() {
                               (entry) => entry.topic_id === item.id,
                             );
                             return (
+                              <div key={item.id}>
+                              <div className={`topic-task${hiddenTopics.has(item.id) ? " is-hidden" : ""}`} inert={hiddenTopics.has(item.id)} aria-hidden={hiddenTopics.has(item.id)}>
+                              <div className="topic-task-content"><div className="topic-task-row">
                               <button
-                                key={item.id}
                                 className="topic-selector"
                                 aria-pressed={topicId === item.id}
                                 onClick={(event) => {
@@ -351,12 +349,17 @@ export function RoadmapPage() {
                                   setParams(next, { state: location.state });
                                 }}
                               >
+                                {state?.status === "done" ? <Check size={19} aria-hidden="true" /> : <Circle size={18} aria-hidden="true" />}
                                 <strong>{item.title}</strong>
                                 <span>
                                   {state?.status.replace("_", " ") ??
                                     "not started"}
                                 </span>
                               </button>
+                              <button id={`hide-topic-${item.id}`} type="button" className="topic-visibility-button" aria-label={`Hide task: ${item.title}`} onClick={() => toggleVisibility(item.id)}><Eye size={16} /></button>
+                              </div></div></div>
+                              {hiddenTopics.has(item.id) && <button id={`show-topic-${item.id}`} type="button" className="hidden-topic-reveal" onClick={() => toggleVisibility(item.id)}>Show task: {item.title}</button>}
+                              </div>
                             );
                           })}
 

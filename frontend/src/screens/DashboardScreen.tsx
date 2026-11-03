@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ChevronLeft, ChevronRight, SquarePen } from "lucide-react";
 import { Link, useNavigate } from "react-router";
 import { appRoutes } from "@/lib/routes";
 import { StatePanel } from "@/components/shared";
@@ -158,6 +159,10 @@ export function DashboardScreen() {
     Date.UTC(calendar.getUTCFullYear(), calendar.getUTCMonth() + 1, 0),
   ).getUTCDate();
 
+  const todayParts = new Intl.DateTimeFormat("en", {year: "numeric", month: "2-digit", day: "2-digit", timeZone: savedPreferences.timezone}).formatToParts(new Date());
+  const today = ["year", "month", "day"].map(key => todayParts.find(part => part.type === key)?.value).join("-");
+  const countStatus = (status: string) => allTopics.filter(item => (topicStates.find(entry => entry.topic_id === item.id)?.status ?? "not_started") === status).length;
+  if (!roadmapId && !overview.active_topic) return <StatePanel kind="empty" title="Choose your first roadmap" action={<Link to={appRoutes.careers}>Browse careers</Link>}>Choose a roadmap to see your learning topics and progress here.</StatePanel>;
   return (
     <div className="max-w-6xl mx-auto px-6 py-8 space-y-8 bg-white text-gray-900 min-h-screen">
       <h1 className="sr-only">Dashboard</h1>
@@ -194,27 +199,27 @@ export function DashboardScreen() {
         {/* LEFT COLUMN (4 Cols) */}
         <div className="lg:col-span-4 space-y-6">
           {/* Selected Role Card */}
-          <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6 space-y-3 relative">
+          <div className="current-roadmap-card border rounded-2xl p-6 space-y-3 relative">
             <div className="flex justify-between items-center text-xs font-semibold text-gray-500">
-              <span>Role</span>
+              <span className="current-roadmap-label">Current roadmap</span>
               <button
                 onClick={() => void navigate(appRoutes.careers)}
                 className="hover:text-black flex items-center space-x-1 cursor-pointer"
               >
                 <span>edit</span>
-                <span>✏️</span>
+                <SquarePen size={16} aria-hidden="true" />
               </button>
             </div>
-            <div className="border border-gray-300 rounded-xl p-3 bg-white text-center font-bold text-lg shadow-2xs">
+            <div className="text-white font-bold text-lg">
               {career.data?.title ?? "No roadmap selected"}
             </div>
-            <p className="text-xs text-gray-500 italic text-center leading-relaxed">
+            <p className="text-xs leading-relaxed">
               {roadmap.data
                 ? "Your saved learning focus."
                 : "Browse careers and explicitly choose a roadmap to begin."}
             </p>
+            {careerId && <Link className="current-roadmap-open" to={appRoutes.roadmap(careerId) + "?roadmap=" + roadmapId}>Open roadmap</Link>}
           </div>
-
           {/* Activity / Streak Calendar Widget */}
           <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6 space-y-4">
             <div className="flex justify-between items-center">
@@ -227,19 +232,20 @@ export function DashboardScreen() {
               </h3>
               <span className="bg-white border border-gray-200 px-3 py-1 rounded-full text-xs font-bold flex items-center space-x-1 shadow-2xs">
                 <span>{savedActivity.streak_days}</span>
-                <span>🔥</span>
+                <span>day streak</span>
               </span>
             </div>
 
             <div className="flex justify-between text-xs">
-              <button onClick={() => setMonthOffset(monthOffset - 1)}>
-                Previous month
+              <button aria-label="Previous month" onClick={() => setMonthOffset(monthOffset - 1)}>
+                <ChevronLeft aria-hidden="true" />
               </button>
               <button
+                aria-label="Next month"
                 disabled={monthOffset === 0}
                 onClick={() => setMonthOffset(monthOffset + 1)}
               >
-                Next month
+                <ChevronRight aria-hidden="true" />
               </button>
             </div>
             {/* Days Header */}
@@ -267,13 +273,14 @@ export function DashboardScreen() {
                   return (
                     <div
                       key={index}
+                      aria-current={day > 0 && date === today ? "date" : undefined}
                       title={
                         day > 0 ? date + ": " + count + " Done" : undefined
                       }
                       className={
                         day < 1
                           ? "h-6"
-                          : "h-6 rounded-md text-center text-xs " +
+                          : "h-6 rounded-md text-center text-xs " + (date === today ? "ring-2 ring-gray-900 " : "") +
                             (count > 1
                               ? "bg-orange-500"
                               : count > 0
@@ -345,11 +352,12 @@ export function DashboardScreen() {
           <div className="bg-gradient-to-r from-gray-900 to-black text-white rounded-2xl p-8 space-y-6 shadow-md relative overflow-hidden">
             <div className="space-y-2">
               <h2 className="text-2xl font-extrabold tracking-tight">
-                {milestone?.title ??
+                {allTopics.find(item => item.id === nextTopic)?.title ?? milestone?.title ??
                   (roadmapId
                     ? "Your learning progress"
                     : "Choose your first roadmap")}
               </h2>
+              {nextTopic && <p className="text-sm">{milestone?.title} · {topicStates.find(item => item.topic_id === nextTopic)?.status.replace("_", " ") ?? "Not started"}</p>}
               <button
                 onClick={() =>
                   void navigate(
@@ -423,7 +431,7 @@ export function DashboardScreen() {
                 aria-expanded={openSections.notStarted}
                 className="flex items-center space-x-2 text-xs font-bold text-gray-700 hover:text-black cursor-pointer"
               >
-                <span>Not Started</span>
+                <span>Not Started</span><span className="topic-count topic-count--not-started">{countStatus("not_started")}</span>
                 <span
                   className={`transform transition-transform ${openSections.notStarted ? "rotate-180" : ""}`}
                 >
@@ -461,7 +469,7 @@ export function DashboardScreen() {
                 aria-expanded={openSections.inProgress}
                 className="flex items-center space-x-2 text-xs font-bold text-gray-700 hover:text-black cursor-pointer"
               >
-                <span>In-Progress</span>
+                <span>In-Progress</span><span className="topic-count topic-count--in-progress">{countStatus("learning")}</span>
                 <span
                   className={`transform transition-transform ${openSections.inProgress ? "rotate-180" : ""}`}
                 >
@@ -492,6 +500,11 @@ export function DashboardScreen() {
               )}
             </div>
 
+            {(["not_started", "learning", "done"] as const).map(status => countStatus(status) === 0 && <p key={status} className="field-help">No {status.replace("_", " ")} topics yet.</p>)}
+            <details open><summary className="font-semibold">Skipped · {countStatus("skipped")}</summary>
+              {allTopics.filter(item => topicStates.find(entry => entry.topic_id === item.id)?.status === "skipped").map(item => <Link className="block py-3" key={item.id} to={topic(item.id)}>{item.title}</Link>)}
+              {!countStatus("skipped") && <p className="field-help">No skipped topics.</p>}
+            </details>
             {/* Complete Section */}
             <div className="space-y-3">
               <button
@@ -499,7 +512,7 @@ export function DashboardScreen() {
                 aria-expanded={openSections.complete}
                 className="flex items-center space-x-2 text-xs font-bold text-gray-700 hover:text-black cursor-pointer"
               >
-                <span>Complete</span>
+                <span>Complete</span><span className="topic-count topic-count--complete">{countStatus("done")}</span>
                 <span
                   className={`transform transition-transform ${openSections.complete ? "rotate-180" : ""}`}
                 >
