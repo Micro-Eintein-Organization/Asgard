@@ -1,9 +1,0 @@
-visit_id,week,channel,minutes,completed
-1,1,web,12,yes
-2,1,web,18,no
-3,1,referral,10,yes
-4,1,referral,20,no
-5,2,web,14,yes
-6,2,web,16,yes
-7,2,referral,12,no
-8,2,referral,18,yes
