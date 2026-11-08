@@ -24,7 +24,14 @@ describe("account-backed Cabusao Dashboard",()=>{
     expect(within(card).getByRole("link",{name:"Edit"})).toHaveAttribute("href","/careers");
     expect(screen.getByRole("heading",{name:"Learn interfaces"}).closest("section")).toHaveClass("milestone-hero");
     expect(screen.getByRole("progressbar")).toHaveAttribute("aria-valuenow","33");
-    expect(screen.getByRole("button",{name:"Not started, 1 topics"})).toHaveClass("dashboard-status-trigger");
+    const notStarted = screen.getByRole("button", { name: "Not started, 1 topics" });
+    expect(notStarted).toHaveClass("dashboard-status-trigger");
+    expect(notStarted).toHaveAttribute("aria-expanded", "false");
+    expect(screen.getByRole("button", { name: "In progress, 0 topics" })).toHaveAttribute("aria-expanded", "true");
+    expect(screen.queryByRole("link", { name: /Learn interfaces/ })).not.toBeInTheDocument();
+    fireEvent.click(notStarted);
+    expect(notStarted).toHaveAttribute("aria-expanded", "true");
+    expect(screen.getByRole("link", { name: /Learn interfaces/ })).toBeVisible();
     fireEvent.click(screen.getByRole("button",{name:"Complete, 1 topics"}));
     expect(screen.getByText("Finished topic")).toBeVisible();
     fireEvent.click(screen.getByRole("button",{name:"Skipped, 1 topics"}));

@@ -1,5 +1,112 @@
 # Asgard: Post-MVP roadmap and repository assessment
 
+## Learner journey simplification direction, 2026-11-05
+
+The owner selected a staged presentation cleanup. Keep the current Discovery
+flow; schedule its redesign (W05) as the final improvement after the other app
+journeys are settled. Keep two-career comparison (W06), but center its screen on
+the differences between the selected careers and make shortlist and notes
+secondary. Rework W07 presentation: remove its added practice and reflection
+surfaces from Roadmap and Dashboard, returning Roadmap to authored milestones,
+topics, focus and progress. Preserve the W07 API, migration and stored data
+dormantly; this is a UI plan, not a data deletion or completed code change.
+See the dated [W07 implementation guide](features/learning-guidance-and-reflection.md#owner-directed-presentation-rework-2026-11-05).
+
+## Beginner exploration update, 2026-11-05
+
+The owner selected career choice first across all twelve careers. Use concrete work, outputs, checks and one beginner activity per career, with optional task-based experience questions on the existing 120 skills. The typed local content package is implemented without database or recommendation changes. [Implementation and focused evidence](features/career-comparison-and-shortlist.md#beginner-exploration-2026-11-05). Independent comprehension/content review remains pending; PDF, hosting and additional account controls remain deferred.
+
+## Learner journey and career comparison, 2026-11-05
+
+Activation update: the owner approved the concrete one-migration shortlist bundle. It is now applied locally; original-data checks and the focused learner journey passed. See [final evidence](features/career-comparison-and-shortlist.md#normal-activation-and-learner-journey-2026-11-05).
+
+The owner selected PM-F06 / W06 and the experience-flow repair. Source now includes direct career actions, exactly-two comparison, private notes/shortlist and secondary sources. Types/contracts, scoped lint and focused persistence/isolation/stale-write checks passed. Normal shortlist activation and guided acceptance await the concrete review; this is not completed hosted acceptance. [Implementation guide](features/career-comparison-and-shortlist.md) and [owning specification](specs/career-exploration-comparison.md).
+
+
+
+
+
+
+## Twelve-career agent review packet, 2026-11-04
+
+The owner requested the bounded twelve-career evidence review. Codex prepared an
+inactive policy-assisted review covering all inherited records, existing skills and
+learning topics, preserving native scales and private rating identities. This is
+agent-proposed scope/partial-coverage evidence, not independent expert approval.
+Disputed ratings remain withheld and publication/inference flags remain false.
+See [review method, results and limits](features/career-evidence-recommendations.md#twelve-career-policy-assisted-agent-review-2026-11-04).
+Runtime recommendation integration and content-review assignment remain pending.
+
+## Occupational originals verified, 2026-11-04
+
+The owner supplied the original research files; all 20 match the recorded SHA-256
+and byte sizes. This resolves the missing-originals issue for this packet, without
+establishing independent semantic approval. Two original PDF ambiguities were
+inspected and recorded conservatively. The packet remains inactive pending full
+review and shared-contract approval. See
+[source verification](features/career-evidence-recommendations.md#original-source-verification-2026-11-04).
+
+## Full occupational evidence preparation, 2026-11-04
+
+The owner requested the full twelve-career evidence/recommendation plan: full
+applicable source profiles, grouped reference levels, interests plus experience,
+one release activation, and erasure of obsolete skill-derived result payloads.
+Codex prepared a durable inactive research packet and structural validator. No
+semantic approval, source-original hash verification or recommendation integration
+is claimed. Shared contract review and independent content approval remain pending;
+existing local-test behavior is unchanged. See the
+[implementation status](features/career-evidence-recommendations.md) and
+[technical proposal](specs/career-evidence-integration.md).
+
+## Owner-authorized local testing, 2026-11-04
+
+After setup stopped on the new pending migration, the owner explicitly requested
+applying it and implementing all required local activation so they could test.
+The single competency migration and 120 Asgard-authored mappings are now installed
+in the normal local environment, preserving all pre-existing private-table digests.
+This is a local-test publication exception with independent content/code review
+still pending; it does not approve hosted use or claim validated occupational
+requirements. See [activation evidence](features/competency-comparison.md#normal-local-test-activation-2026-11-04).
+
+## Docker verification follow-up, 2026-11-04
+
+The resumed competency checks passed the isolated migration/private-state upgrade,
+draft/repeat/conflict publication, 21 pinned-container unit/Auth integration cases,
+and scoped Chrome persistence/comparison/removal/layout/focus checks. SQL policy
+quoting, readback ordering and comparison-trigger contrast were corrected. Normal
+migration/activation, real content approval and independent human review remain
+pending. See [dated execution evidence](features/competency-comparison.md#resumed-docker-acceptance-2026-11-04).
+This does not change final-MVP or hosted release gates.
+
+## Implementation follow-up, 2026-11-04
+
+The owner subsequently approved proceeding with the proposed migration/API scope
+and selected Anti Slop during. Skill-profile/comparison source and generated clients
+are now implemented. Independent review, database activation, content publication
+and end-to-end acceptance remain pending; earlier preparation-only status below is
+historical. See [implementation evidence and limitations](features/competency-comparison.md).
+No final-MVP release gate is marked complete by this update.
+
+
+## Bounded implementation request, 2026-11-04
+
+The [2026-11-05 scope resolution](decisions.md#esco-integration-scope-resolution-2026-11-05) supersedes the ESCO deferral in this historical record.
+
+The owner selected the manual skill-profile/comparison increment for all 12 current
+careers with Asgard-authored source content, unknown or self-reported levels 0–4,
+current records only and existing Profile/roadmap entry points. ESCO download/import,
+hosting and additional account controls are deferred from the immediate sequence.
+The owner requested end-to-end implementation; migration/shared-contract technical
+review and content publication approval remain pending. This resolution supersedes
+the accepted-MVP-first prerequisite and external-dataset-first assumption only
+for this increment; the remaining packages below stay proposed. See
+[session decisions](plans/competency-comparison-2026-11-04.md),
+[specification](specs/competency-comparison.md) and
+[actual status](features/competency-comparison.md). Historical three-path inventory
+and 12,000-byte request-budget descriptions below are not current implementation
+status; later content/repair guides own those facts.
+
+
 Author: Codex. Created: 2026-10-29. Last updated: 2026-10-30.
 Version: 1.0. Status: proposed roadmap; feature implementation is not authorized.
 Follow-up: [feasibility review and first implementation plan](post-mvp-first-implementation.md)
@@ -101,7 +208,7 @@ New acceptance IDs must be assigned in the owning specification when approved.
 | Roadmap feature | Reuse | Proposed addition or change | Backlog / packages |
 | --- | --- | --- | --- |
 | PM-F01 Discovery and assessment | Versioned conditional questionnaire, saved answers, resume/retake | Reviewed revised questions; optional official interest assessment | FUT-05; W05, W09 |
-| PM-F02 Competency profile | Profile ownership/revision patterns; document evidence | Editable normalized competencies, confirmation, self-report and history | FUT-01, FUT-13; W02, W03, W10 |
+| PM-F02 Competency profile | Profile ownership/revision patterns; document evidence | Editable normalized competencies, optional resume-assisted review, confirmation and self-report | FUT-01, FUT-13; W02, W03 |
 | PM-F03 Occupational knowledge | Catalog identities, publication and review metadata | Versioned source imports, competency relationships and mappings | FUT-01, FUT-07; W01, W02 |
 | PM-F04 Recommendations | Saved context, candidate validation, quotas and explanations | Retrieved candidates, new evidence types, distinct method labels | REQ-05 / F-002; W04, W09 |
 | PM-F05 Skill comparison | Existing account and transaction boundary | Deterministic evidence comparison and reviewed topic links | FUT-01; W04 |
@@ -119,26 +226,28 @@ operations retain their separate FUT entries; this plan does not remove them.
 
 Recommended first usable increment: **a user can record confirmed skills, compare
 them with a small reviewed occupation profile, distinguish unknown information,
-and open relevant existing roadmap topics.** It needs no agent or resume upload.
+and open relevant existing roadmap topics.** Manual skill selection remains
+available; W03 also plans optional resume assistance, subject to privacy and
+extraction review.
 
 | Increment | Packages | Result |
 | --- | --- | --- |
-| A: evidence and comparison | W01-W04 | Reviewed source subset, competency management and trustworthy comparisons |
-| B: exploration and guidance | W05-W08, selected individually | Better exploration, career comparison, personal suggestions and a counselor |
-| C: optional integrations | W09-W11, selected individually | Official assessment, confirmation-based document enrichment and market observations |
+| A: evidence and comparison | W01-W04 | Reviewed source subset, user-managed skills with optional resume assistance, and trustworthy comparisons |
+| B: learner journeys | W06-W07, selected individually | Focused career comparison and personal learning guidance |
+| C: optional integrations | W09, W11, selected individually | Official assessment and market observations |
+| D: final-stage improvements | W05 and W08, after core flows settle | Discovery redesign and one optional bounded counselor |
 | Evaluation throughout | W12 | Defined expected results before coding, then technical and participant evidence |
 
 Dependency outline:
 
 ```text
 W01 shared decisions/contracts
-  -> W02 reviewed occupational evidence -> W03 user competencies -> W04 comparisons
-  -> W05 Discovery revision (independent content work can begin earlier)
+  -> W02 reviewed occupational evidence -> W03 Profile -> W04 comparisons
+  -> W05 Discovery revision (owner-scheduled final-stage improvement)
   -> W06 career comparison (basic comparison can precede competency enrichment)
 W04 -> W07 development-aware learning guidance
 Existing domain reads + W01 tool boundaries -> W08 bounded counselor
 W02 reviewed occupation mappings -> W09 official assessment integration
-W03 + document/privacy decisions -> W10 document enrichment
 W02 + permitted source access -> W11 market observations
 W12 evaluation design starts with W01 and accompanies every package
 ```
@@ -169,9 +278,17 @@ research reviewers must be assigned before their dependent publication or study.
 
 ### PM-W02: Reviewed occupational evidence
 
-- Depends on W01. Start with a bounded subset selected by the owner/data reviewer.
-- Reuse catalog identity and publication. Add reproducible imports/manifests,
-  source versions, competency records and reviewed occupation relationships.
+- **Roster boundary:** Keep the current twelve Asgard careers with roadmaps as the
+  recommendation candidates. Keep broader ESCO occupations and skills in the
+  separate reference catalog. An additional occupation becomes an Asgard career
+  only through future work that provides an authored roadmap and reviewed mapping.
+- The current local reference data already includes a cleared ESCO subset and
+  selected O*NET and Philippine source records for the twelve occupational
+  profiles. Continue with reproducible imports/manifests, source versions,
+  competency records and reviewed occupation relationships; this does not mean
+  the full O*NET database is imported or every staged record is cleared.
+- Depends on W01. Select future source expansions with the owner and data reviewer.
+  Reuse catalog identity and publication.
 - Preserve ESCO and O*NET identifiers separately from internal IDs. Crosswalks
   may be one-to-many or unresolved; never equate occupations by title alone.
 - Expose capabilities independently: browsing, interest matching, skill comparison,
@@ -182,17 +299,42 @@ research reviewers must be assigned before their dependent publication or study.
 
 ### PM-W03: User-confirmed competency profile
 
-- Depends on W01/W02. Add manual competency management, evidence links, correction
-  and history using the existing account/session/revision boundary.
-- The proposed 0-4 rubric requires product approval and clear self-report labels;
-  it is not a validated certification. Unknown must remain distinct from Level 0.
+- Depends on W01/W02. Profile owns manual competency management, correction and
+  removal using the existing account/session/revision boundary. Keep absent,
+  unknown and explicitly reported no experience distinct.
+- Offer an optional selectable-text PDF resume route alongside manual skill
+  selection and skip. Extracted skills appear as suggestions with their source
+  passages; the learner confirms or dismisses each and provides their own skill
+  report. Resume text alone does not set experience levels.
+- Preserve the existing private document lifecycle. Resolve consent, extraction
+  method/provider, retention, replacement, deletion and cleanup of derived text
+  before implementation. Keep OCR and other file formats in FUT-09.
+- Use the existing 0-4 scale with clear self-report labels; it is not a validated
+  certification. Unknown must remain distinct from explicitly reported Level 0.
 - Store presence/confirmation, proficiency, evidence and target availability as
   separate attributes. They cannot be represented by one exclusive status enum.
 - Exit checks: owner/other-user/anonymous access, stale writes, unknown readback,
-  corrections and removal, and profile history consistent with retention policy.
-- Does not depend on PDF activation or infer levels from titles, institutions or Done.
+  corrections and removal; extraction quality and source passages; replacement
+  races, failed cleanup, cross-account denial and invalidation of dependent
+  outputs. Preserve profile history consistent with retention policy.
+- Manual reporting works without resume upload. Neither extracted text nor job
+  titles, institutions or Done status set experience levels automatically.
 
 ### PM-W04: Skill comparison and recommendation integration
+
+The core twelve-career occupational database and skills-aware recommendation
+integration are already active locally. The ESCO-backed recommendation release
+is staged. On 2026-11-06 the owner directed that W04 include its local activation
+without the two-model quality evaluation. Record that evaluation as waived/not
+run, not passed; this does not authorize hosted publication or establish quality.
+
+Show durable recommendation results on the existing Recommendations page.
+The owner removed the Dashboard shortcut on 2026-11-06. Do not add a
+notification screen. Keep Roadmap focused on the authored learning path, with no
+skill-comparison panel. Show W04 skill comparisons only through each result's
+“Why this was suggested” and expandable “Evidence used” sections. Keep W06's
+two-career comparison on its separate page. The Round 1 presentation cleanup is
+implemented in source and manual acceptance is pending.
 
 - Depends on W02/W03. Compare reviewed occupation relationships with confirmed
   user records. Missing profile entries mean needs assessment, not inability.
@@ -209,6 +351,11 @@ research reviewers must be assigned before their dependent publication or study.
 
 ### PM-W05: Discovery revision
 
+The current Discovery flow remains available. Schedule this redesign as the
+final improvement after the other learner journeys and their presentation have
+settled. This defers only revised questions or interaction design, not the
+existing Discovery feature.
+
 - Depends on approved content and W01 where contracts change. Preserve existing
   five-theme conditional sessions; the proposed 8-10-question route is new content.
 - Review wording, branches, ambiguity, inactive answers and old-session support
@@ -219,6 +366,11 @@ research reviewers must be assigned before their dependent publication or study.
 
 ### PM-W06: Career comparison and saved alternatives
 
+The owner selected a focused two-career comparison. Make career differences the
+primary content; keep saved careers and private notes available as secondary
+actions. The current implementation still needs a presentation pass to match
+this direction.
+
 - Depends on catalog reads; W03/W04 are needed only for competency enrichment.
 - Begin with source-backed career activities, learning coverage and user priorities.
   Add saved alternatives through reviewed account-owned contracts.
@@ -227,6 +379,12 @@ research reviewers must be assigned before their dependent publication or study.
   refresh persistence and manual comprehension of compare versus select focus.
 
 ### PM-W07: Personal learning guidance and reflection
+
+The persistence and API are active locally, but the owner directed that the
+added W07 practice and reflection UI be removed from Roadmap and Dashboard for
+now. Restore the simpler authored-roadmap presentation while preserving the
+existing API and learner records for a later redesign. The Round 1 UI cleanup
+is implemented in source and manual acceptance is pending. [Implementation, verification and rework direction](features/learning-guidance-and-reflection.md)
 
 - Reuse authored sequence, selected branches, resources, next-topic behavior and
   the account-wide single-Learning-topic invariant. Prerequisites remain advisory
@@ -239,6 +397,13 @@ research reviewers must be assigned before their dependent publication or study.
   unsupported skill-to-topic mappings are disclosed, and Done never increases proficiency.
 
 ### PM-W08: One bounded AI counselor
+
+The owner advanced W08 source implementation on 2026-11-06. Review and local
+activation remain pending. See the [current implementation record](features/ai-guidance.md).
+
+The owner chose to keep W08 as a final-stage optional improvement after the core
+app flows are settled. It is not required for the current delivery. W01's
+architecture decision remains a prerequisite before implementation.
 
 - Depends on the W01 architecture decision and available domain services. Begin
   with read-only tools over existing capabilities; add confirmed writes separately.
@@ -265,17 +430,18 @@ research reviewers must be assigned before their dependent publication or study.
 
 ### PM-W10: Document enrichment and confirmation
 
-- Depends on W03 and explicit decisions about confirmation, consent and retention.
-  Reuse the existing private document lifecycle rather than adding another uploader.
-- Resolve the change from current derived-context policy to candidate/confirmed
-  competencies. Define rejected extraction, independent self-report and removal
-  semantics before migration. Source deletion must not leave hidden quoted content.
-- Existing PDF/provider privacy gates remain. This package does not activate real
-  personal-document processing, add OCR or broaden file formats automatically.
-- Exit checks: extraction/reference quality, replacement/removal races, failed
-  cleanup, cross-account denial and invalidation of dependent outputs.
+The owner moved selectable-text resume reading into W03 Profile on 2026-11-06.
+W10 remains as a roadmap identifier for traceability, with no separate delivery
+package. Its consent, confirmation, retention, replacement, removal and cleanup
+requirements are included in W03. OCR and additional document formats remain in
+FUT-09.
 
 ### PM-W11: Philippine labor-market observations
+
+The owner kept W11 optional on 2026-11-06. DICT/NICS and Philippine Skills
+Framework material already present in Asgard describes occupational competencies;
+it does not supply current job-listing observations. W11 is a separate future
+option and no collection is authorized by this plan decision.
 
 - Depends on permitted source access, W02 mappings, a collection scope and an
   assigned data reviewer. Start with a bounded dated batch before automation.
@@ -291,19 +457,23 @@ research reviewers must be assigned before their dependent publication or study.
 
 ### PM-W12: Evaluation and research record
 
-- Begins before dependent coding and continues throughout. Assign the research
-  owner, expert reviewers, target respondents and institutional requirements.
-- Define annotated cases and expected results for normalization, comparison,
-  retrieval, explanation support, uncertainty, tool permissions and removal.
-- Preserve applicable existing verification gates. A revised study protocol must
-  explicitly reconcile existing model-quality thresholds rather than erase them.
-- Measure technical correctness separately from usability and decision-support
-  usefulness. Career confidence requires a justified measure and study design;
-  a successful browser journey does not demonstrate a psychological outcome.
-- Compare simpler service workflows with the counselor; test specialists only if
-  selected. Report failures, reviewer disagreements, latency and resource usage.
-- Exit: reproducible records and a paper whose claims match delivered evidence.
-  A small pilot cannot establish nationwide suitability or employment effectiveness.
+The owner selected practical product evidence as the current scope. Record which
+checks and guided user-facing acceptance were completed, what was not checked,
+and known limits. The two-model research evaluation, participant study,
+psychological outcome claims and research paper are deferred unless the owner
+later selects a research goal. Do not label unrun checks as passed.
+
+- For a future research goal, assign a research owner, reviewers, participants
+  and institutional requirements before collecting participant evidence.
+- Define expected technical results for normalization, comparison, retrieval,
+  explanation support, uncertainty, permissions and removal when those behaviors
+  are being implemented or materially changed.
+- Keep technical correctness, usability and decision-support usefulness distinct.
+  A browser walkthrough does not establish a psychological or employment outcome.
+- Report failures, reviewer disagreements, latency and resource use when those
+  measures are part of a selected evaluation.
+- Current exit: a reproducible product record that matches the work actually
+  completed. A research paper is not required for product delivery.
 
 ## Existing source map and implementation comments
 

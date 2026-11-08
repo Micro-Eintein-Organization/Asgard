@@ -1,4 +1,9 @@
 ---
+
+## Career exploration extension, 2026-11-05
+
+The owner-selected [career comparison specification](specs/career-exploration-comparison.md) adds exactly-two alternatives at `/careers/compare`, a shared selection tray, saved-careers catalog filter, inline career-first experience review and `/careers/:careerId/sources`. Suggestion cards use direct Explore career / Compare actions. Focus selection remains explicit. [Implementation status](features/career-comparison-and-shortlist.md).
+
 id: DESIGN
 kind: design
 status: draft
@@ -43,6 +48,13 @@ REQ-06 and REQ-12 remain outside MVP. Career saving/comparison, tutor/chat inter
 - Back, Close, opening a topic, and viewing resources do not independently save form changes, change focus, or change topic status.
 
 ### Shared contextual guidance
+
+Owner update, 2026-11-06: show one shared blue alert with consistent spacing.
+When multiple tips or reminders apply, learners can cycle through them using
+previous and next controls and dismiss each message independently. Roadmap and
+recommendation browsing reminders use this shared alert. The next available
+message can appear after dismissal. This supersedes the older single-priority and
+next-visit rules below for the shared alert.
 
 Owner-confirmed direction, 25 October 2026: use a shared informational guidance component across Dashboard, Careers, and Settings, with relevant messages rather than a universal warning.
 
@@ -401,6 +413,7 @@ Use the existing five themes as the content baseline, followed by results after 
 
 - Not Started
   - Shows: Topics with saved Not started status, including relevant starting or next-topic suggestions
+  - Default: Collapsed, with the topic count visible
   - On heading / arrow click: Expands or collapses the list
   - On topic click: Opens that topic's details and resources
 

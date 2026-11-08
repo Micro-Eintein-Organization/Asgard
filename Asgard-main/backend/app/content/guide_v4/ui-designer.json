@@ -1,0 +1,2229 @@
+{
+  "schema_version": "4.0.0-draft",
+  "career": {
+    "name": "UI Designer",
+    "slug": "ui-designer",
+    "category": "Design & UX",
+    "status": "Draft — pending human review"
+  },
+  "career_overview": {
+    "short_description": "Design clear, consistent screens and interface components. Practise visual hierarchy, responsive layouts and accessible interaction states.",
+    "responsibilities": [
+      "Assess goals and constraints relevant to ui designer work",
+      "Apply appropriate tools and methods to a bounded task",
+      "Test, document and communicate results",
+      "Collaborate and incorporate feedback"
+    ],
+    "representative_work": [
+      "A small component library and annotated multi-screen prototype."
+    ],
+    "core_skills": [
+      "UI role and interface anatomy",
+      "Design tools and files",
+      "Visual hierarchy",
+      "Design critique and references",
+      "Typography scales",
+      "Color and contrast",
+      "Spacing grids and alignment",
+      "Icons and imagery",
+      "Buttons and interactive states",
+      "Forms and field feedback"
+    ]
+  },
+  "roadmap": {
+    "title": "UI Designer: beginner foundations and starter project",
+    "intended_learner": "Motivated beginner; basic computer literacy assumed, with no prior professional experience.",
+    "starting_requirements": "Computer, internet access, text editor and browser. Most tasks use free software or simulation; specialist equipment, accounts and costs are flagged for review when applicable.",
+    "final_outcome": "A small component library and annotated multi-screen prototype.",
+    "milestones": [
+      {
+        "id": "M01",
+        "slug": "understand-interface-design",
+        "title": "Understand interface design",
+        "summary": "Learn ui role and interface anatomy, design tools and files, visual hierarchy, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T01",
+            "slug": "ui-role-and-interface-anatomy",
+            "title": "UI role and interface anatomy",
+            "milestone_id": "M01",
+            "card": {
+              "title": "UI role and interface anatomy",
+              "summary": "UI designers decide how controls, content and states appear on screens. Interfaces must communicate purpose and respond predictably, not merely look attractive.",
+              "prerequisite_ids": []
+            },
+            "detail": {
+              "eyebrow": "M01 · Understand interface design",
+              "title": "UI role and interface anatomy",
+              "overview": "UI designers decide how controls, content and states appear on screens. Interfaces must communicate purpose and respond predictably, not merely look attractive.",
+              "learning_outcomes": [
+                "Use what you learn about ui role and interface anatomy to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T01-S01",
+                  "title": "Ui role",
+                  "explanation": "Find how ui role works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T01-S02",
+                  "title": "Interface anatomy",
+                  "explanation": "Find how interface anatomy works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Annotate the controls and visual hierarchy of a familiar screen."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: annotate the controls and visual hierarchy of a familiar screen. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on ui role and interface anatomy; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T01-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "UI designers decide how controls, content and states appear on screens. Interfaces must communicate purpose and respond predictably, not merely look attractive.",
+                "learn_items": [
+                  "Ui role",
+                  "Interface anatomy"
+                ],
+                "learning_goal": "Use what you learn about ui role and interface anatomy to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on ui role and interface anatomy; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T01-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Annotate the controls and visual hierarchy of a familiar screen.",
+                "completion_check": "You can show or explain the result of this task: annotate the controls and visual hierarchy of a familiar screen. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T02",
+            "slug": "design-tools-and-files",
+            "title": "Design tools and files",
+            "milestone_id": "M01",
+            "card": {
+              "title": "Design tools and files",
+              "summary": "Design files organise frames, components and styles so layouts stay consistent. Learn one free-capable tool before exploring alternatives.",
+              "prerequisite_ids": [
+                "T01"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M01 · Understand interface design",
+              "title": "Design tools and files",
+              "overview": "Design files organise frames, components and styles so layouts stay consistent. Learn one free-capable tool before exploring alternatives.",
+              "learning_outcomes": [
+                "Use what you learn about design tools and files to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T02-S01",
+                  "title": "Design tools",
+                  "explanation": "Find how design tools works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T02-S02",
+                  "title": "Files",
+                  "explanation": "Find how files works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Create two frames and one reusable button component."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: create two frames and one reusable button component. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on design tools and files; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T02-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Design files organise frames, components and styles so layouts stay consistent. Learn one free-capable tool before exploring alternatives.",
+                "learn_items": [
+                  "Design tools",
+                  "Files"
+                ],
+                "learning_goal": "Use what you learn about design tools and files to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on design tools and files; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T02-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Create two frames and one reusable button component.",
+                "completion_check": "You can show or explain the result of this task: create two frames and one reusable button component. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T03",
+            "slug": "visual-hierarchy",
+            "title": "Visual hierarchy",
+            "milestone_id": "M01",
+            "card": {
+              "title": "Visual hierarchy",
+              "summary": "Visual hierarchy uses size, position, contrast and spacing to signal importance. If everything is prominent, nothing stands out.",
+              "prerequisite_ids": [
+                "T02"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M01 · Understand interface design",
+              "title": "Visual hierarchy",
+              "overview": "Visual hierarchy uses size, position, contrast and spacing to signal importance. If everything is prominent, nothing stands out.",
+              "learning_outcomes": [
+                "Use what you learn about visual hierarchy to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T03-S01",
+                  "title": "Visual hierarchy: purpose and essential vocabulary",
+                  "explanation": "Find how visual hierarchy: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T03-S02",
+                  "title": "Visual hierarchy: application and common pitfalls",
+                  "explanation": "Find how visual hierarchy: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Redesign a cluttered panel with one clear primary action."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: redesign a cluttered panel with one clear primary action. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on visual hierarchy; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T03-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Visual hierarchy uses size, position, contrast and spacing to signal importance. If everything is prominent, nothing stands out.",
+                "learn_items": [
+                  "Visual hierarchy: purpose and essential vocabulary",
+                  "Visual hierarchy: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about visual hierarchy to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on visual hierarchy; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T03-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Redesign a cluttered panel with one clear primary action.",
+                "completion_check": "You can show or explain the result of this task: redesign a cluttered panel with one clear primary action. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T04",
+            "slug": "design-critique-and-references",
+            "title": "Design critique and references",
+            "milestone_id": "M01",
+            "card": {
+              "title": "Design critique and references",
+              "summary": "Critique compares a design against user tasks and accessible patterns, not personal taste alone. Concrete comments are more useful than 'looks modern'.",
+              "prerequisite_ids": [
+                "T03"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M01 · Understand interface design",
+              "title": "Design critique and references",
+              "overview": "Critique compares a design against user tasks and accessible patterns, not personal taste alone. Concrete comments are more useful than 'looks modern'.",
+              "learning_outcomes": [
+                "Use what you learn about design critique and references to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T04-S01",
+                  "title": "Design critique",
+                  "explanation": "Find how design critique works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T04-S02",
+                  "title": "References",
+                  "explanation": "Find how references works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Write three actionable critiques of a sample screen."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: write three actionable critiques of a sample screen. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on design critique and references; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T04-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Critique compares a design against user tasks and accessible patterns, not personal taste alone. Concrete comments are more useful than 'looks modern'.",
+                "learn_items": [
+                  "Design critique",
+                  "References"
+                ],
+                "learning_goal": "Use what you learn about design critique and references to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on design critique and references; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T04-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Write three actionable critiques of a sample screen.",
+                "completion_check": "You can show or explain the result of this task: write three actionable critiques of a sample screen. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M02",
+        "slug": "establish-visual-foundations",
+        "title": "Establish visual foundations",
+        "summary": "Learn typography scales, color and contrast, spacing grids and alignment, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T05",
+            "slug": "typography-scales",
+            "title": "Typography scales",
+            "milestone_id": "M02",
+            "card": {
+              "title": "Typography scales",
+              "summary": "Typography choices affect reading order and legibility. Font size, line height and hierarchy should work across viewports.",
+              "prerequisite_ids": [
+                "T04"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Establish visual foundations",
+              "title": "Typography scales",
+              "overview": "Typography choices affect reading order and legibility. Font size, line height and hierarchy should work across viewports.",
+              "learning_outcomes": [
+                "Use what you learn about typography scales to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T05-S01",
+                  "title": "Typography scales: purpose and essential vocabulary",
+                  "explanation": "Find how typography scales: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T05-S02",
+                  "title": "Typography scales: application and common pitfalls",
+                  "explanation": "Find how typography scales: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Create a type scale and apply it to a sample settings page."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: create a type scale and apply it to a sample settings page. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on typography scales; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T05-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Typography choices affect reading order and legibility. Font size, line height and hierarchy should work across viewports.",
+                "learn_items": [
+                  "Typography scales: purpose and essential vocabulary",
+                  "Typography scales: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about typography scales to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on typography scales; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T05-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Create a type scale and apply it to a sample settings page.",
+                "completion_check": "You can show or explain the result of this task: create a type scale and apply it to a sample settings page. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T06",
+            "slug": "color-and-contrast",
+            "title": "Color and contrast",
+            "milestone_id": "M02",
+            "card": {
+              "title": "Color and contrast",
+              "summary": "Colour communicates emphasis and state but cannot be the only signal of meaning. Contrast must remain sufficient for readable text.",
+              "prerequisite_ids": [
+                "T05"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Establish visual foundations",
+              "title": "Color and contrast",
+              "overview": "Colour communicates emphasis and state but cannot be the only signal of meaning. Contrast must remain sufficient for readable text.",
+              "learning_outcomes": [
+                "Use what you learn about color and contrast to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T06-S01",
+                  "title": "Color",
+                  "explanation": "Find how color works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T06-S02",
+                  "title": "Contrast",
+                  "explanation": "Find how contrast works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Create a small palette and test text combinations for contrast."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: create a small palette and test text combinations for contrast. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on color and contrast; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T06-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Colour communicates emphasis and state but cannot be the only signal of meaning. Contrast must remain sufficient for readable text.",
+                "learn_items": [
+                  "Color",
+                  "Contrast"
+                ],
+                "learning_goal": "Use what you learn about color and contrast to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on color and contrast; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T06-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Create a small palette and test text combinations for contrast.",
+                "completion_check": "You can show or explain the result of this task: create a small palette and test text combinations for contrast. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T07",
+            "slug": "spacing-grids-and-alignment",
+            "title": "Spacing grids and alignment",
+            "milestone_id": "M02",
+            "card": {
+              "title": "Spacing grids and alignment",
+              "summary": "Spacing groups related content and separates unrelated elements. A repeatable spacing scale reduces inconsistent padding.",
+              "prerequisite_ids": [
+                "T06"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Establish visual foundations",
+              "title": "Spacing grids and alignment",
+              "overview": "Spacing groups related content and separates unrelated elements. A repeatable spacing scale reduces inconsistent padding.",
+              "learning_outcomes": [
+                "Use what you learn about spacing grids and alignment to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T07-S01",
+                  "title": "Spacing grids",
+                  "explanation": "Find how spacing grids works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T07-S02",
+                  "title": "Alignment",
+                  "explanation": "Find how alignment works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Apply a spacing scale to a form and align its fields."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: apply a spacing scale to a form and align its fields. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on spacing grids and alignment; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T07-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Spacing groups related content and separates unrelated elements. A repeatable spacing scale reduces inconsistent padding.",
+                "learn_items": [
+                  "Spacing grids",
+                  "Alignment"
+                ],
+                "learning_goal": "Use what you learn about spacing grids and alignment to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on spacing grids and alignment; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T07-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Apply a spacing scale to a form and align its fields.",
+                "completion_check": "You can show or explain the result of this task: apply a spacing scale to a form and align its fields. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T08",
+            "slug": "icons-and-imagery",
+            "title": "Icons and imagery",
+            "milestone_id": "M02",
+            "card": {
+              "title": "Icons and imagery",
+              "summary": "Icons are shortcuts only when their meaning is clear. Informative images need suitable text alternatives and consistent visual treatment.",
+              "prerequisite_ids": [
+                "T07"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Establish visual foundations",
+              "title": "Icons and imagery",
+              "overview": "Icons are shortcuts only when their meaning is clear. Informative images need suitable text alternatives and consistent visual treatment.",
+              "learning_outcomes": [
+                "Use what you learn about icons and imagery to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T08-S01",
+                  "title": "Icons",
+                  "explanation": "Find how icons works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T08-S02",
+                  "title": "Imagery",
+                  "explanation": "Find how imagery works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Choose icons for three actions and add visible labels where ambiguous."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: choose icons for three actions and add visible labels where ambiguous. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on icons and imagery; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T08-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Icons are shortcuts only when their meaning is clear. Informative images need suitable text alternatives and consistent visual treatment.",
+                "learn_items": [
+                  "Icons",
+                  "Imagery"
+                ],
+                "learning_goal": "Use what you learn about icons and imagery to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on icons and imagery; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T08-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Choose icons for three actions and add visible labels where ambiguous.",
+                "completion_check": "You can show or explain the result of this task: choose icons for three actions and add visible labels where ambiguous. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M03",
+        "slug": "design-reusable-controls",
+        "title": "Design reusable controls",
+        "summary": "Learn buttons and interactive states, forms and field feedback, navigation patterns, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T09",
+            "slug": "buttons-and-interactive-states",
+            "title": "Buttons and interactive states",
+            "milestone_id": "M03",
+            "card": {
+              "title": "Buttons and interactive states",
+              "summary": "Buttons need recognisable normal, hover, focus, disabled and loading states. A disabled button should not hide why a task is unavailable.",
+              "prerequisite_ids": [
+                "T08"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Design reusable controls",
+              "title": "Buttons and interactive states",
+              "overview": "Buttons need recognisable normal, hover, focus, disabled and loading states. A disabled button should not hide why a task is unavailable.",
+              "learning_outcomes": [
+                "Use what you learn about buttons and interactive states to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T09-S01",
+                  "title": "Buttons",
+                  "explanation": "Find how buttons works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T09-S02",
+                  "title": "Interactive states",
+                  "explanation": "Find how interactive states works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Design a button component with five named states."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: design a button component with five named states. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on buttons and interactive states; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T09-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Buttons need recognisable normal, hover, focus, disabled and loading states. A disabled button should not hide why a task is unavailable.",
+                "learn_items": [
+                  "Buttons",
+                  "Interactive states"
+                ],
+                "learning_goal": "Use what you learn about buttons and interactive states to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on buttons and interactive states; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T09-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Design a button component with five named states.",
+                "completion_check": "You can show or explain the result of this task: design a button component with five named states. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T10",
+            "slug": "forms-and-field-feedback",
+            "title": "Forms and field feedback",
+            "milestone_id": "M03",
+            "card": {
+              "title": "Forms and field feedback",
+              "summary": "Form controls need clear labels, help text and feedback. Error messages should explain how to recover rather than simply turn an input red.",
+              "prerequisite_ids": [
+                "T09"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Design reusable controls",
+              "title": "Forms and field feedback",
+              "overview": "Form controls need clear labels, help text and feedback. Error messages should explain how to recover rather than simply turn an input red.",
+              "learning_outcomes": [
+                "Use what you learn about forms and field feedback to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T10-S01",
+                  "title": "Forms",
+                  "explanation": "Find how forms works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T10-S02",
+                  "title": "Field feedback",
+                  "explanation": "Find how field feedback works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Design a signup form with helpful field-level errors."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: design a signup form with helpful field-level errors. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on forms and field feedback; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T10-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Form controls need clear labels, help text and feedback. Error messages should explain how to recover rather than simply turn an input red.",
+                "learn_items": [
+                  "Forms",
+                  "Field feedback"
+                ],
+                "learning_goal": "Use what you learn about forms and field feedback to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on forms and field feedback; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T10-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Design a signup form with helpful field-level errors.",
+                "completion_check": "You can show or explain the result of this task: design a signup form with helpful field-level errors. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T11",
+            "slug": "navigation-patterns",
+            "title": "Navigation patterns",
+            "milestone_id": "M03",
+            "card": {
+              "title": "Navigation patterns",
+              "summary": "Navigation patterns should make current location and destination choices clear. Match the pattern to the amount and structure of content.",
+              "prerequisite_ids": [
+                "T10"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Design reusable controls",
+              "title": "Navigation patterns",
+              "overview": "Navigation patterns should make current location and destination choices clear. Match the pattern to the amount and structure of content.",
+              "learning_outcomes": [
+                "Use what you learn about navigation patterns to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T11-S01",
+                  "title": "Navigation patterns: purpose and essential vocabulary",
+                  "explanation": "Find how navigation patterns: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T11-S02",
+                  "title": "Navigation patterns: application and common pitfalls",
+                  "explanation": "Find how navigation patterns: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Create desktop and mobile navigation for four destinations."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: create desktop and mobile navigation for four destinations. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on navigation patterns; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T11-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Navigation patterns should make current location and destination choices clear. Match the pattern to the amount and structure of content.",
+                "learn_items": [
+                  "Navigation patterns: purpose and essential vocabulary",
+                  "Navigation patterns: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about navigation patterns to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on navigation patterns; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T11-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Create desktop and mobile navigation for four destinations.",
+                "completion_check": "You can show or explain the result of this task: create desktop and mobile navigation for four destinations. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T12",
+            "slug": "reusable-components-and-variants",
+            "title": "Reusable components and variants",
+            "milestone_id": "M03",
+            "card": {
+              "title": "Reusable components and variants",
+              "summary": "Components let you reuse a control with predictable properties and variants. Document when to use each variant.",
+              "prerequisite_ids": [
+                "T11"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Design reusable controls",
+              "title": "Reusable components and variants",
+              "overview": "Components let you reuse a control with predictable properties and variants. Document when to use each variant.",
+              "learning_outcomes": [
+                "Use what you learn about reusable components and variants to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T12-S01",
+                  "title": "Reusable components",
+                  "explanation": "Find how reusable components works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T12-S02",
+                  "title": "Variants",
+                  "explanation": "Find how variants works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Create reusable text-field and button variants."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: create reusable text-field and button variants. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on reusable components and variants; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T12-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Components let you reuse a control with predictable properties and variants. Document when to use each variant.",
+                "learn_items": [
+                  "Reusable components",
+                  "Variants"
+                ],
+                "learning_goal": "Use what you learn about reusable components and variants to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on reusable components and variants; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T12-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Create reusable text-field and button variants.",
+                "completion_check": "You can show or explain the result of this task: create reusable text-field and button variants. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M04",
+        "slug": "compose-responsive-screens",
+        "title": "Compose responsive screens",
+        "summary": "Learn layout constraints and grids, mobile and desktop adaptation, content density and hierarchy, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T13",
+            "slug": "layout-constraints-and-grids",
+            "title": "Layout constraints and grids",
+            "milestone_id": "M04",
+            "card": {
+              "title": "Layout constraints and grids",
+              "summary": "Layout constraints express how elements resize when a frame changes. Fixed positioning can cause overflow on smaller screens.",
+              "prerequisite_ids": [
+                "T12"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Compose responsive screens",
+              "title": "Layout constraints and grids",
+              "overview": "Layout constraints express how elements resize when a frame changes. Fixed positioning can cause overflow on smaller screens.",
+              "learning_outcomes": [
+                "Use what you learn about layout constraints and grids to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T13-S01",
+                  "title": "Layout constraints",
+                  "explanation": "Find how layout constraints works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T13-S02",
+                  "title": "Grids",
+                  "explanation": "Find how grids works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Convert a static card into a flexible layout."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: convert a static card into a flexible layout. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on layout constraints and grids; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T13-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Layout constraints express how elements resize when a frame changes. Fixed positioning can cause overflow on smaller screens.",
+                "learn_items": [
+                  "Layout constraints",
+                  "Grids"
+                ],
+                "learning_goal": "Use what you learn about layout constraints and grids to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on layout constraints and grids; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T13-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Convert a static card into a flexible layout.",
+                "completion_check": "You can show or explain the result of this task: convert a static card into a flexible layout. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T14",
+            "slug": "mobile-and-desktop-adaptation",
+            "title": "Mobile and desktop adaptation",
+            "milestone_id": "M04",
+            "card": {
+              "title": "Mobile and desktop adaptation",
+              "summary": "Responsive design rearranges content based on available space and user needs. Mobile screens should not simply shrink desktop text.",
+              "prerequisite_ids": [
+                "T13"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Compose responsive screens",
+              "title": "Mobile and desktop adaptation",
+              "overview": "Responsive design rearranges content based on available space and user needs. Mobile screens should not simply shrink desktop text.",
+              "learning_outcomes": [
+                "Use what you learn about mobile and desktop adaptation to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T14-S01",
+                  "title": "Mobile",
+                  "explanation": "Find how mobile works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T14-S02",
+                  "title": "Desktop adaptation",
+                  "explanation": "Find how desktop adaptation works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Design a mobile and desktop version of the same dashboard."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: design a mobile and desktop version of the same dashboard. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on mobile and desktop adaptation; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T14-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Responsive design rearranges content based on available space and user needs. Mobile screens should not simply shrink desktop text.",
+                "learn_items": [
+                  "Mobile",
+                  "Desktop adaptation"
+                ],
+                "learning_goal": "Use what you learn about mobile and desktop adaptation to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on mobile and desktop adaptation; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T14-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Design a mobile and desktop version of the same dashboard.",
+                "completion_check": "You can show or explain the result of this task: design a mobile and desktop version of the same dashboard. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T15",
+            "slug": "content-density-and-hierarchy",
+            "title": "Content density and hierarchy",
+            "milestone_id": "M04",
+            "card": {
+              "title": "Content density and hierarchy",
+              "summary": "Content density balances detail with scanability. Strong grouping and progressive disclosure help people understand complex pages.",
+              "prerequisite_ids": [
+                "T14"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Compose responsive screens",
+              "title": "Content density and hierarchy",
+              "overview": "Content density balances detail with scanability. Strong grouping and progressive disclosure help people understand complex pages.",
+              "learning_outcomes": [
+                "Use what you learn about content density and hierarchy to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T15-S01",
+                  "title": "Content density",
+                  "explanation": "Find how content density works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T15-S02",
+                  "title": "Hierarchy",
+                  "explanation": "Find how hierarchy works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Simplify a dense transaction screen without deleting essential information."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: simplify a dense transaction screen without deleting essential information. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on content density and hierarchy; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T15-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Content density balances detail with scanability. Strong grouping and progressive disclosure help people understand complex pages.",
+                "learn_items": [
+                  "Content density",
+                  "Hierarchy"
+                ],
+                "learning_goal": "Use what you learn about content density and hierarchy to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on content density and hierarchy; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T15-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Simplify a dense transaction screen without deleting essential information.",
+                "completion_check": "You can show or explain the result of this task: simplify a dense transaction screen without deleting essential information. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T16",
+            "slug": "responsive-prototypes",
+            "title": "Responsive prototypes",
+            "milestone_id": "M04",
+            "card": {
+              "title": "Responsive prototypes",
+              "summary": "A prototype demonstrates transitions and feedback between screens. Include error and empty states rather than only the happy path.",
+              "prerequisite_ids": [
+                "T15"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Compose responsive screens",
+              "title": "Responsive prototypes",
+              "overview": "A prototype demonstrates transitions and feedback between screens. Include error and empty states rather than only the happy path.",
+              "learning_outcomes": [
+                "Use what you learn about responsive prototypes to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T16-S01",
+                  "title": "Responsive prototypes: purpose and essential vocabulary",
+                  "explanation": "Find how responsive prototypes: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T16-S02",
+                  "title": "Responsive prototypes: application and common pitfalls",
+                  "explanation": "Find how responsive prototypes: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Link a three-screen prototype with error handling."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: link a three-screen prototype with error handling. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on responsive prototypes; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T16-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A prototype demonstrates transitions and feedback between screens. Include error and empty states rather than only the happy path.",
+                "learn_items": [
+                  "Responsive prototypes: purpose and essential vocabulary",
+                  "Responsive prototypes: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about responsive prototypes to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on responsive prototypes; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T16-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Link a three-screen prototype with error handling.",
+                "completion_check": "You can show or explain the result of this task: link a three-screen prototype with error handling. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M05",
+        "slug": "make-designs-inclusive-and-usable",
+        "title": "Make designs inclusive and usable",
+        "summary": "Learn accessibility contrast and focus, keyboard and touch affordances, microcopy and feedback, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T17",
+            "slug": "accessibility-contrast-and-focus",
+            "title": "Accessibility contrast and focus",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Accessibility contrast and focus",
+              "summary": "Accessibility involves contrast, focus visibility, labels and meaningful state cues. Review designs before development to avoid expensive corrections.",
+              "prerequisite_ids": [
+                "T16"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Make designs inclusive and usable",
+              "title": "Accessibility contrast and focus",
+              "overview": "Accessibility involves contrast, focus visibility, labels and meaningful state cues. Review designs before development to avoid expensive corrections.",
+              "learning_outcomes": [
+                "Use what you learn about accessibility contrast and focus to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T17-S01",
+                  "title": "Accessibility contrast",
+                  "explanation": "Find how accessibility contrast works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T17-S02",
+                  "title": "Focus",
+                  "explanation": "Find how focus works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Audit a mockup for text contrast and missing focus indicators."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: audit a mockup for text contrast and missing focus indicators. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on accessibility contrast and focus; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T17-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Accessibility involves contrast, focus visibility, labels and meaningful state cues. Review designs before development to avoid expensive corrections.",
+                "learn_items": [
+                  "Accessibility contrast",
+                  "Focus"
+                ],
+                "learning_goal": "Use what you learn about accessibility contrast and focus to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on accessibility contrast and focus; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T17-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Audit a mockup for text contrast and missing focus indicators.",
+                "completion_check": "You can show or explain the result of this task: audit a mockup for text contrast and missing focus indicators. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T18",
+            "slug": "keyboard-and-touch-affordances",
+            "title": "Keyboard and touch affordances",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Keyboard and touch affordances",
+              "summary": "Interactive targets need enough space for touch, while keyboard users need a visible focus path. Hover-only actions exclude some users.",
+              "prerequisite_ids": [
+                "T17"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Make designs inclusive and usable",
+              "title": "Keyboard and touch affordances",
+              "overview": "Interactive targets need enough space for touch, while keyboard users need a visible focus path. Hover-only actions exclude some users.",
+              "learning_outcomes": [
+                "Use what you learn about keyboard and touch affordances to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T18-S01",
+                  "title": "Keyboard",
+                  "explanation": "Find how keyboard works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T18-S02",
+                  "title": "Touch affordances",
+                  "explanation": "Find how touch affordances works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Annotate touch targets and tab order on a mock screen."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: annotate touch targets and tab order on a mock screen. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on keyboard and touch affordances; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T18-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Interactive targets need enough space for touch, while keyboard users need a visible focus path. Hover-only actions exclude some users.",
+                "learn_items": [
+                  "Keyboard",
+                  "Touch affordances"
+                ],
+                "learning_goal": "Use what you learn about keyboard and touch affordances to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on keyboard and touch affordances; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T18-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Annotate touch targets and tab order on a mock screen.",
+                "completion_check": "You can show or explain the result of this task: annotate touch targets and tab order on a mock screen. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T19",
+            "slug": "microcopy-and-feedback",
+            "title": "Microcopy and feedback",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Microcopy and feedback",
+              "summary": "Microcopy uses concise, specific words to guide actions and recover from mistakes. Generic 'Something went wrong' messages leave users stuck.",
+              "prerequisite_ids": [
+                "T18"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Make designs inclusive and usable",
+              "title": "Microcopy and feedback",
+              "overview": "Microcopy uses concise, specific words to guide actions and recover from mistakes. Generic 'Something went wrong' messages leave users stuck.",
+              "learning_outcomes": [
+                "Use what you learn about microcopy and feedback to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T19-S01",
+                  "title": "Microcopy",
+                  "explanation": "Find how microcopy works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T19-S02",
+                  "title": "Feedback",
+                  "explanation": "Find how feedback works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Rewrite five vague button labels or error messages."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: rewrite five vague button labels or error messages. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on microcopy and feedback; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T19-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Microcopy uses concise, specific words to guide actions and recover from mistakes. Generic 'Something went wrong' messages leave users stuck.",
+                "learn_items": [
+                  "Microcopy",
+                  "Feedback"
+                ],
+                "learning_goal": "Use what you learn about microcopy and feedback to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on microcopy and feedback; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T19-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Rewrite five vague button labels or error messages.",
+                "completion_check": "You can show or explain the result of this task: rewrite five vague button labels or error messages. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T20",
+            "slug": "design-system-documentation",
+            "title": "Design system documentation",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Design system documentation",
+              "summary": "A design system records component rules, spacing, colours and usage examples. Documentation helps others apply patterns consistently.",
+              "prerequisite_ids": [
+                "T19"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Make designs inclusive and usable",
+              "title": "Design system documentation",
+              "overview": "A design system records component rules, spacing, colours and usage examples. Documentation helps others apply patterns consistently.",
+              "learning_outcomes": [
+                "Use what you learn about design system documentation to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T20-S01",
+                  "title": "Design system documentation: purpose and essential vocabulary",
+                  "explanation": "Find how design system documentation: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T20-S02",
+                  "title": "Design system documentation: application and common pitfalls",
+                  "explanation": "Find how design system documentation: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Write a one-page component usage guide."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: write a one-page component usage guide. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on design system documentation; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T20-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A design system records component rules, spacing, colours and usage examples. Documentation helps others apply patterns consistently.",
+                "learn_items": [
+                  "Design system documentation: purpose and essential vocabulary",
+                  "Design system documentation: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about design system documentation to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on design system documentation; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T20-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Write a one-page component usage guide.",
+                "completion_check": "You can show or explain the result of this task: write a one-page component usage guide. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M06",
+        "slug": "deliver-a-ui-starter-kit",
+        "title": "Deliver a UI starter kit",
+        "summary": "Learn define product scenario, build a small component library, design three responsive screens, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T21",
+            "slug": "define-product-scenario",
+            "title": "Define product scenario",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Define product scenario",
+              "summary": "A UI scenario specifies audience, task, screens and constraints. Define success before choosing a visual style.",
+              "prerequisite_ids": [
+                "T20"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Deliver a UI starter kit",
+              "title": "Define product scenario",
+              "overview": "A UI scenario specifies audience, task, screens and constraints. Define success before choosing a visual style.",
+              "learning_outcomes": [
+                "Use what you learn about define product scenario to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T21-S01",
+                  "title": "Define product scenario: purpose and essential vocabulary",
+                  "explanation": "Find how define product scenario: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T21-S02",
+                  "title": "Define product scenario: application and common pitfalls",
+                  "explanation": "Find how define product scenario: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Write a design brief for a simple appointment manager."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: write a design brief for a simple appointment manager. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on define product scenario; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T21-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A UI scenario specifies audience, task, screens and constraints. Define success before choosing a visual style.",
+                "learn_items": [
+                  "Define product scenario: purpose and essential vocabulary",
+                  "Define product scenario: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about define product scenario to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on define product scenario; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T21-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Write a design brief for a simple appointment manager.",
+                "completion_check": "You can show or explain the result of this task: write a design brief for a simple appointment manager. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T22",
+            "slug": "build-a-small-component-library",
+            "title": "Build a small component library",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Build a small component library",
+              "summary": "A component library contains reusable, accessible controls and documented states. Consistent variants reduce repetitive design work.",
+              "prerequisite_ids": [
+                "T21"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Deliver a UI starter kit",
+              "title": "Build a small component library",
+              "overview": "A component library contains reusable, accessible controls and documented states. Consistent variants reduce repetitive design work.",
+              "learning_outcomes": [
+                "Use what you learn about build a small component library to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T22-S01",
+                  "title": "Build a small component library: purpose and essential vocabulary",
+                  "explanation": "Find how build a small component library: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T22-S02",
+                  "title": "Build a small component library: application and common pitfalls",
+                  "explanation": "Find how build a small component library: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Create button, input, card and alert components."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: create button, input, card and alert components. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on build a small component library; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T22-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A component library contains reusable, accessible controls and documented states. Consistent variants reduce repetitive design work.",
+                "learn_items": [
+                  "Build a small component library: purpose and essential vocabulary",
+                  "Build a small component library: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about build a small component library to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on build a small component library; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T22-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Create button, input, card and alert components.",
+                "completion_check": "You can show or explain the result of this task: create button, input, card and alert components. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T23",
+            "slug": "design-three-responsive-screens",
+            "title": "Design three responsive screens",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Design three responsive screens",
+              "summary": "Connected screens should share a hierarchy and adapt to narrow viewports. Show realistic content, including long labels and empty states.",
+              "prerequisite_ids": [
+                "T22"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Deliver a UI starter kit",
+              "title": "Design three responsive screens",
+              "overview": "Connected screens should share a hierarchy and adapt to narrow viewports. Show realistic content, including long labels and empty states.",
+              "learning_outcomes": [
+                "Use what you learn about design three responsive screens to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T23-S01",
+                  "title": "Design three responsive screens: purpose and essential vocabulary",
+                  "explanation": "Find how design three responsive screens: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T23-S02",
+                  "title": "Design three responsive screens: application and common pitfalls",
+                  "explanation": "Find how design three responsive screens: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Design three connected screens in desktop and mobile frames."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: design three connected screens in desktop and mobile frames. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on design three responsive screens; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T23-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Connected screens should share a hierarchy and adapt to narrow viewports. Show realistic content, including long labels and empty states.",
+                "learn_items": [
+                  "Design three responsive screens: purpose and essential vocabulary",
+                  "Design three responsive screens: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about design three responsive screens to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on design three responsive screens; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T23-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Design three connected screens in desktop and mobile frames.",
+                "completion_check": "You can show or explain the result of this task: design three connected screens in desktop and mobile frames. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T24",
+            "slug": "document-handoff-and-quality-review",
+            "title": "Document handoff and quality review",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Document handoff and quality review",
+              "summary": "Handoff explains layout behaviour, states and assets to developers. Clear notes prevent accidental changes to interactions.",
+              "prerequisite_ids": [
+                "T23"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Deliver a UI starter kit",
+              "title": "Document handoff and quality review",
+              "overview": "Handoff explains layout behaviour, states and assets to developers. Clear notes prevent accidental changes to interactions.",
+              "learning_outcomes": [
+                "Use what you learn about document handoff and quality review to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T24-S01",
+                  "title": "Document handoff",
+                  "explanation": "Find how document handoff works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T24-S02",
+                  "title": "Quality review",
+                  "explanation": "Find how quality review works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Prepare annotated screens and a checklist of unresolved decisions."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: prepare annotated screens and a checklist of unresolved decisions. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "WAI Accessibility Tutorials",
+                  "provider": "W3C",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on document handoff and quality review; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T24-R01",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Handoff explains layout behaviour, states and assets to developers. Clear notes prevent accidental changes to interactions.",
+                "learn_items": [
+                  "Document handoff",
+                  "Quality review"
+                ],
+                "learning_goal": "Use what you learn about document handoff and quality review to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "WAI Accessibility Tutorials",
+                    "provider": "W3C",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on document handoff and quality review; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T24-R01",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Prepare annotated screens and a checklist of unresolved decisions.",
+                "completion_check": "You can show or explain the result of this task: prepare annotated screens and a checklist of unresolved decisions. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "display_contract": {
+    "layout": "milestone-accordion-with-topic-detail-panel",
+    "milestone_card": [
+      "title",
+      "summary",
+      "topics"
+    ],
+    "topic_row": [
+      "title",
+      "id"
+    ],
+    "topic_detail_order": [
+      "overview",
+      "learn_items",
+      "learning_goal",
+      "tools_and_setup",
+      "resources",
+      "practice",
+      "completion_check"
+    ],
+    "subtopics_are_tracked": false,
+    "prerequisites_are_advisory": true,
+    "completion_state_source": "application_only",
+    "notes": "Use topic.detail.guide; preserve legacy detail keys as compatibility aliases. No content-owned Done states."
+  },
+  "research_and_review_notes": {
+    "human_review": "Pending",
+    "content_readiness": "Not production ready; legacy generic content remains in most topics",
+    "verified_free_topic_coverage": "Not yet established for all topics"
+  }
+}

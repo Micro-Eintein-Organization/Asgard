@@ -1,5 +1,5 @@
+import { ProfileSkills } from "@/features/competencies/profile-skills";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { FileText } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { useAuth } from "@/auth/context";
 import { useLogout } from "@/app/logout";
@@ -8,13 +8,14 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { PageHeading, StatePanel, Unavailable } from "@/components/shared";
+import { StatePanel, Unavailable } from "@/components/shared";
 import { coreApi, useCoreMutation, useCoreQuery } from "@/features/core/data";
 import { isCurrentAccount } from "@/auth/transport";
 import { ProfileDocuments } from "@/features/profile/documents";
 import { useProfileEditor } from "@/features/profile/use-profile-editor";
 import { ProfileEditorDialogs } from "@/features/profile/profile-editor-dialogs";
 import { ProfileDetailsCard, ProfileNameFields, SettingsLayout } from "@/features/profile/settings-layout";
+import { ProfilePhoto } from "@/features/profile/profile-photo";
 
 export function SettingsScreen() {
   const { user } = useAuth();
@@ -56,14 +57,19 @@ function SettingsEditor({ userId }: { userId: string }) {
   const preferenceSave = useCoreMutation(coreApi.savePreferences);
   const retake = useCoreMutation(coreApi.retakeDiscovery);
   const preferenceDirty = primaryField !== null || timezoneDraft !== null;
+  const [skillGuard, setSkillGuard] = useState({ dirty: false, pending: false });
+  const onSkillGuardChange = useCallback((dirty: boolean, pending: boolean) => {
+    setSkillGuard(previous => previous.dirty === dirty && previous.pending === pending ? previous : { dirty, pending });
+  }, []);
   const [documentGuard, setDocumentGuard] = useState({ dirty: false, pending: false });
   const onDocumentGuardChange = useCallback((dirty: boolean, pending: boolean) => {
     setDocumentGuard(previous => previous.dirty === dirty && previous.pending === pending ? previous : { dirty, pending });
   }, []);
   const [logoutError, setLogoutError] = useState("");
-  const editor = useProfileEditor(userId, preferenceDirty || documentGuard.dirty, preferenceSave.isPending || documentGuard.pending);
+  const editor = useProfileEditor(userId, preferenceDirty || documentGuard.dirty || skillGuard.dirty, preferenceSave.isPending || documentGuard.pending || skillGuard.pending);
   const { query, mutation, persist, feedback, errorSummary, setReloadOpen } = editor;
-  const { register, handleSubmit, formState: { errors, isDirty } } = editor.form;
+  const { register, handleSubmit, formState: { errors } } = editor.form;
+  const isDirty = editor.profileDirty;
   useEffect(() => {
     if (!hash || !query.isSuccess) return;
     const frame = requestAnimationFrame(() => {
@@ -82,8 +88,8 @@ function SettingsEditor({ userId }: { userId: string }) {
       setLogoutError(error instanceof Error ? error.message : "Could not sign out.");
     }
   }
-  const editing = isDirty || preferenceDirty || documentGuard.dirty;
-  const saving = mutation.isPending || preferenceSave.isPending || documentGuard.pending;
+  const editing = isDirty || preferenceDirty || documentGuard.dirty || skillGuard.dirty;
+  const saving = mutation.isPending || preferenceSave.isPending || documentGuard.pending || skillGuard.pending;
   async function openDiscovery() {
     if (editing || saving || retake.isPending || discovery.isPending || discovery.isError) return;
     if (discovery.data?.latest_completed && !discovery.data.draft) {
@@ -133,13 +139,16 @@ function SettingsEditor({ userId }: { userId: string }) {
   const preferenceError = preferences.error ?? categories.error ?? preferenceSave.error;
   return <>
     <SettingsLayout accountAnchor="#account-security" action={<Button className="mt-3" variant="ghost" onClick={() => void signOut()}>Log out</Button>}>
-      <div id={accountView ? "account-security" : undefined} className="settings-page-heading">
-        <PageHeading title={accountView ? "Account and security" : "Your profile."}
-          description={accountView ? "Manage how you access Asgard and what happens to your account." : "A little about you, on your terms. A photo and background document are always optional."} />
-      </div>
+      <h1 className="settings-page-heading">{accountView ? "Account and security" : "Profile"}</h1>
       {logoutError && <p role="alert" className="field-error">{logoutError}</p>}
       <div className="settings-profile-content" hidden={accountView}>
-        <ProfileDetailsCard>
+        <ProfileDetailsCard photo={<ProfilePhoto
+          enabled={query.data?.photo_enabled === true}
+          savedVersion={query.data?.profile?.has_photo ? query.data.profile.version : null}
+          draft={editor.photoDraft}
+          onChange={editor.setPhotoDraft}
+          disabled={mutation.isPending}
+        />}>
           <form className="form-grid" onSubmit={handleSubmit(async values => { await persist(values); })}>
             {(errors.firstName || errors.surname) && <p ref={errorSummary} role="alert" tabIndex={-1} className="field-error">Check the name fields below.</p>}
             <ProfileNameFields register={register} errors={errors} disabled={mutation.isPending} />
@@ -151,17 +160,7 @@ function SettingsEditor({ userId }: { userId: string }) {
             </div>
           </form>
         </ProfileDetailsCard>
-        <Card className="settings-card">
-          <header><h2>Career background</h2><p>Optionally add a resume, academic record or project summary. No document is required to browse or learn.</p></header>
-          <div className="upload-placeholder">
-            <FileText size={28} aria-hidden="true" />
-            <h3>Add a PDF when you're ready.</h3>
-            <p>PDF upload and analysis are coming later.</p>
-            <Button disabled variant="outline">Choose PDF</Button>
-          </div>
-          <ProfileDocuments compact onGuardChange={onDocumentGuardChange} />
-        </Card>
-        <Card className="settings-card" id="saved-discovery" tabIndex={-1}>
+        <Card className="settings-card settings-discovery" id="saved-discovery" tabIndex={-1}>
           <header><h2>Saved Discovery suggestions</h2><p>Discovery results are separate from your current roadmap.</p></header>
           {discovery.isPending || recommendations.isPending ? <p role="status">Loading saved Discovery.</p>
             : discovery.error || recommendations.error ? <p role="alert" className="field-error">{(discovery.error ?? recommendations.error)?.message} <Button variant="outline" onClick={() => { void discovery.refetch(); void recommendations.refetch(); }}>Reload Discovery</Button></p>
@@ -188,13 +187,16 @@ function SettingsEditor({ userId }: { userId: string }) {
               </label>)}
             </div>
           </fieldset>
-          <div className="field">
+          <details className="settings-timezone">
+            <summary>Activity timezone</summary>
+            <div className="field">
             <Label htmlFor="profile-timezone">Timezone for future activity</Label>
             <Input id="profile-timezone" value={timezoneDraft ?? preferences.data?.timezone ?? "UTC"}
               disabled={!preferences.data || preferenceSave.isPending}
               onChange={event => { preferenceVersion.current ??= preferences.data?.version ?? null; setTimezoneDraft(event.target.value); }} />
             <p className="field-help">Use an IANA timezone such as Asia/Manila. Historical activity dates stay unchanged.</p>
-          </div>
+            </div>
+          </details>
           <div className="action-row">
             <Button disabled={!preferences.data || !preferenceDirty || preferenceSave.isPending} onClick={() => void savePreferences()}>{preferenceSave.isPending ? "Saving…" : "Save preferences"}</Button>
             <Button variant="outline" disabled={!preferenceDirty || preferenceSave.isPending} onClick={() => { preferenceVersion.current = null; setPrimaryField(null); setTimezoneDraft(null); preferenceSave.reset(); }}>Discard preference changes</Button>
@@ -202,11 +204,13 @@ function SettingsEditor({ userId }: { userId: string }) {
           {preferenceSave.isSuccess && !preferenceDirty && <p role="status">Preferences saved.</p>}
           {preferenceError && <p role="alert" className="field-error">{preferenceError.message} <Button variant="outline" disabled={preferenceSave.isPending} onClick={() => void reloadPreferences()}>Reload preferences</Button></p>}
         </Card>
+        <ProfileSkills key={userId} active={!accountView} onGuardChange={onSkillGuardChange}
+          documents={<ProfileDocuments compact onGuardChange={onDocumentGuardChange} />} />
       </div>
-      <section className="settings-account-content" aria-label="Account and security settings" hidden={!accountView}>
+      <section id="account-security" tabIndex={-1} className="settings-account-content" aria-label="Account and security" hidden={!accountView}>
         <AccountCards />
       </section>
     </SettingsLayout>
-    <ProfileEditorDialogs editor={editor} extraDirty={preferenceDirty || documentGuard.dirty} extraPending={preferenceSave.isPending || documentGuard.pending} />
+    <ProfileEditorDialogs editor={editor} extraDirty={preferenceDirty || documentGuard.dirty || skillGuard.dirty} extraPending={preferenceSave.isPending || documentGuard.pending || skillGuard.pending} />
   </>;
 }

@@ -1,0 +1,2901 @@
+{
+  "schema_version": "4.0.0-draft",
+  "career": {
+    "name": "Penetration Tester",
+    "slug": "penetration-tester",
+    "category": "Cybersecurity",
+    "status": "Draft — pending human review"
+  },
+  "career_overview": {
+    "short_description": "Assess the security of systems with explicit permission. Learn a systematic testing workflow using only training labs and authorised targets.",
+    "responsibilities": [
+      "Assess goals and constraints relevant to penetration tester work",
+      "Apply appropriate tools and methods to a bounded task",
+      "Test, document and communicate results",
+      "Collaborate and incorporate feedback"
+    ],
+    "representative_work": [
+      "An authorised lab assessment with findings and remediation guidance."
+    ],
+    "core_skills": [
+      "Rules of engagement and scope",
+      "Safe isolated lab setup",
+      "Operating systems and terminal",
+      "Networking and HTTP essentials",
+      "HTTP messages and sessions",
+      "Authentication and authorization concepts",
+      "Input handling and validation",
+      "Application mapping in labs",
+      "Injection concepts in guided labs",
+      "Cross-site scripting concepts in labs"
+    ]
+  },
+  "roadmap": {
+    "title": "Penetration Tester: beginner foundations and starter project",
+    "intended_learner": "Motivated beginner; basic computer literacy assumed, with no prior professional experience.",
+    "starting_requirements": "Computer, internet access, text editor and browser. Most tasks use free software or simulation; specialist equipment, accounts and costs are flagged for review when applicable.",
+    "final_outcome": "An authorised lab assessment with findings and remediation guidance.",
+    "milestones": [
+      {
+        "id": "M01",
+        "slug": "establish-legal-lab-practice",
+        "title": "Establish legal lab practice",
+        "summary": "Learn rules of engagement and scope, safe isolated lab setup, operating systems and terminal, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T01",
+            "slug": "rules-of-engagement-and-scope",
+            "title": "Rules of engagement and scope",
+            "milestone_id": "M01",
+            "card": {
+              "title": "Rules of engagement and scope",
+              "summary": "A penetration test requires explicit written permission and a clear target scope. Stay within agreed time, data and testing limits.",
+              "prerequisite_ids": []
+            },
+            "detail": {
+              "eyebrow": "M01 · Establish legal lab practice",
+              "title": "Rules of engagement and scope",
+              "overview": "A penetration test requires explicit written permission and a clear target scope. Stay within agreed time, data and testing limits.",
+              "learning_outcomes": [
+                "Use what you learn about rules of engagement and scope to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T01-S01",
+                  "title": "Rules of engagement",
+                  "explanation": "Find how rules of engagement works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T01-S02",
+                  "title": "Scope",
+                  "explanation": "Find how scope works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Draft a fictional rules-of-engagement document for a training lab."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: draft a fictional rules-of-engagement document for a training lab. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "PortSwigger Web Security Academy",
+                  "provider": "PortSwigger",
+                  "url": "https://portswigger.net/web-security",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on rules of engagement and scope; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T01-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "OWASP WSTG",
+                  "provider": "OWASP",
+                  "url": "https://owasp.org/projects/web-security-testing-guide",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on rules of engagement and scope; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T01-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A penetration test requires explicit written permission and a clear target scope. Stay within agreed time, data and testing limits.",
+                "learn_items": [
+                  "Rules of engagement",
+                  "Scope"
+                ],
+                "learning_goal": "Use what you learn about rules of engagement and scope to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "PortSwigger Web Security Academy",
+                    "provider": "PortSwigger",
+                    "url": "https://portswigger.net/web-security",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on rules of engagement and scope; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T01-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "OWASP WSTG",
+                    "provider": "OWASP",
+                    "url": "https://owasp.org/projects/web-security-testing-guide",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on rules of engagement and scope; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T01-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Draft a fictional rules-of-engagement document for a training lab.",
+                "completion_check": "You can show or explain the result of this task: draft a fictional rules-of-engagement document for a training lab. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T02",
+            "slug": "safe-isolated-lab-setup",
+            "title": "Safe isolated lab setup",
+            "milestone_id": "M01",
+            "card": {
+              "title": "Safe isolated lab setup",
+              "summary": "An isolated practice lab prevents experiments from affecting real systems. Use deliberately vulnerable targets and avoid public services without permission.",
+              "prerequisite_ids": [
+                "T01"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M01 · Establish legal lab practice",
+              "title": "Safe isolated lab setup",
+              "overview": "An isolated practice lab prevents experiments from affecting real systems. Use deliberately vulnerable targets and avoid public services without permission.",
+              "learning_outcomes": [
+                "Use what you learn about safe isolated lab setup to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T02-S01",
+                  "title": "Safe isolated lab setup: purpose and essential vocabulary",
+                  "explanation": "Find how safe isolated lab setup: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T02-S02",
+                  "title": "Safe isolated lab setup: application and common pitfalls",
+                  "explanation": "Find how safe isolated lab setup: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Document a local or hosted authorised training environment."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: document a local or hosted authorised training environment. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "PortSwigger Web Security Academy",
+                  "provider": "PortSwigger",
+                  "url": "https://portswigger.net/web-security",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on safe isolated lab setup; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T02-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "OWASP WSTG",
+                  "provider": "OWASP",
+                  "url": "https://owasp.org/projects/web-security-testing-guide",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on safe isolated lab setup; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T02-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "An isolated practice lab prevents experiments from affecting real systems. Use deliberately vulnerable targets and avoid public services without permission.",
+                "learn_items": [
+                  "Safe isolated lab setup: purpose and essential vocabulary",
+                  "Safe isolated lab setup: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about safe isolated lab setup to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "PortSwigger Web Security Academy",
+                    "provider": "PortSwigger",
+                    "url": "https://portswigger.net/web-security",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on safe isolated lab setup; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T02-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "OWASP WSTG",
+                    "provider": "OWASP",
+                    "url": "https://owasp.org/projects/web-security-testing-guide",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on safe isolated lab setup; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T02-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Document a local or hosted authorised training environment.",
+                "completion_check": "You can show or explain the result of this task: document a local or hosted authorised training environment. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T03",
+            "slug": "operating-systems-and-terminal",
+            "title": "Operating systems and terminal",
+            "milestone_id": "M01",
+            "card": {
+              "title": "Operating systems and terminal",
+              "summary": "Basic terminal and operating-system skills help inspect files, processes and configuration in a lab. Use read-only checks before changes.",
+              "prerequisite_ids": [
+                "T02"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M01 · Establish legal lab practice",
+              "title": "Operating systems and terminal",
+              "overview": "Basic terminal and operating-system skills help inspect files, processes and configuration in a lab. Use read-only checks before changes.",
+              "learning_outcomes": [
+                "Use what you learn about operating systems and terminal to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T03-S01",
+                  "title": "Operating systems",
+                  "explanation": "Find how operating systems works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T03-S02",
+                  "title": "Terminal",
+                  "explanation": "Find how terminal works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Record OS version and file paths inside your own lab."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: record OS version and file paths inside your own lab. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "PortSwigger Web Security Academy",
+                  "provider": "PortSwigger",
+                  "url": "https://portswigger.net/web-security",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on operating systems and terminal; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T03-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "OWASP WSTG",
+                  "provider": "OWASP",
+                  "url": "https://owasp.org/projects/web-security-testing-guide",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on operating systems and terminal; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T03-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Basic terminal and operating-system skills help inspect files, processes and configuration in a lab. Use read-only checks before changes.",
+                "learn_items": [
+                  "Operating systems",
+                  "Terminal"
+                ],
+                "learning_goal": "Use what you learn about operating systems and terminal to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "PortSwigger Web Security Academy",
+                    "provider": "PortSwigger",
+                    "url": "https://portswigger.net/web-security",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on operating systems and terminal; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T03-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "OWASP WSTG",
+                    "provider": "OWASP",
+                    "url": "https://owasp.org/projects/web-security-testing-guide",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on operating systems and terminal; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T03-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Record OS version and file paths inside your own lab.",
+                "completion_check": "You can show or explain the result of this task: record OS version and file paths inside your own lab. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T04",
+            "slug": "networking-and-http-essentials",
+            "title": "Networking and HTTP essentials",
+            "milestone_id": "M01",
+            "card": {
+              "title": "Networking and HTTP essentials",
+              "summary": "Web tests depend on understanding IP addresses, DNS, ports, HTTP and TLS. An unexpected response may be a normal protocol behaviour.",
+              "prerequisite_ids": [
+                "T03"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M01 · Establish legal lab practice",
+              "title": "Networking and HTTP essentials",
+              "overview": "Web tests depend on understanding IP addresses, DNS, ports, HTTP and TLS. An unexpected response may be a normal protocol behaviour.",
+              "learning_outcomes": [
+                "Use what you learn about networking and http essentials to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T04-S01",
+                  "title": "Networking",
+                  "explanation": "Find how networking works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T04-S02",
+                  "title": "Http essentials",
+                  "explanation": "Find how http essentials works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Trace a browser request to a lab-hosted page."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: trace a browser request to a lab-hosted page. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "PortSwigger Web Security Academy",
+                  "provider": "PortSwigger",
+                  "url": "https://portswigger.net/web-security",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on networking and http essentials; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T04-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "OWASP WSTG",
+                  "provider": "OWASP",
+                  "url": "https://owasp.org/projects/web-security-testing-guide",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on networking and http essentials; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T04-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Web tests depend on understanding IP addresses, DNS, ports, HTTP and TLS. An unexpected response may be a normal protocol behaviour.",
+                "learn_items": [
+                  "Networking",
+                  "Http essentials"
+                ],
+                "learning_goal": "Use what you learn about networking and http essentials to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "PortSwigger Web Security Academy",
+                    "provider": "PortSwigger",
+                    "url": "https://portswigger.net/web-security",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on networking and http essentials; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T04-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "OWASP WSTG",
+                    "provider": "OWASP",
+                    "url": "https://owasp.org/projects/web-security-testing-guide",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on networking and http essentials; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T04-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Trace a browser request to a lab-hosted page.",
+                "completion_check": "You can show or explain the result of this task: trace a browser request to a lab-hosted page. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M02",
+        "slug": "learn-web-application-behavior",
+        "title": "Learn web application behavior",
+        "summary": "Learn http messages and sessions, authentication and authorization concepts, input handling and validation, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T05",
+            "slug": "http-messages-and-sessions",
+            "title": "HTTP messages and sessions",
+            "milestone_id": "M02",
+            "card": {
+              "title": "HTTP messages and sessions",
+              "summary": "An HTTP request includes method, path, headers and optional body; responses include status and content. Cookies often carry session state.",
+              "prerequisite_ids": [
+                "T04"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Learn web application behavior",
+              "title": "HTTP messages and sessions",
+              "overview": "An HTTP request includes method, path, headers and optional body; responses include status and content. Cookies often carry session state.",
+              "learning_outcomes": [
+                "Use what you learn about http messages and sessions to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T05-S01",
+                  "title": "Http messages",
+                  "explanation": "Find how http messages works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T05-S02",
+                  "title": "Sessions",
+                  "explanation": "Find how sessions works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Inspect harmless lab requests and identify the session cookie."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: inspect harmless lab requests and identify the session cookie. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "PortSwigger Web Security Academy",
+                  "provider": "PortSwigger",
+                  "url": "https://portswigger.net/web-security",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on http messages and sessions; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T05-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "OWASP WSTG",
+                  "provider": "OWASP",
+                  "url": "https://owasp.org/projects/web-security-testing-guide",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on http messages and sessions; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T05-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "An HTTP request includes method, path, headers and optional body; responses include status and content. Cookies often carry session state.",
+                "learn_items": [
+                  "Http messages",
+                  "Sessions"
+                ],
+                "learning_goal": "Use what you learn about http messages and sessions to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "PortSwigger Web Security Academy",
+                    "provider": "PortSwigger",
+                    "url": "https://portswigger.net/web-security",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on http messages and sessions; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T05-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "OWASP WSTG",
+                    "provider": "OWASP",
+                    "url": "https://owasp.org/projects/web-security-testing-guide",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on http messages and sessions; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T05-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Inspect harmless lab requests and identify the session cookie.",
+                "completion_check": "You can show or explain the result of this task: inspect harmless lab requests and identify the session cookie. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T06",
+            "slug": "authentication-and-authorization-concepts",
+            "title": "Authentication and authorization concepts",
+            "milestone_id": "M02",
+            "card": {
+              "title": "Authentication and authorization concepts",
+              "summary": "Authentication proves identity; authorisation determines permitted actions. Testing must not expose real users' accounts or data.",
+              "prerequisite_ids": [
+                "T05"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Learn web application behavior",
+              "title": "Authentication and authorization concepts",
+              "overview": "Authentication proves identity; authorisation determines permitted actions. Testing must not expose real users' accounts or data.",
+              "learning_outcomes": [
+                "Use what you learn about authentication and authorization concepts to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T06-S01",
+                  "title": "Authentication",
+                  "explanation": "Find how authentication works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T06-S02",
+                  "title": "Authorization concepts",
+                  "explanation": "Find how authorization concepts works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Compare a lab guest account with a test administrator role."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: compare a lab guest account with a test administrator role. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "PortSwigger Web Security Academy",
+                  "provider": "PortSwigger",
+                  "url": "https://portswigger.net/web-security",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on authentication and authorization concepts; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T06-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "OWASP WSTG",
+                  "provider": "OWASP",
+                  "url": "https://owasp.org/projects/web-security-testing-guide",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on authentication and authorization concepts; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T06-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Authentication proves identity; authorisation determines permitted actions. Testing must not expose real users' accounts or data.",
+                "learn_items": [
+                  "Authentication",
+                  "Authorization concepts"
+                ],
+                "learning_goal": "Use what you learn about authentication and authorization concepts to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "PortSwigger Web Security Academy",
+                    "provider": "PortSwigger",
+                    "url": "https://portswigger.net/web-security",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on authentication and authorization concepts; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T06-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "OWASP WSTG",
+                    "provider": "OWASP",
+                    "url": "https://owasp.org/projects/web-security-testing-guide",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on authentication and authorization concepts; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T06-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Compare a lab guest account with a test administrator role.",
+                "completion_check": "You can show or explain the result of this task: compare a lab guest account with a test administrator role. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T07",
+            "slug": "input-handling-and-validation",
+            "title": "Input handling and validation",
+            "milestone_id": "M02",
+            "card": {
+              "title": "Input handling and validation",
+              "summary": "Applications transform user input into queries and rendered output. Unsafe handling can cross trust boundaries.",
+              "prerequisite_ids": [
+                "T06"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Learn web application behavior",
+              "title": "Input handling and validation",
+              "overview": "Applications transform user input into queries and rendered output. Unsafe handling can cross trust boundaries.",
+              "learning_outcomes": [
+                "Use what you learn about input handling and validation to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T07-S01",
+                  "title": "Input handling",
+                  "explanation": "Find how input handling works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T07-S02",
+                  "title": "Validation",
+                  "explanation": "Find how validation works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Trace where a harmless form input appears in a training app."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: trace where a harmless form input appears in a training app. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "PortSwigger Web Security Academy",
+                  "provider": "PortSwigger",
+                  "url": "https://portswigger.net/web-security",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on input handling and validation; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T07-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "OWASP WSTG",
+                  "provider": "OWASP",
+                  "url": "https://owasp.org/projects/web-security-testing-guide",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on input handling and validation; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T07-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Applications transform user input into queries and rendered output. Unsafe handling can cross trust boundaries.",
+                "learn_items": [
+                  "Input handling",
+                  "Validation"
+                ],
+                "learning_goal": "Use what you learn about input handling and validation to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "PortSwigger Web Security Academy",
+                    "provider": "PortSwigger",
+                    "url": "https://portswigger.net/web-security",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on input handling and validation; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T07-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "OWASP WSTG",
+                    "provider": "OWASP",
+                    "url": "https://owasp.org/projects/web-security-testing-guide",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on input handling and validation; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T07-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Trace where a harmless form input appears in a training app.",
+                "completion_check": "You can show or explain the result of this task: trace where a harmless form input appears in a training app. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T08",
+            "slug": "application-mapping-in-labs",
+            "title": "Application mapping in labs",
+            "milestone_id": "M02",
+            "card": {
+              "title": "Application mapping in labs",
+              "summary": "Application mapping lists routes, forms and roles within scope. A clear map prevents random or duplicated testing.",
+              "prerequisite_ids": [
+                "T07"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Learn web application behavior",
+              "title": "Application mapping in labs",
+              "overview": "Application mapping lists routes, forms and roles within scope. A clear map prevents random or duplicated testing.",
+              "learning_outcomes": [
+                "Use what you learn about application mapping in labs to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T08-S01",
+                  "title": "Application mapping in labs: purpose and essential vocabulary",
+                  "explanation": "Find how application mapping in labs: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T08-S02",
+                  "title": "Application mapping in labs: application and common pitfalls",
+                  "explanation": "Find how application mapping in labs: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Record the pages and functions of an authorised lab target."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: record the pages and functions of an authorised lab target. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "PortSwigger Web Security Academy",
+                  "provider": "PortSwigger",
+                  "url": "https://portswigger.net/web-security",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on application mapping in labs; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T08-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "OWASP WSTG",
+                  "provider": "OWASP",
+                  "url": "https://owasp.org/projects/web-security-testing-guide",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on application mapping in labs; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T08-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Application mapping lists routes, forms and roles within scope. A clear map prevents random or duplicated testing.",
+                "learn_items": [
+                  "Application mapping in labs: purpose and essential vocabulary",
+                  "Application mapping in labs: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about application mapping in labs to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "PortSwigger Web Security Academy",
+                    "provider": "PortSwigger",
+                    "url": "https://portswigger.net/web-security",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on application mapping in labs; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T08-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "OWASP WSTG",
+                    "provider": "OWASP",
+                    "url": "https://owasp.org/projects/web-security-testing-guide",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on application mapping in labs; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T08-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Record the pages and functions of an authorised lab target.",
+                "completion_check": "You can show or explain the result of this task: record the pages and functions of an authorised lab target. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M03",
+        "slug": "study-common-vulnerabilities",
+        "title": "Study common vulnerabilities",
+        "summary": "Learn injection concepts in guided labs, cross-site scripting concepts in labs, access control weaknesses, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T09",
+            "slug": "injection-concepts-in-guided-labs",
+            "title": "Injection concepts in guided labs",
+            "milestone_id": "M03",
+            "card": {
+              "title": "Injection concepts in guided labs",
+              "summary": "Injection occurs when untrusted data is treated as commands or query syntax. Study controlled demonstrations without attacking real services.",
+              "prerequisite_ids": [
+                "T08"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Study common vulnerabilities",
+              "title": "Injection concepts in guided labs",
+              "overview": "Injection occurs when untrusted data is treated as commands or query syntax. Study controlled demonstrations without attacking real services.",
+              "learning_outcomes": [
+                "Use what you learn about injection concepts in guided labs to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T09-S01",
+                  "title": "Injection concepts in guided labs: purpose and essential vocabulary",
+                  "explanation": "Find how injection concepts in guided labs: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T09-S02",
+                  "title": "Injection concepts in guided labs: application and common pitfalls",
+                  "explanation": "Find how injection concepts in guided labs: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Complete a guided injection lesson in a deliberately vulnerable lab."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: complete a guided injection lesson in a deliberately vulnerable lab. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "PortSwigger Web Security Academy",
+                  "provider": "PortSwigger",
+                  "url": "https://portswigger.net/web-security",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on injection concepts in guided labs; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T09-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "OWASP WSTG",
+                  "provider": "OWASP",
+                  "url": "https://owasp.org/projects/web-security-testing-guide",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on injection concepts in guided labs; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T09-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Injection occurs when untrusted data is treated as commands or query syntax. Study controlled demonstrations without attacking real services.",
+                "learn_items": [
+                  "Injection concepts in guided labs: purpose and essential vocabulary",
+                  "Injection concepts in guided labs: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about injection concepts in guided labs to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "PortSwigger Web Security Academy",
+                    "provider": "PortSwigger",
+                    "url": "https://portswigger.net/web-security",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on injection concepts in guided labs; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T09-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "OWASP WSTG",
+                    "provider": "OWASP",
+                    "url": "https://owasp.org/projects/web-security-testing-guide",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on injection concepts in guided labs; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T09-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Complete a guided injection lesson in a deliberately vulnerable lab.",
+                "completion_check": "You can show or explain the result of this task: complete a guided injection lesson in a deliberately vulnerable lab. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T10",
+            "slug": "cross-site-scripting-concepts-in-labs",
+            "title": "Cross-site scripting concepts in labs",
+            "milestone_id": "M03",
+            "card": {
+              "title": "Cross-site scripting concepts in labs",
+              "summary": "Cross-site scripting happens when untrusted content executes as script in a browser. Context-aware output handling is central to prevention.",
+              "prerequisite_ids": [
+                "T09"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Study common vulnerabilities",
+              "title": "Cross-site scripting concepts in labs",
+              "overview": "Cross-site scripting happens when untrusted content executes as script in a browser. Context-aware output handling is central to prevention.",
+              "learning_outcomes": [
+                "Use what you learn about cross-site scripting concepts in labs to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T10-S01",
+                  "title": "Cross-site scripting concepts in labs: purpose and essential vocabulary",
+                  "explanation": "Find how cross-site scripting concepts in labs: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T10-S02",
+                  "title": "Cross-site scripting concepts in labs: application and common pitfalls",
+                  "explanation": "Find how cross-site scripting concepts in labs: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Observe a harmless scripted marker in a provided XSS lab."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: observe a harmless scripted marker in a provided XSS lab. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "PortSwigger Web Security Academy",
+                  "provider": "PortSwigger",
+                  "url": "https://portswigger.net/web-security",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on cross-site scripting concepts in labs; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T10-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "OWASP WSTG",
+                  "provider": "OWASP",
+                  "url": "https://owasp.org/projects/web-security-testing-guide",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on cross-site scripting concepts in labs; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T10-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Cross-site scripting happens when untrusted content executes as script in a browser. Context-aware output handling is central to prevention.",
+                "learn_items": [
+                  "Cross-site scripting concepts in labs: purpose and essential vocabulary",
+                  "Cross-site scripting concepts in labs: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about cross-site scripting concepts in labs to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "PortSwigger Web Security Academy",
+                    "provider": "PortSwigger",
+                    "url": "https://portswigger.net/web-security",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on cross-site scripting concepts in labs; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T10-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "OWASP WSTG",
+                    "provider": "OWASP",
+                    "url": "https://owasp.org/projects/web-security-testing-guide",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on cross-site scripting concepts in labs; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T10-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Observe a harmless scripted marker in a provided XSS lab.",
+                "completion_check": "You can show or explain the result of this task: observe a harmless scripted marker in a provided XSS lab. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T11",
+            "slug": "access-control-weaknesses",
+            "title": "Access control weaknesses",
+            "milestone_id": "M03",
+            "card": {
+              "title": "Access control weaknesses",
+              "summary": "Access-control faults let users reach actions or data outside their permissions. Compare authorised test roles without accessing real accounts.",
+              "prerequisite_ids": [
+                "T10"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Study common vulnerabilities",
+              "title": "Access control weaknesses",
+              "overview": "Access-control faults let users reach actions or data outside their permissions. Compare authorised test roles without accessing real accounts.",
+              "learning_outcomes": [
+                "Use what you learn about access control weaknesses to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T11-S01",
+                  "title": "Access control weaknesses: purpose and essential vocabulary",
+                  "explanation": "Find how access control weaknesses: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T11-S02",
+                  "title": "Access control weaknesses: application and common pitfalls",
+                  "explanation": "Find how access control weaknesses: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Document a failed role-boundary check in a training environment."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: document a failed role-boundary check in a training environment. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "PortSwigger Web Security Academy",
+                  "provider": "PortSwigger",
+                  "url": "https://portswigger.net/web-security",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on access control weaknesses; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T11-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "OWASP WSTG",
+                  "provider": "OWASP",
+                  "url": "https://owasp.org/projects/web-security-testing-guide",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on access control weaknesses; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T11-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Access-control faults let users reach actions or data outside their permissions. Compare authorised test roles without accessing real accounts.",
+                "learn_items": [
+                  "Access control weaknesses: purpose and essential vocabulary",
+                  "Access control weaknesses: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about access control weaknesses to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "PortSwigger Web Security Academy",
+                    "provider": "PortSwigger",
+                    "url": "https://portswigger.net/web-security",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on access control weaknesses; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T11-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "OWASP WSTG",
+                    "provider": "OWASP",
+                    "url": "https://owasp.org/projects/web-security-testing-guide",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on access control weaknesses; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T11-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Document a failed role-boundary check in a training environment.",
+                "completion_check": "You can show or explain the result of this task: document a failed role-boundary check in a training environment. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T12",
+            "slug": "security-configuration-review",
+            "title": "Security configuration review",
+            "milestone_id": "M03",
+            "card": {
+              "title": "Security configuration review",
+              "summary": "Security configuration includes headers, permissions and safe defaults. Missing settings require context before declaring high severity.",
+              "prerequisite_ids": [
+                "T11"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Study common vulnerabilities",
+              "title": "Security configuration review",
+              "overview": "Security configuration includes headers, permissions and safe defaults. Missing settings require context before declaring high severity.",
+              "learning_outcomes": [
+                "Use what you learn about security configuration review to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T12-S01",
+                  "title": "Security configuration review: purpose and essential vocabulary",
+                  "explanation": "Find how security configuration review: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T12-S02",
+                  "title": "Security configuration review: application and common pitfalls",
+                  "explanation": "Find how security configuration review: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Review provided fictional configuration snippets."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: review provided fictional configuration snippets. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "PortSwigger Web Security Academy",
+                  "provider": "PortSwigger",
+                  "url": "https://portswigger.net/web-security",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on security configuration review; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T12-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "OWASP WSTG",
+                  "provider": "OWASP",
+                  "url": "https://owasp.org/projects/web-security-testing-guide",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on security configuration review; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T12-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Security configuration includes headers, permissions and safe defaults. Missing settings require context before declaring high severity.",
+                "learn_items": [
+                  "Security configuration review: purpose and essential vocabulary",
+                  "Security configuration review: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about security configuration review to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "PortSwigger Web Security Academy",
+                    "provider": "PortSwigger",
+                    "url": "https://portswigger.net/web-security",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on security configuration review; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T12-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "OWASP WSTG",
+                    "provider": "OWASP",
+                    "url": "https://owasp.org/projects/web-security-testing-guide",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on security configuration review; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T12-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Review provided fictional configuration snippets.",
+                "completion_check": "You can show or explain the result of this task: review provided fictional configuration snippets. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M04",
+        "slug": "run-controlled-assessments",
+        "title": "Run controlled assessments",
+        "summary": "Learn test planning and evidence, proxy inspection with lab targets, reproducible non-destructive validation, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T13",
+            "slug": "test-planning-and-evidence",
+            "title": "Test planning and evidence",
+            "milestone_id": "M04",
+            "card": {
+              "title": "Test planning and evidence",
+              "summary": "A test plan records scope, objective and expected evidence before execution. Documentation makes results reproducible and safe.",
+              "prerequisite_ids": [
+                "T12"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Run controlled assessments",
+              "title": "Test planning and evidence",
+              "overview": "A test plan records scope, objective and expected evidence before execution. Documentation makes results reproducible and safe.",
+              "learning_outcomes": [
+                "Use what you learn about test planning and evidence to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T13-S01",
+                  "title": "Test planning",
+                  "explanation": "Find how test planning works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T13-S02",
+                  "title": "Evidence",
+                  "explanation": "Find how evidence works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Write three test cases for a deliberately vulnerable web lab."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: write three test cases for a deliberately vulnerable web lab. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "PortSwigger Web Security Academy",
+                  "provider": "PortSwigger",
+                  "url": "https://portswigger.net/web-security",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on test planning and evidence; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T13-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "OWASP WSTG",
+                  "provider": "OWASP",
+                  "url": "https://owasp.org/projects/web-security-testing-guide",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on test planning and evidence; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T13-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A test plan records scope, objective and expected evidence before execution. Documentation makes results reproducible and safe.",
+                "learn_items": [
+                  "Test planning",
+                  "Evidence"
+                ],
+                "learning_goal": "Use what you learn about test planning and evidence to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "PortSwigger Web Security Academy",
+                    "provider": "PortSwigger",
+                    "url": "https://portswigger.net/web-security",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on test planning and evidence; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T13-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "OWASP WSTG",
+                    "provider": "OWASP",
+                    "url": "https://owasp.org/projects/web-security-testing-guide",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on test planning and evidence; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T13-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Write three test cases for a deliberately vulnerable web lab.",
+                "completion_check": "You can show or explain the result of this task: write three test cases for a deliberately vulnerable web lab. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T14",
+            "slug": "proxy-inspection-with-lab-targets",
+            "title": "Proxy inspection with lab targets",
+            "milestone_id": "M04",
+            "card": {
+              "title": "Proxy inspection with lab targets",
+              "summary": "An intercepting proxy displays web requests and responses. Limit inspection to your own browser sessions and authorised targets.",
+              "prerequisite_ids": [
+                "T13"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Run controlled assessments",
+              "title": "Proxy inspection with lab targets",
+              "overview": "An intercepting proxy displays web requests and responses. Limit inspection to your own browser sessions and authorised targets.",
+              "learning_outcomes": [
+                "Use what you learn about proxy inspection with lab targets to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T14-S01",
+                  "title": "Proxy inspection with lab targets: purpose and essential vocabulary",
+                  "explanation": "Find how proxy inspection with lab targets: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T14-S02",
+                  "title": "Proxy inspection with lab targets: application and common pitfalls",
+                  "explanation": "Find how proxy inspection with lab targets: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Inspect and annotate a harmless request in a lab proxy."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: inspect and annotate a harmless request in a lab proxy. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "PortSwigger Web Security Academy",
+                  "provider": "PortSwigger",
+                  "url": "https://portswigger.net/web-security",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on proxy inspection with lab targets; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T14-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "OWASP WSTG",
+                  "provider": "OWASP",
+                  "url": "https://owasp.org/projects/web-security-testing-guide",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on proxy inspection with lab targets; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T14-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "An intercepting proxy displays web requests and responses. Limit inspection to your own browser sessions and authorised targets.",
+                "learn_items": [
+                  "Proxy inspection with lab targets: purpose and essential vocabulary",
+                  "Proxy inspection with lab targets: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about proxy inspection with lab targets to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "PortSwigger Web Security Academy",
+                    "provider": "PortSwigger",
+                    "url": "https://portswigger.net/web-security",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on proxy inspection with lab targets; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T14-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "OWASP WSTG",
+                    "provider": "OWASP",
+                    "url": "https://owasp.org/projects/web-security-testing-guide",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on proxy inspection with lab targets; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T14-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Inspect and annotate a harmless request in a lab proxy.",
+                "completion_check": "You can show or explain the result of this task: inspect and annotate a harmless request in a lab proxy. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T15",
+            "slug": "reproducible-non-destructive-validation",
+            "title": "Reproducible non-destructive validation",
+            "milestone_id": "M04",
+            "card": {
+              "title": "Reproducible non-destructive validation",
+              "summary": "Safe validation demonstrates a weakness without damaging data or escalating outside scope. Stop when sufficient evidence is collected.",
+              "prerequisite_ids": [
+                "T14"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Run controlled assessments",
+              "title": "Reproducible non-destructive validation",
+              "overview": "Safe validation demonstrates a weakness without damaging data or escalating outside scope. Stop when sufficient evidence is collected.",
+              "learning_outcomes": [
+                "Use what you learn about reproducible non-destructive validation to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T15-S01",
+                  "title": "Reproducible non-destructive validation: purpose and essential vocabulary",
+                  "explanation": "Find how reproducible non-destructive validation: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T15-S02",
+                  "title": "Reproducible non-destructive validation: application and common pitfalls",
+                  "explanation": "Find how reproducible non-destructive validation: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Write a minimal, non-destructive reproduction for a guided lab finding."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: write a minimal, non-destructive reproduction for a guided lab finding. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "PortSwigger Web Security Academy",
+                  "provider": "PortSwigger",
+                  "url": "https://portswigger.net/web-security",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on reproducible non-destructive validation; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T15-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "OWASP WSTG",
+                  "provider": "OWASP",
+                  "url": "https://owasp.org/projects/web-security-testing-guide",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on reproducible non-destructive validation; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T15-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Safe validation demonstrates a weakness without damaging data or escalating outside scope. Stop when sufficient evidence is collected.",
+                "learn_items": [
+                  "Reproducible non-destructive validation: purpose and essential vocabulary",
+                  "Reproducible non-destructive validation: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about reproducible non-destructive validation to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "PortSwigger Web Security Academy",
+                    "provider": "PortSwigger",
+                    "url": "https://portswigger.net/web-security",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on reproducible non-destructive validation; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T15-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "OWASP WSTG",
+                    "provider": "OWASP",
+                    "url": "https://owasp.org/projects/web-security-testing-guide",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on reproducible non-destructive validation; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T15-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Write a minimal, non-destructive reproduction for a guided lab finding.",
+                "completion_check": "You can show or explain the result of this task: write a minimal, non-destructive reproduction for a guided lab finding. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T16",
+            "slug": "severity-and-impact-reasoning",
+            "title": "Severity and impact reasoning",
+            "milestone_id": "M04",
+            "card": {
+              "title": "Severity and impact reasoning",
+              "summary": "Severity combines likelihood, exposure and potential impact. A technical flaw can have very different consequences in different systems.",
+              "prerequisite_ids": [
+                "T15"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Run controlled assessments",
+              "title": "Severity and impact reasoning",
+              "overview": "Severity combines likelihood, exposure and potential impact. A technical flaw can have very different consequences in different systems.",
+              "learning_outcomes": [
+                "Use what you learn about severity and impact reasoning to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T16-S01",
+                  "title": "Severity",
+                  "explanation": "Find how severity works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T16-S02",
+                  "title": "Impact reasoning",
+                  "explanation": "Find how impact reasoning works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Rate a fictional finding and explain assumptions."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: rate a fictional finding and explain assumptions. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "PortSwigger Web Security Academy",
+                  "provider": "PortSwigger",
+                  "url": "https://portswigger.net/web-security",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on severity and impact reasoning; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T16-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "OWASP WSTG",
+                  "provider": "OWASP",
+                  "url": "https://owasp.org/projects/web-security-testing-guide",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on severity and impact reasoning; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T16-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Severity combines likelihood, exposure and potential impact. A technical flaw can have very different consequences in different systems.",
+                "learn_items": [
+                  "Severity",
+                  "Impact reasoning"
+                ],
+                "learning_goal": "Use what you learn about severity and impact reasoning to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "PortSwigger Web Security Academy",
+                    "provider": "PortSwigger",
+                    "url": "https://portswigger.net/web-security",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on severity and impact reasoning; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T16-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "OWASP WSTG",
+                    "provider": "OWASP",
+                    "url": "https://owasp.org/projects/web-security-testing-guide",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on severity and impact reasoning; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T16-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Rate a fictional finding and explain assumptions.",
+                "completion_check": "You can show or explain the result of this task: rate a fictional finding and explain assumptions. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M05",
+        "slug": "report-and-recommend-fixes",
+        "title": "Report and recommend fixes",
+        "summary": "Learn writing clear findings, proof of concept boundaries, remediation guidance, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T17",
+            "slug": "writing-clear-findings",
+            "title": "Writing clear findings",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Writing clear findings",
+              "summary": "A useful finding names the issue, affected component, evidence, impact and fix. Avoid unexplained jargon and overstatements.",
+              "prerequisite_ids": [
+                "T16"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Report and recommend fixes",
+              "title": "Writing clear findings",
+              "overview": "A useful finding names the issue, affected component, evidence, impact and fix. Avoid unexplained jargon and overstatements.",
+              "learning_outcomes": [
+                "Use what you learn about writing clear findings to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T17-S01",
+                  "title": "Writing clear findings: purpose and essential vocabulary",
+                  "explanation": "Find how writing clear findings: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T17-S02",
+                  "title": "Writing clear findings: application and common pitfalls",
+                  "explanation": "Find how writing clear findings: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Draft one finding from a guided training lab."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: draft one finding from a guided training lab. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "PortSwigger Web Security Academy",
+                  "provider": "PortSwigger",
+                  "url": "https://portswigger.net/web-security",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on writing clear findings; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T17-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "OWASP WSTG",
+                  "provider": "OWASP",
+                  "url": "https://owasp.org/projects/web-security-testing-guide",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on writing clear findings; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T17-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A useful finding names the issue, affected component, evidence, impact and fix. Avoid unexplained jargon and overstatements.",
+                "learn_items": [
+                  "Writing clear findings: purpose and essential vocabulary",
+                  "Writing clear findings: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about writing clear findings to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "PortSwigger Web Security Academy",
+                    "provider": "PortSwigger",
+                    "url": "https://portswigger.net/web-security",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on writing clear findings; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T17-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "OWASP WSTG",
+                    "provider": "OWASP",
+                    "url": "https://owasp.org/projects/web-security-testing-guide",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on writing clear findings; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T17-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Draft one finding from a guided training lab.",
+                "completion_check": "You can show or explain the result of this task: draft one finding from a guided training lab. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T18",
+            "slug": "proof-of-concept-boundaries",
+            "title": "Proof of concept boundaries",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Proof of concept boundaries",
+              "summary": "Proof-of-concept evidence should be minimal, reproducible and safe to share. Remove secrets and unnecessary user data from screenshots.",
+              "prerequisite_ids": [
+                "T17"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Report and recommend fixes",
+              "title": "Proof of concept boundaries",
+              "overview": "Proof-of-concept evidence should be minimal, reproducible and safe to share. Remove secrets and unnecessary user data from screenshots.",
+              "learning_outcomes": [
+                "Use what you learn about proof of concept boundaries to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T18-S01",
+                  "title": "Proof of concept boundaries: purpose and essential vocabulary",
+                  "explanation": "Find how proof of concept boundaries: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T18-S02",
+                  "title": "Proof of concept boundaries: application and common pitfalls",
+                  "explanation": "Find how proof of concept boundaries: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Create a redacted evidence sample for a lab finding."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: create a redacted evidence sample for a lab finding. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "PortSwigger Web Security Academy",
+                  "provider": "PortSwigger",
+                  "url": "https://portswigger.net/web-security",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on proof of concept boundaries; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T18-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "OWASP WSTG",
+                  "provider": "OWASP",
+                  "url": "https://owasp.org/projects/web-security-testing-guide",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on proof of concept boundaries; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T18-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Proof-of-concept evidence should be minimal, reproducible and safe to share. Remove secrets and unnecessary user data from screenshots.",
+                "learn_items": [
+                  "Proof of concept boundaries: purpose and essential vocabulary",
+                  "Proof of concept boundaries: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about proof of concept boundaries to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "PortSwigger Web Security Academy",
+                    "provider": "PortSwigger",
+                    "url": "https://portswigger.net/web-security",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on proof of concept boundaries; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T18-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "OWASP WSTG",
+                    "provider": "OWASP",
+                    "url": "https://owasp.org/projects/web-security-testing-guide",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on proof of concept boundaries; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T18-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Create a redacted evidence sample for a lab finding.",
+                "completion_check": "You can show or explain the result of this task: create a redacted evidence sample for a lab finding. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T19",
+            "slug": "remediation-guidance",
+            "title": "Remediation guidance",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Remediation guidance",
+              "summary": "Remediation addresses the underlying cause rather than hiding the symptom. Explain controls in language developers can act on.",
+              "prerequisite_ids": [
+                "T18"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Report and recommend fixes",
+              "title": "Remediation guidance",
+              "overview": "Remediation addresses the underlying cause rather than hiding the symptom. Explain controls in language developers can act on.",
+              "learning_outcomes": [
+                "Use what you learn about remediation guidance to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T19-S01",
+                  "title": "Remediation guidance: purpose and essential vocabulary",
+                  "explanation": "Find how remediation guidance: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T19-S02",
+                  "title": "Remediation guidance: application and common pitfalls",
+                  "explanation": "Find how remediation guidance: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Write a mitigation and verification step for a sample vulnerability."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: write a mitigation and verification step for a sample vulnerability. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "PortSwigger Web Security Academy",
+                  "provider": "PortSwigger",
+                  "url": "https://portswigger.net/web-security",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on remediation guidance; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T19-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "OWASP WSTG",
+                  "provider": "OWASP",
+                  "url": "https://owasp.org/projects/web-security-testing-guide",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on remediation guidance; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T19-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Remediation addresses the underlying cause rather than hiding the symptom. Explain controls in language developers can act on.",
+                "learn_items": [
+                  "Remediation guidance: purpose and essential vocabulary",
+                  "Remediation guidance: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about remediation guidance to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "PortSwigger Web Security Academy",
+                    "provider": "PortSwigger",
+                    "url": "https://portswigger.net/web-security",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on remediation guidance; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T19-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "OWASP WSTG",
+                    "provider": "OWASP",
+                    "url": "https://owasp.org/projects/web-security-testing-guide",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on remediation guidance; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T19-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Write a mitigation and verification step for a sample vulnerability.",
+                "completion_check": "You can show or explain the result of this task: write a mitigation and verification step for a sample vulnerability. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T20",
+            "slug": "retesting-after-fixes",
+            "title": "Retesting after fixes",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Retesting after fixes",
+              "summary": "Retesting repeats the original condition after a fix and checks for regressions. A fix is unverified until evidence supports it.",
+              "prerequisite_ids": [
+                "T19"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Report and recommend fixes",
+              "title": "Retesting after fixes",
+              "overview": "Retesting repeats the original condition after a fix and checks for regressions. A fix is unverified until evidence supports it.",
+              "learning_outcomes": [
+                "Use what you learn about retesting after fixes to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T20-S01",
+                  "title": "Retesting after fixes: purpose and essential vocabulary",
+                  "explanation": "Find how retesting after fixes: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T20-S02",
+                  "title": "Retesting after fixes: application and common pitfalls",
+                  "explanation": "Find how retesting after fixes: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Record before-and-after results for a simulated patch."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: record before-and-after results for a simulated patch. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "PortSwigger Web Security Academy",
+                  "provider": "PortSwigger",
+                  "url": "https://portswigger.net/web-security",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on retesting after fixes; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T20-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "OWASP WSTG",
+                  "provider": "OWASP",
+                  "url": "https://owasp.org/projects/web-security-testing-guide",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on retesting after fixes; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T20-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Retesting repeats the original condition after a fix and checks for regressions. A fix is unverified until evidence supports it.",
+                "learn_items": [
+                  "Retesting after fixes: purpose and essential vocabulary",
+                  "Retesting after fixes: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about retesting after fixes to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "PortSwigger Web Security Academy",
+                    "provider": "PortSwigger",
+                    "url": "https://portswigger.net/web-security",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on retesting after fixes; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T20-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "OWASP WSTG",
+                    "provider": "OWASP",
+                    "url": "https://owasp.org/projects/web-security-testing-guide",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on retesting after fixes; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T20-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Record before-and-after results for a simulated patch.",
+                "completion_check": "You can show or explain the result of this task: record before-and-after results for a simulated patch. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M06",
+        "slug": "deliver-a-legal-practice-assessment",
+        "title": "Deliver a legal practice assessment",
+        "summary": "Learn select explicit training target, document scope and test cases, record safe evidence and mitigations, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T21",
+            "slug": "select-explicit-training-target",
+            "title": "Select explicit training target",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Select explicit training target",
+              "summary": "A suitable target is intentionally designed for practice and clearly authorises testing. Confirm its rules before starting.",
+              "prerequisite_ids": [
+                "T20"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Deliver a legal practice assessment",
+              "title": "Select explicit training target",
+              "overview": "A suitable target is intentionally designed for practice and clearly authorises testing. Confirm its rules before starting.",
+              "learning_outcomes": [
+                "Use what you learn about select explicit training target to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T21-S01",
+                  "title": "Select explicit training target: purpose and essential vocabulary",
+                  "explanation": "Find how select explicit training target: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T21-S02",
+                  "title": "Select explicit training target: application and common pitfalls",
+                  "explanation": "Find how select explicit training target: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Select an authorised practice lab and save its scope policy."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: select an authorised practice lab and save its scope policy. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "PortSwigger Web Security Academy",
+                  "provider": "PortSwigger",
+                  "url": "https://portswigger.net/web-security",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on select explicit training target; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T21-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "OWASP WSTG",
+                  "provider": "OWASP",
+                  "url": "https://owasp.org/projects/web-security-testing-guide",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on select explicit training target; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T21-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A suitable target is intentionally designed for practice and clearly authorises testing. Confirm its rules before starting.",
+                "learn_items": [
+                  "Select explicit training target: purpose and essential vocabulary",
+                  "Select explicit training target: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about select explicit training target to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "PortSwigger Web Security Academy",
+                    "provider": "PortSwigger",
+                    "url": "https://portswigger.net/web-security",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on select explicit training target; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T21-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "OWASP WSTG",
+                    "provider": "OWASP",
+                    "url": "https://owasp.org/projects/web-security-testing-guide",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on select explicit training target; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T21-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Select an authorised practice lab and save its scope policy.",
+                "completion_check": "You can show or explain the result of this task: select an authorised practice lab and save its scope policy. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T22",
+            "slug": "document-scope-and-test-cases",
+            "title": "Document scope and test cases",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Document scope and test cases",
+              "summary": "A scoped test plan describes approved functions, test accounts and excluded actions. It provides boundaries for your report.",
+              "prerequisite_ids": [
+                "T21"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Deliver a legal practice assessment",
+              "title": "Document scope and test cases",
+              "overview": "A scoped test plan describes approved functions, test accounts and excluded actions. It provides boundaries for your report.",
+              "learning_outcomes": [
+                "Use what you learn about document scope and test cases to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T22-S01",
+                  "title": "Document scope",
+                  "explanation": "Find how document scope works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T22-S02",
+                  "title": "Test cases",
+                  "explanation": "Find how test cases works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Prepare a short assessment matrix for the lab."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: prepare a short assessment matrix for the lab. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "PortSwigger Web Security Academy",
+                  "provider": "PortSwigger",
+                  "url": "https://portswigger.net/web-security",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on document scope and test cases; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T22-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "OWASP WSTG",
+                  "provider": "OWASP",
+                  "url": "https://owasp.org/projects/web-security-testing-guide",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on document scope and test cases; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T22-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A scoped test plan describes approved functions, test accounts and excluded actions. It provides boundaries for your report.",
+                "learn_items": [
+                  "Document scope",
+                  "Test cases"
+                ],
+                "learning_goal": "Use what you learn about document scope and test cases to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "PortSwigger Web Security Academy",
+                    "provider": "PortSwigger",
+                    "url": "https://portswigger.net/web-security",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on document scope and test cases; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T22-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "OWASP WSTG",
+                    "provider": "OWASP",
+                    "url": "https://owasp.org/projects/web-security-testing-guide",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on document scope and test cases; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T22-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Prepare a short assessment matrix for the lab.",
+                "completion_check": "You can show or explain the result of this task: prepare a short assessment matrix for the lab. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T23",
+            "slug": "record-safe-evidence-and-mitigations",
+            "title": "Record safe evidence and mitigations",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Record safe evidence and mitigations",
+              "summary": "Evidence should support findings without unnecessary system impact. Present safe reproduction steps and practical mitigations.",
+              "prerequisite_ids": [
+                "T22"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Deliver a legal practice assessment",
+              "title": "Record safe evidence and mitigations",
+              "overview": "Evidence should support findings without unnecessary system impact. Present safe reproduction steps and practical mitigations.",
+              "learning_outcomes": [
+                "Use what you learn about record safe evidence and mitigations to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T23-S01",
+                  "title": "Record safe evidence",
+                  "explanation": "Find how record safe evidence works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T23-S02",
+                  "title": "Mitigations",
+                  "explanation": "Find how mitigations works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Produce two lab findings with redacted evidence."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: produce two lab findings with redacted evidence. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "PortSwigger Web Security Academy",
+                  "provider": "PortSwigger",
+                  "url": "https://portswigger.net/web-security",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on record safe evidence and mitigations; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T23-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "OWASP WSTG",
+                  "provider": "OWASP",
+                  "url": "https://owasp.org/projects/web-security-testing-guide",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on record safe evidence and mitigations; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T23-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Evidence should support findings without unnecessary system impact. Present safe reproduction steps and practical mitigations.",
+                "learn_items": [
+                  "Record safe evidence",
+                  "Mitigations"
+                ],
+                "learning_goal": "Use what you learn about record safe evidence and mitigations to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "PortSwigger Web Security Academy",
+                    "provider": "PortSwigger",
+                    "url": "https://portswigger.net/web-security",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on record safe evidence and mitigations; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T23-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "OWASP WSTG",
+                    "provider": "OWASP",
+                    "url": "https://owasp.org/projects/web-security-testing-guide",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on record safe evidence and mitigations; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T23-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Produce two lab findings with redacted evidence.",
+                "completion_check": "You can show or explain the result of this task: produce two lab findings with redacted evidence. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T24",
+            "slug": "deliver-and-review-assessment-report",
+            "title": "Deliver and review assessment report",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Deliver and review assessment report",
+              "summary": "An assessment report separates confirmed results, tested limitations and untested areas. Recommendations should be prioritised and actionable.",
+              "prerequisite_ids": [
+                "T23"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Deliver a legal practice assessment",
+              "title": "Deliver and review assessment report",
+              "overview": "An assessment report separates confirmed results, tested limitations and untested areas. Recommendations should be prioritised and actionable.",
+              "learning_outcomes": [
+                "Use what you learn about deliver and review assessment report to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T24-S01",
+                  "title": "Deliver",
+                  "explanation": "Find how deliver works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T24-S02",
+                  "title": "Review assessment report",
+                  "explanation": "Find how review assessment report works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Deliver a written lab-only assessment and review checklist."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: deliver a written lab-only assessment and review checklist. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "PortSwigger Web Security Academy",
+                  "provider": "PortSwigger",
+                  "url": "https://portswigger.net/web-security",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on deliver and review assessment report; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T24-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "OWASP WSTG",
+                  "provider": "OWASP",
+                  "url": "https://owasp.org/projects/web-security-testing-guide",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on deliver and review assessment report; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T24-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "An assessment report separates confirmed results, tested limitations and untested areas. Recommendations should be prioritised and actionable.",
+                "learn_items": [
+                  "Deliver",
+                  "Review assessment report"
+                ],
+                "learning_goal": "Use what you learn about deliver and review assessment report to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "PortSwigger Web Security Academy",
+                    "provider": "PortSwigger",
+                    "url": "https://portswigger.net/web-security",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on deliver and review assessment report; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T24-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "OWASP WSTG",
+                    "provider": "OWASP",
+                    "url": "https://owasp.org/projects/web-security-testing-guide",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on deliver and review assessment report; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T24-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Deliver a written lab-only assessment and review checklist.",
+                "completion_check": "You can show or explain the result of this task: deliver a written lab-only assessment and review checklist. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "display_contract": {
+    "layout": "milestone-accordion-with-topic-detail-panel",
+    "milestone_card": [
+      "title",
+      "summary",
+      "topics"
+    ],
+    "topic_row": [
+      "title",
+      "id"
+    ],
+    "topic_detail_order": [
+      "overview",
+      "learn_items",
+      "learning_goal",
+      "tools_and_setup",
+      "resources",
+      "practice",
+      "completion_check"
+    ],
+    "subtopics_are_tracked": false,
+    "prerequisites_are_advisory": true,
+    "completion_state_source": "application_only",
+    "notes": "Use topic.detail.guide; preserve legacy detail keys as compatibility aliases. No content-owned Done states."
+  },
+  "research_and_review_notes": {
+    "human_review": "Pending",
+    "content_readiness": "Not production ready; legacy generic content remains in most topics",
+    "verified_free_topic_coverage": "Not yet established for all topics"
+  }
+}

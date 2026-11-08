@@ -35,6 +35,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             try:
                 yield
             finally:
+                await app.state.comparison_insights.close()
                 if app.state.profiles is not None:
                     await app.state.profiles.engine.dispose()
 
@@ -92,6 +93,22 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         return response
 
     app.include_router(router, prefix="/api/v1")
+    from app.modules.competencies.routes import router as competency_router
+
+    app.include_router(competency_router, prefix="/api/v1")
+    from app.modules.careers.esco import router as esco_router
+
+    app.include_router(esco_router, prefix="/api/v1")
+    from app.modules.progress.guidance import router as guidance_router
+
+    app.include_router(guidance_router, prefix="/api/v1")
+    from app.modules.careers.comparison import router as comparison_router
+
+    app.include_router(comparison_router, prefix="/api/v1")
+    from app.modules.ai_guidance import ComparisonInsights, router as ai_guidance_router
+
+    app.state.comparison_insights = ComparisonInsights()
+    app.include_router(ai_guidance_router, prefix="/api/v1")
     app.include_router(profile_router, prefix="/api/v1")
     app.include_router(foundation_router, prefix="/api/v1")
     from app.modules.documents.routes import router as document_router

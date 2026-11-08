@@ -50,6 +50,7 @@ export function useRecommendationFlow() {
         idempotency_key: key.current,
         expected_context_revision: saved.context_revision,
         catalog_release_id: saved.catalog_release_id,
+        occupational_release_id: saved.occupational_release_id ?? null,
       });
       key.current = null;
       generation.reset();

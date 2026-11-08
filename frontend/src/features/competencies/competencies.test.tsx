@@ -1,0 +1,126 @@
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { MemoryRouter } from "react-router";
+import { beforeEach, expect, it, vi } from "vitest";
+import { coreApi, useCoreMutation, useCoreQuery } from "@/features/core/data";
+import { ProfileSkills } from "./profile-skills";
+import { SkillComparison } from "./comparison";
+import { experienceLabel } from "./levels";
+
+vi.mock("@/auth/context", () => ({
+  useAuth: () => ({ user: { id: "owner" } }),
+}));
+vi.mock("@/auth/transport", () => ({ isCurrentAccount: () => true }));
+vi.mock("@/features/core/data", () => ({
+  coreApi: {
+    myCompetencies: vi.fn(),
+    competencies: vi.fn(),
+    saveCompetency: vi.fn(),
+    removeCompetency: vi.fn(),
+    competencyComparison: vi.fn(),
+    resumeReviewAvailability: vi.fn(),
+  },
+  useCoreQuery: vi.fn(),
+  useCoreMutation: vi.fn(),
+}));
+beforeEach(() => {
+  vi.clearAllMocks();
+  vi.mocked(coreApi.saveCompetency).mockResolvedValue({
+    version: 8,
+    items: [],
+    recommendations_enabled: false,
+  });
+  vi.mocked(coreApi.removeCompetency).mockResolvedValue({
+    version: 8,
+    items: [],
+    recommendations_enabled: false,
+  });
+  vi.mocked(useCoreMutation).mockImplementation(
+    (save) =>
+      ({ mutateAsync: save, isPending: false, reset: vi.fn() }) as never,
+  );
+  vi.mocked(useCoreQuery).mockImplementation(
+    (key) =>
+      ({
+        data:
+          key[0] === "skills"
+            ? {
+                version: 7,
+                items: [
+                  {
+                    competency_id: "sql",
+                    label: "SQL",
+                    level: null,
+                    updated_at: "2026-11-04",
+                  },
+                ],
+              }
+            : key[0] === "skill-comparison"
+              ? {
+                  items: [
+                    {
+                      id: "sql",
+                      label: "SQL",
+                      recorded: false,
+                      level: null,
+                      source: "Asgard-authored",
+                      source_version: "v1",
+                      topics: [
+                        {
+                          topic_id: "topic",
+                          roadmap_id: "roadmap",
+                          title: "Practice SQL",
+                        },
+                      ],
+                    },
+                  ],
+                }
+              : { items: [], total: 0 },
+        refetch: vi.fn(),
+      }) as never,
+  );
+});
+it("distinguishes unassessed, saved unknown and explicit zero", () => {
+  expect(experienceLabel(false, null)).toBe("Unassessed");
+  expect(experienceLabel(true, null)).toBe("Experience unknown");
+  expect(experienceLabel(true, 0)).toContain("No experience");
+});
+it("saves zero with the revision captured when editing and clears the guard", async () => {
+  const guard = vi.fn();
+  render(<ProfileSkills onGuardChange={guard} />);
+  fireEvent.click(screen.getByRole("button", { name: "Edit SQL" }));
+  expect(guard).toHaveBeenLastCalledWith(true, false);
+  fireEvent.change(screen.getByLabelText("Your experience"), {
+    target: { value: "0" },
+  });
+  fireEvent.click(screen.getByRole("button", { name: "Save skill" }));
+  await waitFor(() =>
+    expect(coreApi.saveCompetency).toHaveBeenCalledWith({
+      id: "sql",
+      body: { expected_version: 7, level: 0 },
+    }),
+  );
+  await waitFor(() => expect(guard).toHaveBeenLastCalledWith(false, false));
+});
+it("keeps a failed edit available for reconciliation", async () => {
+  vi.mocked(coreApi.saveCompetency).mockRejectedValue(new Error("Conflict"));
+  render(<ProfileSkills onGuardChange={vi.fn()} />);
+  fireEvent.click(screen.getByRole("button", { name: "Edit SQL" }));
+  fireEvent.click(screen.getByRole("button", { name: "Save skill" }));
+  await waitFor(() => expect(coreApi.saveCompetency).toHaveBeenCalled());
+  expect(screen.getByLabelText("Your experience")).toHaveValue("");
+});
+it("opens a bounded comparison with exact topic links and no learning writes", () => {
+  render(
+    <MemoryRouter>
+      <SkillComparison careerId="career" />
+    </MemoryRouter>,
+  );
+  fireEvent.click(screen.getByRole("button", { name: "Compare my skills" }));
+  expect(screen.getByRole("dialog")).toBeVisible();
+  expect(screen.getByText("Unassessed")).toBeVisible();
+  expect(screen.getByRole("link", { name: "Practice SQL" })).toHaveAttribute(
+    "href",
+    "/roadmaps/career?roadmap=roadmap&topic=topic",
+  );
+  expect(coreApi.saveCompetency).not.toHaveBeenCalled();
+});

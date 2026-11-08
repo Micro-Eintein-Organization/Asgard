@@ -2,16 +2,11 @@
 import json
 import urllib.request
 import urllib.error
-import ssl
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 TOPIC_RESOURCES = ROOT / "app" / "content" / "topic-resources.json"
-
-ctx = ssl.create_default_context()
-ctx.check_hostname = False
-ctx.verify_mode = ssl.CERT_NONE
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
@@ -21,7 +16,7 @@ HEADERS = {
 def check_url(url):
     req = urllib.request.Request(url, headers=HEADERS, method="GET")
     try:
-        with urllib.request.urlopen(req, timeout=10, context=ctx) as resp:
+        with urllib.request.urlopen(req, timeout=10) as resp:
             return url, resp.status, None
     except urllib.error.HTTPError as e:
         return url, e.code, str(e)
@@ -34,7 +29,7 @@ def main():
     for career, topics in data.items():
         for t_slug, t_info in topics.items():
             unique_urls.add(t_info["url"])
-            
+
     print(f"Checking {len(unique_urls)} unique URLs...")
     results = {}
     with ThreadPoolExecutor(max_workers=16) as executor:

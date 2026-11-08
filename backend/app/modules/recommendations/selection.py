@@ -17,6 +17,9 @@ class SelectionItem(Contract):
     evidence_keys: Annotated[list[Identifier], Field(min_length=1, max_length=12)]
     caveat: Annotated[str, Field(min_length=1, max_length=300)]
     weak_connection: bool
+    source_reference_keys: Annotated[list[Identifier], Field(max_length=6)] = Field(
+        default_factory=list
+    )
 
 
 class SelectionOutput(Contract):
@@ -34,12 +37,36 @@ class SelectionFailure(ValueError):
 
 
 def provider_payload(content):
+    reference_map, references = {}, []
+    for ref in content["context"].get("source_references", []):
+        key = "r" + str(len(references) + 1)
+        reference_map[key] = ref
+        references.append(
+            {
+                "key": key,
+                **{k: ref[k][:240] for k in ("label", "definition", "relationship", "limitation")},
+                "source_role_title": ref.get("source_role_title", "Unknown role"),
+                "career_relationship": ref.get("career_relationship", "unassessed"),
+                **(
+                    {"evidence_type": ref["evidence_type"],
+                     "source_relationship": ref["source_relationship"]}
+                    if ref.get("evidence_type") == "esco_occupation_skill" else {}
+                ),
+            }
+        )
     candidates, candidate_map = [], {}
     for career in content["catalog"]:
         paths = {path["id"]: path for path in career.get("roadmaps", [])}
         for roadmap_id in career["roadmap_ids"]:
             key = "c" + str(len(candidates) + 1)
             candidate_map[key] = {"career_id": career["career_id"], "roadmap_id": roadmap_id}
+            matching = {
+                k: r["id"]
+                for k, r in reference_map.items()
+                if r["career_id"] == career["career_id"]
+            }
+            if matching:
+                candidate_map[key]["_reference_map"] = matching
             path = paths.get(roadmap_id, {})
             candidates.append(
                 {
@@ -49,15 +76,22 @@ def provider_payload(content):
                         for field in ("title", "description", "skills", "category", "relevance")
                     },
                     "roadmap_title": path.get("title", career["title"]),
-                    "roadmap_description": path.get("description", career["description"]),
+                    "roadmap_description": (path.get("description") or "")[:220],
                 }
             )
+            candidates[-1]["description"] = career["description"][:280]
+            candidates[-1]["skills"] = career["skills"][:8]
+            if "source_references" in content["context"]:
+                candidates[-1]["source_reference_keys"] = list(matching)
     fact_map, facts = {}, []
     for fact in content["context"]["facts"]:
         key = "f" + str(len(facts) + 1)
         fact_map[key] = fact["id"]
         facts.append({"key": key, "source": fact["source"], "description": fact["description"]})
-    return {"candidates": candidates, "facts": facts}, candidate_map, fact_map
+    payload = {"candidates": candidates, "facts": facts}
+    if "source_references" in content["context"]:
+        payload["references"] = references
+    return payload, candidate_map, fact_map
 
 
 def resolve_selection(output, candidates, facts):
@@ -70,6 +104,13 @@ def resolve_selection(output, candidates, facts):
         if len(set(item.evidence_keys)) != len(item.evidence_keys):
             raise SelectionFailure("duplicate_evidence")
         target = candidates[item.candidate_key]
+        source_map = target.get("_reference_map", {})
+        if (
+            len(set(item.source_reference_keys)) != len(item.source_reference_keys)
+            or not set(item.source_reference_keys) <= source_map.keys()
+            or (source_map and not item.source_reference_keys)
+        ):
+            raise SelectionFailure("invalid_source_citation")
         if target["career_id"] in seen_careers:
             raise SelectionFailure("duplicate_career")
         seen_careers.add(target["career_id"])
@@ -80,11 +121,12 @@ def resolve_selection(output, candidates, facts):
         ) + item.caveat
         items.append(
             UntrustedRecommendationItem(
-                **target,
+                **{k: v for k, v in target.items() if k != "_reference_map"},
                 reason=item.reason,
                 evidence_fact_ids=[facts[key] for key in item.evidence_keys],
                 uncertainty_note=caveat,
                 starting_topic_id=None,
+                source_reference_ids=[source_map[k] for k in item.source_reference_keys],
             )
         )
     return UntrustedRecommendationOutput(items=items)

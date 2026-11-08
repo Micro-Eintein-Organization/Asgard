@@ -11,10 +11,12 @@ class Profile(BaseModel):
     version: int
     created_at: datetime
     updated_at: datetime
+    has_photo: bool = False
 
 
 class ProfileEnvelope(BaseModel):
     profile: Profile | None
+    photo_enabled: bool = False
 
 
 class SavedProfileEnvelope(BaseModel):
@@ -38,3 +40,7 @@ class ProfileUpdate(BaseModel):
         if info.field_name == "first_name" and not value:
             raise ValueError("Enter your first name.")
         return value
+
+
+class ProfilePhotoUpdate(ProfileUpdate):
+    photo: Annotated[str, Field(min_length=1, max_length=2666668)] | None

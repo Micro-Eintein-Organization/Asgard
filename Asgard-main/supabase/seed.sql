@@ -1,0 +1,2 @@
+-- Foundation has no application tables or product fixtures to seed.
+-- Add reviewed synthetic seeds alongside their approved SQL migrations.

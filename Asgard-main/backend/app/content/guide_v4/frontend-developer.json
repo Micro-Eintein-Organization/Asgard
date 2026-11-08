@@ -1,0 +1,2847 @@
+{
+  "schema_version": "4.0.0-draft",
+  "career": {
+    "name": "Frontend Developer",
+    "slug": "frontend-developer",
+    "category": "Software and AI",
+    "status": "Draft — pending human review"
+  },
+  "career_overview": {
+    "short_description": "Build the parts of websites that people see and interact with. Learn to structure pages, style layouts, add behaviour and check usability.",
+    "responsibilities": [
+      "Assess goals and constraints relevant to frontend developer work",
+      "Apply appropriate tools and methods to a bounded task",
+      "Test, document and communicate results",
+      "Collaborate and incorporate feedback"
+    ],
+    "representative_work": [
+      "A small, responsive multi-page website with at least one working interactive feature."
+    ],
+    "core_skills": [
+      "How browsers deliver pages",
+      "Editor and browser developer tools",
+      "Files and terminal navigation",
+      "Git commits and repositories",
+      "HTML document structure",
+      "Semantic text and landmarks",
+      "Links images and media",
+      "Forms and input labels",
+      "CSS selectors and cascade",
+      "Box model and sizing"
+    ]
+  },
+  "roadmap": {
+    "title": "Frontend Developer: beginner foundations and starter project",
+    "intended_learner": "Motivated beginner; basic computer literacy assumed, with no prior professional experience.",
+    "starting_requirements": "Computer, internet access, text editor and browser. Most tasks use free software or simulation; specialist equipment, accounts and costs are flagged for review when applicable.",
+    "final_outcome": "A small, responsive multi-page website with at least one working interactive feature.",
+    "milestones": [
+      {
+        "id": "M01",
+        "slug": "understand-the-web-and-tools",
+        "title": "Understand the web and tools",
+        "summary": "Learn how browsers deliver pages, editor and browser developer tools, files and terminal navigation, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T01",
+            "slug": "how-browsers-deliver-pages",
+            "title": "How browsers deliver pages",
+            "milestone_id": "M01",
+            "card": {
+              "title": "How browsers deliver pages",
+              "summary": "A browser turns an address into requests for HTML, CSS, scripts and images. The server sends HTTP responses; the browser combines successful responses to display a page.",
+              "prerequisite_ids": []
+            },
+            "detail": {
+              "eyebrow": "M01 · Understand the web and tools",
+              "title": "How browsers deliver pages",
+              "overview": "A browser turns an address into requests for HTML, CSS, scripts and images. The server sends HTTP responses; the browser combines successful responses to display a page.",
+              "learning_outcomes": [
+                "Complete the task about how browsers deliver pages and show the result using the completion check."
+              ],
+              "tools_and_setup": "Modern browser with built-in developer tools; free, no account.",
+              "subtopics": [
+                {
+                  "id": "T01-S01",
+                  "title": "From URL to server",
+                  "explanation": "Find how from url to server works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T01-S02",
+                  "title": "Requests and responses",
+                  "explanation": "Find how requests and responses works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T01-S03",
+                  "title": "Rendering the result",
+                  "explanation": "Find how rendering the result works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Inspect the Network tab after reloading a page and identify its document request and two asset requests."
+              },
+              "completion_check": {
+                "criteria": "Point out the document request, its HTTP status, and two requested assets in the Network panel."
+              },
+              "resources": [
+                {
+                  "id": "T01-R01",
+                  "title": "Foundations course: How Does the Web Work?",
+                  "provider": "The Odin Project",
+                  "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                  "type": "tutorial",
+                  "covers": [
+                    "T01"
+                  ],
+                  "access": "free",
+                  "use_this_for": "Foundations course lists a focused browser/internet lesson",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Course index, not every topic lesson verified",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "A browser turns an address into requests for HTML, CSS, scripts and images. The server sends HTTP responses; the browser combines successful responses to display a page.",
+                "learn_items": [
+                  "From URL to server",
+                  "Requests and responses",
+                  "Rendering the result"
+                ],
+                "learning_goal": "Complete the task about how browsers deliver pages and show the result using the completion check.",
+                "tools_and_setup": "Modern browser with built-in developer tools; free, no account.",
+                "resources": [
+                  {
+                    "id": "T01-R01",
+                    "title": "Foundations course: How Does the Web Work?",
+                    "provider": "The Odin Project",
+                    "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                    "type": "tutorial",
+                    "covers": [
+                      "T01"
+                    ],
+                    "access": "free",
+                    "use_this_for": "Foundations course lists a focused browser/internet lesson",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Course index, not every topic lesson verified",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Inspect the Network tab after reloading a page and identify its document request and two asset requests.",
+                "completion_check": "Point out the document request, its HTTP status, and two requested assets in the Network panel."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T02",
+            "slug": "editor-and-browser-developer-tools",
+            "title": "Editor and browser developer tools",
+            "milestone_id": "M01",
+            "card": {
+              "title": "Editor and browser developer tools",
+              "summary": "A code editor changes source files, while browser developer tools inspect the resulting page. The Elements, Console and Network panels help locate different kinds of problems.",
+              "prerequisite_ids": [
+                "T01"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M01 · Understand the web and tools",
+              "title": "Editor and browser developer tools",
+              "overview": "A code editor changes source files, while browser developer tools inspect the resulting page. The Elements, Console and Network panels help locate different kinds of problems.",
+              "learning_outcomes": [
+                "Complete the task about editor and browser developer tools and show the result using the completion check."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T02-S01",
+                  "title": "Editor",
+                  "explanation": "Find how editor works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T02-S02",
+                  "title": "Browser developer tools",
+                  "explanation": "Find how browser developer tools works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Change a heading in a local HTML file, reload it, and inspect the element and console."
+              },
+              "completion_check": {
+                "criteria": "Show your edited heading in the browser and locate its element in developer tools."
+              },
+              "resources": [
+                {
+                  "title": "MDN Learn Web Development",
+                  "provider": "MDN",
+                  "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on editor and browser developer tools; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Curriculum index, not individual lesson coverage",
+                  "id": "T02-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "The Odin Project Foundations",
+                  "provider": "The Odin Project",
+                  "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on editor and browser developer tools; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Course index, not every topic lesson verified",
+                  "id": "T02-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A code editor changes source files, while browser developer tools inspect the resulting page. The Elements, Console and Network panels help locate different kinds of problems.",
+                "learn_items": [
+                  "Editor",
+                  "Browser developer tools"
+                ],
+                "learning_goal": "Complete the task about editor and browser developer tools and show the result using the completion check.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "MDN Learn Web Development",
+                    "provider": "MDN",
+                    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on editor and browser developer tools; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Curriculum index, not individual lesson coverage",
+                    "id": "T02-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "The Odin Project Foundations",
+                    "provider": "The Odin Project",
+                    "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on editor and browser developer tools; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Course index, not every topic lesson verified",
+                    "id": "T02-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Change a heading in a local HTML file, reload it, and inspect the element and console.",
+                "completion_check": "Show your edited heading in the browser and locate its element in developer tools."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T03",
+            "slug": "files-and-terminal-navigation",
+            "title": "Files and terminal navigation",
+            "milestone_id": "M01",
+            "card": {
+              "title": "Files and terminal navigation",
+              "summary": "The terminal lets you navigate folders and run commands without clicking through file windows. A working directory determines where relative commands run.",
+              "prerequisite_ids": [
+                "T02"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M01 · Understand the web and tools",
+              "title": "Files and terminal navigation",
+              "overview": "The terminal lets you navigate folders and run commands without clicking through file windows. A working directory determines where relative commands run.",
+              "learning_outcomes": [
+                "Complete the task about files and terminal navigation and show the result using the completion check."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T03-S01",
+                  "title": "Files",
+                  "explanation": "Find how files works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T03-S02",
+                  "title": "Terminal navigation",
+                  "explanation": "Find how terminal navigation works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Create a project folder, list its files and return to its parent folder using terminal commands."
+              },
+              "completion_check": {
+                "criteria": "Show the project folder and file list from your terminal; explain how you moved between folders."
+              },
+              "resources": [
+                {
+                  "title": "MDN Learn Web Development",
+                  "provider": "MDN",
+                  "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on files and terminal navigation; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Curriculum index, not individual lesson coverage",
+                  "id": "T03-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "The Odin Project Foundations",
+                  "provider": "The Odin Project",
+                  "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on files and terminal navigation; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Course index, not every topic lesson verified",
+                  "id": "T03-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "The terminal lets you navigate folders and run commands without clicking through file windows. A working directory determines where relative commands run.",
+                "learn_items": [
+                  "Files",
+                  "Terminal navigation"
+                ],
+                "learning_goal": "Complete the task about files and terminal navigation and show the result using the completion check.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "MDN Learn Web Development",
+                    "provider": "MDN",
+                    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on files and terminal navigation; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Curriculum index, not individual lesson coverage",
+                    "id": "T03-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "The Odin Project Foundations",
+                    "provider": "The Odin Project",
+                    "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on files and terminal navigation; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Course index, not every topic lesson verified",
+                    "id": "T03-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Create a project folder, list its files and return to its parent folder using terminal commands.",
+                "completion_check": "Show the project folder and file list from your terminal; explain how you moved between folders."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T04",
+            "slug": "git-commits-and-repositories",
+            "title": "Git commits and repositories",
+            "milestone_id": "M01",
+            "card": {
+              "title": "Git commits and repositories",
+              "summary": "Git records snapshots of files so you can inspect and reverse changes. A repository is the folder whose history Git tracks; a commit should describe one coherent change.",
+              "prerequisite_ids": [
+                "T03"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M01 · Understand the web and tools",
+              "title": "Git commits and repositories",
+              "overview": "Git records snapshots of files so you can inspect and reverse changes. A repository is the folder whose history Git tracks; a commit should describe one coherent change.",
+              "learning_outcomes": [
+                "Complete the task about git commits and repositories and show the result using the completion check."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T04-S01",
+                  "title": "Git commits",
+                  "explanation": "Find how git commits works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T04-S02",
+                  "title": "Repositories",
+                  "explanation": "Find how repositories works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Initialize a repository, change a README, commit it and display the log."
+              },
+              "completion_check": {
+                "criteria": "Show a Git log containing your commit and explain what changed."
+              },
+              "resources": [
+                {
+                  "title": "MDN Learn Web Development",
+                  "provider": "MDN",
+                  "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on git commits and repositories; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Curriculum index, not individual lesson coverage",
+                  "id": "T04-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "The Odin Project Foundations",
+                  "provider": "The Odin Project",
+                  "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on git commits and repositories; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Course index, not every topic lesson verified",
+                  "id": "T04-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Git records snapshots of files so you can inspect and reverse changes. A repository is the folder whose history Git tracks; a commit should describe one coherent change.",
+                "learn_items": [
+                  "Git commits",
+                  "Repositories"
+                ],
+                "learning_goal": "Complete the task about git commits and repositories and show the result using the completion check.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "MDN Learn Web Development",
+                    "provider": "MDN",
+                    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on git commits and repositories; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Curriculum index, not individual lesson coverage",
+                    "id": "T04-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "The Odin Project Foundations",
+                    "provider": "The Odin Project",
+                    "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on git commits and repositories; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Course index, not every topic lesson verified",
+                    "id": "T04-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Initialize a repository, change a README, commit it and display the log.",
+                "completion_check": "Show a Git log containing your commit and explain what changed."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M02",
+        "slug": "structure-accessible-pages",
+        "title": "Structure accessible pages",
+        "summary": "Learn html document structure, semantic text and landmarks, links images and media, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T05",
+            "slug": "html-document-structure",
+            "title": "HTML document structure",
+            "milestone_id": "M02",
+            "card": {
+              "title": "HTML document structure",
+              "summary": "HTML declares the structure of a document using elements such as headings, paragraphs and lists. A minimal page includes a document type, language, head and body.",
+              "prerequisite_ids": [
+                "T04"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Structure accessible pages",
+              "title": "HTML document structure",
+              "overview": "HTML declares the structure of a document using elements such as headings, paragraphs and lists. A minimal page includes a document type, language, head and body.",
+              "learning_outcomes": [
+                "Complete the task about html document structure and show the result using the completion check."
+              ],
+              "tools_and_setup": "Free text editor and modern browser; no account or installation beyond an editor.",
+              "subtopics": [
+                {
+                  "id": "T05-S01",
+                  "title": "Document skeleton",
+                  "explanation": "Find how document skeleton works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T05-S02",
+                  "title": "Semantic structure",
+                  "explanation": "Find how semantic structure works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T05-S03",
+                  "title": "Readable content hierarchy",
+                  "explanation": "Find how readable content hierarchy works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Create an index.html page with a title, heading and paragraphs, then open it in a browser."
+              },
+              "completion_check": {
+                "criteria": "Open a valid HTML page with a page title, heading and paragraphs."
+              },
+              "resources": [
+                {
+                  "id": "T05-R01",
+                  "title": "HTML accessibility",
+                  "provider": "MDN Web Docs",
+                  "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Accessibility/HTML",
+                  "type": "tutorial",
+                  "covers": [
+                    "T05"
+                  ],
+                  "access": "free",
+                  "use_this_for": "Semantic structure and accessibility",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "HTML declares the structure of a document using elements such as headings, paragraphs and lists. A minimal page includes a document type, language, head and body.",
+                "learn_items": [
+                  "Document skeleton",
+                  "Semantic structure",
+                  "Readable content hierarchy"
+                ],
+                "learning_goal": "Complete the task about html document structure and show the result using the completion check.",
+                "tools_and_setup": "Free text editor and modern browser; no account or installation beyond an editor.",
+                "resources": [
+                  {
+                    "id": "T05-R01",
+                    "title": "HTML accessibility",
+                    "provider": "MDN Web Docs",
+                    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Accessibility/HTML",
+                    "type": "tutorial",
+                    "covers": [
+                      "T05"
+                    ],
+                    "access": "free",
+                    "use_this_for": "Semantic structure and accessibility",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Create an index.html page with a title, heading and paragraphs, then open it in a browser.",
+                "completion_check": "Open a valid HTML page with a page title, heading and paragraphs."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T06",
+            "slug": "semantic-text-and-landmarks",
+            "title": "Semantic text and landmarks",
+            "milestone_id": "M02",
+            "card": {
+              "title": "Semantic text and landmarks",
+              "summary": "Semantic elements describe what content means, not just how it looks. Headings form an outline; landmarks such as main and nav help visitors and assistive tools locate regions.",
+              "prerequisite_ids": [
+                "T05"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Structure accessible pages",
+              "title": "Semantic text and landmarks",
+              "overview": "Semantic elements describe what content means, not just how it looks. Headings form an outline; landmarks such as main and nav help visitors and assistive tools locate regions.",
+              "learning_outcomes": [
+                "Complete the task about semantic text and landmarks and show the result using the completion check."
+              ],
+              "tools_and_setup": "Browser, text editor and a simple HTML page from the previous topic; free, no account.",
+              "subtopics": [
+                {
+                  "id": "T06-S01",
+                  "title": "Navigation and landmarks",
+                  "explanation": "Find how navigation and landmarks works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T06-S02",
+                  "title": "Alternative text",
+                  "explanation": "Find how alternative text works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T06-S03",
+                  "title": "Labels and controls",
+                  "explanation": "Find how labels and controls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Replace generic div wrappers with meaningful headings and landmarks, then inspect the outline."
+              },
+              "completion_check": {
+                "criteria": "Show appropriate headings and page landmarks; explain why you chose them."
+              },
+              "resources": [
+                {
+                  "id": "T06-R01",
+                  "title": "WAI accessibility tutorials",
+                  "provider": "W3C WAI",
+                  "url": "https://www.w3.org/WAI/tutorials/",
+                  "type": "tutorial",
+                  "covers": [
+                    "T06"
+                  ],
+                  "access": "free",
+                  "use_this_for": "Accessible images, tables, and other patterns",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Semantic elements describe what content means, not just how it looks. Headings form an outline; landmarks such as main and nav help visitors and assistive tools locate regions.",
+                "learn_items": [
+                  "Navigation and landmarks",
+                  "Alternative text",
+                  "Labels and controls"
+                ],
+                "learning_goal": "Complete the task about semantic text and landmarks and show the result using the completion check.",
+                "tools_and_setup": "Browser, text editor and a simple HTML page from the previous topic; free, no account.",
+                "resources": [
+                  {
+                    "id": "T06-R01",
+                    "title": "WAI accessibility tutorials",
+                    "provider": "W3C WAI",
+                    "url": "https://www.w3.org/WAI/tutorials/",
+                    "type": "tutorial",
+                    "covers": [
+                      "T06"
+                    ],
+                    "access": "free",
+                    "use_this_for": "Accessible images, tables, and other patterns",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Replace generic div wrappers with meaningful headings and landmarks, then inspect the outline.",
+                "completion_check": "Show appropriate headings and page landmarks; explain why you chose them."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T07",
+            "slug": "links-images-and-media",
+            "title": "Links images and media",
+            "milestone_id": "M02",
+            "card": {
+              "title": "Links images and media",
+              "summary": "Links connect pages through href attributes; images use src and meaningful alternative text when they convey information. Decorative images should not repeat surrounding text.",
+              "prerequisite_ids": [
+                "T06"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Structure accessible pages",
+              "title": "Links images and media",
+              "overview": "Links connect pages through href attributes; images use src and meaningful alternative text when they convey information. Decorative images should not repeat surrounding text.",
+              "learning_outcomes": [
+                "Complete the task about links images and media and show the result using the completion check."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T07-S01",
+                  "title": "Links images",
+                  "explanation": "Find how links images works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T07-S02",
+                  "title": "Media",
+                  "explanation": "Find how media works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Add two working internal links and an image with appropriate alternate text."
+              },
+              "completion_check": {
+                "criteria": "Demonstrate two working links and explain your image alternative text."
+              },
+              "resources": [
+                {
+                  "title": "MDN Learn Web Development",
+                  "provider": "MDN",
+                  "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on links images and media; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Curriculum index, not individual lesson coverage",
+                  "id": "T07-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "The Odin Project Foundations",
+                  "provider": "The Odin Project",
+                  "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on links images and media; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Course index, not every topic lesson verified",
+                  "id": "T07-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Links connect pages through href attributes; images use src and meaningful alternative text when they convey information. Decorative images should not repeat surrounding text.",
+                "learn_items": [
+                  "Links images",
+                  "Media"
+                ],
+                "learning_goal": "Complete the task about links images and media and show the result using the completion check.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "MDN Learn Web Development",
+                    "provider": "MDN",
+                    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on links images and media; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Curriculum index, not individual lesson coverage",
+                    "id": "T07-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "The Odin Project Foundations",
+                    "provider": "The Odin Project",
+                    "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on links images and media; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Course index, not every topic lesson verified",
+                    "id": "T07-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Add two working internal links and an image with appropriate alternate text.",
+                "completion_check": "Demonstrate two working links and explain your image alternative text."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T08",
+            "slug": "forms-and-input-labels",
+            "title": "Forms and input labels",
+            "milestone_id": "M02",
+            "card": {
+              "title": "Forms and input labels",
+              "summary": "A form gathers input using controls such as input, select and button. Explicit labels identify fields, while validation helps people correct missing or invalid information.",
+              "prerequisite_ids": [
+                "T07"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Structure accessible pages",
+              "title": "Forms and input labels",
+              "overview": "A form gathers input using controls such as input, select and button. Explicit labels identify fields, while validation helps people correct missing or invalid information.",
+              "learning_outcomes": [
+                "Complete the task about forms and input labels and show the result using the completion check."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T08-S01",
+                  "title": "Forms",
+                  "explanation": "Find how forms works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T08-S02",
+                  "title": "Input labels",
+                  "explanation": "Find how input labels works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Build a contact form with associated labels, required fields and readable error messages."
+              },
+              "completion_check": {
+                "criteria": "Show labelled form controls and feedback for a missing required value."
+              },
+              "resources": [
+                {
+                  "title": "MDN Learn Web Development",
+                  "provider": "MDN",
+                  "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on forms and input labels; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Curriculum index, not individual lesson coverage",
+                  "id": "T08-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "The Odin Project Foundations",
+                  "provider": "The Odin Project",
+                  "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on forms and input labels; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Course index, not every topic lesson verified",
+                  "id": "T08-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A form gathers input using controls such as input, select and button. Explicit labels identify fields, while validation helps people correct missing or invalid information.",
+                "learn_items": [
+                  "Forms",
+                  "Input labels"
+                ],
+                "learning_goal": "Complete the task about forms and input labels and show the result using the completion check.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "MDN Learn Web Development",
+                    "provider": "MDN",
+                    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on forms and input labels; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Curriculum index, not individual lesson coverage",
+                    "id": "T08-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "The Odin Project Foundations",
+                    "provider": "The Odin Project",
+                    "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on forms and input labels; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Course index, not every topic lesson verified",
+                    "id": "T08-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Build a contact form with associated labels, required fields and readable error messages.",
+                "completion_check": "Show labelled form controls and feedback for a missing required value."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M03",
+        "slug": "style-adaptive-layouts",
+        "title": "Style adaptive layouts",
+        "summary": "Learn css selectors and cascade, box model and sizing, flexbox layout, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T09",
+            "slug": "css-selectors-and-cascade",
+            "title": "CSS selectors and cascade",
+            "milestone_id": "M03",
+            "card": {
+              "title": "CSS selectors and cascade",
+              "summary": "CSS selectors choose elements and declarations apply styles. The cascade combines origin, importance, specificity and order to decide which rule wins.",
+              "prerequisite_ids": [
+                "T08"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Style adaptive layouts",
+              "title": "CSS selectors and cascade",
+              "overview": "CSS selectors choose elements and declarations apply styles. The cascade combines origin, importance, specificity and order to decide which rule wins.",
+              "learning_outcomes": [
+                "Complete the task about css selectors and cascade and show the result using the completion check."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T09-S01",
+                  "title": "Css selectors",
+                  "explanation": "Find how css selectors works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T09-S02",
+                  "title": "Cascade",
+                  "explanation": "Find how cascade works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Write two competing rules for a heading and explain which one applies."
+              },
+              "completion_check": {
+                "criteria": "Identify the winning CSS rule and explain which cascade rule decides it."
+              },
+              "resources": [
+                {
+                  "title": "MDN Learn Web Development",
+                  "provider": "MDN",
+                  "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on css selectors and cascade; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Curriculum index, not individual lesson coverage",
+                  "id": "T09-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "The Odin Project Foundations",
+                  "provider": "The Odin Project",
+                  "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on css selectors and cascade; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Course index, not every topic lesson verified",
+                  "id": "T09-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "CSS selectors choose elements and declarations apply styles. The cascade combines origin, importance, specificity and order to decide which rule wins.",
+                "learn_items": [
+                  "Css selectors",
+                  "Cascade"
+                ],
+                "learning_goal": "Complete the task about css selectors and cascade and show the result using the completion check.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "MDN Learn Web Development",
+                    "provider": "MDN",
+                    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on css selectors and cascade; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Curriculum index, not individual lesson coverage",
+                    "id": "T09-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "The Odin Project Foundations",
+                    "provider": "The Odin Project",
+                    "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on css selectors and cascade; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Course index, not every topic lesson verified",
+                    "id": "T09-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Write two competing rules for a heading and explain which one applies.",
+                "completion_check": "Identify the winning CSS rule and explain which cascade rule decides it."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T10",
+            "slug": "box-model-and-sizing",
+            "title": "Box model and sizing",
+            "milestone_id": "M03",
+            "card": {
+              "title": "Box model and sizing",
+              "summary": "The box model describes each element as content surrounded by padding, borders and margins. box-sizing: border-box makes declared widths easier to reason about.",
+              "prerequisite_ids": [
+                "T09"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Style adaptive layouts",
+              "title": "Box model and sizing",
+              "overview": "The box model describes each element as content surrounded by padding, borders and margins. box-sizing: border-box makes declared widths easier to reason about.",
+              "learning_outcomes": [
+                "Complete the task about box model and sizing and show the result using the completion check."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T10-S01",
+                  "title": "Box model",
+                  "explanation": "Find how box model works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T10-S02",
+                  "title": "Sizing",
+                  "explanation": "Find how sizing works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Create two cards with equal outer width using padding and borders."
+              },
+              "completion_check": {
+                "criteria": "Show equal-width cards and explain how padding and borders affect sizing."
+              },
+              "resources": [
+                {
+                  "title": "MDN Learn Web Development",
+                  "provider": "MDN",
+                  "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on box model and sizing; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Curriculum index, not individual lesson coverage",
+                  "id": "T10-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "The Odin Project Foundations",
+                  "provider": "The Odin Project",
+                  "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on box model and sizing; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Course index, not every topic lesson verified",
+                  "id": "T10-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "The box model describes each element as content surrounded by padding, borders and margins. box-sizing: border-box makes declared widths easier to reason about.",
+                "learn_items": [
+                  "Box model",
+                  "Sizing"
+                ],
+                "learning_goal": "Complete the task about box model and sizing and show the result using the completion check.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "MDN Learn Web Development",
+                    "provider": "MDN",
+                    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on box model and sizing; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Curriculum index, not individual lesson coverage",
+                    "id": "T10-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "The Odin Project Foundations",
+                    "provider": "The Odin Project",
+                    "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on box model and sizing; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Course index, not every topic lesson verified",
+                    "id": "T10-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Create two cards with equal outer width using padding and borders.",
+                "completion_check": "Show equal-width cards and explain how padding and borders affect sizing."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T11",
+            "slug": "flexbox-layout",
+            "title": "Flexbox layout",
+            "milestone_id": "M03",
+            "card": {
+              "title": "Flexbox layout",
+              "summary": "Flexbox arranges items along a main axis and controls alignment on a cross axis. It works well for navigation, button rows and one-dimensional components.",
+              "prerequisite_ids": [
+                "T10"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Style adaptive layouts",
+              "title": "Flexbox layout",
+              "overview": "Flexbox arranges items along a main axis and controls alignment on a cross axis. It works well for navigation, button rows and one-dimensional components.",
+              "learning_outcomes": [
+                "Complete the task about flexbox layout and show the result using the completion check."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T11-S01",
+                  "title": "Flexbox layout: purpose and essential vocabulary",
+                  "explanation": "Find how flexbox layout: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T11-S02",
+                  "title": "Flexbox layout: application and common pitfalls",
+                  "explanation": "Find how flexbox layout: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Build a navigation bar that wraps neatly on a narrow screen."
+              },
+              "completion_check": {
+                "criteria": "Demonstrate a navigation row that remains usable when space becomes narrow."
+              },
+              "resources": [
+                {
+                  "title": "MDN Learn Web Development",
+                  "provider": "MDN",
+                  "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on flexbox layout; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Curriculum index, not individual lesson coverage",
+                  "id": "T11-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "The Odin Project Foundations",
+                  "provider": "The Odin Project",
+                  "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on flexbox layout; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Course index, not every topic lesson verified",
+                  "id": "T11-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Flexbox arranges items along a main axis and controls alignment on a cross axis. It works well for navigation, button rows and one-dimensional components.",
+                "learn_items": [
+                  "Flexbox layout: purpose and essential vocabulary",
+                  "Flexbox layout: application and common pitfalls"
+                ],
+                "learning_goal": "Complete the task about flexbox layout and show the result using the completion check.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "MDN Learn Web Development",
+                    "provider": "MDN",
+                    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on flexbox layout; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Curriculum index, not individual lesson coverage",
+                    "id": "T11-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "The Odin Project Foundations",
+                    "provider": "The Odin Project",
+                    "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on flexbox layout; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Course index, not every topic lesson verified",
+                    "id": "T11-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Build a navigation bar that wraps neatly on a narrow screen.",
+                "completion_check": "Demonstrate a navigation row that remains usable when space becomes narrow."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T12",
+            "slug": "grid-and-responsive-breakpoints",
+            "title": "Grid and responsive breakpoints",
+            "milestone_id": "M03",
+            "card": {
+              "title": "Grid and responsive breakpoints",
+              "summary": "CSS Grid defines rows and columns for two-dimensional layout. Breakpoints can change the number of columns, but fluid sizing should handle most intermediate widths.",
+              "prerequisite_ids": [
+                "T11"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Style adaptive layouts",
+              "title": "Grid and responsive breakpoints",
+              "overview": "CSS Grid defines rows and columns for two-dimensional layout. Breakpoints can change the number of columns, but fluid sizing should handle most intermediate widths.",
+              "learning_outcomes": [
+                "Complete the task about grid and responsive breakpoints and show the result using the completion check."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T12-S01",
+                  "title": "Grid",
+                  "explanation": "Find how grid works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T12-S02",
+                  "title": "Responsive breakpoints",
+                  "explanation": "Find how responsive breakpoints works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Make a card gallery that moves from one column to multiple columns without horizontal scrolling."
+              },
+              "completion_check": {
+                "criteria": "Show a gallery at narrow and wide widths without unintended sideways scrolling."
+              },
+              "resources": [
+                {
+                  "title": "MDN Learn Web Development",
+                  "provider": "MDN",
+                  "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on grid and responsive breakpoints; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Curriculum index, not individual lesson coverage",
+                  "id": "T12-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "The Odin Project Foundations",
+                  "provider": "The Odin Project",
+                  "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on grid and responsive breakpoints; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Course index, not every topic lesson verified",
+                  "id": "T12-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "CSS Grid defines rows and columns for two-dimensional layout. Breakpoints can change the number of columns, but fluid sizing should handle most intermediate widths.",
+                "learn_items": [
+                  "Grid",
+                  "Responsive breakpoints"
+                ],
+                "learning_goal": "Complete the task about grid and responsive breakpoints and show the result using the completion check.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "MDN Learn Web Development",
+                    "provider": "MDN",
+                    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on grid and responsive breakpoints; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Curriculum index, not individual lesson coverage",
+                    "id": "T12-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "The Odin Project Foundations",
+                    "provider": "The Odin Project",
+                    "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on grid and responsive breakpoints; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Course index, not every topic lesson verified",
+                    "id": "T12-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Make a card gallery that moves from one column to multiple columns without horizontal scrolling.",
+                "completion_check": "Show a gallery at narrow and wide widths without unintended sideways scrolling."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M04",
+        "slug": "make-pages-interactive",
+        "title": "Make pages interactive",
+        "summary": "Learn javascript values and control flow, functions arrays and objects, dom selection and events, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T13",
+            "slug": "javascript-values-and-control-flow",
+            "title": "JavaScript values and control flow",
+            "milestone_id": "M04",
+            "card": {
+              "title": "JavaScript values and control flow",
+              "summary": "JavaScript stores information in values and variables, and uses conditions or loops to choose actions. Different types behave differently during comparisons and calculations.",
+              "prerequisite_ids": [
+                "T12"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Make pages interactive",
+              "title": "JavaScript values and control flow",
+              "overview": "JavaScript stores information in values and variables, and uses conditions or loops to choose actions. Different types behave differently during comparisons and calculations.",
+              "learning_outcomes": [
+                "Complete the task about javascript values and control flow and show the result using the completion check."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T13-S01",
+                  "title": "Javascript values",
+                  "explanation": "Find how javascript values works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T13-S02",
+                  "title": "Control flow",
+                  "explanation": "Find how control flow works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Create a price calculator with a condition for a discount and a loop over cart items."
+              },
+              "completion_check": {
+                "criteria": "Run the calculator with two test cases and explain the discount condition."
+              },
+              "resources": [
+                {
+                  "title": "MDN Learn Web Development",
+                  "provider": "MDN",
+                  "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on javascript values and control flow; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Curriculum index, not individual lesson coverage",
+                  "id": "T13-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "The Odin Project Foundations",
+                  "provider": "The Odin Project",
+                  "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on javascript values and control flow; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Course index, not every topic lesson verified",
+                  "id": "T13-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "JavaScript stores information in values and variables, and uses conditions or loops to choose actions. Different types behave differently during comparisons and calculations.",
+                "learn_items": [
+                  "Javascript values",
+                  "Control flow"
+                ],
+                "learning_goal": "Complete the task about javascript values and control flow and show the result using the completion check.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "MDN Learn Web Development",
+                    "provider": "MDN",
+                    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on javascript values and control flow; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Curriculum index, not individual lesson coverage",
+                    "id": "T13-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "The Odin Project Foundations",
+                    "provider": "The Odin Project",
+                    "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on javascript values and control flow; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Course index, not every topic lesson verified",
+                    "id": "T13-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Create a price calculator with a condition for a discount and a loop over cart items.",
+                "completion_check": "Run the calculator with two test cases and explain the discount condition."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T14",
+            "slug": "functions-arrays-and-objects",
+            "title": "Functions arrays and objects",
+            "milestone_id": "M04",
+            "card": {
+              "title": "Functions arrays and objects",
+              "summary": "Functions package repeatable steps with parameters and return values. Arrays store ordered items, while objects group named properties.",
+              "prerequisite_ids": [
+                "T13"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Make pages interactive",
+              "title": "Functions arrays and objects",
+              "overview": "Functions package repeatable steps with parameters and return values. Arrays store ordered items, while objects group named properties.",
+              "learning_outcomes": [
+                "Complete the task about functions arrays and objects and show the result using the completion check."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T14-S01",
+                  "title": "Functions arrays",
+                  "explanation": "Find how functions arrays works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T14-S02",
+                  "title": "Objects",
+                  "explanation": "Find how objects works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Write a function that converts an array of product objects into formatted labels."
+              },
+              "completion_check": {
+                "criteria": "Show the function output for at least two product objects."
+              },
+              "resources": [
+                {
+                  "title": "MDN Learn Web Development",
+                  "provider": "MDN",
+                  "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on functions arrays and objects; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Curriculum index, not individual lesson coverage",
+                  "id": "T14-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "The Odin Project Foundations",
+                  "provider": "The Odin Project",
+                  "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on functions arrays and objects; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Course index, not every topic lesson verified",
+                  "id": "T14-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Functions package repeatable steps with parameters and return values. Arrays store ordered items, while objects group named properties.",
+                "learn_items": [
+                  "Functions arrays",
+                  "Objects"
+                ],
+                "learning_goal": "Complete the task about functions arrays and objects and show the result using the completion check.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "MDN Learn Web Development",
+                    "provider": "MDN",
+                    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on functions arrays and objects; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Curriculum index, not individual lesson coverage",
+                    "id": "T14-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "The Odin Project Foundations",
+                    "provider": "The Odin Project",
+                    "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on functions arrays and objects; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Course index, not every topic lesson verified",
+                    "id": "T14-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Write a function that converts an array of product objects into formatted labels.",
+                "completion_check": "Show the function output for at least two product objects."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T15",
+            "slug": "dom-selection-and-events",
+            "title": "DOM selection and events",
+            "milestone_id": "M04",
+            "card": {
+              "title": "DOM selection and events",
+              "summary": "The document object model represents page elements as nodes that JavaScript can inspect and change. Event handlers respond to clicks, typing and other user actions.",
+              "prerequisite_ids": [
+                "T14"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Make pages interactive",
+              "title": "DOM selection and events",
+              "overview": "The document object model represents page elements as nodes that JavaScript can inspect and change. Event handlers respond to clicks, typing and other user actions.",
+              "learning_outcomes": [
+                "Complete the task about dom selection and events and show the result using the completion check."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T15-S01",
+                  "title": "Dom selection",
+                  "explanation": "Find how dom selection works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T15-S02",
+                  "title": "Events",
+                  "explanation": "Find how events works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Create a button that toggles a message and updates aria-expanded if it controls content."
+              },
+              "completion_check": {
+                "criteria": "Activate the toggle by keyboard and confirm the message and control state change."
+              },
+              "resources": [
+                {
+                  "title": "MDN Learn Web Development",
+                  "provider": "MDN",
+                  "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on dom selection and events; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Curriculum index, not individual lesson coverage",
+                  "id": "T15-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "The Odin Project Foundations",
+                  "provider": "The Odin Project",
+                  "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on dom selection and events; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Course index, not every topic lesson verified",
+                  "id": "T15-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "The document object model represents page elements as nodes that JavaScript can inspect and change. Event handlers respond to clicks, typing and other user actions.",
+                "learn_items": [
+                  "Dom selection",
+                  "Events"
+                ],
+                "learning_goal": "Complete the task about dom selection and events and show the result using the completion check.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "MDN Learn Web Development",
+                    "provider": "MDN",
+                    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on dom selection and events; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Curriculum index, not individual lesson coverage",
+                    "id": "T15-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "The Odin Project Foundations",
+                    "provider": "The Odin Project",
+                    "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on dom selection and events; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Course index, not every topic lesson verified",
+                    "id": "T15-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Create a button that toggles a message and updates aria-expanded if it controls content.",
+                "completion_check": "Activate the toggle by keyboard and confirm the message and control state change."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T16",
+            "slug": "forms-and-validation",
+            "title": "Forms and validation",
+            "milestone_id": "M04",
+            "card": {
+              "title": "Forms and validation",
+              "summary": "Client-side validation checks whether input follows rules before submission; it cannot replace server validation. Clear feedback should explain what needs fixing.",
+              "prerequisite_ids": [
+                "T15"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Make pages interactive",
+              "title": "Forms and validation",
+              "overview": "Client-side validation checks whether input follows rules before submission; it cannot replace server validation. Clear feedback should explain what needs fixing.",
+              "learning_outcomes": [
+                "Complete the task about forms and validation and show the result using the completion check."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T16-S01",
+                  "title": "Forms",
+                  "explanation": "Find how forms works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T16-S02",
+                  "title": "Validation",
+                  "explanation": "Find how validation works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Validate an email and message field, and show a readable error near each invalid control."
+              },
+              "completion_check": {
+                "criteria": "Submit invalid input and show a helpful error beside the affected field."
+              },
+              "resources": [
+                {
+                  "title": "MDN Learn Web Development",
+                  "provider": "MDN",
+                  "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on forms and validation; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Curriculum index, not individual lesson coverage",
+                  "id": "T16-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "The Odin Project Foundations",
+                  "provider": "The Odin Project",
+                  "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on forms and validation; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Course index, not every topic lesson verified",
+                  "id": "T16-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Client-side validation checks whether input follows rules before submission; it cannot replace server validation. Clear feedback should explain what needs fixing.",
+                "learn_items": [
+                  "Forms",
+                  "Validation"
+                ],
+                "learning_goal": "Complete the task about forms and validation and show the result using the completion check.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "MDN Learn Web Development",
+                    "provider": "MDN",
+                    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on forms and validation; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Curriculum index, not individual lesson coverage",
+                    "id": "T16-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "The Odin Project Foundations",
+                    "provider": "The Odin Project",
+                    "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on forms and validation; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Course index, not every topic lesson verified",
+                    "id": "T16-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Validate an email and message field, and show a readable error near each invalid control.",
+                "completion_check": "Submit invalid input and show a helpful error beside the affected field."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M05",
+        "slug": "build-reliable-interfaces",
+        "title": "Build reliable interfaces",
+        "summary": "Learn fetch and json responses, asynchronous states and errors, accessibility testing, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T17",
+            "slug": "fetch-and-json-responses",
+            "title": "Fetch and JSON responses",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Fetch and JSON responses",
+              "summary": "Fetch requests data from another endpoint, often represented as JSON. A response can succeed, fail, or return unexpected shapes, so inspect status and fields.",
+              "prerequisite_ids": [
+                "T16"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Build reliable interfaces",
+              "title": "Fetch and JSON responses",
+              "overview": "Fetch requests data from another endpoint, often represented as JSON. A response can succeed, fail, or return unexpected shapes, so inspect status and fields.",
+              "learning_outcomes": [
+                "Complete the task about fetch and json responses and show the result using the completion check."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T17-S01",
+                  "title": "Fetch",
+                  "explanation": "Find how fetch works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T17-S02",
+                  "title": "Json responses",
+                  "explanation": "Find how json responses works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Fetch a public JSON example and display three values; handle a non-success status."
+              },
+              "completion_check": {
+                "criteria": "Show JSON values from a successful request and a helpful response to failure."
+              },
+              "resources": [
+                {
+                  "title": "MDN Learn Web Development",
+                  "provider": "MDN",
+                  "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on fetch and json responses; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Curriculum index, not individual lesson coverage",
+                  "id": "T17-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "The Odin Project Foundations",
+                  "provider": "The Odin Project",
+                  "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on fetch and json responses; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Course index, not every topic lesson verified",
+                  "id": "T17-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Fetch requests data from another endpoint, often represented as JSON. A response can succeed, fail, or return unexpected shapes, so inspect status and fields.",
+                "learn_items": [
+                  "Fetch",
+                  "Json responses"
+                ],
+                "learning_goal": "Complete the task about fetch and json responses and show the result using the completion check.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "MDN Learn Web Development",
+                    "provider": "MDN",
+                    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on fetch and json responses; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Curriculum index, not individual lesson coverage",
+                    "id": "T17-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "The Odin Project Foundations",
+                    "provider": "The Odin Project",
+                    "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on fetch and json responses; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Course index, not every topic lesson verified",
+                    "id": "T17-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Fetch a public JSON example and display three values; handle a non-success status.",
+                "completion_check": "Show JSON values from a successful request and a helpful response to failure."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T18",
+            "slug": "asynchronous-states-and-errors",
+            "title": "Asynchronous states and errors",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Asynchronous states and errors",
+              "summary": "Requests take time. A useful interface shows loading, success, empty and error states instead of leaving the visitor guessing.",
+              "prerequisite_ids": [
+                "T17"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Build reliable interfaces",
+              "title": "Asynchronous states and errors",
+              "overview": "Requests take time. A useful interface shows loading, success, empty and error states instead of leaving the visitor guessing.",
+              "learning_outcomes": [
+                "Complete the task about asynchronous states and errors and show the result using the completion check."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T18-S01",
+                  "title": "Asynchronous states",
+                  "explanation": "Find how asynchronous states works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T18-S02",
+                  "title": "Errors",
+                  "explanation": "Find how errors works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Build a results panel with explicit loading, empty and failure messages."
+              },
+              "completion_check": {
+                "criteria": "Demonstrate loading, empty, success and error states in your results panel."
+              },
+              "resources": [
+                {
+                  "title": "MDN Learn Web Development",
+                  "provider": "MDN",
+                  "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on asynchronous states and errors; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Curriculum index, not individual lesson coverage",
+                  "id": "T18-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "The Odin Project Foundations",
+                  "provider": "The Odin Project",
+                  "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on asynchronous states and errors; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Course index, not every topic lesson verified",
+                  "id": "T18-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Requests take time. A useful interface shows loading, success, empty and error states instead of leaving the visitor guessing.",
+                "learn_items": [
+                  "Asynchronous states",
+                  "Errors"
+                ],
+                "learning_goal": "Complete the task about asynchronous states and errors and show the result using the completion check.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "MDN Learn Web Development",
+                    "provider": "MDN",
+                    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on asynchronous states and errors; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Curriculum index, not individual lesson coverage",
+                    "id": "T18-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "The Odin Project Foundations",
+                    "provider": "The Odin Project",
+                    "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on asynchronous states and errors; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Course index, not every topic lesson verified",
+                    "id": "T18-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Build a results panel with explicit loading, empty and failure messages.",
+                "completion_check": "Demonstrate loading, empty, success and error states in your results panel."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T19",
+            "slug": "accessibility-testing",
+            "title": "Accessibility testing",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Accessibility testing",
+              "summary": "Accessibility testing combines semantic markup, keyboard checks, readable contrast and testing with assistive technology where possible. A successful mouse click is not enough.",
+              "prerequisite_ids": [
+                "T18"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Build reliable interfaces",
+              "title": "Accessibility testing",
+              "overview": "Accessibility testing combines semantic markup, keyboard checks, readable contrast and testing with assistive technology where possible. A successful mouse click is not enough.",
+              "learning_outcomes": [
+                "Complete the task about accessibility testing and show the result using the completion check."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T19-S01",
+                  "title": "Accessibility testing: purpose and essential vocabulary",
+                  "explanation": "Find how accessibility testing: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T19-S02",
+                  "title": "Accessibility testing: application and common pitfalls",
+                  "explanation": "Find how accessibility testing: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Navigate a sample page using Tab and Enter and record any focus or label problems."
+              },
+              "completion_check": {
+                "criteria": "Record a keyboard test with findings about focus order and labels."
+              },
+              "resources": [
+                {
+                  "title": "MDN Learn Web Development",
+                  "provider": "MDN",
+                  "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on accessibility testing; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Curriculum index, not individual lesson coverage",
+                  "id": "T19-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "The Odin Project Foundations",
+                  "provider": "The Odin Project",
+                  "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on accessibility testing; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Course index, not every topic lesson verified",
+                  "id": "T19-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Accessibility testing combines semantic markup, keyboard checks, readable contrast and testing with assistive technology where possible. A successful mouse click is not enough.",
+                "learn_items": [
+                  "Accessibility testing: purpose and essential vocabulary",
+                  "Accessibility testing: application and common pitfalls"
+                ],
+                "learning_goal": "Complete the task about accessibility testing and show the result using the completion check.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "MDN Learn Web Development",
+                    "provider": "MDN",
+                    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on accessibility testing; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Curriculum index, not individual lesson coverage",
+                    "id": "T19-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "The Odin Project Foundations",
+                    "provider": "The Odin Project",
+                    "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on accessibility testing; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Course index, not every topic lesson verified",
+                    "id": "T19-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Navigate a sample page using Tab and Enter and record any focus or label problems.",
+                "completion_check": "Record a keyboard test with findings about focus order and labels."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T20",
+            "slug": "debugging-and-browser-testing",
+            "title": "Debugging and browser testing",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Debugging and browser testing",
+              "summary": "Debugging starts with a reproducible symptom, a hypothesis and a small test. Browser console errors, breakpoints and the Network panel each reveal different evidence.",
+              "prerequisite_ids": [
+                "T19"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Build reliable interfaces",
+              "title": "Debugging and browser testing",
+              "overview": "Debugging starts with a reproducible symptom, a hypothesis and a small test. Browser console errors, breakpoints and the Network panel each reveal different evidence.",
+              "learning_outcomes": [
+                "Complete the task about debugging and browser testing and show the result using the completion check."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T20-S01",
+                  "title": "Debugging",
+                  "explanation": "Find how debugging works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T20-S02",
+                  "title": "Browser testing",
+                  "explanation": "Find how browser testing works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Fix one intentionally broken script and document the cause and verification."
+              },
+              "completion_check": {
+                "criteria": "Explain the original bug, its cause, the correction and the passing retest."
+              },
+              "resources": [
+                {
+                  "title": "MDN Learn Web Development",
+                  "provider": "MDN",
+                  "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on debugging and browser testing; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Curriculum index, not individual lesson coverage",
+                  "id": "T20-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "The Odin Project Foundations",
+                  "provider": "The Odin Project",
+                  "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on debugging and browser testing; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Course index, not every topic lesson verified",
+                  "id": "T20-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Debugging starts with a reproducible symptom, a hypothesis and a small test. Browser console errors, breakpoints and the Network panel each reveal different evidence.",
+                "learn_items": [
+                  "Debugging",
+                  "Browser testing"
+                ],
+                "learning_goal": "Complete the task about debugging and browser testing and show the result using the completion check.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "MDN Learn Web Development",
+                    "provider": "MDN",
+                    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on debugging and browser testing; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Curriculum index, not individual lesson coverage",
+                    "id": "T20-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "The Odin Project Foundations",
+                    "provider": "The Odin Project",
+                    "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on debugging and browser testing; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Course index, not every topic lesson verified",
+                    "id": "T20-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Fix one intentionally broken script and document the cause and verification.",
+                "completion_check": "Explain the original bug, its cause, the correction and the passing retest."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M06",
+        "slug": "ship-a-starter-website",
+        "title": "Ship a starter website",
+        "summary": "Learn plan a small website, build responsive multi-page interface, add accessible interactions, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T21",
+            "slug": "plan-a-small-website",
+            "title": "Plan a small website",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Plan a small website",
+              "summary": "A small website benefits from clear audiences, pages and success criteria before coding. A brief content plan prevents unnecessary features.",
+              "prerequisite_ids": [
+                "T20"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Ship a starter website",
+              "title": "Plan a small website",
+              "overview": "A small website benefits from clear audiences, pages and success criteria before coding. A brief content plan prevents unnecessary features.",
+              "learning_outcomes": [
+                "Complete the task about plan a small website and show the result using the completion check."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T21-S01",
+                  "title": "Plan a small website: purpose and essential vocabulary",
+                  "explanation": "Find how plan a small website: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T21-S02",
+                  "title": "Plan a small website: application and common pitfalls",
+                  "explanation": "Find how plan a small website: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Sketch a three-page site map and list one task visitors should complete on each page."
+              },
+              "completion_check": {
+                "criteria": "Show a three-page plan with one visitor task for each page."
+              },
+              "resources": [
+                {
+                  "title": "MDN Learn Web Development",
+                  "provider": "MDN",
+                  "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on plan a small website; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Curriculum index, not individual lesson coverage",
+                  "id": "T21-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "The Odin Project Foundations",
+                  "provider": "The Odin Project",
+                  "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on plan a small website; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Course index, not every topic lesson verified",
+                  "id": "T21-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A small website benefits from clear audiences, pages and success criteria before coding. A brief content plan prevents unnecessary features.",
+                "learn_items": [
+                  "Plan a small website: purpose and essential vocabulary",
+                  "Plan a small website: application and common pitfalls"
+                ],
+                "learning_goal": "Complete the task about plan a small website and show the result using the completion check.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "MDN Learn Web Development",
+                    "provider": "MDN",
+                    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on plan a small website; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Curriculum index, not individual lesson coverage",
+                    "id": "T21-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "The Odin Project Foundations",
+                    "provider": "The Odin Project",
+                    "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on plan a small website; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Course index, not every topic lesson verified",
+                    "id": "T21-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Sketch a three-page site map and list one task visitors should complete on each page.",
+                "completion_check": "Show a three-page plan with one visitor task for each page."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T22",
+            "slug": "build-responsive-multi-page-interface",
+            "title": "Build responsive multi-page interface",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Build responsive multi-page interface",
+              "summary": "Responsive pages share a consistent navigation system and readable content across screen sizes. Separate HTML documents can use shared styles and reusable patterns.",
+              "prerequisite_ids": [
+                "T21"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Ship a starter website",
+              "title": "Build responsive multi-page interface",
+              "overview": "Responsive pages share a consistent navigation system and readable content across screen sizes. Separate HTML documents can use shared styles and reusable patterns.",
+              "learning_outcomes": [
+                "Complete the task about build responsive multi-page interface and show the result using the completion check."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T22-S01",
+                  "title": "Build responsive multi-page interface: purpose and essential vocabulary",
+                  "explanation": "Find how build responsive multi-page interface: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T22-S02",
+                  "title": "Build responsive multi-page interface: application and common pitfalls",
+                  "explanation": "Find how build responsive multi-page interface: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Create three linked pages and check their layout on narrow and wide viewports."
+              },
+              "completion_check": {
+                "criteria": "Navigate between three pages and test both narrow and wide screens."
+              },
+              "resources": [
+                {
+                  "title": "MDN Learn Web Development",
+                  "provider": "MDN",
+                  "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on build responsive multi-page interface; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Curriculum index, not individual lesson coverage",
+                  "id": "T22-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "The Odin Project Foundations",
+                  "provider": "The Odin Project",
+                  "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on build responsive multi-page interface; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Course index, not every topic lesson verified",
+                  "id": "T22-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Responsive pages share a consistent navigation system and readable content across screen sizes. Separate HTML documents can use shared styles and reusable patterns.",
+                "learn_items": [
+                  "Build responsive multi-page interface: purpose and essential vocabulary",
+                  "Build responsive multi-page interface: application and common pitfalls"
+                ],
+                "learning_goal": "Complete the task about build responsive multi-page interface and show the result using the completion check.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "MDN Learn Web Development",
+                    "provider": "MDN",
+                    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on build responsive multi-page interface; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Curriculum index, not individual lesson coverage",
+                    "id": "T22-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "The Odin Project Foundations",
+                    "provider": "The Odin Project",
+                    "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on build responsive multi-page interface; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Course index, not every topic lesson verified",
+                    "id": "T22-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Create three linked pages and check their layout on narrow and wide viewports.",
+                "completion_check": "Navigate between three pages and test both narrow and wide screens."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T23",
+            "slug": "add-accessible-interactions",
+            "title": "Add accessible interactions",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Add accessible interactions",
+              "summary": "Interactive controls should communicate their current state and work with keyboard input. A polished action handles invalid input and provides immediate feedback.",
+              "prerequisite_ids": [
+                "T22"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Ship a starter website",
+              "title": "Add accessible interactions",
+              "overview": "Interactive controls should communicate their current state and work with keyboard input. A polished action handles invalid input and provides immediate feedback.",
+              "learning_outcomes": [
+                "Complete the task about add accessible interactions and show the result using the completion check."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T23-S01",
+                  "title": "Add accessible interactions: purpose and essential vocabulary",
+                  "explanation": "Find how add accessible interactions: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T23-S02",
+                  "title": "Add accessible interactions: application and common pitfalls",
+                  "explanation": "Find how add accessible interactions: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Add a form or filtering control, including input feedback and a keyboard test."
+              },
+              "completion_check": {
+                "criteria": "Show a working form or filter and test it using only the keyboard."
+              },
+              "resources": [
+                {
+                  "title": "MDN Learn Web Development",
+                  "provider": "MDN",
+                  "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on add accessible interactions; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Curriculum index, not individual lesson coverage",
+                  "id": "T23-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "The Odin Project Foundations",
+                  "provider": "The Odin Project",
+                  "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on add accessible interactions; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Course index, not every topic lesson verified",
+                  "id": "T23-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Interactive controls should communicate their current state and work with keyboard input. A polished action handles invalid input and provides immediate feedback.",
+                "learn_items": [
+                  "Add accessible interactions: purpose and essential vocabulary",
+                  "Add accessible interactions: application and common pitfalls"
+                ],
+                "learning_goal": "Complete the task about add accessible interactions and show the result using the completion check.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "MDN Learn Web Development",
+                    "provider": "MDN",
+                    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on add accessible interactions; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Curriculum index, not individual lesson coverage",
+                    "id": "T23-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "The Odin Project Foundations",
+                    "provider": "The Odin Project",
+                    "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on add accessible interactions; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Course index, not every topic lesson verified",
+                    "id": "T23-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Add a form or filtering control, including input feedback and a keyboard test.",
+                "completion_check": "Show a working form or filter and test it using only the keyboard."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T24",
+            "slug": "test-document-and-publish",
+            "title": "Test document and publish",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Test document and publish",
+              "summary": "Publishing makes a tested site available at a shareable URL. A release checklist should cover broken links, responsiveness, accessibility basics and documentation.",
+              "prerequisite_ids": [
+                "T23"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Ship a starter website",
+              "title": "Test document and publish",
+              "overview": "Publishing makes a tested site available at a shareable URL. A release checklist should cover broken links, responsiveness, accessibility basics and documentation.",
+              "learning_outcomes": [
+                "Complete the task about test document and publish and show the result using the completion check."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T24-S01",
+                  "title": "Test document",
+                  "explanation": "Find how test document works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T24-S02",
+                  "title": "Publish",
+                  "explanation": "Find how publish works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Publish a small site and verify its links, layout and instructions in a fresh browser session."
+              },
+              "completion_check": {
+                "criteria": "Share a working site URL, test its links and document its known limitations."
+              },
+              "resources": [
+                {
+                  "title": "MDN Learn Web Development",
+                  "provider": "MDN",
+                  "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on test document and publish; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Curriculum index, not individual lesson coverage",
+                  "id": "T24-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "The Odin Project Foundations",
+                  "provider": "The Odin Project",
+                  "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on test document and publish; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "2026-11-01",
+                  "verification_scope": "Course index, not every topic lesson verified",
+                  "id": "T24-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Publishing makes a tested site available at a shareable URL. A release checklist should cover broken links, responsiveness, accessibility basics and documentation.",
+                "learn_items": [
+                  "Test document",
+                  "Publish"
+                ],
+                "learning_goal": "Complete the task about test document and publish and show the result using the completion check.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "MDN Learn Web Development",
+                    "provider": "MDN",
+                    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on test document and publish; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Curriculum index, not individual lesson coverage",
+                    "id": "T24-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "The Odin Project Foundations",
+                    "provider": "The Odin Project",
+                    "url": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on test document and publish; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "2026-11-01",
+                    "verification_scope": "Course index, not every topic lesson verified",
+                    "id": "T24-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Publish a small site and verify its links, layout and instructions in a fresh browser session.",
+                "completion_check": "Share a working site URL, test its links and document its known limitations."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "display_contract": {
+    "layout": "milestone-accordion-with-topic-detail-panel",
+    "milestone_card": [
+      "title",
+      "summary",
+      "topics"
+    ],
+    "topic_row": [
+      "title",
+      "id"
+    ],
+    "topic_detail_order": [
+      "overview",
+      "learn_items",
+      "learning_goal",
+      "tools_and_setup",
+      "resources",
+      "practice",
+      "completion_check"
+    ],
+    "subtopics_are_tracked": false,
+    "prerequisites_are_advisory": true,
+    "completion_state_source": "application_only",
+    "notes": "Use topic.detail.guide; preserve legacy detail keys as compatibility aliases. No content-owned Done states."
+  },
+  "research_and_review_notes": {
+    "human_review": "Pending",
+    "content_readiness": "Not production ready; legacy generic content remains in most topics",
+    "verified_free_topic_coverage": "Not yet established for all topics"
+  }
+}

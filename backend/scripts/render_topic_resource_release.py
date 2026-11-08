@@ -13,7 +13,7 @@ AT='2026-11-02T00:37:24+08:00'
 def resources():
     evidence=json.loads((ROOT/'app/content/guide-resource-destinations.json').read_text())
     mapping={}
-    for path in sorted((ROOT/'app/content/guide_v4').glob('*.json')):
+    for path in (ROOT / 'app/content/guide_v4' / f'{slug}.json' for slug in sorted(SELECTIONS)):
         raw=json.loads(path.read_text()); doc=convert(path)
         key=raw['career']['slug']; topics=[t for m in doc['roadmap']['milestones'] for t in m['topics']]
         selections=SELECTIONS[key]
@@ -34,7 +34,7 @@ def resources():
 
 def render():
     mapping=json.loads((ROOT/'app/content/topic-resources.json').read_text(encoding='utf-8')); changes=[]; checks=[]
-    for path in sorted((ROOT/'app/content/guide_v4').glob('*.json')):
+    for path in (ROOT / 'app/content/guide_v4' / f'{slug}.json' for slug in sorted(SELECTIONS)):
         raw=json.loads(path.read_text()); doc=convert(path); key=raw['career']['slug']
         for m in doc['roadmap']['milestones']:
             for t in m['topics']:

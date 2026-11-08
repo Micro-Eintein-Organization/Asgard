@@ -74,3 +74,13 @@ Expanded Asgard from 12 to 23 published career roadmaps by authoring 11 industry
 ## Known Limitations
 
 - All resources link to official free documentation (MDN, PostgreSQL, Docker, AWS, Microsoft Learn, Linux man pages, etc.). While all URLs follow HTTPS standards and authoritative publisher domains, independent link live-connectivity and accreditation review remain ongoing maintenance tasks.
+
+## Local 23-career rollout, 2026-11-08
+
+Codex implemented REQ-02, REQ-03 and REQ-07 with owner YakisobaNissin's approval. The downloaded main snapshot supplied the 11 new guides and release 5 while GitHub DNS was unavailable. The original guides, published identities and saved learner records are preserved. Release 6 repairs 19 topic links sharing 15 failed URLs. All 251 original new destinations were checked with normal HTTPS validation and all replacements returned HTTP 200.
+
+The [catalog publisher](../../scripts/content-publication.mjs) installs release 6 after the preserved release 5. The [historical guide renderer](../../backend/scripts/render_guide_release.py) and [resource renderer](../../backend/scripts/render_topic_resource_release.py) reproduce the release 3 and 4 SQL from the original roster. The disposable upgrade passed with 23 published roadmaps and 552 topics, repeat publication, saved-state preservation and conflict rollback.
+
+For a signed-in check, open Careers, select Backend Developer, set it as the current roadmap, open the JWT and session tokens topic, and follow the corrected OWASP resource. Mark the topic Done and reload. The saved state should still display Done. See the [skill mappings](competency-comparison.md#expanded-local-skill-mappings-2026-11-08) and [occupational evidence](career-evidence-recommendations.md#expanded-local-reference-release-2026-11-08) for the rest of the rollout.
+
+Normal local publication completed on 2026-11-08 with release 6 (`3463d194-1b73-55b0-972f-c9584a118a6f`). Pre- and post-publication fingerprints matched for all 25 private tables. The signed-in smoke check verified Backend Developer's corrected resource, focus selection and persisted topic progress using a disposable account.

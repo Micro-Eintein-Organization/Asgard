@@ -1,6 +1,25 @@
 {
   "components": {
     "schemas": {
+      "Activity": {
+        "additionalProperties": false,
+        "properties": {
+          "action": {
+            "title": "Action",
+            "type": "string"
+          },
+          "result": {
+            "title": "Result",
+            "type": "string"
+          }
+        },
+        "required": [
+          "action",
+          "result"
+        ],
+        "title": "Activity",
+        "type": "object"
+      },
       "ActivityDay": {
         "additionalProperties": false,
         "properties": {
@@ -184,6 +203,16 @@
             "title": "Description",
             "type": "string"
           },
+          "exploration": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Exploration"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "id": {
             "format": "uuid",
             "title": "Id",
@@ -259,6 +288,166 @@
         "title": "Career",
         "type": "object"
       },
+      "CareerColumn": {
+        "additionalProperties": false,
+        "properties": {
+          "career": {
+            "$ref": "#/components/schemas/Career"
+          },
+          "experience": {
+            "items": {
+              "$ref": "#/components/schemas/ComparisonItem"
+            },
+            "title": "Experience",
+            "type": "array"
+          }
+        },
+        "required": [
+          "career",
+          "experience"
+        ],
+        "title": "CareerColumn",
+        "type": "object"
+      },
+      "CareerComparison": {
+        "additionalProperties": false,
+        "properties": {
+          "account_version": {
+            "title": "Account Version",
+            "type": "integer"
+          },
+          "careers": {
+            "items": {
+              "$ref": "#/components/schemas/CareerColumn"
+            },
+            "maxItems": 2,
+            "minItems": 2,
+            "title": "Careers",
+            "type": "array"
+          },
+          "catalog_release_id": {
+            "format": "uuid",
+            "title": "Catalog Release Id",
+            "type": "string"
+          },
+          "occupational_release_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Occupational Release Id"
+          }
+        },
+        "required": [
+          "catalog_release_id",
+          "occupational_release_id",
+          "account_version",
+          "careers"
+        ],
+        "title": "CareerComparison",
+        "type": "object"
+      },
+      "CareerContext": {
+        "additionalProperties": false,
+        "properties": {
+          "career_id": {
+            "format": "uuid",
+            "title": "Career Id",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "career_id",
+          "title"
+        ],
+        "title": "CareerContext",
+        "type": "object"
+      },
+      "CareerEvidence": {
+        "additionalProperties": false,
+        "properties": {
+          "career_id": {
+            "format": "uuid",
+            "title": "Career Id",
+            "type": "string"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceRecord"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "limit": {
+            "maximum": 100.0,
+            "minimum": 1.0,
+            "title": "Limit",
+            "type": "integer"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Limitations",
+            "type": "array"
+          },
+          "offset": {
+            "minimum": 0.0,
+            "title": "Offset",
+            "type": "integer"
+          },
+          "release_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Release Id"
+          },
+          "review_status": {
+            "title": "Review Status",
+            "type": "string"
+          },
+          "roles": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceRole"
+            },
+            "title": "Roles",
+            "type": "array"
+          },
+          "total": {
+            "minimum": 0.0,
+            "title": "Total",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "items",
+          "offset",
+          "limit",
+          "total",
+          "career_id",
+          "release_id",
+          "review_status",
+          "roles",
+          "limitations"
+        ],
+        "title": "CareerEvidence",
+        "type": "object"
+      },
       "CareerPage": {
         "additionalProperties": false,
         "properties": {
@@ -301,6 +490,33 @@
         "title": "CareerPage",
         "type": "object"
       },
+      "CareerShortlist": {
+        "additionalProperties": false,
+        "properties": {
+          "available": {
+            "title": "Available",
+            "type": "boolean"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/SavedCareer"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "version": {
+            "title": "Version",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "available",
+          "version",
+          "items"
+        ],
+        "title": "CareerShortlist",
+        "type": "object"
+      },
       "Category": {
         "additionalProperties": false,
         "properties": {
@@ -334,6 +550,315 @@
           "position"
         ],
         "title": "Category",
+        "type": "object"
+      },
+      "ComparisonAnswer": {
+        "additionalProperties": false,
+        "properties": {
+          "answer": {
+            "title": "Answer",
+            "type": "string"
+          },
+          "handoff": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Handoff"
+          },
+          "skills": {
+            "items": {
+              "$ref": "#/components/schemas/ComparisonRow"
+            },
+            "title": "Skills",
+            "type": "array"
+          },
+          "sources": {
+            "items": {
+              "$ref": "#/components/schemas/GuidanceSource"
+            },
+            "title": "Sources",
+            "type": "array"
+          },
+          "web_unavailable": {
+            "title": "Web Unavailable",
+            "type": "boolean"
+          },
+          "work": {
+            "items": {
+              "$ref": "#/components/schemas/ComparisonRow"
+            },
+            "title": "Work",
+            "type": "array"
+          }
+        },
+        "required": [
+          "answer",
+          "sources",
+          "web_unavailable",
+          "work",
+          "skills",
+          "handoff"
+        ],
+        "title": "ComparisonAnswer",
+        "type": "object"
+      },
+      "ComparisonItem": {
+        "additionalProperties": false,
+        "properties": {
+          "career_context": {
+            "items": {
+              "$ref": "#/components/schemas/CareerContext"
+            },
+            "title": "Career Context",
+            "type": "array"
+          },
+          "explanation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SkillExplanation"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "level": {
+            "anyOf": [
+              {
+                "maximum": 4.0,
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Level"
+          },
+          "recorded": {
+            "title": "Recorded",
+            "type": "boolean"
+          },
+          "source": {
+            "title": "Source",
+            "type": "string"
+          },
+          "source_version": {
+            "title": "Source Version",
+            "type": "string"
+          },
+          "topics": {
+            "items": {
+              "$ref": "#/components/schemas/TopicLink"
+            },
+            "title": "Topics",
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "label",
+          "source",
+          "source_version",
+          "recorded",
+          "level",
+          "topics"
+        ],
+        "title": "ComparisonItem",
+        "type": "object"
+      },
+      "ComparisonRow": {
+        "additionalProperties": false,
+        "properties": {
+          "by_career": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "propertyNames": {
+              "format": "uuid"
+            },
+            "title": "By Career",
+            "type": "object"
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          }
+        },
+        "required": [
+          "label",
+          "by_career"
+        ],
+        "title": "ComparisonRow",
+        "type": "object"
+      },
+      "Competency": {
+        "additionalProperties": false,
+        "properties": {
+          "career_context": {
+            "items": {
+              "$ref": "#/components/schemas/CareerContext"
+            },
+            "title": "Career Context",
+            "type": "array"
+          },
+          "explanation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SkillExplanation"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "source": {
+            "title": "Source",
+            "type": "string"
+          },
+          "source_version": {
+            "title": "Source Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "label",
+          "source",
+          "source_version"
+        ],
+        "title": "Competency",
+        "type": "object"
+      },
+      "CompetencyComparison": {
+        "additionalProperties": false,
+        "properties": {
+          "account_version": {
+            "title": "Account Version",
+            "type": "integer"
+          },
+          "career_id": {
+            "format": "uuid",
+            "title": "Career Id",
+            "type": "string"
+          },
+          "career_revision": {
+            "title": "Career Revision",
+            "type": "integer"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/ComparisonItem"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "occupational_release_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Occupational Release Id"
+          }
+        },
+        "required": [
+          "career_id",
+          "account_version",
+          "career_revision",
+          "items"
+        ],
+        "title": "CompetencyComparison",
+        "type": "object"
+      },
+      "CompetencyPage": {
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/Competency"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "limit": {
+            "maximum": 100.0,
+            "minimum": 1.0,
+            "title": "Limit",
+            "type": "integer"
+          },
+          "offset": {
+            "minimum": 0.0,
+            "title": "Offset",
+            "type": "integer"
+          },
+          "total": {
+            "minimum": 0.0,
+            "title": "Total",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "items",
+          "offset",
+          "limit",
+          "total"
+        ],
+        "title": "CompetencyPage",
+        "type": "object"
+      },
+      "CompetencyState": {
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/UserCompetency"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "recommendations_enabled": {
+            "default": false,
+            "title": "Recommendations Enabled",
+            "type": "boolean"
+          },
+          "version": {
+            "title": "Version",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "version",
+          "items"
+        ],
+        "title": "CompetencyState",
         "type": "object"
       },
       "CompleteDiscovery": {
@@ -399,7 +924,8 @@
               "current_roadmap",
               "topic_progress",
               "branch_choice",
-              "pdf_analysis"
+              "pdf_analysis",
+              "reported_skill"
             ],
             "title": "Source",
             "type": "string"
@@ -924,6 +1450,825 @@
         "title": "ErrorBody",
         "type": "object"
       },
+      "EscoCareer": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "title"
+        ],
+        "title": "EscoCareer",
+        "type": "object"
+      },
+      "EscoConcept": {
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "enum": [
+              "occupation",
+              "skill"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "relationship": {
+            "anyOf": [
+              {
+                "enum": [
+                  "essential",
+                  "optional"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Relationship"
+          },
+          "uri": {
+            "title": "Uri",
+            "type": "string"
+          }
+        },
+        "required": [
+          "uri",
+          "kind",
+          "label"
+        ],
+        "title": "EscoConcept",
+        "type": "object"
+      },
+      "EscoDetail": {
+        "additionalProperties": false,
+        "properties": {
+          "adaptations": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Adaptations"
+          },
+          "careers": {
+            "items": {
+              "$ref": "#/components/schemas/EscoCareer"
+            },
+            "title": "Careers",
+            "type": "array"
+          },
+          "concept": {
+            "$ref": "#/components/schemas/EscoConcept"
+          },
+          "description": {
+            "title": "Description",
+            "type": "string"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/EscoConcept"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "release_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Release Id"
+          },
+          "total": {
+            "title": "Total",
+            "type": "integer"
+          },
+          "version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Version"
+          }
+        },
+        "required": [
+          "release_id",
+          "version",
+          "adaptations",
+          "items",
+          "total",
+          "concept",
+          "description",
+          "careers"
+        ],
+        "title": "EscoDetail",
+        "type": "object"
+      },
+      "EscoPage": {
+        "additionalProperties": false,
+        "properties": {
+          "adaptations": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Adaptations"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/EscoConcept"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "release_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Release Id"
+          },
+          "total": {
+            "title": "Total",
+            "type": "integer"
+          },
+          "version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Version"
+          }
+        },
+        "required": [
+          "release_id",
+          "version",
+          "adaptations",
+          "items",
+          "total"
+        ],
+        "title": "EscoPage",
+        "type": "object"
+      },
+      "EvidenceRecord": {
+        "additionalProperties": false,
+        "properties": {
+          "classification": {
+            "title": "Classification",
+            "type": "string"
+          },
+          "decision": {
+            "title": "Decision",
+            "type": "string"
+          },
+          "definition": {
+            "title": "Definition",
+            "type": "string"
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "local_test_eligible": {
+            "title": "Local Test Eligible",
+            "type": "boolean"
+          },
+          "locator": {
+            "title": "Locator",
+            "type": "string"
+          },
+          "native_level": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Native Level"
+          },
+          "native_scale": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Native Scale"
+          },
+          "not_relevant": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Not Relevant"
+          },
+          "observation_date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Observation Date"
+          },
+          "occupation_id": {
+            "format": "uuid",
+            "title": "Occupation Id",
+            "type": "string"
+          },
+          "rationale": {
+            "title": "Rationale",
+            "type": "string"
+          },
+          "record_id": {
+            "format": "uuid",
+            "title": "Record Id",
+            "type": "string"
+          },
+          "record_type": {
+            "enum": [
+              "expectation",
+              "task"
+            ],
+            "title": "Record Type",
+            "type": "string"
+          },
+          "scale_locator": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Scale Locator"
+          },
+          "scale_meaning": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Scale Meaning"
+          },
+          "source_id": {
+            "title": "Source Id",
+            "type": "string"
+          },
+          "suppression": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Suppression"
+          },
+          "topics": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/EvidenceTopic"
+            },
+            "title": "Topics",
+            "type": "array"
+          }
+        },
+        "required": [
+          "record_id",
+          "record_type",
+          "occupation_id",
+          "source_id",
+          "label",
+          "definition",
+          "locator",
+          "decision",
+          "classification",
+          "rationale",
+          "local_test_eligible"
+        ],
+        "title": "EvidenceRecord",
+        "type": "object"
+      },
+      "EvidenceRole": {
+        "additionalProperties": false,
+        "properties": {
+          "career_level": {
+            "title": "Career Level",
+            "type": "string"
+          },
+          "description": {
+            "default": "",
+            "title": "Description",
+            "type": "string"
+          },
+          "locator": {
+            "title": "Locator",
+            "type": "string"
+          },
+          "native_code": {
+            "title": "Native Code",
+            "type": "string"
+          },
+          "occupation_id": {
+            "format": "uuid",
+            "title": "Occupation Id",
+            "type": "string"
+          },
+          "relationship": {
+            "default": "related",
+            "title": "Relationship",
+            "type": "string"
+          },
+          "source_id": {
+            "title": "Source Id",
+            "type": "string"
+          },
+          "source_level_verified": {
+            "default": false,
+            "title": "Source Level Verified",
+            "type": "boolean"
+          },
+          "source_title": {
+            "default": "Unknown source title",
+            "title": "Source Title",
+            "type": "string"
+          },
+          "source_version": {
+            "default": "Unknown version",
+            "title": "Source Version",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "occupation_id",
+          "source_id",
+          "native_code",
+          "title",
+          "career_level",
+          "locator"
+        ],
+        "title": "EvidenceRole",
+        "type": "object"
+      },
+      "EvidenceTopic": {
+        "additionalProperties": false,
+        "properties": {
+          "coverage": {
+            "title": "Coverage",
+            "type": "string"
+          },
+          "rationale": {
+            "title": "Rationale",
+            "type": "string"
+          },
+          "roadmap_id": {
+            "format": "uuid",
+            "title": "Roadmap Id",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "topic_id": {
+            "format": "uuid",
+            "title": "Topic Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "topic_id",
+          "roadmap_id",
+          "title",
+          "coverage",
+          "rationale"
+        ],
+        "title": "EvidenceTopic",
+        "type": "object"
+      },
+      "Exploration": {
+        "additionalProperties": false,
+        "properties": {
+          "activities": {
+            "items": {
+              "$ref": "#/components/schemas/Activity"
+            },
+            "maxItems": 3,
+            "minItems": 3,
+            "title": "Activities",
+            "type": "array"
+          },
+          "check": {
+            "title": "Check",
+            "type": "string"
+          },
+          "learning_groups": {
+            "items": {
+              "$ref": "#/components/schemas/LearningGroup"
+            },
+            "maxItems": 4,
+            "minItems": 3,
+            "title": "Learning Groups",
+            "type": "array"
+          },
+          "limitation": {
+            "title": "Limitation",
+            "type": "string"
+          },
+          "produce": {
+            "title": "Produce",
+            "type": "string"
+          },
+          "purpose": {
+            "title": "Purpose",
+            "type": "string"
+          },
+          "source_scope": {
+            "title": "Source Scope",
+            "type": "string"
+          },
+          "starter": {
+            "$ref": "#/components/schemas/Starter"
+          },
+          "version": {
+            "title": "Version",
+            "type": "string"
+          },
+          "work_on": {
+            "title": "Work On",
+            "type": "string"
+          }
+        },
+        "required": [
+          "version",
+          "purpose",
+          "activities",
+          "work_on",
+          "produce",
+          "check",
+          "learning_groups",
+          "starter",
+          "source_scope",
+          "limitation"
+        ],
+        "title": "Exploration",
+        "type": "object"
+      },
+      "GuidanceAnswer": {
+        "additionalProperties": false,
+        "properties": {
+          "answer": {
+            "title": "Answer",
+            "type": "string"
+          },
+          "sources": {
+            "items": {
+              "$ref": "#/components/schemas/GuidanceSource"
+            },
+            "title": "Sources",
+            "type": "array"
+          },
+          "web_unavailable": {
+            "title": "Web Unavailable",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "answer",
+          "sources",
+          "web_unavailable"
+        ],
+        "title": "GuidanceAnswer",
+        "type": "object"
+      },
+      "GuidanceAvailability": {
+        "additionalProperties": false,
+        "properties": {
+          "available": {
+            "title": "Available",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "available"
+        ],
+        "title": "GuidanceAvailability",
+        "type": "object"
+      },
+      "GuidancePair": {
+        "additionalProperties": false,
+        "properties": {
+          "left": {
+            "format": "uuid",
+            "title": "Left",
+            "type": "string"
+          },
+          "right": {
+            "format": "uuid",
+            "title": "Right",
+            "type": "string"
+          }
+        },
+        "required": [
+          "left",
+          "right"
+        ],
+        "title": "GuidancePair",
+        "type": "object"
+      },
+      "GuidanceQuestion": {
+        "additionalProperties": false,
+        "properties": {
+          "career_ids": {
+            "items": {
+              "format": "uuid",
+              "type": "string"
+            },
+            "maxItems": 2,
+            "title": "Career Ids",
+            "type": "array"
+          },
+          "history": {
+            "items": {
+              "$ref": "#/components/schemas/GuidanceTurn"
+            },
+            "maxItems": 6,
+            "title": "History",
+            "type": "array"
+          },
+          "question": {
+            "maxLength": 1000,
+            "minLength": 1,
+            "title": "Question",
+            "type": "string"
+          },
+          "roadmap_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Roadmap Id"
+          },
+          "search_web": {
+            "default": false,
+            "title": "Search Web",
+            "type": "boolean"
+          },
+          "topic_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Topic Id"
+          }
+        },
+        "required": [
+          "question"
+        ],
+        "title": "GuidanceQuestion",
+        "type": "object"
+      },
+      "GuidanceReflection": {
+        "additionalProperties": false,
+        "properties": {
+          "complete": {
+            "title": "Complete",
+            "type": "boolean"
+          },
+          "milestone_id": {
+            "format": "uuid",
+            "title": "Milestone Id",
+            "type": "string"
+          },
+          "practise": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Practise"
+          },
+          "retired": {
+            "title": "Retired",
+            "type": "boolean"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "understood": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Understood"
+          }
+        },
+        "required": [
+          "milestone_id",
+          "title",
+          "complete",
+          "retired",
+          "understood",
+          "practise"
+        ],
+        "title": "GuidanceReflection",
+        "type": "object"
+      },
+      "GuidanceSource": {
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "enum": [
+              "asgard",
+              "web"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "url": {
+            "title": "Url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "url",
+          "kind"
+        ],
+        "title": "GuidanceSource",
+        "type": "object"
+      },
+      "GuidanceTopic": {
+        "additionalProperties": false,
+        "properties": {
+          "explanation": {
+            "title": "Explanation",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "milestone_id": {
+            "format": "uuid",
+            "title": "Milestone Id",
+            "type": "string"
+          },
+          "skill_labels": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Skill Labels",
+            "type": "array"
+          },
+          "status": {
+            "enum": [
+              "not_started",
+              "learning",
+              "done",
+              "skipped"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "unavailable": {
+            "anyOf": [
+              {
+                "enum": [
+                  "retired",
+                  "branch"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Unavailable"
+          }
+        },
+        "required": [
+          "id",
+          "milestone_id",
+          "title",
+          "explanation",
+          "status",
+          "unavailable",
+          "skill_labels"
+        ],
+        "title": "GuidanceTopic",
+        "type": "object"
+      },
+      "GuidanceTurn": {
+        "additionalProperties": false,
+        "properties": {
+          "role": {
+            "enum": [
+              "user",
+              "assistant"
+            ],
+            "title": "Role",
+            "type": "string"
+          },
+          "text": {
+            "maxLength": 1800,
+            "minLength": 1,
+            "title": "Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "role",
+          "text"
+        ],
+        "title": "GuidanceTurn",
+        "type": "object"
+      },
       "HealthResponse": {
         "properties": {
           "status": {
@@ -934,6 +2279,42 @@
           }
         },
         "title": "HealthResponse",
+        "type": "object"
+      },
+      "LearningGroup": {
+        "additionalProperties": false,
+        "properties": {
+          "explanation": {
+            "title": "Explanation",
+            "type": "string"
+          },
+          "roadmap_id": {
+            "format": "uuid",
+            "title": "Roadmap Id",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "topic_id": {
+            "format": "uuid",
+            "title": "Topic Id",
+            "type": "string"
+          },
+          "topic_title": {
+            "title": "Topic Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "explanation",
+          "topic_id",
+          "roadmap_id",
+          "topic_title"
+        ],
+        "title": "LearningGroup",
         "type": "object"
       },
       "LearningState": {
@@ -1087,6 +2468,151 @@
         "title": "MilestoneSummary",
         "type": "object"
       },
+      "OccupationalReference": {
+        "additionalProperties": false,
+        "properties": {
+          "career_id": {
+            "format": "uuid",
+            "title": "Career Id",
+            "type": "string"
+          },
+          "career_relationship": {
+            "default": "unassessed",
+            "title": "Career Relationship",
+            "type": "string"
+          },
+          "competency_id": {
+            "format": "uuid",
+            "title": "Competency Id",
+            "type": "string"
+          },
+          "definition": {
+            "title": "Definition",
+            "type": "string"
+          },
+          "evidence_type": {
+            "anyOf": [
+              {
+                "const": "esco_occupation_skill",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Evidence Type"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "limitation": {
+            "title": "Limitation",
+            "type": "string"
+          },
+          "locator": {
+            "title": "Locator",
+            "type": "string"
+          },
+          "occupation_id": {
+            "format": "uuid",
+            "title": "Occupation Id",
+            "type": "string"
+          },
+          "record_id": {
+            "format": "uuid",
+            "title": "Record Id",
+            "type": "string"
+          },
+          "related_skill_ids": {
+            "items": {
+              "format": "uuid",
+              "type": "string"
+            },
+            "title": "Related Skill Ids",
+            "type": "array"
+          },
+          "relationship": {
+            "enum": [
+              "partial",
+              "source_reference"
+            ],
+            "title": "Relationship",
+            "type": "string"
+          },
+          "release_id": {
+            "format": "uuid",
+            "title": "Release Id",
+            "type": "string"
+          },
+          "reuse_notes": {
+            "default": "Unknown reuse metadata",
+            "title": "Reuse Notes",
+            "type": "string"
+          },
+          "source_id": {
+            "title": "Source Id",
+            "type": "string"
+          },
+          "source_relationship": {
+            "anyOf": [
+              {
+                "enum": [
+                  "essential",
+                  "optional"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Relationship"
+          },
+          "source_role_title": {
+            "default": "Unknown role",
+            "title": "Source Role Title",
+            "type": "string"
+          },
+          "source_sha256": {
+            "default": "unknown",
+            "title": "Source Sha256",
+            "type": "string"
+          },
+          "source_title": {
+            "default": "Unknown source title",
+            "title": "Source Title",
+            "type": "string"
+          },
+          "source_version": {
+            "default": "Unknown version",
+            "title": "Source Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "career_id",
+          "release_id",
+          "record_id",
+          "competency_id",
+          "label",
+          "definition",
+          "occupation_id",
+          "source_id",
+          "locator",
+          "related_skill_ids",
+          "relationship",
+          "limitation"
+        ],
+        "title": "OccupationalReference",
+        "type": "object"
+      },
       "Preferences": {
         "additionalProperties": false,
         "properties": {
@@ -1141,6 +2667,11 @@
             "title": "First Name",
             "type": "string"
           },
+          "has_photo": {
+            "default": false,
+            "title": "Has Photo",
+            "type": "boolean"
+          },
           "surname": {
             "title": "Surname",
             "type": "string"
@@ -1167,6 +2698,11 @@
       },
       "ProfileEnvelope": {
         "properties": {
+          "photo_enabled": {
+            "default": false,
+            "title": "Photo Enabled",
+            "type": "boolean"
+          },
           "profile": {
             "anyOf": [
               {
@@ -1439,6 +2975,13 @@
             "title": "Context Revision",
             "type": "integer"
           },
+          "coverage_limitations": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Coverage Limitations",
+            "type": "array"
+          },
           "created_at": {
             "format": "date-time",
             "title": "Created At",
@@ -1517,9 +3060,33 @@
             ],
             "title": "Model Id"
           },
+          "occupational_release_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Occupational Release Id"
+          },
           "outdated": {
             "title": "Outdated",
             "type": "boolean"
+          },
+          "payload_erased_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Payload Erased At"
           },
           "prompt_version": {
             "maxLength": 100,
@@ -1532,6 +3099,25 @@
             "minLength": 1,
             "title": "Schema Version",
             "type": "string"
+          },
+          "skill_profile_version": {
+            "anyOf": [
+              {
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Skill Profile Version"
+          },
+          "source_references": {
+            "items": {
+              "$ref": "#/components/schemas/OccupationalReference"
+            },
+            "title": "Source References",
+            "type": "array"
           },
           "status": {
             "enum": [
@@ -1595,6 +3181,23 @@
               }
             ]
           },
+          "has_reported_skills": {
+            "default": false,
+            "title": "Has Reported Skills",
+            "type": "boolean"
+          },
+          "occupational_release_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Occupational Release Id"
+          },
           "previous_eligible_success": {
             "anyOf": [
               {
@@ -1645,6 +3248,18 @@
             "format": "uuid",
             "title": "Idempotency Key",
             "type": "string"
+          },
+          "occupational_release_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Occupational Release Id"
           }
         },
         "required": [
@@ -1711,6 +3326,67 @@
           "position"
         ],
         "title": "Resource",
+        "type": "object"
+      },
+      "ResumeReviewAvailability": {
+        "additionalProperties": false,
+        "properties": {
+          "enabled": {
+            "title": "Enabled",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "enabled"
+        ],
+        "title": "ResumeReviewAvailability",
+        "type": "object"
+      },
+      "ResumeSkillReview": {
+        "additionalProperties": false,
+        "properties": {
+          "suggestions": {
+            "items": {
+              "$ref": "#/components/schemas/ResumeSkillSuggestion"
+            },
+            "title": "Suggestions",
+            "type": "array"
+          }
+        },
+        "required": [
+          "suggestions"
+        ],
+        "title": "ResumeSkillReview",
+        "type": "object"
+      },
+      "ResumeSkillSuggestion": {
+        "additionalProperties": false,
+        "properties": {
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "page": {
+            "title": "Page",
+            "type": "integer"
+          },
+          "passage": {
+            "title": "Passage",
+            "type": "string"
+          },
+          "skill_id": {
+            "format": "uuid",
+            "title": "Skill Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "skill_id",
+          "label",
+          "page",
+          "passage"
+        ],
+        "title": "ResumeSkillSuggestion",
         "type": "object"
       },
       "RetakeDiscovery": {
@@ -1814,6 +3490,81 @@
         "title": "Roadmap",
         "type": "object"
       },
+      "RoadmapGuidance": {
+        "additionalProperties": false,
+        "properties": {
+          "needs_branch": {
+            "title": "Needs Branch",
+            "type": "boolean"
+          },
+          "next_milestone_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Milestone Id"
+          },
+          "next_topic": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/GuidanceTopic"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "practice": {
+            "items": {
+              "$ref": "#/components/schemas/GuidanceTopic"
+            },
+            "title": "Practice",
+            "type": "array"
+          },
+          "reflections": {
+            "items": {
+              "$ref": "#/components/schemas/GuidanceReflection"
+            },
+            "title": "Reflections",
+            "type": "array"
+          },
+          "suggestions": {
+            "items": {
+              "$ref": "#/components/schemas/GuidanceTopic"
+            },
+            "title": "Suggestions",
+            "type": "array"
+          },
+          "topics": {
+            "items": {
+              "$ref": "#/components/schemas/GuidanceTopic"
+            },
+            "title": "Topics",
+            "type": "array"
+          },
+          "version": {
+            "title": "Version",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "version",
+          "next_topic",
+          "next_milestone_id",
+          "needs_branch",
+          "topics",
+          "practice",
+          "suggestions",
+          "reflections"
+        ],
+        "title": "RoadmapGuidance",
+        "type": "object"
+      },
       "SaveBranchChoice": {
         "additionalProperties": false,
         "properties": {
@@ -1833,6 +3584,56 @@
           "branch_id"
         ],
         "title": "SaveBranchChoice",
+        "type": "object"
+      },
+      "SaveCareer": {
+        "additionalProperties": false,
+        "properties": {
+          "expected_version": {
+            "minimum": 0.0,
+            "title": "Expected Version",
+            "type": "integer"
+          },
+          "note": {
+            "default": "",
+            "maxLength": 500,
+            "title": "Note",
+            "type": "string"
+          }
+        },
+        "required": [
+          "expected_version"
+        ],
+        "title": "SaveCareer",
+        "type": "object"
+      },
+      "SaveCompetency": {
+        "additionalProperties": false,
+        "properties": {
+          "expected_version": {
+            "minimum": 0.0,
+            "title": "Expected Version",
+            "type": "integer"
+          },
+          "level": {
+            "anyOf": [
+              {
+                "maximum": 4.0,
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Level"
+          }
+        },
+        "required": [
+          "expected_version",
+          "level"
+        ],
+        "title": "SaveCompetency",
         "type": "object"
       },
       "SaveDiscovery": {
@@ -1858,6 +3659,26 @@
           "answers"
         ],
         "title": "SaveDiscovery",
+        "type": "object"
+      },
+      "SavePractice": {
+        "additionalProperties": false,
+        "properties": {
+          "expected_version": {
+            "minimum": 0.0,
+            "title": "Expected Version",
+            "type": "integer"
+          },
+          "saved": {
+            "title": "Saved",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "expected_version",
+          "saved"
+        ],
+        "title": "SavePractice",
         "type": "object"
       },
       "SavePreferences": {
@@ -1906,6 +3727,33 @@
         "title": "SavePreferences",
         "type": "object"
       },
+      "SaveReflection": {
+        "additionalProperties": false,
+        "properties": {
+          "expected_version": {
+            "minimum": 0.0,
+            "title": "Expected Version",
+            "type": "integer"
+          },
+          "practise": {
+            "default": "",
+            "maxLength": 1000,
+            "title": "Practise",
+            "type": "string"
+          },
+          "understood": {
+            "default": "",
+            "maxLength": 1000,
+            "title": "Understood",
+            "type": "string"
+          }
+        },
+        "required": [
+          "expected_version"
+        ],
+        "title": "SaveReflection",
+        "type": "object"
+      },
       "SaveTopicProgress": {
         "additionalProperties": false,
         "properties": {
@@ -1930,6 +3778,42 @@
           "status"
         ],
         "title": "SaveTopicProgress",
+        "type": "object"
+      },
+      "SavedCareer": {
+        "additionalProperties": false,
+        "properties": {
+          "available": {
+            "title": "Available",
+            "type": "boolean"
+          },
+          "career_id": {
+            "format": "uuid",
+            "title": "Career Id",
+            "type": "string"
+          },
+          "note": {
+            "title": "Note",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "title": "Updated At",
+            "type": "string"
+          }
+        },
+        "required": [
+          "career_id",
+          "title",
+          "note",
+          "available",
+          "updated_at"
+        ],
+        "title": "SavedCareer",
         "type": "object"
       },
       "SavedProfileEnvelope": {
@@ -1965,6 +3849,35 @@
         "title": "SelectRoadmap",
         "type": "object"
       },
+      "SkillExplanation": {
+        "additionalProperties": false,
+        "properties": {
+          "example": {
+            "title": "Example",
+            "type": "string"
+          },
+          "group": {
+            "title": "Group",
+            "type": "string"
+          },
+          "question": {
+            "title": "Question",
+            "type": "string"
+          },
+          "why_it_matters": {
+            "title": "Why It Matters",
+            "type": "string"
+          }
+        },
+        "required": [
+          "question",
+          "example",
+          "why_it_matters",
+          "group"
+        ],
+        "title": "SkillExplanation",
+        "type": "object"
+      },
       "StartDiscovery": {
         "additionalProperties": false,
         "properties": {
@@ -1978,6 +3891,42 @@
           "questionnaire_id"
         ],
         "title": "StartDiscovery",
+        "type": "object"
+      },
+      "Starter": {
+        "additionalProperties": false,
+        "properties": {
+          "expected_result": {
+            "title": "Expected Result",
+            "type": "string"
+          },
+          "instructions": {
+            "title": "Instructions",
+            "type": "string"
+          },
+          "roadmap_id": {
+            "format": "uuid",
+            "title": "Roadmap Id",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "topic_id": {
+            "format": "uuid",
+            "title": "Topic Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "instructions",
+          "expected_result",
+          "topic_id",
+          "roadmap_id"
+        ],
+        "title": "Starter",
         "type": "object"
       },
       "Topic": {
@@ -2076,6 +4025,32 @@
         "title": "Topic",
         "type": "object"
       },
+      "TopicLink": {
+        "additionalProperties": false,
+        "properties": {
+          "roadmap_id": {
+            "format": "uuid",
+            "title": "Roadmap Id",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "topic_id": {
+            "format": "uuid",
+            "title": "Topic Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "topic_id",
+          "roadmap_id",
+          "title"
+        ],
+        "title": "TopicLink",
+        "type": "object"
+      },
       "TopicProgress": {
         "additionalProperties": false,
         "properties": {
@@ -2120,6 +4095,63 @@
         "title": "TopicProgress",
         "type": "object"
       },
+      "UserCompetency": {
+        "additionalProperties": false,
+        "properties": {
+          "career_context": {
+            "items": {
+              "$ref": "#/components/schemas/CareerContext"
+            },
+            "title": "Career Context",
+            "type": "array"
+          },
+          "competency_id": {
+            "format": "uuid",
+            "title": "Competency Id",
+            "type": "string"
+          },
+          "explanation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SkillExplanation"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "level": {
+            "anyOf": [
+              {
+                "maximum": 4.0,
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Level"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "title": "Updated At",
+            "type": "string"
+          }
+        },
+        "required": [
+          "competency_id",
+          "label",
+          "level",
+          "updated_at"
+        ],
+        "title": "UserCompetency",
+        "type": "object"
+      },
       "ValidatedRecommendationItem": {
         "additionalProperties": false,
         "description": "Construct through validate_recommendations after provenance/catalog checks.",
@@ -2158,6 +4190,14 @@
             ],
             "title": "Roadmap Id"
           },
+          "source_reference_ids": {
+            "items": {
+              "format": "uuid",
+              "type": "string"
+            },
+            "title": "Source Reference Ids",
+            "type": "array"
+          },
           "starting_topic_id": {
             "anyOf": [
               {
@@ -2190,6 +4230,21 @@
           "evidence_fact_ids"
         ],
         "title": "ValidatedRecommendationItem",
+        "type": "object"
+      },
+      "VersionedChange": {
+        "additionalProperties": false,
+        "properties": {
+          "expected_version": {
+            "minimum": 0.0,
+            "title": "Expected Version",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "expected_version"
+        ],
+        "title": "VersionedChange",
         "type": "object"
       }
     },
@@ -2450,6 +4505,151 @@
         ]
       }
     },
+    "/api/v1/careers/{career_id}/evidence": {
+      "get": {
+        "operationId": "get_career_evidence",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "career_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Career Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "title": "Offset",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "source_role",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "uuid",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Source Role"
+            }
+          },
+          {
+            "in": "query",
+            "name": "expected_release_id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "uuid",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Expected Release Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CareerEvidence"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Evidence",
+        "tags": [
+          "competencies"
+        ]
+      }
+    },
     "/api/v1/categories": {
       "get": {
         "operationId": "list_categories",
@@ -2537,6 +4737,134 @@
         "summary": "List Categories",
         "tags": [
           "foundation-contracts"
+        ]
+      }
+    },
+    "/api/v1/competencies": {
+      "get": {
+        "operationId": "search_competencies",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "schema": {
+              "default": "",
+              "title": "Q",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "career_id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "uuid",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Career Id"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "title": "Offset",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompetencyPage"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Search",
+        "tags": [
+          "competencies"
         ]
       }
     },
@@ -2642,6 +4970,301 @@
         "summary": "Get Questionnaire",
         "tags": [
           "foundation-contracts"
+        ]
+      }
+    },
+    "/api/v1/esco/concept": {
+      "get": {
+        "operationId": "get_esco_concept",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "uri",
+            "required": true,
+            "schema": {
+              "maxLength": 160,
+              "minLength": 1,
+              "title": "Uri",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "title": "Offset",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "expected_release_id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "uuid",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Expected Release Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EscoDetail"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Detail",
+        "tags": [
+          "esco"
+        ]
+      }
+    },
+    "/api/v1/esco/concepts": {
+      "get": {
+        "operationId": "search_esco_concepts",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "schema": {
+              "default": "",
+              "maxLength": 160,
+              "title": "Q",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "kind",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "occupation",
+                    "skill"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Kind"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "title": "Offset",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "expected_release_id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "uuid",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Expected Release Id"
+            }
+          },
+          {
+            "in": "query",
+            "name": "career_id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "uuid",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Career Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EscoPage"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Search",
+        "tags": [
+          "esco"
         ]
       }
     },
@@ -2761,6 +5384,984 @@
         "summary": "Get Activity",
         "tags": [
           "foundation-contracts"
+        ]
+      }
+    },
+    "/api/v1/me/ai-guidance": {
+      "get": {
+        "operationId": "guidance_availability_api_v1_me_ai_guidance_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GuidanceAvailability"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Guidance Availability",
+        "tags": [
+          "ai-guidance"
+        ]
+      }
+    },
+    "/api/v1/me/ai-guidance/comparison": {
+      "post": {
+        "operationId": "comparison_insight_api_v1_me_ai_guidance_comparison_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GuidancePair"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComparisonAnswer"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Comparison Insight",
+        "tags": [
+          "ai-guidance"
+        ]
+      }
+    },
+    "/api/v1/me/ai-guidance/counselor": {
+      "post": {
+        "operationId": "counselor_turn_api_v1_me_ai_guidance_counselor_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GuidanceQuestion"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GuidanceAnswer"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Counselor Turn",
+        "tags": [
+          "ai-guidance"
+        ]
+      }
+    },
+    "/api/v1/me/career-comparison": {
+      "get": {
+        "operationId": "compare_careers",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "left",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Left",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "right",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Right",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CareerComparison"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Compare",
+        "tags": [
+          "career-comparison"
+        ]
+      }
+    },
+    "/api/v1/me/career-shortlist": {
+      "get": {
+        "operationId": "get_career_shortlist",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CareerShortlist"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Get Shortlist",
+        "tags": [
+          "career-comparison"
+        ]
+      }
+    },
+    "/api/v1/me/career-shortlist/{career_id}": {
+      "patch": {
+        "operationId": "save_shortlisted_career",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "career_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Career Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SaveCareer"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CareerShortlist"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Save",
+        "tags": [
+          "career-comparison"
+        ]
+      }
+    },
+    "/api/v1/me/career-shortlist/{career_id}/remove": {
+      "post": {
+        "operationId": "remove_shortlisted_career",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "career_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Career Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VersionedChange"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CareerShortlist"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Remove",
+        "tags": [
+          "career-comparison"
+        ]
+      }
+    },
+    "/api/v1/me/careers/{career_id}/competency-comparison": {
+      "get": {
+        "operationId": "compare_my_competencies",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "career_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Career Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompetencyComparison"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Compare",
+        "tags": [
+          "competencies"
+        ]
+      }
+    },
+    "/api/v1/me/competencies": {
+      "get": {
+        "operationId": "get_my_competencies",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompetencyState"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "State",
+        "tags": [
+          "competencies"
+        ]
+      }
+    },
+    "/api/v1/me/competencies/{competency_id}": {
+      "patch": {
+        "operationId": "save_my_competency",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "competency_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Competency Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SaveCompetency"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompetencyState"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Save",
+        "tags": [
+          "competencies"
+        ]
+      }
+    },
+    "/api/v1/me/competencies/{competency_id}/remove": {
+      "post": {
+        "operationId": "remove_my_competency",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "competency_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Competency Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VersionedChange"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompetencyState"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Remove",
+        "tags": [
+          "competencies"
         ]
       }
     },
@@ -3738,6 +7339,219 @@
         ]
       }
     },
+    "/api/v1/me/documents/resume-skill-review": {
+      "get": {
+        "operationId": "resume_review_availability_api_v1_me_documents_resume_skill_review_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResumeReviewAvailability"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Content Too Large"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Resume Review Availability",
+        "tags": [
+          "documents"
+        ]
+      },
+      "post": {
+        "operationId": "review_resume_api_v1_me_documents_resume_skill_review_post",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "career_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Career Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/pdf": {
+              "schema": {
+                "format": "binary",
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResumeSkillReview"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Content Too Large"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Review Resume",
+        "tags": [
+          "documents"
+        ]
+      }
+    },
     "/api/v1/me/documents/upload": {
       "post": {
         "operationId": "upload_my_document",
@@ -4576,6 +8390,203 @@
         ]
       }
     },
+    "/api/v1/me/profile/photo": {
+      "get": {
+        "operationId": "get_my_profile_photo",
+        "responses": {
+          "200": {
+            "content": {
+              "image/jpeg": {
+                "schema": {
+                  "format": "binary",
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Get Photo",
+        "tags": [
+          "profiles"
+        ]
+      },
+      "patch": {
+        "operationId": "update_my_profile_photo",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "expected_version": {
+                    "minimum": 0.0,
+                    "title": "Expected Version",
+                    "type": "integer"
+                  },
+                  "first_name": {
+                    "title": "First Name",
+                    "type": "string"
+                  },
+                  "photo": {
+                    "anyOf": [
+                      {
+                        "maxLength": 2666668,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "title": "Photo"
+                  },
+                  "surname": {
+                    "default": "",
+                    "title": "Surname",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "first_name",
+                  "expected_version",
+                  "photo"
+                ],
+                "title": "ProfilePhotoUpdate",
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SavedProfileEnvelope"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Content Too Large"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Update Photo",
+        "tags": [
+          "profiles"
+        ]
+      }
+    },
     "/api/v1/me/recommendations": {
       "get": {
         "operationId": "get_my_recommendations",
@@ -5179,6 +9190,416 @@
         "summary": "Save Branch",
         "tags": [
           "foundation-contracts"
+        ]
+      }
+    },
+    "/api/v1/me/roadmaps/{roadmap_id}/guidance": {
+      "get": {
+        "operationId": "get_roadmap_guidance",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "roadmap_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Roadmap Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadmapGuidance"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Get Guidance",
+        "tags": [
+          "guidance"
+        ]
+      }
+    },
+    "/api/v1/me/roadmaps/{roadmap_id}/guidance/practice/{topic_id}": {
+      "put": {
+        "operationId": "save_practice",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "roadmap_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Roadmap Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "topic_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Topic Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SavePractice"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadmapGuidance"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Save Practice",
+        "tags": [
+          "guidance"
+        ]
+      }
+    },
+    "/api/v1/me/roadmaps/{roadmap_id}/guidance/reflections/{milestone_id}": {
+      "delete": {
+        "operationId": "delete_milestone_reflection",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "roadmap_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Roadmap Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "milestone_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Milestone Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VersionedChange"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadmapGuidance"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Delete Reflection",
+        "tags": [
+          "guidance"
+        ]
+      },
+      "put": {
+        "operationId": "save_milestone_reflection",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "roadmap_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Roadmap Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "milestone_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Milestone Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SaveReflection"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadmapGuidance"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Save Reflection",
+        "tags": [
+          "guidance"
         ]
       }
     },

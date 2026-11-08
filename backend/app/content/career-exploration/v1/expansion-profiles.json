@@ -1,0 +1,3158 @@
+[
+  {
+    "career_id": "fe9ab18e-e5fe-5a27-9f57-8c92ec4613b2",
+    "version": "guide-v4-expansion-2026-11-08",
+    "purpose": "Build intelligent applications powered by Large Language Models, embeddings, Retrieval-Augmented Generation (RAG), and agentic workflows.",
+    "activities": [
+      {
+        "action": "Experiment with different temperature settings on an LLM API and compare determinism across identical prompts.",
+        "result": "Generative AI and foundational model concepts"
+      },
+      {
+        "action": "Build a working RAG script that takes a user question, retrieves relevant chunks, and returns an answer citing sources.",
+        "result": "End-to-end RAG architecture"
+      },
+      {
+        "action": "Configure a guardrail that detects and masks credit card numbers and email addresses in generated outputs.",
+        "result": "AI safety, toxicity filtering and guardrails"
+      }
+    ],
+    "work_on": "Integrate foundation LLM provider APIs into modern software applications",
+    "produce": "A production-ready contextual AI assistant featuring custom RAG document search, structured tool-calling, safety guardrails, token usage tracking, and automated evaluation.",
+    "check": "You can show and explain the outcome of: deploy a containerized rag service, verify that its health check endpoint reports status 200, and execute a live query. Check that it functions as expected and meets requirements.",
+    "learning_groups": [
+      {
+        "title": "AI fundamentals and prompt engineering",
+        "explanation": "Learn how transformer-based Large Language Models work, including pre-training, instruction tuning, and temperature.",
+        "topic_id": "65fef765-c271-5974-b037-bcd92a264b5b",
+        "roadmap_id": "2747fd69-c19e-5bc0-8072-db5a001a424f",
+        "topic_title": "Generative AI and foundational model concepts"
+      },
+      {
+        "title": "Retrieval-Augmented Generation (RAG)",
+        "explanation": "Connect user queries, semantic retrieval, prompt synthesis, and grounded LLM generation into a unified RAG workflow.",
+        "topic_id": "cf28f663-524c-5c39-83ac-2a3e4a065a1e",
+        "roadmap_id": "2747fd69-c19e-5bc0-8072-db5a001a424f",
+        "topic_title": "End-to-end RAG architecture"
+      },
+      {
+        "title": "Guardrails, evaluation and optimization",
+        "explanation": "Implement guardrails (e.g. NeMo Guardrails, Guardrails AI) to block toxic content, PII leakage, and off-topic queries.",
+        "topic_id": "014369bd-55ea-576b-b5f2-4bfdf8f85b62",
+        "roadmap_id": "2747fd69-c19e-5bc0-8072-db5a001a424f",
+        "topic_title": "AI safety, toxicity filtering and guardrails"
+      }
+    ],
+    "starter": {
+      "instructions": "Experiment with different temperature settings on an LLM API and compare determinism across identical prompts.",
+      "title": "Generative AI and foundational model concepts",
+      "expected_result": "You can show and explain the outcome of: experiment with different temperature settings on an llm api and compare determinism across identical prompts. Check that it functions as expected and meets requirements.",
+      "topic_id": "65fef765-c271-5974-b037-bcd92a264b5b",
+      "roadmap_id": "2747fd69-c19e-5bc0-8072-db5a001a424f"
+    },
+    "source_scope": "Asgard-authored curriculum and practice examples",
+    "limitation": "Learning activities describe practice. Personal experience comes from your own skill reports.",
+    "skills": [
+      {
+        "id": "e3b6efd7-3638-5c7d-85b9-9094241e1454",
+        "label": "Prompt engineering and system prompts",
+        "career_id": "fe9ab18e-e5fe-5a27-9f57-8c92ec4613b2",
+        "question": "Prompt engineering and system prompts",
+        "example": "Write a system prompt with few-shot examples that reliably extracts structured invoice data from unstructured text.",
+        "why_it_matters": "Master zero-shot, few-shot prompting, chain-of-thought reasoning, and crafting role-based system instructions.",
+        "group": "AI fundamentals and prompt engineering",
+        "topic_id": "2001a23d-698a-567c-9bac-0e89c3f516c6",
+        "roadmap_id": "2747fd69-c19e-5bc0-8072-db5a001a424f",
+        "topic_title": "Prompt design, few-shot learning and system prompts",
+        "mappings": [
+          {
+            "topic_id": "2001a23d-698a-567c-9bac-0e89c3f516c6",
+            "roadmap_id": "2747fd69-c19e-5bc0-8072-db5a001a424f",
+            "topic_title": "Prompt design, few-shot learning and system prompts",
+            "rationale": "Write a system prompt with few-shot examples that reliably extracts structured invoice data from unstructured text."
+          }
+        ]
+      },
+      {
+        "id": "73de24d9-b893-5620-8aae-b7bcc6d08ce7",
+        "label": "Tokenization, context windows, and model pricing",
+        "career_id": "fe9ab18e-e5fe-5a27-9f57-8c92ec4613b2",
+        "question": "Tokenization, context windows, and model pricing",
+        "example": "Use a tokenizer utility to calculate token counts across text samples and estimate API request costs.",
+        "why_it_matters": "Understand how text converts to tokens, manage context window limitations, and optimize API token costs.",
+        "group": "AI fundamentals and prompt engineering",
+        "topic_id": "d09d57ea-4742-5169-8108-6e6c36553b0b",
+        "roadmap_id": "2747fd69-c19e-5bc0-8072-db5a001a424f",
+        "topic_title": "Tokenization, context windows and pricing models",
+        "mappings": [
+          {
+            "topic_id": "d09d57ea-4742-5169-8108-6e6c36553b0b",
+            "roadmap_id": "2747fd69-c19e-5bc0-8072-db5a001a424f",
+            "topic_title": "Tokenization, context windows and pricing models",
+            "rationale": "Use a tokenizer utility to calculate token counts across text samples and estimate API request costs."
+          }
+        ]
+      },
+      {
+        "id": "be4393fe-cf40-514b-890f-acc35bc62013",
+        "label": "Vector embeddings and similarity search",
+        "career_id": "fe9ab18e-e5fe-5a27-9f57-8c92ec4613b2",
+        "question": "Vector embeddings and similarity search",
+        "example": "Generate embeddings for a list of sentences and verify that semantically similar sentences produce high cosine similarity.",
+        "why_it_matters": "Learn how embedding models map sentences and paragraphs into multi-dimensional vectors capturing semantic meaning.",
+        "group": "Embeddings, similarity search and vector stores",
+        "topic_id": "eafaa91d-50ab-527f-b38f-87f5e0c52b9f",
+        "roadmap_id": "2747fd69-c19e-5bc0-8072-db5a001a424f",
+        "topic_title": "Vector embeddings and semantic representation",
+        "mappings": [
+          {
+            "topic_id": "eafaa91d-50ab-527f-b38f-87f5e0c52b9f",
+            "roadmap_id": "2747fd69-c19e-5bc0-8072-db5a001a424f",
+            "topic_title": "Vector embeddings and semantic representation",
+            "rationale": "Generate embeddings for a list of sentences and verify that semantically similar sentences produce high cosine similarity."
+          },
+          {
+            "topic_id": "1dfa0295-28b3-5d18-aadc-ea3de2ca88ef",
+            "roadmap_id": "2747fd69-c19e-5bc0-8072-db5a001a424f",
+            "topic_title": "Distance metrics and cosine similarity",
+            "rationale": "Write a Python function computing cosine similarity between two embedding vectors without using external ML libraries."
+          }
+        ]
+      },
+      {
+        "id": "a0755586-9407-5871-b4c4-1b783c47c62a",
+        "label": "Vector databases (Chroma, Pinecone, pgvector)",
+        "career_id": "fe9ab18e-e5fe-5a27-9f57-8c92ec4613b2",
+        "question": "Vector databases (Chroma, Pinecone, pgvector)",
+        "example": "Set up a local vector database instance, insert 50 embedded paragraphs, and query for the 3 most relevant results.",
+        "why_it_matters": "Store and retrieve millions of vectors with low latency using vector databases (e.g. Chroma, pgvector, or Pinecone).",
+        "group": "Embeddings, similarity search and vector stores",
+        "topic_id": "c8572580-11c3-516b-b8cd-e187183f2d64",
+        "roadmap_id": "2747fd69-c19e-5bc0-8072-db5a001a424f",
+        "topic_title": "Vector databases: indexing and querying",
+        "mappings": [
+          {
+            "topic_id": "c8572580-11c3-516b-b8cd-e187183f2d64",
+            "roadmap_id": "2747fd69-c19e-5bc0-8072-db5a001a424f",
+            "topic_title": "Vector databases: indexing and querying",
+            "rationale": "Set up a local vector database instance, insert 50 embedded paragraphs, and query for the 3 most relevant results."
+          }
+        ]
+      },
+      {
+        "id": "8d9e1b9b-d695-5811-b021-93197d433285",
+        "label": "Retrieval-Augmented Generation (RAG) pipelines",
+        "career_id": "fe9ab18e-e5fe-5a27-9f57-8c92ec4613b2",
+        "question": "Retrieval-Augmented Generation (RAG) pipelines",
+        "example": "Build a working RAG script that takes a user question, retrieves relevant chunks, and returns an answer citing sources.",
+        "why_it_matters": "Connect user queries, semantic retrieval, prompt synthesis, and grounded LLM generation into a unified RAG workflow.",
+        "group": "Retrieval-Augmented Generation (RAG)",
+        "topic_id": "cf28f663-524c-5c39-83ac-2a3e4a065a1e",
+        "roadmap_id": "2747fd69-c19e-5bc0-8072-db5a001a424f",
+        "topic_title": "End-to-end RAG architecture",
+        "mappings": [
+          {
+            "topic_id": "cf28f663-524c-5c39-83ac-2a3e4a065a1e",
+            "roadmap_id": "2747fd69-c19e-5bc0-8072-db5a001a424f",
+            "topic_title": "End-to-end RAG architecture",
+            "rationale": "Build a working RAG script that takes a user question, retrieves relevant chunks, and returns an answer citing sources."
+          }
+        ]
+      },
+      {
+        "id": "af5d1316-fd84-5719-8583-cb12cad139fc",
+        "label": "Chunking strategies and metadata filtering",
+        "career_id": "fe9ab18e-e5fe-5a27-9f57-8c92ec4613b2",
+        "question": "Chunking strategies and metadata filtering",
+        "example": "Chunk a 10-page document using recursive text splitting with a 500-token chunk size and a 50-token overlap.",
+        "why_it_matters": "Split long documents into coherent chunks using character, sentence, or recursive splitters, and attach filterable metadata.",
+        "group": "Embeddings, similarity search and vector stores",
+        "topic_id": "246943c1-dbc7-51c2-bcc1-a3c509fa5bce",
+        "roadmap_id": "2747fd69-c19e-5bc0-8072-db5a001a424f",
+        "topic_title": "Chunking strategies and metadata filtering",
+        "mappings": [
+          {
+            "topic_id": "246943c1-dbc7-51c2-bcc1-a3c509fa5bce",
+            "roadmap_id": "2747fd69-c19e-5bc0-8072-db5a001a424f",
+            "topic_title": "Chunking strategies and metadata filtering",
+            "rationale": "Chunk a 10-page document using recursive text splitting with a 500-token chunk size and a 50-token overlap."
+          }
+        ]
+      },
+      {
+        "id": "1f9994bc-c07f-5415-8cde-6d8f817e13da",
+        "label": "Function calling and structured JSON outputs",
+        "career_id": "fe9ab18e-e5fe-5a27-9f57-8c92ec4613b2",
+        "question": "Function calling and structured JSON outputs",
+        "example": "Equip an LLM with a calculator tool and a weather lookup tool, and verify that it invokes them with valid JSON arguments.",
+        "why_it_matters": "Define JSON schema tool signatures so LLMs can invoke external functions and return strictly typed JSON objects.",
+        "group": "Agentic workflows and tool-calling",
+        "topic_id": "357216e6-0ea1-5304-a101-93827f2c49b9",
+        "roadmap_id": "2747fd69-c19e-5bc0-8072-db5a001a424f",
+        "topic_title": "Function calling and structured JSON outputs",
+        "mappings": [
+          {
+            "topic_id": "357216e6-0ea1-5304-a101-93827f2c49b9",
+            "roadmap_id": "2747fd69-c19e-5bc0-8072-db5a001a424f",
+            "topic_title": "Function calling and structured JSON outputs",
+            "rationale": "Equip an LLM with a calculator tool and a weather lookup tool, and verify that it invokes them with valid JSON arguments."
+          }
+        ]
+      },
+      {
+        "id": "4449b8f5-b4ac-522f-acf0-907db5f26cf2",
+        "label": "Agent orchestration (LangChain / LlamaIndex)",
+        "career_id": "fe9ab18e-e5fe-5a27-9f57-8c92ec4613b2",
+        "question": "Agent orchestration (LangChain / LlamaIndex)",
+        "example": "Build a document research chain using an orchestration framework that retrieves information and outputs a formatted markdown summary.",
+        "why_it_matters": "Use modern AI orchestration libraries to construct declarative chains, agent executors, and data retrieval graphs.",
+        "group": "Agentic workflows and tool-calling",
+        "topic_id": "ff928f65-be57-5fe6-ac8f-0037c64873e2",
+        "roadmap_id": "2747fd69-c19e-5bc0-8072-db5a001a424f",
+        "topic_title": "Orchestration frameworks: LangChain and LlamaIndex",
+        "mappings": [
+          {
+            "topic_id": "ff928f65-be57-5fe6-ac8f-0037c64873e2",
+            "roadmap_id": "2747fd69-c19e-5bc0-8072-db5a001a424f",
+            "topic_title": "Orchestration frameworks: LangChain and LlamaIndex",
+            "rationale": "Build a document research chain using an orchestration framework that retrieves information and outputs a formatted markdown summary."
+          }
+        ]
+      },
+      {
+        "id": "0ab57f45-1c10-500c-8b37-973b572dcf27",
+        "label": "Guardrails, prompt injection defense, and safety",
+        "career_id": "fe9ab18e-e5fe-5a27-9f57-8c92ec4613b2",
+        "question": "Guardrails, prompt injection defense, and safety",
+        "example": "Test a RAG prompt with an adversarial document containing an override instruction and verify that the system ignores it.",
+        "why_it_matters": "Synthesize multiple retrieved context passages into clear prompt templates while defending against indirect prompt injection.",
+        "group": "Retrieval-Augmented Generation (RAG)",
+        "topic_id": "c68a4de2-3153-5768-b3ab-3ba7b26581f2",
+        "roadmap_id": "2747fd69-c19e-5bc0-8072-db5a001a424f",
+        "topic_title": "Context synthesis and prompt injection defense",
+        "mappings": [
+          {
+            "topic_id": "c68a4de2-3153-5768-b3ab-3ba7b26581f2",
+            "roadmap_id": "2747fd69-c19e-5bc0-8072-db5a001a424f",
+            "topic_title": "Context synthesis and prompt injection defense",
+            "rationale": "Test a RAG prompt with an adversarial document containing an override instruction and verify that the system ignores it."
+          },
+          {
+            "topic_id": "014369bd-55ea-576b-b5f2-4bfdf8f85b62",
+            "roadmap_id": "2747fd69-c19e-5bc0-8072-db5a001a424f",
+            "topic_title": "AI safety, toxicity filtering and guardrails",
+            "rationale": "Configure a guardrail that detects and masks credit card numbers and email addresses in generated outputs."
+          }
+        ]
+      },
+      {
+        "id": "2796ae98-b0cb-5732-95f2-153bd6ca5c73",
+        "label": "LLM observability, latency tracking, and evaluation",
+        "career_id": "fe9ab18e-e5fe-5a27-9f57-8c92ec4613b2",
+        "question": "LLM observability, latency tracking, and evaluation",
+        "example": "Implement a semantic prompt cache that returns cached completions for repeated queries without calling the API.",
+        "why_it_matters": "Track API spending, reduce time-to-first-token (TTFT) using prompt caching, and select cost-efficient models for subtasks.",
+        "group": "Guardrails, evaluation and optimization",
+        "topic_id": "c2341074-2f3a-530a-ba14-09da48e7569d",
+        "roadmap_id": "2747fd69-c19e-5bc0-8072-db5a001a424f",
+        "topic_title": "Cost tracking, latency optimization and caching",
+        "mappings": [
+          {
+            "topic_id": "c2341074-2f3a-530a-ba14-09da48e7569d",
+            "roadmap_id": "2747fd69-c19e-5bc0-8072-db5a001a424f",
+            "topic_title": "Cost tracking, latency optimization and caching",
+            "rationale": "Implement a semantic prompt cache that returns cached completions for repeated queries without calling the API."
+          },
+          {
+            "topic_id": "cee92baf-2f30-5b18-b868-d1e05d6333e0",
+            "roadmap_id": "2747fd69-c19e-5bc0-8072-db5a001a424f",
+            "topic_title": "Tracing LLM calls with OpenTelemetry and Langfuse",
+            "rationale": "Instrument an LLM script with a tracing callback that records request duration, token counts, and input prompts."
+          }
+        ]
+      }
+    ],
+    "source_file": "ai-engineer.json",
+    "source_sha256": "8cbca74b031a9dfa163d5299e5638c1f8f0124fb75682b96676e6b53c12a22e0"
+  },
+  {
+    "career_id": "cced74bd-db5a-51e2-9306-1209dd41dec7",
+    "version": "guide-v4-expansion-2026-11-08",
+    "purpose": "Build the server-side logic, databases, and APIs that power modern web and mobile applications.",
+    "activities": [
+      {
+        "action": "Use curl or Postman to inspect headers and status codes of an existing public API endpoint.",
+        "result": "Client-server architecture and HTTP"
+      },
+      {
+        "action": "Write a SQL schema file creating users, posts, and comments tables with appropriate relationships and constraints.",
+        "result": "Relational schemas and constraints"
+      },
+      {
+        "action": "Implement a caching layer around an expensive API endpoint with a 60-second TTL.",
+        "result": "In-memory caching with Redis"
+      }
+    ],
+    "work_on": "Design, build, and maintain robust server-side APIs",
+    "produce": "A fully functional REST API with authentication, relational database storage, background processing, and comprehensive unit tests.",
+    "check": "You can show and explain the outcome of: deploy your backend service, verify that the health check returns 200 ok, and simulate an error to confirm log capture. Check that it functions as expected and meets requirements.",
+    "learning_groups": [
+      {
+        "title": "Backend architecture and HTTP foundations",
+        "explanation": "Learn how web clients communicate with backend servers over HTTP using request methods, status codes, and headers.",
+        "topic_id": "1cc52c70-d88d-5239-8c62-bc2b44c4a769",
+        "roadmap_id": "9502cd4e-e337-53f0-8fc3-60cdd86658d9",
+        "topic_title": "Client-server architecture and HTTP"
+      },
+      {
+        "title": "Relational databases and data modeling",
+        "explanation": "Design normalized tables with primary keys, foreign keys, unique constraints, and referential integrity rules.",
+        "topic_id": "87d34a95-9606-5eb7-b0a3-8a8c345e89c0",
+        "roadmap_id": "9502cd4e-e337-53f0-8fc3-60cdd86658d9",
+        "topic_title": "Relational schemas and constraints"
+      },
+      {
+        "title": "Caching, background tasks and integrations",
+        "explanation": "Reduce database load and latency by caching expensive query results in an in-memory key-value store with time-to-live (TTL).",
+        "topic_id": "60de5305-321f-570f-8f13-40023ec95c60",
+        "roadmap_id": "9502cd4e-e337-53f0-8fc3-60cdd86658d9",
+        "topic_title": "In-memory caching with Redis"
+      }
+    ],
+    "starter": {
+      "instructions": "Use curl or Postman to inspect headers and status codes of an existing public API endpoint.",
+      "title": "Client-server architecture and HTTP",
+      "expected_result": "You can show and explain the outcome of: use curl or postman to inspect headers and status codes of an existing public api endpoint. Check that it functions as expected and meets requirements.",
+      "topic_id": "1cc52c70-d88d-5239-8c62-bc2b44c4a769",
+      "roadmap_id": "9502cd4e-e337-53f0-8fc3-60cdd86658d9"
+    },
+    "source_scope": "Asgard-authored curriculum and practice examples",
+    "limitation": "Learning activities describe practice. Personal experience comes from your own skill reports.",
+    "skills": [
+      {
+        "id": "eff9dc17-c224-52b2-90bc-6ee44164a506",
+        "label": "Client-server architecture and HTTP",
+        "career_id": "cced74bd-db5a-51e2-9306-1209dd41dec7",
+        "question": "Client-server architecture and HTTP",
+        "example": "Use curl or Postman to inspect headers and status codes of an existing public API endpoint.",
+        "why_it_matters": "Learn how web clients communicate with backend servers over HTTP using request methods, status codes, and headers.",
+        "group": "Backend architecture and HTTP foundations",
+        "topic_id": "1cc52c70-d88d-5239-8c62-bc2b44c4a769",
+        "roadmap_id": "9502cd4e-e337-53f0-8fc3-60cdd86658d9",
+        "topic_title": "Client-server architecture and HTTP",
+        "mappings": [
+          {
+            "topic_id": "1cc52c70-d88d-5239-8c62-bc2b44c4a769",
+            "roadmap_id": "9502cd4e-e337-53f0-8fc3-60cdd86658d9",
+            "topic_title": "Client-server architecture and HTTP",
+            "rationale": "Use curl or Postman to inspect headers and status codes of an existing public API endpoint."
+          }
+        ]
+      },
+      {
+        "id": "e939b433-6ec8-52c7-8f25-bd4a4bbe3325",
+        "label": "RESTful API design and status codes",
+        "career_id": "cced74bd-db5a-51e2-9306-1209dd41dec7",
+        "question": "RESTful API design and status codes",
+        "example": "Draft an API specification for a library catalog detailing endpoints, methods, and response schemas.",
+        "why_it_matters": "Understand how to design consistent, resource-oriented RESTful endpoints with appropriate status codes and payload structures.",
+        "group": "Backend architecture and HTTP foundations",
+        "topic_id": "54ab5ed3-377c-5dec-b98e-69b357560e11",
+        "roadmap_id": "9502cd4e-e337-53f0-8fc3-60cdd86658d9",
+        "topic_title": "RESTful API design principles",
+        "mappings": [
+          {
+            "topic_id": "54ab5ed3-377c-5dec-b98e-69b357560e11",
+            "roadmap_id": "9502cd4e-e337-53f0-8fc3-60cdd86658d9",
+            "topic_title": "RESTful API design principles",
+            "rationale": "Draft an API specification for a library catalog detailing endpoints, methods, and response schemas."
+          }
+        ]
+      },
+      {
+        "id": "9d0e8924-204b-53de-963f-7313e254ca92",
+        "label": "Asynchronous programming and event loops",
+        "career_id": "cced74bd-db5a-51e2-9306-1209dd41dec7",
+        "question": "Asynchronous programming and event loops",
+        "example": "Write an asynchronous script that fetches data concurrently from multiple endpoints using Promise.all or asyncio.gather.",
+        "why_it_matters": "Master non-blocking I/O, asynchronous execution, promises/async-await patterns, and concurrent request handling.",
+        "group": "Server runtimes and API development",
+        "topic_id": "430a5f36-9762-59e6-9e23-6ceeea3c5e36",
+        "roadmap_id": "9502cd4e-e337-53f0-8fc3-60cdd86658d9",
+        "topic_title": "Asynchronous programming and event loops",
+        "mappings": [
+          {
+            "topic_id": "430a5f36-9762-59e6-9e23-6ceeea3c5e36",
+            "roadmap_id": "9502cd4e-e337-53f0-8fc3-60cdd86658d9",
+            "topic_title": "Asynchronous programming and event loops",
+            "rationale": "Write an asynchronous script that fetches data concurrently from multiple endpoints using Promise.all or asyncio.gather."
+          }
+        ]
+      },
+      {
+        "id": "ea75af75-c382-5f35-93d6-115c159a8619",
+        "label": "Relational database schemas and SQL queries",
+        "career_id": "cced74bd-db5a-51e2-9306-1209dd41dec7",
+        "question": "Relational database schemas and SQL queries",
+        "example": "Write a SQL schema file creating users, posts, and comments tables with appropriate relationships and constraints.",
+        "why_it_matters": "Design normalized tables with primary keys, foreign keys, unique constraints, and referential integrity rules.",
+        "group": "Relational databases and data modeling",
+        "topic_id": "87d34a95-9606-5eb7-b0a3-8a8c345e89c0",
+        "roadmap_id": "9502cd4e-e337-53f0-8fc3-60cdd86658d9",
+        "topic_title": "Relational schemas and constraints",
+        "mappings": [
+          {
+            "topic_id": "87d34a95-9606-5eb7-b0a3-8a8c345e89c0",
+            "roadmap_id": "9502cd4e-e337-53f0-8fc3-60cdd86658d9",
+            "topic_title": "Relational schemas and constraints",
+            "rationale": "Write a SQL schema file creating users, posts, and comments tables with appropriate relationships and constraints."
+          },
+          {
+            "topic_id": "27cc4ce0-0ef1-5114-af83-19189af76de5",
+            "roadmap_id": "9502cd4e-e337-53f0-8fc3-60cdd86658d9",
+            "topic_title": "SQL queries and aggregations",
+            "rationale": "Write complex SQL queries that join three related tables and compute summary totals grouped by category."
+          }
+        ]
+      },
+      {
+        "id": "459ba8a4-5b3b-532d-b96c-16f002f69d4d",
+        "label": "Database migrations and transactions",
+        "career_id": "cced74bd-db5a-51e2-9306-1209dd41dec7",
+        "question": "Database migrations and transactions",
+        "example": "Write a database migration that adds a new table and execute a simulated bank transfer within a SQL transaction.",
+        "why_it_matters": "Version database changes over time with reversible migrations and wrap multi-step mutations in ACID transactions.",
+        "group": "Relational databases and data modeling",
+        "topic_id": "2b6aabd5-ff3d-54e4-9bfe-f8d5d10f1639",
+        "roadmap_id": "9502cd4e-e337-53f0-8fc3-60cdd86658d9",
+        "topic_title": "Database migrations and transactions",
+        "mappings": [
+          {
+            "topic_id": "2b6aabd5-ff3d-54e4-9bfe-f8d5d10f1639",
+            "roadmap_id": "9502cd4e-e337-53f0-8fc3-60cdd86658d9",
+            "topic_title": "Database migrations and transactions",
+            "rationale": "Write a database migration that adds a new table and execute a simulated bank transfer within a SQL transaction."
+          }
+        ]
+      },
+      {
+        "id": "6d41d8d0-1214-564e-add0-085d369b8814",
+        "label": "User authentication and password hashing",
+        "career_id": "cced74bd-db5a-51e2-9306-1209dd41dec7",
+        "question": "User authentication and password hashing",
+        "example": "Implement a user registration and login handler that hashes passwords with bcrypt before database insertion.",
+        "why_it_matters": "Securely register and authenticate users by hashing passwords with adaptive algorithms like Argon2 or bcrypt.",
+        "group": "Authentication and application security",
+        "topic_id": "a69c7b51-f60f-5282-9a96-0ccc76b6bebc",
+        "roadmap_id": "9502cd4e-e337-53f0-8fc3-60cdd86658d9",
+        "topic_title": "User authentication and password hashing",
+        "mappings": [
+          {
+            "topic_id": "a69c7b51-f60f-5282-9a96-0ccc76b6bebc",
+            "roadmap_id": "9502cd4e-e337-53f0-8fc3-60cdd86658d9",
+            "topic_title": "User authentication and password hashing",
+            "rationale": "Implement a user registration and login handler that hashes passwords with bcrypt before database insertion."
+          }
+        ]
+      },
+      {
+        "id": "d2a2c701-f9e3-546f-91f6-b8a39bb70a67",
+        "label": "JWT and session-based authorization",
+        "career_id": "cced74bd-db5a-51e2-9306-1209dd41dec7",
+        "question": "JWT and session-based authorization",
+        "example": "Build an authentication middleware that validates Bearer JWT tokens in the Authorization header and attaches the user payload.",
+        "why_it_matters": "Issue, verify, and expire JSON Web Tokens (JWT) or server-stored session cookies for authenticated requests.",
+        "group": "Authentication and application security",
+        "topic_id": "5da6b94f-7cd9-5df6-bcc7-a10f8657da41",
+        "roadmap_id": "9502cd4e-e337-53f0-8fc3-60cdd86658d9",
+        "topic_title": "JWT and session tokens",
+        "mappings": [
+          {
+            "topic_id": "5da6b94f-7cd9-5df6-bcc7-a10f8657da41",
+            "roadmap_id": "9502cd4e-e337-53f0-8fc3-60cdd86658d9",
+            "topic_title": "JWT and session tokens",
+            "rationale": "Build an authentication middleware that validates Bearer JWT tokens in the Authorization header and attaches the user payload."
+          },
+          {
+            "topic_id": "8d18161c-a05f-55e1-8cdd-a241bf9f3fe0",
+            "roadmap_id": "9502cd4e-e337-53f0-8fc3-60cdd86658d9",
+            "topic_title": "Role-based access control (RBAC)",
+            "rationale": "Create an admin-only endpoint guarded by a role verification middleware that blocks non-admin users."
+          }
+        ]
+      },
+      {
+        "id": "37698ea2-3a55-5616-944c-497175e4695c",
+        "label": "In-memory caching with Redis",
+        "career_id": "cced74bd-db5a-51e2-9306-1209dd41dec7",
+        "question": "In-memory caching with Redis",
+        "example": "Implement a caching layer around an expensive API endpoint with a 60-second TTL.",
+        "why_it_matters": "Reduce database load and latency by caching expensive query results in an in-memory key-value store with time-to-live (TTL).",
+        "group": "Caching, background tasks and integrations",
+        "topic_id": "60de5305-321f-570f-8f13-40023ec95c60",
+        "roadmap_id": "9502cd4e-e337-53f0-8fc3-60cdd86658d9",
+        "topic_title": "In-memory caching with Redis",
+        "mappings": [
+          {
+            "topic_id": "60de5305-321f-570f-8f13-40023ec95c60",
+            "roadmap_id": "9502cd4e-e337-53f0-8fc3-60cdd86658d9",
+            "topic_title": "In-memory caching with Redis",
+            "rationale": "Implement a caching layer around an expensive API endpoint with a 60-second TTL."
+          }
+        ]
+      },
+      {
+        "id": "3081526e-42ce-503e-881f-42c388d77b7f",
+        "label": "API request validation and error handling",
+        "career_id": "cced74bd-db5a-51e2-9306-1209dd41dec7",
+        "question": "API request validation and error handling",
+        "example": "Create an API endpoint that validates a user registration request body and returns detailed 400 error messages for invalid fields.",
+        "why_it_matters": "Validate incoming JSON payloads against strict schemas, sanitize inputs, and serialize clean outgoing responses.",
+        "group": "Server runtimes and API development",
+        "topic_id": "69e2d1fe-3f6b-5ee1-9d0e-9cf4247fc2db",
+        "roadmap_id": "9502cd4e-e337-53f0-8fc3-60cdd86658d9",
+        "topic_title": "Request validation and data serialization",
+        "mappings": [
+          {
+            "topic_id": "69e2d1fe-3f6b-5ee1-9d0e-9cf4247fc2db",
+            "roadmap_id": "9502cd4e-e337-53f0-8fc3-60cdd86658d9",
+            "topic_title": "Request validation and data serialization",
+            "rationale": "Create an API endpoint that validates a user registration request body and returns detailed 400 error messages for invalid fields."
+          },
+          {
+            "topic_id": "1ffec455-bd38-51a8-b91e-da2096456566",
+            "roadmap_id": "9502cd4e-e337-53f0-8fc3-60cdd86658d9",
+            "topic_title": "Error handling and structured logging",
+            "rationale": "Add a global error middleware that intercepts unhandled exceptions, hides internal stack traces from clients, and outputs JSON logs."
+          }
+        ]
+      },
+      {
+        "id": "f2c5b2f4-781d-5986-ac46-66649cfdd512",
+        "label": "Containerization with Docker",
+        "career_id": "cced74bd-db5a-51e2-9306-1209dd41dec7",
+        "question": "Containerization with Docker",
+        "example": "Write a multi-stage Dockerfile that builds and runs your backend application in a slim Linux container.",
+        "why_it_matters": "Package backend code, runtime dependencies, and configuration into consistent, portable Docker container images.",
+        "group": "Testing, containerization and deployment",
+        "topic_id": "62b9f9d8-1cde-5d69-844c-f535c1245098",
+        "roadmap_id": "9502cd4e-e337-53f0-8fc3-60cdd86658d9",
+        "topic_title": "Containerizing backend services with Docker",
+        "mappings": [
+          {
+            "topic_id": "62b9f9d8-1cde-5d69-844c-f535c1245098",
+            "roadmap_id": "9502cd4e-e337-53f0-8fc3-60cdd86658d9",
+            "topic_title": "Containerizing backend services with Docker",
+            "rationale": "Write a multi-stage Dockerfile that builds and runs your backend application in a slim Linux container."
+          }
+        ]
+      }
+    ],
+    "source_file": "backend-developer.json",
+    "source_sha256": "c0fa4afa01d8f7121cbbeab3c3e630a41bf68eb53366f8929fb0913b7c6413d0"
+  },
+  {
+    "career_id": "12a912b3-a9f2-5acc-b397-814a61a5ccfd",
+    "version": "guide-v4-expansion-2026-11-08",
+    "purpose": "Transform raw business data into actionable executive insights, dimensional data models, and interactive KPI dashboards.",
+    "activities": [
+      {
+        "action": "Map out the decision-making process of a business stakeholder and identify the key reports they rely on.",
+        "result": "Business intelligence role and decision support"
+      },
+      {
+        "action": "Write a query that joins three tables, cleans inconsistent capitalization, and replaces null values with defaults.",
+        "result": "Multi-table joins and data cleaning in SQL"
+      },
+      {
+        "action": "Write a calculated measure that computes profit margin percentage safely handling zero-revenue divisions.",
+        "result": "Calculated columns and custom measures"
+      }
+    ],
+    "work_on": "Gather business requirements and translate strategic goals into measurable KPI metrics",
+    "produce": "An enterprise KPI dashboard suite featuring dimensional data modeling, complex SQL/DAX metrics (YoY growth, customer churn), interactive cross-filtering, row-level security, and executive storytelling slides.",
+    "check": "You can show and explain the outcome of: publish a completed bi report workspace with configured roles, documentation, and a schedule of automated refreshes. Check that it functions as expected and meets requirements.",
+    "learning_groups": [
+      {
+        "title": "Business intelligence concepts and requirements",
+        "explanation": "Learn how business intelligence bridges raw operational data and executive decision-making through timely reporting.",
+        "topic_id": "a8b5fbf9-1ba2-510c-b44c-b8319fe74329",
+        "roadmap_id": "5b004de0-f2d8-5f68-9782-806a837dfd96",
+        "topic_title": "Business intelligence role and decision support"
+      },
+      {
+        "title": "Advanced SQL for analytical queries",
+        "explanation": "Combine data across multiple tables using INNER, LEFT, FULL OUTER joins, and handle NULL values with COALESCE.",
+        "topic_id": "26cbc9cc-edef-5fd6-8b9f-ea553179e8b9",
+        "roadmap_id": "5b004de0-f2d8-5f68-9782-806a837dfd96",
+        "topic_title": "Multi-table joins and data cleaning in SQL"
+      },
+      {
+        "title": "Calculations, expressions and row security",
+        "explanation": "Differentiate between row-by-row calculated columns and dynamic, aggregatable measures evaluated in filter context.",
+        "topic_id": "f584822b-38cf-5e7d-a0c5-5a496ff4b3cf",
+        "roadmap_id": "5b004de0-f2d8-5f68-9782-806a837dfd96",
+        "topic_title": "Calculated columns and custom measures"
+      }
+    ],
+    "starter": {
+      "instructions": "Map out the decision-making process of a business stakeholder and identify the key reports they rely on.",
+      "title": "Business intelligence role and decision support",
+      "expected_result": "You can show and explain the outcome of: map out the decision-making process of a business stakeholder and identify the key reports they rely on. Check that it functions as expected and meets requirements.",
+      "topic_id": "a8b5fbf9-1ba2-510c-b44c-b8319fe74329",
+      "roadmap_id": "5b004de0-f2d8-5f68-9782-806a837dfd96"
+    },
+    "source_scope": "Asgard-authored curriculum and practice examples",
+    "limitation": "Learning activities describe practice. Personal experience comes from your own skill reports.",
+    "skills": [
+      {
+        "id": "a5064033-c98e-59d5-879c-431b3c2eb0dc",
+        "label": "KPI definition and metric framework design",
+        "career_id": "12a912b3-a9f2-5acc-b397-814a61a5ccfd",
+        "question": "KPI definition and metric framework design",
+        "example": "Draft a KPI dictionary defining 5 key metrics for an e-commerce business including formula, data sources, and targets.",
+        "why_it_matters": "Design clear, actionable Key Performance Indicators (KPIs) like customer churn, lifetime value (LTV), and revenue growth.",
+        "group": "Business intelligence concepts and requirements",
+        "topic_id": "d0de0c1b-aa89-5f49-89da-0139290f6f59",
+        "roadmap_id": "5b004de0-f2d8-5f68-9782-806a837dfd96",
+        "topic_title": "Defining business KPIs and metric frameworks",
+        "mappings": [
+          {
+            "topic_id": "d0de0c1b-aa89-5f49-89da-0139290f6f59",
+            "roadmap_id": "5b004de0-f2d8-5f68-9782-806a837dfd96",
+            "topic_title": "Defining business KPIs and metric frameworks",
+            "rationale": "Draft a KPI dictionary defining 5 key metrics for an e-commerce business including formula, data sources, and targets."
+          }
+        ]
+      },
+      {
+        "id": "61a39ffd-7dc9-5890-ad25-f23257406764",
+        "label": "Dimensional data modeling (star and snowflake schemas)",
+        "career_id": "12a912b3-a9f2-5acc-b397-814a61a5ccfd",
+        "question": "Dimensional data modeling (star and snowflake schemas)",
+        "example": "Design a star schema diagram for a retail business with one fact table and four surrounding dimension tables.",
+        "why_it_matters": "Design dimensional schemas that simplify reporting queries and maximize BI engine performance.",
+        "group": "Data modeling and analytical schemas",
+        "topic_id": "389c6df5-9184-518f-8b8f-43026b213c43",
+        "roadmap_id": "5b004de0-f2d8-5f68-9782-806a837dfd96",
+        "topic_title": "Dimensional modeling: star and snowflake schemas",
+        "mappings": [
+          {
+            "topic_id": "389c6df5-9184-518f-8b8f-43026b213c43",
+            "roadmap_id": "5b004de0-f2d8-5f68-9782-806a837dfd96",
+            "topic_title": "Dimensional modeling: star and snowflake schemas",
+            "rationale": "Design a star schema diagram for a retail business with one fact table and four surrounding dimension tables."
+          }
+        ]
+      },
+      {
+        "id": "8af48063-5448-5e1e-a84a-1677d21379f4",
+        "label": "Fact vs dimension tables and surrogate keys",
+        "career_id": "12a912b3-a9f2-5acc-b397-814a61a5ccfd",
+        "question": "Fact vs dimension tables and surrogate keys",
+        "example": "Define schemas for a sales_fact table and customer_dim table, identifying business keys, surrogate keys, and measures.",
+        "why_it_matters": "Differentiate additive, semi-additive, and non-additive numerical facts from descriptive categorical dimensions.",
+        "group": "Data modeling and analytical schemas",
+        "topic_id": "92c14979-b863-5744-9391-c06313e9bb41",
+        "roadmap_id": "5b004de0-f2d8-5f68-9782-806a837dfd96",
+        "topic_title": "Fact tables and dimension tables",
+        "mappings": [
+          {
+            "topic_id": "92c14979-b863-5744-9391-c06313e9bb41",
+            "roadmap_id": "5b004de0-f2d8-5f68-9782-806a837dfd96",
+            "topic_title": "Fact tables and dimension tables",
+            "rationale": "Define schemas for a sales_fact table and customer_dim table, identifying business keys, surrogate keys, and measures."
+          }
+        ]
+      },
+      {
+        "id": "7c217ab2-ceb3-5206-94a7-1e43ff3270b6",
+        "label": "Advanced SQL queries and window functions",
+        "career_id": "12a912b3-a9f2-5acc-b397-814a61a5ccfd",
+        "question": "Advanced SQL queries and window functions",
+        "example": "Write a query using LAG() to calculate the month-over-month revenue percentage change for each product category.",
+        "why_it_matters": "Perform advanced calculations across row partitions without collapsing individual rows using SQL window functions.",
+        "group": "Advanced SQL for analytical queries",
+        "topic_id": "e2fea5ab-c65c-584f-b306-724027894797",
+        "roadmap_id": "5b004de0-f2d8-5f68-9782-806a837dfd96",
+        "topic_title": "Window functions: ROW_NUMBER, RANK, LEAD, LAG",
+        "mappings": [
+          {
+            "topic_id": "e2fea5ab-c65c-584f-b306-724027894797",
+            "roadmap_id": "5b004de0-f2d8-5f68-9782-806a837dfd96",
+            "topic_title": "Window functions: ROW_NUMBER, RANK, LEAD, LAG",
+            "rationale": "Write a query using LAG() to calculate the month-over-month revenue percentage change for each product category."
+          }
+        ]
+      },
+      {
+        "id": "eed44dfa-93d4-541b-8bca-f6c6a2614bc9",
+        "label": "Data warehouse architecture fundamentals",
+        "career_id": "12a912b3-a9f2-5acc-b397-814a61a5ccfd",
+        "question": "Data warehouse architecture fundamentals",
+        "example": "Compare the execution time of an analytical aggregation query on a row-oriented table vs a columnar table.",
+        "why_it_matters": "Understand why operational transactional systems (OLTP) differ fundamentally from analytical reporting data warehouses (OLAP).",
+        "group": "Data modeling and analytical schemas",
+        "topic_id": "3c93c642-336b-5133-8549-9ad35261467a",
+        "roadmap_id": "5b004de0-f2d8-5f68-9782-806a837dfd96",
+        "topic_title": "Relational databases vs analytical data warehouses",
+        "mappings": [
+          {
+            "topic_id": "3c93c642-336b-5133-8549-9ad35261467a",
+            "roadmap_id": "5b004de0-f2d8-5f68-9782-806a837dfd96",
+            "topic_title": "Relational databases vs analytical data warehouses",
+            "rationale": "Compare the execution time of an analytical aggregation query on a row-oriented table vs a columnar table."
+          }
+        ]
+      },
+      {
+        "id": "9c3d56d7-9ff0-59f8-a378-d079c5a22d2d",
+        "label": "Data visualization principles and chart selection",
+        "career_id": "12a912b3-a9f2-5acc-b397-814a61a5ccfd",
+        "question": "Data visualization principles and chart selection",
+        "example": "Redesign a cluttered 3D chart into a clean, minimal horizontal bar chart with direct data labels.",
+        "why_it_matters": "Apply pre-attentive visual attributes (position, length, color) to select the right chart type for every data story.",
+        "group": "BI tools, data extraction and visual design",
+        "topic_id": "f2911a2d-2ee4-5d50-a8da-a46d9654eb12",
+        "roadmap_id": "5b004de0-f2d8-5f68-9782-806a837dfd96",
+        "topic_title": "Principles of visual perception and chart selection",
+        "mappings": [
+          {
+            "topic_id": "f2911a2d-2ee4-5d50-a8da-a46d9654eb12",
+            "roadmap_id": "5b004de0-f2d8-5f68-9782-806a837dfd96",
+            "topic_title": "Principles of visual perception and chart selection",
+            "rationale": "Redesign a cluttered 3D chart into a clean, minimal horizontal bar chart with direct data labels."
+          }
+        ]
+      },
+      {
+        "id": "02a65ee0-102e-5c51-a58b-2e6f16b668f3",
+        "label": "Interactive dashboard design (Power BI / Tableau)",
+        "career_id": "12a912b3-a9f2-5acc-b397-814a61a5ccfd",
+        "question": "Interactive dashboard design (Power BI / Tableau)",
+        "example": "Create an interactive dashboard with 4 KPI cards at the top, a trend line chart, and an interactive category slicer.",
+        "why_it_matters": "Build intuitive dashboard layouts with cross-filtering, slicers, drill-through paths, and clear visual hierarchy.",
+        "group": "BI tools, data extraction and visual design",
+        "topic_id": "ba6bd1de-c487-529c-b27e-74d67822b930",
+        "roadmap_id": "5b004de0-f2d8-5f68-9782-806a837dfd96",
+        "topic_title": "Designing interactive dashboards and filters",
+        "mappings": [
+          {
+            "topic_id": "ba6bd1de-c487-529c-b27e-74d67822b930",
+            "roadmap_id": "5b004de0-f2d8-5f68-9782-806a837dfd96",
+            "topic_title": "Designing interactive dashboards and filters",
+            "rationale": "Create an interactive dashboard with 4 KPI cards at the top, a trend line chart, and an interactive category slicer."
+          }
+        ]
+      },
+      {
+        "id": "8d35fc82-3a1c-51bc-8077-3ccf6e916b6d",
+        "label": "Calculated measures and time-intelligence expressions",
+        "career_id": "12a912b3-a9f2-5acc-b397-814a61a5ccfd",
+        "question": "Calculated measures and time-intelligence expressions",
+        "example": "Write a calculated measure that computes profit margin percentage safely handling zero-revenue divisions.",
+        "why_it_matters": "Differentiate between row-by-row calculated columns and dynamic, aggregatable measures evaluated in filter context.",
+        "group": "Calculations, expressions and row security",
+        "topic_id": "f584822b-38cf-5e7d-a0c5-5a496ff4b3cf",
+        "roadmap_id": "5b004de0-f2d8-5f68-9782-806a837dfd96",
+        "topic_title": "Calculated columns and custom measures",
+        "mappings": [
+          {
+            "topic_id": "f584822b-38cf-5e7d-a0c5-5a496ff4b3cf",
+            "roadmap_id": "5b004de0-f2d8-5f68-9782-806a837dfd96",
+            "topic_title": "Calculated columns and custom measures",
+            "rationale": "Write a calculated measure that computes profit margin percentage safely handling zero-revenue divisions."
+          },
+          {
+            "topic_id": "d49ec7e3-18ae-534e-a461-f03f9e1955d2",
+            "roadmap_id": "5b004de0-f2d8-5f68-9782-806a837dfd96",
+            "topic_title": "Time intelligence expressions and YoY growth",
+            "rationale": "Create a Year-over-Year (YoY) Sales Growth measure and plot it on a bar chart alongside current year sales."
+          }
+        ]
+      },
+      {
+        "id": "8ee96aa1-dd26-5110-851e-e29522bc0d77",
+        "label": "Row-level security (RLS) and access governance",
+        "career_id": "12a912b3-a9f2-5acc-b397-814a61a5ccfd",
+        "question": "Row-level security (RLS) and access governance",
+        "example": "Configure a dynamic row-level security role that filters customer sales records to match the viewer's regional assignment.",
+        "why_it_matters": "Restrict data access for given users so regional managers only see data pertaining to their assigned territory.",
+        "group": "Calculations, expressions and row security",
+        "topic_id": "42a11ca5-b2bc-5c52-a596-6d82859eb2a7",
+        "roadmap_id": "5b004de0-f2d8-5f68-9782-806a837dfd96",
+        "topic_title": "Row-level security (RLS) implementation",
+        "mappings": [
+          {
+            "topic_id": "42a11ca5-b2bc-5c52-a596-6d82859eb2a7",
+            "roadmap_id": "5b004de0-f2d8-5f68-9782-806a837dfd96",
+            "topic_title": "Row-level security (RLS) implementation",
+            "rationale": "Configure a dynamic row-level security role that filters customer sales records to match the viewer's regional assignment."
+          }
+        ]
+      },
+      {
+        "id": "1c5cccce-5f46-5782-8e12-3589e54bbaf9",
+        "label": "Executive data storytelling and automated alerts",
+        "career_id": "12a912b3-a9f2-5acc-b397-814a61a5ccfd",
+        "question": "Executive data storytelling and automated alerts",
+        "example": "Set an alert on a KPI card that sends a notification if daily revenue falls below target.",
+        "why_it_matters": "Set threshold-based alerts that notify teams via email or Slack when a crucial KPI exceeds or drops below targets.",
+        "group": "Executive reporting, alerting and business impact",
+        "topic_id": "b5b51f69-256a-52de-af8a-094825d547c3",
+        "roadmap_id": "5b004de0-f2d8-5f68-9782-806a837dfd96",
+        "topic_title": "Automated data alerts and KPI anomaly detection",
+        "mappings": [
+          {
+            "topic_id": "b5b51f69-256a-52de-af8a-094825d547c3",
+            "roadmap_id": "5b004de0-f2d8-5f68-9782-806a837dfd96",
+            "topic_title": "Automated data alerts and KPI anomaly detection",
+            "rationale": "Set an alert on a KPI card that sends a notification if daily revenue falls below target."
+          },
+          {
+            "topic_id": "e8b67ca7-8735-547d-b081-c33dc939df4a",
+            "roadmap_id": "5b004de0-f2d8-5f68-9782-806a837dfd96",
+            "topic_title": "Executive summary presentation and storytelling",
+            "rationale": "Write an executive slide summary interpreting an unexpected drop in product margins and recommending 2 business actions."
+          }
+        ]
+      }
+    ],
+    "source_file": "bi-analyst.json",
+    "source_sha256": "0e9e1344b697109fddc40c634b884c0aea1aaefe66207032d0ba5e160c66689e"
+  },
+  {
+    "career_id": "d5da6f7f-acfb-5fce-a703-3ee858526264",
+    "version": "guide-v4-expansion-2026-11-08",
+    "purpose": "Design, provision, and maintain scalable, reliable cloud infrastructure and services across virtual networks, compute, and storage.",
+    "activities": [
+      {
+        "action": "Categorize 5 common enterprise workloads into their optimal cloud service model (IaaS, PaaS, or SaaS).",
+        "result": "Cloud service models: IaaS, PaaS, SaaS"
+      },
+      {
+        "action": "Design a VPC with a 10.0.0.0/16 CIDR block and divide it into two public and two private /24 subnets across two AZs.",
+        "result": "Virtual Private Clouds (VPC) and CIDR blocks"
+      },
+      {
+        "action": "Write a simple Terraform file declaring a local file or cloud resource and execute terraform plan to inspect changes.",
+        "result": "IaC fundamentals and declarative configuration"
+      }
+    ],
+    "work_on": "Architect and provision resilient cloud infrastructure using Infrastructure as Code (Terraform)",
+    "produce": "A production-grade multi-tier cloud infrastructure provisioned entirely with Terraform, featuring public/private VPC subnets, an auto-scaling compute cluster behind an Application Load Balancer, a managed database, and automated CloudWatch alarms.",
+    "check": "You can show and explain the outcome of: provision and verify a complete 3-tier web architecture in code, proving that public internet traffic cannot directly reach the database. Check that it functions as expected and meets requirements.",
+    "learning_groups": [
+      {
+        "title": "Cloud computing concepts and fundamentals",
+        "explanation": "Learn the trade-offs between Infrastructure as a Service, Platform as a Service, and Software as a Service.",
+        "topic_id": "45457766-a31b-56fd-9d1d-d38ef6e63c2a",
+        "roadmap_id": "edfa68df-4a87-52a5-afe6-7cf2537d616b",
+        "topic_title": "Cloud service models: IaaS, PaaS, SaaS"
+      },
+      {
+        "title": "Cloud networking and connectivity",
+        "explanation": "Create isolated virtual network environments, allocate private IPv4 CIDR blocks, and subdivide networks into subnets.",
+        "topic_id": "715f80aa-5c43-5cc0-876d-cf76bb693042",
+        "roadmap_id": "edfa68df-4a87-52a5-afe6-7cf2537d616b",
+        "topic_title": "Virtual Private Clouds (VPC) and CIDR blocks"
+      },
+      {
+        "title": "Infrastructure as Code (IaC) and automation",
+        "explanation": "Understand why declarative Infrastructure as Code eliminates manual configuration drift and provides versioned infrastructure history.",
+        "topic_id": "064095de-7d43-5a97-a8d2-ed5ac40eb954",
+        "roadmap_id": "edfa68df-4a87-52a5-afe6-7cf2537d616b",
+        "topic_title": "IaC fundamentals and declarative configuration"
+      }
+    ],
+    "starter": {
+      "instructions": "Categorize 5 common enterprise workloads into their optimal cloud service model (IaaS, PaaS, or SaaS).",
+      "title": "Cloud service models: IaaS, PaaS, SaaS",
+      "expected_result": "You can show and explain the outcome of: categorize 5 common enterprise workloads into their optimal cloud service model (iaas, paas, or saas). Check that it functions as expected and meets requirements.",
+      "topic_id": "45457766-a31b-56fd-9d1d-d38ef6e63c2a",
+      "roadmap_id": "edfa68df-4a87-52a5-afe6-7cf2537d616b"
+    },
+    "source_scope": "Asgard-authored curriculum and practice examples",
+    "limitation": "Learning activities describe practice. Personal experience comes from your own skill reports.",
+    "skills": [
+      {
+        "id": "7b13ed3d-37f7-5b87-902f-2ee593b27796",
+        "label": "Cloud service models (IaaS, PaaS, Serverless)",
+        "career_id": "d5da6f7f-acfb-5fce-a703-3ee858526264",
+        "question": "Cloud service models (IaaS, PaaS, Serverless)",
+        "example": "Categorize 5 common enterprise workloads into their optimal cloud service model (IaaS, PaaS, or SaaS).",
+        "why_it_matters": "Learn the trade-offs between Infrastructure as a Service, Platform as a Service, and Software as a Service.",
+        "group": "Cloud computing concepts and fundamentals",
+        "topic_id": "45457766-a31b-56fd-9d1d-d38ef6e63c2a",
+        "roadmap_id": "edfa68df-4a87-52a5-afe6-7cf2537d616b",
+        "topic_title": "Cloud service models: IaaS, PaaS, SaaS",
+        "mappings": [
+          {
+            "topic_id": "45457766-a31b-56fd-9d1d-d38ef6e63c2a",
+            "roadmap_id": "edfa68df-4a87-52a5-afe6-7cf2537d616b",
+            "topic_title": "Cloud service models: IaaS, PaaS, SaaS",
+            "rationale": "Categorize 5 common enterprise workloads into their optimal cloud service model (IaaS, PaaS, or SaaS)."
+          },
+          {
+            "topic_id": "35830b56-70d1-5721-bb31-e15f3b9d3a78",
+            "roadmap_id": "edfa68df-4a87-52a5-afe6-7cf2537d616b",
+            "topic_title": "Serverless functions and event triggers",
+            "rationale": "Deploy a serverless function that triggers when an image is uploaded to a storage bucket and creates a thumbnail."
+          }
+        ]
+      },
+      {
+        "id": "c389cd0c-bf49-524e-a95f-68c30e99853e",
+        "label": "Cloud global infrastructure and regions",
+        "career_id": "d5da6f7f-acfb-5fce-a703-3ee858526264",
+        "question": "Cloud global infrastructure and regions",
+        "example": "Draft a multi-AZ deployment plan for a web app that remains available if an entire availability zone experiences a blackout.",
+        "why_it_matters": "Understand how cloud providers structure regions, multiple independent availability zones (AZs), and edge locations.",
+        "group": "Cloud computing concepts and fundamentals",
+        "topic_id": "5653240d-3a05-57eb-b1d4-5248b4366f7f",
+        "roadmap_id": "edfa68df-4a87-52a5-afe6-7cf2537d616b",
+        "topic_title": "Global infrastructure: regions and availability zones",
+        "mappings": [
+          {
+            "topic_id": "5653240d-3a05-57eb-b1d4-5248b4366f7f",
+            "roadmap_id": "edfa68df-4a87-52a5-afe6-7cf2537d616b",
+            "topic_title": "Global infrastructure: regions and availability zones",
+            "rationale": "Draft a multi-AZ deployment plan for a web app that remains available if an entire availability zone experiences a blackout."
+          }
+        ]
+      },
+      {
+        "id": "a9d74b7d-9788-5259-b3fc-a107a74f5a95",
+        "label": "Virtual Private Clouds (VPC) and CIDR subnets",
+        "career_id": "d5da6f7f-acfb-5fce-a703-3ee858526264",
+        "question": "Virtual Private Clouds (VPC) and CIDR subnets",
+        "example": "Design a VPC with a 10.0.0.0/16 CIDR block and divide it into two public and two private /24 subnets across two AZs.",
+        "why_it_matters": "Create isolated virtual network environments, allocate private IPv4 CIDR blocks, and subdivide networks into subnets.",
+        "group": "Cloud networking and connectivity",
+        "topic_id": "715f80aa-5c43-5cc0-876d-cf76bb693042",
+        "roadmap_id": "edfa68df-4a87-52a5-afe6-7cf2537d616b",
+        "topic_title": "Virtual Private Clouds (VPC) and CIDR blocks",
+        "mappings": [
+          {
+            "topic_id": "715f80aa-5c43-5cc0-876d-cf76bb693042",
+            "roadmap_id": "edfa68df-4a87-52a5-afe6-7cf2537d616b",
+            "topic_title": "Virtual Private Clouds (VPC) and CIDR blocks",
+            "rationale": "Design a VPC with a 10.0.0.0/16 CIDR block and divide it into two public and two private /24 subnets across two AZs."
+          },
+          {
+            "topic_id": "b9095e5f-5ff4-526f-b579-842f2772ade3",
+            "roadmap_id": "edfa68df-4a87-52a5-afe6-7cf2537d616b",
+            "topic_title": "Public and private subnets, internet and NAT gateways",
+            "rationale": "Configure a NAT gateway in a public subnet and verify that a database in a private subnet can fetch outbound updates."
+          }
+        ]
+      },
+      {
+        "id": "061e91e6-3caa-5c5e-8a31-a04bd5f9431f",
+        "label": "Compute instances, auto-scaling, and load balancing",
+        "career_id": "d5da6f7f-acfb-5fce-a703-3ee858526264",
+        "question": "Compute instances, auto-scaling, and load balancing",
+        "example": "Launch a virtual machine instance with a user data script that installs Nginx, and access its default web page via public IP.",
+        "why_it_matters": "Launch, configure, and connect to cloud virtual machine instances (e.g., EC2, Compute Engine) using SSH and cloud-init.",
+        "group": "Cloud compute and scaling",
+        "topic_id": "155feff3-826b-52d7-bb56-3d8a8e5f8e67",
+        "roadmap_id": "edfa68df-4a87-52a5-afe6-7cf2537d616b",
+        "topic_title": "Virtual machine provisioning and lifecycle",
+        "mappings": [
+          {
+            "topic_id": "155feff3-826b-52d7-bb56-3d8a8e5f8e67",
+            "roadmap_id": "edfa68df-4a87-52a5-afe6-7cf2537d616b",
+            "topic_title": "Virtual machine provisioning and lifecycle",
+            "rationale": "Launch a virtual machine instance with a user data script that installs Nginx, and access its default web page via public IP."
+          },
+          {
+            "topic_id": "a626a3b5-4a93-543a-a894-610270c1b9fd",
+            "roadmap_id": "edfa68df-4a87-52a5-afe6-7cf2537d616b",
+            "topic_title": "Auto-scaling groups and launch configurations",
+            "rationale": "Configure an auto-scaling group with min 2 and max 5 instances, and simulate CPU load to verify that a new instance launches."
+          },
+          {
+            "topic_id": "daf43775-d4e7-5ab9-a52d-62049d3e2f4a",
+            "roadmap_id": "edfa68df-4a87-52a5-afe6-7cf2537d616b",
+            "topic_title": "Application load balancers and health checks",
+            "rationale": "Deploy an Application Load Balancer in front of two web instances and verify that shutting down one does not disrupt service."
+          }
+        ]
+      },
+      {
+        "id": "2cb3b709-40c1-569d-bdc7-520b006eaf22",
+        "label": "Cloud storage (S3/Blob) and lifecycle policies",
+        "career_id": "d5da6f7f-acfb-5fce-a703-3ee858526264",
+        "question": "Cloud storage (S3/Blob) and lifecycle policies",
+        "example": "Create an object storage bucket with a lifecycle rule that moves objects to cold archival storage after 90 days.",
+        "why_it_matters": "Store unstructured data (images, backups, logs) in cloud object storage (S3/Cloud Storage) and configure automatic lifecycle transitions.",
+        "group": "Cloud storage, databases and caching",
+        "topic_id": "f581c402-9108-5833-961e-c7f0ffb9e706",
+        "roadmap_id": "edfa68df-4a87-52a5-afe6-7cf2537d616b",
+        "topic_title": "Object storage buckets and lifecycle policies",
+        "mappings": [
+          {
+            "topic_id": "f581c402-9108-5833-961e-c7f0ffb9e706",
+            "roadmap_id": "edfa68df-4a87-52a5-afe6-7cf2537d616b",
+            "topic_title": "Object storage buckets and lifecycle policies",
+            "rationale": "Create an object storage bucket with a lifecycle rule that moves objects to cold archival storage after 90 days."
+          }
+        ]
+      },
+      {
+        "id": "debed57b-2a72-5a19-9868-c1384436ef9e",
+        "label": "Managed relational and NoSQL database services",
+        "career_id": "d5da6f7f-acfb-5fce-a703-3ee858526264",
+        "question": "Managed relational and NoSQL database services",
+        "example": "Provision a managed PostgreSQL database in private subnets and configure an automated daily backup snapshot window.",
+        "why_it_matters": "Deploy managed relational database instances (PostgreSQL / MySQL) with automated patching, multi-AZ failover, and read replicas.",
+        "group": "Cloud storage, databases and caching",
+        "topic_id": "2a7e1414-0da9-5c71-8ecf-4289bff319a0",
+        "roadmap_id": "edfa68df-4a87-52a5-afe6-7cf2537d616b",
+        "topic_title": "Managed relational database provisioning",
+        "mappings": [
+          {
+            "topic_id": "2a7e1414-0da9-5c71-8ecf-4289bff319a0",
+            "roadmap_id": "edfa68df-4a87-52a5-afe6-7cf2537d616b",
+            "topic_title": "Managed relational database provisioning",
+            "rationale": "Provision a managed PostgreSQL database in private subnets and configure an automated daily backup snapshot window."
+          },
+          {
+            "topic_id": "8d6725ce-38c8-5818-8e6b-d006671701df",
+            "roadmap_id": "edfa68df-4a87-52a5-afe6-7cf2537d616b",
+            "topic_title": "Managed NoSQL databases",
+            "rationale": "Create a managed NoSQL table with a composite primary key and insert and query a document record."
+          }
+        ]
+      },
+      {
+        "id": "0254a330-9834-57a1-a1cc-ad2df890c303",
+        "label": "Infrastructure as Code (IaC) with Terraform",
+        "career_id": "d5da6f7f-acfb-5fce-a703-3ee858526264",
+        "question": "Infrastructure as Code (IaC) with Terraform",
+        "example": "Write a simple Terraform file declaring a local file or cloud resource and execute terraform plan to inspect changes.",
+        "why_it_matters": "Understand why declarative Infrastructure as Code eliminates manual configuration drift and provides versioned infrastructure history.",
+        "group": "Infrastructure as Code (IaC) and automation",
+        "topic_id": "064095de-7d43-5a97-a8d2-ed5ac40eb954",
+        "roadmap_id": "edfa68df-4a87-52a5-afe6-7cf2537d616b",
+        "topic_title": "IaC fundamentals and declarative configuration",
+        "mappings": [
+          {
+            "topic_id": "064095de-7d43-5a97-a8d2-ed5ac40eb954",
+            "roadmap_id": "edfa68df-4a87-52a5-afe6-7cf2537d616b",
+            "topic_title": "IaC fundamentals and declarative configuration",
+            "rationale": "Write a simple Terraform file declaring a local file or cloud resource and execute terraform plan to inspect changes."
+          },
+          {
+            "topic_id": "5b69952e-4e73-5716-88d8-998cc5d2a052",
+            "roadmap_id": "edfa68df-4a87-52a5-afe6-7cf2537d616b",
+            "topic_title": "Terraform providers, resources and variables",
+            "rationale": "Write a Terraform configuration that provisions a VPC, parameterized with input variables for CIDR and environment name."
+          }
+        ]
+      },
+      {
+        "id": "6500f932-9cf2-5d30-aa32-719d43e3cbc2",
+        "label": "DNS management, routing, and CDN distribution",
+        "career_id": "d5da6f7f-acfb-5fce-a703-3ee858526264",
+        "question": "DNS management, routing, and CDN distribution",
+        "example": "Create a DNS hosted zone, add an A record pointing to a load balancer, and configure a CNAME alias.",
+        "why_it_matters": "Manage public and private DNS hosted zones (e.g. Route 53, Cloud DNS), alias records, health-check failovers, and routing policies.",
+        "group": "Cloud networking and connectivity",
+        "topic_id": "38f6c9cc-d652-5770-8b4a-1c86ba808ad5",
+        "roadmap_id": "edfa68df-4a87-52a5-afe6-7cf2537d616b",
+        "topic_title": "DNS management and domain routing",
+        "mappings": [
+          {
+            "topic_id": "38f6c9cc-d652-5770-8b4a-1c86ba808ad5",
+            "roadmap_id": "edfa68df-4a87-52a5-afe6-7cf2537d616b",
+            "topic_title": "DNS management and domain routing",
+            "rationale": "Create a DNS hosted zone, add an A record pointing to a load balancer, and configure a CNAME alias."
+          },
+          {
+            "topic_id": "29db003d-e0ef-517d-af78-64afcb26fdc1",
+            "roadmap_id": "edfa68df-4a87-52a5-afe6-7cf2537d616b",
+            "topic_title": "Managed caching clusters and CDN distribution",
+            "rationale": "Configure a CDN distribution in front of an S3 bucket and verify that static assets return HTTP cache-hit headers."
+          }
+        ]
+      },
+      {
+        "id": "40702d54-fced-531a-abdf-f4f76ff6a411",
+        "label": "Cloud monitoring, metrics, and automated alerting",
+        "career_id": "d5da6f7f-acfb-5fce-a703-3ee858526264",
+        "question": "Cloud monitoring, metrics, and automated alerting",
+        "example": "Create a metric alarm that sends an alert notification if server CPU utilization exceeds 80% for 5 consecutive minutes.",
+        "why_it_matters": "Collect system metrics (CPU, disk I/O, network), aggregate application logs, and trigger SNS alerts on anomalous spikes.",
+        "group": "Observability, backup and disaster recovery",
+        "topic_id": "dbfd4115-9c7e-5a20-a3a0-6365b6fd7b13",
+        "roadmap_id": "edfa68df-4a87-52a5-afe6-7cf2537d616b",
+        "topic_title": "Cloud metrics, alarms and log aggregation",
+        "mappings": [
+          {
+            "topic_id": "dbfd4115-9c7e-5a20-a3a0-6365b6fd7b13",
+            "roadmap_id": "edfa68df-4a87-52a5-afe6-7cf2537d616b",
+            "topic_title": "Cloud metrics, alarms and log aggregation",
+            "rationale": "Create a metric alarm that sends an alert notification if server CPU utilization exceeds 80% for 5 consecutive minutes."
+          }
+        ]
+      },
+      {
+        "id": "156c6f71-cc03-5dcd-bc1e-16db0c857f37",
+        "label": "High availability and disaster recovery planning",
+        "career_id": "d5da6f7f-acfb-5fce-a703-3ee858526264",
+        "question": "High availability and disaster recovery planning",
+        "example": "Configure an automated backup plan that creates daily encrypted snapshots of a database and deletes snapshots older than 30 days.",
+        "why_it_matters": "Automate daily snapshot backups of block storage volumes (EBS) and database instances with retention lifecycle rules.",
+        "group": "Observability, backup and disaster recovery",
+        "topic_id": "97129887-2b1b-5b6c-8a9e-c2dc8309d3ed",
+        "roadmap_id": "edfa68df-4a87-52a5-afe6-7cf2537d616b",
+        "topic_title": "Automated snapshot and backup strategies",
+        "mappings": [
+          {
+            "topic_id": "97129887-2b1b-5b6c-8a9e-c2dc8309d3ed",
+            "roadmap_id": "edfa68df-4a87-52a5-afe6-7cf2537d616b",
+            "topic_title": "Automated snapshot and backup strategies",
+            "rationale": "Configure an automated backup plan that creates daily encrypted snapshots of a database and deletes snapshots older than 30 days."
+          },
+          {
+            "topic_id": "7a83243e-e31b-5838-bc3d-bdab17c90b8c",
+            "roadmap_id": "edfa68df-4a87-52a5-afe6-7cf2537d616b",
+            "topic_title": "High availability and multi-region disaster recovery",
+            "rationale": "Write a disaster recovery runbook detailing step-by-step failover procedures to a backup region during a primary region outage."
+          }
+        ]
+      }
+    ],
+    "source_file": "cloud-engineer.json",
+    "source_sha256": "f9bf964d07ed3d52fc6107d643367af471764ec099f507be902a75ef27b2a48b"
+  },
+  {
+    "career_id": "e57a6553-a0b1-5512-ba66-4037c27886dc",
+    "version": "guide-v4-expansion-2026-11-08",
+    "purpose": "Secure multi-cloud environments, implement least-privilege IAM policies, defend virtual networks, and automate cloud posture compliance.",
+    "activities": [
+      {
+        "action": "Analyze a cloud security incident report and identify which failures fell under customer responsibility.",
+        "result": "Shared responsibility model across cloud services"
+      },
+      {
+        "action": "Audit the route tables of a VPC to confirm that no private database subnet possesses a route to an internet gateway.",
+        "result": "VPC network isolation, subnets and route tables"
+      },
+      {
+        "action": "Scan a running virtual machine for outdated packages and apply an automated patch baseline using a systems manager.",
+        "result": "Virtual machine image hardening and patching"
+      }
+    ],
+    "work_on": "Implement granular least-privilege Identity and Access Management (IAM) policies",
+    "produce": "A hardened, compliance-audited cloud environment featuring zero-trust IAM roles, automated secret rotation, encrypted storage buckets with public access blocked, container vulnerability scanning in CI/CD, and real-time CloudTrail threat detection.",
+    "check": "You can show and explain the outcome of: execute an incident response drill: isolate a simulated compromised virtual instance by swapping its security group to a quarantine group. Check that it functions as expected and meets requirements.",
+    "learning_groups": [
+      {
+        "title": "Cloud security architecture and threat models",
+        "explanation": "Differentiate security 'of' the cloud (provider responsibility) from security 'in' the cloud (customer responsibility).",
+        "topic_id": "68533c27-7d04-5d24-820c-e98ec7ba44dc",
+        "roadmap_id": "ac888cc6-b3c4-58f8-966b-92989ac06356",
+        "topic_title": "Shared responsibility model across cloud services"
+      },
+      {
+        "title": "Cloud network defense and perimeter security",
+        "explanation": "Design isolated network tiers, verify that database subnets have no route to an internet gateway, and inspect route tables.",
+        "topic_id": "796545db-e62a-55cd-869e-9aa5f4a70a9d",
+        "roadmap_id": "ac888cc6-b3c4-58f8-966b-92989ac06356",
+        "topic_title": "VPC network isolation, subnets and route tables"
+      },
+      {
+        "title": "Cloud workload and container security",
+        "explanation": "Build hardened base OS images using CIS Benchmarks, remove unnecessary services, and automate security patching with SSM.",
+        "topic_id": "a92c0218-eafc-5f16-aa80-b7fa52c42af5",
+        "roadmap_id": "ac888cc6-b3c4-58f8-966b-92989ac06356",
+        "topic_title": "Virtual machine image hardening and patching"
+      }
+    ],
+    "starter": {
+      "instructions": "Analyze a cloud security incident report and identify which failures fell under customer responsibility.",
+      "title": "Shared responsibility model across cloud services",
+      "expected_result": "You can show and explain the outcome of: analyze a cloud security incident report and identify which failures fell under customer responsibility. Check that it functions as expected and meets requirements.",
+      "topic_id": "68533c27-7d04-5d24-820c-e98ec7ba44dc",
+      "roadmap_id": "ac888cc6-b3c4-58f8-966b-92989ac06356"
+    },
+    "source_scope": "Asgard-authored curriculum and practice examples",
+    "limitation": "Learning activities describe practice. Personal experience comes from your own skill reports.",
+    "skills": [
+      {
+        "id": "9050c63a-bd75-532c-8190-58b77c7b137e",
+        "label": "Cloud shared responsibility model and threat vectors",
+        "career_id": "e57a6553-a0b1-5512-ba66-4037c27886dc",
+        "question": "Cloud shared responsibility model and threat vectors",
+        "example": "Analyze a cloud security incident report and identify which failures fell under customer responsibility.",
+        "why_it_matters": "Differentiate security 'of' the cloud (provider responsibility) from security 'in' the cloud (customer responsibility).",
+        "group": "Cloud security architecture and threat models",
+        "topic_id": "68533c27-7d04-5d24-820c-e98ec7ba44dc",
+        "roadmap_id": "ac888cc6-b3c4-58f8-966b-92989ac06356",
+        "topic_title": "Shared responsibility model across cloud services",
+        "mappings": [
+          {
+            "topic_id": "68533c27-7d04-5d24-820c-e98ec7ba44dc",
+            "roadmap_id": "ac888cc6-b3c4-58f8-966b-92989ac06356",
+            "topic_title": "Shared responsibility model across cloud services",
+            "rationale": "Analyze a cloud security incident report and identify which failures fell under customer responsibility."
+          },
+          {
+            "topic_id": "dc7a3499-6186-53ca-aec0-1728f001e3dd",
+            "roadmap_id": "ac888cc6-b3c4-58f8-966b-92989ac06356",
+            "topic_title": "Cloud threat landscape and attack surfaces",
+            "rationale": "Verify that all cloud virtual instances require IMDSv2 and reject unauthenticated v1 metadata requests."
+          }
+        ]
+      },
+      {
+        "id": "c49a64b1-a6d4-537d-ae27-8f91358ff279",
+        "label": "Least-privilege IAM policy design and role assumption",
+        "career_id": "e57a6553-a0b1-5512-ba66-4037c27886dc",
+        "question": "Least-privilege IAM policy design and role assumption",
+        "example": "Write an IAM policy that allows read-only access to a specific storage bucket only if the request uses MFA.",
+        "why_it_matters": "Write restrictive JSON IAM policies specifying explicit Effects, Actions, Resources, and Conditions.",
+        "group": "Cloud Identity and Access Management (IAM)",
+        "topic_id": "38e2b22f-e898-5415-9f16-9274f6910e2f",
+        "roadmap_id": "ac888cc6-b3c4-58f8-966b-92989ac06356",
+        "topic_title": "IAM policies, roles and least-privilege principles",
+        "mappings": [
+          {
+            "topic_id": "38e2b22f-e898-5415-9f16-9274f6910e2f",
+            "roadmap_id": "ac888cc6-b3c4-58f8-966b-92989ac06356",
+            "topic_title": "IAM policies, roles and least-privilege principles",
+            "rationale": "Write an IAM policy that allows read-only access to a specific storage bucket only if the request uses MFA."
+          },
+          {
+            "topic_id": "fa54ef37-0677-5987-a5a4-d0636a99f8d0",
+            "roadmap_id": "ac888cc6-b3c4-58f8-966b-92989ac06356",
+            "topic_title": "Cross-account access and role assumption",
+            "rationale": "Configure a trust policy allowing an external audit account to assume a security-audit role using an external ID."
+          }
+        ]
+      },
+      {
+        "id": "d26a066f-14c3-5b2a-ac14-57375b72e30e",
+        "label": "Multi-factor authentication (MFA) and SSO federation",
+        "career_id": "e57a6553-a0b1-5512-ba66-4037c27886dc",
+        "question": "Multi-factor authentication (MFA) and SSO federation",
+        "example": "Configure an IAM role that can only be assumed by a federated web identity provider with valid OIDC tokens.",
+        "why_it_matters": "Enforce hardware or virtual MFA across all human accounts and integrate enterprise Single Sign-On (SSO) using SAML 2.0 or OIDC.",
+        "group": "Cloud Identity and Access Management (IAM)",
+        "topic_id": "723456d8-68e3-544a-b4a7-565a3088582f",
+        "roadmap_id": "ac888cc6-b3c4-58f8-966b-92989ac06356",
+        "topic_title": "Multi-factor authentication and SSO federation",
+        "mappings": [
+          {
+            "topic_id": "723456d8-68e3-544a-b4a7-565a3088582f",
+            "roadmap_id": "ac888cc6-b3c4-58f8-966b-92989ac06356",
+            "topic_title": "Multi-factor authentication and SSO federation",
+            "rationale": "Configure an IAM role that can only be assumed by a federated web identity provider with valid OIDC tokens."
+          }
+        ]
+      },
+      {
+        "id": "1d2342ab-ef11-58d2-acd3-9291331f2a76",
+        "label": "VPC network defense, security groups, and NACLs",
+        "career_id": "e57a6553-a0b1-5512-ba66-4037c27886dc",
+        "question": "VPC network defense, security groups, and NACLs",
+        "example": "Audit the route tables of a VPC to confirm that no private database subnet possesses a route to an internet gateway.",
+        "why_it_matters": "Design isolated network tiers, verify that database subnets have no route to an internet gateway, and inspect route tables.",
+        "group": "Cloud network defense and perimeter security",
+        "topic_id": "796545db-e62a-55cd-869e-9aa5f4a70a9d",
+        "roadmap_id": "ac888cc6-b3c4-58f8-966b-92989ac06356",
+        "topic_title": "VPC network isolation, subnets and route tables",
+        "mappings": [
+          {
+            "topic_id": "796545db-e62a-55cd-869e-9aa5f4a70a9d",
+            "roadmap_id": "ac888cc6-b3c4-58f8-966b-92989ac06356",
+            "topic_title": "VPC network isolation, subnets and route tables",
+            "rationale": "Audit the route tables of a VPC to confirm that no private database subnet possesses a route to an internet gateway."
+          },
+          {
+            "topic_id": "cbe1c519-8983-5a9b-9edb-d7e79e38e60e",
+            "roadmap_id": "ac888cc6-b3c4-58f8-966b-92989ac06356",
+            "topic_title": "Security groups, NACLs and stateful firewalls",
+            "rationale": "Configure a Security Group allowing port 443 only from an Application Load Balancer security group ID."
+          }
+        ]
+      },
+      {
+        "id": "708643d5-0197-5017-a544-bdba9231bb2b",
+        "label": "Cloud Key Management Services (KMS) and data encryption",
+        "career_id": "e57a6553-a0b1-5512-ba66-4037c27886dc",
+        "question": "Cloud Key Management Services (KMS) and data encryption",
+        "example": "Create a customer-managed KMS key with a restrictive key policy and encrypt an EBS storage volume with it.",
+        "why_it_matters": "Implement envelope encryption with Key Management Service (KMS), configure customer-managed keys (CMK), and mandate TLS 1.3.",
+        "group": "Data protection, encryption and secrets",
+        "topic_id": "ecc70526-12f1-5642-9f18-6b94c56f7c1d",
+        "roadmap_id": "ac888cc6-b3c4-58f8-966b-92989ac06356",
+        "topic_title": "Encryption at rest and in transit (TLS, KMS)",
+        "mappings": [
+          {
+            "topic_id": "ecc70526-12f1-5642-9f18-6b94c56f7c1d",
+            "roadmap_id": "ac888cc6-b3c4-58f8-966b-92989ac06356",
+            "topic_title": "Encryption at rest and in transit (TLS, KMS)",
+            "rationale": "Create a customer-managed KMS key with a restrictive key policy and encrypt an EBS storage volume with it."
+          }
+        ]
+      },
+      {
+        "id": "5e1d2f2f-1d38-5395-adf6-844b6ea5ddb8",
+        "label": "Automated secrets management and credential rotation",
+        "career_id": "e57a6553-a0b1-5512-ba66-4037c27886dc",
+        "question": "Automated secrets management and credential rotation",
+        "example": "Store a database password in a secrets manager, configure an automated rotation policy, and retrieve it using the CLI.",
+        "why_it_matters": "Store database passwords, API tokens, and private certificates in cloud secret stores with automated rotation Lambdas.",
+        "group": "Data protection, encryption and secrets",
+        "topic_id": "06d89b0d-982c-55c1-a628-e2762077716d",
+        "roadmap_id": "ac888cc6-b3c4-58f8-966b-92989ac06356",
+        "topic_title": "Secrets management and automated rotation",
+        "mappings": [
+          {
+            "topic_id": "06d89b0d-982c-55c1-a628-e2762077716d",
+            "roadmap_id": "ac888cc6-b3c4-58f8-966b-92989ac06356",
+            "topic_title": "Secrets management and automated rotation",
+            "rationale": "Store a database password in a secrets manager, configure an automated rotation policy, and retrieve it using the CLI."
+          }
+        ]
+      },
+      {
+        "id": "76411cd1-6234-571d-8d44-f2df674d680f",
+        "label": "Cloud Security Posture Management (CSPM) and CIS Benchmarks",
+        "career_id": "e57a6553-a0b1-5512-ba66-4037c27886dc",
+        "question": "Cloud Security Posture Management (CSPM) and CIS Benchmarks",
+        "example": "Audit a cloud account against the CIS Foundations Benchmark and list the top 3 high-severity non-compliant findings.",
+        "why_it_matters": "Implement recognized security frameworks including the Center for Internet Security (CIS) Cloud Foundations Benchmarks.",
+        "group": "Cloud security architecture and threat models",
+        "topic_id": "a3b44730-6a93-5909-beb8-dceec8f6d7f3",
+        "roadmap_id": "ac888cc6-b3c4-58f8-966b-92989ac06356",
+        "topic_title": "Cloud security standards: CIS Benchmarks and ISO 27017",
+        "mappings": [
+          {
+            "topic_id": "a3b44730-6a93-5909-beb8-dceec8f6d7f3",
+            "roadmap_id": "ac888cc6-b3c4-58f8-966b-92989ac06356",
+            "topic_title": "Cloud security standards: CIS Benchmarks and ISO 27017",
+            "rationale": "Audit a cloud account against the CIS Foundations Benchmark and list the top 3 high-severity non-compliant findings."
+          },
+          {
+            "topic_id": "f7a4fa6b-d91a-5f29-a6f1-12658ae968a6",
+            "roadmap_id": "ac888cc6-b3c4-58f8-966b-92989ac06356",
+            "topic_title": "CSPM tools and automated drift detection",
+            "rationale": "Create a configuration rule that flags any security group allowing inbound port 22 from 0.0.0.0/0 as non-compliant."
+          }
+        ]
+      },
+      {
+        "id": "fe7619b3-26ac-5d05-a777-4376947300ae",
+        "label": "Container and Kubernetes security (image scanning, RBAC)",
+        "career_id": "e57a6553-a0b1-5512-ba66-4037c27886dc",
+        "question": "Container and Kubernetes security (image scanning, RBAC)",
+        "example": "Scan a Docker container image with Trivy and output a report categorizing vulnerabilities by severity.",
+        "why_it_matters": "Scan container base images and application dependencies for known Common Vulnerabilities and Exposures (CVEs) in CI/CD.",
+        "group": "Cloud workload and container security",
+        "topic_id": "bb9be5ef-2fa0-5cce-a24d-55d6c8bea5d2",
+        "roadmap_id": "ac888cc6-b3c4-58f8-966b-92989ac06356",
+        "topic_title": "Container image vulnerability scanning",
+        "mappings": [
+          {
+            "topic_id": "bb9be5ef-2fa0-5cce-a24d-55d6c8bea5d2",
+            "roadmap_id": "ac888cc6-b3c4-58f8-966b-92989ac06356",
+            "topic_title": "Container image vulnerability scanning",
+            "rationale": "Scan a Docker container image with Trivy and output a report categorizing vulnerabilities by severity."
+          },
+          {
+            "topic_id": "64f3a1a8-e3b9-5033-9d3d-83026a36f040",
+            "roadmap_id": "ac888cc6-b3c4-58f8-966b-92989ac06356",
+            "topic_title": "Kubernetes RBAC and network policies",
+            "rationale": "Write a Kubernetes NetworkPolicy that allows traffic into a backend pod only from pods with the label role=frontend."
+          }
+        ]
+      },
+      {
+        "id": "1d8093c4-94a4-550a-b901-7a0ffe944ea8",
+        "label": "Infrastructure as Code (IaC) static security analysis",
+        "career_id": "e57a6553-a0b1-5512-ba66-4037c27886dc",
+        "question": "Infrastructure as Code (IaC) static security analysis",
+        "example": "Scan a Terraform configuration repository with Checkov and resolve 3 flagged security misconfigurations.",
+        "why_it_matters": "Shift cloud security left by scanning Terraform and CloudFormation templates for security misconfigurations before deployment.",
+        "group": "Cloud Security Posture Management and automation",
+        "topic_id": "1f153937-2a95-50a3-83db-6f3beaa82c78",
+        "roadmap_id": "ac888cc6-b3c4-58f8-966b-92989ac06356",
+        "topic_title": "Infrastructure as Code (IaC) security scanning",
+        "mappings": [
+          {
+            "topic_id": "1f153937-2a95-50a3-83db-6f3beaa82c78",
+            "roadmap_id": "ac888cc6-b3c4-58f8-966b-92989ac06356",
+            "topic_title": "Infrastructure as Code (IaC) security scanning",
+            "rationale": "Scan a Terraform configuration repository with Checkov and resolve 3 flagged security misconfigurations."
+          }
+        ]
+      },
+      {
+        "id": "e3812b6b-ad9b-5027-9149-f3cc9956af7f",
+        "label": "Cloud audit logging (CloudTrail, VPC Flow Logs) and alerting",
+        "career_id": "e57a6553-a0b1-5512-ba66-4037c27886dc",
+        "question": "Cloud audit logging (CloudTrail, VPC Flow Logs) and alerting",
+        "example": "Enable a multi-region audit trail with log file integrity validation enabled and query recent console logins.",
+        "why_it_matters": "Record and analyze all API calls and management events across your cloud organization using immutable multi-region audit logs.",
+        "group": "Cloud Security Posture Management and automation",
+        "topic_id": "6f4a2630-147c-551c-8c81-d1119ffc95b7",
+        "roadmap_id": "ac888cc6-b3c4-58f8-966b-92989ac06356",
+        "topic_title": "Cloud audit logging: CloudTrail and flow logs",
+        "mappings": [
+          {
+            "topic_id": "6f4a2630-147c-551c-8c81-d1119ffc95b7",
+            "roadmap_id": "ac888cc6-b3c4-58f8-966b-92989ac06356",
+            "topic_title": "Cloud audit logging: CloudTrail and flow logs",
+            "rationale": "Enable a multi-region audit trail with log file integrity validation enabled and query recent console logins."
+          }
+        ]
+      }
+    ],
+    "source_file": "cloud-security-engineer.json",
+    "source_sha256": "caaf04f5b7fcb16958c734007decccad012b364a41e29b3bdb08b6f8e91281e3"
+  },
+  {
+    "career_id": "c93df31e-9fe9-5ca2-95da-b7b6307d1ab8",
+    "version": "guide-v4-expansion-2026-11-08",
+    "purpose": "Extract actionable knowledge from complex data using applied statistics, machine learning algorithms, and predictive modeling.",
+    "activities": [
+      {
+        "action": "Write vectorized NumPy expressions to normalize a 2D matrix of numbers to zero mean and unit variance.",
+        "result": "Python numerical programming with NumPy"
+      },
+      {
+        "action": "Create a 2x2 subplot figure showing a histogram, a scatter plot, a box plot, and a correlation heatmap for a dataset.",
+        "result": "Data visualization with Matplotlib and Seaborn"
+      },
+      {
+        "action": "Generate a classification report and plot a ROC curve with calculated AUC score for a binary classifier.",
+        "result": "Classification metrics: ROC-AUC, precision and recall"
+      }
+    ],
+    "work_on": "Perform comprehensive exploratory data analysis (EDA) and data cleansing on raw datasets",
+    "produce": "An end-to-end data science project including data wrangling, exploratory visualizations, statistical hypothesis testing, machine learning model training, cross-validation evaluation, and SHAP interpretability explanations.",
+    "check": "You can show and explain the outcome of: draft an executive summary for your data science project explaining the problem, methodology, results, and limitations. Check that it functions as expected and meets requirements.",
+    "learning_groups": [
+      {
+        "title": "Exploratory data analysis and Python foundations",
+        "explanation": "Perform high-performance numerical computations using N-dimensional arrays, vectorization, and mathematical operations.",
+        "topic_id": "b63eff79-3db4-532c-b1d7-a5ef6f67f1e6",
+        "roadmap_id": "91339a49-2836-5360-9d4e-b84b68769e2c",
+        "topic_title": "Python numerical programming with NumPy"
+      },
+      {
+        "title": "Data visualization and feature preparation",
+        "explanation": "Visualize distributions and relationships using histograms, scatter plots, box plots, and heatmaps.",
+        "topic_id": "7585a649-31f6-5051-bb61-2c619d678d01",
+        "roadmap_id": "91339a49-2836-5360-9d4e-b84b68769e2c",
+        "topic_title": "Data visualization with Matplotlib and Seaborn"
+      },
+      {
+        "title": "Model evaluation and unsupervised learning",
+        "explanation": "Evaluate classifiers on imbalanced datasets using confusion matrices, precision, recall, F1-score, and ROC-AUC curves.",
+        "topic_id": "2742f7fa-da5e-5f56-9d8d-c0bebe3c6a56",
+        "roadmap_id": "91339a49-2836-5360-9d4e-b84b68769e2c",
+        "topic_title": "Classification metrics: ROC-AUC, precision and recall"
+      }
+    ],
+    "starter": {
+      "instructions": "Write vectorized NumPy expressions to normalize a 2D matrix of numbers to zero mean and unit variance.",
+      "title": "Python numerical programming with NumPy",
+      "expected_result": "You can show and explain the outcome of: write vectorized numpy expressions to normalize a 2d matrix of numbers to zero mean and unit variance. Check that it functions as expected and meets requirements.",
+      "topic_id": "b63eff79-3db4-532c-b1d7-a5ef6f67f1e6",
+      "roadmap_id": "91339a49-2836-5360-9d4e-b84b68769e2c"
+    },
+    "source_scope": "Asgard-authored curriculum and practice examples",
+    "limitation": "Learning activities describe practice. Personal experience comes from your own skill reports.",
+    "skills": [
+      {
+        "id": "686d435d-efa0-5ad8-a9d4-b7866bf87641",
+        "label": "Python data science stack (NumPy, pandas)",
+        "career_id": "c93df31e-9fe9-5ca2-95da-b7b6307d1ab8",
+        "question": "Python data science stack (NumPy, pandas)",
+        "example": "Write vectorized NumPy expressions to normalize a 2D matrix of numbers to zero mean and unit variance.",
+        "why_it_matters": "Perform high-performance numerical computations using N-dimensional arrays, vectorization, and mathematical operations.",
+        "group": "Exploratory data analysis and Python foundations",
+        "topic_id": "b63eff79-3db4-532c-b1d7-a5ef6f67f1e6",
+        "roadmap_id": "91339a49-2836-5360-9d4e-b84b68769e2c",
+        "topic_title": "Python numerical programming with NumPy",
+        "mappings": [
+          {
+            "topic_id": "b63eff79-3db4-532c-b1d7-a5ef6f67f1e6",
+            "roadmap_id": "91339a49-2836-5360-9d4e-b84b68769e2c",
+            "topic_title": "Python numerical programming with NumPy",
+            "rationale": "Write vectorized NumPy expressions to normalize a 2D matrix of numbers to zero mean and unit variance."
+          },
+          {
+            "topic_id": "db24cc39-5275-5b01-92c4-54174085cb9a",
+            "roadmap_id": "91339a49-2836-5360-9d4e-b84b68769e2c",
+            "topic_title": "Data manipulation with pandas",
+            "rationale": "Load a CSV dataset with pandas, filter out outliers, and compute average sales grouped by region."
+          }
+        ]
+      },
+      {
+        "id": "5bcf2492-facb-5a80-aff3-ebee5075dfd7",
+        "label": "Exploratory Data Analysis (EDA)",
+        "career_id": "c93df31e-9fe9-5ca2-95da-b7b6307d1ab8",
+        "question": "Exploratory Data Analysis (EDA)",
+        "example": "Perform an EDA workflow on a public dataset and write a summary identifying the 3 strongest relationships found.",
+        "why_it_matters": "Investigate distributions, correlations, data types, and anomalies in raw datasets before statistical modeling.",
+        "group": "Exploratory data analysis and Python foundations",
+        "topic_id": "b4b4ac13-da16-5d05-a66d-982ea07c0aeb",
+        "roadmap_id": "91339a49-2836-5360-9d4e-b84b68769e2c",
+        "topic_title": "Exploratory data analysis (EDA) techniques",
+        "mappings": [
+          {
+            "topic_id": "b4b4ac13-da16-5d05-a66d-982ea07c0aeb",
+            "roadmap_id": "91339a49-2836-5360-9d4e-b84b68769e2c",
+            "topic_title": "Exploratory data analysis (EDA) techniques",
+            "rationale": "Perform an EDA workflow on a public dataset and write a summary identifying the 3 strongest relationships found."
+          }
+        ]
+      },
+      {
+        "id": "12df5f8a-e4b9-5e8c-9a0a-b38daadc85a5",
+        "label": "Applied probability and descriptive statistics",
+        "career_id": "c93df31e-9fe9-5ca2-95da-b7b6307d1ab8",
+        "question": "Applied probability and descriptive statistics",
+        "example": "Calculate Z-scores for a numeric column and identify records that fall beyond 3 standard deviations from the mean.",
+        "why_it_matters": "Measure central tendency, spread, variance, standard deviation, and explore data distribution shapes.",
+        "group": "Statistics, probability and experimental design",
+        "topic_id": "344522b3-4f38-587a-9a33-87283c4ef455",
+        "roadmap_id": "91339a49-2836-5360-9d4e-b84b68769e2c",
+        "topic_title": "Descriptive statistics and summary distributions",
+        "mappings": [
+          {
+            "topic_id": "344522b3-4f38-587a-9a33-87283c4ef455",
+            "roadmap_id": "91339a49-2836-5360-9d4e-b84b68769e2c",
+            "topic_title": "Descriptive statistics and summary distributions",
+            "rationale": "Calculate Z-scores for a numeric column and identify records that fall beyond 3 standard deviations from the mean."
+          },
+          {
+            "topic_id": "d3afb645-c405-58e9-a398-fa2f840c7618",
+            "roadmap_id": "91339a49-2836-5360-9d4e-b84b68769e2c",
+            "topic_title": "Probability distributions and Central Limit Theorem",
+            "rationale": "Simulate the Central Limit Theorem by drawing 1,000 sample means from a skewed distribution and plotting the result."
+          }
+        ]
+      },
+      {
+        "id": "3911e7be-4d5c-5b4e-b761-11cc9279eff4",
+        "label": "Hypothesis testing and A/B experimental design",
+        "career_id": "c93df31e-9fe9-5ca2-95da-b7b6307d1ab8",
+        "question": "Hypothesis testing and A/B experimental design",
+        "example": "Conduct a two-sample t-test comparing average test scores between two groups and report whether the difference is significant at p < 0.05.",
+        "why_it_matters": "Formulate null and alternative hypotheses, choose appropriate statistical tests (t-test, chi-square, ANOVA), and interpret p-values.",
+        "group": "Statistics, probability and experimental design",
+        "topic_id": "771720a0-b15c-5bda-b088-5ea5b94b0556",
+        "roadmap_id": "91339a49-2836-5360-9d4e-b84b68769e2c",
+        "topic_title": "Hypothesis testing and p-values",
+        "mappings": [
+          {
+            "topic_id": "771720a0-b15c-5bda-b088-5ea5b94b0556",
+            "roadmap_id": "91339a49-2836-5360-9d4e-b84b68769e2c",
+            "topic_title": "Hypothesis testing and p-values",
+            "rationale": "Conduct a two-sample t-test comparing average test scores between two groups and report whether the difference is significant at p < 0.05."
+          },
+          {
+            "topic_id": "e0f1f3b0-eba9-58ce-a395-095d3bde8f57",
+            "roadmap_id": "91339a49-2836-5360-9d4e-b84b68769e2c",
+            "topic_title": "A/B testing design and sample size calculation",
+            "rationale": "Calculate the sample size needed to detect a 2% lift in conversion rate with 80% power and 5% significance."
+          }
+        ]
+      },
+      {
+        "id": "3eb404b7-2d42-5399-99d3-3fd73242db5e",
+        "label": "Data visualization (Matplotlib, Seaborn)",
+        "career_id": "c93df31e-9fe9-5ca2-95da-b7b6307d1ab8",
+        "question": "Data visualization (Matplotlib, Seaborn)",
+        "example": "Create a 2x2 subplot figure showing a histogram, a scatter plot, a box plot, and a correlation heatmap for a dataset.",
+        "why_it_matters": "Visualize distributions and relationships using histograms, scatter plots, box plots, and heatmaps.",
+        "group": "Data visualization and feature preparation",
+        "topic_id": "7585a649-31f6-5051-bb61-2c619d678d01",
+        "roadmap_id": "91339a49-2836-5360-9d4e-b84b68769e2c",
+        "topic_title": "Data visualization with Matplotlib and Seaborn",
+        "mappings": [
+          {
+            "topic_id": "7585a649-31f6-5051-bb61-2c619d678d01",
+            "roadmap_id": "91339a49-2836-5360-9d4e-b84b68769e2c",
+            "topic_title": "Data visualization with Matplotlib and Seaborn",
+            "rationale": "Create a 2x2 subplot figure showing a histogram, a scatter plot, a box plot, and a correlation heatmap for a dataset."
+          }
+        ]
+      },
+      {
+        "id": "c495c600-8119-585e-aed4-8d34c0b5cf2d",
+        "label": "Feature engineering, scaling, and encoding",
+        "career_id": "c93df31e-9fe9-5ca2-95da-b7b6307d1ab8",
+        "question": "Feature engineering, scaling, and encoding",
+        "example": "Build a scikit-learn ColumnTransformer that scales numeric features and one-hot encodes categorical features.",
+        "why_it_matters": "Encode categorical variables (One-Hot, Ordinal, Target) and scale numerical features (StandardScaler, MinMaxScaler).",
+        "group": "Data visualization and feature preparation",
+        "topic_id": "1b1c5f4b-7d0d-5825-a325-34014089600e",
+        "roadmap_id": "91339a49-2836-5360-9d4e-b84b68769e2c",
+        "topic_title": "Feature encoding and numerical scaling",
+        "mappings": [
+          {
+            "topic_id": "1b1c5f4b-7d0d-5825-a325-34014089600e",
+            "roadmap_id": "91339a49-2836-5360-9d4e-b84b68769e2c",
+            "topic_title": "Feature encoding and numerical scaling",
+            "rationale": "Build a scikit-learn ColumnTransformer that scales numeric features and one-hot encodes categorical features."
+          }
+        ]
+      },
+      {
+        "id": "645c5f6f-1f94-5aca-bd9a-e7a6f2c8af14",
+        "label": "Supervised learning (Regression, Random Forest, XGBoost)",
+        "career_id": "c93df31e-9fe9-5ca2-95da-b7b6307d1ab8",
+        "question": "Supervised learning (Regression, Random Forest, XGBoost)",
+        "example": "Train a logistic regression model, print the feature coefficients, and identify the top 3 predictors.",
+        "why_it_matters": "Fit linear regression for continuous target prediction and logistic regression with sigmoid functions for binary classification.",
+        "group": "Supervised machine learning algorithms",
+        "topic_id": "a2f93402-4378-5aa9-a6b4-88ff64c1ec12",
+        "roadmap_id": "91339a49-2836-5360-9d4e-b84b68769e2c",
+        "topic_title": "Linear and logistic regression models",
+        "mappings": [
+          {
+            "topic_id": "a2f93402-4378-5aa9-a6b4-88ff64c1ec12",
+            "roadmap_id": "91339a49-2836-5360-9d4e-b84b68769e2c",
+            "topic_title": "Linear and logistic regression models",
+            "rationale": "Train a logistic regression model, print the feature coefficients, and identify the top 3 predictors."
+          },
+          {
+            "topic_id": "e875295e-640a-5e86-9d90-0e5c63cddc90",
+            "roadmap_id": "91339a49-2836-5360-9d4e-b84b68769e2c",
+            "topic_title": "Decision trees and Random Forests",
+            "rationale": "Train a Random Forest classifier, evaluate its test set accuracy, and plot feature importances."
+          },
+          {
+            "topic_id": "d97bbe99-d6dc-56ec-95e3-3a50a285a1a7",
+            "roadmap_id": "91339a49-2836-5360-9d4e-b84b68769e2c",
+            "topic_title": "Gradient boosting with XGBoost and LightGBM",
+            "rationale": "Train an XGBoost or LightGBM model with early stopping enabled to prevent overfitting on the validation set."
+          }
+        ]
+      },
+      {
+        "id": "6eb9869f-0777-539b-87c4-e0a8e3e582f6",
+        "label": "Unsupervised learning (K-Means, PCA)",
+        "career_id": "c93df31e-9fe9-5ca2-95da-b7b6307d1ab8",
+        "question": "Unsupervised learning (K-Means, PCA)",
+        "example": "Apply K-Means clustering to customer behavior data and determine the optimal k using a silhouette plot.",
+        "why_it_matters": "Group unlabelled observations into natural clusters using K-Means and determine optimal cluster count with the Elbow method.",
+        "group": "Model evaluation and unsupervised learning",
+        "topic_id": "6b685fd3-d424-5306-95a4-802600e67866",
+        "roadmap_id": "91339a49-2836-5360-9d4e-b84b68769e2c",
+        "topic_title": "K-Means clustering and cluster evaluation",
+        "mappings": [
+          {
+            "topic_id": "6b685fd3-d424-5306-95a4-802600e67866",
+            "roadmap_id": "91339a49-2836-5360-9d4e-b84b68769e2c",
+            "topic_title": "K-Means clustering and cluster evaluation",
+            "rationale": "Apply K-Means clustering to customer behavior data and determine the optimal k using a silhouette plot."
+          },
+          {
+            "topic_id": "ebf2e27c-c99d-5b48-8609-93f3c3ceabab",
+            "roadmap_id": "91339a49-2836-5360-9d4e-b84b68769e2c",
+            "topic_title": "Dimensionality reduction with PCA",
+            "rationale": "Reduce a 10-feature dataset down to 2 principal components with PCA and plot the 2D cluster visualization."
+          }
+        ]
+      },
+      {
+        "id": "ddf8a30d-01b1-57c4-88a8-65d7fa2ed567",
+        "label": "Model evaluation metrics (ROC-AUC, RMSE, F1)",
+        "career_id": "c93df31e-9fe9-5ca2-95da-b7b6307d1ab8",
+        "question": "Model evaluation metrics (ROC-AUC, RMSE, F1)",
+        "example": "Generate a classification report and plot a ROC curve with calculated AUC score for a binary classifier.",
+        "why_it_matters": "Evaluate classifiers on imbalanced datasets using confusion matrices, precision, recall, F1-score, and ROC-AUC curves.",
+        "group": "Model evaluation and unsupervised learning",
+        "topic_id": "2742f7fa-da5e-5f56-9d8d-c0bebe3c6a56",
+        "roadmap_id": "91339a49-2836-5360-9d4e-b84b68769e2c",
+        "topic_title": "Classification metrics: ROC-AUC, precision and recall",
+        "mappings": [
+          {
+            "topic_id": "2742f7fa-da5e-5f56-9d8d-c0bebe3c6a56",
+            "roadmap_id": "91339a49-2836-5360-9d4e-b84b68769e2c",
+            "topic_title": "Classification metrics: ROC-AUC, precision and recall",
+            "rationale": "Generate a classification report and plot a ROC curve with calculated AUC score for a binary classifier."
+          },
+          {
+            "topic_id": "88c00e5e-161d-5176-80fd-75cd76276be1",
+            "roadmap_id": "91339a49-2836-5360-9d4e-b84b68769e2c",
+            "topic_title": "Regression metrics: RMSE, MAE and R-squared",
+            "rationale": "Calculate and compare MAE, RMSE, and R2 on test set predictions from a regression model."
+          }
+        ]
+      },
+      {
+        "id": "064a2711-a59b-5b80-994d-64da1595745b",
+        "label": "Model explainability with SHAP values",
+        "career_id": "c93df31e-9fe9-5ca2-95da-b7b6307d1ab8",
+        "question": "Model explainability with SHAP values",
+        "example": "Generate a SHAP summary plot for a trained model and explain how the top feature influences individual predictions.",
+        "why_it_matters": "Explain complex machine learning models using SHapley Additive exPlanations (SHAP) to interpret global and local feature impacts.",
+        "group": "Model diagnostics, deployment and communication",
+        "topic_id": "fc22ba33-1e89-5065-ad25-e3a3af32c151",
+        "roadmap_id": "91339a49-2836-5360-9d4e-b84b68769e2c",
+        "topic_title": "Model explainability with SHAP values",
+        "mappings": [
+          {
+            "topic_id": "fc22ba33-1e89-5065-ad25-e3a3af32c151",
+            "roadmap_id": "91339a49-2836-5360-9d4e-b84b68769e2c",
+            "topic_title": "Model explainability with SHAP values",
+            "rationale": "Generate a SHAP summary plot for a trained model and explain how the top feature influences individual predictions."
+          }
+        ]
+      }
+    ],
+    "source_file": "data-scientist.json",
+    "source_sha256": "818f61bd25c8606501d3211d8c3d81a829afcc2c465cc11fd73a4f7f2fc22965"
+  },
+  {
+    "career_id": "1c5a1b58-47c2-569c-9f18-77486cc9d829",
+    "version": "guide-v4-expansion-2026-11-08",
+    "purpose": "Build complete, end-to-end web applications combining interactive user interfaces, server-side APIs, and databases.",
+    "activities": [
+      {
+        "action": "Diagram the complete data flow of a user submitting a comment form on a full-stack blog.",
+        "result": "Full-stack web architecture"
+      },
+      {
+        "action": "Refactor a monolithic route file into modular controller, service, and routing layers.",
+        "result": "Building modular API routes"
+      },
+      {
+        "action": "Build an image upload flow that validates file dimensions, uploads to storage, and displays the image preview.",
+        "result": "File storage and cloud uploads"
+      }
+    ],
+    "work_on": "Develop responsive frontend interfaces and bind them to server-side APIs",
+    "produce": "A full-stack web application with user authentication, responsive UI components, REST/GraphQL API endpoints, database persistence, and automated end-to-end tests.",
+    "check": "You can show and explain the outcome of: deploy your full-stack application, run a synthetic check against its health endpoint, and verify live operations. Check that it functions as expected and meets requirements.",
+    "learning_groups": [
+      {
+        "title": "Full-stack architecture and workflow",
+        "explanation": "Learn how client applications, server APIs, and database tiers interact to deliver full-stack user experiences.",
+        "topic_id": "74808f92-dc89-55d5-b296-e80bd65bd659",
+        "roadmap_id": "f8195ff4-7b82-5806-af00-c6a3d0e9ec01",
+        "topic_title": "Full-stack web architecture"
+      },
+      {
+        "title": "Backend APIs and data persistence",
+        "explanation": "Structure server endpoints cleanly with controllers, service layers, and predictable URL routing schemes.",
+        "topic_id": "43a0ae8b-20cc-5df7-91c7-2bf587eab48d",
+        "roadmap_id": "f8195ff4-7b82-5806-af00-c6a3d0e9ec01",
+        "topic_title": "Building modular API routes"
+      },
+      {
+        "title": "Full-stack integrations and storage",
+        "explanation": "Upload user files and images safely to cloud object storage using presigned URLs or server upload endpoints.",
+        "topic_id": "42e9d394-b088-5e55-b2a1-e87206511ce1",
+        "roadmap_id": "f8195ff4-7b82-5806-af00-c6a3d0e9ec01",
+        "topic_title": "File storage and cloud uploads"
+      }
+    ],
+    "starter": {
+      "instructions": "Diagram the complete data flow of a user submitting a comment form on a full-stack blog.",
+      "title": "Full-stack web architecture",
+      "expected_result": "You can show and explain the outcome of: diagram the complete data flow of a user submitting a comment form on a full-stack blog. Check that it functions as expected and meets requirements.",
+      "topic_id": "74808f92-dc89-55d5-b296-e80bd65bd659",
+      "roadmap_id": "f8195ff4-7b82-5806-af00-c6a3d0e9ec01"
+    },
+    "source_scope": "Asgard-authored curriculum and practice examples",
+    "limitation": "Learning activities describe practice. Personal experience comes from your own skill reports.",
+    "skills": [
+      {
+        "id": "f3859f23-45f9-5857-80a1-ee78502171dd",
+        "label": "Full-stack web architecture",
+        "career_id": "1c5a1b58-47c2-569c-9f18-77486cc9d829",
+        "question": "Full-stack web architecture",
+        "example": "Diagram the complete data flow of a user submitting a comment form on a full-stack blog.",
+        "why_it_matters": "Learn how client applications, server APIs, and database tiers interact to deliver full-stack user experiences.",
+        "group": "Full-stack architecture and workflow",
+        "topic_id": "74808f92-dc89-55d5-b296-e80bd65bd659",
+        "roadmap_id": "f8195ff4-7b82-5806-af00-c6a3d0e9ec01",
+        "topic_title": "Full-stack web architecture",
+        "mappings": [
+          {
+            "topic_id": "74808f92-dc89-55d5-b296-e80bd65bd659",
+            "roadmap_id": "f8195ff4-7b82-5806-af00-c6a3d0e9ec01",
+            "topic_title": "Full-stack web architecture",
+            "rationale": "Diagram the complete data flow of a user submitting a comment form on a full-stack blog."
+          }
+        ]
+      },
+      {
+        "id": "bd59a4dd-41c4-584b-b107-db1649ee7929",
+        "label": "Modern TypeScript and JavaScript",
+        "career_id": "1c5a1b58-47c2-569c-9f18-77486cc9d829",
+        "question": "Modern TypeScript and JavaScript",
+        "example": "Write strongly typed interfaces for an e-commerce catalog and use them in both client and server code.",
+        "why_it_matters": "Master static typing, interfaces, generics, and compiler configurations for robust full-stack development.",
+        "group": "Full-stack architecture and workflow",
+        "topic_id": "f46b37ca-3ef5-5774-8576-3578e053a4c2",
+        "roadmap_id": "f8195ff4-7b82-5806-af00-c6a3d0e9ec01",
+        "topic_title": "Modern JavaScript and TypeScript foundations",
+        "mappings": [
+          {
+            "topic_id": "f46b37ca-3ef5-5774-8576-3578e053a4c2",
+            "roadmap_id": "f8195ff4-7b82-5806-af00-c6a3d0e9ec01",
+            "topic_title": "Modern JavaScript and TypeScript foundations",
+            "rationale": "Write strongly typed interfaces for an e-commerce catalog and use them in both client and server code."
+          }
+        ]
+      },
+      {
+        "id": "c02cb4f1-8ee7-5f67-a142-5d3743723260",
+        "label": "Component-driven UI development",
+        "career_id": "1c5a1b58-47c2-569c-9f18-77486cc9d829",
+        "question": "Component-driven UI development",
+        "example": "Build a responsive card component with customizable headers, action buttons, and accessible markup.",
+        "why_it_matters": "Structure frontend applications with reusable, composable components and semantic HTML elements.",
+        "group": "Responsive frontend interfaces and state",
+        "topic_id": "38bca6a8-2eeb-5bfa-a14b-b779b0ccbef9",
+        "roadmap_id": "f8195ff4-7b82-5806-af00-c6a3d0e9ec01",
+        "topic_title": "Component-driven UI architecture",
+        "mappings": [
+          {
+            "topic_id": "38bca6a8-2eeb-5bfa-a14b-b779b0ccbef9",
+            "roadmap_id": "f8195ff4-7b82-5806-af00-c6a3d0e9ec01",
+            "topic_title": "Component-driven UI architecture",
+            "rationale": "Build a responsive card component with customizable headers, action buttons, and accessible markup."
+          }
+        ]
+      },
+      {
+        "id": "50da571c-012c-5490-9d0b-024475fb4434",
+        "label": "Client-side state and data fetching",
+        "career_id": "1c5a1b58-47c2-569c-9f18-77486cc9d829",
+        "question": "Client-side state and data fetching",
+        "example": "Implement a shopping cart state store that adds items, removes items, and calculates the total price.",
+        "why_it_matters": "Manage local, lifted, and global client-side state reactively without causing unnecessary re-renders.",
+        "group": "Responsive frontend interfaces and state",
+        "topic_id": "332712aa-125a-5e29-911a-912b7ecef08a",
+        "roadmap_id": "f8195ff4-7b82-5806-af00-c6a3d0e9ec01",
+        "topic_title": "Client-side state management",
+        "mappings": [
+          {
+            "topic_id": "332712aa-125a-5e29-911a-912b7ecef08a",
+            "roadmap_id": "f8195ff4-7b82-5806-af00-c6a3d0e9ec01",
+            "topic_title": "Client-side state management",
+            "rationale": "Implement a shopping cart state store that adds items, removes items, and calculates the total price."
+          },
+          {
+            "topic_id": "4a48a96d-5cd6-544a-95e8-4b68a1aa1012",
+            "roadmap_id": "f8195ff4-7b82-5806-af00-c6a3d0e9ec01",
+            "topic_title": "Data fetching and query caching",
+            "rationale": "Fetch a list of items using a query hook, display loading skeletons, and implement an optimistic delete action."
+          }
+        ]
+      },
+      {
+        "id": "2ec8a16b-9cbd-5b27-9b55-5f19b741607e",
+        "label": "Server-side API routes and middleware",
+        "career_id": "1c5a1b58-47c2-569c-9f18-77486cc9d829",
+        "question": "Server-side API routes and middleware",
+        "example": "Refactor a monolithic route file into modular controller, service, and routing layers.",
+        "why_it_matters": "Structure server endpoints cleanly with controllers, service layers, and predictable URL routing schemes.",
+        "group": "Backend APIs and data persistence",
+        "topic_id": "43a0ae8b-20cc-5df7-91c7-2bf587eab48d",
+        "roadmap_id": "f8195ff4-7b82-5806-af00-c6a3d0e9ec01",
+        "topic_title": "Building modular API routes",
+        "mappings": [
+          {
+            "topic_id": "43a0ae8b-20cc-5df7-91c7-2bf587eab48d",
+            "roadmap_id": "f8195ff4-7b82-5806-af00-c6a3d0e9ec01",
+            "topic_title": "Building modular API routes",
+            "rationale": "Refactor a monolithic route file into modular controller, service, and routing layers."
+          },
+          {
+            "topic_id": "a3477b1e-b537-5dc3-93fe-4b3515fe8811",
+            "roadmap_id": "f8195ff4-7b82-5806-af00-c6a3d0e9ec01",
+            "topic_title": "Server-side data validation",
+            "rationale": "Write a validation schema that verifies email format, password complexity, and trims unwanted whitespace."
+          }
+        ]
+      },
+      {
+        "id": "7e0cf8e0-915f-5f9c-b1a4-8fcabca1039a",
+        "label": "Relational data modeling and SQL",
+        "career_id": "1c5a1b58-47c2-569c-9f18-77486cc9d829",
+        "question": "Relational data modeling and SQL",
+        "example": "Define a relational schema for articles, authors, and tags, and write a query fetching an article with its tags.",
+        "why_it_matters": "Model application data into normalized relational tables and query them efficiently using SQL or ORMs.",
+        "group": "Backend APIs and data persistence",
+        "topic_id": "30ac2ff5-91f7-5c9f-860a-017c3d8a3033",
+        "roadmap_id": "f8195ff4-7b82-5806-af00-c6a3d0e9ec01",
+        "topic_title": "Relational data modeling and queries",
+        "mappings": [
+          {
+            "topic_id": "30ac2ff5-91f7-5c9f-860a-017c3d8a3033",
+            "roadmap_id": "f8195ff4-7b82-5806-af00-c6a3d0e9ec01",
+            "topic_title": "Relational data modeling and queries",
+            "rationale": "Define a relational schema for articles, authors, and tags, and write a query fetching an article with its tags."
+          }
+        ]
+      },
+      {
+        "id": "51435bc3-35d2-5a80-852d-3bf02481cabe",
+        "label": "Server-side rendering (SSR) and hydration",
+        "career_id": "1c5a1b58-47c2-569c-9f18-77486cc9d829",
+        "question": "Server-side rendering (SSR) and hydration",
+        "example": "Build a page that pre-renders dynamic content on the server and attaches interactive client components.",
+        "why_it_matters": "Understand the trade-offs between static site generation (SSG), server-side rendering (SSR), and client-side rendering (CSR).",
+        "group": "Full-stack frameworks and rendering modes",
+        "topic_id": "1cd51875-9ae8-50d9-a334-bae70068c4e4",
+        "roadmap_id": "f8195ff4-7b82-5806-af00-c6a3d0e9ec01",
+        "topic_title": "Server-side rendering vs client-side rendering",
+        "mappings": [
+          {
+            "topic_id": "1cd51875-9ae8-50d9-a334-bae70068c4e4",
+            "roadmap_id": "f8195ff4-7b82-5806-af00-c6a3d0e9ec01",
+            "topic_title": "Server-side rendering vs client-side rendering",
+            "rationale": "Build a page that pre-renders dynamic content on the server and attaches interactive client components."
+          }
+        ]
+      },
+      {
+        "id": "bc24d5f4-f097-593c-b47a-ab53b81dff0c",
+        "label": "End-to-end authentication with cookies and JWTs",
+        "career_id": "1c5a1b58-47c2-569c-9f18-77486cc9d829",
+        "question": "End-to-end authentication with cookies and JWTs",
+        "example": "Build a login flow that issues an HttpOnly cookie and a protected profile endpoint that reads session data.",
+        "why_it_matters": "Authenticate users securely and maintain logged-in sessions using HttpOnly cookies or bearer tokens.",
+        "group": "Backend APIs and data persistence",
+        "topic_id": "6fc7a4ef-5626-56b3-a3c0-5fca3feb7527",
+        "roadmap_id": "f8195ff4-7b82-5806-af00-c6a3d0e9ec01",
+        "topic_title": "Secure authentication and session cookies",
+        "mappings": [
+          {
+            "topic_id": "6fc7a4ef-5626-56b3-a3c0-5fca3feb7527",
+            "roadmap_id": "f8195ff4-7b82-5806-af00-c6a3d0e9ec01",
+            "topic_title": "Secure authentication and session cookies",
+            "rationale": "Build a login flow that issues an HttpOnly cookie and a protected profile endpoint that reads session data."
+          }
+        ]
+      },
+      {
+        "id": "c2b881af-8341-51ac-9663-54feba07d5fa",
+        "label": "Automated testing with Playwright or Cypress",
+        "career_id": "1c5a1b58-47c2-569c-9f18-77486cc9d829",
+        "question": "Automated testing with Playwright or Cypress",
+        "example": "Write an E2E test suite that logs into an account, creates an item, and asserts it appears in the list view.",
+        "why_it_matters": "Automate complete user journey testing across browsers, asserting on UI elements, network requests, and database changes.",
+        "group": "Automated testing, containerization and delivery",
+        "topic_id": "90952054-bdf1-548b-9e19-17c8e1fa7f0d",
+        "roadmap_id": "f8195ff4-7b82-5806-af00-c6a3d0e9ec01",
+        "topic_title": "End-to-end testing with Playwright",
+        "mappings": [
+          {
+            "topic_id": "90952054-bdf1-548b-9e19-17c8e1fa7f0d",
+            "roadmap_id": "f8195ff4-7b82-5806-af00-c6a3d0e9ec01",
+            "topic_title": "End-to-end testing with Playwright",
+            "rationale": "Write an E2E test suite that logs into an account, creates an item, and asserts it appears in the list view."
+          }
+        ]
+      },
+      {
+        "id": "63a854b7-d93d-595b-ad97-f3cff13b5ec2",
+        "label": "Docker containerization and CI/CD pipelines",
+        "career_id": "1c5a1b58-47c2-569c-9f18-77486cc9d829",
+        "question": "Docker containerization and CI/CD pipelines",
+        "example": "Write a multi-stage Dockerfile that compiles a frontend and runs the backend server in a slim container.",
+        "why_it_matters": "Create optimized Docker container images that package both frontend assets and backend server runtimes securely.",
+        "group": "Automated testing, containerization and delivery",
+        "topic_id": "771c6b80-b6c0-5b0f-95d1-5e175fb5d698",
+        "roadmap_id": "f8195ff4-7b82-5806-af00-c6a3d0e9ec01",
+        "topic_title": "Multi-stage Docker builds for full stack",
+        "mappings": [
+          {
+            "topic_id": "771c6b80-b6c0-5b0f-95d1-5e175fb5d698",
+            "roadmap_id": "f8195ff4-7b82-5806-af00-c6a3d0e9ec01",
+            "topic_title": "Multi-stage Docker builds for full stack",
+            "rationale": "Write a multi-stage Dockerfile that compiles a frontend and runs the backend server in a slim container."
+          },
+          {
+            "topic_id": "a61fbe9a-5d86-59bd-b314-9b1ee9acae83",
+            "roadmap_id": "f8195ff4-7b82-5806-af00-c6a3d0e9ec01",
+            "topic_title": "CI/CD automation pipelines",
+            "rationale": "Write a GitHub Actions workflow that installs dependencies, runs unit tests, and builds your application container."
+          }
+        ]
+      }
+    ],
+    "source_file": "full-stack-developer.json",
+    "source_sha256": "555869445d683279a71f38b94d09c1b9996d46952028d225382c260c721c486a"
+  },
+  {
+    "career_id": "c5259752-baf4-59ce-9682-596375a5cc7f",
+    "version": "guide-v4-expansion-2026-11-08",
+    "purpose": "Design and build 2D and 3D interactive video games using game engines, physics, audio, and gameplay programming.",
+    "activities": [
+      {
+        "action": "Implement a minimal game loop in code that logs frame duration and moves an object based on delta time.",
+        "result": "Game engine architecture and the game loop"
+      },
+      {
+        "action": "Build a state machine for an enemy with Patrol, Chase, and Attack states based on distance to player.",
+        "result": "Finite state machines for characters"
+      },
+      {
+        "action": "Bake a navigation mesh for a level and have an enemy follow a path directly toward the player while avoiding obstacles.",
+        "result": "Enemy navigation and basic AI"
+      }
+    ],
+    "work_on": "Program core gameplay loops, player movement controllers, and input handling",
+    "produce": "A completed playable 2D/3D action or platformer game featuring player controls, enemy AI, collision physics, health/scoring UI, sound effects, and multi-level progression.",
+    "check": "You can show and explain the outcome of: export a playable release build of your game project for desktop or web and verify that it launches independently. Check that it functions as expected and meets requirements.",
+    "learning_groups": [
+      {
+        "title": "Game development foundations",
+        "explanation": "Learn how the game loop handles input, updates game state, and renders frames at consistent target frame rates.",
+        "topic_id": "fb60c74d-6908-5b36-9bf3-923913c79abc",
+        "roadmap_id": "eed0cf4d-f4c7-583f-8356-aa8603406a8d",
+        "topic_title": "Game engine architecture and the game loop"
+      },
+      {
+        "title": "Game state, animation and audio",
+        "explanation": "Structure complex character behaviors cleanly using finite state machines (FSM) separating Idle, Walk, Jump, and Attack.",
+        "topic_id": "8dfbb8b0-6c7d-5d3c-b6ba-f9a93e17f0a7",
+        "roadmap_id": "eed0cf4d-f4c7-583f-8356-aa8603406a8d",
+        "topic_title": "Finite state machines for characters"
+      },
+      {
+        "title": "Game mechanics, AI and 3D foundations",
+        "explanation": "Implement enemy navigation using pathfinding algorithms (A* / NavigationMesh), line-of-sight raycasts, and patrol paths.",
+        "topic_id": "a49b8c61-ec06-5c10-a07f-a9182c28b75a",
+        "roadmap_id": "eed0cf4d-f4c7-583f-8356-aa8603406a8d",
+        "topic_title": "Enemy navigation and basic AI"
+      }
+    ],
+    "starter": {
+      "instructions": "Implement a minimal game loop in code that logs frame duration and moves an object based on delta time.",
+      "title": "Game engine architecture and the game loop",
+      "expected_result": "You can show and explain the outcome of: implement a minimal game loop in code that logs frame duration and moves an object based on delta time. Check that it functions as expected and meets requirements.",
+      "topic_id": "fb60c74d-6908-5b36-9bf3-923913c79abc",
+      "roadmap_id": "eed0cf4d-f4c7-583f-8356-aa8603406a8d"
+    },
+    "source_scope": "Asgard-authored curriculum and practice examples",
+    "limitation": "Learning activities describe practice. Personal experience comes from your own skill reports.",
+    "skills": [
+      {
+        "id": "bd5d51bf-e508-5641-8590-ead9822f8b46",
+        "label": "Game engine architecture and game loops",
+        "career_id": "c5259752-baf4-59ce-9682-596375a5cc7f",
+        "question": "Game engine architecture and game loops",
+        "example": "Implement a minimal game loop in code that logs frame duration and moves an object based on delta time.",
+        "why_it_matters": "Learn how the game loop handles input, updates game state, and renders frames at consistent target frame rates.",
+        "group": "Game development foundations",
+        "topic_id": "fb60c74d-6908-5b36-9bf3-923913c79abc",
+        "roadmap_id": "eed0cf4d-f4c7-583f-8356-aa8603406a8d",
+        "topic_title": "Game engine architecture and the game loop",
+        "mappings": [
+          {
+            "topic_id": "fb60c74d-6908-5b36-9bf3-923913c79abc",
+            "roadmap_id": "eed0cf4d-f4c7-583f-8356-aa8603406a8d",
+            "topic_title": "Game engine architecture and the game loop",
+            "rationale": "Implement a minimal game loop in code that logs frame duration and moves an object based on delta time."
+          }
+        ]
+      },
+      {
+        "id": "39ddaaf4-5115-59ac-9cc3-1f8f2c8e9c0d",
+        "label": "2D sprites, tilesets, and camera viewports",
+        "career_id": "c5259752-baf4-59ce-9682-596375a5cc7f",
+        "question": "2D sprites, tilesets, and camera viewports",
+        "example": "Create a 2D platformer level using a tilemap with solid ground tiles and a camera that smoothly tracks the player.",
+        "why_it_matters": "Build game worlds using 2D tilemaps, configure sorting layers, and set up dynamic cameras that follow the player.",
+        "group": "2D gameplay, physics and controls",
+        "topic_id": "6f7a771e-0094-5221-b51c-db4b55d95d8f",
+        "roadmap_id": "eed0cf4d-f4c7-583f-8356-aa8603406a8d",
+        "topic_title": "2D sprites, tiles and cameras",
+        "mappings": [
+          {
+            "topic_id": "6f7a771e-0094-5221-b51c-db4b55d95d8f",
+            "roadmap_id": "eed0cf4d-f4c7-583f-8356-aa8603406a8d",
+            "topic_title": "2D sprites, tiles and cameras",
+            "rationale": "Create a 2D platformer level using a tilemap with solid ground tiles and a camera that smoothly tracks the player."
+          }
+        ]
+      },
+      {
+        "id": "d3bdf2d8-a65a-5382-988d-6916b7668331",
+        "label": "Rigidbodies, collision detection, and raycasting",
+        "career_id": "c5259752-baf4-59ce-9682-596375a5cc7f",
+        "question": "Rigidbodies, collision detection, and raycasting",
+        "example": "Configure a coin pickup that detects when the player enters its collision trigger and awards points.",
+        "why_it_matters": "Apply physical forces, gravity, bounce, and friction to objects, and detect solid collisions and non-blocking triggers.",
+        "group": "2D gameplay, physics and controls",
+        "topic_id": "797d61ff-ad18-5d62-b364-2183d8e8b5f1",
+        "roadmap_id": "eed0cf4d-f4c7-583f-8356-aa8603406a8d",
+        "topic_title": "Rigidbodies, collisions and triggers",
+        "mappings": [
+          {
+            "topic_id": "797d61ff-ad18-5d62-b364-2183d8e8b5f1",
+            "roadmap_id": "eed0cf4d-f4c7-583f-8356-aa8603406a8d",
+            "topic_title": "Rigidbodies, collisions and triggers",
+            "rationale": "Configure a coin pickup that detects when the player enters its collision trigger and awards points."
+          },
+          {
+            "topic_id": "b67df384-104f-533f-b0d4-aa2952092abf",
+            "roadmap_id": "eed0cf4d-f4c7-583f-8356-aa8603406a8d",
+            "topic_title": "3D lighting, cameras and raycasting",
+            "rationale": "Set up a 3D scene with directional light and shadows, and cast a ray from the camera to detect aimed objects."
+          }
+        ]
+      },
+      {
+        "id": "aa171892-3c3c-552f-98bc-fe49ed015f42",
+        "label": "Player movement, gravity, and input systems",
+        "career_id": "c5259752-baf4-59ce-9682-596375a5cc7f",
+        "question": "Player movement, gravity, and input systems",
+        "example": "Build a 2D character controller with running, jumping with variable jump height, and wall sliding.",
+        "why_it_matters": "Map keyboard, mouse, and gamepad inputs to smooth, responsive character movement and jump mechanics.",
+        "group": "2D gameplay, physics and controls",
+        "topic_id": "1f08b627-e119-57b4-ad34-024954ab3ecd",
+        "roadmap_id": "eed0cf4d-f4c7-583f-8356-aa8603406a8d",
+        "topic_title": "Player input handling and movement",
+        "mappings": [
+          {
+            "topic_id": "1f08b627-e119-57b4-ad34-024954ab3ecd",
+            "roadmap_id": "eed0cf4d-f4c7-583f-8356-aa8603406a8d",
+            "topic_title": "Player input handling and movement",
+            "rationale": "Build a 2D character controller with running, jumping with variable jump height, and wall sliding."
+          }
+        ]
+      },
+      {
+        "id": "e4f36f87-6545-5bfb-99f8-2af704b9ab59",
+        "label": "Finite state machines for character behaviors",
+        "career_id": "c5259752-baf4-59ce-9682-596375a5cc7f",
+        "question": "Finite state machines for character behaviors",
+        "example": "Build a state machine for an enemy with Patrol, Chase, and Attack states based on distance to player.",
+        "why_it_matters": "Structure complex character behaviors cleanly using finite state machines (FSM) separating Idle, Walk, Jump, and Attack.",
+        "group": "Game state, animation and audio",
+        "topic_id": "8dfbb8b0-6c7d-5d3c-b6ba-f9a93e17f0a7",
+        "roadmap_id": "eed0cf4d-f4c7-583f-8356-aa8603406a8d",
+        "topic_title": "Finite state machines for characters",
+        "mappings": [
+          {
+            "topic_id": "8dfbb8b0-6c7d-5d3c-b6ba-f9a93e17f0a7",
+            "roadmap_id": "eed0cf4d-f4c7-583f-8356-aa8603406a8d",
+            "topic_title": "Finite state machines for characters",
+            "rationale": "Build a state machine for an enemy with Patrol, Chase, and Attack states based on distance to player."
+          }
+        ]
+      },
+      {
+        "id": "c889f2f1-e871-5df5-9f0e-72830db253c0",
+        "label": "Sprite animation controllers and blend trees",
+        "career_id": "c5259752-baf4-59ce-9682-596375a5cc7f",
+        "question": "Sprite animation controllers and blend trees",
+        "example": "Create an animated character sprite that switches between idle, running, jumping, and landing animations.",
+        "why_it_matters": "Animate 2D sprites with frame-based animations, blend parameters, and link animation triggers to movement states.",
+        "group": "Game state, animation and audio",
+        "topic_id": "7203d013-509d-552d-809b-e2ef79e5249b",
+        "roadmap_id": "eed0cf4d-f4c7-583f-8356-aa8603406a8d",
+        "topic_title": "Sprite animation and transitions",
+        "mappings": [
+          {
+            "topic_id": "7203d013-509d-552d-809b-e2ef79e5249b",
+            "roadmap_id": "eed0cf4d-f4c7-583f-8356-aa8603406a8d",
+            "topic_title": "Sprite animation and transitions",
+            "rationale": "Create an animated character sprite that switches between idle, running, jumping, and landing animations."
+          }
+        ]
+      },
+      {
+        "id": "3c822b91-11a3-5e0e-9a96-42753b4cf25b",
+        "label": "Game audio: spatial sound effects and background music",
+        "career_id": "c5259752-baf4-59ce-9682-596375a5cc7f",
+        "question": "Game audio: spatial sound effects and background music",
+        "example": "Add looped background music and trigger sound effects with slight pitch variations on jumping and item collection.",
+        "why_it_matters": "Integrate interactive audio including spatial 2D/3D sound effects, pitch variation, and looped background music.",
+        "group": "Game state, animation and audio",
+        "topic_id": "918d329a-8c77-5021-8339-ff9f4fa596f9",
+        "roadmap_id": "eed0cf4d-f4c7-583f-8356-aa8603406a8d",
+        "topic_title": "Sound effects, spatial audio and music",
+        "mappings": [
+          {
+            "topic_id": "918d329a-8c77-5021-8339-ff9f4fa596f9",
+            "roadmap_id": "eed0cf4d-f4c7-583f-8356-aa8603406a8d",
+            "topic_title": "Sound effects, spatial audio and music",
+            "rationale": "Add looped background music and trigger sound effects with slight pitch variations on jumping and item collection."
+          }
+        ]
+      },
+      {
+        "id": "07a42a9b-43ea-5d15-8105-4a482fe85782",
+        "label": "Canvas HUDs: health bars, menus, and inventory",
+        "career_id": "c5259752-baf4-59ce-9682-596375a5cc7f",
+        "question": "Canvas HUDs: health bars, menus, and inventory",
+        "example": "Create an in-game HUD with an animated health bar, coin counter, and a pause menu that pauses game time.",
+        "why_it_matters": "Build responsive in-game heads-up displays (HUD), health bars, ammo counters, and pause menus that scale across resolutions.",
+        "group": "User interfaces and progression",
+        "topic_id": "c9232d55-4ca5-581a-8100-6362afb442cb",
+        "roadmap_id": "eed0cf4d-f4c7-583f-8356-aa8603406a8d",
+        "topic_title": "Canvas UI: health bars, menus and HUDs",
+        "mappings": [
+          {
+            "topic_id": "c9232d55-4ca5-581a-8100-6362afb442cb",
+            "roadmap_id": "eed0cf4d-f4c7-583f-8356-aa8603406a8d",
+            "topic_title": "Canvas UI: health bars, menus and HUDs",
+            "rationale": "Create an in-game HUD with an animated health bar, coin counter, and a pause menu that pauses game time."
+          },
+          {
+            "topic_id": "9df180b0-5e81-51b2-b4d3-fe4ba7e16c0d",
+            "roadmap_id": "eed0cf4d-f4c7-583f-8356-aa8603406a8d",
+            "topic_title": "Inventory and item systems",
+            "rationale": "Create an inventory system where picking up potions adds them to a grid and clicking a potion restores player health."
+          }
+        ]
+      },
+      {
+        "id": "532f159d-e3d8-5f61-8d54-8620b7ec8714",
+        "label": "Game state saving, loading, and scene transitions",
+        "career_id": "c5259752-baf4-59ce-9682-596375a5cc7f",
+        "question": "Game state saving, loading, and scene transitions",
+        "example": "Implement a Save Game and Load Game feature that saves the player's position and score and restores them on reboot.",
+        "why_it_matters": "Persist player progression, high scores, and inventory state to local JSON or binary save files on disk.",
+        "group": "User interfaces and progression",
+        "topic_id": "822393eb-bb07-56a4-bb88-3dd4e961e0bb",
+        "roadmap_id": "eed0cf4d-f4c7-583f-8356-aa8603406a8d",
+        "topic_title": "Saving and loading game data",
+        "mappings": [
+          {
+            "topic_id": "822393eb-bb07-56a4-bb88-3dd4e961e0bb",
+            "roadmap_id": "eed0cf4d-f4c7-583f-8356-aa8603406a8d",
+            "topic_title": "Saving and loading game data",
+            "rationale": "Implement a Save Game and Load Game feature that saves the player's position and score and restores them on reboot."
+          },
+          {
+            "topic_id": "056e22dd-25c0-5f57-936f-6c5041b2a4a2",
+            "roadmap_id": "eed0cf4d-f4c7-583f-8356-aa8603406a8d",
+            "topic_title": "Scene management and level loading",
+            "rationale": "Build a level transition trigger that fades the screen to black, loads Level 2, and fades back in."
+          }
+        ]
+      },
+      {
+        "id": "a00b42a8-d126-59ef-b45c-1a84237a2bbb",
+        "label": "Frame rate profiling and draw call optimization",
+        "career_id": "c5259752-baf4-59ce-9682-596375a5cc7f",
+        "question": "Frame rate profiling and draw call optimization",
+        "example": "Open the engine profiler, analyze a scene with multiple objects, and optimize draw calls using a sprite atlas.",
+        "why_it_matters": "Diagnose frame rate dips, batch draw calls, optimize texture atlas sizes, and minimize CPU-GPU synchronization bottlenecks.",
+        "group": "Optimization, playtesting and publishing",
+        "topic_id": "9e322b2d-86cc-5d86-a5f1-05a9de3413cf",
+        "roadmap_id": "eed0cf4d-f4c7-583f-8356-aa8603406a8d",
+        "topic_title": "Frame rate optimization and draw calls",
+        "mappings": [
+          {
+            "topic_id": "9e322b2d-86cc-5d86-a5f1-05a9de3413cf",
+            "roadmap_id": "eed0cf4d-f4c7-583f-8356-aa8603406a8d",
+            "topic_title": "Frame rate optimization and draw calls",
+            "rationale": "Open the engine profiler, analyze a scene with multiple objects, and optimize draw calls using a sprite atlas."
+          }
+        ]
+      }
+    ],
+    "source_file": "game-developer.json",
+    "source_sha256": "6f0d866368d645db949b6606c9b401ae684f2ca506c958c72d0715adca6b08d3"
+  },
+  {
+    "career_id": "bc160707-e98f-5f72-b9dc-b77a5c02083e",
+    "version": "guide-v4-expansion-2026-11-08",
+    "purpose": "Engineer high-performance Linux systems, write system-level C and Bash software, program kernel calls, and analyze kernel observability.",
+    "activities": [
+      {
+        "action": "Inspect CPU execution modes and memory segmentation using lscpu and /proc/cpuinfo.",
+        "result": "Kernel space vs user space architecture"
+      },
+      {
+        "action": "Write a Makefile that compiles a multi-file C program with strict compiler warning flags into a binary.",
+        "result": "C compilation toolchain (gcc, make)"
+      },
+      {
+        "action": "Inspect loaded kernel modules on your machine using lsmod and examine module details with modinfo.",
+        "result": "Kernel module structure and lifecycles"
+      }
+    ],
+    "work_on": "Write robust systems-level software in C and advanced POSIX shell scripting",
+    "produce": "A high-performance C systems daemon and loadable Linux kernel module featuring low-level system call interaction, multi-process IPC, custom `/proc` telemetry, and eBPF observability tracing.",
+    "check": "You can show and explain the outcome of: deploy your systems monitoring daemon under systemd, verify clean signal termination, and review its journal logs. Check that it functions as expected and meets requirements.",
+    "learning_groups": [
+      {
+        "title": "Linux kernel architecture and system calls",
+        "explanation": "Understand CPU privilege rings, monolithic kernel architecture, and the boundary protecting hardware from user applications.",
+        "topic_id": "0b20eeff-7c8b-5927-81ed-cfb1d70e6431",
+        "roadmap_id": "f58d0683-af23-5413-a9ab-ad60087f0c34",
+        "topic_title": "Kernel space vs user space architecture"
+      },
+      {
+        "title": "Systems programming and C foundations",
+        "explanation": "Understand the C build stages: preprocessor, compilation, assembly, and linking, and automate builds using Makefiles.",
+        "topic_id": "79d1b3f5-49e3-5226-853b-a88ccd8534ae",
+        "roadmap_id": "f58d0683-af23-5413-a9ab-ad60087f0c34",
+        "topic_title": "C compilation toolchain (gcc, make)"
+      },
+      {
+        "title": "Linux kernel modules and driver basics",
+        "explanation": "Learn how Loadable Kernel Modules (LKM) extend the running kernel dynamically without rebooting the operating system.",
+        "topic_id": "b08f520c-2e07-5778-bfae-1a9af4bfbcdf",
+        "roadmap_id": "f58d0683-af23-5413-a9ab-ad60087f0c34",
+        "topic_title": "Kernel module structure and lifecycles"
+      }
+    ],
+    "starter": {
+      "instructions": "Inspect CPU execution modes and memory segmentation using lscpu and /proc/cpuinfo.",
+      "title": "Kernel space vs user space architecture",
+      "expected_result": "You can show and explain the outcome of: inspect cpu execution modes and memory segmentation using lscpu and /proc/cpuinfo. Check that it functions as expected and meets requirements.",
+      "topic_id": "0b20eeff-7c8b-5927-81ed-cfb1d70e6431",
+      "roadmap_id": "f58d0683-af23-5413-a9ab-ad60087f0c34"
+    },
+    "source_scope": "Asgard-authored curriculum and practice examples",
+    "limitation": "Learning activities describe practice. Personal experience comes from your own skill reports.",
+    "skills": [
+      {
+        "id": "3ba004a1-5022-50cb-a52c-0f96371d2105",
+        "label": "Linux kernel architecture and memory management",
+        "career_id": "bc160707-e98f-5f72-b9dc-b77a5c02083e",
+        "question": "Linux kernel architecture and memory management",
+        "example": "Inspect CPU execution modes and memory segmentation using lscpu and /proc/cpuinfo.",
+        "why_it_matters": "Understand CPU privilege rings, monolithic kernel architecture, and the boundary protecting hardware from user applications.",
+        "group": "Linux kernel architecture and system calls",
+        "topic_id": "0b20eeff-7c8b-5927-81ed-cfb1d70e6431",
+        "roadmap_id": "f58d0683-af23-5413-a9ab-ad60087f0c34",
+        "topic_title": "Kernel space vs user space architecture",
+        "mappings": [
+          {
+            "topic_id": "0b20eeff-7c8b-5927-81ed-cfb1d70e6431",
+            "roadmap_id": "f58d0683-af23-5413-a9ab-ad60087f0c34",
+            "topic_title": "Kernel space vs user space architecture",
+            "rationale": "Inspect CPU execution modes and memory segmentation using lscpu and /proc/cpuinfo."
+          },
+          {
+            "topic_id": "21acca92-e51e-59b1-8bed-ef208309d4c9",
+            "roadmap_id": "f58d0683-af23-5413-a9ab-ad60087f0c34",
+            "topic_title": "Virtual memory, pages and swap mechanics",
+            "rationale": "Inspect virtual memory statistics of a process by reading /proc/[pid]/smaps and running vmstat 1 5."
+          }
+        ]
+      },
+      {
+        "id": "f6041358-07bb-5143-ac83-4c5581739138",
+        "label": "System calls (syscalls) and glibc interfaces",
+        "career_id": "bc160707-e98f-5f72-b9dc-b77a5c02083e",
+        "question": "System calls (syscalls) and glibc interfaces",
+        "example": "Trace all system calls invoked by a simple command (such as 'ls') using strace and identify the openat and read calls.",
+        "why_it_matters": "Learn how user space programs request kernel services using software interrupts, syscall instructions, and glibc wrappers.",
+        "group": "Linux kernel architecture and system calls",
+        "topic_id": "a4c0e0eb-8f49-504b-9581-c7560e97476a",
+        "roadmap_id": "f58d0683-af23-5413-a9ab-ad60087f0c34",
+        "topic_title": "Linux system call interface and glibc",
+        "mappings": [
+          {
+            "topic_id": "a4c0e0eb-8f49-504b-9581-c7560e97476a",
+            "roadmap_id": "f58d0683-af23-5413-a9ab-ad60087f0c34",
+            "topic_title": "Linux system call interface and glibc",
+            "rationale": "Trace all system calls invoked by a simple command (such as 'ls') using strace and identify the openat and read calls."
+          }
+        ]
+      },
+      {
+        "id": "2acc85b9-12c6-5de4-ba97-ce649d810356",
+        "label": "Advanced POSIX shell scripting, awk, and sed",
+        "career_id": "bc160707-e98f-5f72-b9dc-b77a5c02083e",
+        "question": "Advanced POSIX shell scripting, awk, and sed",
+        "example": "Write a shell script with a trap handler that cleans up temporary scratch files upon unexpected script cancellation.",
+        "why_it_matters": "Write portable, robust POSIX shell scripts that handle process exit codes, parse flags, and trap OS signals (SIGINT, SIGTERM).",
+        "group": "Advanced shell scripting and text processing",
+        "topic_id": "29ef1b00-b195-5a11-9c1e-f4978c054ca6",
+        "roadmap_id": "f58d0683-af23-5413-a9ab-ad60087f0c34",
+        "topic_title": "POSIX shell scripting and signal trapping",
+        "mappings": [
+          {
+            "topic_id": "29ef1b00-b195-5a11-9c1e-f4978c054ca6",
+            "roadmap_id": "f58d0683-af23-5413-a9ab-ad60087f0c34",
+            "topic_title": "POSIX shell scripting and signal trapping",
+            "rationale": "Write a shell script with a trap handler that cleans up temporary scratch files upon unexpected script cancellation."
+          },
+          {
+            "topic_id": "0ac25018-715a-5dd9-94b0-af9f4ec3f8b2",
+            "roadmap_id": "f58d0683-af23-5413-a9ab-ad60087f0c34",
+            "topic_title": "Text stream processing with sed",
+            "rationale": "Write a sed command that comments out all lines matching a specific directive in an Nginx or SSH configuration file."
+          },
+          {
+            "topic_id": "9bf3fcec-866f-5c31-bfbe-9e4bf1aec1b4",
+            "roadmap_id": "f58d0683-af23-5413-a9ab-ad60087f0c34",
+            "topic_title": "Advanced data processing with awk",
+            "rationale": "Write an awk script that parses a web server access log and prints the top 5 IP addresses generating 404 errors."
+          }
+        ]
+      },
+      {
+        "id": "e54c3552-1a1f-59ea-83c1-6dccf22936b2",
+        "label": "Systems programming in C and GCC toolchains",
+        "career_id": "bc160707-e98f-5f72-b9dc-b77a5c02083e",
+        "question": "Systems programming in C and GCC toolchains",
+        "example": "Write a Makefile that compiles a multi-file C program with strict compiler warning flags into a binary.",
+        "why_it_matters": "Understand the C build stages: preprocessor, compilation, assembly, and linking, and automate builds using Makefiles.",
+        "group": "Systems programming and C foundations",
+        "topic_id": "79d1b3f5-49e3-5226-853b-a88ccd8534ae",
+        "roadmap_id": "f58d0683-af23-5413-a9ab-ad60087f0c34",
+        "topic_title": "C compilation toolchain (gcc, make)",
+        "mappings": [
+          {
+            "topic_id": "79d1b3f5-49e3-5226-853b-a88ccd8534ae",
+            "roadmap_id": "f58d0683-af23-5413-a9ab-ad60087f0c34",
+            "topic_title": "C compilation toolchain (gcc, make)",
+            "rationale": "Write a Makefile that compiles a multi-file C program with strict compiler warning flags into a binary."
+          },
+          {
+            "topic_id": "407ebafd-c83f-566a-9eab-65679013455f",
+            "roadmap_id": "f58d0683-af23-5413-a9ab-ad60087f0c34",
+            "topic_title": "Memory allocation, pointers and stack vs heap",
+            "rationale": "Write a C program that dynamically allocates a resizable array of integers and verify zero memory leaks with Valgrind."
+          }
+        ]
+      },
+      {
+        "id": "c1622eda-685a-5461-8f0c-22fc50e9f105",
+        "label": "File descriptors, non-blocking I/O, and select/epoll",
+        "career_id": "bc160707-e98f-5f72-b9dc-b77a5c02083e",
+        "question": "File descriptors, non-blocking I/O, and select/epoll",
+        "example": "Write a C utility that copies a file using the open, read, write, and close system calls with a fixed 4KB buffer.",
+        "why_it_matters": "Perform low-level system I/O using open, read, write, close, and lseek system calls, and compare with buffered stdio.",
+        "group": "Systems programming and C foundations",
+        "topic_id": "c90ab188-1759-5e39-aec0-7ad7bf7e816f",
+        "roadmap_id": "f58d0683-af23-5413-a9ab-ad60087f0c34",
+        "topic_title": "File descriptors, low-level I/O and buffering",
+        "mappings": [
+          {
+            "topic_id": "c90ab188-1759-5e39-aec0-7ad7bf7e816f",
+            "roadmap_id": "f58d0683-af23-5413-a9ab-ad60087f0c34",
+            "topic_title": "File descriptors, low-level I/O and buffering",
+            "rationale": "Write a C utility that copies a file using the open, read, write, and close system calls with a fixed 4KB buffer."
+          }
+        ]
+      },
+      {
+        "id": "47336257-8794-5fba-a1b4-bdb0b804d166",
+        "label": "Process lifecycles (fork, exec, wait, signals)",
+        "career_id": "bc160707-e98f-5f72-b9dc-b77a5c02083e",
+        "question": "Process lifecycles (fork, exec, wait, signals)",
+        "example": "Write a minimal command-line shell in C that forks a child process, executes a command with execvp, and waits for completion.",
+        "why_it_matters": "Create child processes with fork, replace process memory with execve, prevent zombie processes, and collect exit statuses with waitpid.",
+        "group": "Systems programming and C foundations",
+        "topic_id": "a0546859-bbc8-5375-8fcd-ba0b7e09f60a",
+        "roadmap_id": "f58d0683-af23-5413-a9ab-ad60087f0c34",
+        "topic_title": "Process creation with fork, exec and wait",
+        "mappings": [
+          {
+            "topic_id": "a0546859-bbc8-5375-8fcd-ba0b7e09f60a",
+            "roadmap_id": "f58d0683-af23-5413-a9ab-ad60087f0c34",
+            "topic_title": "Process creation with fork, exec and wait",
+            "rationale": "Write a minimal command-line shell in C that forks a child process, executes a command with execvp, and waits for completion."
+          },
+          {
+            "topic_id": "798382f0-0bfb-52ee-8e91-f2f0b9007d33",
+            "roadmap_id": "f58d0683-af23-5413-a9ab-ad60087f0c34",
+            "topic_title": "POSIX signals and signal handlers",
+            "rationale": "Write a C daemon that catches SIGINT and SIGTERM, performs clean file shutdowns, and exits gracefully."
+          }
+        ]
+      },
+      {
+        "id": "c5b69416-0968-5631-973c-fe28996ea364",
+        "label": "Inter-process communication (pipes, shared memory, sockets)",
+        "career_id": "bc160707-e98f-5f72-b9dc-b77a5c02083e",
+        "question": "Inter-process communication (pipes, shared memory, sockets)",
+        "example": "Write a C program where a parent process creates a pipe, forks a child, and sends a message through the pipe.",
+        "why_it_matters": "Transfer unidirectional byte streams between processes using anonymous pipes (pipe) and named pipes (mkfifo) in the filesystem.",
+        "group": "Inter-process communication and concurrency",
+        "topic_id": "0606b1b8-791e-5e0a-947f-973a0ab1b3bc",
+        "roadmap_id": "f58d0683-af23-5413-a9ab-ad60087f0c34",
+        "topic_title": "Unix pipes and named FIFOs",
+        "mappings": [
+          {
+            "topic_id": "0606b1b8-791e-5e0a-947f-973a0ab1b3bc",
+            "roadmap_id": "f58d0683-af23-5413-a9ab-ad60087f0c34",
+            "topic_title": "Unix pipes and named FIFOs",
+            "rationale": "Write a C program where a parent process creates a pipe, forks a child, and sends a message through the pipe."
+          },
+          {
+            "topic_id": "080180ae-5677-5cf9-a660-c475395cce6a",
+            "roadmap_id": "f58d0683-af23-5413-a9ab-ad60087f0c34",
+            "topic_title": "Shared memory and semaphores",
+            "rationale": "Write a producer-consumer application using POSIX shared memory and semaphores to coordinate data updates."
+          }
+        ]
+      },
+      {
+        "id": "c3367cd6-ea4d-52b6-9993-f726492f4722",
+        "label": "Loadable kernel modules (LKM) and device nodes (/dev)",
+        "career_id": "bc160707-e98f-5f72-b9dc-b77a5c02083e",
+        "question": "Loadable kernel modules (LKM) and device nodes (/dev)",
+        "example": "Inspect loaded kernel modules on your machine using lsmod and examine module details with modinfo.",
+        "why_it_matters": "Learn how Loadable Kernel Modules (LKM) extend the running kernel dynamically without rebooting the operating system.",
+        "group": "Linux kernel modules and driver basics",
+        "topic_id": "b08f520c-2e07-5778-bfae-1a9af4bfbcdf",
+        "roadmap_id": "f58d0683-af23-5413-a9ab-ad60087f0c34",
+        "topic_title": "Kernel module structure and lifecycles",
+        "mappings": [
+          {
+            "topic_id": "b08f520c-2e07-5778-bfae-1a9af4bfbcdf",
+            "roadmap_id": "f58d0683-af23-5413-a9ab-ad60087f0c34",
+            "topic_title": "Kernel module structure and lifecycles",
+            "rationale": "Inspect loaded kernel modules on your machine using lsmod and examine module details with modinfo."
+          },
+          {
+            "topic_id": "7d94e6e4-4ea1-528d-a86b-7907ef305dd6",
+            "roadmap_id": "f58d0683-af23-5413-a9ab-ad60087f0c34",
+            "topic_title": "Character device nodes in /dev and udev rules",
+            "rationale": "Write a udev rule that sets custom permissions and creates a symlink whenever a USB device connects."
+          }
+        ]
+      },
+      {
+        "id": "cdc0676c-db14-5db7-b36c-1aaa3287d76c",
+        "label": "Kernel parameter tuning via sysctl, /proc, and /sys",
+        "career_id": "bc160707-e98f-5f72-b9dc-b77a5c02083e",
+        "question": "Kernel parameter tuning via sysctl, /proc, and /sys",
+        "example": "Read process statistics, command line arguments, and open file descriptors directly from the /proc directory.",
+        "why_it_matters": "Interact with kernel data structures and hardware device trees exposed dynamically as text files in /proc and /sys.",
+        "group": "Linux kernel architecture and system calls",
+        "topic_id": "3814821a-265f-5e28-a6cf-7f78aeb44d69",
+        "roadmap_id": "f58d0683-af23-5413-a9ab-ad60087f0c34",
+        "topic_title": "The /proc and /sys virtual filesystems",
+        "mappings": [
+          {
+            "topic_id": "3814821a-265f-5e28-a6cf-7f78aeb44d69",
+            "roadmap_id": "f58d0683-af23-5413-a9ab-ad60087f0c34",
+            "topic_title": "The /proc and /sys virtual filesystems",
+            "rationale": "Read process statistics, command line arguments, and open file descriptors directly from the /proc directory."
+          },
+          {
+            "topic_id": "d2b1a760-4f45-53c5-82f3-0b4a8f344068",
+            "roadmap_id": "f58d0683-af23-5413-a9ab-ad60087f0c34",
+            "topic_title": "Kernel parameter tuning with sysctl",
+            "rationale": "Tune a kernel parameter using sysctl -w and persist the setting across reboots in /etc/sysctl.d/99-custom.conf."
+          }
+        ]
+      },
+      {
+        "id": "43b8b52a-883f-5400-806b-b458e59e31e6",
+        "label": "Low-level observability with eBPF, strace, and perf",
+        "career_id": "bc160707-e98f-5f72-b9dc-b77a5c02083e",
+        "question": "Low-level observability with eBPF, strace, and perf",
+        "example": "Trace a failing command with strace to identify the exact file path that caused a 'file not found' or permission error.",
+        "why_it_matters": "Diagnose application crashes, missing configuration files, and permission denials by tracing system calls and library calls.",
+        "group": "Kernel tuning, observability and systems automation",
+        "topic_id": "d4646011-fe4a-51f9-8f15-f1978f02e787",
+        "roadmap_id": "f58d0683-af23-5413-a9ab-ad60087f0c34",
+        "topic_title": "Tracing execution with strace and ltrace",
+        "mappings": [
+          {
+            "topic_id": "d4646011-fe4a-51f9-8f15-f1978f02e787",
+            "roadmap_id": "f58d0683-af23-5413-a9ab-ad60087f0c34",
+            "topic_title": "Tracing execution with strace and ltrace",
+            "rationale": "Trace a failing command with strace to identify the exact file path that caused a 'file not found' or permission error."
+          },
+          {
+            "topic_id": "2c19cf34-8009-53ad-83a4-4cacbcdbbff7",
+            "roadmap_id": "f58d0683-af23-5413-a9ab-ad60087f0c34",
+            "topic_title": "Linux performance analysis tools (perf, eBPF basics)",
+            "rationale": "Record a CPU profile of a busy command using perf record and view the function call overhead using perf report."
+          }
+        ]
+      }
+    ],
+    "source_file": "linux-systems-engineer.json",
+    "source_sha256": "81696d2f44eabc23603664366bda47c050f4f5b7101272ea2dbe34dca167bea5"
+  },
+  {
+    "career_id": "3556bbb7-ac30-5aec-ac42-46c277abf825",
+    "version": "guide-v4-expansion-2026-11-08",
+    "purpose": "Build responsive, native or cross-platform mobile applications for iOS and Android devices.",
+    "activities": [
+      {
+        "action": "Map the lifecycle states of a mobile app from initial launch to background suspension.",
+        "result": "Mobile platforms and operating system differences"
+      },
+      {
+        "action": "Build a bookmarking feature where toggling a bookmark updates state immediately across all screens.",
+        "result": "Component and app-level state management"
+      },
+      {
+        "action": "Build a profile avatar uploader that allows users to snap a photo or pick an existing image from their library.",
+        "result": "Camera, media and photo library access"
+      }
+    ],
+    "work_on": "Design and build accessible, responsive mobile user interfaces",
+    "produce": "A cross-platform mobile application featuring interactive UI screens, local SQLite offline storage, device camera integration, API data sync, and automated mobile tests.",
+    "check": "You can show and explain the outcome of: complete an app store submission readiness checklist covering privacy disclosures, assets, and beta distribution. Check that it functions as expected and meets requirements.",
+    "learning_groups": [
+      {
+        "title": "Mobile development platforms and setup",
+        "explanation": "Understand the architectural foundations of iOS and Android, sandbox execution, and mobile app lifecycles.",
+        "topic_id": "c1b6b0e2-92f0-5467-b563-2384144cfea7",
+        "roadmap_id": "03bd1d85-8fa1-57df-ace8-0d49a9f2ac06",
+        "topic_title": "Mobile platforms and operating system differences"
+      },
+      {
+        "title": "State management and local data",
+        "explanation": "Manage UI state reactively across mobile screens using state hooks, context providers, or dedicated stores.",
+        "topic_id": "f10559ac-9f84-5846-bc0e-20f727f4e562",
+        "roadmap_id": "03bd1d85-8fa1-57df-ace8-0d49a9f2ac06",
+        "topic_title": "Component and app-level state management"
+      },
+      {
+        "title": "Device features, hardware and performance",
+        "explanation": "Capture photos and videos using the device camera and select existing media from the photo gallery.",
+        "topic_id": "ad90cf24-6680-5fda-9bb9-99375a43815f",
+        "roadmap_id": "03bd1d85-8fa1-57df-ace8-0d49a9f2ac06",
+        "topic_title": "Camera, media and photo library access"
+      }
+    ],
+    "starter": {
+      "instructions": "Map the lifecycle states of a mobile app from initial launch to background suspension.",
+      "title": "Mobile platforms and operating system differences",
+      "expected_result": "You can show and explain the outcome of: map the lifecycle states of a mobile app from initial launch to background suspension. Check that it functions as expected and meets requirements.",
+      "topic_id": "c1b6b0e2-92f0-5467-b563-2384144cfea7",
+      "roadmap_id": "03bd1d85-8fa1-57df-ace8-0d49a9f2ac06"
+    },
+    "source_scope": "Asgard-authored curriculum and practice examples",
+    "limitation": "Learning activities describe practice. Personal experience comes from your own skill reports.",
+    "skills": [
+      {
+        "id": "4f0d726e-7391-55ee-b833-066cfa52cfd5",
+        "label": "Mobile platform architectures (iOS vs Android)",
+        "career_id": "3556bbb7-ac30-5aec-ac42-46c277abf825",
+        "question": "Mobile platform architectures (iOS vs Android)",
+        "example": "Map the lifecycle states of a mobile app from initial launch to background suspension.",
+        "why_it_matters": "Understand the architectural foundations of iOS and Android, sandbox execution, and mobile app lifecycles.",
+        "group": "Mobile development platforms and setup",
+        "topic_id": "c1b6b0e2-92f0-5467-b563-2384144cfea7",
+        "roadmap_id": "03bd1d85-8fa1-57df-ace8-0d49a9f2ac06",
+        "topic_title": "Mobile platforms and operating system differences",
+        "mappings": [
+          {
+            "topic_id": "c1b6b0e2-92f0-5467-b563-2384144cfea7",
+            "roadmap_id": "03bd1d85-8fa1-57df-ace8-0d49a9f2ac06",
+            "topic_title": "Mobile platforms and operating system differences",
+            "rationale": "Map the lifecycle states of a mobile app from initial launch to background suspension."
+          }
+        ]
+      },
+      {
+        "id": "a65a4427-cf62-55d9-9dbf-4602a1fe6cf5",
+        "label": "Cross-platform toolchains (React Native / Flutter)",
+        "career_id": "3556bbb7-ac30-5aec-ac42-46c277abf825",
+        "question": "Cross-platform toolchains (React Native / Flutter)",
+        "example": "Launch a mobile simulator and verify that a starter project builds and renders on the screen.",
+        "why_it_matters": "Install and configure essential mobile development tools including Xcode, Android Studio, SDKs, and emulators.",
+        "group": "Mobile development platforms and setup",
+        "topic_id": "fb2b67b5-eccb-5c3f-bdc7-11673b15abd9",
+        "roadmap_id": "03bd1d85-8fa1-57df-ace8-0d49a9f2ac06",
+        "topic_title": "Mobile toolchains and IDE setup",
+        "mappings": [
+          {
+            "topic_id": "fb2b67b5-eccb-5c3f-bdc7-11673b15abd9",
+            "roadmap_id": "03bd1d85-8fa1-57df-ace8-0d49a9f2ac06",
+            "topic_title": "Mobile toolchains and IDE setup",
+            "rationale": "Launch a mobile simulator and verify that a starter project builds and renders on the screen."
+          }
+        ]
+      },
+      {
+        "id": "1e033980-82b3-5739-84c5-c13eb453abbc",
+        "label": "Mobile layout styling and flexbox",
+        "career_id": "3556bbb7-ac30-5aec-ac42-46c277abf825",
+        "question": "Mobile layout styling and flexbox",
+        "example": "Build a responsive mobile profile screen that respects safe areas across different device screen shapes.",
+        "why_it_matters": "Create responsive mobile interfaces using flexbox column layouts, safe area insets, and scrollable containers.",
+        "group": "Layouts, UI components and navigation",
+        "topic_id": "146b7339-2407-5db9-b4e4-9f359991a455",
+        "roadmap_id": "03bd1d85-8fa1-57df-ace8-0d49a9f2ac06",
+        "topic_title": "Mobile view layouts and flexbox",
+        "mappings": [
+          {
+            "topic_id": "146b7339-2407-5db9-b4e4-9f359991a455",
+            "roadmap_id": "03bd1d85-8fa1-57df-ace8-0d49a9f2ac06",
+            "topic_title": "Mobile view layouts and flexbox",
+            "rationale": "Build a responsive mobile profile screen that respects safe areas across different device screen shapes."
+          }
+        ]
+      },
+      {
+        "id": "5f48f8d1-4130-5ac2-9a3a-5d632bada6ad",
+        "label": "Touch gestures and navigation stacks",
+        "career_id": "3556bbb7-ac30-5aec-ac42-46c277abf825",
+        "question": "Touch gestures and navigation stacks",
+        "example": "Create a swipe-to-dismiss list item that animates off-screen when swiped past a threshold.",
+        "why_it_matters": "Handle tap feedback, long presses, swipe gestures, and pinch-to-zoom using touchable controls and gesture recognizers.",
+        "group": "Layouts, UI components and navigation",
+        "topic_id": "e59250c2-a4d8-5499-9b6f-daca61593d0c",
+        "roadmap_id": "03bd1d85-8fa1-57df-ace8-0d49a9f2ac06",
+        "topic_title": "Touch interactions and gesture handlers",
+        "mappings": [
+          {
+            "topic_id": "e59250c2-a4d8-5499-9b6f-daca61593d0c",
+            "roadmap_id": "03bd1d85-8fa1-57df-ace8-0d49a9f2ac06",
+            "topic_title": "Touch interactions and gesture handlers",
+            "rationale": "Create a swipe-to-dismiss list item that animates off-screen when swiped past a threshold."
+          },
+          {
+            "topic_id": "8d25c4f7-cb92-51b2-bb9a-93d2f4548f16",
+            "roadmap_id": "03bd1d85-8fa1-57df-ace8-0d49a9f2ac06",
+            "topic_title": "Navigation stacks, tabs and modals",
+            "rationale": "Build a multi-screen app with a bottom tab bar containing Home, Search, and Settings stack navigators."
+          }
+        ]
+      },
+      {
+        "id": "a586d2c5-70bb-5670-844e-b7ee4b8856fb",
+        "label": "Local storage and offline-first persistence",
+        "career_id": "3556bbb7-ac30-5aec-ac42-46c277abf825",
+        "question": "Local storage and offline-first persistence",
+        "example": "Store a user's recent search queries in local storage and display them on app startup.",
+        "why_it_matters": "Store user preferences, session tokens, and structured relational records on device flash storage.",
+        "group": "State management and local data",
+        "topic_id": "e1752f7e-6130-5fba-94d7-a33d2e0295aa",
+        "roadmap_id": "03bd1d85-8fa1-57df-ace8-0d49a9f2ac06",
+        "topic_title": "Local key-value and SQLite storage",
+        "mappings": [
+          {
+            "topic_id": "e1752f7e-6130-5fba-94d7-a33d2e0295aa",
+            "roadmap_id": "03bd1d85-8fa1-57df-ace8-0d49a9f2ac06",
+            "topic_title": "Local key-value and SQLite storage",
+            "rationale": "Store a user's recent search queries in local storage and display them on app startup."
+          },
+          {
+            "topic_id": "5a706dd7-770c-5707-9008-a03f949a6355",
+            "roadmap_id": "03bd1d85-8fa1-57df-ace8-0d49a9f2ac06",
+            "topic_title": "Offline-first data persistence",
+            "rationale": "Build an offline notes list where users can create notes offline and see them saved locally."
+          }
+        ]
+      },
+      {
+        "id": "cf30c938-57fa-5eb7-83fd-23bc9c4d5b59",
+        "label": "REST and GraphQL API integration",
+        "career_id": "3556bbb7-ac30-5aec-ac42-46c277abf825",
+        "question": "REST and GraphQL API integration",
+        "example": "Build an infinite-scrolling feed that loads the next page of items when the user approaches the bottom.",
+        "why_it_matters": "Make secure network requests from mobile apps, parse JSON responses, and handle loading and error UI states.",
+        "group": "Network requests and external services",
+        "topic_id": "3570d2df-f7bf-54ea-9bdf-b9e229f297d7",
+        "roadmap_id": "03bd1d85-8fa1-57df-ace8-0d49a9f2ac06",
+        "topic_title": "Fetching and parsing REST and GraphQL APIs",
+        "mappings": [
+          {
+            "topic_id": "3570d2df-f7bf-54ea-9bdf-b9e229f297d7",
+            "roadmap_id": "03bd1d85-8fa1-57df-ace8-0d49a9f2ac06",
+            "topic_title": "Fetching and parsing REST and GraphQL APIs",
+            "rationale": "Build an infinite-scrolling feed that loads the next page of items when the user approaches the bottom."
+          }
+        ]
+      },
+      {
+        "id": "5700d6bc-5986-5e6a-8cb3-cbeb635b51f3",
+        "label": "Push notifications and background workers",
+        "career_id": "3556bbb7-ac30-5aec-ac42-46c277abf825",
+        "question": "Push notifications and background workers",
+        "example": "Configure a local push notification that triggers after a 5-second countdown with a custom title and body.",
+        "why_it_matters": "Configure remote push notifications with APNs and FCM, receive push payloads, and schedule background syncs.",
+        "group": "Network requests and external services",
+        "topic_id": "b835bd47-d725-5900-831f-a916bacb322f",
+        "roadmap_id": "03bd1d85-8fa1-57df-ace8-0d49a9f2ac06",
+        "topic_title": "Push notifications and background tasks",
+        "mappings": [
+          {
+            "topic_id": "b835bd47-d725-5900-831f-a916bacb322f",
+            "roadmap_id": "03bd1d85-8fa1-57df-ace8-0d49a9f2ac06",
+            "topic_title": "Push notifications and background tasks",
+            "rationale": "Configure a local push notification that triggers after a 5-second countdown with a custom title and body."
+          }
+        ]
+      },
+      {
+        "id": "7666f6b6-16b2-5c80-8534-2899822ea6b5",
+        "label": "Device hardware permissions (camera, location)",
+        "career_id": "3556bbb7-ac30-5aec-ac42-46c277abf825",
+        "question": "Device hardware permissions (camera, location)",
+        "example": "Implement a permission request flow that checks camera permission and displays a fallback view if denied.",
+        "why_it_matters": "Request runtime user permissions gracefully for camera, microphone, photo library, and location services.",
+        "group": "State management and local data",
+        "topic_id": "fc96721c-3b4c-5d0e-8792-d8fd6598c6cb",
+        "roadmap_id": "03bd1d85-8fa1-57df-ace8-0d49a9f2ac06",
+        "topic_title": "Managing device permissions and sensors",
+        "mappings": [
+          {
+            "topic_id": "fc96721c-3b4c-5d0e-8792-d8fd6598c6cb",
+            "roadmap_id": "03bd1d85-8fa1-57df-ace8-0d49a9f2ac06",
+            "topic_title": "Managing device permissions and sensors",
+            "rationale": "Implement a permission request flow that checks camera permission and displays a fallback view if denied."
+          },
+          {
+            "topic_id": "ad90cf24-6680-5fda-9bb9-99375a43815f",
+            "roadmap_id": "03bd1d85-8fa1-57df-ace8-0d49a9f2ac06",
+            "topic_title": "Camera, media and photo library access",
+            "rationale": "Build a profile avatar uploader that allows users to snap a photo or pick an existing image from their library."
+          },
+          {
+            "topic_id": "96f38df6-4374-58c9-82fd-acab37436317",
+            "roadmap_id": "03bd1d85-8fa1-57df-ace8-0d49a9f2ac06",
+            "topic_title": "Location services and interactive maps",
+            "rationale": "Get the device's current coordinates and display a map centered on the user's location with a marker."
+          }
+        ]
+      },
+      {
+        "id": "e2286b4e-2a17-57d3-a168-2202c75a3610",
+        "label": "Mobile performance profiling and memory analysis",
+        "career_id": "3556bbb7-ac30-5aec-ac42-46c277abf825",
+        "question": "Mobile performance profiling and memory analysis",
+        "example": "Optimize a list of 1,000 items with image thumbnails so scrolling remains smooth and memory usage stays low.",
+        "why_it_matters": "Identify memory leaks, optimize list rendering with windowing, and maintain a smooth 60fps refresh rate.",
+        "group": "Device features, hardware and performance",
+        "topic_id": "d4b321d0-8e73-5978-b017-94fca998f937",
+        "roadmap_id": "03bd1d85-8fa1-57df-ace8-0d49a9f2ac06",
+        "topic_title": "Memory management and rendering optimization",
+        "mappings": [
+          {
+            "topic_id": "d4b321d0-8e73-5978-b017-94fca998f937",
+            "roadmap_id": "03bd1d85-8fa1-57df-ace8-0d49a9f2ac06",
+            "topic_title": "Memory management and rendering optimization",
+            "rationale": "Optimize a list of 1,000 items with image thumbnails so scrolling remains smooth and memory usage stays low."
+          }
+        ]
+      },
+      {
+        "id": "4b07de91-7a21-5ae9-8669-937e51cfe973",
+        "label": "App signing and app store release management",
+        "career_id": "3556bbb7-ac30-5aec-ac42-46c277abf825",
+        "question": "App signing and app store release management",
+        "example": "Generate a release build bundle (AAB or IPA) configured with release signing credentials.",
+        "why_it_matters": "Configure iOS signing certificates, provisioning profiles, Android keystores, and compile release APKs and AABs.",
+        "group": "Mobile testing, security and app store releases",
+        "topic_id": "37f0f6f1-fa99-5c3d-99da-4eae0d905c31",
+        "roadmap_id": "03bd1d85-8fa1-57df-ace8-0d49a9f2ac06",
+        "topic_title": "App signing, provisioning and bundle generation",
+        "mappings": [
+          {
+            "topic_id": "37f0f6f1-fa99-5c3d-99da-4eae0d905c31",
+            "roadmap_id": "03bd1d85-8fa1-57df-ace8-0d49a9f2ac06",
+            "topic_title": "App signing, provisioning and bundle generation",
+            "rationale": "Generate a release build bundle (AAB or IPA) configured with release signing credentials."
+          },
+          {
+            "topic_id": "aacb9a7b-f9fd-5a12-9364-147744dc1c9c",
+            "roadmap_id": "03bd1d85-8fa1-57df-ace8-0d49a9f2ac06",
+            "topic_title": "App Store and Google Play deployment checklists",
+            "rationale": "Complete an App Store submission readiness checklist covering privacy disclosures, assets, and beta distribution."
+          }
+        ]
+      }
+    ],
+    "source_file": "mobile-developer.json",
+    "source_sha256": "2692d4c81d20613c2448360948d8776442db62f81148ea6fe65a6e26b6541f22"
+  },
+  {
+    "career_id": "e46a121b-b0b8-5e62-bedd-ebd9303f2eca",
+    "version": "guide-v4-expansion-2026-11-08",
+    "purpose": "Administer, secure, and maintain enterprise Linux servers, operating system storage, user access, services, and network connectivity.",
+    "activities": [
+      {
+        "action": "Install a minimal headless Linux server in a local virtual machine and log in via the console.",
+        "result": "Linux distribution families and installation"
+      },
+      {
+        "action": "Create a new partition on a secondary disk, format it with an ext4 filesystem, and inspect it with lsblk.",
+        "result": "Disk partitioning and filesystem creation"
+      },
+      {
+        "action": "Assign a static IP address, subnet mask, and default gateway to a server interface and verify connectivity.",
+        "result": "Network interface configuration and IP addressing"
+      }
+    ],
+    "work_on": "Install, configure, and maintain Linux operating systems and enterprise distributions",
+    "produce": "A hardened, production-ready enterprise Linux server deployment featuring LVM partitioned storage, non-root sudo accounts, hardened SSH key authentication, automated systemd service management, firewall rules, and automated rsync backup scripts.",
+    "check": "You can show and explain the outcome of: document a step-by-step disaster recovery runbook detailing how to restore a server from bare metal to running state. Check that it functions as expected and meets requirements.",
+    "learning_groups": [
+      {
+        "title": "System administration fundamentals",
+        "explanation": "Learn the differences between Debian/Ubuntu and RHEL/Fedora distribution families, kernel releases, and minimal server installations.",
+        "topic_id": "af988d84-3e31-502d-b924-79daf245257d",
+        "roadmap_id": "5df0777c-53ba-5a29-9b9d-e290bae381bc",
+        "topic_title": "Linux distribution families and installation"
+      },
+      {
+        "title": "Storage, filesystems and package management",
+        "explanation": "Partition storage drives using fdisk/parted, format partitions with ext4 or XFS filesystems, and verify disk geometry.",
+        "topic_id": "4caa6d2d-852e-5f08-a1dd-28a249a078a7",
+        "roadmap_id": "5df0777c-53ba-5a29-9b9d-e290bae381bc",
+        "topic_title": "Disk partitioning and filesystem creation"
+      },
+      {
+        "title": "Host networking, firewalls and DNS",
+        "explanation": "Configure static and DHCP network interfaces using iproute2 commands (ip addr, ip link, ip route) and netplan/NetworkManager.",
+        "topic_id": "3430f4aa-c09f-5bda-8c05-79e385a1e734",
+        "roadmap_id": "5df0777c-53ba-5a29-9b9d-e290bae381bc",
+        "topic_title": "Network interface configuration and IP addressing"
+      }
+    ],
+    "starter": {
+      "instructions": "Install a minimal headless Linux server in a local virtual machine and log in via the console.",
+      "title": "Linux distribution families and installation",
+      "expected_result": "You can show and explain the outcome of: install a minimal headless linux server in a local virtual machine and log in via the console. Check that it functions as expected and meets requirements.",
+      "topic_id": "af988d84-3e31-502d-b924-79daf245257d",
+      "roadmap_id": "5df0777c-53ba-5a29-9b9d-e290bae381bc"
+    },
+    "source_scope": "Asgard-authored curriculum and practice examples",
+    "limitation": "Learning activities describe practice. Personal experience comes from your own skill reports.",
+    "skills": [
+      {
+        "id": "a1793468-bdf7-5d3d-ae5f-da8a604b9120",
+        "label": "Linux filesystem hierarchy and terminal navigation",
+        "career_id": "e46a121b-b0b8-5e62-bedd-ebd9303f2eca",
+        "question": "Linux filesystem hierarchy and terminal navigation",
+        "example": "Explore the root filesystem, locate the system hosts file in /etc, and inspect recent log files in /var/log.",
+        "why_it_matters": "Master the Filesystem Hierarchy Standard (FHS), understanding the roles of /etc, /var, /home, /usr, /tmp, and /opt.",
+        "group": "System administration fundamentals",
+        "topic_id": "cbcf2366-e929-541f-ac42-a5e718e4cc7d",
+        "roadmap_id": "5df0777c-53ba-5a29-9b9d-e290bae381bc",
+        "topic_title": "Filesystem hierarchy and navigation",
+        "mappings": [
+          {
+            "topic_id": "cbcf2366-e929-541f-ac42-a5e718e4cc7d",
+            "roadmap_id": "5df0777c-53ba-5a29-9b9d-e290bae381bc",
+            "topic_title": "Filesystem hierarchy and navigation",
+            "rationale": "Explore the root filesystem, locate the system hosts file in /etc, and inspect recent log files in /var/log."
+          },
+          {
+            "topic_id": "2b59de5f-f6a7-5263-8d06-eee0c6677569",
+            "roadmap_id": "5df0777c-53ba-5a29-9b9d-e290bae381bc",
+            "topic_title": "Shell commands, pipes and text redirection",
+            "rationale": "Write a command pipeline that extracts all unique usernames from /etc/passwd sorted alphabetically."
+          }
+        ]
+      },
+      {
+        "id": "9c3a50a6-be23-545d-8a79-8554a349ff1f",
+        "label": "Superuser privileges and sudo configuration",
+        "career_id": "e46a121b-b0b8-5e62-bedd-ebd9303f2eca",
+        "question": "Superuser privileges and sudo configuration",
+        "example": "Create a new administrative user, add them to the sudo/wheel group, and verify they can execute commands as root.",
+        "why_it_matters": "Manage root administrative access securely, avoiding direct root logins, and configure granular permissions with visudo.",
+        "group": "System administration fundamentals",
+        "topic_id": "6bd86a5e-be53-50d4-b6c5-dc321835a386",
+        "roadmap_id": "5df0777c-53ba-5a29-9b9d-e290bae381bc",
+        "topic_title": "Superuser privileges and sudo configuration",
+        "mappings": [
+          {
+            "topic_id": "6bd86a5e-be53-50d4-b6c5-dc321835a386",
+            "roadmap_id": "5df0777c-53ba-5a29-9b9d-e290bae381bc",
+            "topic_title": "Superuser privileges and sudo configuration",
+            "rationale": "Create a new administrative user, add them to the sudo/wheel group, and verify they can execute commands as root."
+          }
+        ]
+      },
+      {
+        "id": "66e47e80-2f92-5303-8878-27f4ca2c9cc8",
+        "label": "User and group account administration",
+        "career_id": "e46a121b-b0b8-5e62-bedd-ebd9303f2eca",
+        "question": "User and group account administration",
+        "example": "Create a 'developers' group, add two user accounts with custom home directories, and assign the group to both.",
+        "why_it_matters": "Add, modify, and delete user accounts and security groups, manage home directories, and inspect /etc/passwd and /etc/shadow.",
+        "group": "User management, permissions and authentication",
+        "topic_id": "0de18565-0038-54d4-ab7e-2cae3f53dc04",
+        "roadmap_id": "5df0777c-53ba-5a29-9b9d-e290bae381bc",
+        "topic_title": "User and group creation and management",
+        "mappings": [
+          {
+            "topic_id": "0de18565-0038-54d4-ab7e-2cae3f53dc04",
+            "roadmap_id": "5df0777c-53ba-5a29-9b9d-e290bae381bc",
+            "topic_title": "User and group creation and management",
+            "rationale": "Create a 'developers' group, add two user accounts with custom home directories, and assign the group to both."
+          }
+        ]
+      },
+      {
+        "id": "ceb9ffdf-116b-51ef-a3cd-39744c83696f",
+        "label": "Linux file permissions (chmod, chown, SUID/SGID)",
+        "career_id": "e46a121b-b0b8-5e62-bedd-ebd9303f2eca",
+        "question": "Linux file permissions (chmod, chown, SUID/SGID)",
+        "example": "Create a shared collaboration directory with SGID enabled so all newly created files inherit the group identity automatically.",
+        "why_it_matters": "Set standard read, write, and execute permissions (chmod, chown) and special bits: SUID, SGID, and Sticky Bit.",
+        "group": "User management, permissions and authentication",
+        "topic_id": "ae391094-b001-52ce-8f11-cf72e5036f9d",
+        "roadmap_id": "5df0777c-53ba-5a29-9b9d-e290bae381bc",
+        "topic_title": "Standard and special file permissions",
+        "mappings": [
+          {
+            "topic_id": "ae391094-b001-52ce-8f11-cf72e5036f9d",
+            "roadmap_id": "5df0777c-53ba-5a29-9b9d-e290bae381bc",
+            "topic_title": "Standard and special file permissions",
+            "rationale": "Create a shared collaboration directory with SGID enabled so all newly created files inherit the group identity automatically."
+          }
+        ]
+      },
+      {
+        "id": "1c1e8591-d3de-50fc-9921-7c4f28c5447c",
+        "label": "Storage partitioning and Logical Volume Management (LVM)",
+        "career_id": "e46a121b-b0b8-5e62-bedd-ebd9303f2eca",
+        "question": "Storage partitioning and Logical Volume Management (LVM)",
+        "example": "Create a new partition on a secondary disk, format it with an ext4 filesystem, and inspect it with lsblk.",
+        "why_it_matters": "Partition storage drives using fdisk/parted, format partitions with ext4 or XFS filesystems, and verify disk geometry.",
+        "group": "Storage, filesystems and package management",
+        "topic_id": "4caa6d2d-852e-5f08-a1dd-28a249a078a7",
+        "roadmap_id": "5df0777c-53ba-5a29-9b9d-e290bae381bc",
+        "topic_title": "Disk partitioning and filesystem creation",
+        "mappings": [
+          {
+            "topic_id": "4caa6d2d-852e-5f08-a1dd-28a249a078a7",
+            "roadmap_id": "5df0777c-53ba-5a29-9b9d-e290bae381bc",
+            "topic_title": "Disk partitioning and filesystem creation",
+            "rationale": "Create a new partition on a secondary disk, format it with an ext4 filesystem, and inspect it with lsblk."
+          },
+          {
+            "topic_id": "419426cf-814e-55d9-b388-5930578b0e7d",
+            "roadmap_id": "5df0777c-53ba-5a29-9b9d-e290bae381bc",
+            "topic_title": "Logical Volume Management (LVM)",
+            "rationale": "Set up an LVM volume group across two drives, create a logical volume, and expand its size while mounted."
+          }
+        ]
+      },
+      {
+        "id": "1ecea9bb-025d-595b-94de-c1706ee48756",
+        "label": "Package management with APT and DNF/YUM",
+        "career_id": "e46a121b-b0b8-5e62-bedd-ebd9303f2eca",
+        "question": "Package management with APT and DNF/YUM",
+        "example": "Add a verified third-party repository, install a package from it, and verify its package signing key with apt-key or rpm.",
+        "why_it_matters": "Install, update, remove, and query software packages using package managers (apt on Debian/Ubuntu, dnf on RHEL/Fedora).",
+        "group": "Storage, filesystems and package management",
+        "topic_id": "72baf4d8-41a3-5f7e-92a3-15695df48710",
+        "roadmap_id": "5df0777c-53ba-5a29-9b9d-e290bae381bc",
+        "topic_title": "Package managers (APT, DNF) and repositories",
+        "mappings": [
+          {
+            "topic_id": "72baf4d8-41a3-5f7e-92a3-15695df48710",
+            "roadmap_id": "5df0777c-53ba-5a29-9b9d-e290bae381bc",
+            "topic_title": "Package managers (APT, DNF) and repositories",
+            "rationale": "Add a verified third-party repository, install a package from it, and verify its package signing key with apt-key or rpm."
+          }
+        ]
+      },
+      {
+        "id": "93a36dda-b361-590d-b7da-e1b1c65aa3ac",
+        "label": "Process control and systemd service units",
+        "career_id": "e46a121b-b0b8-5e62-bedd-ebd9303f2eca",
+        "question": "Process control and systemd service units",
+        "example": "Identify a runaway background process using ps aux and terminate it cleanly using kill -15 followed by kill -9 if unresponsive.",
+        "why_it_matters": "Inspect running processes, check CPU and memory utilization, adjust process priorities with nice, and send process signals.",
+        "group": "Process control, services and automation",
+        "topic_id": "aa4f76de-0785-5315-bac3-59bf1fb86c7a",
+        "roadmap_id": "5df0777c-53ba-5a29-9b9d-e290bae381bc",
+        "topic_title": "Process monitoring and priority (ps, top, kill)",
+        "mappings": [
+          {
+            "topic_id": "aa4f76de-0785-5315-bac3-59bf1fb86c7a",
+            "roadmap_id": "5df0777c-53ba-5a29-9b9d-e290bae381bc",
+            "topic_title": "Process monitoring and priority (ps, top, kill)",
+            "rationale": "Identify a runaway background process using ps aux and terminate it cleanly using kill -15 followed by kill -9 if unresponsive."
+          },
+          {
+            "topic_id": "79b776d6-32d6-55cc-a24b-eb004fc14a81",
+            "roadmap_id": "5df0777c-53ba-5a29-9b9d-e290bae381bc",
+            "topic_title": "Service management with systemd",
+            "rationale": "Write a custom systemd service unit that runs a background Node or Python script and restart it with systemctl."
+          }
+        ]
+      },
+      {
+        "id": "0b7aad6c-e9ae-54c8-88a1-563af53b7b34",
+        "label": "Bash scripting and scheduled cron automation",
+        "career_id": "e46a121b-b0b8-5e62-bedd-ebd9303f2eca",
+        "question": "Bash scripting and scheduled cron automation",
+        "example": "Create a cron job that runs a disk cleanup script every Sunday at 2:00 AM and appends output to a log file.",
+        "why_it_matters": "Automate recurring maintenance tasks using user and system crontabs or modern systemd timer units.",
+        "group": "Process control, services and automation",
+        "topic_id": "ab00b4d9-e3bb-5b38-9108-b0072ebe20c4",
+        "roadmap_id": "5df0777c-53ba-5a29-9b9d-e290bae381bc",
+        "topic_title": "Scheduled tasks with cron and systemd timers",
+        "mappings": [
+          {
+            "topic_id": "ab00b4d9-e3bb-5b38-9108-b0072ebe20c4",
+            "roadmap_id": "5df0777c-53ba-5a29-9b9d-e290bae381bc",
+            "topic_title": "Scheduled tasks with cron and systemd timers",
+            "rationale": "Create a cron job that runs a disk cleanup script every Sunday at 2:00 AM and appends output to a log file."
+          },
+          {
+            "topic_id": "3c00bbbe-fe76-504b-8772-36255caf57d3",
+            "roadmap_id": "5df0777c-53ba-5a29-9b9d-e290bae381bc",
+            "topic_title": "Basic Bash scripting for system automation",
+            "rationale": "Write a robust Bash script that checks disk space on / and outputs a warning alert if utilization exceeds 85%."
+          }
+        ]
+      },
+      {
+        "id": "1e2e9280-0988-57c0-9350-868156ae02a1",
+        "label": "Host firewall configuration (UFW and nftables)",
+        "career_id": "e46a121b-b0b8-5e62-bedd-ebd9303f2eca",
+        "question": "Host firewall configuration (UFW and nftables)",
+        "example": "Configure UFW or nftables to allow incoming SSH and HTTPS while blocking all other unsolicited inbound ports.",
+        "why_it_matters": "Harden host network perimeters by configuring default deny policies and allowing only required inbound ports (SSH, HTTP).",
+        "group": "Host networking, firewalls and DNS",
+        "topic_id": "da63288a-f422-5652-ad02-28c9f67dfeee",
+        "roadmap_id": "5df0777c-53ba-5a29-9b9d-e290bae381bc",
+        "topic_title": "Firewall configuration with UFW and nftables",
+        "mappings": [
+          {
+            "topic_id": "da63288a-f422-5652-ad02-28c9f67dfeee",
+            "roadmap_id": "5df0777c-53ba-5a29-9b9d-e290bae381bc",
+            "topic_title": "Firewall configuration with UFW and nftables",
+            "rationale": "Configure UFW or nftables to allow incoming SSH and HTTPS while blocking all other unsolicited inbound ports."
+          }
+        ]
+      },
+      {
+        "id": "869308fa-81d8-5a9c-ab0a-503cd7c44bd4",
+        "label": "System log auditing and rsync backup automation",
+        "career_id": "e46a121b-b0b8-5e62-bedd-ebd9303f2eca",
+        "question": "System log auditing and rsync backup automation",
+        "example": "Filter the system journal to view all error-level log entries generated since the last server boot.",
+        "why_it_matters": "Query binary systemd journal logs by service unit, priority level (errors/warnings), and timeframe using journalctl.",
+        "group": "Logging, backup and disaster recovery",
+        "topic_id": "5999f08e-16f6-5fb2-9503-2f7138868377",
+        "roadmap_id": "5df0777c-53ba-5a29-9b9d-e290bae381bc",
+        "topic_title": "System log inspection with journalctl",
+        "mappings": [
+          {
+            "topic_id": "5999f08e-16f6-5fb2-9503-2f7138868377",
+            "roadmap_id": "5df0777c-53ba-5a29-9b9d-e290bae381bc",
+            "topic_title": "System log inspection with journalctl",
+            "rationale": "Filter the system journal to view all error-level log entries generated since the last server boot."
+          },
+          {
+            "topic_id": "dd14114d-6fbe-559c-8e1c-0008cde81aaf",
+            "roadmap_id": "5df0777c-53ba-5a29-9b9d-e290bae381bc",
+            "topic_title": "Automated backup strategies with rsync and tar",
+            "rationale": "Write an automated backup script that archives /etc and /var/www and syncs them to a remote backup destination with rsync."
+          }
+        ]
+      }
+    ],
+    "source_file": "system-administrator.json",
+    "source_sha256": "ba257544ca67753c45a9dc52f5fe0fe95d9d774a47633cd0bc8de4537854a0b4"
+  }
+]

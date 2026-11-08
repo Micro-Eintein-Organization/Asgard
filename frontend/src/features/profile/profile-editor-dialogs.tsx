@@ -33,7 +33,7 @@ export function ProfileEditorDialogs({
           <DialogHeader>
             <DialogTitle>Reload the saved profile?</DialogTitle>
             <DialogDescription>
-              Your unsaved name edits will be discarded.
+              Your unsaved profile edits will be discarded.
             </DialogDescription>
           </DialogHeader>
           <div className="action-row">
@@ -73,7 +73,7 @@ export function ProfileEditorDialogs({
                 ? "Wait for the save to finish before leaving."
                 : "Save before leaving, discard the edits, or stay on this page."}
               {extraDirty &&
-                " Save preferences or upload the selected document before leaving, or discard those changes here."}
+                " Save skill edits, preferences or document changes before leaving, or discard those changes here."}
             </DialogDescription>
           </DialogHeader>
           <div className="action-row">
@@ -83,7 +83,7 @@ export function ProfileEditorDialogs({
                 await form.handleSubmit(
                   async (values) => {
                     const saved =
-                      !form.formState.isDirty || (await persist(values));
+                      !editor.profileDirty || (await persist(values));
                     if (saved && blocker.state === "blocked") blocker.proceed();
                   },
                   () => {

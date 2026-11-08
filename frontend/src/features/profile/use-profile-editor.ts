@@ -4,7 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useBlocker, useBeforeUnload } from "react-router";
 import { isCurrentAccount } from "@/auth/transport";
 import { useLogoutGuard } from "@/app/logout";
-import { readProfile, saveProfile } from "./api";
+import { readProfile, saveProfile, saveProfilePhoto, type ProfileUpdate } from "./api";
 
 export function useProfileEditor(
   userId: string,
@@ -26,14 +26,19 @@ export function useProfileEditor(
     reset,
     formState: { errors, isDirty, submitCount },
   } = form;
-  const mutation = useMutation({ mutationFn: saveProfile });
+  const [photoDraft, setPhotoDraft] = useState<File | null | undefined>(undefined);
+  const mutation = useMutation({
+    mutationFn: ({ body, photo }: { body: ProfileUpdate; photo?: File | null }) =>
+      photo === undefined ? saveProfile(body) : saveProfilePhoto(body, photo, userId),
+  });
   const [feedback, setFeedback] = useState("");
   const [reloadOpen, setReloadOpen] = useState(false);
   const errorSummary = useRef<HTMLParagraphElement>(null);
   const lastSubmission = useRef(0);
   const writing = useRef(false);
   const baseVersion = useRef(0);
-  const dirty = isDirty || extraDirty;
+  const profileDirty = isDirty || photoDraft !== undefined;
+  const dirty = profileDirty || extraDirty;
 
   useEffect(() => {
     if (submitCount === lastSubmission.current) return;
@@ -44,14 +49,14 @@ export function useProfileEditor(
     }
   }, [submitCount, errors.firstName, errors.surname]);
   useEffect(() => {
-    if (query.data && !isDirty) {
+    if (query.data && !profileDirty) {
       baseVersion.current = query.data.profile?.version ?? 0;
       reset({
         firstName: query.data.profile?.first_name ?? "",
         surname: query.data.profile?.surname ?? "",
       });
     }
-  }, [query.data, reset, isDirty]);
+  }, [query.data, reset, profileDirty]);
 
   const blocker = useBlocker(
     ({ currentLocation, nextLocation }) =>
@@ -77,6 +82,7 @@ export function useProfileEditor(
   });
 
   function discard() {
+    setPhotoDraft(undefined);
     baseVersion.current = query.data?.profile?.version ?? 0;
     reset({
       firstName: query.data?.profile?.first_name ?? "",
@@ -89,6 +95,7 @@ export function useProfileEditor(
     setReloadOpen(false);
     const result = await query.refetch();
     if (!result.isSuccess || !isCurrentAccount(userId)) return;
+    setPhotoDraft(undefined);
     baseVersion.current = result.data.profile?.version ?? 0;
     reset({
       firstName: result.data.profile?.first_name ?? "",
@@ -104,13 +111,17 @@ export function useProfileEditor(
     setFeedback("");
     try {
       const data = await mutation.mutateAsync({
-        first_name: values.firstName,
-        surname: values.surname,
-        expected_version: baseVersion.current,
+        body: {
+          first_name: values.firstName,
+          surname: values.surname,
+          expected_version: baseVersion.current,
+        },
+        photo: photoDraft,
       });
       if (!isCurrentAccount(userId)) return false;
       baseVersion.current = data.profile?.version ?? 0;
-      queryClient.setQueryData(key, data);
+      queryClient.setQueryData(key, { ...data, photo_enabled: query.data.photo_enabled });
+      setPhotoDraft(undefined);
       void queryClient.invalidateQueries({ queryKey: ["account", userId] });
       reset({
         firstName: data.profile?.first_name ?? "",
@@ -136,5 +147,8 @@ export function useProfileEditor(
     persist,
     discard,
     reload,
+    photoDraft,
+    setPhotoDraft,
+    profileDirty,
   };
 }

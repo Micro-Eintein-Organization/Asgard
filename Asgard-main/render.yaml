@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: asgard-api
+    runtime: docker
+    plan: free
+    dockerContext: ./backend
+    dockerfilePath: ./backend/Dockerfile
+    dockerCommand: python -m app.start
+    autoDeployTrigger: "off"
+    healthCheckPath: /ready
+    maxShutdownDelaySeconds: 60
+    envVars:
+      - key: ASGARD_DEPLOYMENT_ENVIRONMENT
+        value: staging
+      - key: ASGARD_AUTH_ENABLED
+        value: "true"
+      - key: ASGARD_DOCUMENTS_PROCESSING_ENABLED
+        value: "false"
+      - key: ASGARD_DOCUMENTS_REAL_DATA_APPROVED
+        value: "false"
+      - key: ASGARD_CORS_ORIGINS
+        sync: false
+      - key: ASGARD_SUPABASE_URL
+        sync: false
+      - key: ASGARD_SUPABASE_ANON_KEY
+        sync: false
+      - key: ASGARD_AUTH_ISSUER
+        sync: false
+      - key: ASGARD_DATABASE_URL
+        sync: false
+      - key: ASGARD_GROQ_ENABLED
+        value: "false"

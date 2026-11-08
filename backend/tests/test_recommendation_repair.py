@@ -259,6 +259,10 @@ def service_boundary(monkeypatch, content, records):
         yield connection
 
     monkeypatch.setattr(service, "transaction", transaction)
+    monkeypatch.setattr(service.occupational_runtime.skills, "lock", AsyncMock())
+    monkeypatch.setattr(
+        service.occupational_runtime, "reference_release", AsyncMock(return_value=None)
+    )
     monkeypatch.setattr(service, "lock_account", AsyncMock(return_value={"context_revision": 1}))
     monkeypatch.setattr(service, "expire", AsyncMock())
     monkeypatch.setattr(
@@ -293,6 +297,7 @@ def test_duplicate_request_reuses_saved_run_without_provider(monkeypatch):
 
     existing = {
         "id": uuid4(),
+        "context_snapshot": content,
         "context_revision": 1,
         "catalog_release_id": UUID(content["catalog_release_id"]),
     }

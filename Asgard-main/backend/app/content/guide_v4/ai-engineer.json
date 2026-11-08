@@ -1,0 +1,2104 @@
+{
+  "schema_version": "4.0.0-draft",
+  "career": {
+    "name": "AI Engineer",
+    "slug": "ai-engineer",
+    "category": "Software and AI",
+    "status": "Draft — pending human review"
+  },
+  "career_overview": {
+    "short_description": "Build intelligent applications powered by Large Language Models, embeddings, Retrieval-Augmented Generation (RAG), and agentic workflows.",
+    "responsibilities": [
+      "Integrate foundation LLM provider APIs into modern software applications",
+      "Design, generate, and query vector embeddings using vector databases",
+      "Implement robust Retrieval-Augmented Generation (RAG) pipelines with evaluation",
+      "Build autonomous agentic workflows using function calling and tool execution",
+      "Deploy AI guardrails, monitor prompt latency and token usage, and mitigate hallucinations"
+    ],
+    "representative_work": [
+      "A production-ready contextual AI assistant featuring custom RAG document search, structured tool-calling, safety guardrails, token usage tracking, and automated evaluation."
+    ],
+    "core_skills": [
+      "Prompt engineering and system prompts",
+      "Tokenization, context windows, and model pricing",
+      "Vector embeddings and similarity search",
+      "Vector databases (Chroma, Pinecone, pgvector)",
+      "Retrieval-Augmented Generation (RAG) pipelines",
+      "Chunking strategies and metadata filtering",
+      "Function calling and structured JSON outputs",
+      "Agent orchestration (LangChain / LlamaIndex)",
+      "Guardrails, prompt injection defense, and safety",
+      "LLM observability, latency tracking, and evaluation"
+    ]
+  },
+  "roadmap": {
+    "title": "AI Engineer: beginner foundations and starter project",
+    "intended_learner": "Motivated beginner; basic computer literacy assumed, with no prior professional experience.",
+    "starting_requirements": "Computer, internet access, text editor, terminal and modern browser. Most tasks use free software or local runtimes.",
+    "final_outcome": "A production-ready contextual AI assistant featuring custom RAG document search, structured tool-calling, safety guardrails, token usage tracking, and automated evaluation.",
+    "milestones": [
+      {
+        "id": "M01",
+        "slug": "ai-foundations-prompt-engineering",
+        "title": "AI fundamentals and prompt engineering",
+        "summary": "Understand generative AI concepts, prompt engineering techniques, token mechanics, and LLM API integration.",
+        "topics": [
+          {
+            "id": "T01",
+            "slug": "generative-ai-foundations",
+            "title": "Generative AI and foundational model concepts",
+            "milestone_id": "M01",
+            "card": {
+              "title": "Generative AI and foundational model concepts",
+              "summary": "Learn how transformer-based Large Language Models work, including pre-training, instruction tuning, and temperature.",
+              "prerequisite_ids": []
+            },
+            "detail": {
+              "eyebrow": "M01 · AI fundamentals and prompt engineering",
+              "title": "Generative AI and foundational model concepts",
+              "overview": "Learn how transformer-based Large Language Models work, including pre-training, instruction tuning, and temperature.",
+              "learning_outcomes": [
+                "Understand generative ai and foundational model concepts, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T01-S01",
+                  "title": "Transformer Architecture Basics",
+                  "explanation": "Self-attention mechanisms, next-token prediction, and parameter scale."
+                },
+                {
+                  "id": "T01-S02",
+                  "title": "Inference Parameters",
+                  "explanation": "How temperature, top-p, and frequency penalties control output randomness and creativity."
+                }
+              ],
+              "practice": {
+                "instructions": "Experiment with different temperature settings on an LLM API and compare determinism across identical prompts."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: experiment with different temperature settings on an llm api and compare determinism across identical prompts. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "Artificial Intelligence | MDN",
+                  "provider": "developer.mozilla.org",
+                  "url": "https://developer.mozilla.org/en-US/docs/Glossary/Artificial_intelligence",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on generative ai and foundational model concepts; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T01-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Learn how transformer-based Large Language Models work, including pre-training, instruction tuning, and temperature.",
+                "learn_items": [
+                  "Transformer Architecture Basics",
+                  "Inference Parameters"
+                ],
+                "learning_goal": "Understand generative ai and foundational model concepts, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "Artificial Intelligence | MDN",
+                    "provider": "developer.mozilla.org",
+                    "url": "https://developer.mozilla.org/en-US/docs/Glossary/Artificial_intelligence",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on generative ai and foundational model concepts; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T01-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Experiment with different temperature settings on an LLM API and compare determinism across identical prompts.",
+                "completion_check": "You can show and explain the outcome of: experiment with different temperature settings on an llm api and compare determinism across identical prompts. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T02",
+            "slug": "prompt-engineering-techniques",
+            "title": "Prompt design, few-shot learning and system prompts",
+            "milestone_id": "M01",
+            "card": {
+              "title": "Prompt design, few-shot learning and system prompts",
+              "summary": "Master zero-shot, few-shot prompting, chain-of-thought reasoning, and crafting role-based system instructions.",
+              "prerequisite_ids": [
+                "T01"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M01 · AI fundamentals and prompt engineering",
+              "title": "Prompt design, few-shot learning and system prompts",
+              "overview": "Master zero-shot, few-shot prompting, chain-of-thought reasoning, and crafting role-based system instructions.",
+              "learning_outcomes": [
+                "Understand prompt design, few-shot learning and system prompts, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T02-S01",
+                  "title": "System vs User Prompts",
+                  "explanation": "Setting behavioral constraints and domain personas in system messages."
+                },
+                {
+                  "id": "T02-S02",
+                  "title": "Few-Shot In-Context Learning",
+                  "explanation": "Providing high-quality input-output examples directly in the prompt context."
+                }
+              ],
+              "practice": {
+                "instructions": "Write a system prompt with few-shot examples that reliably extracts structured invoice data from unstructured text."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: write a system prompt with few-shot examples that reliably extracts structured invoice data from unstructured text. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "Prompt Engineering Guide Basics | DAIR.AI",
+                  "provider": "www.promptingguide.ai",
+                  "url": "https://www.promptingguide.ai/introduction/basics",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on prompt design, few-shot learning and system prompts; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T02-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Master zero-shot, few-shot prompting, chain-of-thought reasoning, and crafting role-based system instructions.",
+                "learn_items": [
+                  "System vs User Prompts",
+                  "Few-Shot In-Context Learning"
+                ],
+                "learning_goal": "Understand prompt design, few-shot learning and system prompts, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "Prompt Engineering Guide Basics | DAIR.AI",
+                    "provider": "www.promptingguide.ai",
+                    "url": "https://www.promptingguide.ai/introduction/basics",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on prompt design, few-shot learning and system prompts; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T02-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Write a system prompt with few-shot examples that reliably extracts structured invoice data from unstructured text.",
+                "completion_check": "You can show and explain the outcome of: write a system prompt with few-shot examples that reliably extracts structured invoice data from unstructured text. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T03",
+            "slug": "tokens-context-pricing",
+            "title": "Tokenization, context windows and pricing models",
+            "milestone_id": "M01",
+            "card": {
+              "title": "Tokenization, context windows and pricing models",
+              "summary": "Understand how text converts to tokens, manage context window limitations, and optimize API token costs.",
+              "prerequisite_ids": [
+                "T02"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M01 · AI fundamentals and prompt engineering",
+              "title": "Tokenization, context windows and pricing models",
+              "overview": "Understand how text converts to tokens, manage context window limitations, and optimize API token costs.",
+              "learning_outcomes": [
+                "Understand tokenization, context windows and pricing models, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T03-S01",
+                  "title": "Token Mechanics",
+                  "explanation": "How subwords, punctuation, and code convert to tokens using BPE tokenizers."
+                },
+                {
+                  "id": "T03-S02",
+                  "title": "Cost and Latency Optimization",
+                  "explanation": "Calculating input vs output token costs and pruning unnecessary prompt context."
+                }
+              ],
+              "practice": {
+                "instructions": "Use a tokenizer utility to calculate token counts across text samples and estimate API request costs."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: use a tokenizer utility to calculate token counts across text samples and estimate api request costs. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "Tokenizer Tool | OpenAI Documentation",
+                  "provider": "platform.openai.com",
+                  "url": "https://platform.openai.com/tokenizer",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on tokenization, context windows and pricing models; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T03-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Understand how text converts to tokens, manage context window limitations, and optimize API token costs.",
+                "learn_items": [
+                  "Token Mechanics",
+                  "Cost and Latency Optimization"
+                ],
+                "learning_goal": "Understand tokenization, context windows and pricing models, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "Tokenizer Tool | OpenAI Documentation",
+                    "provider": "platform.openai.com",
+                    "url": "https://platform.openai.com/tokenizer",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on tokenization, context windows and pricing models; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T03-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Use a tokenizer utility to calculate token counts across text samples and estimate API request costs.",
+                "completion_check": "You can show and explain the outcome of: use a tokenizer utility to calculate token counts across text samples and estimate api request costs. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T04",
+            "slug": "llm-provider-api-integration",
+            "title": "Interacting with LLM provider APIs",
+            "milestone_id": "M01",
+            "card": {
+              "title": "Interacting with LLM provider APIs",
+              "summary": "Make authenticated API calls to LLM providers using HTTP requests or SDKs, handle rate limits, and stream responses.",
+              "prerequisite_ids": [
+                "T03"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M01 · AI fundamentals and prompt engineering",
+              "title": "Interacting with LLM provider APIs",
+              "overview": "Make authenticated API calls to LLM providers using HTTP requests or SDKs, handle rate limits, and stream responses.",
+              "learning_outcomes": [
+                "Understand interacting with llm provider apis, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T04-S01",
+                  "title": "Chat Completions API",
+                  "explanation": "Structuring messages arrays with system, user, and assistant roles."
+                },
+                {
+                  "id": "T04-S02",
+                  "title": "Streaming Responses (SSE)",
+                  "explanation": "Consuming server-sent tokens in real-time to display responsive typing effects."
+                }
+              ],
+              "practice": {
+                "instructions": "Write a script that sends a prompt to an LLM API and streams the generated response chunk-by-chunk to the console."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: write a script that sends a prompt to an llm api and streams the generated response chunk-by-chunk to the console. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "Server-sent events | MDN",
+                  "provider": "developer.mozilla.org",
+                  "url": "https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on interacting with llm provider apis; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T04-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Make authenticated API calls to LLM providers using HTTP requests or SDKs, handle rate limits, and stream responses.",
+                "learn_items": [
+                  "Chat Completions API",
+                  "Streaming Responses (SSE)"
+                ],
+                "learning_goal": "Understand interacting with llm provider apis, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "Server-sent events | MDN",
+                    "provider": "developer.mozilla.org",
+                    "url": "https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on interacting with llm provider apis; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T04-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Write a script that sends a prompt to an LLM API and streams the generated response chunk-by-chunk to the console.",
+                "completion_check": "You can show and explain the outcome of: write a script that sends a prompt to an llm api and streams the generated response chunk-by-chunk to the console. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          }
+        ]
+      },
+      {
+        "id": "M02",
+        "slug": "embeddings-and-vector-databases",
+        "title": "Embeddings, similarity search and vector stores",
+        "summary": "Generate dense vector embeddings, measure semantic similarity, and query vector databases efficiently.",
+        "topics": [
+          {
+            "id": "T05",
+            "slug": "vector-embeddings-semantics",
+            "title": "Vector embeddings and semantic representation",
+            "milestone_id": "M02",
+            "card": {
+              "title": "Vector embeddings and semantic representation",
+              "summary": "Learn how embedding models map sentences and paragraphs into multi-dimensional vectors capturing semantic meaning.",
+              "prerequisite_ids": [
+                "T04"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Embeddings, similarity search and vector stores",
+              "title": "Vector embeddings and semantic representation",
+              "overview": "Learn how embedding models map sentences and paragraphs into multi-dimensional vectors capturing semantic meaning.",
+              "learning_outcomes": [
+                "Understand vector embeddings and semantic representation, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T05-S01",
+                  "title": "Dense Vector Representations",
+                  "explanation": "How geometric distance in embedding space correlates with conceptual meaning."
+                },
+                {
+                  "id": "T05-S02",
+                  "title": "Choosing Embedding Models",
+                  "explanation": "Comparing dimension size, model speed, and multilingual embedding capabilities."
+                }
+              ],
+              "practice": {
+                "instructions": "Generate embeddings for a list of sentences and verify that semantically similar sentences produce high cosine similarity."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: generate embeddings for a list of sentences and verify that semantically similar sentences produce high cosine similarity. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "Text Embeddings | Google Cloud Documentation",
+                  "provider": "cloud.google.com",
+                  "url": "https://cloud.google.com/vertex-ai/docs/generative-ai/embeddings/get-text-embeddings",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on vector embeddings and semantic representation; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T05-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Learn how embedding models map sentences and paragraphs into multi-dimensional vectors capturing semantic meaning.",
+                "learn_items": [
+                  "Dense Vector Representations",
+                  "Choosing Embedding Models"
+                ],
+                "learning_goal": "Understand vector embeddings and semantic representation, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "Text Embeddings | Google Cloud Documentation",
+                    "provider": "cloud.google.com",
+                    "url": "https://cloud.google.com/vertex-ai/docs/generative-ai/embeddings/get-text-embeddings",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on vector embeddings and semantic representation; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T05-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Generate embeddings for a list of sentences and verify that semantically similar sentences produce high cosine similarity.",
+                "completion_check": "You can show and explain the outcome of: generate embeddings for a list of sentences and verify that semantically similar sentences produce high cosine similarity. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T06",
+            "slug": "distance-metrics-similarity",
+            "title": "Distance metrics and cosine similarity",
+            "milestone_id": "M02",
+            "card": {
+              "title": "Distance metrics and cosine similarity",
+              "summary": "Calculate geometric proximity using cosine similarity, dot product, and Euclidean (L2) distance metrics.",
+              "prerequisite_ids": [
+                "T05"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Embeddings, similarity search and vector stores",
+              "title": "Distance metrics and cosine similarity",
+              "overview": "Calculate geometric proximity using cosine similarity, dot product, and Euclidean (L2) distance metrics.",
+              "learning_outcomes": [
+                "Understand distance metrics and cosine similarity, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T06-S01",
+                  "title": "Cosine Similarity",
+                  "explanation": "Measuring the angle between two normalized vectors regardless of magnitude."
+                },
+                {
+                  "id": "T06-S02",
+                  "title": "Dot Product vs Euclidean",
+                  "explanation": "Choosing the right distance metric based on embedding normalization and database index type."
+                }
+              ],
+              "practice": {
+                "instructions": "Write a Python function computing cosine similarity between two embedding vectors without using external ML libraries."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: write a python function computing cosine similarity between two embedding vectors without using external ml libraries. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "Cosine Similarity | scikit-learn Docs",
+                  "provider": "scikit-learn.org",
+                  "url": "https://scikit-learn.org/stable/modules/generated/sklearn.metrics.pairwise.cosine_similarity.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on distance metrics and cosine similarity; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T06-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Calculate geometric proximity using cosine similarity, dot product, and Euclidean (L2) distance metrics.",
+                "learn_items": [
+                  "Cosine Similarity",
+                  "Dot Product vs Euclidean"
+                ],
+                "learning_goal": "Understand distance metrics and cosine similarity, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "Cosine Similarity | scikit-learn Docs",
+                    "provider": "scikit-learn.org",
+                    "url": "https://scikit-learn.org/stable/modules/generated/sklearn.metrics.pairwise.cosine_similarity.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on distance metrics and cosine similarity; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T06-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Write a Python function computing cosine similarity between two embedding vectors without using external ML libraries.",
+                "completion_check": "You can show and explain the outcome of: write a python function computing cosine similarity between two embedding vectors without using external ml libraries. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T07",
+            "slug": "vector-databases-indexing",
+            "title": "Vector databases: indexing and querying",
+            "milestone_id": "M02",
+            "card": {
+              "title": "Vector databases: indexing and querying",
+              "summary": "Store and retrieve millions of vectors with low latency using vector databases (e.g. Chroma, pgvector, or Pinecone).",
+              "prerequisite_ids": [
+                "T06"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Embeddings, similarity search and vector stores",
+              "title": "Vector databases: indexing and querying",
+              "overview": "Store and retrieve millions of vectors with low latency using vector databases (e.g. Chroma, pgvector, or Pinecone).",
+              "learning_outcomes": [
+                "Understand vector databases: indexing and querying, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T07-S01",
+                  "title": "Vector Indexing Algorithms",
+                  "explanation": "How HNSW (Hierarchical Navigable Small World) and IVFFlat enable fast approximate nearest neighbor search."
+                },
+                {
+                  "id": "T07-S02",
+                  "title": "Database Operations",
+                  "explanation": "Inserting embeddings with unique IDs, updating records, and executing k-nearest-neighbor (KNN) queries."
+                }
+              ],
+              "practice": {
+                "instructions": "Set up a local vector database instance, insert 50 embedded paragraphs, and query for the 3 most relevant results."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: set up a local vector database instance, insert 50 embedded paragraphs, and query for the 3 most relevant results. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "pgvector: Open-source vector similarity search for Postgres",
+                  "provider": "github.com",
+                  "url": "https://github.com/pgvector/pgvector",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on vector databases: indexing and querying; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T07-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Store and retrieve millions of vectors with low latency using vector databases (e.g. Chroma, pgvector, or Pinecone).",
+                "learn_items": [
+                  "Vector Indexing Algorithms",
+                  "Database Operations"
+                ],
+                "learning_goal": "Understand vector databases: indexing and querying, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "pgvector: Open-source vector similarity search for Postgres",
+                    "provider": "github.com",
+                    "url": "https://github.com/pgvector/pgvector",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on vector databases: indexing and querying; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T07-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Set up a local vector database instance, insert 50 embedded paragraphs, and query for the 3 most relevant results.",
+                "completion_check": "You can show and explain the outcome of: set up a local vector database instance, insert 50 embedded paragraphs, and query for the 3 most relevant results. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T08",
+            "slug": "chunking-and-metadata-filtering",
+            "title": "Chunking strategies and metadata filtering",
+            "milestone_id": "M02",
+            "card": {
+              "title": "Chunking strategies and metadata filtering",
+              "summary": "Split long documents into coherent chunks using character, sentence, or recursive splitters, and attach filterable metadata.",
+              "prerequisite_ids": [
+                "T07"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Embeddings, similarity search and vector stores",
+              "title": "Chunking strategies and metadata filtering",
+              "overview": "Split long documents into coherent chunks using character, sentence, or recursive splitters, and attach filterable metadata.",
+              "learning_outcomes": [
+                "Understand chunking strategies and metadata filtering, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T08-S01",
+                  "title": "Chunk Size and Overlap",
+                  "explanation": "Balancing context completeness against token budgets using chunk overlap."
+                },
+                {
+                  "id": "T08-S02",
+                  "title": "Metadata Filtering",
+                  "explanation": "Tagging chunks with source URL, author, and timestamp to filter queries during search."
+                }
+              ],
+              "practice": {
+                "instructions": "Chunk a 10-page document using recursive text splitting with a 500-token chunk size and a 50-token overlap."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: chunk a 10-page document using recursive text splitting with a 500-token chunk size and a 50-token overlap. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "Text Splitters | LangChain Concepts",
+                  "provider": "python.langchain.com",
+                  "url": "https://python.langchain.com/docs/concepts/#text-splitters",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on chunking strategies and metadata filtering; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T08-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Split long documents into coherent chunks using character, sentence, or recursive splitters, and attach filterable metadata.",
+                "learn_items": [
+                  "Chunk Size and Overlap",
+                  "Metadata Filtering"
+                ],
+                "learning_goal": "Understand chunking strategies and metadata filtering, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "Text Splitters | LangChain Concepts",
+                    "provider": "python.langchain.com",
+                    "url": "https://python.langchain.com/docs/concepts/#text-splitters",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on chunking strategies and metadata filtering; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T08-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Chunk a 10-page document using recursive text splitting with a 500-token chunk size and a 50-token overlap.",
+                "completion_check": "You can show and explain the outcome of: chunk a 10-page document using recursive text splitting with a 500-token chunk size and a 50-token overlap. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          }
+        ]
+      },
+      {
+        "id": "M03",
+        "slug": "retrieval-augmented-generation",
+        "title": "Retrieval-Augmented Generation (RAG)",
+        "summary": "Build end-to-end RAG systems, parse diverse document formats, ground answers in evidence, and evaluate retrieval fidelity.",
+        "topics": [
+          {
+            "id": "T09",
+            "slug": "rag-architecture-lifecycle",
+            "title": "End-to-end RAG architecture",
+            "milestone_id": "M03",
+            "card": {
+              "title": "End-to-end RAG architecture",
+              "summary": "Connect user queries, semantic retrieval, prompt synthesis, and grounded LLM generation into a unified RAG workflow.",
+              "prerequisite_ids": [
+                "T08"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Retrieval-Augmented Generation (RAG)",
+              "title": "End-to-end RAG architecture",
+              "overview": "Connect user queries, semantic retrieval, prompt synthesis, and grounded LLM generation into a unified RAG workflow.",
+              "learning_outcomes": [
+                "Understand end-to-end rag architecture, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T09-S01",
+                  "title": "The RAG Pipeline",
+                  "explanation": "Retrieving relevant context from vector stores, injecting it into prompts, and asking the LLM to answer."
+                },
+                {
+                  "id": "T09-S02",
+                  "title": "Reducing Hallucinations",
+                  "explanation": "Instructing models to answer strictly based on retrieved context and admit when information is missing."
+                }
+              ],
+              "practice": {
+                "instructions": "Build a working RAG script that takes a user question, retrieves relevant chunks, and returns an answer citing sources."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: build a working rag script that takes a user question, retrieves relevant chunks, and returns an answer citing sources. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "RAG Tutorial | LangChain Documentation",
+                  "provider": "python.langchain.com",
+                  "url": "https://python.langchain.com/docs/tutorials/rag/",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on end-to-end rag architecture; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T09-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Connect user queries, semantic retrieval, prompt synthesis, and grounded LLM generation into a unified RAG workflow.",
+                "learn_items": [
+                  "The RAG Pipeline",
+                  "Reducing Hallucinations"
+                ],
+                "learning_goal": "Understand end-to-end rag architecture, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "RAG Tutorial | LangChain Documentation",
+                    "provider": "python.langchain.com",
+                    "url": "https://python.langchain.com/docs/tutorials/rag/",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on end-to-end rag architecture; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T09-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Build a working RAG script that takes a user question, retrieves relevant chunks, and returns an answer citing sources.",
+                "completion_check": "You can show and explain the outcome of: build a working rag script that takes a user question, retrieves relevant chunks, and returns an answer citing sources. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T10",
+            "slug": "document-parsing-extraction",
+            "title": "Document parsing and text extraction",
+            "milestone_id": "M03",
+            "card": {
+              "title": "Document parsing and text extraction",
+              "summary": "Extract clean text and tabular information from PDFs, markdown files, and web pages for ingestion into vector stores.",
+              "prerequisite_ids": [
+                "T09"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Retrieval-Augmented Generation (RAG)",
+              "title": "Document parsing and text extraction",
+              "overview": "Extract clean text and tabular information from PDFs, markdown files, and web pages for ingestion into vector stores.",
+              "learning_outcomes": [
+                "Understand document parsing and text extraction, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T10-S01",
+                  "title": "PDF and Document Parsing",
+                  "explanation": "Extracting text while preserving document structure, headings, and tables."
+                },
+                {
+                  "id": "T10-S02",
+                  "title": "HTML Web Scraping",
+                  "explanation": "Cleaning boilerplate navigation and scripts from web pages using tools like BeautifulSoup."
+                }
+              ],
+              "practice": {
+                "instructions": "Write a document ingestion script that parses a PDF file, strips headers and footers, and extracts clean paragraphs."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: write a document ingestion script that parses a pdf file, strips headers and footers, and extracts clean paragraphs. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "Beautiful Soup Documentation",
+                  "provider": "www.crummy.com",
+                  "url": "https://www.crummy.com/software/BeautifulSoup/bs4/doc/",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on document parsing and text extraction; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T10-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Extract clean text and tabular information from PDFs, markdown files, and web pages for ingestion into vector stores.",
+                "learn_items": [
+                  "PDF and Document Parsing",
+                  "HTML Web Scraping"
+                ],
+                "learning_goal": "Understand document parsing and text extraction, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "Beautiful Soup Documentation",
+                    "provider": "www.crummy.com",
+                    "url": "https://www.crummy.com/software/BeautifulSoup/bs4/doc/",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on document parsing and text extraction; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T10-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Write a document ingestion script that parses a PDF file, strips headers and footers, and extracts clean paragraphs.",
+                "completion_check": "You can show and explain the outcome of: write a document ingestion script that parses a pdf file, strips headers and footers, and extracts clean paragraphs. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T11",
+            "slug": "prompt-injection-defense-rag",
+            "title": "Context synthesis and prompt injection defense",
+            "milestone_id": "M03",
+            "card": {
+              "title": "Context synthesis and prompt injection defense",
+              "summary": "Synthesize multiple retrieved context passages into clear prompt templates while defending against indirect prompt injection.",
+              "prerequisite_ids": [
+                "T10"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Retrieval-Augmented Generation (RAG)",
+              "title": "Context synthesis and prompt injection defense",
+              "overview": "Synthesize multiple retrieved context passages into clear prompt templates while defending against indirect prompt injection.",
+              "learning_outcomes": [
+                "Understand context synthesis and prompt injection defense, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T11-S01",
+                  "title": "Prompt Formatting",
+                  "explanation": "Formatting retrieved passages with clear boundaries and citation identifiers."
+                },
+                {
+                  "id": "T11-S02",
+                  "title": "Indirect Injection Defense",
+                  "explanation": "Preventing untrusted text inside ingested documents from overriding system instructions."
+                }
+              ],
+              "practice": {
+                "instructions": "Test a RAG prompt with an adversarial document containing an override instruction and verify that the system ignores it."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: test a rag prompt with an adversarial document containing an override instruction and verify that the system ignores it. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "LLM AI Security Cheat Sheet | OWASP",
+                  "provider": "cheatsheetseries.owasp.org",
+                  "url": "https://cheatsheetseries.owasp.org/cheatsheets/LLM_AI_Security_Cheat_Sheet.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on context synthesis and prompt injection defense; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T11-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Synthesize multiple retrieved context passages into clear prompt templates while defending against indirect prompt injection.",
+                "learn_items": [
+                  "Prompt Formatting",
+                  "Indirect Injection Defense"
+                ],
+                "learning_goal": "Understand context synthesis and prompt injection defense, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "LLM AI Security Cheat Sheet | OWASP",
+                    "provider": "cheatsheetseries.owasp.org",
+                    "url": "https://cheatsheetseries.owasp.org/cheatsheets/LLM_AI_Security_Cheat_Sheet.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on context synthesis and prompt injection defense; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T11-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Test a RAG prompt with an adversarial document containing an override instruction and verify that the system ignores it.",
+                "completion_check": "You can show and explain the outcome of: test a rag prompt with an adversarial document containing an override instruction and verify that the system ignores it. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T12",
+            "slug": "rag-evaluation-and-metrics",
+            "title": "Evaluation of retrieval relevance and answer fidelity",
+            "milestone_id": "M03",
+            "card": {
+              "title": "Evaluation of retrieval relevance and answer fidelity",
+              "summary": "Measure the performance of your RAG pipeline using metrics like context precision, context recall, faithfulness, and answer relevancy.",
+              "prerequisite_ids": [
+                "T11"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Retrieval-Augmented Generation (RAG)",
+              "title": "Evaluation of retrieval relevance and answer fidelity",
+              "overview": "Measure the performance of your RAG pipeline using metrics like context precision, context recall, faithfulness, and answer relevancy.",
+              "learning_outcomes": [
+                "Understand evaluation of retrieval relevance and answer fidelity, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T12-S01",
+                  "title": "Retrieval vs Generation Evaluation",
+                  "explanation": "Evaluating whether search returned the right chunks vs whether the LLM faithfully summarized them."
+                },
+                {
+                  "id": "T12-S02",
+                  "title": "Evaluation Frameworks",
+                  "explanation": "Using automated evaluation frameworks (e.g. Ragas or TruLens) with synthetic test datasets."
+                }
+              ],
+              "practice": {
+                "instructions": "Evaluate 10 question-answer pairs from your RAG pipeline and calculate a faithfulness score based on citations."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: evaluate 10 question-answer pairs from your rag pipeline and calculate a faithfulness score based on citations. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "Ragas: Evaluation framework for LLM applications",
+                  "provider": "docs.ragas.io",
+                  "url": "https://docs.ragas.io/en/stable/",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on evaluation of retrieval relevance and answer fidelity; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T12-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Measure the performance of your RAG pipeline using metrics like context precision, context recall, faithfulness, and answer relevancy.",
+                "learn_items": [
+                  "Retrieval vs Generation Evaluation",
+                  "Evaluation Frameworks"
+                ],
+                "learning_goal": "Understand evaluation of retrieval relevance and answer fidelity, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "Ragas: Evaluation framework for LLM applications",
+                    "provider": "docs.ragas.io",
+                    "url": "https://docs.ragas.io/en/stable/",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on evaluation of retrieval relevance and answer fidelity; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T12-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Evaluate 10 question-answer pairs from your RAG pipeline and calculate a faithfulness score based on citations.",
+                "completion_check": "You can show and explain the outcome of: evaluate 10 question-answer pairs from your rag pipeline and calculate a faithfulness score based on citations. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          }
+        ]
+      },
+      {
+        "id": "M04",
+        "slug": "agentic-workflows-tools",
+        "title": "Agentic workflows and tool-calling",
+        "summary": "Equip LLMs with executable tools using function calling, build multi-step reasoning agents, and manage conversation memory.",
+        "topics": [
+          {
+            "id": "T13",
+            "slug": "function-calling-structured-json",
+            "title": "Function calling and structured JSON outputs",
+            "milestone_id": "M04",
+            "card": {
+              "title": "Function calling and structured JSON outputs",
+              "summary": "Define JSON schema tool signatures so LLMs can invoke external functions and return strictly typed JSON objects.",
+              "prerequisite_ids": [
+                "T12"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Agentic workflows and tool-calling",
+              "title": "Function calling and structured JSON outputs",
+              "overview": "Define JSON schema tool signatures so LLMs can invoke external functions and return strictly typed JSON objects.",
+              "learning_outcomes": [
+                "Understand function calling and structured json outputs, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T13-S01",
+                  "title": "JSON Schema Definitions",
+                  "explanation": "Describing function names, descriptions, parameter types, and required fields."
+                },
+                {
+                  "id": "T13-S02",
+                  "title": "Tool Call Parsing",
+                  "explanation": "Extracting tool arguments from LLM responses, executing the code, and feeding results back."
+                }
+              ],
+              "practice": {
+                "instructions": "Equip an LLM with a calculator tool and a weather lookup tool, and verify that it invokes them with valid JSON arguments."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: equip an llm with a calculator tool and a weather lookup tool, and verify that it invokes them with valid json arguments. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "Function calling | OpenAI Documentation",
+                  "provider": "platform.openai.com",
+                  "url": "https://platform.openai.com/docs/guides/function-calling",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on function calling and structured json outputs; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T13-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Define JSON schema tool signatures so LLMs can invoke external functions and return strictly typed JSON objects.",
+                "learn_items": [
+                  "JSON Schema Definitions",
+                  "Tool Call Parsing"
+                ],
+                "learning_goal": "Understand function calling and structured json outputs, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "Function calling | OpenAI Documentation",
+                    "provider": "platform.openai.com",
+                    "url": "https://platform.openai.com/docs/guides/function-calling",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on function calling and structured json outputs; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T13-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Equip an LLM with a calculator tool and a weather lookup tool, and verify that it invokes them with valid JSON arguments.",
+                "completion_check": "You can show and explain the outcome of: equip an llm with a calculator tool and a weather lookup tool, and verify that it invokes them with valid json arguments. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T14",
+            "slug": "react-reasoning-loops",
+            "title": "Multi-step reasoning loops and ReAct",
+            "milestone_id": "M04",
+            "card": {
+              "title": "Multi-step reasoning loops and ReAct",
+              "summary": "Implement Reason + Act (ReAct) loops where the agent alternates between thinking, executing tools, and observing outcomes.",
+              "prerequisite_ids": [
+                "T13"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Agentic workflows and tool-calling",
+              "title": "Multi-step reasoning loops and ReAct",
+              "overview": "Implement Reason + Act (ReAct) loops where the agent alternates between thinking, executing tools, and observing outcomes.",
+              "learning_outcomes": [
+                "Understand multi-step reasoning loops and react, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T14-S01",
+                  "title": "The ReAct Pattern",
+                  "explanation": "Generating thought, action, and observation steps until a final answer is derived."
+                },
+                {
+                  "id": "T14-S02",
+                  "title": "Loop Termination and Limits",
+                  "explanation": "Setting maximum iteration bounds to prevent infinite loops when tools fail."
+                }
+              ],
+              "practice": {
+                "instructions": "Build a multi-step agent that answers a question requiring two consecutive tool lookups before returning a final answer."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: build a multi-step agent that answers a question requiring two consecutive tool lookups before returning a final answer. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "Agents | LangChain Concepts",
+                  "provider": "python.langchain.com",
+                  "url": "https://python.langchain.com/docs/concepts/#agents",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on multi-step reasoning loops and react; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T14-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Implement Reason + Act (ReAct) loops where the agent alternates between thinking, executing tools, and observing outcomes.",
+                "learn_items": [
+                  "The ReAct Pattern",
+                  "Loop Termination and Limits"
+                ],
+                "learning_goal": "Understand multi-step reasoning loops and react, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "Agents | LangChain Concepts",
+                    "provider": "python.langchain.com",
+                    "url": "https://python.langchain.com/docs/concepts/#agents",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on multi-step reasoning loops and react; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T14-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Build a multi-step agent that answers a question requiring two consecutive tool lookups before returning a final answer.",
+                "completion_check": "You can show and explain the outcome of: build a multi-step agent that answers a question requiring two consecutive tool lookups before returning a final answer. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T15",
+            "slug": "orchestration-frameworks",
+            "title": "Orchestration frameworks: LangChain and LlamaIndex",
+            "milestone_id": "M04",
+            "card": {
+              "title": "Orchestration frameworks: LangChain and LlamaIndex",
+              "summary": "Use modern AI orchestration libraries to construct declarative chains, agent executors, and data retrieval graphs.",
+              "prerequisite_ids": [
+                "T14"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Agentic workflows and tool-calling",
+              "title": "Orchestration frameworks: LangChain and LlamaIndex",
+              "overview": "Use modern AI orchestration libraries to construct declarative chains, agent executors, and data retrieval graphs.",
+              "learning_outcomes": [
+                "Understand orchestration frameworks: langchain and llamaindex, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T15-S01",
+                  "title": "Chains and Pipelines",
+                  "explanation": "Composing prompt templates, models, and output parsers into reusable execution pipelines."
+                },
+                {
+                  "id": "T15-S02",
+                  "title": "Agent State Graphs",
+                  "explanation": "Modeling complex multi-agent workflows with state machines (e.g., LangGraph)."
+                }
+              ],
+              "practice": {
+                "instructions": "Build a document research chain using an orchestration framework that retrieves information and outputs a formatted markdown summary."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: build a document research chain using an orchestration framework that retrieves information and outputs a formatted markdown summary. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "LlamaIndex Documentation",
+                  "provider": "docs.llamaindex.ai",
+                  "url": "https://docs.llamaindex.ai/en/stable/",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on orchestration frameworks: langchain and llamaindex; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T15-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Use modern AI orchestration libraries to construct declarative chains, agent executors, and data retrieval graphs.",
+                "learn_items": [
+                  "Chains and Pipelines",
+                  "Agent State Graphs"
+                ],
+                "learning_goal": "Understand orchestration frameworks: langchain and llamaindex, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "LlamaIndex Documentation",
+                    "provider": "docs.llamaindex.ai",
+                    "url": "https://docs.llamaindex.ai/en/stable/",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on orchestration frameworks: langchain and llamaindex; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T15-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Build a document research chain using an orchestration framework that retrieves information and outputs a formatted markdown summary.",
+                "completion_check": "You can show and explain the outcome of: build a document research chain using an orchestration framework that retrieves information and outputs a formatted markdown summary. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T16",
+            "slug": "agent-conversation-memory",
+            "title": "Memory management across agent conversations",
+            "milestone_id": "M04",
+            "card": {
+              "title": "Memory management across agent conversations",
+              "summary": "Maintain coherent conversation context across multiple turns using sliding window memory, summarization, and key-value state.",
+              "prerequisite_ids": [
+                "T15"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Agentic workflows and tool-calling",
+              "title": "Memory management across agent conversations",
+              "overview": "Maintain coherent conversation context across multiple turns using sliding window memory, summarization, and key-value state.",
+              "learning_outcomes": [
+                "Understand memory management across agent conversations, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T16-S01",
+                  "title": "Buffer and Window Memory",
+                  "explanation": "Keeping the last N messages in the context window while pruning older turns."
+                },
+                {
+                  "id": "T16-S02",
+                  "title": "Summary Memory",
+                  "explanation": "Using an LLM to progressively summarize past conversation history to preserve context compactly."
+                }
+              ],
+              "practice": {
+                "instructions": "Implement a conversation session that retains past user context across 5 turns while staying under a 2,000-token limit."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: implement a conversation session that retains past user context across 5 turns while staying under a 2,000-token limit. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "Memory | LangChain Concepts",
+                  "provider": "python.langchain.com",
+                  "url": "https://python.langchain.com/docs/concepts/#memory",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on memory management across agent conversations; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T16-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Maintain coherent conversation context across multiple turns using sliding window memory, summarization, and key-value state.",
+                "learn_items": [
+                  "Buffer and Window Memory",
+                  "Summary Memory"
+                ],
+                "learning_goal": "Understand memory management across agent conversations, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "Memory | LangChain Concepts",
+                    "provider": "python.langchain.com",
+                    "url": "https://python.langchain.com/docs/concepts/#memory",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on memory management across agent conversations; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T16-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Implement a conversation session that retains past user context across 5 turns while staying under a 2,000-token limit.",
+                "completion_check": "You can show and explain the outcome of: implement a conversation session that retains past user context across 5 turns while staying under a 2,000-token limit. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          }
+        ]
+      },
+      {
+        "id": "M05",
+        "slug": "guardrails-eval-finetuning",
+        "title": "Guardrails, evaluation and optimization",
+        "summary": "Enforce input/output safety guardrails, benchmark models, optimize token costs, and understand fine-tuning concepts.",
+        "topics": [
+          {
+            "id": "T17",
+            "slug": "ai-safety-guardrails",
+            "title": "AI safety, toxicity filtering and guardrails",
+            "milestone_id": "M05",
+            "card": {
+              "title": "AI safety, toxicity filtering and guardrails",
+              "summary": "Implement guardrails (e.g. NeMo Guardrails, Guardrails AI) to block toxic content, PII leakage, and off-topic queries.",
+              "prerequisite_ids": [
+                "T16"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Guardrails, evaluation and optimization",
+              "title": "AI safety, toxicity filtering and guardrails",
+              "overview": "Implement guardrails (e.g. NeMo Guardrails, Guardrails AI) to block toxic content, PII leakage, and off-topic queries.",
+              "learning_outcomes": [
+                "Understand ai safety, toxicity filtering and guardrails, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T17-S01",
+                  "title": "Input Sanitization",
+                  "explanation": "Scanning user prompts for jailbreaks, prompt injection, and PII before sending to the model."
+                },
+                {
+                  "id": "T17-S02",
+                  "title": "Output Verification",
+                  "explanation": "Validating that model outputs do not contain sensitive data, harmful advice, or policy violations."
+                }
+              ],
+              "practice": {
+                "instructions": "Configure a guardrail that detects and masks credit card numbers and email addresses in generated outputs."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: configure a guardrail that detects and masks credit card numbers and email addresses in generated outputs. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "OWASP Top 10 for LLM Applications",
+                  "provider": "cheatsheetseries.owasp.org",
+                  "url": "https://cheatsheetseries.owasp.org/cheatsheets/LLM_AI_Security_Cheat_Sheet.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on ai safety, toxicity filtering and guardrails; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T17-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Implement guardrails (e.g. NeMo Guardrails, Guardrails AI) to block toxic content, PII leakage, and off-topic queries.",
+                "learn_items": [
+                  "Input Sanitization",
+                  "Output Verification"
+                ],
+                "learning_goal": "Understand ai safety, toxicity filtering and guardrails, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "OWASP Top 10 for LLM Applications",
+                    "provider": "cheatsheetseries.owasp.org",
+                    "url": "https://cheatsheetseries.owasp.org/cheatsheets/LLM_AI_Security_Cheat_Sheet.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on ai safety, toxicity filtering and guardrails; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T17-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Configure a guardrail that detects and masks credit card numbers and email addresses in generated outputs.",
+                "completion_check": "You can show and explain the outcome of: configure a guardrail that detects and masks credit card numbers and email addresses in generated outputs. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T18",
+            "slug": "benchmarking-llm-as-judge",
+            "title": "Benchmarking with LLM-as-a-judge",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Benchmarking with LLM-as-a-judge",
+              "summary": "Evaluate complex, qualitative generative outputs using an automated judge model with clear rubrics and scoring scales.",
+              "prerequisite_ids": [
+                "T17"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Guardrails, evaluation and optimization",
+              "title": "Benchmarking with LLM-as-a-judge",
+              "overview": "Evaluate complex, qualitative generative outputs using an automated judge model with clear rubrics and scoring scales.",
+              "learning_outcomes": [
+                "Understand benchmarking with llm-as-a-judge, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T18-S01",
+                  "title": "Evaluation Rubrics",
+                  "explanation": "Creating explicit 1-to-5 scoring criteria for conciseness, accuracy, and tone."
+                },
+                {
+                  "id": "T18-S02",
+                  "title": "Mitigating Judge Bias",
+                  "explanation": "Mitigating position bias and verbosity bias when comparing candidate responses."
+                }
+              ],
+              "practice": {
+                "instructions": "Write an evaluation prompt where a judge model scores 5 assistant responses on a 1-to-5 scale with written explanations."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: write an evaluation prompt where a judge model scores 5 assistant responses on a 1-to-5 scale with written explanations. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "Ragas Metrics Overview",
+                  "provider": "docs.ragas.io",
+                  "url": "https://docs.ragas.io/en/stable/concepts/metrics/index.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on benchmarking with llm-as-a-judge; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T18-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Evaluate complex, qualitative generative outputs using an automated judge model with clear rubrics and scoring scales.",
+                "learn_items": [
+                  "Evaluation Rubrics",
+                  "Mitigating Judge Bias"
+                ],
+                "learning_goal": "Understand benchmarking with llm-as-a-judge, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "Ragas Metrics Overview",
+                    "provider": "docs.ragas.io",
+                    "url": "https://docs.ragas.io/en/stable/concepts/metrics/index.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on benchmarking with llm-as-a-judge; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T18-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Write an evaluation prompt where a judge model scores 5 assistant responses on a 1-to-5 scale with written explanations.",
+                "completion_check": "You can show and explain the outcome of: write an evaluation prompt where a judge model scores 5 assistant responses on a 1-to-5 scale with written explanations. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T19",
+            "slug": "fine-tuning-peft-lora",
+            "title": "Parameter-efficient fine-tuning (PEFT/LoRA) overview",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Parameter-efficient fine-tuning (PEFT/LoRA) overview",
+              "summary": "Understand when prompt engineering is sufficient versus when to fine-tune open-weights models using LoRA/QLoRA.",
+              "prerequisite_ids": [
+                "T18"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Guardrails, evaluation and optimization",
+              "title": "Parameter-efficient fine-tuning (PEFT/LoRA) overview",
+              "overview": "Understand when prompt engineering is sufficient versus when to fine-tune open-weights models using LoRA/QLoRA.",
+              "learning_outcomes": [
+                "Understand parameter-efficient fine-tuning (peft/lora) overview, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T19-S01",
+                  "title": "When to Fine-Tune",
+                  "explanation": "Distinguishing between knowledge injection (use RAG) vs style/formatting adaptation (use fine-tuning)."
+                },
+                {
+                  "id": "T19-S02",
+                  "title": "Low-Rank Adaptation (LoRA)",
+                  "explanation": "How adding small trainable rank-decomposition matrices avoids re-training all model weights."
+                }
+              ],
+              "practice": {
+                "instructions": "Prepare a formatted JSONL instruction-tuning dataset with 20 input-output pairs following an instruction schema."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: prepare a formatted jsonl instruction-tuning dataset with 20 input-output pairs following an instruction schema. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "PEFT: Parameter-Efficient Fine-Tuning | Hugging Face Docs",
+                  "provider": "huggingface.co",
+                  "url": "https://huggingface.co/docs/peft/index",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on parameter-efficient fine-tuning (peft/lora) overview; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T19-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Understand when prompt engineering is sufficient versus when to fine-tune open-weights models using LoRA/QLoRA.",
+                "learn_items": [
+                  "When to Fine-Tune",
+                  "Low-Rank Adaptation (LoRA)"
+                ],
+                "learning_goal": "Understand parameter-efficient fine-tuning (peft/lora) overview, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "PEFT: Parameter-Efficient Fine-Tuning | Hugging Face Docs",
+                    "provider": "huggingface.co",
+                    "url": "https://huggingface.co/docs/peft/index",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on parameter-efficient fine-tuning (peft/lora) overview; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T19-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Prepare a formatted JSONL instruction-tuning dataset with 20 input-output pairs following an instruction schema.",
+                "completion_check": "You can show and explain the outcome of: prepare a formatted jsonl instruction-tuning dataset with 20 input-output pairs following an instruction schema. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T20",
+            "slug": "cost-latency-streaming-optimization",
+            "title": "Cost tracking, latency optimization and caching",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Cost tracking, latency optimization and caching",
+              "summary": "Track API spending, reduce time-to-first-token (TTFT) using prompt caching, and select cost-efficient models for subtasks.",
+              "prerequisite_ids": [
+                "T19"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Guardrails, evaluation and optimization",
+              "title": "Cost tracking, latency optimization and caching",
+              "overview": "Track API spending, reduce time-to-first-token (TTFT) using prompt caching, and select cost-efficient models for subtasks.",
+              "learning_outcomes": [
+                "Understand cost tracking, latency optimization and caching, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T20-S01",
+                  "title": "Prompt Caching",
+                  "explanation": "Reusing static system prompts and large context prefixes to reduce cost and inference latency."
+                },
+                {
+                  "id": "T20-S02",
+                  "title": "Model Tiering",
+                  "explanation": "Routing simple categorization tasks to fast, low-cost models and complex reasoning to larger models."
+                }
+              ],
+              "practice": {
+                "instructions": "Implement a semantic prompt cache that returns cached completions for repeated queries without calling the API."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: implement a semantic prompt cache that returns cached completions for repeated queries without calling the api. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "Vertex AI Pricing and Token Economics | Google Cloud",
+                  "provider": "cloud.google.com",
+                  "url": "https://cloud.google.com/vertex-ai/docs/generative-ai/pricing",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on cost tracking, latency optimization and caching; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T20-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Track API spending, reduce time-to-first-token (TTFT) using prompt caching, and select cost-efficient models for subtasks.",
+                "learn_items": [
+                  "Prompt Caching",
+                  "Model Tiering"
+                ],
+                "learning_goal": "Understand cost tracking, latency optimization and caching, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "Vertex AI Pricing and Token Economics | Google Cloud",
+                    "provider": "cloud.google.com",
+                    "url": "https://cloud.google.com/vertex-ai/docs/generative-ai/pricing",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on cost tracking, latency optimization and caching; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T20-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Implement a semantic prompt cache that returns cached completions for repeated queries without calling the API.",
+                "completion_check": "You can show and explain the outcome of: implement a semantic prompt cache that returns cached completions for repeated queries without calling the api. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          }
+        ]
+      },
+      {
+        "id": "M06",
+        "slug": "ai-deployment-observability",
+        "title": "AI application deployment and observability",
+        "summary": "Instrument LLM calls with tracing tools, build interactive full-stack chat/RAG interfaces, and deploy reliable production AI services.",
+        "topics": [
+          {
+            "id": "T21",
+            "slug": "llm-tracing-observability",
+            "title": "Tracing LLM calls with OpenTelemetry and Langfuse",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Tracing LLM calls with OpenTelemetry and Langfuse",
+              "summary": "Trace multi-step LLM chains, inspect raw prompts and completions, debug tool inputs, and monitor latency bottlenecks.",
+              "prerequisite_ids": [
+                "T20"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · AI application deployment and observability",
+              "title": "Tracing LLM calls with OpenTelemetry and Langfuse",
+              "overview": "Trace multi-step LLM chains, inspect raw prompts and completions, debug tool inputs, and monitor latency bottlenecks.",
+              "learning_outcomes": [
+                "Understand tracing llm calls with opentelemetry and langfuse, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T21-S01",
+                  "title": "Distributed Tracing for AI",
+                  "explanation": "Logging every LLM generation, tool call, and vector retrieval in a central dashboard."
+                },
+                {
+                  "id": "T21-S02",
+                  "title": "Debugging Latency and Costs",
+                  "explanation": "Identifying slow chain steps and monitoring cost spikes per user session."
+                }
+              ],
+              "practice": {
+                "instructions": "Instrument an LLM script with a tracing callback that records request duration, token counts, and input prompts."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: instrument an llm script with a tracing callback that records request duration, token counts, and input prompts. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "What is OpenTelemetry? | OpenTelemetry Docs",
+                  "provider": "opentelemetry.io",
+                  "url": "https://opentelemetry.io/docs/what-is-opentelemetry/",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on tracing llm calls with opentelemetry and langfuse; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T21-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Trace multi-step LLM chains, inspect raw prompts and completions, debug tool inputs, and monitor latency bottlenecks.",
+                "learn_items": [
+                  "Distributed Tracing for AI",
+                  "Debugging Latency and Costs"
+                ],
+                "learning_goal": "Understand tracing llm calls with opentelemetry and langfuse, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "What is OpenTelemetry? | OpenTelemetry Docs",
+                    "provider": "opentelemetry.io",
+                    "url": "https://opentelemetry.io/docs/what-is-opentelemetry/",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on tracing llm calls with opentelemetry and langfuse; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T21-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Instrument an LLM script with a tracing callback that records request duration, token counts, and input prompts.",
+                "completion_check": "You can show and explain the outcome of: instrument an llm script with a tracing callback that records request duration, token counts, and input prompts. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T22",
+            "slug": "caching-and-rate-limiting-ai",
+            "title": "Rate limiting and fallback resilience for AI APIs",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Rate limiting and fallback resilience for AI APIs",
+              "summary": "Protect your backend from API quota exhaustion using rate limiters, exponential backoff, and fallback model providers.",
+              "prerequisite_ids": [
+                "T21"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · AI application deployment and observability",
+              "title": "Rate limiting and fallback resilience for AI APIs",
+              "overview": "Protect your backend from API quota exhaustion using rate limiters, exponential backoff, and fallback model providers.",
+              "learning_outcomes": [
+                "Understand rate limiting and fallback resilience for ai apis, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T22-S01",
+                  "title": "Rate Limiting and Quotas",
+                  "explanation": "Managing requests-per-minute (RPM) and tokens-per-minute (TPM) limits gracefully."
+                },
+                {
+                  "id": "T22-S02",
+                  "title": "Fallback Providers",
+                  "explanation": "Automatically failing over to a secondary model provider if the primary provider returns 503 or 429."
+                }
+              ],
+              "practice": {
+                "instructions": "Write an API client with an exponential backoff retry handler that handles HTTP 429 rate limit responses gracefully."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: write an api client with an exponential backoff retry handler that handles http 429 rate limit responses gracefully. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "HTTP Status 429 Too Many Requests | MDN",
+                  "provider": "developer.mozilla.org",
+                  "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on rate limiting and fallback resilience for ai apis; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T22-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Protect your backend from API quota exhaustion using rate limiters, exponential backoff, and fallback model providers.",
+                "learn_items": [
+                  "Rate Limiting and Quotas",
+                  "Fallback Providers"
+                ],
+                "learning_goal": "Understand rate limiting and fallback resilience for ai apis, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "HTTP Status 429 Too Many Requests | MDN",
+                    "provider": "developer.mozilla.org",
+                    "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on rate limiting and fallback resilience for ai apis; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T22-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Write an API client with an exponential backoff retry handler that handles HTTP 429 rate limit responses gracefully.",
+                "completion_check": "You can show and explain the outcome of: write an api client with an exponential backoff retry handler that handles http 429 rate limit responses gracefully. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T23",
+            "slug": "building-chat-rag-ui",
+            "title": "Building a full-stack chat and RAG user interface",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Building a full-stack chat and RAG user interface",
+              "summary": "Build a responsive frontend chat interface with markdown rendering, source citation popovers, and streaming tokens.",
+              "prerequisite_ids": [
+                "T22"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · AI application deployment and observability",
+              "title": "Building a full-stack chat and RAG user interface",
+              "overview": "Build a responsive frontend chat interface with markdown rendering, source citation popovers, and streaming tokens.",
+              "learning_outcomes": [
+                "Understand building a full-stack chat and rag user interface, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T23-S01",
+                  "title": "Streaming UI Hooks",
+                  "explanation": "Using client hooks (e.g., Vercel AI SDK) to render streaming text with stop/regenerate controls."
+                },
+                {
+                  "id": "T23-S02",
+                  "title": "Citation Previews",
+                  "explanation": "Rendering interactive badge links that display the retrieved source passage in a drawer."
+                }
+              ],
+              "practice": {
+                "instructions": "Build a responsive chat interface component that streams assistant responses and displays expandable citations."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: build a responsive chat interface component that streams assistant responses and displays expandable citations. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "Dynamic scripting | MDN",
+                  "provider": "developer.mozilla.org",
+                  "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on building a full-stack chat and rag user interface; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T23-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Build a responsive frontend chat interface with markdown rendering, source citation popovers, and streaming tokens.",
+                "learn_items": [
+                  "Streaming UI Hooks",
+                  "Citation Previews"
+                ],
+                "learning_goal": "Understand building a full-stack chat and rag user interface, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "Dynamic scripting | MDN",
+                    "provider": "developer.mozilla.org",
+                    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on building a full-stack chat and rag user interface; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T23-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Build a responsive chat interface component that streams assistant responses and displays expandable citations.",
+                "completion_check": "You can show and explain the outcome of: build a responsive chat interface component that streams assistant responses and displays expandable citations. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T24",
+            "slug": "deploying-production-ai-service",
+            "title": "Deploying a reliable production AI service",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Deploying a reliable production AI service",
+              "summary": "Package your AI service in Docker, configure secure environment secrets, set up health checks, and launch production operations.",
+              "prerequisite_ids": [
+                "T23"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · AI application deployment and observability",
+              "title": "Deploying a reliable production AI service",
+              "overview": "Package your AI service in Docker, configure secure environment secrets, set up health checks, and launch production operations.",
+              "learning_outcomes": [
+                "Understand deploying a reliable production ai service, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T24-S01",
+                  "title": "Containerizing AI Apps",
+                  "explanation": "Creating slim Docker containers with vector store dependencies and runtime SDKs."
+                },
+                {
+                  "id": "T24-S02",
+                  "title": "Operational Monitoring",
+                  "explanation": "Setting up alerting for elevated hallucination rates, error rates, and sudden token budget surges."
+                }
+              ],
+              "practice": {
+                "instructions": "Deploy a containerized RAG service, verify that its health check endpoint reports status 200, and execute a live query."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: deploy a containerized rag service, verify that its health check endpoint reports status 200, and execute a live query. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "Deploy your application | Docker Docs",
+                  "provider": "docs.docker.com",
+                  "url": "https://docs.docker.com/guides/walkthroughs/deploy-your-app/",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on deploying a reliable production ai service; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T24-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Package your AI service in Docker, configure secure environment secrets, set up health checks, and launch production operations.",
+                "learn_items": [
+                  "Containerizing AI Apps",
+                  "Operational Monitoring"
+                ],
+                "learning_goal": "Understand deploying a reliable production ai service, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "Deploy your application | Docker Docs",
+                    "provider": "docs.docker.com",
+                    "url": "https://docs.docker.com/guides/walkthroughs/deploy-your-app/",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on deploying a reliable production ai service; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T24-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Deploy a containerized RAG service, verify that its health check endpoint reports status 200, and execute a live query.",
+                "completion_check": "You can show and explain the outcome of: deploy a containerized rag service, verify that its health check endpoint reports status 200, and execute a live query. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          }
+        ]
+      }
+    ]
+  }
+}

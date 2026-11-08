@@ -1,0 +1,3079 @@
+{
+  "release": "occupational-v1-local-test-proposal",
+  "author": "Codex",
+  "date": "2026-11-04",
+  "scope": "owner-selected local testing only",
+  "runtime_activation": false,
+  "technical_review": "plan approved in chat by self-identified @YakisobaNissin, 2026-11-04",
+  "independent_content_review": "unassigned; pending",
+  "input_sha256": {
+    "manifest.json": "6e90484b08d3bc51587cec160cac3170ed7a4c0497ee9b12617e5d724528c004",
+    "agent-review.json": "824708e6396feb30afe7e1ff82586d06ac8a2939da5bfa82f497c2ddec19a9c0",
+    "review-policy.json": "2711f327bac19bbc3ba6c286a23576292b6ba9e7928cffe5e22b06f53a8cafc9"
+  },
+  "career_ids": [
+    "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+    "24068b09-7695-5744-88ca-9e678a40e06b",
+    "3f53351f-851f-5aec-9ece-12f22220174f",
+    "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+    "505b7463-bb7b-5b0d-915d-1765aa364500",
+    "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+    "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+    "88ac4df4-45e5-5f6f-9e9c-5f5b35db1aa9",
+    "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+    "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+    "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+    "f1756a96-98af-5abe-8439-423486b168d1"
+  ],
+  "eligible_record_proposals": [
+    {
+      "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+      "record_id": "034d3138-1615-5172-b9be-d3f761616717",
+      "competency_id": "e70b34bb-b749-5a6d-aafb-0be4a37fe6e8"
+    },
+    {
+      "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+      "record_id": "04f73908-ec97-5c60-92ad-f2bd7d6d586f",
+      "competency_id": "94481768-cbf7-5c84-aced-ecb6d7267d5b"
+    },
+    {
+      "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+      "record_id": "124496fc-95c0-56c7-828b-3d4085806a06",
+      "competency_id": "94481768-cbf7-5c84-aced-ecb6d7267d5b"
+    },
+    {
+      "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+      "record_id": "42ba116a-9e84-5f20-bb74-cd8c1dd28d13",
+      "competency_id": "94481768-cbf7-5c84-aced-ecb6d7267d5b"
+    },
+    {
+      "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+      "record_id": "58b013a3-2f7b-5b66-b138-22f4db4f8597",
+      "competency_id": "e5c0f410-ff31-5e84-95c9-0b45948b30b9"
+    },
+    {
+      "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+      "record_id": "64f587b4-5abe-558c-9baf-7098cf1e6efd",
+      "competency_id": "f8577e8e-934d-504c-aff0-94f1babf89b9"
+    },
+    {
+      "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+      "record_id": "6f4b2bc1-7338-5989-a078-3a65f042003f",
+      "competency_id": "f8577e8e-934d-504c-aff0-94f1babf89b9"
+    },
+    {
+      "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+      "record_id": "829551d5-208e-5b85-bb29-55909335c40b",
+      "competency_id": "e5c0f410-ff31-5e84-95c9-0b45948b30b9"
+    },
+    {
+      "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+      "record_id": "b0c98bf6-c4f1-5549-a159-e1b52f56795c",
+      "competency_id": "9096ca48-82ee-54a7-b393-c5c8328982a7"
+    },
+    {
+      "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+      "record_id": "c7b27cd4-7220-5994-96b1-37659d6de013",
+      "competency_id": "94481768-cbf7-5c84-aced-ecb6d7267d5b"
+    },
+    {
+      "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+      "record_id": "d1f10690-cbfc-5787-a782-f49d4279d609",
+      "competency_id": "e70b34bb-b749-5a6d-aafb-0be4a37fe6e8"
+    },
+    {
+      "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+      "record_id": "d6ae3729-3403-56e4-bd52-9ed2be4e587b",
+      "competency_id": "f8577e8e-934d-504c-aff0-94f1babf89b9"
+    },
+    {
+      "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+      "record_id": "e03ae899-48f9-5555-a881-ecf0a68a9c7f",
+      "competency_id": "f8577e8e-934d-504c-aff0-94f1babf89b9"
+    },
+    {
+      "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+      "record_id": "ecab337a-d5d2-5ca1-88e0-6ad5d7a99584",
+      "competency_id": "9096ca48-82ee-54a7-b393-c5c8328982a7"
+    },
+    {
+      "career_id": "24068b09-7695-5744-88ca-9e678a40e06b",
+      "record_id": "1e01c5c6-49ae-57f7-a6d7-462bcc30cfaa",
+      "competency_id": "03d5b564-d732-5d68-adc6-17e5d75e7d09"
+    },
+    {
+      "career_id": "24068b09-7695-5744-88ca-9e678a40e06b",
+      "record_id": "2aacbb7f-e5ab-57dc-9115-d496ad2ab381",
+      "competency_id": "a520b93c-8900-52cd-ab7b-29d997db3dd5"
+    },
+    {
+      "career_id": "24068b09-7695-5744-88ca-9e678a40e06b",
+      "record_id": "3f561a1c-36b8-586c-9601-3f1f2111abaf",
+      "competency_id": "b4f85ed2-3954-5add-aab5-67c37c97d5db"
+    },
+    {
+      "career_id": "24068b09-7695-5744-88ca-9e678a40e06b",
+      "record_id": "410edaf7-22b9-5867-a527-263cc7d93446",
+      "competency_id": "9b82b925-1629-50d9-8b30-4d309a2e8d2d"
+    },
+    {
+      "career_id": "24068b09-7695-5744-88ca-9e678a40e06b",
+      "record_id": "814d4f27-fd93-5960-8228-1072e49cd823",
+      "competency_id": "2349cb51-8655-539a-af5f-d197479ff708"
+    },
+    {
+      "career_id": "24068b09-7695-5744-88ca-9e678a40e06b",
+      "record_id": "dece6b8a-6592-536b-b09f-9f5ee3a2a5f7",
+      "competency_id": "b4f85ed2-3954-5add-aab5-67c37c97d5db"
+    },
+    {
+      "career_id": "24068b09-7695-5744-88ca-9e678a40e06b",
+      "record_id": "fa250681-0919-53c2-bee4-00fc2605c185",
+      "competency_id": "9b82b925-1629-50d9-8b30-4d309a2e8d2d"
+    },
+    {
+      "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+      "record_id": "01b83604-6280-55ed-bac3-7373cb2eea30",
+      "competency_id": "d30e04a1-e40e-5062-8811-5102a7d859eb"
+    },
+    {
+      "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+      "record_id": "4717952e-ee5d-5508-b3af-36cb945da482",
+      "competency_id": "ecb73f29-593f-58fc-946e-ef16b0c9c64a"
+    },
+    {
+      "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+      "record_id": "52d5790b-ec19-5dee-bfe0-d17bc5842e0a",
+      "competency_id": "d30e04a1-e40e-5062-8811-5102a7d859eb"
+    },
+    {
+      "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+      "record_id": "5e08c8d1-1fd6-5499-a62c-6fa7e99f7e6b",
+      "competency_id": "70571e9b-0546-54dc-8d74-79eb31af98ae"
+    },
+    {
+      "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+      "record_id": "72f1cd85-69d5-517e-9df6-323d96870435",
+      "competency_id": "70571e9b-0546-54dc-8d74-79eb31af98ae"
+    },
+    {
+      "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+      "record_id": "7cdad3e7-e9b8-5e5b-a8e1-81fb3b758000",
+      "competency_id": "d30e04a1-e40e-5062-8811-5102a7d859eb"
+    },
+    {
+      "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+      "record_id": "8008c24f-f7a8-5e08-9ed0-35ac66f484bc",
+      "competency_id": "1415062d-088d-5350-920f-884ff9b8e12f"
+    },
+    {
+      "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+      "record_id": "8a287155-1de6-5bc5-afc6-fe4b17f8831c",
+      "competency_id": "1415062d-088d-5350-920f-884ff9b8e12f"
+    },
+    {
+      "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+      "record_id": "9e8df709-b774-5eea-9217-de9bfd5061c0",
+      "competency_id": "528a7b6b-49b4-5c86-b17e-c1bdc7dca30b"
+    },
+    {
+      "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+      "record_id": "a199eb86-526a-5490-bd3f-1029c4d61415",
+      "competency_id": "ecb73f29-593f-58fc-946e-ef16b0c9c64a"
+    },
+    {
+      "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+      "record_id": "a4892260-d8bb-5c96-8a67-d3379493bda1",
+      "competency_id": "70571e9b-0546-54dc-8d74-79eb31af98ae"
+    },
+    {
+      "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+      "record_id": "a696d57a-d796-5b23-aa2f-514fa417b19a",
+      "competency_id": "ecb73f29-593f-58fc-946e-ef16b0c9c64a"
+    },
+    {
+      "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+      "record_id": "c60fb8ab-002d-50a6-b7ef-9270ba27a124",
+      "competency_id": "1415062d-088d-5350-920f-884ff9b8e12f"
+    },
+    {
+      "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+      "record_id": "d72d1d41-d923-5b2d-8ff7-7e70531e516f",
+      "competency_id": "528a7b6b-49b4-5c86-b17e-c1bdc7dca30b"
+    },
+    {
+      "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+      "record_id": "e4b246c6-d835-5d39-86d1-163de56d6702",
+      "competency_id": "528a7b6b-49b4-5c86-b17e-c1bdc7dca30b"
+    },
+    {
+      "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+      "record_id": "0b492598-4cbb-520e-859b-19284a7c9713",
+      "competency_id": "d95c23d7-ce3a-5bff-bbc5-78bc257bea6c"
+    },
+    {
+      "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+      "record_id": "1cb324c8-191f-5b62-aa62-e74a173fb5da",
+      "competency_id": "b2379164-6b4e-54bb-b801-94009ecb4592"
+    },
+    {
+      "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+      "record_id": "4a4003b5-3cd1-530e-b4d5-4bb37121ac19",
+      "competency_id": "b2379164-6b4e-54bb-b801-94009ecb4592"
+    },
+    {
+      "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+      "record_id": "5ddcb4e9-c0e4-5ca0-a606-7c9186f4eea4",
+      "competency_id": "718a9b83-bd8f-57c8-ab8a-e785d4c66248"
+    },
+    {
+      "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+      "record_id": "5e937ce4-cb80-545e-bb40-2ad64aab74a6",
+      "competency_id": "718a9b83-bd8f-57c8-ab8a-e785d4c66248"
+    },
+    {
+      "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+      "record_id": "6fd2cf60-614d-5290-815e-d412bda08ee1",
+      "competency_id": "b2379164-6b4e-54bb-b801-94009ecb4592"
+    },
+    {
+      "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+      "record_id": "7fc7f2e3-1d46-5012-8117-6a0dee35f7f8",
+      "competency_id": "837e430e-15d5-5a77-a557-7e3e02acd4b8"
+    },
+    {
+      "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+      "record_id": "8352c498-02fc-5dc7-80c2-6df9ce1793b5",
+      "competency_id": "837e430e-15d5-5a77-a557-7e3e02acd4b8"
+    },
+    {
+      "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+      "record_id": "8ba29d8b-0fa6-591e-8908-96a9da97b7db",
+      "competency_id": "d95c23d7-ce3a-5bff-bbc5-78bc257bea6c"
+    },
+    {
+      "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+      "record_id": "adef99f0-8b33-5021-9bdd-0f27e1ac3498",
+      "competency_id": "718a9b83-bd8f-57c8-ab8a-e785d4c66248"
+    },
+    {
+      "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+      "record_id": "b0ecac2d-27c5-572f-9f3a-8e5cc5917031",
+      "competency_id": "837e430e-15d5-5a77-a557-7e3e02acd4b8"
+    },
+    {
+      "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+      "record_id": "bcf1880d-cff4-5686-909b-4855b381b68f",
+      "competency_id": "d95c23d7-ce3a-5bff-bbc5-78bc257bea6c"
+    },
+    {
+      "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+      "record_id": "050c9821-6381-5d2f-b4ec-fea4bb3e98a1",
+      "competency_id": "73d6bc81-3182-5494-a870-5883eceb995a"
+    },
+    {
+      "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+      "record_id": "1db46bcf-75f7-58c9-bcd4-87d914c8cf1e",
+      "competency_id": "1878d764-8f92-5a5b-bc2c-94a91cd61ec7"
+    },
+    {
+      "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+      "record_id": "309c76a4-6214-53b9-b38d-a3b908f8d087",
+      "competency_id": "1878d764-8f92-5a5b-bc2c-94a91cd61ec7"
+    },
+    {
+      "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+      "record_id": "3f561a1c-36b8-586c-9601-3f1f2111abaf",
+      "competency_id": "b4f85ed2-3954-5add-aab5-67c37c97d5db"
+    },
+    {
+      "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+      "record_id": "4d32d415-c3a6-5992-a02d-0e413a93da37",
+      "competency_id": "7bae0183-0c9b-5b3e-8188-af5aa4265058"
+    },
+    {
+      "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+      "record_id": "580e686f-5c4d-505c-b6e7-e38148aaa0b8",
+      "competency_id": "73d6bc81-3182-5494-a870-5883eceb995a"
+    },
+    {
+      "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+      "record_id": "6c3d3e95-87ed-5611-9230-18481dc7b209",
+      "competency_id": "3bfe9cbe-4fdb-5c54-b1be-c2dc17f15f19"
+    },
+    {
+      "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+      "record_id": "744d11d8-bd16-56ef-81ec-8e38520c9402",
+      "competency_id": "1878d764-8f92-5a5b-bc2c-94a91cd61ec7"
+    },
+    {
+      "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+      "record_id": "74912d05-ead0-5862-aa83-296bfb6bdcad",
+      "competency_id": "7bae0183-0c9b-5b3e-8188-af5aa4265058"
+    },
+    {
+      "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+      "record_id": "83e32656-4b8c-5ea6-bd12-8ecfb9cece5d",
+      "competency_id": "73d6bc81-3182-5494-a870-5883eceb995a"
+    },
+    {
+      "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+      "record_id": "a2b76335-2e2f-573c-907b-3048f9b4de0d",
+      "competency_id": "73d6bc81-3182-5494-a870-5883eceb995a"
+    },
+    {
+      "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+      "record_id": "cb689001-b04b-5f03-8298-bf4d52315d88",
+      "competency_id": "1878d764-8f92-5a5b-bc2c-94a91cd61ec7"
+    },
+    {
+      "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+      "record_id": "dece6b8a-6592-536b-b09f-9f5ee3a2a5f7",
+      "competency_id": "b4f85ed2-3954-5add-aab5-67c37c97d5db"
+    },
+    {
+      "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+      "record_id": "f840d470-72e8-5d9f-af61-094571f52e87",
+      "competency_id": "3bfe9cbe-4fdb-5c54-b1be-c2dc17f15f19"
+    },
+    {
+      "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+      "record_id": "26c2157d-51c1-5be3-bb2b-caa8aa71284e",
+      "competency_id": "05592c78-1d12-57cc-834e-135b0dd18f01"
+    },
+    {
+      "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+      "record_id": "671fc396-0865-52e8-8b69-4c0fff0cf8f3",
+      "competency_id": "05592c78-1d12-57cc-834e-135b0dd18f01"
+    },
+    {
+      "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+      "record_id": "8cb732e0-4ea9-566a-9e99-d595286262f4",
+      "competency_id": "41757b82-ed33-5bf7-acb6-6ec82f8e25b1"
+    },
+    {
+      "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+      "record_id": "a455514b-cfef-592c-8260-b29a9261f1b6",
+      "competency_id": "012d408d-f5f8-5b75-a486-72f6dfe4b2ae"
+    },
+    {
+      "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+      "record_id": "cf85f4f6-2142-5e0a-b98e-fe6b5374cf34",
+      "competency_id": "012d408d-f5f8-5b75-a486-72f6dfe4b2ae"
+    },
+    {
+      "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+      "record_id": "dbae77b8-e6da-5bf3-86ea-2c86ec46fe6f",
+      "competency_id": "1878d764-8f92-5a5b-bc2c-94a91cd61ec7"
+    },
+    {
+      "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+      "record_id": "e3cf996c-7c20-532a-9c4c-fb718dbdd434",
+      "competency_id": "1878d764-8f92-5a5b-bc2c-94a91cd61ec7"
+    },
+    {
+      "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+      "record_id": "fad8c12b-6d25-59ee-8010-9b322c4a3fa0",
+      "competency_id": "41757b82-ed33-5bf7-acb6-6ec82f8e25b1"
+    },
+    {
+      "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+      "record_id": "022f7dc0-90cd-5e12-bf84-3e5936eae462",
+      "competency_id": "ecb73f29-593f-58fc-946e-ef16b0c9c64a"
+    },
+    {
+      "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+      "record_id": "42ea071d-fbd8-5f9c-8f8b-9c7b2e6687e6",
+      "competency_id": "1b3ee503-2a6b-5fbd-847a-444edf2f8b5a"
+    },
+    {
+      "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+      "record_id": "7871de39-875b-5d8b-ae8d-e44cdf053719",
+      "competency_id": "565e203d-2684-5d65-8a92-ad2365739366"
+    },
+    {
+      "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+      "record_id": "c6162a26-da16-5ad1-8bf2-bb76d9f4cc51",
+      "competency_id": "8c963ae0-82c8-586a-b049-b38d0f0b3d39"
+    },
+    {
+      "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+      "record_id": "c95bcd0c-bd00-5fdd-b732-ae0e4b0b8de3",
+      "competency_id": "6c0524b1-fa53-5933-82ec-1c6e3cb9b201"
+    },
+    {
+      "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+      "record_id": "ca06af63-6557-59ba-a05c-7055f58f2557",
+      "competency_id": "ecb73f29-593f-58fc-946e-ef16b0c9c64a"
+    },
+    {
+      "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+      "record_id": "cc762539-d38a-5372-9702-e9b0e1e783fb",
+      "competency_id": "1b3ee503-2a6b-5fbd-847a-444edf2f8b5a"
+    },
+    {
+      "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+      "record_id": "cceb802b-ea48-53b4-9977-7a1fc4ccc757",
+      "competency_id": "837e430e-15d5-5a77-a557-7e3e02acd4b8"
+    },
+    {
+      "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+      "record_id": "d5581451-d15f-53ce-9305-492c36eb26f5",
+      "competency_id": "1b3ee503-2a6b-5fbd-847a-444edf2f8b5a"
+    },
+    {
+      "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+      "record_id": "ec410348-5cc3-55ed-aa96-0a654167ccd1",
+      "competency_id": "565e203d-2684-5d65-8a92-ad2365739366"
+    },
+    {
+      "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+      "record_id": "f390eae0-1bb8-52a7-ac32-1a842b649f09",
+      "competency_id": "6c0524b1-fa53-5933-82ec-1c6e3cb9b201"
+    },
+    {
+      "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+      "record_id": "f60e930c-526e-539b-8488-96f4789c7585",
+      "competency_id": "8c963ae0-82c8-586a-b049-b38d0f0b3d39"
+    },
+    {
+      "career_id": "88ac4df4-45e5-5f6f-9e9c-5f5b35db1aa9",
+      "record_id": "291b87f5-87e8-52cc-88c1-e48891c0f881",
+      "competency_id": "e44eae6e-485b-5d63-95ac-646c5f5f2577"
+    },
+    {
+      "career_id": "88ac4df4-45e5-5f6f-9e9c-5f5b35db1aa9",
+      "record_id": "314aad25-f179-5b4a-a7f9-3134c4b0c841",
+      "competency_id": "e44eae6e-485b-5d63-95ac-646c5f5f2577"
+    },
+    {
+      "career_id": "88ac4df4-45e5-5f6f-9e9c-5f5b35db1aa9",
+      "record_id": "4b12e78d-03af-5dde-92ff-1bc6eee193be",
+      "competency_id": "e70b34bb-b749-5a6d-aafb-0be4a37fe6e8"
+    },
+    {
+      "career_id": "88ac4df4-45e5-5f6f-9e9c-5f5b35db1aa9",
+      "record_id": "57c8e781-dde2-5528-b7a9-22e091268074",
+      "competency_id": "4401d9eb-4066-5372-8091-60be2d624e19"
+    },
+    {
+      "career_id": "88ac4df4-45e5-5f6f-9e9c-5f5b35db1aa9",
+      "record_id": "5bbafd71-c792-5623-8dac-dc652f05acbc",
+      "competency_id": "3a9aecec-6a2d-5c8a-8360-13fb43458ec2"
+    },
+    {
+      "career_id": "88ac4df4-45e5-5f6f-9e9c-5f5b35db1aa9",
+      "record_id": "759095c8-2a89-5029-a3b3-d03aa538f3f8",
+      "competency_id": "6564f4e3-775b-50b5-b356-af2d6606a607"
+    },
+    {
+      "career_id": "88ac4df4-45e5-5f6f-9e9c-5f5b35db1aa9",
+      "record_id": "7b60fced-6cdd-5d02-b455-6a215e9241ed",
+      "competency_id": "4401d9eb-4066-5372-8091-60be2d624e19"
+    },
+    {
+      "career_id": "88ac4df4-45e5-5f6f-9e9c-5f5b35db1aa9",
+      "record_id": "9918ad96-5fae-5fbe-9ef0-b5de60d06d4b",
+      "competency_id": "3a9aecec-6a2d-5c8a-8360-13fb43458ec2"
+    },
+    {
+      "career_id": "88ac4df4-45e5-5f6f-9e9c-5f5b35db1aa9",
+      "record_id": "9968d023-fd17-5817-8b25-f994c318d98d",
+      "competency_id": "6564f4e3-775b-50b5-b356-af2d6606a607"
+    },
+    {
+      "career_id": "88ac4df4-45e5-5f6f-9e9c-5f5b35db1aa9",
+      "record_id": "cdca3290-b7e9-5bb6-b405-c68780d9ea22",
+      "competency_id": "e70b34bb-b749-5a6d-aafb-0be4a37fe6e8"
+    },
+    {
+      "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+      "record_id": "064818d0-ef0d-57f6-836b-979a18bd7344",
+      "competency_id": "c8d5f452-96d8-59eb-949a-a481c7a4f744"
+    },
+    {
+      "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+      "record_id": "09f40c1e-d974-5234-8f42-6409a29dfd04",
+      "competency_id": "78e7b20b-ab24-5daa-8a2d-e8f60957c96a"
+    },
+    {
+      "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+      "record_id": "0f1c4a2c-2167-5548-9f12-5804e6338c8e",
+      "competency_id": "c6ac5c68-d84e-5b30-a24b-410d0830a670"
+    },
+    {
+      "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+      "record_id": "3961b2c1-6fa2-555c-8ec0-9405d6413a65",
+      "competency_id": "41757b82-ed33-5bf7-acb6-6ec82f8e25b1"
+    },
+    {
+      "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+      "record_id": "49e59e2f-d331-5406-879b-7ea8788d9c33",
+      "competency_id": "41757b82-ed33-5bf7-acb6-6ec82f8e25b1"
+    },
+    {
+      "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+      "record_id": "58a2f1d6-289c-563d-acd3-5fdcc859c889",
+      "competency_id": "c6ac5c68-d84e-5b30-a24b-410d0830a670"
+    },
+    {
+      "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+      "record_id": "afcc9569-0d2c-5efa-9164-8b4daceed8f6",
+      "competency_id": "c6e2f328-7b30-5d0f-a226-61db07fe1314"
+    },
+    {
+      "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+      "record_id": "b8571bab-1b1e-5d9a-90be-8ae5ea7a7897",
+      "competency_id": "c6e2f328-7b30-5d0f-a226-61db07fe1314"
+    },
+    {
+      "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+      "record_id": "c1f51d03-49dd-569d-8172-5fc3591e0cf7",
+      "competency_id": "78e7b20b-ab24-5daa-8a2d-e8f60957c96a"
+    },
+    {
+      "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+      "record_id": "e5806b67-c299-5539-9bd2-8db826921ad9",
+      "competency_id": "c8d5f452-96d8-59eb-949a-a481c7a4f744"
+    },
+    {
+      "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+      "record_id": "17af6da2-3bff-5430-9f6a-c19c1c513be8",
+      "competency_id": "be144dd6-48c7-5fb1-a668-671e98eeedc4"
+    },
+    {
+      "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+      "record_id": "19cd3198-ac73-51f3-822e-c598bf679d17",
+      "competency_id": "da3df450-a4b2-5f57-a646-10ba7d6210a8"
+    },
+    {
+      "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+      "record_id": "327342f4-a894-5298-bbe9-922e55c10e30",
+      "competency_id": "14f477c8-0387-5011-8edf-b77d463889fd"
+    },
+    {
+      "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+      "record_id": "3d7ceda2-c594-5fcf-a668-89269feb50e5",
+      "competency_id": "f5b405cf-5cec-5cb3-a91d-c3351c865ad3"
+    },
+    {
+      "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+      "record_id": "54a8af83-bd22-5b3a-a420-44bc3e14112c",
+      "competency_id": "da3df450-a4b2-5f57-a646-10ba7d6210a8"
+    },
+    {
+      "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+      "record_id": "797e5c0a-e98f-598f-b991-f7f6614dc98c",
+      "competency_id": "f5b405cf-5cec-5cb3-a91d-c3351c865ad3"
+    },
+    {
+      "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+      "record_id": "7ef94634-1005-5434-a1ba-188eff718b2d",
+      "competency_id": "141dec77-41c2-5b8b-8699-8c42910c1b5a"
+    },
+    {
+      "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+      "record_id": "838cbb2e-db31-5b27-a98f-a38ebc04db74",
+      "competency_id": "141dec77-41c2-5b8b-8699-8c42910c1b5a"
+    },
+    {
+      "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+      "record_id": "a1c2e230-35ea-590a-a526-e5fc24a37efb",
+      "competency_id": "da3df450-a4b2-5f57-a646-10ba7d6210a8"
+    },
+    {
+      "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+      "record_id": "aa5c5956-1577-526b-969b-c2fd04a9e1ba",
+      "competency_id": "14f477c8-0387-5011-8edf-b77d463889fd"
+    },
+    {
+      "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+      "record_id": "b5fe9b4f-9331-5303-9f22-b18459fca4b1",
+      "competency_id": "14f477c8-0387-5011-8edf-b77d463889fd"
+    },
+    {
+      "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+      "record_id": "d0ed6d21-2eee-5352-bb14-14030dd5e6a8",
+      "competency_id": "be144dd6-48c7-5fb1-a668-671e98eeedc4"
+    },
+    {
+      "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+      "record_id": "e4566a2c-7bb1-5d99-a3e9-ff447e7d2be8",
+      "competency_id": "be144dd6-48c7-5fb1-a668-671e98eeedc4"
+    },
+    {
+      "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+      "record_id": "ef6870b9-6206-58d1-92ed-0a791a3f5761",
+      "competency_id": "141dec77-41c2-5b8b-8699-8c42910c1b5a"
+    },
+    {
+      "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+      "record_id": "ef6ce875-7170-51cd-a628-0cd6ec5cda0e",
+      "competency_id": "f5b405cf-5cec-5cb3-a91d-c3351c865ad3"
+    },
+    {
+      "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+      "record_id": "234fc32e-8b0b-5610-b215-e6ebc238bf45",
+      "competency_id": "699f34e6-ccba-5c8a-b5d7-3c59c5f6bb44"
+    },
+    {
+      "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+      "record_id": "282058d0-743b-5a85-a03c-1c3ff3b62fb7",
+      "competency_id": "06a51535-9eb8-5f0d-a653-bfd35fc7f86b"
+    },
+    {
+      "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+      "record_id": "4aa20c9e-4d7f-5cb7-8140-04938d47a401",
+      "competency_id": "e93e30d2-cbc6-55ca-b17d-de67370907c7"
+    },
+    {
+      "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+      "record_id": "58cd802f-8263-524e-9b83-91beca3738c1",
+      "competency_id": "e93e30d2-cbc6-55ca-b17d-de67370907c7"
+    },
+    {
+      "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+      "record_id": "64706ca4-7813-5919-a687-70d79098a9f6",
+      "competency_id": "06a51535-9eb8-5f0d-a653-bfd35fc7f86b"
+    },
+    {
+      "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+      "record_id": "76084a23-172f-517d-b763-73e6853a01c5",
+      "competency_id": "1d0a6fb9-4994-5947-9257-73e66053bf83"
+    },
+    {
+      "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+      "record_id": "7ce13b66-0a45-5b61-8e7b-11fdaded20c3",
+      "competency_id": "699f34e6-ccba-5c8a-b5d7-3c59c5f6bb44"
+    },
+    {
+      "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+      "record_id": "9f7e99aa-12cf-52ca-a691-16e21329fc5d",
+      "competency_id": "1d0a6fb9-4994-5947-9257-73e66053bf83"
+    },
+    {
+      "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+      "record_id": "de2489cf-5309-5f60-bf7b-10026ba595ea",
+      "competency_id": "0d138bbc-8ca6-5732-a23d-41a92e29bfa9"
+    },
+    {
+      "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+      "record_id": "e2d20598-4738-5ab2-9527-460f13697627",
+      "competency_id": "0d138bbc-8ca6-5732-a23d-41a92e29bfa9"
+    },
+    {
+      "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+      "record_id": "0078dbe1-6488-58cc-aa8a-1ee0c2250ef6",
+      "competency_id": "4be1be28-c274-514c-82d0-b3e1d8a50576"
+    },
+    {
+      "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+      "record_id": "01b7147f-3927-5a9c-99b4-32c788ae950c",
+      "competency_id": "4be1be28-c274-514c-82d0-b3e1d8a50576"
+    },
+    {
+      "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+      "record_id": "0c2e8fc1-b000-50f4-b5d2-b870c64bb24a",
+      "competency_id": "56f881c7-8b28-5f65-8765-62e47e9e5f4b"
+    },
+    {
+      "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+      "record_id": "245fb041-faff-5d4e-b400-4b2f2756722b",
+      "competency_id": "7dfe283a-6723-57f2-89e7-049d3ca9ab33"
+    },
+    {
+      "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+      "record_id": "2fbb874e-5be2-5ac7-bcbf-98626f391257",
+      "competency_id": "7dfe283a-6723-57f2-89e7-049d3ca9ab33"
+    },
+    {
+      "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+      "record_id": "76709720-cca2-5f24-a01f-a14b5321d632",
+      "competency_id": "ecb73f29-593f-58fc-946e-ef16b0c9c64a"
+    },
+    {
+      "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+      "record_id": "7b5105c9-41a2-56fe-89a7-42d9658d8a2d",
+      "competency_id": "318b9b94-abde-54a0-be25-9bd859828fe1"
+    },
+    {
+      "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+      "record_id": "84944995-623b-5f66-87e5-281bbfa9fe85",
+      "competency_id": "4be1be28-c274-514c-82d0-b3e1d8a50576"
+    },
+    {
+      "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+      "record_id": "875208ef-7803-56d3-8d80-856ac8eda404",
+      "competency_id": "4be1be28-c274-514c-82d0-b3e1d8a50576"
+    },
+    {
+      "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+      "record_id": "a9498dbf-4b04-5e3e-8e58-213164174d9e",
+      "competency_id": "56f881c7-8b28-5f65-8765-62e47e9e5f4b"
+    },
+    {
+      "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+      "record_id": "fe58eebf-adf8-5d34-ae09-f4d5a89787d6",
+      "competency_id": "318b9b94-abde-54a0-be25-9bd859828fe1"
+    }
+  ],
+  "partial_topic_proposals": [
+    {
+      "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+      "topic_id": "076f9cd5-1039-5c2f-b23b-e799ecdb8f7c",
+      "competency_ids": [
+        "9096ca48-82ee-54a7-b393-c5c8328982a7"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+      "topic_id": "1492ab36-ca9a-50df-9445-3c38143c6fef",
+      "competency_ids": [
+        "9096ca48-82ee-54a7-b393-c5c8328982a7"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+      "topic_id": "3091f735-319c-5b24-9e9a-21a3cc6f53a9",
+      "competency_ids": [
+        "9096ca48-82ee-54a7-b393-c5c8328982a7"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+      "topic_id": "3e780755-91a2-5e19-8b4b-c2bf205b83ea",
+      "competency_ids": [
+        "9096ca48-82ee-54a7-b393-c5c8328982a7"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+      "topic_id": "57740413-d6b5-5ee8-9c0c-d1865515c504",
+      "competency_ids": [
+        "9096ca48-82ee-54a7-b393-c5c8328982a7"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+      "topic_id": "57fc7765-9235-58b4-8ee2-31acaff040ad",
+      "competency_ids": [
+        "e5c0f410-ff31-5e84-95c9-0b45948b30b9"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+      "topic_id": "6c05c52c-6ee5-555c-a810-e533cae5326b",
+      "competency_ids": [
+        "9096ca48-82ee-54a7-b393-c5c8328982a7"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+      "topic_id": "6cb04655-9185-5770-8bca-594ae8910bf1",
+      "competency_ids": [
+        "e70b34bb-b749-5a6d-aafb-0be4a37fe6e8"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+      "topic_id": "890a8344-2714-558e-bb24-a82f4bc7bcf0",
+      "competency_ids": [
+        "9096ca48-82ee-54a7-b393-c5c8328982a7"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+      "topic_id": "89f16b1d-c978-5446-824c-1fcd0c81354c",
+      "competency_ids": [
+        "9096ca48-82ee-54a7-b393-c5c8328982a7"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+      "topic_id": "9340179a-eeef-5fe3-a717-26d048fb92b1",
+      "competency_ids": [
+        "9096ca48-82ee-54a7-b393-c5c8328982a7"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+      "topic_id": "941c8625-7da8-5da5-a3dd-c5fbb611714f",
+      "competency_ids": [
+        "e5c0f410-ff31-5e84-95c9-0b45948b30b9"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+      "topic_id": "96dce3ed-2e37-5575-883a-096255480248",
+      "competency_ids": [
+        "e5c0f410-ff31-5e84-95c9-0b45948b30b9"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+      "topic_id": "9bba9d61-d632-5622-be86-d0b0c3f08a52",
+      "competency_ids": [
+        "e5c0f410-ff31-5e84-95c9-0b45948b30b9"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+      "topic_id": "b753674d-4fc4-5259-9be5-88b72c7bdcda",
+      "competency_ids": [
+        "9096ca48-82ee-54a7-b393-c5c8328982a7"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+      "topic_id": "c26f9939-935f-51be-a71d-4098a945271a",
+      "competency_ids": [
+        "9096ca48-82ee-54a7-b393-c5c8328982a7"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+      "topic_id": "d2a5f52e-9feb-5f61-96f3-cb9e7284ebec",
+      "competency_ids": [
+        "9096ca48-82ee-54a7-b393-c5c8328982a7"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+      "topic_id": "db969b7b-5a8c-501e-8d65-962e1042fce7",
+      "competency_ids": [
+        "9096ca48-82ee-54a7-b393-c5c8328982a7"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+      "topic_id": "de32001d-d8fe-50de-9e6b-197aa97f79eb",
+      "competency_ids": [
+        "9096ca48-82ee-54a7-b393-c5c8328982a7"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+      "topic_id": "ea4b22c1-d5e6-5416-a721-63910c020f54",
+      "competency_ids": [
+        "9096ca48-82ee-54a7-b393-c5c8328982a7"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+      "topic_id": "eaba64e7-f032-5e13-a169-1ee0ca1bc107",
+      "competency_ids": [
+        "9096ca48-82ee-54a7-b393-c5c8328982a7"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+      "topic_id": "f0410a61-d521-59bf-86d4-89db4c89ca22",
+      "competency_ids": [
+        "9096ca48-82ee-54a7-b393-c5c8328982a7"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+      "topic_id": "fe88464a-d368-5dc0-b99a-dafd236f845f",
+      "competency_ids": [
+        "e5c0f410-ff31-5e84-95c9-0b45948b30b9"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "24068b09-7695-5744-88ca-9e678a40e06b",
+      "topic_id": "06364153-a2a3-5474-87a5-f6633ad3d9a1",
+      "competency_ids": [
+        "03d5b564-d732-5d68-adc6-17e5d75e7d09"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "24068b09-7695-5744-88ca-9e678a40e06b",
+      "topic_id": "07288a33-9f40-5765-8400-7133e1013f95",
+      "competency_ids": [
+        "a520b93c-8900-52cd-ab7b-29d997db3dd5"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "24068b09-7695-5744-88ca-9e678a40e06b",
+      "topic_id": "0e78979b-8e4d-5ecb-b1a9-8de030da72dc",
+      "competency_ids": [
+        "b4f85ed2-3954-5add-aab5-67c37c97d5db"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "24068b09-7695-5744-88ca-9e678a40e06b",
+      "topic_id": "2aa13c3f-8460-5c8e-990a-a7511da11297",
+      "competency_ids": [
+        "03d5b564-d732-5d68-adc6-17e5d75e7d09"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "24068b09-7695-5744-88ca-9e678a40e06b",
+      "topic_id": "2f8e2f04-cbf0-5573-9916-e57ee456fb4f",
+      "competency_ids": [
+        "a520b93c-8900-52cd-ab7b-29d997db3dd5"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "24068b09-7695-5744-88ca-9e678a40e06b",
+      "topic_id": "32b0d5ae-b393-5236-828b-d63f1f66923b",
+      "competency_ids": [
+        "03d5b564-d732-5d68-adc6-17e5d75e7d09"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "24068b09-7695-5744-88ca-9e678a40e06b",
+      "topic_id": "41dbe202-814c-5ffe-9078-d26bb8a2d912",
+      "competency_ids": [
+        "9b82b925-1629-50d9-8b30-4d309a2e8d2d"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "24068b09-7695-5744-88ca-9e678a40e06b",
+      "topic_id": "4d6dfdcd-a1ac-5651-bb28-dfdf8eba78d0",
+      "competency_ids": [
+        "03d5b564-d732-5d68-adc6-17e5d75e7d09"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "24068b09-7695-5744-88ca-9e678a40e06b",
+      "topic_id": "52464c2d-406d-5c39-abe7-d3ec053286c1",
+      "competency_ids": [
+        "a520b93c-8900-52cd-ab7b-29d997db3dd5"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "24068b09-7695-5744-88ca-9e678a40e06b",
+      "topic_id": "56682def-9a60-5ce9-9966-cbc1fb449c5c",
+      "competency_ids": [
+        "03d5b564-d732-5d68-adc6-17e5d75e7d09"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "24068b09-7695-5744-88ca-9e678a40e06b",
+      "topic_id": "77b78a33-a2c1-58e3-9838-d99d719d2454",
+      "competency_ids": [
+        "03d5b564-d732-5d68-adc6-17e5d75e7d09"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "24068b09-7695-5744-88ca-9e678a40e06b",
+      "topic_id": "811f2642-9955-5818-8436-a6012fa06734",
+      "competency_ids": [
+        "a520b93c-8900-52cd-ab7b-29d997db3dd5"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "24068b09-7695-5744-88ca-9e678a40e06b",
+      "topic_id": "86a138d7-79f8-5617-b296-78821e68c525",
+      "competency_ids": [
+        "9b82b925-1629-50d9-8b30-4d309a2e8d2d"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "24068b09-7695-5744-88ca-9e678a40e06b",
+      "topic_id": "94dc8c06-88de-5643-bfc3-73d0888f073b",
+      "competency_ids": [
+        "9b82b925-1629-50d9-8b30-4d309a2e8d2d"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "24068b09-7695-5744-88ca-9e678a40e06b",
+      "topic_id": "c6fe9f2b-7844-5456-8947-35aca323d25a",
+      "competency_ids": [
+        "03d5b564-d732-5d68-adc6-17e5d75e7d09"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "24068b09-7695-5744-88ca-9e678a40e06b",
+      "topic_id": "cffa0a86-d655-5c3a-9008-7b11c4fbe5d1",
+      "competency_ids": [
+        "a520b93c-8900-52cd-ab7b-29d997db3dd5"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "24068b09-7695-5744-88ca-9e678a40e06b",
+      "topic_id": "d0f66725-3c4c-5d0b-a5ef-54e316afa248",
+      "competency_ids": [
+        "b4f85ed2-3954-5add-aab5-67c37c97d5db"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "24068b09-7695-5744-88ca-9e678a40e06b",
+      "topic_id": "df6cb079-f06d-5019-8e6d-de3d3e3fc88c",
+      "competency_ids": [
+        "a520b93c-8900-52cd-ab7b-29d997db3dd5"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+      "topic_id": "028c540f-c6a8-5eff-8ce6-8abf474e2cbb",
+      "competency_ids": [
+        "70571e9b-0546-54dc-8d74-79eb31af98ae"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+      "topic_id": "05f8bba1-5500-5e34-affb-92ded5f692a3",
+      "competency_ids": [
+        "d30e04a1-e40e-5062-8811-5102a7d859eb"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+      "topic_id": "1760962f-262e-53c3-8881-24b5cbfa2e52",
+      "competency_ids": [
+        "70571e9b-0546-54dc-8d74-79eb31af98ae"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+      "topic_id": "17d6c16c-fbd8-590a-9bfb-4dccec675684",
+      "competency_ids": [
+        "ecb73f29-593f-58fc-946e-ef16b0c9c64a"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+      "topic_id": "1d615178-ae64-5b22-99d1-0f33e4dff2c9",
+      "competency_ids": [
+        "70571e9b-0546-54dc-8d74-79eb31af98ae"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+      "topic_id": "1ed1d59d-66af-5ed6-9fd7-ccc71875ed5d",
+      "competency_ids": [
+        "528a7b6b-49b4-5c86-b17e-c1bdc7dca30b"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+      "topic_id": "2d9f40bc-8c13-5503-a7cd-b2e13607df62",
+      "competency_ids": [
+        "70571e9b-0546-54dc-8d74-79eb31af98ae"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+      "topic_id": "6b71f75b-f055-52de-b238-0b2342bdfc76",
+      "competency_ids": [
+        "d30e04a1-e40e-5062-8811-5102a7d859eb"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+      "topic_id": "6d6dae62-9540-5968-846a-5c9c73457f3a",
+      "competency_ids": [
+        "70571e9b-0546-54dc-8d74-79eb31af98ae"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+      "topic_id": "7b49c2ed-247f-52fd-b6ec-b3757f4462a9",
+      "competency_ids": [
+        "d30e04a1-e40e-5062-8811-5102a7d859eb"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+      "topic_id": "9d36beeb-b355-5aa3-9cd6-77f4eba59a02",
+      "competency_ids": [
+        "528a7b6b-49b4-5c86-b17e-c1bdc7dca30b"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+      "topic_id": "a4cf0521-258f-5094-92ee-facc77044ac0",
+      "competency_ids": [
+        "d30e04a1-e40e-5062-8811-5102a7d859eb"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+      "topic_id": "b82bbb88-99e0-57e9-a209-bb90ba6eed39",
+      "competency_ids": [
+        "70571e9b-0546-54dc-8d74-79eb31af98ae"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+      "topic_id": "bc192f3e-8066-50ba-ae73-9cf8b49fd533",
+      "competency_ids": [
+        "70571e9b-0546-54dc-8d74-79eb31af98ae"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+      "topic_id": "c4d3e222-9ff5-53b6-8bb8-876b27b3be7b",
+      "competency_ids": [
+        "d30e04a1-e40e-5062-8811-5102a7d859eb"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+      "topic_id": "c7f02386-3311-5fba-9c0c-4d5a082d4ade",
+      "competency_ids": [
+        "528a7b6b-49b4-5c86-b17e-c1bdc7dca30b"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+      "topic_id": "cbe91723-33e4-5845-8745-1bc6af7634ca",
+      "competency_ids": [
+        "70571e9b-0546-54dc-8d74-79eb31af98ae"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+      "topic_id": "cd85e7b0-25d7-5dce-b614-7d4428e98b7a",
+      "competency_ids": [
+        "70571e9b-0546-54dc-8d74-79eb31af98ae"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+      "topic_id": "d2b04eff-d7b4-5c8d-9586-4a3e405524a0",
+      "competency_ids": [
+        "528a7b6b-49b4-5c86-b17e-c1bdc7dca30b"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+      "topic_id": "d497989c-304f-56e8-8e88-03ec29eeaef7",
+      "competency_ids": [
+        "ecb73f29-593f-58fc-946e-ef16b0c9c64a"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+      "topic_id": "d6280525-c2e2-5657-ae6d-377f6873a709",
+      "competency_ids": [
+        "70571e9b-0546-54dc-8d74-79eb31af98ae"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+      "topic_id": "df61940b-9bbf-50ee-b825-6e7472aaf58e",
+      "competency_ids": [
+        "70571e9b-0546-54dc-8d74-79eb31af98ae"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+      "topic_id": "f55582f6-9b09-5891-a945-03d55659ab7c",
+      "competency_ids": [
+        "70571e9b-0546-54dc-8d74-79eb31af98ae"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+      "topic_id": "01518c34-67c0-5d55-bb09-0a93aae68fe5",
+      "competency_ids": [
+        "837e430e-15d5-5a77-a557-7e3e02acd4b8"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+      "topic_id": "0b86870c-b022-5e72-8335-21f0869f503a",
+      "competency_ids": [
+        "d95c23d7-ce3a-5bff-bbc5-78bc257bea6c"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+      "topic_id": "12d42e68-ffc6-5523-a263-138def647297",
+      "competency_ids": [
+        "837e430e-15d5-5a77-a557-7e3e02acd4b8"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+      "topic_id": "217ef86b-8710-5ed5-a3ae-6ee006d1ff22",
+      "competency_ids": [
+        "d95c23d7-ce3a-5bff-bbc5-78bc257bea6c"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+      "topic_id": "28051992-cc1a-5254-ba79-a839b534d6be",
+      "competency_ids": [
+        "d95c23d7-ce3a-5bff-bbc5-78bc257bea6c"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+      "topic_id": "371905b5-5b6f-5d28-b1d9-d6275a611ffe",
+      "competency_ids": [
+        "837e430e-15d5-5a77-a557-7e3e02acd4b8"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+      "topic_id": "3d504358-70bb-53ee-917f-fed88af6bfc2",
+      "competency_ids": [
+        "d95c23d7-ce3a-5bff-bbc5-78bc257bea6c"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+      "topic_id": "40351093-8683-593a-b8eb-ce60470a68f2",
+      "competency_ids": [
+        "837e430e-15d5-5a77-a557-7e3e02acd4b8"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+      "topic_id": "40f79263-22a7-584b-9bb1-26ee395b4fff",
+      "competency_ids": [
+        "837e430e-15d5-5a77-a557-7e3e02acd4b8"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+      "topic_id": "4fdc7f3d-66e6-53b7-981f-470c61d10495",
+      "competency_ids": [
+        "837e430e-15d5-5a77-a557-7e3e02acd4b8"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+      "topic_id": "7aeda5e4-acee-5491-8a6b-11144c0b23e6",
+      "competency_ids": [
+        "837e430e-15d5-5a77-a557-7e3e02acd4b8"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+      "topic_id": "7e02dea4-85dd-5b0c-bac9-7866eca91675",
+      "competency_ids": [
+        "837e430e-15d5-5a77-a557-7e3e02acd4b8"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+      "topic_id": "870219a7-213e-5c81-963b-1a99c58bffe6",
+      "competency_ids": [
+        "837e430e-15d5-5a77-a557-7e3e02acd4b8"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+      "topic_id": "89d19547-4de9-5afb-8244-79db23eb0fd4",
+      "competency_ids": [
+        "b2379164-6b4e-54bb-b801-94009ecb4592"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+      "topic_id": "9bc69b14-c8a9-5a3d-a109-01716b122413",
+      "competency_ids": [
+        "d95c23d7-ce3a-5bff-bbc5-78bc257bea6c"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+      "topic_id": "a81e256f-5dc9-5178-949d-2bdf3e3769ed",
+      "competency_ids": [
+        "837e430e-15d5-5a77-a557-7e3e02acd4b8"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+      "topic_id": "b86f54d2-e6da-54a6-a693-ff30890d89f2",
+      "competency_ids": [
+        "837e430e-15d5-5a77-a557-7e3e02acd4b8"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+      "topic_id": "ba85e636-6fca-5b99-acc9-10964e040a21",
+      "competency_ids": [
+        "837e430e-15d5-5a77-a557-7e3e02acd4b8"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+      "topic_id": "bfc93798-b4a1-577e-b28f-21fab5d3cd56",
+      "competency_ids": [
+        "837e430e-15d5-5a77-a557-7e3e02acd4b8"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+      "topic_id": "c31dede5-204a-5726-9829-51f5b78c9158",
+      "competency_ids": [
+        "837e430e-15d5-5a77-a557-7e3e02acd4b8"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+      "topic_id": "ccfd30e6-71eb-5608-ad88-53d83ea2e7e5",
+      "competency_ids": [
+        "837e430e-15d5-5a77-a557-7e3e02acd4b8"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+      "topic_id": "eacfe221-9fe9-5002-a726-80234dd4c124",
+      "competency_ids": [
+        "b2379164-6b4e-54bb-b801-94009ecb4592"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+      "topic_id": "eeb14647-4595-5c51-8edb-41156e9c4ee2",
+      "competency_ids": [
+        "b2379164-6b4e-54bb-b801-94009ecb4592"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+      "topic_id": "fe3a9393-06ea-5860-bd6c-ca43d1ce5030",
+      "competency_ids": [
+        "b2379164-6b4e-54bb-b801-94009ecb4592"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+      "topic_id": "05427e41-d09f-5057-a990-a565d2ca1253",
+      "competency_ids": [
+        "3bfe9cbe-4fdb-5c54-b1be-c2dc17f15f19"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+      "topic_id": "1a3eab80-16b0-5995-9d70-e525bcec27e9",
+      "competency_ids": [
+        "1878d764-8f92-5a5b-bc2c-94a91cd61ec7"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+      "topic_id": "29d36b2b-f2d6-5502-9c86-c56aa612f14d",
+      "competency_ids": [
+        "3bfe9cbe-4fdb-5c54-b1be-c2dc17f15f19"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+      "topic_id": "3c654395-62eb-5d6a-8377-48ca3757fa78",
+      "competency_ids": [
+        "3bfe9cbe-4fdb-5c54-b1be-c2dc17f15f19"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+      "topic_id": "4cb7dabc-15e7-58fd-882a-9a4f52c9b064",
+      "competency_ids": [
+        "b4f85ed2-3954-5add-aab5-67c37c97d5db"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+      "topic_id": "644242ef-6746-56de-ab50-532e23463749",
+      "competency_ids": [
+        "73d6bc81-3182-5494-a870-5883eceb995a"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+      "topic_id": "65cc0835-e8e0-5243-9309-3fee3b532760",
+      "competency_ids": [
+        "3bfe9cbe-4fdb-5c54-b1be-c2dc17f15f19"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+      "topic_id": "718d6485-68fe-590c-86e7-003a2593f354",
+      "competency_ids": [
+        "3bfe9cbe-4fdb-5c54-b1be-c2dc17f15f19"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+      "topic_id": "7470ad58-4858-52cc-8497-324eea1a79a5",
+      "competency_ids": [
+        "1878d764-8f92-5a5b-bc2c-94a91cd61ec7"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+      "topic_id": "786f1c41-5313-5dd9-bd1d-8c6f6269fbd2",
+      "competency_ids": [
+        "73d6bc81-3182-5494-a870-5883eceb995a"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+      "topic_id": "7d1a895e-9558-5a02-9343-9d2dc5e16649",
+      "competency_ids": [
+        "73d6bc81-3182-5494-a870-5883eceb995a"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+      "topic_id": "7f8ef0d4-9568-5213-a0c1-cb0c29f08b84",
+      "competency_ids": [
+        "3bfe9cbe-4fdb-5c54-b1be-c2dc17f15f19"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+      "topic_id": "88a73913-e818-592b-9a94-bd821a2c85b3",
+      "competency_ids": [
+        "73d6bc81-3182-5494-a870-5883eceb995a"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+      "topic_id": "8f0c422e-9d0a-5cd4-aca5-a3539849d094",
+      "competency_ids": [
+        "1878d764-8f92-5a5b-bc2c-94a91cd61ec7"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+      "topic_id": "909ec395-d9c3-5db0-80f3-1b1c3bd0e322",
+      "competency_ids": [
+        "3bfe9cbe-4fdb-5c54-b1be-c2dc17f15f19"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+      "topic_id": "a37d3409-2b01-59d0-ae01-417a8ba4b2f0",
+      "competency_ids": [
+        "1878d764-8f92-5a5b-bc2c-94a91cd61ec7"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+      "topic_id": "a563b540-0d10-581a-902d-e9c84dda2152",
+      "competency_ids": [
+        "3bfe9cbe-4fdb-5c54-b1be-c2dc17f15f19"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+      "topic_id": "c2c93851-ccb0-5ab4-8ea8-d81a8b4c36bd",
+      "competency_ids": [
+        "3bfe9cbe-4fdb-5c54-b1be-c2dc17f15f19"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+      "topic_id": "c7f40559-ab0f-553c-89ca-f81e60eaa503",
+      "competency_ids": [
+        "3bfe9cbe-4fdb-5c54-b1be-c2dc17f15f19"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+      "topic_id": "cf6838f8-dd48-5339-be0b-163111f8f739",
+      "competency_ids": [
+        "73d6bc81-3182-5494-a870-5883eceb995a"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+      "topic_id": "e21a6572-02f8-5ae6-9b0b-3d09595615f0",
+      "competency_ids": [
+        "73d6bc81-3182-5494-a870-5883eceb995a"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+      "topic_id": "f11c073b-1b72-5779-a7c2-1120bf09e5a0",
+      "competency_ids": [
+        "73d6bc81-3182-5494-a870-5883eceb995a"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+      "topic_id": "fa555ebe-0330-5aa1-aefb-582abf6cb186",
+      "competency_ids": [
+        "1878d764-8f92-5a5b-bc2c-94a91cd61ec7"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+      "topic_id": "fbe2c857-5f80-537c-b3ea-eec458145c1b",
+      "competency_ids": [
+        "3bfe9cbe-4fdb-5c54-b1be-c2dc17f15f19"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+      "topic_id": "0902aa10-8cb3-59b7-8be8-fcf540e80fec",
+      "competency_ids": [
+        "012d408d-f5f8-5b75-a486-72f6dfe4b2ae"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+      "topic_id": "09128591-0165-58f9-9248-754abdc66dc7",
+      "competency_ids": [
+        "012d408d-f5f8-5b75-a486-72f6dfe4b2ae"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+      "topic_id": "215fb854-fa19-5c57-9753-ce3809565c53",
+      "competency_ids": [
+        "1878d764-8f92-5a5b-bc2c-94a91cd61ec7"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+      "topic_id": "3ef38477-a4ee-5792-b07d-827b85f6dc05",
+      "competency_ids": [
+        "012d408d-f5f8-5b75-a486-72f6dfe4b2ae"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+      "topic_id": "4f9b3333-e409-55a2-b796-1421cdbbbc0b",
+      "competency_ids": [
+        "012d408d-f5f8-5b75-a486-72f6dfe4b2ae"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+      "topic_id": "506f06f1-b4e6-5fa5-9c25-8c4d8f5fd015",
+      "competency_ids": [
+        "012d408d-f5f8-5b75-a486-72f6dfe4b2ae"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+      "topic_id": "51f2d1af-dd91-5b5d-90fa-3981465c1344",
+      "competency_ids": [
+        "41757b82-ed33-5bf7-acb6-6ec82f8e25b1"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+      "topic_id": "58638204-8ad4-55f4-a954-92fbf25c9625",
+      "competency_ids": [
+        "41757b82-ed33-5bf7-acb6-6ec82f8e25b1"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+      "topic_id": "6e09df00-1275-5956-8085-41936a612b3b",
+      "competency_ids": [
+        "012d408d-f5f8-5b75-a486-72f6dfe4b2ae"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+      "topic_id": "79d2e6be-06da-5e4c-b77a-6efdb3d6a912",
+      "competency_ids": [
+        "41757b82-ed33-5bf7-acb6-6ec82f8e25b1"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+      "topic_id": "8deb35c7-2ae1-59be-a0cb-4b23aeee1357",
+      "competency_ids": [
+        "012d408d-f5f8-5b75-a486-72f6dfe4b2ae"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+      "topic_id": "8fb1ad09-c77d-5d55-9581-5f01fe8a46bc",
+      "competency_ids": [
+        "1878d764-8f92-5a5b-bc2c-94a91cd61ec7"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+      "topic_id": "a93e7644-1a69-5e1f-93d4-f9d84f29edda",
+      "competency_ids": [
+        "012d408d-f5f8-5b75-a486-72f6dfe4b2ae"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+      "topic_id": "ae8bff2d-12cc-561c-b5b3-ce60c80a2aee",
+      "competency_ids": [
+        "41757b82-ed33-5bf7-acb6-6ec82f8e25b1"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+      "topic_id": "b27cdda8-8b72-5b8d-aa47-131f668be022",
+      "competency_ids": [
+        "05592c78-1d12-57cc-834e-135b0dd18f01"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+      "topic_id": "b9943ef1-4ae2-5fb4-885c-6b14a4fc23de",
+      "competency_ids": [
+        "41757b82-ed33-5bf7-acb6-6ec82f8e25b1"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+      "topic_id": "ba48073e-0de0-5a33-9edc-d49d10b269b5",
+      "competency_ids": [
+        "05592c78-1d12-57cc-834e-135b0dd18f01"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+      "topic_id": "d1ebb4ee-d195-5cf7-92c8-d2395d129ac3",
+      "competency_ids": [
+        "41757b82-ed33-5bf7-acb6-6ec82f8e25b1"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+      "topic_id": "dde4ba22-b158-5b29-b216-07ee347d95fc",
+      "competency_ids": [
+        "1878d764-8f92-5a5b-bc2c-94a91cd61ec7"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+      "topic_id": "def6cc97-beda-5486-a23b-cb87b06026ad",
+      "competency_ids": [
+        "1878d764-8f92-5a5b-bc2c-94a91cd61ec7"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+      "topic_id": "e7207aa9-a1b1-53ed-9688-f7119e6ba9b4",
+      "competency_ids": [
+        "41757b82-ed33-5bf7-acb6-6ec82f8e25b1"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+      "topic_id": "e7a8cda4-c314-5743-b0bc-d62d1d011fad",
+      "competency_ids": [
+        "012d408d-f5f8-5b75-a486-72f6dfe4b2ae"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+      "topic_id": "fa2d0248-8a43-5251-912f-6c6581750f88",
+      "competency_ids": [
+        "1878d764-8f92-5a5b-bc2c-94a91cd61ec7"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+      "topic_id": "fd189631-38d1-5d7c-a7d5-ac0f7e166f54",
+      "competency_ids": [
+        "41757b82-ed33-5bf7-acb6-6ec82f8e25b1"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+      "topic_id": "1a6b4346-566f-5118-95fc-e49a739b9761",
+      "competency_ids": [
+        "1b3ee503-2a6b-5fbd-847a-444edf2f8b5a"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+      "topic_id": "2d85bd61-e406-5111-9d45-2a5ab0740689",
+      "competency_ids": [
+        "8c963ae0-82c8-586a-b049-b38d0f0b3d39"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+      "topic_id": "2e36acba-f947-57c2-b184-a00f589e61e5",
+      "competency_ids": [
+        "1b3ee503-2a6b-5fbd-847a-444edf2f8b5a"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+      "topic_id": "3a496fc3-1a5c-5efd-a45d-2f92102e9e7b",
+      "competency_ids": [
+        "837e430e-15d5-5a77-a557-7e3e02acd4b8"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+      "topic_id": "4a894e6d-6ac1-5e84-875d-8a3bc722625f",
+      "competency_ids": [
+        "837e430e-15d5-5a77-a557-7e3e02acd4b8"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+      "topic_id": "4c1c0686-a23a-57eb-bd25-7e25e11b1147",
+      "competency_ids": [
+        "8c963ae0-82c8-586a-b049-b38d0f0b3d39"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+      "topic_id": "4ede9169-9c7b-53cc-936f-d5ab7f3a3f29",
+      "competency_ids": [
+        "6c0524b1-fa53-5933-82ec-1c6e3cb9b201"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+      "topic_id": "5885753c-e988-56a1-aaac-f05c653e79d1",
+      "competency_ids": [
+        "837e430e-15d5-5a77-a557-7e3e02acd4b8"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+      "topic_id": "5d4dd07b-a5c3-5802-9614-92a9bccd50a3",
+      "competency_ids": [
+        "1b3ee503-2a6b-5fbd-847a-444edf2f8b5a"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+      "topic_id": "658a6925-71a0-5e62-b8a8-4b83a4502dbf",
+      "competency_ids": [
+        "1b3ee503-2a6b-5fbd-847a-444edf2f8b5a"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+      "topic_id": "6d6e7d17-6d3e-59c2-8596-717948419e72",
+      "competency_ids": [
+        "8c963ae0-82c8-586a-b049-b38d0f0b3d39"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+      "topic_id": "8b85278d-b151-509c-a923-3b50a6c37dbe",
+      "competency_ids": [
+        "837e430e-15d5-5a77-a557-7e3e02acd4b8"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+      "topic_id": "92f31969-f83c-5727-9ce9-8767f2d69823",
+      "competency_ids": [
+        "8c963ae0-82c8-586a-b049-b38d0f0b3d39"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+      "topic_id": "97401448-3fce-5531-b6a6-befbcfc7c892",
+      "competency_ids": [
+        "1b3ee503-2a6b-5fbd-847a-444edf2f8b5a"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+      "topic_id": "a09bc4cd-0545-579e-a377-ff31cdbcddbe",
+      "competency_ids": [
+        "ecb73f29-593f-58fc-946e-ef16b0c9c64a"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+      "topic_id": "a85e8dc7-8a3b-5d6f-ace4-db90c4967573",
+      "competency_ids": [
+        "837e430e-15d5-5a77-a557-7e3e02acd4b8"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+      "topic_id": "ba8d645f-3970-56c8-82e3-97250803f31c",
+      "competency_ids": [
+        "ecb73f29-593f-58fc-946e-ef16b0c9c64a"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+      "topic_id": "d7fe6881-8f3a-5c52-8ca9-e86e6f342dcc",
+      "competency_ids": [
+        "8c963ae0-82c8-586a-b049-b38d0f0b3d39"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+      "topic_id": "dabbb617-99bf-580f-aa08-f6573c919cf9",
+      "competency_ids": [
+        "1b3ee503-2a6b-5fbd-847a-444edf2f8b5a"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+      "topic_id": "e87fc995-958a-5dba-8233-4d2bd15a52de",
+      "competency_ids": [
+        "ecb73f29-593f-58fc-946e-ef16b0c9c64a"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "88ac4df4-45e5-5f6f-9e9c-5f5b35db1aa9",
+      "topic_id": "016f570d-4753-5cc6-a08c-66dbb538a899",
+      "competency_ids": [
+        "6564f4e3-775b-50b5-b356-af2d6606a607"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "88ac4df4-45e5-5f6f-9e9c-5f5b35db1aa9",
+      "topic_id": "17d5b746-3149-5c11-a1bd-646fe7b61569",
+      "competency_ids": [
+        "6564f4e3-775b-50b5-b356-af2d6606a607"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "88ac4df4-45e5-5f6f-9e9c-5f5b35db1aa9",
+      "topic_id": "2c5e3b08-b864-5a07-afbd-3bf284a4554b",
+      "competency_ids": [
+        "6564f4e3-775b-50b5-b356-af2d6606a607"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "88ac4df4-45e5-5f6f-9e9c-5f5b35db1aa9",
+      "topic_id": "46a0487d-8497-5632-9bfc-f255e5afd4a0",
+      "competency_ids": [
+        "6564f4e3-775b-50b5-b356-af2d6606a607"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "88ac4df4-45e5-5f6f-9e9c-5f5b35db1aa9",
+      "topic_id": "4f7a1825-0284-5cd3-a081-d315cc613c30",
+      "competency_ids": [
+        "6564f4e3-775b-50b5-b356-af2d6606a607"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "88ac4df4-45e5-5f6f-9e9c-5f5b35db1aa9",
+      "topic_id": "8768c6d5-d84e-55e3-99aa-46ba27abde0c",
+      "competency_ids": [
+        "6564f4e3-775b-50b5-b356-af2d6606a607"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "88ac4df4-45e5-5f6f-9e9c-5f5b35db1aa9",
+      "topic_id": "877abe10-dd52-5dd5-a615-b24d35d1b367",
+      "competency_ids": [
+        "6564f4e3-775b-50b5-b356-af2d6606a607"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "88ac4df4-45e5-5f6f-9e9c-5f5b35db1aa9",
+      "topic_id": "90edf595-6659-5b9d-9927-c778550284a6",
+      "competency_ids": [
+        "e70b34bb-b749-5a6d-aafb-0be4a37fe6e8"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "88ac4df4-45e5-5f6f-9e9c-5f5b35db1aa9",
+      "topic_id": "988d96c8-dbb3-521c-9909-000ee394ff76",
+      "competency_ids": [
+        "3a9aecec-6a2d-5c8a-8360-13fb43458ec2"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "88ac4df4-45e5-5f6f-9e9c-5f5b35db1aa9",
+      "topic_id": "99497c0f-87ed-5ce9-a608-d00d01493088",
+      "competency_ids": [
+        "6564f4e3-775b-50b5-b356-af2d6606a607"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "88ac4df4-45e5-5f6f-9e9c-5f5b35db1aa9",
+      "topic_id": "9efe86e0-4856-50a5-a9d6-6c68b37340d6",
+      "competency_ids": [
+        "6564f4e3-775b-50b5-b356-af2d6606a607"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "88ac4df4-45e5-5f6f-9e9c-5f5b35db1aa9",
+      "topic_id": "ca96ca18-7579-5f01-89c1-a70167eea6c4",
+      "competency_ids": [
+        "6564f4e3-775b-50b5-b356-af2d6606a607"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "88ac4df4-45e5-5f6f-9e9c-5f5b35db1aa9",
+      "topic_id": "de37a96d-1624-56c5-bd6f-72d0cbb2d4b8",
+      "competency_ids": [
+        "6564f4e3-775b-50b5-b356-af2d6606a607"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "88ac4df4-45e5-5f6f-9e9c-5f5b35db1aa9",
+      "topic_id": "e7798c13-1046-53fa-a2da-b6119372aecf",
+      "competency_ids": [
+        "6564f4e3-775b-50b5-b356-af2d6606a607"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "88ac4df4-45e5-5f6f-9e9c-5f5b35db1aa9",
+      "topic_id": "fff89311-79e6-5586-ab22-ed9876e10b83",
+      "competency_ids": [
+        "6564f4e3-775b-50b5-b356-af2d6606a607"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+      "topic_id": "02315a21-6daa-56dd-b023-2b267b51ca4f",
+      "competency_ids": [
+        "c6e2f328-7b30-5d0f-a226-61db07fe1314"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+      "topic_id": "09b7c4d6-4a87-5f91-a934-714483a9965f",
+      "competency_ids": [
+        "c6e2f328-7b30-5d0f-a226-61db07fe1314"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+      "topic_id": "0a86a669-c3f5-50ad-a15c-07f27ac92ce4",
+      "competency_ids": [
+        "41757b82-ed33-5bf7-acb6-6ec82f8e25b1"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+      "topic_id": "1e25b72c-4580-585c-aa42-217d28214dc9",
+      "competency_ids": [
+        "41757b82-ed33-5bf7-acb6-6ec82f8e25b1"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+      "topic_id": "315fbe21-b8cc-5a3a-876a-8c2ef885cecb",
+      "competency_ids": [
+        "c6e2f328-7b30-5d0f-a226-61db07fe1314"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+      "topic_id": "478b2b27-bb40-551e-8248-c9cbffbfdb9e",
+      "competency_ids": [
+        "c6e2f328-7b30-5d0f-a226-61db07fe1314"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+      "topic_id": "75dfc213-4dd3-5031-b0c8-8d5015755dac",
+      "competency_ids": [
+        "c6e2f328-7b30-5d0f-a226-61db07fe1314"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+      "topic_id": "79853353-0e15-58c2-9032-963f39c65315",
+      "competency_ids": [
+        "41757b82-ed33-5bf7-acb6-6ec82f8e25b1"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+      "topic_id": "7d867342-68ba-55e6-ab8f-78b3f975049b",
+      "competency_ids": [
+        "41757b82-ed33-5bf7-acb6-6ec82f8e25b1"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+      "topic_id": "7fb50824-f820-5cfe-8e04-f5710f4050ae",
+      "competency_ids": [
+        "c6e2f328-7b30-5d0f-a226-61db07fe1314"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+      "topic_id": "85a91126-ed8d-59ee-bbd1-dc9af386ebcf",
+      "competency_ids": [
+        "c6e2f328-7b30-5d0f-a226-61db07fe1314"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+      "topic_id": "86162cf8-7cb3-5cea-a058-3fb5e58039a1",
+      "competency_ids": [
+        "c6e2f328-7b30-5d0f-a226-61db07fe1314"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+      "topic_id": "9256d1d3-516a-5542-813e-87f51c517e9e",
+      "competency_ids": [
+        "c6e2f328-7b30-5d0f-a226-61db07fe1314"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+      "topic_id": "9f8a2669-029c-5115-8cdb-49f201bcb0c7",
+      "competency_ids": [
+        "c6e2f328-7b30-5d0f-a226-61db07fe1314"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+      "topic_id": "b44b805a-5c46-5f9b-97d1-ee8720cbd4e2",
+      "competency_ids": [
+        "c6e2f328-7b30-5d0f-a226-61db07fe1314"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+      "topic_id": "b5c95044-ec24-59bd-8abb-2a0c75deef5b",
+      "competency_ids": [
+        "c6e2f328-7b30-5d0f-a226-61db07fe1314"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+      "topic_id": "c9b6ce70-e06c-5ec0-a91b-9eadd0edb01f",
+      "competency_ids": [
+        "c6e2f328-7b30-5d0f-a226-61db07fe1314"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+      "topic_id": "ca83566c-9d6a-5a26-93fa-97f42ec0ca5c",
+      "competency_ids": [
+        "c6e2f328-7b30-5d0f-a226-61db07fe1314"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+      "topic_id": "ccf917d1-cb98-54c0-ba77-706d3f8a3651",
+      "competency_ids": [
+        "c6e2f328-7b30-5d0f-a226-61db07fe1314"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+      "topic_id": "d1aeaf89-860d-589f-b9d4-0a7bb21e26ec",
+      "competency_ids": [
+        "c6e2f328-7b30-5d0f-a226-61db07fe1314"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+      "topic_id": "d9fb4365-00c2-5f0b-a6db-527333dcdd6b",
+      "competency_ids": [
+        "c6e2f328-7b30-5d0f-a226-61db07fe1314"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+      "topic_id": "e478e015-cfb3-5ba2-8597-abb2bc37b8c0",
+      "competency_ids": [
+        "c6e2f328-7b30-5d0f-a226-61db07fe1314"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+      "topic_id": "ee8dfc97-0461-5172-8fa7-4b3ba09239f7",
+      "competency_ids": [
+        "41757b82-ed33-5bf7-acb6-6ec82f8e25b1"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+      "topic_id": "f2165781-24ff-5df3-a804-499ebf3cf696",
+      "competency_ids": [
+        "c6e2f328-7b30-5d0f-a226-61db07fe1314"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+      "topic_id": "004282e9-7c9c-56df-83fa-fb941889f924",
+      "competency_ids": [
+        "141dec77-41c2-5b8b-8699-8c42910c1b5a"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+      "topic_id": "1335ccde-5d33-563f-a48c-64a619910d49",
+      "competency_ids": [
+        "14f477c8-0387-5011-8edf-b77d463889fd"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+      "topic_id": "13f3fe6d-8b9b-579c-95ac-2e95991490d9",
+      "competency_ids": [
+        "da3df450-a4b2-5f57-a646-10ba7d6210a8"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+      "topic_id": "25707c6d-5656-5355-8439-899276e61a7f",
+      "competency_ids": [
+        "f5b405cf-5cec-5cb3-a91d-c3351c865ad3"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+      "topic_id": "2eafdb64-cd94-53c7-9ff8-261161758de3",
+      "competency_ids": [
+        "141dec77-41c2-5b8b-8699-8c42910c1b5a"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+      "topic_id": "4444c6d9-3558-5844-926e-dd8721c2c991",
+      "competency_ids": [
+        "141dec77-41c2-5b8b-8699-8c42910c1b5a"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+      "topic_id": "497d4bb1-5b1e-5136-ab33-f1715109e877",
+      "competency_ids": [
+        "141dec77-41c2-5b8b-8699-8c42910c1b5a"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+      "topic_id": "50e82820-5033-5a9e-9baf-9aa401eec678",
+      "competency_ids": [
+        "141dec77-41c2-5b8b-8699-8c42910c1b5a"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+      "topic_id": "657a6275-0cbd-5edb-aa7d-f0bd35988aa4",
+      "competency_ids": [
+        "141dec77-41c2-5b8b-8699-8c42910c1b5a"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+      "topic_id": "6db5bd80-dc36-5f10-b6ad-9e5b08c0f8a8",
+      "competency_ids": [
+        "141dec77-41c2-5b8b-8699-8c42910c1b5a"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+      "topic_id": "74d43553-ce06-51e8-a2bb-02c666350150",
+      "competency_ids": [
+        "f5b405cf-5cec-5cb3-a91d-c3351c865ad3"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+      "topic_id": "835f100a-17ca-5cde-a842-20a7fbce820f",
+      "competency_ids": [
+        "141dec77-41c2-5b8b-8699-8c42910c1b5a"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+      "topic_id": "9ac65892-4764-5d35-97f6-e038949b3201",
+      "competency_ids": [
+        "f5b405cf-5cec-5cb3-a91d-c3351c865ad3"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+      "topic_id": "aa994166-9e60-5c56-a8de-6a2045130a5b",
+      "competency_ids": [
+        "da3df450-a4b2-5f57-a646-10ba7d6210a8"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+      "topic_id": "b5d814a2-19ca-5c83-b866-8ddc3f973945",
+      "competency_ids": [
+        "141dec77-41c2-5b8b-8699-8c42910c1b5a"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+      "topic_id": "b61f5e29-feff-5e5c-9807-81ee7aa57490",
+      "competency_ids": [
+        "141dec77-41c2-5b8b-8699-8c42910c1b5a"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+      "topic_id": "d34f0284-27c8-5b86-9973-7a0502c4e0a3",
+      "competency_ids": [
+        "f5b405cf-5cec-5cb3-a91d-c3351c865ad3"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+      "topic_id": "e04544fb-0892-5a29-bc0f-80d48601dd00",
+      "competency_ids": [
+        "141dec77-41c2-5b8b-8699-8c42910c1b5a"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+      "topic_id": "e5a5b6e2-1dc1-5852-94a5-ec4678133237",
+      "competency_ids": [
+        "141dec77-41c2-5b8b-8699-8c42910c1b5a"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+      "topic_id": "e5ca6f9e-9880-5882-a47f-17f52748f101",
+      "competency_ids": [
+        "141dec77-41c2-5b8b-8699-8c42910c1b5a"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+      "topic_id": "e830c43c-9ab4-52b7-af11-2d1df8e1d4f5",
+      "competency_ids": [
+        "141dec77-41c2-5b8b-8699-8c42910c1b5a"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+      "topic_id": "06507cfe-7be6-50fd-b131-d224dc8b590a",
+      "competency_ids": [
+        "0d138bbc-8ca6-5732-a23d-41a92e29bfa9"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+      "topic_id": "0b2b347a-08a2-5006-9204-53ff6ed64a24",
+      "competency_ids": [
+        "699f34e6-ccba-5c8a-b5d7-3c59c5f6bb44"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+      "topic_id": "13cc60c2-0b0c-56a5-a223-2c8333a09d75",
+      "competency_ids": [
+        "1d0a6fb9-4994-5947-9257-73e66053bf83"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+      "topic_id": "277ab153-a6ca-5d1d-84a0-44809e008405",
+      "competency_ids": [
+        "699f34e6-ccba-5c8a-b5d7-3c59c5f6bb44"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+      "topic_id": "2c97335d-d7f6-5e05-ae12-2fae3d2208f5",
+      "competency_ids": [
+        "0d138bbc-8ca6-5732-a23d-41a92e29bfa9"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+      "topic_id": "3ca00fb6-1556-5751-baa7-6a3fb3094e1e",
+      "competency_ids": [
+        "1d0a6fb9-4994-5947-9257-73e66053bf83"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+      "topic_id": "41f25d23-d224-5463-91f8-897b7803f1ee",
+      "competency_ids": [
+        "699f34e6-ccba-5c8a-b5d7-3c59c5f6bb44"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+      "topic_id": "598645be-c9c8-50e8-8515-f7c0dcd3cf0b",
+      "competency_ids": [
+        "0d138bbc-8ca6-5732-a23d-41a92e29bfa9"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+      "topic_id": "6562ec25-4140-528a-9ff5-82a3d9cf6804",
+      "competency_ids": [
+        "e93e30d2-cbc6-55ca-b17d-de67370907c7"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+      "topic_id": "6ee1d473-3047-5504-a41b-e22f1ac5e419",
+      "competency_ids": [
+        "0d138bbc-8ca6-5732-a23d-41a92e29bfa9"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+      "topic_id": "6f74c294-7dd5-54c0-8d4c-8572f94107e0",
+      "competency_ids": [
+        "699f34e6-ccba-5c8a-b5d7-3c59c5f6bb44"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+      "topic_id": "87d07d93-bd1e-52af-b64d-01c122f28d05",
+      "competency_ids": [
+        "0d138bbc-8ca6-5732-a23d-41a92e29bfa9"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+      "topic_id": "993a5927-209a-5174-a8eb-b56845f49daa",
+      "competency_ids": [
+        "0d138bbc-8ca6-5732-a23d-41a92e29bfa9"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+      "topic_id": "9ad62a19-b501-5431-a3ba-6010aaaa924c",
+      "competency_ids": [
+        "e93e30d2-cbc6-55ca-b17d-de67370907c7"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+      "topic_id": "c05f9be9-a2ad-5d29-9270-9e7305888b6a",
+      "competency_ids": [
+        "0d138bbc-8ca6-5732-a23d-41a92e29bfa9"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+      "topic_id": "c0dd9a8d-3775-56b8-8da9-1fec849ddffc",
+      "competency_ids": [
+        "699f34e6-ccba-5c8a-b5d7-3c59c5f6bb44"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+      "topic_id": "ca087f2a-6b50-56e0-8106-05831e1742bc",
+      "competency_ids": [
+        "699f34e6-ccba-5c8a-b5d7-3c59c5f6bb44"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+      "topic_id": "d1cd19ef-0947-50c1-b2bd-31e9c1f9e87f",
+      "competency_ids": [
+        "0d138bbc-8ca6-5732-a23d-41a92e29bfa9"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+      "topic_id": "db72ac11-ee44-5f08-be42-381eaa87dcaa",
+      "competency_ids": [
+        "0d138bbc-8ca6-5732-a23d-41a92e29bfa9"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+      "topic_id": "dc99644b-35ab-5377-9b18-d4ed3c7ea424",
+      "competency_ids": [
+        "06a51535-9eb8-5f0d-a653-bfd35fc7f86b"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+      "topic_id": "e58402ea-e96d-59f7-a7ce-01478250b5f9",
+      "competency_ids": [
+        "e93e30d2-cbc6-55ca-b17d-de67370907c7"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+      "topic_id": "edb30614-5ffa-538f-ba44-96ac8a9e9caa",
+      "competency_ids": [
+        "0d138bbc-8ca6-5732-a23d-41a92e29bfa9"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+      "topic_id": "f589b4bb-fb8d-55ea-acf3-816e0d8ebb6c",
+      "competency_ids": [
+        "699f34e6-ccba-5c8a-b5d7-3c59c5f6bb44"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+      "topic_id": "01b7c283-8964-5b3b-9127-37d20bddfc98",
+      "competency_ids": [
+        "318b9b94-abde-54a0-be25-9bd859828fe1"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+      "topic_id": "061c6cf9-7477-5ff2-848a-8a9b4ee30441",
+      "competency_ids": [
+        "318b9b94-abde-54a0-be25-9bd859828fe1"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+      "topic_id": "0897d0e2-6b2e-5ca1-874c-188bf96c5113",
+      "competency_ids": [
+        "318b9b94-abde-54a0-be25-9bd859828fe1"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+      "topic_id": "1870e29d-c350-5fea-be29-16cd095f4871",
+      "competency_ids": [
+        "318b9b94-abde-54a0-be25-9bd859828fe1"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+      "topic_id": "1e7d09fd-b4c7-54a4-b2ba-bfb82b11b77b",
+      "competency_ids": [
+        "318b9b94-abde-54a0-be25-9bd859828fe1"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+      "topic_id": "21acf0d0-0bea-5491-85ad-f140d6b70258",
+      "competency_ids": [
+        "318b9b94-abde-54a0-be25-9bd859828fe1"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+      "topic_id": "30a165dd-e01e-549c-a44b-a5e711fc8755",
+      "competency_ids": [
+        "318b9b94-abde-54a0-be25-9bd859828fe1"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+      "topic_id": "38012dd2-3279-5d06-a21b-95af58309baa",
+      "competency_ids": [
+        "318b9b94-abde-54a0-be25-9bd859828fe1"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+      "topic_id": "4f69b644-5f3a-5ce8-81a4-7b94b4703e3a",
+      "competency_ids": [
+        "318b9b94-abde-54a0-be25-9bd859828fe1"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+      "topic_id": "58bc2f87-f376-588a-8cc5-d4805ac631d5",
+      "competency_ids": [
+        "318b9b94-abde-54a0-be25-9bd859828fe1"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+      "topic_id": "75fb03c4-366f-58c3-a716-748f495b21b8",
+      "competency_ids": [
+        "4be1be28-c274-514c-82d0-b3e1d8a50576"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+      "topic_id": "81e2e773-b0c0-5fc2-908c-088fe34bd589",
+      "competency_ids": [
+        "318b9b94-abde-54a0-be25-9bd859828fe1"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+      "topic_id": "ae9f1108-5a75-50c5-b9d7-8f07de03986b",
+      "competency_ids": [
+        "ecb73f29-593f-58fc-946e-ef16b0c9c64a"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+      "topic_id": "b54f7d4b-9c31-5175-8488-4ddafb2ce32c",
+      "competency_ids": [
+        "318b9b94-abde-54a0-be25-9bd859828fe1"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+      "topic_id": "b6d47ba3-04be-569e-a201-008abd0896bf",
+      "competency_ids": [
+        "318b9b94-abde-54a0-be25-9bd859828fe1"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+      "topic_id": "bcaf5cc1-436d-50b7-97bd-66811fac0fe6",
+      "competency_ids": [
+        "318b9b94-abde-54a0-be25-9bd859828fe1"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+      "topic_id": "d3b1bca5-a6cc-5f23-8e51-67e33c266c0e",
+      "competency_ids": [
+        "318b9b94-abde-54a0-be25-9bd859828fe1"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+      "topic_id": "e190f97d-db5f-5c4d-9bf4-4bcda0093315",
+      "competency_ids": [
+        "318b9b94-abde-54a0-be25-9bd859828fe1"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+      "topic_id": "e8033549-db9d-584e-8be8-fd8403866d81",
+      "competency_ids": [
+        "318b9b94-abde-54a0-be25-9bd859828fe1"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+      "topic_id": "ea160ffe-eb85-5332-b97e-6b3842a363cd",
+      "competency_ids": [
+        "4be1be28-c274-514c-82d0-b3e1d8a50576"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+      "topic_id": "f071b218-f95d-5e25-b5e2-edf2c045e652",
+      "competency_ids": [
+        "7dfe283a-6723-57f2-89e7-049d3ca9ab33"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    },
+    {
+      "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+      "topic_id": "f93f70cb-b6a8-590d-ba37-255787b8d346",
+      "competency_ids": [
+        "318b9b94-abde-54a0-be25-9bd859828fe1"
+      ],
+      "coverage": "partial",
+      "transfers_proficiency": false
+    }
+  ],
+  "limitations": [
+    "Agent-supported scope is not independent semantic approval.",
+    "Only listed career-specific records may enter local-test recommendation inputs.",
+    "No occupational equivalence, target level, mandatory technology or rating transfer.",
+    "Source context, disputed and suppressed observations remain outside inference.",
+    "Unknown source dates and reuse metadata remain unresolved.",
+    "This proposal neither publishes reference data nor changes application behavior."
+  ]
+}

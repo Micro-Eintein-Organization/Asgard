@@ -1,0 +1,1668 @@
+{
+  "https://airflow.apache.org/docs/apache-airflow/stable/best-practices.html": {
+    "status": 200,
+    "final_url": "https://airflow.apache.org/docs/apache-airflow/stable/best-practices.html",
+    "title": "Best Practices \u2014 Airflow 3.3.2 Documentation",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:18.395174+00:00"
+  },
+  "https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/dag-run.html": {
+    "status": 200,
+    "final_url": "https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/dag-run.html",
+    "title": "Dag Runs \u2014 Airflow 3.3.2 Documentation",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:18.736355+00:00"
+  },
+  "https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/dags.html": {
+    "status": 200,
+    "final_url": "https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/dags.html",
+    "title": "Dags \u2014 Airflow 3.3.2 Documentation",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:18.603388+00:00"
+  },
+  "https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/overview.html": {
+    "status": 200,
+    "final_url": "https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/overview.html",
+    "title": "Architecture Overview \u2014 Airflow 3.3.2 Documentation",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:18.549848+00:00"
+  },
+  "https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/tasks.html": {
+    "status": 200,
+    "final_url": "https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/tasks.html",
+    "title": "Tasks \u2014 Airflow 3.3.2 Documentation",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:18.570277+00:00"
+  },
+  "https://analysisfunction.civilservice.gov.uk/policy-store/data-visualisation-building-and-managing-dashboards/": {
+    "status": 200,
+    "final_url": "https://analysisfunction.civilservice.gov.uk/policy-store/data-visualisation-building-and-managing-dashboards/",
+    "title": "Data visualisation: building and managing dashboards \u2013 Government Analysis FunctionPrint",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:19.809732+00:00"
+  },
+  "https://analysisfunction.civilservice.gov.uk/policy-store/data-visualisation-charts/": {
+    "status": 200,
+    "final_url": "https://analysisfunction.civilservice.gov.uk/policy-store/data-visualisation-charts/",
+    "title": "Data visualisation: charts \u2013 Government Analysis FunctionPrint",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:19.245526+00:00"
+  },
+  "https://analysisfunction.civilservice.gov.uk/policy-store/writing-about-statistics/": {
+    "status": 200,
+    "final_url": "https://analysisfunction.civilservice.gov.uk/policy-store/writing-about-statistics-2/",
+    "title": "Writing about statistics \u2013 Government Analysis FunctionPrint",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:19.603357+00:00"
+  },
+  "https://arrow.apache.org/docs/python/data.html": {
+    "status": 200,
+    "final_url": "https://arrow.apache.org/docs/python/data.html",
+    "title": "Data Types and In-Memory Data Model \u2014 Apache Arrow v26.0.0",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:18.827063+00:00"
+  },
+  "https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html": {
+    "status": 200,
+    "final_url": "https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html",
+    "title": "Input Validation - OWASP Cheat Sheet Series",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:18.703487+00:00"
+  },
+  "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html": {
+    "status": 200,
+    "final_url": "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
+    "title": "SQL Injection Prevention - OWASP Cheat Sheet Series",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:18.714110+00:00"
+  },
+  "https://csrc.nist.gov/glossary/term/confidentiality_integrity_availability": {
+    "status": 200,
+    "final_url": "https://csrc.nist.gov/glossary/term/confidentiality_integrity_availability",
+    "title": "confidentiality, integrity, availability - Glossary | CSRCLock",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:19.670577+00:00"
+  },
+  "https://csrc.nist.gov/pubs/sp/800/61/r3/final": {
+    "status": 200,
+    "final_url": "https://csrc.nist.gov/pubs/sp/800/61/r3/final",
+    "title": "SP 800-61 Rev. 3, Incident Response Recommendations and Considerations for Cybersecurity Risk Management: A CSF 2.0 Community Profile | CSRCLock",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:19.558971+00:00"
+  },
+  "https://csrc.nist.gov/pubs/sp/800/86/final": {
+    "status": 200,
+    "final_url": "https://csrc.nist.gov/pubs/sp/800/86/final",
+    "title": "SP 800-86, Guide to Integrating Forensic Techniques into Incident Response | CSRCLock",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:19.755966+00:00"
+  },
+  "https://design-system.service.gov.uk/community/contribution-criteria/": {
+    "status": 200,
+    "final_url": "https://design-system.service.gov.uk/community/contribution-criteria/",
+    "title": "Contribution criteria \u2013 GOV.UK Design SystemGOV.UK",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:19.515948+00:00"
+  },
+  "https://design-system.service.gov.uk/components/button/": {
+    "status": 200,
+    "final_url": "https://design-system.service.gov.uk/components/button/",
+    "title": "Button \u2013 GOV.UK Design SystemGOV.UK",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:19.415177+00:00"
+  },
+  "https://design-system.service.gov.uk/components/error-message/": {
+    "status": 200,
+    "final_url": "https://design-system.service.gov.uk/components/error-message/",
+    "title": "Error message \u2013 GOV.UK Design SystemGOV.UK",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:19.473608+00:00"
+  },
+  "https://design-system.service.gov.uk/components/service-navigation/": {
+    "status": 200,
+    "final_url": "https://design-system.service.gov.uk/components/service-navigation/",
+    "title": "Service navigation \u2013 GOV.UK Design SystemGOV.UK",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:19.872812+00:00"
+  },
+  "https://design-system.service.gov.uk/patterns/validation/": {
+    "status": 200,
+    "final_url": "https://design-system.service.gov.uk/patterns/validation/",
+    "title": "Recover from validation errors \u2013 GOV.UK Design SystemGOV.UK",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:19.939583+00:00"
+  },
+  "https://design-system.service.gov.uk/styles/headings/": {
+    "status": 200,
+    "final_url": "https://design-system.service.gov.uk/styles/headings/",
+    "title": "Headings \u2013 GOV.UK Design SystemGOV.UK",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:19.926734+00:00"
+  },
+  "https://design-system.service.gov.uk/styles/images/": {
+    "status": 200,
+    "final_url": "https://design-system.service.gov.uk/styles/images/",
+    "title": "Images \u2013 GOV.UK Design SystemGOV.UK",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:20.571131+00:00"
+  },
+  "https://design-system.service.gov.uk/styles/layout/": {
+    "status": 200,
+    "final_url": "https://design-system.service.gov.uk/styles/layout/",
+    "title": "Layout \u2013 GOV.UK Design SystemGOV.UK",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:20.241180+00:00"
+  },
+  "https://design-system.service.gov.uk/styles/page-template/": {
+    "status": 200,
+    "final_url": "https://design-system.service.gov.uk/styles/page-template/",
+    "title": "Page template \u2013 GOV.UK Design SystemGOV.UK",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:20.906511+00:00"
+  },
+  "https://design-system.service.gov.uk/styles/spacing/": {
+    "status": 200,
+    "final_url": "https://design-system.service.gov.uk/styles/spacing/",
+    "title": "Spacing \u2013 GOV.UK Design SystemGOV.UK",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:20.437973+00:00"
+  },
+  "https://design-system.service.gov.uk/styles/type-scale/": {
+    "status": 200,
+    "final_url": "https://design-system.service.gov.uk/styles/type-scale/",
+    "title": "Type scale \u2013 GOV.UK Design SystemGOV.UK",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:20.798604+00:00"
+  },
+  "https://developer.hashicorp.com/terraform/tutorials/docker-get-started/infrastructure-as-code": {
+    "status": 200,
+    "final_url": "https://developer.hashicorp.com/terraform/tutorials/docker-get-started/infrastructure-as-code",
+    "title": "What is Infrastructure as Code with Terraform? | Terraform | HashiCorp Developer",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:20.103193+00:00"
+  },
+  "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Flexbox": {
+    "status": 200,
+    "final_url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Flexbox",
+    "title": "Flexbox - Learn web development | MDNMDNMDNMozilla",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:20.040506+00:00"
+  },
+  "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Responsive_Design": {
+    "status": 200,
+    "final_url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Responsive_Design",
+    "title": "Responsive web design - Learn web development | MDNMDNMDNMozilla",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:20.017495+00:00"
+  },
+  "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Debugging_JavaScript": {
+    "status": 200,
+    "final_url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Debugging_JavaScript",
+    "title": "JavaScript debugging and error handling - Learn web development | MDNMDNMDNMozilla",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:20.090868+00:00"
+  },
+  "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Events": {
+    "status": 200,
+    "final_url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Events",
+    "title": "Introduction to events - Learn web development | MDNMDNMDNMozilla",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:20.124408+00:00"
+  },
+  "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Basic_HTML_syntax": {
+    "status": 200,
+    "final_url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Basic_HTML_syntax",
+    "title": "Basic HTML syntax - Learn web development | MDNMDNMDNMozilla",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:20.178328+00:00"
+  },
+  "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/HTML_images": {
+    "status": 200,
+    "final_url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/HTML_images",
+    "title": "HTML images - Learn web development | MDNMDNMDNMozilla",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:20.199584+00:00"
+  },
+  "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Box_model": {
+    "status": 200,
+    "final_url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Box_model",
+    "title": "The box model - Learn web development | MDNMDNMDNMozilla",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:20.223923+00:00"
+  },
+  "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Handling_conflicts": {
+    "status": 200,
+    "final_url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Handling_conflicts",
+    "title": "Handling conflicts - Learn web development | MDNMDNMDNMozilla",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:20.290494+00:00"
+  },
+  "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Async_JS/Promises": {
+    "status": 200,
+    "final_url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Async_JS/Promises",
+    "title": "How to use promises - Learn web development | MDNMDNMDNMozilla",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:20.329920+00:00"
+  },
+  "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation": {
+    "status": 200,
+    "final_url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation",
+    "title": "Client-side form validation - Learn web development | MDNMDNMDNMozilla",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:20.352802+00:00"
+  },
+  "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Environment_setup/Code_editors": {
+    "status": 200,
+    "final_url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Environment_setup/Code_editors",
+    "title": "Code editors - Learn web development | MDNMDNMDNMozilla",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:20.309938+00:00"
+  },
+  "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Environment_setup/Command_line": {
+    "status": 200,
+    "final_url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Environment_setup/Command_line",
+    "title": "Command line crash course - Learn web development | MDNMDNMDNMozilla",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:20.428115+00:00"
+  },
+  "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website/What_will_your_website_look_like": {
+    "status": 200,
+    "final_url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website/What_will_your_website_look_like",
+    "title": "What will your website look like? - Learn web development | MDNMDNMDNMozilla",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:20.404229+00:00"
+  },
+  "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch": {
+    "status": 200,
+    "final_url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
+    "title": "Using the Fetch API - Web APIs | MDNMDNMDNMozilla",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:21.387075+00:00"
+  },
+  "https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages": {
+    "status": 200,
+    "final_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Messages",
+    "title": "HTTP messages - HTTP | MDNMDNMDNMozilla",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:21.467833+00:00"
+  },
+  "https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview": {
+    "status": 200,
+    "final_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview",
+    "title": "Overview of HTTP - HTTP | MDNMDNMDNMozilla",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:20.563912+00:00"
+  },
+  "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling": {
+    "status": 200,
+    "final_url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling",
+    "title": "Control flow and error handling - JavaScript | MDNMDNMDNMozilla",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:20.519247+00:00"
+  },
+  "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_objects": {
+    "status": 200,
+    "final_url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_objects",
+    "title": "Working with objects - JavaScript | MDNMDNMDNMozilla",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:20.530917+00:00"
+  },
+  "https://developers.google.com/machine-learning/problem-framing/ml-framing": {
+    "status": 200,
+    "final_url": "https://developers.google.com/machine-learning/problem-framing/ml-framing",
+    "title": "Framing an ML problem \u00a0|\u00a0 Machine Learning \u00a0|\u00a0 Google for Developers",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:21.197353+00:00"
+  },
+  "https://docs.arduino.cc/built-in-examples/analog/AnalogInOutSerial/": {
+    "status": 200,
+    "final_url": "https://docs.arduino.cc/built-in-examples/analog/AnalogInOutSerial/",
+    "title": "",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:21.471475+00:00"
+  },
+  "https://docs.arduino.cc/built-in-examples/analog/Smoothing/": {
+    "status": 200,
+    "final_url": "https://docs.arduino.cc/built-in-examples/analog/Smoothing/",
+    "title": "",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:21.350673+00:00"
+  },
+  "https://docs.arduino.cc/built-in-examples/basics/DigitalReadSerial/": {
+    "status": 200,
+    "final_url": "https://docs.arduino.cc/built-in-examples/basics/DigitalReadSerial/",
+    "title": "",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:21.500812+00:00"
+  },
+  "https://docs.arduino.cc/built-in-examples/digital/BlinkWithoutDelay/": {
+    "status": 200,
+    "final_url": "https://docs.arduino.cc/built-in-examples/digital/BlinkWithoutDelay/",
+    "title": "",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:21.621390+00:00"
+  },
+  "https://docs.arduino.cc/built-in-examples/digital/Debounce/": {
+    "status": 200,
+    "final_url": "https://docs.arduino.cc/built-in-examples/digital/Debounce/",
+    "title": "",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:21.688839+00:00"
+  },
+  "https://docs.arduino.cc/built-in-examples/digital/StateChangeDetection/": {
+    "status": 200,
+    "final_url": "https://docs.arduino.cc/built-in-examples/digital/StateChangeDetection/",
+    "title": "",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:22.167975+00:00"
+  },
+  "https://docs.arduino.cc/language-reference/en/functions/communication/serial/": {
+    "status": 200,
+    "final_url": "https://docs.arduino.cc/language-reference/en/functions/communication/serial/",
+    "title": "",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:22.313759+00:00"
+  },
+  "https://docs.arduino.cc/language-reference/en/functions/digital-io/pinMode/": {
+    "status": 200,
+    "final_url": "https://docs.arduino.cc/language-reference/en/functions/digital-io/pinMode/",
+    "title": "",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:22.395291+00:00"
+  },
+  "https://docs.arduino.cc/language-reference/en/functions/external-interrupts/attachInterrupt/": {
+    "status": 200,
+    "final_url": "https://docs.arduino.cc/language-reference/en/functions/external-interrupts/attachInterrupt/",
+    "title": "",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:22.445849+00:00"
+  },
+  "https://docs.arduino.cc/language-reference/en/structure/sketch/setup/": {
+    "status": 200,
+    "final_url": "https://docs.arduino.cc/language-reference/en/structure/sketch/setup/",
+    "title": "",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:22.350761+00:00"
+  },
+  "https://docs.arduino.cc/learn/communication/spi/": {
+    "status": 200,
+    "final_url": "https://docs.arduino.cc/learn/communication/spi/",
+    "title": "",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:22.435850+00:00"
+  },
+  "https://docs.arduino.cc/learn/communication/uart/": {
+    "status": 200,
+    "final_url": "https://docs.arduino.cc/learn/communication/uart/",
+    "title": "",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:22.518906+00:00"
+  },
+  "https://docs.arduino.cc/learn/communication/wire/": {
+    "status": 200,
+    "final_url": "https://docs.arduino.cc/learn/communication/wire/",
+    "title": "",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:22.715010+00:00"
+  },
+  "https://docs.arduino.cc/learn/electronics/low-power/": {
+    "status": 200,
+    "final_url": "https://docs.arduino.cc/learn/electronics/low-power/",
+    "title": "",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:23.107251+00:00"
+  },
+  "https://docs.arduino.cc/learn/microcontrollers/analog-input/": {
+    "status": 200,
+    "final_url": "https://docs.arduino.cc/learn/microcontrollers/analog-input/",
+    "title": "",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:23.170123+00:00"
+  },
+  "https://docs.arduino.cc/learn/microcontrollers/analog-output/": {
+    "status": 200,
+    "final_url": "https://docs.arduino.cc/learn/microcontrollers/analog-output/",
+    "title": "",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:23.381794+00:00"
+  },
+  "https://docs.arduino.cc/learn/microcontrollers/digital-pins/": {
+    "status": 200,
+    "final_url": "https://docs.arduino.cc/learn/microcontrollers/digital-pins/",
+    "title": "",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:22.798496+00:00"
+  },
+  "https://docs.arduino.cc/learn/programming/memory-guide/": {
+    "status": 200,
+    "final_url": "https://docs.arduino.cc/learn/programming/memory-guide/",
+    "title": "",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:23.242223+00:00"
+  },
+  "https://docs.docker.com/compose/gettingstarted/": {
+    "status": 200,
+    "final_url": "https://docs.docker.com/compose/gettingstarted/",
+    "title": "Docker Compose Quickstart | Docker Docs",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:22.712550+00:00"
+  },
+  "https://docs.docker.com/compose/how-tos/environment-variables/set-environment-variables/": {
+    "status": 200,
+    "final_url": "https://docs.docker.com/compose/how-tos/environment-variables/set-environment-variables/",
+    "title": "Set environment variables within your container's environment | Docker Docs",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:22.784990+00:00"
+  },
+  "https://docs.docker.com/compose/how-tos/use-secrets/": {
+    "status": 200,
+    "final_url": "https://docs.docker.com/compose/how-tos/use-secrets/",
+    "title": "Manage secrets securely in Docker Compose | Docker Docs",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:22.970878+00:00"
+  },
+  "https://docs.docker.com/engine/network/": {
+    "status": 200,
+    "final_url": "https://docs.docker.com/engine/network/",
+    "title": "Networking overview | Docker Docs",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:22.901850+00:00"
+  },
+  "https://docs.docker.com/engine/storage/volumes/": {
+    "status": 200,
+    "final_url": "https://docs.docker.com/engine/storage/volumes/",
+    "title": "Volumes | Docker Docs",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:23.076318+00:00"
+  },
+  "https://docs.docker.com/get-started/docker-concepts/building-images/writing-a-dockerfile/": {
+    "status": 200,
+    "final_url": "https://docs.docker.com/get-started/docker-concepts/building-images/writing-a-dockerfile/",
+    "title": "Writing a Dockerfile | Docker Docs",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:22.990745+00:00"
+  },
+  "https://docs.docker.com/get-started/workshop/02_our_app/": {
+    "status": 200,
+    "final_url": "https://docs.docker.com/get-started/tutorials/run-an-app/",
+    "title": "Build and share a containerized application | Docker Docs",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:23.287731+00:00"
+  },
+  "https://docs.frrouting.org/en/latest/basic.html": {
+    "status": 200,
+    "final_url": "https://docs.frrouting.org/en/latest/basic.html",
+    "title": "Basic Commands \u2014 FRR latest documentation",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:23.166613+00:00"
+  },
+  "https://docs.frrouting.org/en/latest/static.html": {
+    "status": 200,
+    "final_url": "https://docs.frrouting.org/en/latest/static.html",
+    "title": "STATIC \u2014 FRR latest documentation",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:23.409486+00:00"
+  },
+  "https://docs.getdbt.com/docs/build/data-tests": {
+    "status": 200,
+    "final_url": "https://docs.getdbt.com/docs/build/data-tests",
+    "title": "Add data tests to your DAG | dbt Developer Hub",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:23.370041+00:00"
+  },
+  "https://docs.getdbt.com/docs/build/documentation": {
+    "status": 200,
+    "final_url": "https://docs.getdbt.com/docs/build/documentation",
+    "title": "About documentation | dbt Developer Hub",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:23.316124+00:00"
+  },
+  "https://docs.github.com/en/actions/about-github-actions/understanding-github-actions": {
+    "status": 200,
+    "final_url": "https://docs.github.com/en/actions/get-started/understand-github-actions",
+    "title": "Understanding GitHub Actions - GitHub Docs",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:23.271624+00:00"
+  },
+  "https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs": {
+    "status": 200,
+    "final_url": "https://docs.github.com/en/actions/tutorials/build-and-test-code/nodejs",
+    "title": "Building and testing Node.js - GitHub Docs",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:23.731442+00:00"
+  },
+  "https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions": {
+    "status": 200,
+    "final_url": "https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets",
+    "title": "Using secrets in GitHub Actions - GitHub Docs",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:23.692275+00:00"
+  },
+  "https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts": {
+    "status": 200,
+    "final_url": "https://docs.github.com/en/actions/tutorials/store-and-share-data",
+    "title": "Store and share data with workflow artifacts - GitHub Docs",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:23.937226+00:00"
+  },
+  "https://docs.github.com/en/actions/writing-workflows/quickstart": {
+    "status": 200,
+    "final_url": "https://docs.github.com/en/actions/get-started/quickstart",
+    "title": "Quickstart for GitHub Actions - GitHub Docs",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:24.012021+00:00"
+  },
+  "https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site": {
+    "status": 200,
+    "final_url": "https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site",
+    "title": "Creating a GitHub Pages site - GitHub Docs",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:23.596202+00:00"
+  },
+  "https://docs.gns3.com/docs/getting-started/your-first-gns3-topology": {
+    "status": 200,
+    "final_url": "https://docs.gns3.com/docs/getting-started/your-first-gns3-topology",
+    "title": "Your First GNS3 Topology | GNS3 Documentation",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:23.799649+00:00"
+  },
+  "https://docs.kicad.org/9.0/en/getting_started_in_kicad/getting_started_in_kicad.html#bill_of_materials": {
+    "status": 200,
+    "final_url": "https://docs.kicad.org/9.0/en/getting_started_in_kicad/getting_started_in_kicad.html",
+    "title": "Getting Started in KiCad | 9.0 | English | Documentation | KiCad",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:23.482015+00:00"
+  },
+  "https://docs.kicad.org/9.0/en/getting_started_in_kicad/getting_started_in_kicad.html#board_setup_and_stackup": {
+    "status": 200,
+    "final_url": "https://docs.kicad.org/9.0/en/getting_started_in_kicad/getting_started_in_kicad.html",
+    "title": "Getting Started in KiCad | 9.0 | English | Documentation | KiCad",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:23.583334+00:00"
+  },
+  "https://docs.kicad.org/9.0/en/getting_started_in_kicad/getting_started_in_kicad.html#drc": {
+    "status": 200,
+    "final_url": "https://docs.kicad.org/9.0/en/getting_started_in_kicad/getting_started_in_kicad.html",
+    "title": "Getting Started in KiCad | 9.0 | English | Documentation | KiCad",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:37:18.338803+00:00"
+  },
+  "https://docs.kicad.org/9.0/en/getting_started_in_kicad/getting_started_in_kicad.html#electrical_rules_check": {
+    "status": 200,
+    "final_url": "https://docs.kicad.org/9.0/en/getting_started_in_kicad/getting_started_in_kicad.html",
+    "title": "Getting Started in KiCad | 9.0 | English | Documentation | KiCad",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:23.770573+00:00"
+  },
+  "https://docs.kicad.org/9.0/en/getting_started_in_kicad/getting_started_in_kicad.html#fab": {
+    "status": 200,
+    "final_url": "https://docs.kicad.org/9.0/en/getting_started_in_kicad/getting_started_in_kicad.html",
+    "title": "Getting Started in KiCad | 9.0 | English | Documentation | KiCad",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:37:18.421970+00:00"
+  },
+  "https://docs.kicad.org/9.0/en/getting_started_in_kicad/getting_started_in_kicad.html#footprint-assignment": {
+    "status": 200,
+    "final_url": "https://docs.kicad.org/9.0/en/getting_started_in_kicad/getting_started_in_kicad.html",
+    "title": "Getting Started in KiCad | 9.0 | English | Documentation | KiCad",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:23.751657+00:00"
+  },
+  "https://docs.kicad.org/9.0/en/getting_started_in_kicad/getting_started_in_kicad.html#routing_tracks": {
+    "status": 200,
+    "final_url": "https://docs.kicad.org/9.0/en/getting_started_in_kicad/getting_started_in_kicad.html",
+    "title": "Getting Started in KiCad | 9.0 | English | Documentation | KiCad",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:23.836599+00:00"
+  },
+  "https://docs.kicad.org/9.0/en/getting_started_in_kicad/getting_started_in_kicad.html#tutorial_part_2_schematic": {
+    "status": 200,
+    "final_url": "https://docs.kicad.org/9.0/en/getting_started_in_kicad/getting_started_in_kicad.html",
+    "title": "Getting Started in KiCad | 9.0 | English | Documentation | KiCad",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:23.885790+00:00"
+  },
+  "https://docs.kicad.org/9.0/en/pcbnew/pcbnew.html#working-with-zones": {
+    "status": 200,
+    "final_url": "https://docs.kicad.org/9.0/en/pcbnew/pcbnew.html",
+    "title": "PCB Editor | 9.0 | English | Documentation | KiCad",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:24.438019+00:00"
+  },
+  "https://docs.npmjs.com/cli/v11/commands/npm-run": {
+    "status": 200,
+    "final_url": "https://docs.npmjs.com/cli/v11/commands/npm-run/",
+    "title": "npm-run | npm Docs",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:37:19.128567+00:00"
+  },
+  "https://docs.python.org/3/howto/logging.html": {
+    "status": 200,
+    "final_url": "https://docs.python.org/3/howto/logging.html",
+    "title": "Logging HOWTO \u2014 Python 3.15.2 documentation",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:24.271659+00:00"
+  },
+  "https://docs.python.org/3/howto/urllib2.html": {
+    "status": 200,
+    "final_url": "https://docs.python.org/3/howto/urllib2.html",
+    "title": "HOWTO Fetch Internet Resources Using The urllib Package \u2014 Python 3.15.2 documentation",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:23.855438+00:00"
+  },
+  "https://docs.wokwi.com/diagram-format": {
+    "status": 200,
+    "final_url": "https://docs.wokwi.com/diagram-format",
+    "title": "diagram.json File Format | Wokwi Docs",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:24.144377+00:00"
+  },
+  "https://docs.wokwi.com/guides/diagram-editor": {
+    "status": 200,
+    "final_url": "https://docs.wokwi.com/guides/diagram-editor",
+    "title": "Interactive Diagram Editor | Wokwi Docs",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:23.944137+00:00"
+  },
+  "https://docs.wokwi.com/guides/logic-analyzer": {
+    "status": 200,
+    "final_url": "https://docs.wokwi.com/guides/logic-analyzer",
+    "title": "Logic Analyzer Guide | Wokwi Docs",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:24.019565+00:00"
+  },
+  "https://docs.wokwi.com/parts/wokwi-arduino-uno": {
+    "status": 200,
+    "final_url": "https://docs.wokwi.com/parts/wokwi-arduino-uno",
+    "title": "wokwi-arduino-uno Reference | Wokwi Docs",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:24.029490+00:00"
+  },
+  "https://docs.wokwi.com/wokwi-ci/getting-started": {
+    "status": 200,
+    "final_url": "https://docs.wokwi.com/wokwi-ci/getting-started",
+    "title": "Wokwi for CI and GitHub Actions | Wokwi Docs",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:24.035130+00:00"
+  },
+  "https://dora.dev/capabilities/continuous-delivery/": {
+    "status": 200,
+    "final_url": "https://dora.dev/capabilities/continuous-delivery/",
+    "title": "DORA | Capabilities: Continuous delivery",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:24.046032+00:00"
+  },
+  "https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository": {
+    "status": 200,
+    "final_url": "https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository",
+    "title": "Git - Getting a Git Repository",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:24.453790+00:00"
+  },
+  "https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository": {
+    "status": 200,
+    "final_url": "https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository",
+    "title": "Git - Recording Changes to the Repository",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:24.131669+00:00"
+  },
+  "https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging": {
+    "status": 200,
+    "final_url": "https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging",
+    "title": "Git - Basic Branching and Merging",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:24.174419+00:00"
+  },
+  "https://github.com/splunk/attack_data/tree/master/datasets": {
+    "status": 200,
+    "final_url": "https://github.com/splunk/attack_data/tree/master/datasets",
+    "title": "attack_data/datasets at master \u00b7 splunk/attack_data \u00b7 GitHub",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:24.860289+00:00"
+  },
+  "https://help.figma.com/hc/en-us/articles/360038662654-Guide-to-components-in-Figma": {
+    "status": 200,
+    "final_url": "https://help.figma.com/hc/en-us/articles/360038662654-Guide-to-components-in-Figma",
+    "title": "Guide to components in Figma \u2013 Figma Learn - Help Center",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:24.447959+00:00"
+  },
+  "https://help.figma.com/hc/en-us/articles/360040314193-Guide-to-prototyping-in-Figma": {
+    "status": 200,
+    "final_url": "https://help.figma.com/hc/en-us/articles/360040314193-Guide-to-prototyping-in-Figma",
+    "title": "Guide to prototyping in Figma \u2013 Figma Learn - Help Center",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:24.194015+00:00"
+  },
+  "https://help.figma.com/hc/en-us/articles/360041539473-Files-and-projects": {
+    "status": 200,
+    "final_url": "https://help.figma.com/hc/en-us/articles/360041539473-Frames-in-Figma-Design",
+    "title": "Frames in Figma Design \u2013 Figma Learn - Help Center",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:24.732210+00:00"
+  },
+  "https://help.libreoffice.org/latest/en-US/text/scalc/guide/formulas.html": {
+    "status": 200,
+    "final_url": "https://help.libreoffice.org/latest/en-US/text/scalc/guide/formulas.html",
+    "title": "Calculating With Formulas",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:24.981198+00:00"
+  },
+  "https://jupyter.org/install": {
+    "status": 200,
+    "final_url": "https://jupyter.org/install",
+    "title": "Project Jupyter | Installing Jupyter",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:24.440903+00:00"
+  },
+  "https://kubernetes.io/docs/concepts/configuration/configmap/": {
+    "status": 200,
+    "final_url": "https://kubernetes.io/docs/concepts/configuration/configmap/",
+    "title": "ConfigMaps | Kubernetes",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:25.167947+00:00"
+  },
+  "https://kubernetes.io/docs/concepts/overview/": {
+    "status": 200,
+    "final_url": "https://kubernetes.io/docs/concepts/overview/",
+    "title": "Overview | Kubernetes",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:25.064728+00:00"
+  },
+  "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-back-a-deployment": {
+    "status": 200,
+    "final_url": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/",
+    "title": "Deployments | Kubernetes",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:24.816570+00:00"
+  },
+  "https://learn.microsoft.com/en-us/azure/sentinel/create-analytics-rules": {
+    "status": 200,
+    "final_url": "https://learn.microsoft.com/en-us/azure/sentinel/create-analytics-rules",
+    "title": "Create scheduled analytics rules in Microsoft Sentinel | Microsoft Learn",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:24.694468+00:00"
+  },
+  "https://learn.microsoft.com/en-us/azure/sentinel/detect-threats-custom": {
+    "status": 200,
+    "final_url": "https://learn.microsoft.com/en-us/azure/sentinel/create-analytics-rules",
+    "title": "Create scheduled analytics rules in Microsoft Sentinel | Microsoft Learn",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:24.842444+00:00"
+  },
+  "https://learn.microsoft.com/en-us/azure/sentinel/incident-navigate-triage": {
+    "status": 200,
+    "final_url": "https://learn.microsoft.com/en-us/azure/sentinel/incident-navigate-triage",
+    "title": "Basic incident tasks for Microsoft Sentinel incidents in the Azure portal | Microsoft Learn",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:25.432844+00:00"
+  },
+  "https://learn.microsoft.com/en-us/azure/sentinel/incident-tasks": {
+    "status": 200,
+    "final_url": "https://learn.microsoft.com/en-us/azure/sentinel/incident-tasks",
+    "title": "Use Tasks to Manage Incidents in Microsoft Sentinel in the Azure Portal | Microsoft Learn",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:25.186503+00:00"
+  },
+  "https://learn.microsoft.com/en-us/azure/sentinel/investigate-cases": {
+    "status": 200,
+    "final_url": "https://learn.microsoft.com/en-us/azure/sentinel/investigate-cases",
+    "title": "Investigate Incidents with Microsoft Sentinel (legacy) | Microsoft Learn",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:25.078165+00:00"
+  },
+  "https://learn.microsoft.com/en-us/azure/sentinel/investigate-incidents": {
+    "status": 200,
+    "final_url": "https://learn.microsoft.com/en-us/azure/sentinel/investigate-incidents",
+    "title": "Investigate Microsoft Sentinel Incidents in Depth in the Azure Portal | Microsoft Learn",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:25.179727+00:00"
+  },
+  "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-content": {
+    "status": 200,
+    "final_url": "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-content?view=powershell-7.6",
+    "title": "Get-Content (Microsoft.PowerShell.Management) - PowerShell | Microsoft Learn",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:25.335002+00:00"
+  },
+  "https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon": {
+    "status": 200,
+    "final_url": "https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon",
+    "title": "Sysmon - Sysinternals | Microsoft Learn",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:25.275804+00:00"
+  },
+  "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tracert": {
+    "status": 200,
+    "final_url": "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tracert",
+    "title": "tracert | Microsoft Learn",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:25.350188+00:00"
+  },
+  "https://learn.microsoft.com/en-us/windows-server/networking/technologies/dhcp/dhcp-top": {
+    "status": 200,
+    "final_url": "https://learn.microsoft.com/en-us/windows-server/networking/technologies/dhcp/dhcp-top",
+    "title": "What is DHCP Server in Windows Server? | Microsoft Learn",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:25.343849+00:00"
+  },
+  "https://learn.microsoft.com/en-us/windows-server/networking/technologies/netsh/netsh-contexts": {
+    "status": 200,
+    "final_url": "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/netsh",
+    "title": "Network shell (netsh) | Microsoft Learn",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:25.543561+00:00"
+  },
+  "https://learn.microsoft.com/en-us/windows/security/identity-protection/access-control/local-accounts": {
+    "status": 200,
+    "final_url": "https://learn.microsoft.com/en-us/windows/security/identity-protection/access-control/local-accounts",
+    "title": "Local accounts | Microsoft Learn",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:25.411423+00:00"
+  },
+  "https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4625": {
+    "status": 200,
+    "final_url": "https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4625",
+    "title": "4625(F) An account failed to log on. - Windows 10 | Microsoft Learn",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:25.664920+00:00"
+  },
+  "https://learn.sparkfun.com/tutorials/diodes/all": {
+    "status": 200,
+    "final_url": "https://learn.sparkfun.com/tutorials/diodes/all",
+    "title": "Diodes - SparkFun Learn",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:26.610127+00:00"
+  },
+  "https://learn.sparkfun.com/tutorials/integrated-circuits/all": {
+    "status": 200,
+    "final_url": "https://learn.sparkfun.com/tutorials/integrated-circuits/all",
+    "title": "Integrated Circuits - SparkFun Learn",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:26.438284+00:00"
+  },
+  "https://learn.sparkfun.com/tutorials/logic-levels/all": {
+    "status": 200,
+    "final_url": "https://learn.sparkfun.com/tutorials/logic-levels/all",
+    "title": "Logic Levels - SparkFun Learn",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:26.505842+00:00"
+  },
+  "https://learn.sparkfun.com/tutorials/resistors/all": {
+    "status": 200,
+    "final_url": "https://learn.sparkfun.com/tutorials/resistors/all",
+    "title": "Resistors - SparkFun Learn",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:26.597867+00:00"
+  },
+  "https://learn.sparkfun.com/tutorials/transistors/all": {
+    "status": 200,
+    "final_url": "https://learn.sparkfun.com/tutorials/transistors/all",
+    "title": "Transistors - SparkFun Learn",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:26.572730+00:00"
+  },
+  "https://learn.sparkfun.com/tutorials/voltage-current-resistance-and-ohms-law/all": {
+    "status": 200,
+    "final_url": "https://learn.sparkfun.com/tutorials/voltage-current-resistance-and-ohms-law/all",
+    "title": "Voltage, Current, Resistance, and Ohm's Law - SparkFun Learn",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:26.408380+00:00"
+  },
+  "https://numpy.org/doc/stable/user/absolute_beginners.html": {
+    "status": 200,
+    "final_url": "https://numpy.org/doc/stable/user/absolute_beginners.html",
+    "title": "NumPy: the absolute basics for beginners \u2014 NumPy v2.5 Manual",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:26.178239+00:00"
+  },
+  "https://openstax.org/books/university-physics-volume-2/pages/10-2-resistors-in-series-and-parallel": {
+    "status": 200,
+    "final_url": "https://openstax.org/books/university-physics-volume-2/pages/10-2-resistors-in-series-and-parallel",
+    "title": "10.2 Resistors in Series and Parallel - University Physics Volume 2 | OpenStaxSearchSearchSearch",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:25.822651+00:00"
+  },
+  "https://openstax.org/books/university-physics-volume-2/pages/10-3-kirchhoffs-rules": {
+    "status": 200,
+    "final_url": "https://openstax.org/books/university-physics-volume-2/pages/10-3-kirchhoffs-rules",
+    "title": "10.3 Kirchhoff's Rules - University Physics Volume 2 | OpenStaxSearchSearchSearch",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:25.995473+00:00"
+  },
+  "https://openstax.org/books/university-physics-volume-2/pages/10-5-rc-circuits": {
+    "status": 200,
+    "final_url": "https://openstax.org/books/university-physics-volume-2/pages/10-5-rc-circuits",
+    "title": "10.5 RC Circuits - University Physics Volume 2 | OpenStaxSearchSearchSearch",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:27.363790+00:00"
+  },
+  "https://openstax.org/books/university-physics-volume-2/pages/10-6-household-wiring-and-electrical-safety": {
+    "status": 200,
+    "final_url": "https://openstax.org/books/university-physics-volume-2/pages/10-6-household-wiring-and-electrical-safety",
+    "title": "10.6 Household Wiring and Electrical Safety - University Physics Volume 2 | OpenStaxSearchSearchSearch",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:26.260871+00:00"
+  },
+  "https://openstax.org/books/university-physics-volume-2/pages/9-4-ohms-law": {
+    "status": 200,
+    "final_url": "https://openstax.org/books/university-physics-volume-2/pages/9-4-ohms-law",
+    "title": "9.4 Ohm's Law - University Physics Volume 2 | OpenStaxSearchSearchSearch",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:26.340163+00:00"
+  },
+  "https://openstax.org/books/university-physics-volume-2/pages/9-5-electrical-energy-and-power": {
+    "status": 200,
+    "final_url": "https://openstax.org/books/university-physics-volume-2/pages/9-5-electrical-energy-and-power",
+    "title": "9.5 Electrical Energy and Power - University Physics Volume 2 | OpenStaxSearchSearchSearch",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:26.463798+00:00"
+  },
+  "https://owasp.org/Top10/2021/A01_2021-Broken_Access_Control/": {
+    "status": 200,
+    "final_url": "https://top10.owasp.org/2021/A01_2021-Broken_Access_Control/",
+    "title": "A01 Broken Access Control - OWASP Top 10:2021",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:27.415602+00:00"
+  },
+  "https://owasp.org/www-community/OWASP_Risk_Rating_Methodology": {
+    "status": 200,
+    "final_url": "https://community.owasp.org/OWASP_Risk_Rating_Methodology",
+    "title": "OWASP Risk Rating Methodology | OWASP Foundation",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:26.990565+00:00"
+  },
+  "https://owasp.org/www-project-juice-shop/": {
+    "status": 200,
+    "final_url": "https://owasp.org/projects/juice-shop",
+    "title": "OWASP Juice Shop - Insecure Web Application for Security Training | OWASP FoundationOWASP Foundation",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:27.370133+00:00"
+  },
+  "https://owasp.org/www-project-web-security-testing-guide/v42/2-Introduction/README": {
+    "status": 200,
+    "final_url": "https://wstg.owasp.org/v4.2/2-Introduction/README/",
+    "title": "Redirecting\u2026",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:27.303782+00:00"
+  },
+  "https://owasp.org/www-project-web-security-testing-guide/v42/3-The_OWASP_Testing_Framework/0-The_Web_Security_Testing_Framework": {
+    "status": 200,
+    "final_url": "https://wstg.owasp.org/v4.2/3-The_OWASP_Testing_Framework/0-The_Web_Security_Testing_Framework/",
+    "title": "WSTG - v4.2 | OWASP Web Security Testing Guide",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:27.388008+00:00"
+  },
+  "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/06-Identify_Application_Entry_Points": {
+    "status": 200,
+    "final_url": "https://wstg.owasp.org/v4.2/4-Web_Application_Security_Testing/01-Information_Gathering/06-Identify_Application_Entry_Points/",
+    "title": "WSTG - v4.2 | OWASP Web Security Testing Guide",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:27.457867+00:00"
+  },
+  "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/README": {
+    "status": 200,
+    "final_url": "https://wstg.owasp.org/v4.2/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/README/",
+    "title": "Redirecting\u2026",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:27.425229+00:00"
+  },
+  "https://owasp.org/www-project-web-security-testing-guide/v42/5-Reporting/README": {
+    "status": 200,
+    "final_url": "https://wstg.owasp.org/v4.2/5-Reporting/README/",
+    "title": "Redirecting\u2026",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:27.747522+00:00"
+  },
+  "https://pandas.pydata.org/docs/getting_started/intro_tutorials/02_read_write.html": {
+    "status": 200,
+    "final_url": "https://pandas.pydata.org/docs/getting_started/intro_tutorials/02_read_write.html",
+    "title": "How do I read and write tabular data? \u2014 pandas 3.1.0 documentation",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:27.710871+00:00"
+  },
+  "https://pandas.pydata.org/docs/getting_started/intro_tutorials/03_subset_data.html": {
+    "status": 200,
+    "final_url": "https://pandas.pydata.org/docs/getting_started/intro_tutorials/03_subset_data.html",
+    "title": "How do I select a subset of a DataFrame? \u2014 pandas 3.1.0 documentation",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:27.785807+00:00"
+  },
+  "https://pandas.pydata.org/docs/getting_started/intro_tutorials/04_plotting.html": {
+    "status": 200,
+    "final_url": "https://pandas.pydata.org/docs/getting_started/intro_tutorials/04_plotting.html",
+    "title": "How do I create plots in pandas? \u2014 pandas 3.1.0 documentation",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:27.764174+00:00"
+  },
+  "https://pandas.pydata.org/docs/getting_started/intro_tutorials/05_add_columns.html": {
+    "status": 200,
+    "final_url": "https://pandas.pydata.org/docs/getting_started/intro_tutorials/05_add_columns.html",
+    "title": "How to create new columns derived from existing columns \u2014 pandas 3.1.0 documentation",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:27.733647+00:00"
+  },
+  "https://pandas.pydata.org/docs/getting_started/intro_tutorials/06_calculate_statistics.html": {
+    "status": 200,
+    "final_url": "https://pandas.pydata.org/docs/getting_started/intro_tutorials/06_calculate_statistics.html",
+    "title": "How to calculate summary statistics \u2014 pandas 3.1.0 documentation",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:27.847309+00:00"
+  },
+  "https://pandas.pydata.org/docs/reference/api/pandas.testing.assert_frame_equal.html": {
+    "status": 200,
+    "final_url": "https://pandas.pydata.org/docs/reference/api/pandas.testing.assert_frame_equal.html",
+    "title": "pandas.testing.assert_frame_equal \u2014 pandas 3.1.0 documentation",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:27.866247+00:00"
+  },
+  "https://pandas.pydata.org/docs/user_guide/missing_data.html": {
+    "status": 200,
+    "final_url": "https://pandas.pydata.org/docs/user_guide/missing_data.html",
+    "title": "Working with missing data \u2014 pandas 3.1.0 documentation",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:27.835280+00:00"
+  },
+  "https://portswigger.net/burp/documentation/desktop/getting-started/intercepting-http-traffic": {
+    "status": 200,
+    "final_url": "https://portswigger.net/burp/documentation/desktop/getting-started/intercepting-http-traffic",
+    "title": "Intercepting HTTP traffic with Burp Proxy - PortSwigger",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:29.187005+00:00"
+  },
+  "https://portswigger.net/web-security/access-control": {
+    "status": 200,
+    "final_url": "https://portswigger.net/web-security/access-control",
+    "title": "Access control vulnerabilities and privilege escalation | Web Security Academy",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:29.015845+00:00"
+  },
+  "https://portswigger.net/web-security/authentication": {
+    "status": 200,
+    "final_url": "https://portswigger.net/web-security/authentication",
+    "title": "Authentication vulnerabilities | Web Security Academy",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:29.009448+00:00"
+  },
+  "https://portswigger.net/web-security/cross-site-scripting": {
+    "status": 200,
+    "final_url": "https://portswigger.net/web-security/cross-site-scripting",
+    "title": "What is cross-site scripting (XSS) and how to prevent it? | Web Security Academy",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:28.759528+00:00"
+  },
+  "https://portswigger.net/web-security/essential-skills/using-burp-scanner-during-manual-testing": {
+    "status": 200,
+    "final_url": "https://portswigger.net/web-security/essential-skills/using-burp-scanner-during-manual-testing",
+    "title": "Using Burp Scanner during manual testing | Web Security Academy",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:28.978121+00:00"
+  },
+  "https://portswigger.net/web-security/sql-injection": {
+    "status": 200,
+    "final_url": "https://portswigger.net/web-security/sql-injection",
+    "title": "What is SQL Injection? Tutorial & Examples | Web Security Academy",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:29.002436+00:00"
+  },
+  "https://portswigger.net/web-security/sql-injection/lab-retrieve-hidden-data": {
+    "status": 200,
+    "final_url": "https://portswigger.net/web-security/sql-injection/lab-retrieve-hidden-data",
+    "title": "Lab: SQL injection vulnerability in WHERE clause allowing retrieval of hidden data | Web Security Academy",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:28.993972+00:00"
+  },
+  "https://prometheus.io/docs/practices/instrumentation/": {
+    "status": 200,
+    "final_url": "https://prometheus.io/docs/practices/instrumentation/",
+    "title": "Instrumentation | Prometheus",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:28.928323+00:00"
+  },
+  "https://scikit-learn.org/stable/auto_examples/linear_model/plot_iris_logistic.html": {
+    "status": 200,
+    "final_url": "https://scikit-learn.org/stable/auto_examples/linear_model/plot_iris_logistic.html",
+    "title": "scikit-learn: machine learning in Python",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:28.863380+00:00"
+  },
+  "https://scikit-learn.org/stable/auto_examples/model_selection/plot_grid_search_digits.html": {
+    "status": 200,
+    "final_url": "https://scikit-learn.org/stable/auto_examples/model_selection/plot_grid_search_digits.html",
+    "title": "Custom refit strategy of a grid search with cross-validation \u2014 scikit-learn 1.9.1 documentation",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:29.326691+00:00"
+  },
+  "https://scikit-learn.org/stable/common_pitfalls.html#data-leakage": {
+    "status": 200,
+    "final_url": "https://scikit-learn.org/stable/common_pitfalls.html",
+    "title": "12. Common pitfalls and recommended practices \u2014 scikit-learn 1.9.1 documentation",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:29.381071+00:00"
+  },
+  "https://scikit-learn.org/stable/datasets/toy_dataset.html": {
+    "status": 200,
+    "final_url": "https://scikit-learn.org/stable/datasets/toy_dataset.html",
+    "title": "9.1. Toy datasets \u2014 scikit-learn 1.9.1 documentation",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:29.345372+00:00"
+  },
+  "https://scikit-learn.org/stable/getting_started.html#fitting-and-predicting-estimator-basics": {
+    "status": 200,
+    "final_url": "https://scikit-learn.org/stable/getting_started.html",
+    "title": "Getting Started \u2014 scikit-learn 1.9.1 documentation",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:29.359347+00:00"
+  },
+  "https://scikit-learn.org/stable/model_persistence.html": {
+    "status": 200,
+    "final_url": "https://scikit-learn.org/stable/model_persistence.html",
+    "title": "11. Model persistence \u2014 scikit-learn 1.9.1 documentation",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:29.053980+00:00"
+  },
+  "https://scikit-learn.org/stable/modules/compose.html": {
+    "status": 200,
+    "final_url": "https://scikit-learn.org/stable/modules/compose.html",
+    "title": "8.1. Pipelines and composite estimators \u2014 scikit-learn 1.9.1 documentation",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:29.223229+00:00"
+  },
+  "https://scikit-learn.org/stable/modules/cross_validation.html": {
+    "status": 200,
+    "final_url": "https://scikit-learn.org/stable/modules/cross_validation.html",
+    "title": "3.1. Cross-validation: evaluating estimator performance \u2014 scikit-learn 1.9.1 documentation",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:29.554173+00:00"
+  },
+  "https://scikit-learn.org/stable/modules/generated/sklearn.utils.check_array.html": {
+    "status": 200,
+    "final_url": "https://scikit-learn.org/stable/modules/generated/sklearn.utils.check_array.html",
+    "title": "check_array \u2014 scikit-learn 1.9.1 documentation",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:29.578739+00:00"
+  },
+  "https://scikit-learn.org/stable/modules/grid_search.html": {
+    "status": 200,
+    "final_url": "https://scikit-learn.org/stable/modules/grid_search.html",
+    "title": "3.2. Tuning the hyper-parameters of an estimator \u2014 scikit-learn 1.9.1 documentation",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:29.270762+00:00"
+  },
+  "https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression": {
+    "status": 200,
+    "final_url": "https://scikit-learn.org/stable/modules/linear_model.html",
+    "title": "1.1. Linear Models \u2014 scikit-learn 1.9.1 documentation",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:29.674616+00:00"
+  },
+  "https://scikit-learn.org/stable/modules/linear_model.html#ordinary-least-squares": {
+    "status": 200,
+    "final_url": "https://scikit-learn.org/stable/modules/linear_model.html",
+    "title": "1.1. Linear Models \u2014 scikit-learn 1.9.1 documentation",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:29.628400+00:00"
+  },
+  "https://scikit-learn.org/stable/modules/model_evaluation.html#classification-metrics": {
+    "status": 200,
+    "final_url": "https://scikit-learn.org/stable/modules/model_evaluation.html",
+    "title": "3.4. Metrics and scoring: quantifying the quality of predictions \u2014 scikit-learn 1.9.1 documentation",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:29.511657+00:00"
+  },
+  "https://scikit-learn.org/stable/modules/model_evaluation.html#dummy-estimators": {
+    "status": 200,
+    "final_url": "https://scikit-learn.org/stable/modules/model_evaluation.html",
+    "title": "3.4. Metrics and scoring: quantifying the quality of predictions \u2014 scikit-learn 1.9.1 documentation",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:29.770827+00:00"
+  },
+  "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics": {
+    "status": 200,
+    "final_url": "https://scikit-learn.org/stable/modules/model_evaluation.html",
+    "title": "3.4. Metrics and scoring: quantifying the quality of predictions \u2014 scikit-learn 1.9.1 documentation",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:29.875041+00:00"
+  },
+  "https://sre.google/workbook/incident-response/": {
+    "status": 200,
+    "final_url": "https://sre.google/workbook/incident-response/",
+    "title": "Google SRE - Root Cause Analysis for Probing Incident",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:29.778037+00:00"
+  },
+  "https://swcarpentry.github.io/shell-novice/02-filedir.html": {
+    "status": 200,
+    "final_url": "https://swcarpentry.github.io/shell-novice/02-filedir.html",
+    "title": "The Unix Shell: Navigating Files and Directories",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:29.941049+00:00"
+  },
+  "https://swcarpentry.github.io/shell-novice/06-script.html": {
+    "status": 200,
+    "final_url": "https://swcarpentry.github.io/shell-novice/06-script.html",
+    "title": "The Unix Shell: Shell Scripts",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:29.887522+00:00"
+  },
+  "https://www.cisa.gov/known-exploited-vulnerabilities-catalog": {
+    "status": 200,
+    "final_url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+    "title": "Known Exploited Vulnerabilities Catalog | CISALock",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:29.998777+00:00"
+  },
+  "https://www.cisa.gov/resources-tools/resources/vulnerability-disclosure-policy-template": {
+    "status": 200,
+    "final_url": "https://www.cisa.gov/resources-tools/resources/vulnerability-disclosure-policy-template",
+    "title": "Vulnerability Disclosure Policy Template | CISALock",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:30.092327+00:00"
+  },
+  "https://www.cisa.gov/secure-our-world/recognize-and-report-phishing": {
+    "status": 200,
+    "final_url": "https://www.cisa.gov/secure-our-world/recognize-and-report-phishing",
+    "title": "Recognize and Report Phishing | CISALock",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:30.166171+00:00"
+  },
+  "https://www.cisa.gov/stopransomware/ive-been-hit-ransomware": {
+    "status": 200,
+    "final_url": "https://www.cisa.gov/stopransomware/ive-been-hit-ransomware",
+    "title": "I've Been Hit By Ransomware! | CISALock",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:30.228394+00:00"
+  },
+  "https://www.cloudflare.com/learning/ddos/glossary/open-systems-interconnection-model-osi/": {
+    "status": 200,
+    "final_url": "https://www.cloudflare.com/learning/ddos/glossary/open-systems-interconnection-model-osi/",
+    "title": "What Is The OSI Model?",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:30.789211+00:00"
+  },
+  "https://www.cloudflare.com/learning/ddos/glossary/tcp-ip/": {
+    "status": 200,
+    "final_url": "https://www.cloudflare.com/learning/ddos/glossary/tcp-ip/",
+    "title": "What is TCP/IP?",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:30.771141+00:00"
+  },
+  "https://www.cloudflare.com/learning/dns/what-is-dns/": {
+    "status": 200,
+    "final_url": "https://www.cloudflare.com/learning/dns/what-is-dns/",
+    "title": "What is DNS? | Learning Center",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:30.986835+00:00"
+  },
+  "https://www.cloudflare.com/learning/network-layer/internet-protocol/": {
+    "status": 200,
+    "final_url": "https://www.cloudflare.com/learning/network-layer/internet-protocol/",
+    "title": "What is the Internet Protocol?",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:37:19.495837+00:00"
+  },
+  "https://www.cloudflare.com/learning/network-layer/what-is-a-network-switch/": {
+    "status": 200,
+    "final_url": "https://www.cloudflare.com/learning/network-layer/what-is-a-network-switch/",
+    "title": "What is a network switch? | Switch vs. router",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:31.005188+00:00"
+  },
+  "https://www.cloudflare.com/learning/network-layer/what-is-a-router/": {
+    "status": 200,
+    "final_url": "https://www.cloudflare.com/learning/network-layer/what-is-a-router/",
+    "title": "What is a router?",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:30.861210+00:00"
+  },
+  "https://www.cloudflare.com/learning/network-layer/what-is-a-subnet/": {
+    "status": 200,
+    "final_url": "https://www.cloudflare.com/learning/network-layer/what-is-a-subnet/",
+    "title": "What is a subnet? | How subnetting works",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:31.199527+00:00"
+  },
+  "https://www.cloudflare.com/learning/network-layer/what-is-routing/": {
+    "status": 200,
+    "final_url": "https://www.cloudflare.com/learning/network-layer/what-is-routing/",
+    "title": "What is routing? | Learning Center",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:31.357009+00:00"
+  },
+  "https://www.falstad.com/circuit/directions.html": {
+    "status": 200,
+    "final_url": "https://www.falstad.com/circuit/directions.html",
+    "title": "",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:30.373370+00:00"
+  },
+  "https://www.getdbt.com/blog/guide-to-dimensional-modeling": {
+    "status": 200,
+    "final_url": "https://www.getdbt.com/blog/guide-to-dimensional-modeling",
+    "title": "A complete guide to dimensional modeling with dbt  | dbt Labs",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:30.620607+00:00"
+  },
+  "https://www.gov.uk/service-manual/design/making-prototypes": {
+    "status": 200,
+    "final_url": "https://www.gov.uk/service-manual/design/making-prototypes",
+    "title": "Making prototypes - Service Manual - GOV.UKGOV.UK",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:30.664242+00:00"
+  },
+  "https://www.gov.uk/service-manual/helping-people-to-use-your-service/testing-for-accessibility": {
+    "status": 200,
+    "final_url": "https://www.gov.uk/service-manual/helping-people-to-use-your-service/testing-for-accessibility",
+    "title": "Testing for accessibility - Service Manual - GOV.UKGOV.UK",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:30.701354+00:00"
+  },
+  "https://www.gov.uk/service-manual/measuring-success/how-to-set-performance-metrics-for-your-service": {
+    "status": 200,
+    "final_url": "https://www.gov.uk/service-manual/measuring-success/how-to-set-performance-metrics-for-your-service",
+    "title": "How to set performance metrics for your service - Service Manual - GOV.UKGOV.UK",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:30.739415+00:00"
+  },
+  "https://www.gov.uk/service-manual/user-research/analyse-a-research-session": {
+    "status": 200,
+    "final_url": "https://www.gov.uk/service-manual/user-research/analyse-a-research-session",
+    "title": "Analyse a research session - Service Manual - GOV.UKGOV.UK",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:30.798574+00:00"
+  },
+  "https://www.gov.uk/service-manual/user-research/contextual-research-and-observation": {
+    "status": 200,
+    "final_url": "https://www.gov.uk/service-manual/user-research/contextual-research-and-observation",
+    "title": "Contextual research and observation - Service Manual - GOV.UKGOV.UK",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:30.827107+00:00"
+  },
+  "https://www.gov.uk/service-manual/user-research/creating-an-experience-map": {
+    "status": 200,
+    "final_url": "https://www.gov.uk/service-manual/user-research/creating-an-experience-map",
+    "title": "Creating an experience map - Service Manual - GOV.UKGOV.UK",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:30.834907+00:00"
+  },
+  "https://www.gov.uk/service-manual/user-research/getting-users-consent-for-research": {
+    "status": 200,
+    "final_url": "https://www.gov.uk/service-manual/user-research/getting-users-consent-for-research",
+    "title": "Getting informed consent for user research - Service Manual - GOV.UKGOV.UK",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:30.843281+00:00"
+  },
+  "https://www.gov.uk/service-manual/user-research/managing-user-research-data-participant-privacy": {
+    "status": 200,
+    "final_url": "https://www.gov.uk/service-manual/user-research/managing-user-research-data-participant-privacy",
+    "title": "Managing user research data and participant privacy - Service Manual - GOV.UKGOV.UK",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:32.325892+00:00"
+  },
+  "https://www.gov.uk/service-manual/user-research/plan-user-research-for-your-service": {
+    "status": 200,
+    "final_url": "https://www.gov.uk/service-manual/user-research/plan-user-research-for-your-service",
+    "title": "Plan user research for your service - Service Manual - GOV.UKGOV.UK",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:30.906124+00:00"
+  },
+  "https://www.gov.uk/service-manual/user-research/research-small-group-workshops": {
+    "status": 200,
+    "final_url": "https://www.gov.uk/service-manual/user-research/research-small-group-workshops",
+    "title": "Researching in small group workshops - Service Manual - GOV.UKGOV.UK",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:32.148253+00:00"
+  },
+  "https://www.gov.uk/service-manual/user-research/sharing-user-research-findings": {
+    "status": 200,
+    "final_url": "https://www.gov.uk/service-manual/user-research/sharing-user-research-findings",
+    "title": "Sharing user research findings - Service Manual - GOV.UKGOV.UK",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:30.897791+00:00"
+  },
+  "https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs": {
+    "status": 200,
+    "final_url": "https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs",
+    "title": "Learning about users and their needs - Service Manual - GOV.UKGOV.UK",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:30.942205+00:00"
+  },
+  "https://www.gov.uk/service-manual/user-research/using-in-depth-interviews": {
+    "status": 200,
+    "final_url": "https://www.gov.uk/service-manual/user-research/using-in-depth-interviews",
+    "title": "Using in-depth interviews - Service Manual - GOV.UKGOV.UK",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:30.950860+00:00"
+  },
+  "https://www.gov.uk/service-manual/user-research/using-moderated-usability-testing": {
+    "status": 200,
+    "final_url": "https://www.gov.uk/service-manual/user-research/using-moderated-usability-testing",
+    "title": "Using moderated usability testing - Service Manual - GOV.UKGOV.UK",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:31.992241+00:00"
+  },
+  "https://www.ibm.com/think/topics/ethernet": {
+    "status": 200,
+    "final_url": "https://www.ibm.com/think/topics",
+    "title": "Think Topics | IBM",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:32.314973+00:00"
+  },
+  "https://www.ibm.com/think/topics/vlan": {
+    "status": 200,
+    "final_url": "https://www.ibm.com/think/topics",
+    "title": "Think Topics | IBM",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:32.681507+00:00"
+  },
+  "https://www.itl.nist.gov/div898/handbook/eda/section3/eda351.htm": {
+    "status": 200,
+    "final_url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda351.htm",
+    "title": "1.3.5.1. Measures of Location",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:32.091294+00:00"
+  },
+  "https://www.itl.nist.gov/div898/handbook/eda/section3/eda352.htm": {
+    "status": 200,
+    "final_url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda352.htm",
+    "title": "1.3.5.2. Confidence Limits for the Mean",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:31.891842+00:00"
+  },
+  "https://www.itl.nist.gov/div898/handbook/eda/section3/eda35h.htm": {
+    "status": 200,
+    "final_url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda35h.htm",
+    "title": "1.3.5.17. Detection of Outliers",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:31.724914+00:00"
+  },
+  "https://www.itl.nist.gov/div898/handbook/eda/section3/scatterp.htm": {
+    "status": 200,
+    "final_url": "https://www.itl.nist.gov/div898/handbook/eda/section3/scatterp.htm",
+    "title": "1.3.3.26. Scatter Plot",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:32.047030+00:00"
+  },
+  "https://www.nist.gov/cyberframework/quick-start-guides": {
+    "status": 200,
+    "final_url": "https://www.nist.gov/cyberframework/quick-start-guides",
+    "title": "CSF 2.0 Quick-Start Guides | NISTLock",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:32.605196+00:00"
+  },
+  "https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page": {
+    "status": 200,
+    "final_url": "https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page",
+    "title": "TLC Trip Record Data - TLC",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:33.544446+00:00"
+  },
+  "https://www.postgresql.org/docs/current/indexes-intro.html": {
+    "status": 200,
+    "final_url": "https://www.postgresql.org/docs/current/indexes-intro.html",
+    "title": "PostgreSQL: Documentation: 18: 11.1.\u00a0Introduction",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:33.364134+00:00"
+  },
+  "https://www.postgresql.org/docs/current/populate.html": {
+    "status": 200,
+    "final_url": "https://www.postgresql.org/docs/current/populate.html",
+    "title": "PostgreSQL: Documentation: 18: 14.4.\u00a0Populating a Database",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:33.380152+00:00"
+  },
+  "https://www.postgresql.org/docs/current/queries-table-expressions.html": {
+    "status": 200,
+    "final_url": "https://www.postgresql.org/docs/current/queries-table-expressions.html",
+    "title": "PostgreSQL: Documentation: 18: 7.2.\u00a0Table Expressions",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:33.429209+00:00"
+  },
+  "https://www.postgresql.org/docs/current/sql-copy.html": {
+    "status": 200,
+    "final_url": "https://www.postgresql.org/docs/current/sql-copy.html",
+    "title": "PostgreSQL: Documentation: 18: COPY",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:34.009657+00:00"
+  },
+  "https://www.postgresql.org/docs/current/sql-insert.html#SQL-ON-CONFLICT": {
+    "status": 200,
+    "final_url": "https://www.postgresql.org/docs/current/sql-insert.html",
+    "title": "PostgreSQL: Documentation: 18: INSERT",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:34.715114+00:00"
+  },
+  "https://www.postgresql.org/docs/current/tutorial-agg.html": {
+    "status": 200,
+    "final_url": "https://www.postgresql.org/docs/current/tutorial-agg.html",
+    "title": "PostgreSQL: Documentation: 18: 2.7.\u00a0Aggregate Functions",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:33.981084+00:00"
+  },
+  "https://www.postgresql.org/docs/current/tutorial-fk.html": {
+    "status": 200,
+    "final_url": "https://www.postgresql.org/docs/current/tutorial-fk.html",
+    "title": "PostgreSQL: Documentation: 18: 3.3.\u00a0Foreign Keys",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:34.992311+00:00"
+  },
+  "https://www.postgresql.org/docs/current/tutorial-join.html": {
+    "status": 200,
+    "final_url": "https://www.postgresql.org/docs/current/tutorial-join.html",
+    "title": "PostgreSQL: Documentation: 18: 2.6.\u00a0Joins Between Tables",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:35.259518+00:00"
+  },
+  "https://www.postgresql.org/docs/current/tutorial-select.html": {
+    "status": 200,
+    "final_url": "https://www.postgresql.org/docs/current/tutorial-select.html",
+    "title": "PostgreSQL: Documentation: 18: 2.5.\u00a0Querying a Table",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:35.544774+00:00"
+  },
+  "https://www.theodinproject.com/lessons/foundations-how-does-the-web-work": {
+    "status": 200,
+    "final_url": "https://www.theodinproject.com/lessons/foundations-how-does-the-web-work",
+    "title": "How Does the Web Work? | The Odin Project\n    Close sidebarOdin LogoHome iconAll Paths iconAbout iconSupport Us iconCommunity iconGet started icontheme iconSign in iconOdin Logotheme iconOpen mobile menuToggle course contentsPrevious lessonNext lessonOdin LogoGitHubDiscordFacebookTwitter",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:34.747007+00:00"
+  },
+  "https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/": {
+    "status": 200,
+    "final_url": "https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/",
+    "title": "Disclosure (Show/Hide) Pattern | APG | WAI | W3CW3C homepageWeb Accessibility Initiative (WAI) homepageDisclosure (Show/Hide) Pattern",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:33.584223+00:00"
+  },
+  "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html": {
+    "status": 200,
+    "final_url": "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html",
+    "title": "Understanding Success Criterion 1.4.3: Contrast (Minimum) | WAI | W3CW3C homepageWeb Accessibility Initiative (WAI) homepageStylized 'MONOGRAM' text using a geometric typeface made of rectangles and circlesA button using an uppercase \u2018X\u2019 and a button with a greater-than characterGrey button with non-contrasting grey text.",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:33.633338+00:00"
+  },
+  "https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html": {
+    "status": 200,
+    "final_url": "https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html",
+    "title": "Understanding Success Criterion 2.4.7: Focus Visible | WAI | W3CW3C homepageWeb Accessibility Initiative (WAI) homepage",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:33.672036+00:00"
+  },
+  "https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html": {
+    "status": 200,
+    "final_url": "https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html",
+    "title": "Understanding Success Criterion 2.5.8: Target Size (Minimum) | WAI | W3CW3C homepageWeb Accessibility Initiative (WAI) homepage",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:33.717270+00:00"
+  },
+  "https://www.w3.org/WAI/test-evaluate/preliminary/": {
+    "status": 200,
+    "final_url": "https://www.w3.org/WAI/test-evaluate/preliminary/",
+    "title": "Easy Checks \u2013 A First Review of Web Accessibility | Web Accessibility Initiative (WAI) | W3CW3C homepageWeb Accessibility Initiative (WAI) homepage",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:33.805972+00:00"
+  },
+  "https://www.w3.org/WAI/tutorials/forms/labels/": {
+    "status": 200,
+    "final_url": "https://www.w3.org/WAI/tutorials/forms/labels/",
+    "title": "Labeling Controls | Web Accessibility Initiative (WAI) | W3CW3C homepageWeb Accessibility Initiative (WAI) homepage",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:33.855647+00:00"
+  },
+  "https://www.w3.org/WAI/tutorials/forms/notifications/": {
+    "status": 200,
+    "final_url": "https://www.w3.org/WAI/tutorials/forms/notifications/",
+    "title": "User Notification | Web Accessibility Initiative (WAI) | W3CW3C homepageWeb Accessibility Initiative (WAI) homepage",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:33.914916+00:00"
+  },
+  "https://www.w3.org/WAI/tutorials/menus/structure/": {
+    "status": 200,
+    "final_url": "https://www.w3.org/WAI/tutorials/menus/structure/",
+    "title": "Menu Structure | Web Accessibility Initiative (WAI) | W3CW3C homepageWeb Accessibility Initiative (WAI) homepage",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:33.955797+00:00"
+  },
+  "https://www.w3.org/WAI/tutorials/page-structure/regions/": {
+    "status": 200,
+    "final_url": "https://www.w3.org/WAI/tutorials/page-structure/regions/",
+    "title": "Page Regions | Web Accessibility Initiative (WAI) | W3CW3C homepageWeb Accessibility Initiative (WAI) homepage",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:33.994919+00:00"
+  },
+  "https://www.wireshark.org/docs/wsug_html_chunked/ChCapCaptureFilterSection.html": {
+    "status": 200,
+    "final_url": "https://www.wireshark.org/docs/wsug_html_chunked/ChCapCaptureFilterSection.html",
+    "title": "4.10.\u00a0Filtering while capturing",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:34.999237+00:00"
+  },
+  "https://www.wireshark.org/docs/wsug_html_chunked/ChUsePacketDetailsPaneSection.html": {
+    "status": 200,
+    "final_url": "https://www.wireshark.org/docs/wsug_html_chunked/ChUsePacketDetailsPaneSection.html",
+    "title": "3.19.\u00a0The \u201cPacket Details\u201d Pane",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:34.046625+00:00"
+  },
+  "https://www.wireshark.org/docs/wsug_html_chunked/ChUseStatisticsMenuSection": {
+    "status": 200,
+    "final_url": "https://www.wireshark.org/docs/wsug_html_chunked/ChUseStatisticsMenuSection",
+    "title": "3.11.\u00a0The \u201cStatistics\u201d Menu",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:37:19.318217+00:00"
+  },
+  "https://www.wireshark.org/docs/wsug_html_chunked/ChapterIntroduction.html": {
+    "status": 200,
+    "final_url": "https://www.wireshark.org/docs/wsug_html_chunked/ChapterIntroduction.html",
+    "title": "Chapter\u00a01.\u00a0Introduction",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:35.123093+00:00"
+  },
+  "https://www.wireshark.org/docs/wsug_html_chunked/ChapterWork.html": {
+    "status": 200,
+    "final_url": "https://www.wireshark.org/docs/wsug_html_chunked/ChapterWork.html",
+    "title": "Chapter\u00a06.\u00a0Working With Captured Packets",
+    "anchor_present": true,
+    "checked_at": "2026-11-01T16:36:34.163112+00:00"
+  }
+}

@@ -37,6 +37,7 @@ class ContextFact(Contract):
         "topic_progress",
         "branch_choice",
         "pdf_analysis",
+        "reported_skill",
     ]
     source_id: Identifier
     source_revision: Revision
@@ -52,6 +53,8 @@ class RecommendationContext(Contract):
 
     @model_validator(mode="after")
     def unique_facts(self):
+        if self.schema_version == "1" and any(f.source == "reported_skill" for f in self.facts):
+            raise ValueError("Reported skill facts require context v2")
         if len({fact.id for fact in self.facts}) != len(self.facts):
             raise ValueError("Context fact identifiers must be unique.")
         if any(fact.source == "discovery" for fact in self.facts) and self.discovery is None:
@@ -68,6 +71,57 @@ class RecommendationContext(Contract):
         return self
 
 
+class OccupationalReference(Contract):
+    id: UUID
+    career_id: UUID
+    release_id: UUID
+    record_id: UUID
+    competency_id: UUID
+    label: str
+    definition: str
+    occupation_id: UUID
+    source_id: str
+    source_title: str = "Unknown source title"
+    source_version: str = "Unknown version"
+    source_sha256: str = "unknown"
+    reuse_notes: str = "Unknown reuse metadata"
+    source_role_title: str = "Unknown role"
+    career_relationship: str = "unassessed"
+    locator: str
+    related_skill_ids: list[UUID]
+    relationship: Literal["partial", "source_reference"]
+    limitation: str
+    evidence_type: Literal["esco_occupation_skill"] | None = None
+    source_relationship: Literal["essential", "optional"] | None = None
+
+
+class RecommendationContextV2(RecommendationContext):
+    schema_version: Literal["2"] = "2"
+    skill_profile_version: Annotated[int, Field(ge=0)]
+    occupational_release_id: UUID | None
+    source_references: list[OccupationalReference] = Field(default_factory=list, max_length=72)
+    coverage_limitations: list[str] = Field(default_factory=list)
+
+    @model_validator(mode="after")
+    def skill_provenance(self):
+        for fact in self.facts:
+            if (
+                fact.source == "reported_skill"
+                and fact.source_revision != self.skill_profile_version
+            ):
+                raise ValueError("Skill evidence must match the saved skill version")
+        if len({r.id for r in self.source_references}) != len(self.source_references):
+            raise ValueError("Duplicate occupational references")
+        if any(r.release_id != self.occupational_release_id for r in self.source_references):
+            raise ValueError("Occupational release mismatch")
+        return self
+
+
+SavedRecommendationContext = Annotated[
+    RecommendationContext | RecommendationContextV2, Field(discriminator="schema_version")
+]
+
+
 class UntrustedRecommendationItem(Contract):
     career_id: UUID
     reason: Annotated[str, Field(min_length=1, max_length=1200)]
@@ -76,6 +130,7 @@ class UntrustedRecommendationItem(Contract):
     roadmap_id: UUID | None = None
     # Reserved destination only; authored next-topic guidance remains Progress-owned.
     starting_topic_id: UUID | None = None
+    source_reference_ids: list[UUID] = Field(default_factory=list)
 
 
 class UntrustedRecommendationOutput(Contract):
@@ -111,6 +166,15 @@ def validate_recommendations(
             raise ValueError("Career is absent from the published catalog snapshot.")
         if not set(item.evidence_fact_ids) <= facts:
             raise ValueError("Evidence does not resolve to the input context revision.")
+        source_refs = {
+            r.id for r in getattr(context, "source_references", []) if r.career_id == item.career_id
+        }
+        if (
+            len(set(item.source_reference_ids)) != len(item.source_reference_ids)
+            or not set(item.source_reference_ids) <= source_refs
+            or (source_refs and not item.source_reference_ids)
+        ):
+            raise ValueError("Source citations must resolve to supplied career-specific references")
         if item.roadmap_id is not None and item.roadmap_id not in allowed[item.career_id]:
             raise ValueError("Roadmap does not belong to the selected career.")
         if item.starting_topic_id is not None and (
@@ -126,6 +190,7 @@ class RequestRecommendations(Contract):
     idempotency_key: UUID
     expected_context_revision: Revision
     catalog_release_id: UUID
+    occupational_release_id: UUID | None = None
 
 
 class RetryRecommendations(Contract):
@@ -148,6 +213,11 @@ class RecommendationRun(Contract):
     failure_code: FailureCode | None
     items: Annotated[list[ValidatedRecommendationItem], Field(max_length=3)]
     evidence: list[ContextFact] = Field(default_factory=list)
+    source_references: list[OccupationalReference] = Field(default_factory=list)
+    coverage_limitations: list[str] = Field(default_factory=list)
+    payload_erased_at: datetime | None = None
+    occupational_release_id: UUID | None = None
+    skill_profile_version: Annotated[int, Field(ge=0)] | None = None
 
     @model_validator(mode="after")
     def truthful_status(self):
@@ -169,3 +239,5 @@ class RecommendationState(Contract):
     catalog_release_id: UUID | None
     available: bool
     unavailable_reason: str | None
+    occupational_release_id: UUID | None = None
+    has_reported_skills: bool = False

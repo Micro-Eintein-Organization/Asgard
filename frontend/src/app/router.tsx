@@ -12,11 +12,16 @@ import {
   ResultsPage,
   AuthenticatedProfilePage,
   ProfileSetupPage,
+  CareerComparisonPage,
+  CareerSourcesPage,
 } from "./screens";
 import { appRoutes, routes } from "@/lib/routes";
 import { StatePanel } from "@/components/shared";
 import { ProtectedRoute } from "@/auth/protected-route";
 import { CareerDestination } from "./career-navigation";
+import { EscoReferencePage } from "@/features/catalog/esco";
+
+import { CounselorPage } from "@/features/ai-guidance";
 
 export const router = createBrowserRouter([
   {
@@ -46,7 +51,11 @@ export const router = createBrowserRouter([
           { path: appRoutes.welcome, element: <WelcomePage /> },
           { path: appRoutes.discovery, element: <DiscoveryPage /> },
           { path: appRoutes.results, element: <ResultsPage /> },
+          { path: "/counselor", element: <CounselorPage /> },
           { path: appRoutes.careers, element: <CatalogPage /> },
+          { path: "/catalog/esco", element: <EscoReferencePage /> },
+          { path: "/careers/compare", element: <CareerComparisonPage /> },
+          { path: "/careers/:careerId/sources", element: <CareerSourcesPage /> },
           { path: appRoutes.roadmap(":careerId"), element: <RoadmapPage /> },
           {
             path: appRoutes.roadmaps,

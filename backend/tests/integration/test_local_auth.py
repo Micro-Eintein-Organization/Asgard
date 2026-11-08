@@ -320,3 +320,64 @@ def test_refresh_restores_access(stack, accounts):
     )
     assert restored.status_code == 200
     assert restored.json()["profile"]["first_name"] == "Persisted after refresh"
+
+
+def test_competency_persistence_isolation_and_removal_revision(stack, accounts):
+    """Requires migrated schema and at least one reviewed published skill."""
+    _, api, dsn, _, _, _ = stack
+    a, b = accounts
+    headers = {"Authorization": f"Bearer {a['access_token']}"}
+    other = {"Authorization": f"Bearer {b['access_token']}"}
+    references = api.get("/api/v1/competencies?limit=1", headers=headers)
+    assert references.status_code == 200
+    assert references.json()["items"], (
+        "Publish a reviewed skill fixture in this isolated stack first"
+    )
+    cid = references.json()["items"][0]["id"]
+    path = f"/api/v1/me/competencies/{cid}"
+    initial = api.get("/api/v1/me/competencies", headers=headers).json()
+    version = initial["version"]
+    learning = api.get("/api/v1/me/learning", headers=headers).json()
+    result = api.patch(path, headers=headers, json={"expected_version": version, "level": 0})
+    assert result.status_code == 200
+    version += 1
+    assert any(
+        item["competency_id"] == cid and item["level"] == 0 for item in result.json()["items"]
+    )
+    assert (
+        api.patch(
+            path, headers=headers, json={"expected_version": version - 1, "level": 4}
+        ).status_code
+        == 409
+    )
+    assert not api.get("/api/v1/me/competencies", headers=other).json()["items"]
+    with psycopg.connect(dsn) as connection:
+        assert connection.execute("SELECT current_user").fetchone()[0] == "asgard_app"
+        connection.execute("SELECT set_config('asgard.user_id', %s, true)", (a["id"],))
+        assert (
+            connection.execute(
+                "SELECT count(*) FROM asgard_private.user_competencies WHERE user_id=%s", (b["id"],)
+            ).fetchone()[0]
+            == 0
+        )
+    with pytest.raises(psycopg.errors.InsufficientPrivilege), psycopg.connect(dsn) as connection:
+        connection.execute("SELECT set_config('asgard.user_id', %s, true)", (b["id"],))
+        connection.execute(
+            "INSERT INTO asgard_private.user_competencies(user_id,competency_id,label,level) "
+            "VALUES(%s,%s,'probe',4)",
+            (a["id"], cid),
+        )
+    removed = api.post(path + "/remove", headers=headers, json={"expected_version": version})
+    assert removed.status_code == 200
+    version += 1
+    assert not any(item["competency_id"] == cid for item in removed.json()["items"])
+    recreated = api.patch(path, headers=headers, json={"expected_version": version, "level": None})
+    assert recreated.status_code == 200
+    assert any(
+        item["competency_id"] == cid and item["level"] is None for item in recreated.json()["items"]
+    )
+    assert (
+        api.post(path + "/remove", headers=headers, json={"expected_version": version}).status_code
+        == 409
+    )
+    assert api.get("/api/v1/me/learning", headers=headers).json() == learning

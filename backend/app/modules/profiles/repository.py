@@ -7,7 +7,7 @@ from app.core.errors import APIError
 from app.core.security import Identity, unauthorized
 from app.modules.profiles.schemas import Profile, ProfileUpdate
 
-FIELDS = "first_name, surname, version, created_at, updated_at"
+FIELDS = "first_name, surname, version, created_at, updated_at, photo_id IS NOT NULL AS has_photo"
 
 
 class ProfileRepository:
@@ -91,19 +91,41 @@ class ProfileRepository:
             )
             return Profile.model_validate(row) if row else None
 
-    async def update(self, identity: Identity, update: ProfileUpdate) -> Profile:
-        params = update.model_dump() | {"uid": str(identity.user_id)}
+    async def update(
+        self, identity: Identity, update: ProfileUpdate, *, change_photo=False, photo_id=None
+    ) -> Profile:
+        params = update.model_dump() | {
+            "uid": str(identity.user_id), "change_photo": change_photo, "photo_id": photo_id,
+        }
         async with self.transaction(identity) as connection:
+            previous = None
+            if change_photo:
+                previous = await connection.scalar(text(
+                    "SELECT photo_id FROM asgard_private.profiles "
+                    "WHERE user_id=CAST(:uid AS uuid) FOR UPDATE"
+                ), params)
+                if photo_id is not None:
+                    reserved = await connection.scalar(text(
+                        "DELETE FROM asgard_private.profile_photo_cleanup "
+                        "WHERE user_id=CAST(:uid AS uuid) AND photo_id=:photo_id "
+                        "AND ready_at > clock_timestamp() RETURNING photo_id"
+                    ), params)
+                    if reserved is None:
+                        raise APIError(
+                            409, "photo_expired", "Choose the photo again before saving."
+                        )
             if update.expected_version == 0:
                 statement = (
-                    "INSERT INTO asgard_private.profiles (user_id, first_name, surname) "
-                    "VALUES (CAST(:uid AS uuid), :first_name, :surname) "
+                    "INSERT INTO asgard_private.profiles (user_id, first_name, surname, photo_id) "
+                    "VALUES (CAST(:uid AS uuid), :first_name, :surname, :photo_id) "
                     f"ON CONFLICT (user_id) DO NOTHING RETURNING {FIELDS}"
                 )
             else:
                 statement = (
                     "UPDATE asgard_private.profiles SET first_name = :first_name, "
                     "surname = :surname, "
+                    "photo_id = CASE WHEN :change_photo THEN CAST(:photo_id AS uuid) "
+                    "ELSE photo_id END, "
                     "version = version + 1, updated_at = statement_timestamp() "
                     "WHERE user_id = CAST(:uid AS uuid) AND version = :expected_version "
                     f"RETURNING {FIELDS}"
@@ -113,4 +135,9 @@ class ProfileRepository:
                 raise APIError(
                     409, "profile_conflict", "Your profile changed. Reload it before saving again."
                 )
+            if previous is not None:
+                await connection.execute(text(
+                    "INSERT INTO asgard_private.profile_photo_cleanup (user_id, photo_id) "
+                    "VALUES (CAST(:uid AS uuid), :previous) ON CONFLICT DO NOTHING"
+                ), params | {"previous": previous})
             return Profile.model_validate(row)

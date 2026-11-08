@@ -12,6 +12,7 @@ function setup(description = "Build website interfaces. Learn layouts and tools.
   const data: Record<string, unknown> = {
     categories: [{ id: "software", title: "Software and AI" }, { id: "hardware", title: "Hardware & Embedded Systems" }],
     preferences: {}, recommendations: { current: null }, careers: { items: [career], total: 1 },
+    "catalog-field-counts": { total: 2, byCategory: { software: 2 } },
     progress: [], summary: {},
   };
   vi.mocked(useCoreQuery).mockImplementation(key => ({ data: data[String(key[0])], isPending: false, isError: false }) as never);
@@ -42,15 +43,19 @@ describe("compact connected catalog", () => {
     expect(description.textContent).toMatch(/…$/);
     expect(screen.getByRole("button", { name: "View Frontend Developer roadmap" })).toBeVisible();
   });
-  it("separates number/label spans and preserves search while changing categories", () => {
+  it("shows published field counts independently of the current search and category", () => {
     setup();
     render(<MemoryRouter initialEntries={["/careers?q=HTML"]}><RoleCatalog /><Location /></MemoryRouter>);
     const nav = screen.getByRole("navigation", { name: "Career categories" });
     const hardware = within(nav).getByRole("button", { name: "Hardware & Embedded Systems" });
-    expect(hardware.querySelector(".category-number")).toHaveTextContent("02");
+    expect(hardware.querySelector(".category-number")).toHaveTextContent("0");
+    expect(hardware).toHaveAttribute("aria-description", "0 available careers");
+    expect(within(nav).getByRole("button", { name: "Software and AI" }).querySelector(".category-number")).toHaveTextContent("2");
+    expect(within(nav).getByRole("button", { name: "All fields" }).querySelector(".category-number")).toHaveTextContent("2");
     expect(hardware.querySelector(".category-name")).toHaveTextContent("Hardware & Embedded Systems");
     fireEvent.click(hardware);
     expect(screen.getByTestId("location")).toHaveTextContent("q=HTML&category=Hardware");
     expect(hardware).toHaveAttribute("aria-pressed", "true");
+    expect(hardware.querySelector(".category-number")).toHaveTextContent("0");
   });
 });

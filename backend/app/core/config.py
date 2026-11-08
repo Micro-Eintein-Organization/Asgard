@@ -19,12 +19,17 @@ class Settings(BaseSettings):
     auth_enabled: bool = False
     auth_issuer: str = "http://127.0.0.1:55321/auth/v1"
     database_url: SecretStr = SecretStr("")
+    ai_guidance_enabled: bool = False
+    exa_api_key: SecretStr = SecretStr("")
+    ai_search_domains: str = ""
     groq_enabled: bool = False
     groq_api_key: SecretStr = SecretStr("")
     groq_model: str = Field(default="openai/gpt-oss-120b", min_length=1, max_length=120)
     groq_max_completion_tokens: int = Field(default=4096, ge=1024, le=8192)
     documents_enabled: bool = False
     documents_processing_enabled: bool = False
+    resume_skill_review_enabled: bool = False
+    profile_photos_enabled: bool = False
     documents_real_data_approved: bool = False
     storage_service_key: SecretStr = SecretStr("")
 
@@ -32,6 +37,8 @@ class Settings(BaseSettings):
     def hosted_configuration(self):
         if self.deployment_environment == "local":
             return self
+        if self.profile_photos_enabled:
+            raise ValueError("Profile photos are enabled only for local development.")
         endpoint = urlsplit(self.supabase_url)
         if endpoint.scheme != "https" or not endpoint.hostname or endpoint.hostname in (
             "localhost", "127.0.0.1", "::1",
@@ -59,7 +66,7 @@ class Settings(BaseSettings):
             parse_qs(database.query).get("sslmode") != ["verify-full"]
         ):
             raise ValueError("Hosted database requires a remote host and verified TLS.")
-        if self.documents_processing_enabled:
+        if self.documents_processing_enabled or self.resume_skill_review_enabled:
             raise ValueError("PDF processing remains deferred for hosted preparation.")
         return self
 
