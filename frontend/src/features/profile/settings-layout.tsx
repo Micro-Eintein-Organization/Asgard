@@ -1,9 +1,6 @@
 import type { ReactNode } from "react";
 import { Link, NavLink, useLocation } from "react-router";
-import { UserRound } from "lucide-react";
 import type { FieldErrors, UseFormRegister } from "react-hook-form";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { appRoutes as pageRoutes } from "@/lib/routes";
@@ -87,29 +84,11 @@ export function SettingsLayout({ children, accountAnchor, action }: {
   );
 }
 
-export function ProfileDetailsCard({ children }: { children: ReactNode }) {
+export function ProfileDetailsCard({ children, photo }: { children: ReactNode; photo: ReactNode }) {
   return (
-    <Card className="settings-card">
-      <header>
-        <h2>Personal details</h2>
-        <p>
-          Your name is enough to complete a basic profile. A photo is optional.
-        </p>
-      </header>
-      <div className="profile-photo">
-        <div className="avatar-placeholder">
-          <UserRound size={27} aria-hidden="true" />
-        </div>
-        <div>
-          <Button disabled variant="outline">
-            Change photo
-          </Button>
-          <p className="field-help mt-2">
-            Photo uploads are not available yet.
-          </p>
-        </div>
-      </div>
+    <section className="settings-identity" aria-label="Personal details">
+      {photo}
       {children}
-    </Card>
+    </section>
   );
 }

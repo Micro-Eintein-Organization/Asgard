@@ -6,6 +6,7 @@ import { coreApi, useCoreMutation, useCoreQuery } from "@/features/core/data";
 import { useProfileEditor } from "@/features/profile/use-profile-editor";
 import { SettingsScreen } from "./SettingsScreen";
 
+vi.mock("@/features/competencies/profile-skills", () => ({ ProfileSkills: () => <section aria-label="Skills editor" /> }));
 vi.mock("@/auth/context", () => ({ useAuth: () => ({ user: { id: "owner" } }) }));
 vi.mock("@/auth/transport", () => ({ isCurrentAccount: () => true }));
 vi.mock("@/app/logout", () => ({ useLogout: () => vi.fn() }));

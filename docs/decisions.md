@@ -1,5 +1,242 @@
 # Asgard: Decisions and delivery gates
 
+## W08 implementation scope, 2026-11-06
+
+Project owner @YakisobaNissin selected a session-only read-only counselor, automatic
+AI insights for submitted career pairs, and live public web retrieval in the
+implementation request. Codex owns implementation. Exa credentials, source domains,
+provider data handling, and the quota migration require owner review before local
+activation. The guidance flag defaults off. This advances W08 source implementation
+from the final-stage sequence while leaving activation gated.
+[Implementation record](features/ai-guidance.md)
+
+
+## Occupational reference scope, 2026-11-06
+
+The project owner confirmed that Asgard keeps its current twelve roadmap-backed
+careers as the recommendation candidate roster. Broader ESCO occupations and
+skills remain in the separate reference catalog. An additional reference
+occupation becomes an Asgard career only through future work that gives it an
+authored roadmap and reviewed career mapping. This direction does not imply a
+full O*NET import or clear pending reuse/content review. Recorded from the
+owner's “yes” in this conversation on 2026-11-06. See the [W02 roadmap](post-mvp-roadmap.md#pm-w02-reviewed-occupational-evidence).
+
+## W03 Profile and resume-reader scope, 2026-11-06
+
+The project owner approved including an optional resume-assisted skill review
+within Profile. Keep manual selection and a skip path. Resume extraction may
+suggest skill candidates with source passages; the learner reviews them and
+provides their own experience report before anything enters the profile. Keep
+resume and extracted content under the private document lifecycle, with deletion
+and replacement cleanup. This changes the plan only; extraction method, consent,
+retention and provider use remain to be reviewed before coding. OCR and other
+file formats remain deferred. Scope reference: the owner's “yea. and also that
+is in the profile section right?” in this conversation, 2026-11-06. See the
+[W03 plan](post-mvp-roadmap.md#pm-w03-user-confirmed-competency-profile) and
+[competency profile specification](specs/competency-comparison.md#planned-w03-resume-assisted-profile-review-2026-11-06).
+
+## W04 local recommendation activation, 2026-11-06
+
+The project owner directed that W04 include local activation of the staged
+ESCO-backed recommendation evidence without waiting for the two-model quality
+evaluation. The evaluation is waived for this local activation and must be
+recorded as not run, not passed. This does not authorize hosted publication or
+claim recommendation quality has been established. Recorded from the owner's
+“no need for the quality gate, activate already in the plan” in this conversation,
+2026-11-06. See the [W04 roadmap](post-mvp-roadmap.md#pm-w04-skill-comparison-and-recommendation-integration)
+and [ESCO implementation guide](features/esco-reference-catalog.md#owner-directed-local-recommendation-activation-2026-11-06).
+
+## W04 recommendation presentation, 2026-11-06
+
+The project owner selected the existing Recommendations results page as the
+durable home for saved recommendations. Reuse its current Dashboard shortcut;
+do not add a separate notification screen. Keep Roadmap focused on learning, with
+no comparison panel. Show W04 skill comparisons only through each result's
+“Why this was suggested” and expandable “Evidence used” sections. Keep W06's
+two-career comparison on its separate page. Recorded from the owner's “yes” in
+this conversation, 2026-11-06. See the [W04 roadmap](post-mvp-roadmap.md#pm-w04-skill-comparison-and-recommendation-integration).
+
+## W08 final-stage improvement, 2026-11-06
+
+The project owner chose to keep the single bounded AI counselor in the roadmap
+as a final-stage optional improvement, after the core app flows are settled. It
+is not a required part of the current delivery. W01's architecture decision and
+the W08 privacy, authorization and confirmation boundaries remain prerequisites
+before implementation. Recorded from the owner's “yea keep it in the plan as
+one final improvement” in this conversation, 2026-11-06. See the
+[W08 roadmap](post-mvp-roadmap.md#pm-w08-one-bounded-ai-counselor).
+
+## W09 optional assessment, 2026-11-06
+
+The project owner confirmed that an official interest assessment remains
+optional future work. Keep it separate from Quick Discovery; no instrument or
+integration is selected by this decision. Recorded from the owner's “yea
+optional” in this conversation, 2026-11-06. See the
+[W09 roadmap](post-mvp-roadmap.md#pm-w09-optional-official-interest-assessment).
+
+## W11 optional labor-market data, 2026-11-06
+
+The project owner kept W11 as optional future work. Existing DICT/NICS and
+Philippine Skills Framework records are occupational competency sources; they do
+not replace the distinct job-listing observations proposed by W11. No collection
+is authorized by this decision. Recorded from the owner's “yea optional” in this
+conversation, 2026-11-06. See the
+[W11 roadmap](post-mvp-roadmap.md#pm-w11-philippine-labor-market-observations).
+
+## W12 practical evidence scope, 2026-11-06
+
+The project owner selected a lightweight record of product verification,
+limitations and user-facing acceptance. Participant studies, psychological
+outcome claims and a research paper are deferred unless the owner later chooses
+a research goal. This does not mark any unrun check as passed. Recorded from the
+owner's “yes” to keeping practical evidence while deferring participant studies
+and research claims, 2026-11-06. See the
+[W12 roadmap](post-mvp-roadmap.md#pm-w12-evaluation-and-research-record).
+
+## Learner journey presentation simplification, 2026-11-05
+
+The project owner, self-identified as @YakisobaNissin in this conversation,
+selected these plan changes: retain the current Discovery flow and schedule its
+redesign as the final improvement; focus W06 on differences between two careers
+with shortlist and notes secondary; remove W07 practice and reflection UI from
+Roadmap and Dashboard for now while preserving its API, migration and stored data
+dormantly. This approves the product direction and documentation update only;
+the W06/W07 UI changes have not been implemented or technically reviewed.
+Recorded from the owner's selections in this conversation on 2026-11-05. See the
+[roadmap update](post-mvp-roadmap.md#learner-journey-simplification-direction-2026-11-05)
+and [W07 implementation guide](features/learning-guidance-and-reflection.md#owner-directed-presentation-rework-2026-11-05).
+
+## Career exploration and saved alternatives, 2026-11-05
+
+Activation update: the owner approved the concrete one-migration shortlist bundle. It is now applied locally; original-data checks and the focused learner journey passed. See [final evidence](features/career-comparison-and-shortlist.md#normal-activation-and-learner-journey-2026-11-05).
+
+The owner selected one coherent career-first experience → two-career comparison → private saved alternative → learning-topic journey. Codex implements; @YakisobaNissin reviews technical changes. Existing identities, design, privacy erasure and learning state remain intact. New shortlist persistence requires final concrete normal-environment review. PDF, hosting and additional account controls stay deferred. See the [owning specification](specs/career-exploration-comparison.md) and [implementation status](features/career-comparison-and-shortlist.md).
+
+
+## Career-evidence local activation approved/applied, 2026-11-05
+
+After reviewing the concrete hashed bundle, the owner answered **Approve local
+activation** for local `asgard-foundation`. Both additive migrations and all-twelve
+publication were applied. Original private data/skill catalog preservation, READY
+startup and normal authenticated smoke passed; provider configuration is unchanged.
+This approves local testing, not independent content, live quality or hosted release.
+See [execution evidence](features/career-evidence-recommendations.md#normal-activation-completed-2026-11-05).
+
+## Integrated career-evidence release ready for local review, 2026-11-04
+
+The owner approved end-to-end implementation and then requested fast-tracked
+verification. Runtime integration and the isolated synthetic-provider browser
+journey passed; existing focused evidence was reused. The concrete numbered SQL
+and publication bundle is ready for the final normal-environment review required
+by the approved plan. No normal activation or independent content approval is
+recorded. See [evidence and deferred checks](features/career-evidence-recommendations.md#integrated-local-release-acceptance-2026-11-04).
+
+## Local-test career integration approval, 2026-11-04
+
+The owner selected local testing for all twelve careers and experience-based
+exploration when Discovery interests are absent. The user then explicitly identified
+themselves as YakisobaNissin and approved the supplied integration plan in chat.
+Record this as technical plan/contract approval by that self-identified reviewer,
+not independent content approval or completed runtime acceptance. The
+[integration contract](specs/career-evidence-integration.md) owns the implementation
+boundary; [delivery evidence](features/career-evidence-recommendations.md#local-test-integration-preparation-2026-11-04)
+records the prepared overlay, isolated reference-storage checks and unfinished work.
+Normal database activation requires the concrete publication review after integration
+checks. Independent content reviewer remains unassigned.
+
+
+
+
+
+## Twelve-career agent review packet, 2026-11-04
+
+The owner requested the bounded twelve-career evidence review. Codex prepared an
+inactive policy-assisted review covering all inherited records, existing skills and
+learning topics, preserving native scales and private rating identities. This is
+agent-proposed scope/partial-coverage evidence, not independent expert approval.
+Disputed ratings remain withheld and publication/inference flags remain false.
+See [review method, results and limits](features/career-evidence-recommendations.md#twelve-career-policy-assisted-agent-review-2026-11-04).
+Runtime recommendation integration and content-review assignment remain pending.
+
+## Occupational originals verified, 2026-11-04
+
+The owner supplied the original research files; all 20 match the recorded SHA-256
+and byte sizes. This resolves the missing-originals issue for this packet, without
+establishing independent semantic approval. Two original PDF ambiguities were
+inspected and recorded conservatively. The packet remains inactive pending full
+review and shared-contract approval. See
+[source verification](features/career-evidence-recommendations.md#original-source-verification-2026-11-04).
+
+## Full occupational evidence preparation, 2026-11-04
+
+The owner requested the full twelve-career evidence/recommendation plan: full
+applicable source profiles, grouped reference levels, interests plus experience,
+one release activation, and erasure of obsolete skill-derived result payloads.
+Codex prepared a durable inactive research packet and structural validator. No
+semantic approval, source-original hash verification or recommendation integration
+is claimed. Shared contract review and independent content approval remain pending;
+existing local-test behavior is unchanged. See the
+[implementation status](features/career-evidence-recommendations.md) and
+[technical proposal](specs/career-evidence-integration.md).
+
+## Owner-authorized local testing, 2026-11-04
+
+After setup stopped on the new pending migration, the owner explicitly requested
+applying it and implementing all required local activation so they could test.
+The single competency migration and 120 Asgard-authored mappings are now installed
+in the normal local environment, preserving all pre-existing private-table digests.
+This is a local-test publication exception with independent content/code review
+still pending; it does not approve hosted use or claim validated occupational
+requirements. See [activation evidence](features/competency-comparison.md#normal-local-test-activation-2026-11-04).
+
+## Docker verification follow-up, 2026-11-04
+
+The resumed competency checks passed the isolated migration/private-state upgrade,
+draft/repeat/conflict publication, 21 pinned-container unit/Auth integration cases,
+and scoped Chrome persistence/comparison/removal/layout/focus checks. SQL policy
+quoting, readback ordering and comparison-trigger contrast were corrected. Normal
+migration/activation, real content approval and independent human review remain
+pending. See [dated execution evidence](features/competency-comparison.md#resumed-docker-acceptance-2026-11-04).
+This does not change final-MVP or hosted release gates.
+
+## Implementation follow-up, 2026-11-04
+
+The owner subsequently approved proceeding with the proposed migration/API scope
+and selected Anti Slop during. Skill-profile/comparison source and generated clients
+are now implemented. Independent review, database activation, content publication
+and end-to-end acceptance remain pending; earlier preparation-only status below is
+historical. See [implementation evidence and limitations](features/competency-comparison.md).
+No final-MVP release gate is marked complete by this update.
+
+
+## ESCO integration scope resolution (2026-11-05)
+
+The project owner and technical reviewer, @YakisobaNissin, explicitly removed the ESCO deferral and approved the full implementation plan in chat on 2026-11-05. This supersedes the ESCO deferral below. Scope covers English v1.2.1 offline staging, a cleared reference catalog, and reviewed evidence for recommendations across the 12 existing careers. PM-W02, PM-W04 and FUT-01 apply. Independent data/content review, source-specific reuse clearance, concrete release review, and recommendation quality checks remain required. See the [implementation guide](features/esco-reference-catalog.md).
+
+On 2026-11-05, @YakisobaNissin identified themselves as the content reviewer and approved integration in chat, with tests deferred. The resulting local browse release is limited to 101 digital and computing occupation identifiers and preferred labels, plus 12 related Asgard career mappings. The source-specific exclusions, release identity and remaining recommendation gates are recorded in the [local release handoff](features/esco-reference-catalog.md#owner-reviewed-local-browse-release-2026-11-05).
+
+## Skill comparison delivery resolution (2026-11-04)
+
+Decision PM-I1-SCOPE-20261104. Product decision-maker: project owner in this chat.
+Reference: the recorded selections and explicit implementation requests in the
+[session record](plans/competency-comparison-2026-11-04.md).
+
+Prioritize manual skill profiles/comparison for all 12 current careers, using
+Asgard-authored content while ESCO downloading/import is deferred. Select unknown
+or self-reported levels 0–4, current records only, Profile and roadmap entry points,
+and preservation of the existing UI. Defer hosting/additional account controls and
+broad acceptance from this immediate increment; retain mandatory focused checks.
+This supersedes the earlier first-increment proposal's accepted-MVP-first sequencing,
+external-source-first assumption and proposed rating history for this increment only.
+Final-MVP account obligations, eligibility and external-use gates remain unchanged.
+
+The owner requested end-to-end implementation, but completed architecture review
+of migration/shared contracts is not recorded. Technical reviewer: @YakisobaNissin.
+Content/mapping reviewer remains unassigned at the owner's direction; publication
+waits for that assignment and approval. See the [feature specification](specs/competency-comparison.md)
+and [actual implementation status](features/competency-comparison.md).
+
+
 ## Connected MVP handoff resolution (2026-10-28)
 
 Approver/reviewer: @YakisobaNissin, as identified by the owner in this task. Reference:

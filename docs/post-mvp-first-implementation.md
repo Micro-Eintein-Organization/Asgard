@@ -1,5 +1,79 @@
 # Post-MVP feasibility review and first implementation plan
 
+
+
+
+## Occupational originals verified, 2026-11-04
+
+The owner supplied the original research files; all 20 match the recorded SHA-256
+and byte sizes. This resolves the missing-originals issue for this packet, without
+establishing independent semantic approval. Two original PDF ambiguities were
+inspected and recorded conservatively. The packet remains inactive pending full
+review and shared-contract approval. See
+[source verification](features/career-evidence-recommendations.md#original-source-verification-2026-11-04).
+
+## Full occupational evidence preparation, 2026-11-04
+
+The owner requested the full twelve-career evidence/recommendation plan: full
+applicable source profiles, grouped reference levels, interests plus experience,
+one release activation, and erasure of obsolete skill-derived result payloads.
+Codex prepared a durable inactive research packet and structural validator. No
+semantic approval, source-original hash verification or recommendation integration
+is claimed. Shared contract review and independent content approval remain pending;
+existing local-test behavior is unchanged. See the
+[implementation status](features/career-evidence-recommendations.md) and
+[technical proposal](specs/career-evidence-integration.md).
+
+## Owner-authorized local testing, 2026-11-04
+
+After setup stopped on the new pending migration, the owner explicitly requested
+applying it and implementing all required local activation so they could test.
+The single competency migration and 120 Asgard-authored mappings are now installed
+in the normal local environment, preserving all pre-existing private-table digests.
+This is a local-test publication exception with independent content/code review
+still pending; it does not approve hosted use or claim validated occupational
+requirements. See [activation evidence](features/competency-comparison.md#normal-local-test-activation-2026-11-04).
+
+## Docker verification follow-up, 2026-11-04
+
+The resumed competency checks passed the isolated migration/private-state upgrade,
+draft/repeat/conflict publication, 21 pinned-container unit/Auth integration cases,
+and scoped Chrome persistence/comparison/removal/layout/focus checks. SQL policy
+quoting, readback ordering and comparison-trigger contrast were corrected. Normal
+migration/activation, real content approval and independent human review remain
+pending. See [dated execution evidence](features/competency-comparison.md#resumed-docker-acceptance-2026-11-04).
+This does not change final-MVP or hosted release gates.
+
+## Implementation follow-up, 2026-11-04
+
+The owner subsequently approved proceeding with the proposed migration/API scope
+and selected Anti Slop during. Skill-profile/comparison source and generated clients
+are now implemented. Independent review, database activation, content publication
+and end-to-end acceptance remain pending; earlier preparation-only status below is
+historical. See [implementation evidence and limitations](features/competency-comparison.md).
+No final-MVP release gate is marked complete by this update.
+
+
+## Superseding bounded scope, 2026-11-04
+
+The [2026-11-05 scope resolution](decisions.md#esco-integration-scope-resolution-2026-11-05) supersedes the ESCO deferral in this historical record.
+
+The [session resolution](plans/competency-comparison-2026-11-04.md) supersedes this
+proposal's full-MVP-acceptance prerequisite, external-dataset-first assumption,
+one/two-career initial coverage and rating-history scope for the selected increment.
+The owner requested implementation using Asgard-authored skills for all 12 current
+careers, unknown or self-report levels 0–4, current records only and the existing
+Profile/roadmap UI. ESCO downloading/import is deferred following reported website
+errors; no external dataset was imported. Hosting/additional account controls and
+broad acceptance are deferred from immediate work, with mandatory focused checks
+retained. Implementation owner: Codex; technical reviewer: @YakisobaNissin;
+content reviewer: unassigned at the owner's direction. No completed technical
+review or publication approval is recorded. The [feature specification](specs/competency-comparison.md)
+owns the updated behavior; the [guide](features/competency-comparison.md) owns actual
+status. Earlier source inventory, two-release publisher and byte-budget statements
+below retain their historical context rather than describing today's runtime.
+
+
 Author: Codex. Created and updated: 2026-10-30.
 Status: proposed; planning authorized, implementation not authorized.
 Required product/architecture reviewer: @YakisobaNissin per

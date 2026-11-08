@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 
 from convert_guide_v4 import convert
+from guide_resource_selections import SELECTIONS
 from render_content_release import identifier, insert, literal
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -47,7 +48,7 @@ def render(include_resources=True):
     changes.append(f"UPDATE asgard_catalog.careers SET status='retired',revision=revision+1,revision_note={literal(NOTE)} WHERE id={literal(old_design['id'])};")
     checks.append(insert("careers", {**old_design, "status": "retired", "revision": old_design["revision"]+1, "revision_note": NOTE}))
     curriculum = []
-    for path in sorted((ROOT / "app/content/guide_v4").glob("*.json")):
+    for path in (ROOT / "app/content/guide_v4" / f"{slug}.json" for slug in sorted(SELECTIONS)):
         doc = convert(path)
         career, roadmap = doc["career"], doc["roadmap"]
         resources = [r for m in roadmap["milestones"] for t in m["topics"] for r in t["resources_pending_review"]]

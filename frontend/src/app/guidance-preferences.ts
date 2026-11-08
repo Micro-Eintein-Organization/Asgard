@@ -7,6 +7,7 @@ export const guidanceIds = {
   outdated: "outdated-suggestions",
   provider: "provider-unavailable",
   browse: "browse-careers",
+  suggestionBrowse: "browse-suggestions",
 } as const;
 
 export function dismissGuidance(

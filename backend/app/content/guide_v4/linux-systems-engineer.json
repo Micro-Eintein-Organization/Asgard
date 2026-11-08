@@ -1,0 +1,2104 @@
+{
+  "schema_version": "4.0.0-draft",
+  "career": {
+    "name": "Linux Systems Engineer",
+    "slug": "linux-systems-engineer",
+    "category": "Hardware & Embedded Systems",
+    "status": "Draft — pending human review"
+  },
+  "career_overview": {
+    "short_description": "Engineer high-performance Linux systems, write system-level C and Bash software, program kernel calls, and analyze kernel observability.",
+    "responsibilities": [
+      "Write robust systems-level software in C and advanced POSIX shell scripting",
+      "Interact directly with Linux kernel system calls, memory management, and file descriptors",
+      "Implement inter-process communication (IPC) using pipes, Unix domain sockets, and shared memory",
+      "Build and inspect loadable Linux kernel modules (LKM) and hardware device drivers",
+      "Diagnose low-level performance bottlenecks using eBPF, strace, perf, and sysctl tunables"
+    ],
+    "representative_work": [
+      "A high-performance C systems daemon and loadable Linux kernel module featuring low-level system call interaction, multi-process IPC, custom `/proc` telemetry, and eBPF observability tracing."
+    ],
+    "core_skills": [
+      "Linux kernel architecture and memory management",
+      "System calls (syscalls) and glibc interfaces",
+      "Advanced POSIX shell scripting, awk, and sed",
+      "Systems programming in C and GCC toolchains",
+      "File descriptors, non-blocking I/O, and select/epoll",
+      "Process lifecycles (fork, exec, wait, signals)",
+      "Inter-process communication (pipes, shared memory, sockets)",
+      "Loadable kernel modules (LKM) and device nodes (/dev)",
+      "Kernel parameter tuning via sysctl, /proc, and /sys",
+      "Low-level observability with eBPF, strace, and perf"
+    ]
+  },
+  "roadmap": {
+    "title": "Linux Systems Engineer: beginner foundations and starter project",
+    "intended_learner": "Motivated beginner; basic computer literacy assumed, with no prior professional experience.",
+    "starting_requirements": "Computer, internet access, text editor, terminal and modern browser. Most tasks use free software or local runtimes.",
+    "final_outcome": "A high-performance C systems daemon and loadable Linux kernel module featuring low-level system call interaction, multi-process IPC, custom `/proc` telemetry, and eBPF observability tracing.",
+    "milestones": [
+      {
+        "id": "M01",
+        "slug": "linux-kernel-architecture-syscalls",
+        "title": "Linux kernel architecture and system calls",
+        "summary": "Understand the user space vs kernel space boundary, the system call interface, virtual memory, and virtual filesystems.",
+        "topics": [
+          {
+            "id": "T01",
+            "slug": "kernel-space-vs-user-space",
+            "title": "Kernel space vs user space architecture",
+            "milestone_id": "M01",
+            "card": {
+              "title": "Kernel space vs user space architecture",
+              "summary": "Understand CPU privilege rings, monolithic kernel architecture, and the boundary protecting hardware from user applications.",
+              "prerequisite_ids": []
+            },
+            "detail": {
+              "eyebrow": "M01 · Linux kernel architecture and system calls",
+              "title": "Kernel space vs user space architecture",
+              "overview": "Understand CPU privilege rings, monolithic kernel architecture, and the boundary protecting hardware from user applications.",
+              "learning_outcomes": [
+                "Understand kernel space vs user space architecture, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T01-S01",
+                  "title": "Privilege Rings and Context Switches",
+                  "explanation": "How x86/ARM CPU rings enforce memory isolation between ring 0 (kernel) and ring 3 (user space)."
+                },
+                {
+                  "id": "T01-S02",
+                  "title": "Monolithic Kernel Design",
+                  "explanation": "How core drivers, filesystems, and network stacks execute inside shared kernel memory space."
+                }
+              ],
+              "practice": {
+                "instructions": "Inspect CPU execution modes and memory segmentation using lscpu and /proc/cpuinfo."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: inspect cpu execution modes and memory segmentation using lscpu and /proc/cpuinfo. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "The Linux kernel user's and administrator's guide | kernel.org",
+                  "provider": "www.kernel.org",
+                  "url": "https://www.kernel.org/doc/html/latest/admin-guide/index.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on kernel space vs user space architecture; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T01-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Understand CPU privilege rings, monolithic kernel architecture, and the boundary protecting hardware from user applications.",
+                "learn_items": [
+                  "Privilege Rings and Context Switches",
+                  "Monolithic Kernel Design"
+                ],
+                "learning_goal": "Understand kernel space vs user space architecture, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "The Linux kernel user's and administrator's guide | kernel.org",
+                    "provider": "www.kernel.org",
+                    "url": "https://www.kernel.org/doc/html/latest/admin-guide/index.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on kernel space vs user space architecture; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T01-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Inspect CPU execution modes and memory segmentation using lscpu and /proc/cpuinfo.",
+                "completion_check": "You can show and explain the outcome of: inspect cpu execution modes and memory segmentation using lscpu and /proc/cpuinfo. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T02",
+            "slug": "linux-syscall-interface",
+            "title": "Linux system call interface and glibc",
+            "milestone_id": "M01",
+            "card": {
+              "title": "Linux system call interface and glibc",
+              "summary": "Learn how user space programs request kernel services using software interrupts, syscall instructions, and glibc wrappers.",
+              "prerequisite_ids": [
+                "T01"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M01 · Linux kernel architecture and system calls",
+              "title": "Linux system call interface and glibc",
+              "overview": "Learn how user space programs request kernel services using software interrupts, syscall instructions, and glibc wrappers.",
+              "learning_outcomes": [
+                "Understand linux system call interface and glibc, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T02-S01",
+                  "title": "The Syscall Mechanism",
+                  "explanation": "How registers pass system call numbers and arguments before switching to kernel mode."
+                },
+                {
+                  "id": "T02-S02",
+                  "title": "Standard C Library Wrappers",
+                  "explanation": "How glibc wraps raw kernel syscalls and sets errno on failure."
+                }
+              ],
+              "practice": {
+                "instructions": "Trace all system calls invoked by a simple command (such as 'ls') using strace and identify the openat and read calls."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: trace all system calls invoked by a simple command (such as 'ls') using strace and identify the openat and read calls. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "syscalls(2) — Linux manual page",
+                  "provider": "man7.org",
+                  "url": "https://man7.org/linux/man-pages/man2/syscalls.2.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on linux system call interface and glibc; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T02-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Learn how user space programs request kernel services using software interrupts, syscall instructions, and glibc wrappers.",
+                "learn_items": [
+                  "The Syscall Mechanism",
+                  "Standard C Library Wrappers"
+                ],
+                "learning_goal": "Understand linux system call interface and glibc, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "syscalls(2) — Linux manual page",
+                    "provider": "man7.org",
+                    "url": "https://man7.org/linux/man-pages/man2/syscalls.2.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on linux system call interface and glibc; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T02-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Trace all system calls invoked by a simple command (such as 'ls') using strace and identify the openat and read calls.",
+                "completion_check": "You can show and explain the outcome of: trace all system calls invoked by a simple command (such as 'ls') using strace and identify the openat and read calls. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T03",
+            "slug": "virtual-memory-pages-swap",
+            "title": "Virtual memory, pages and swap mechanics",
+            "milestone_id": "M01",
+            "card": {
+              "title": "Virtual memory, pages and swap mechanics",
+              "summary": "Understand virtual address spaces, Memory Management Units (MMU), page tables, 4KB memory pages, page faults, and swap.",
+              "prerequisite_ids": [
+                "T02"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M01 · Linux kernel architecture and system calls",
+              "title": "Virtual memory, pages and swap mechanics",
+              "overview": "Understand virtual address spaces, Memory Management Units (MMU), page tables, 4KB memory pages, page faults, and swap.",
+              "learning_outcomes": [
+                "Understand virtual memory, pages and swap mechanics, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T03-S01",
+                  "title": "Virtual Memory Translation",
+                  "explanation": "How the MMU translates virtual process memory addresses into physical RAM frames."
+                },
+                {
+                  "id": "T03-S02",
+                  "title": "Page Faults and Swapping",
+                  "explanation": "Handling major vs minor page faults, demand paging, and swapping inactive pages to disk."
+                }
+              ],
+              "practice": {
+                "instructions": "Inspect virtual memory statistics of a process by reading /proc/[pid]/smaps and running vmstat 1 5."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: inspect virtual memory statistics of a process by reading /proc/[pid]/smaps and running vmstat 1 5. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "vmstat(8) — Linux manual page",
+                  "provider": "man7.org",
+                  "url": "https://man7.org/linux/man-pages/man8/vmstat.8.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on virtual memory, pages and swap mechanics; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T03-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Understand virtual address spaces, Memory Management Units (MMU), page tables, 4KB memory pages, page faults, and swap.",
+                "learn_items": [
+                  "Virtual Memory Translation",
+                  "Page Faults and Swapping"
+                ],
+                "learning_goal": "Understand virtual memory, pages and swap mechanics, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "vmstat(8) — Linux manual page",
+                    "provider": "man7.org",
+                    "url": "https://man7.org/linux/man-pages/man8/vmstat.8.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on virtual memory, pages and swap mechanics; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T03-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Inspect virtual memory statistics of a process by reading /proc/[pid]/smaps and running vmstat 1 5.",
+                "completion_check": "You can show and explain the outcome of: inspect virtual memory statistics of a process by reading /proc/[pid]/smaps and running vmstat 1 5. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T04",
+            "slug": "proc-and-sys-virtual-filesystems",
+            "title": "The /proc and /sys virtual filesystems",
+            "milestone_id": "M01",
+            "card": {
+              "title": "The /proc and /sys virtual filesystems",
+              "summary": "Interact with kernel data structures and hardware device trees exposed dynamically as text files in /proc and /sys.",
+              "prerequisite_ids": [
+                "T03"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M01 · Linux kernel architecture and system calls",
+              "title": "The /proc and /sys virtual filesystems",
+              "overview": "Interact with kernel data structures and hardware device trees exposed dynamically as text files in /proc and /sys.",
+              "learning_outcomes": [
+                "Understand the /proc and /sys virtual filesystems, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T04-S01",
+                  "title": "The /proc Filesystem",
+                  "explanation": "Reading kernel runtime statistics, process maps (/proc/[pid]/maps), and hardware info (/proc/meminfo)."
+                },
+                {
+                  "id": "T04-S02",
+                  "title": "The /sys (sysfs) Tree",
+                  "explanation": "Inspecting bus hierarchies, block devices, and network interface settings exposed in sysfs."
+                }
+              ],
+              "practice": {
+                "instructions": "Read process statistics, command line arguments, and open file descriptors directly from the /proc directory."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: read process statistics, command line arguments, and open file descriptors directly from the /proc directory. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "proc(5) — Linux manual page",
+                  "provider": "man7.org",
+                  "url": "https://man7.org/linux/man-pages/man5/proc.5.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on the /proc and /sys virtual filesystems; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T04-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Interact with kernel data structures and hardware device trees exposed dynamically as text files in /proc and /sys.",
+                "learn_items": [
+                  "The /proc Filesystem",
+                  "The /sys (sysfs) Tree"
+                ],
+                "learning_goal": "Understand the /proc and /sys virtual filesystems, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "proc(5) — Linux manual page",
+                    "provider": "man7.org",
+                    "url": "https://man7.org/linux/man-pages/man5/proc.5.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on the /proc and /sys virtual filesystems; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T04-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Read process statistics, command line arguments, and open file descriptors directly from the /proc directory.",
+                "completion_check": "You can show and explain the outcome of: read process statistics, command line arguments, and open file descriptors directly from the /proc directory. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          }
+        ]
+      },
+      {
+        "id": "M02",
+        "slug": "advanced-shell-text-processing",
+        "title": "Advanced shell scripting and text processing",
+        "summary": "Master POSIX shell scripting, signal handling, text manipulation with sed and awk, and script debugging.",
+        "topics": [
+          {
+            "id": "T05",
+            "slug": "posix-shell-signal-trapping",
+            "title": "POSIX shell scripting and signal trapping",
+            "milestone_id": "M02",
+            "card": {
+              "title": "POSIX shell scripting and signal trapping",
+              "summary": "Write portable, robust POSIX shell scripts that handle process exit codes, parse flags, and trap OS signals (SIGINT, SIGTERM).",
+              "prerequisite_ids": [
+                "T04"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Advanced shell scripting and text processing",
+              "title": "POSIX shell scripting and signal trapping",
+              "overview": "Write portable, robust POSIX shell scripts that handle process exit codes, parse flags, and trap OS signals (SIGINT, SIGTERM).",
+              "learning_outcomes": [
+                "Understand posix shell scripting and signal trapping, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T05-S01",
+                  "title": "Signal Trapping with trap",
+                  "explanation": "Registering cleanup functions that delete temporary files when a script is interrupted."
+                },
+                {
+                  "id": "T05-S02",
+                  "title": "Parsing Command Flags",
+                  "explanation": "Using getopts to parse standard short command-line flags (-h, -f, -v)."
+                }
+              ],
+              "practice": {
+                "instructions": "Write a shell script with a trap handler that cleans up temporary scratch files upon unexpected script cancellation."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: write a shell script with a trap handler that cleans up temporary scratch files upon unexpected script cancellation. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "Shell Command Language | POSIX Standard",
+                  "provider": "pubs.opengroup.org",
+                  "url": "https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on posix shell scripting and signal trapping; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T05-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Write portable, robust POSIX shell scripts that handle process exit codes, parse flags, and trap OS signals (SIGINT, SIGTERM).",
+                "learn_items": [
+                  "Signal Trapping with trap",
+                  "Parsing Command Flags"
+                ],
+                "learning_goal": "Understand posix shell scripting and signal trapping, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "Shell Command Language | POSIX Standard",
+                    "provider": "pubs.opengroup.org",
+                    "url": "https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on posix shell scripting and signal trapping; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T05-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Write a shell script with a trap handler that cleans up temporary scratch files upon unexpected script cancellation.",
+                "completion_check": "You can show and explain the outcome of: write a shell script with a trap handler that cleans up temporary scratch files upon unexpected script cancellation. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T06",
+            "slug": "stream-editing-sed",
+            "title": "Text stream processing with sed",
+            "milestone_id": "M02",
+            "card": {
+              "title": "Text stream processing with sed",
+              "summary": "Transform, filter, and substitute text streams non-interactively using stream editor (sed) regular expressions.",
+              "prerequisite_ids": [
+                "T05"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Advanced shell scripting and text processing",
+              "title": "Text stream processing with sed",
+              "overview": "Transform, filter, and substitute text streams non-interactively using stream editor (sed) regular expressions.",
+              "learning_outcomes": [
+                "Understand text stream processing with sed, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T06-S01",
+                  "title": "Search and Replace",
+                  "explanation": "Using s/pattern/replacement/g to modify configuration files in-place with sed -i."
+                },
+                {
+                  "id": "T06-S02",
+                  "title": "Line Addressing and Deletions",
+                  "explanation": "Targeting specific line numbers or matching regex ranges for text modification."
+                }
+              ],
+              "practice": {
+                "instructions": "Write a sed command that comments out all lines matching a specific directive in an Nginx or SSH configuration file."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: write a sed command that comments out all lines matching a specific directive in an nginx or ssh configuration file. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "GNU sed manual",
+                  "provider": "www.gnu.org",
+                  "url": "https://www.gnu.org/software/sed/manual/sed.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on text stream processing with sed; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T06-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Transform, filter, and substitute text streams non-interactively using stream editor (sed) regular expressions.",
+                "learn_items": [
+                  "Search and Replace",
+                  "Line Addressing and Deletions"
+                ],
+                "learning_goal": "Understand text stream processing with sed, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "GNU sed manual",
+                    "provider": "www.gnu.org",
+                    "url": "https://www.gnu.org/software/sed/manual/sed.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on text stream processing with sed; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T06-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Write a sed command that comments out all lines matching a specific directive in an Nginx or SSH configuration file.",
+                "completion_check": "You can show and explain the outcome of: write a sed command that comments out all lines matching a specific directive in an nginx or ssh configuration file. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T07",
+            "slug": "text-processing-awk",
+            "title": "Advanced data processing with awk",
+            "milestone_id": "M02",
+            "card": {
+              "title": "Advanced data processing with awk",
+              "summary": "Parse structured columnar log files, compute column totals, and generate formatted reports using the awk programming language.",
+              "prerequisite_ids": [
+                "T06"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Advanced shell scripting and text processing",
+              "title": "Advanced data processing with awk",
+              "overview": "Parse structured columnar log files, compute column totals, and generate formatted reports using the awk programming language.",
+              "learning_outcomes": [
+                "Understand advanced data processing with awk, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T07-S01",
+                  "title": "Pattern-Action Syntax",
+                  "explanation": "Using BEGIN, pattern matches, field separators (-F), and END summary blocks in awk."
+                },
+                {
+                  "id": "T07-S02",
+                  "title": "Associative Arrays in awk",
+                  "explanation": "Aggregating counts and sums grouped by IP address or HTTP status code."
+                }
+              ],
+              "practice": {
+                "instructions": "Write an awk script that parses a web server access log and prints the top 5 IP addresses generating 404 errors."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: write an awk script that parses a web server access log and prints the top 5 ip addresses generating 404 errors. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "GAWK: Effective AWK Programming | GNU",
+                  "provider": "www.gnu.org",
+                  "url": "https://www.gnu.org/software/gawk/manual/gawk.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on advanced data processing with awk; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T07-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Parse structured columnar log files, compute column totals, and generate formatted reports using the awk programming language.",
+                "learn_items": [
+                  "Pattern-Action Syntax",
+                  "Associative Arrays in awk"
+                ],
+                "learning_goal": "Understand advanced data processing with awk, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "GAWK: Effective AWK Programming | GNU",
+                    "provider": "www.gnu.org",
+                    "url": "https://www.gnu.org/software/gawk/manual/gawk.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on advanced data processing with awk; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T07-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Write an awk script that parses a web server access log and prints the top 5 IP addresses generating 404 errors.",
+                "completion_check": "You can show and explain the outcome of: write an awk script that parses a web server access log and prints the top 5 ip addresses generating 404 errors. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T08",
+            "slug": "script-debugging-profiling",
+            "title": "Script debugging, profiling and error handling",
+            "milestone_id": "M02",
+            "card": {
+              "title": "Script debugging, profiling and error handling",
+              "summary": "Debug complex shell scripts using tracing flags (set -x), validate syntax with shellcheck, and handle pipeline errors safely.",
+              "prerequisite_ids": [
+                "T07"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Advanced shell scripting and text processing",
+              "title": "Script debugging, profiling and error handling",
+              "overview": "Debug complex shell scripts using tracing flags (set -x), validate syntax with shellcheck, and handle pipeline errors safely.",
+              "learning_outcomes": [
+                "Understand script debugging, profiling and error handling, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T08-S01",
+                  "title": "Strict Mode Execution",
+                  "explanation": "Why using set -euo pipefail prevents silent bugs when variables are undefined or commands fail."
+                },
+                {
+                  "id": "T08-S02",
+                  "title": "Static Shell Analysis",
+                  "explanation": "Using ShellCheck to catch syntax bugs, quoting issues, and portability errors before execution."
+                }
+              ],
+              "practice": {
+                "instructions": "Audit an existing shell script using ShellCheck and resolve all reported quoting and error-handling warnings."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: audit an existing shell script using shellcheck and resolve all reported quoting and error-handling warnings. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "ShellCheck: a shell script static analysis tool",
+                  "provider": "www.shellcheck.net",
+                  "url": "https://www.shellcheck.net/",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on script debugging, profiling and error handling; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T08-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Debug complex shell scripts using tracing flags (set -x), validate syntax with shellcheck, and handle pipeline errors safely.",
+                "learn_items": [
+                  "Strict Mode Execution",
+                  "Static Shell Analysis"
+                ],
+                "learning_goal": "Understand script debugging, profiling and error handling, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "ShellCheck: a shell script static analysis tool",
+                    "provider": "www.shellcheck.net",
+                    "url": "https://www.shellcheck.net/",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on script debugging, profiling and error handling; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T08-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Audit an existing shell script using ShellCheck and resolve all reported quoting and error-handling warnings.",
+                "completion_check": "You can show and explain the outcome of: audit an existing shell script using shellcheck and resolve all reported quoting and error-handling warnings. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          }
+        ]
+      },
+      {
+        "id": "M03",
+        "slug": "systems-programming-c-foundations",
+        "title": "Systems programming and C foundations",
+        "summary": "Master C memory management, pointers, compilation with GCC/Make, low-level file I/O, and process creation.",
+        "topics": [
+          {
+            "id": "T09",
+            "slug": "c-compilation-toolchain-gcc",
+            "title": "C compilation toolchain (gcc, make)",
+            "milestone_id": "M03",
+            "card": {
+              "title": "C compilation toolchain (gcc, make)",
+              "summary": "Understand the C build stages: preprocessor, compilation, assembly, and linking, and automate builds using Makefiles.",
+              "prerequisite_ids": [
+                "T08"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Systems programming and C foundations",
+              "title": "C compilation toolchain (gcc, make)",
+              "overview": "Understand the C build stages: preprocessor, compilation, assembly, and linking, and automate builds using Makefiles.",
+              "learning_outcomes": [
+                "Understand c compilation toolchain (gcc, make), complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T09-S01",
+                  "title": "The Compilation Stages",
+                  "explanation": "How gcc transforms C source into object files (.o) and links dynamic libraries (.so)."
+                },
+                {
+                  "id": "T09-S02",
+                  "title": "Writing Makefiles",
+                  "explanation": "Defining targets, dependencies, compiler flags (-Wall -Wextra -O2), and clean recipes."
+                }
+              ],
+              "practice": {
+                "instructions": "Write a Makefile that compiles a multi-file C program with strict compiler warning flags into a binary."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: write a makefile that compiles a multi-file c program with strict compiler warning flags into a binary. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "GNU Make Manual",
+                  "provider": "www.gnu.org",
+                  "url": "https://www.gnu.org/software/make/manual/make.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on c compilation toolchain (gcc, make); verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T09-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Understand the C build stages: preprocessor, compilation, assembly, and linking, and automate builds using Makefiles.",
+                "learn_items": [
+                  "The Compilation Stages",
+                  "Writing Makefiles"
+                ],
+                "learning_goal": "Understand c compilation toolchain (gcc, make), complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "GNU Make Manual",
+                    "provider": "www.gnu.org",
+                    "url": "https://www.gnu.org/software/make/manual/make.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on c compilation toolchain (gcc, make); verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T09-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Write a Makefile that compiles a multi-file C program with strict compiler warning flags into a binary.",
+                "completion_check": "You can show and explain the outcome of: write a makefile that compiles a multi-file c program with strict compiler warning flags into a binary. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T10",
+            "slug": "memory-pointers-stack-heap",
+            "title": "Memory allocation, pointers and stack vs heap",
+            "milestone_id": "M03",
+            "card": {
+              "title": "Memory allocation, pointers and stack vs heap",
+              "summary": "Master pointer arithmetic, stack frames, heap allocation (malloc, calloc, realloc, free), and prevent memory leaks.",
+              "prerequisite_ids": [
+                "T09"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Systems programming and C foundations",
+              "title": "Memory allocation, pointers and stack vs heap",
+              "overview": "Master pointer arithmetic, stack frames, heap allocation (malloc, calloc, realloc, free), and prevent memory leaks.",
+              "learning_outcomes": [
+                "Understand memory allocation, pointers and stack vs heap, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T10-S01",
+                  "title": "Pointers and Memory Addresses",
+                  "explanation": "Dereferencing memory addresses, passing pointers to functions, and double pointers."
+                },
+                {
+                  "id": "T10-S02",
+                  "title": "Dynamic Memory Management",
+                  "explanation": "Allocating dynamic heap memory and using Valgrind to detect memory leaks and buffer overflows."
+                }
+              ],
+              "practice": {
+                "instructions": "Write a C program that dynamically allocates a resizable array of integers and verify zero memory leaks with Valgrind."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: write a c program that dynamically allocates a resizable array of integers and verify zero memory leaks with valgrind. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "malloc(3) — Linux manual page",
+                  "provider": "man7.org",
+                  "url": "https://man7.org/linux/man-pages/man3/malloc.3.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on memory allocation, pointers and stack vs heap; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T10-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Master pointer arithmetic, stack frames, heap allocation (malloc, calloc, realloc, free), and prevent memory leaks.",
+                "learn_items": [
+                  "Pointers and Memory Addresses",
+                  "Dynamic Memory Management"
+                ],
+                "learning_goal": "Understand memory allocation, pointers and stack vs heap, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "malloc(3) — Linux manual page",
+                    "provider": "man7.org",
+                    "url": "https://man7.org/linux/man-pages/man3/malloc.3.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on memory allocation, pointers and stack vs heap; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T10-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Write a C program that dynamically allocates a resizable array of integers and verify zero memory leaks with Valgrind.",
+                "completion_check": "You can show and explain the outcome of: write a c program that dynamically allocates a resizable array of integers and verify zero memory leaks with valgrind. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T11",
+            "slug": "file-descriptors-lowlevel-io",
+            "title": "File descriptors, low-level I/O and buffering",
+            "milestone_id": "M03",
+            "card": {
+              "title": "File descriptors, low-level I/O and buffering",
+              "summary": "Perform low-level system I/O using open, read, write, close, and lseek system calls, and compare with buffered stdio.",
+              "prerequisite_ids": [
+                "T10"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Systems programming and C foundations",
+              "title": "File descriptors, low-level I/O and buffering",
+              "overview": "Perform low-level system I/O using open, read, write, close, and lseek system calls, and compare with buffered stdio.",
+              "learning_outcomes": [
+                "Understand file descriptors, low-level i/o and buffering, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T11-S01",
+                  "title": "The File Descriptor Table",
+                  "explanation": "How integer file descriptors index the kernel's open file table across processes."
+                },
+                {
+                  "id": "T11-S02",
+                  "title": "Direct vs Buffered I/O",
+                  "explanation": "Comparing unbuffered low-level read/write syscalls with buffered stdio (fopen, fread)."
+                }
+              ],
+              "practice": {
+                "instructions": "Write a C utility that copies a file using the open, read, write, and close system calls with a fixed 4KB buffer."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: write a c utility that copies a file using the open, read, write, and close system calls with a fixed 4kb buffer. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "read(2) — Linux manual page",
+                  "provider": "man7.org",
+                  "url": "https://man7.org/linux/man-pages/man2/read.2.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on file descriptors, low-level i/o and buffering; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T11-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Perform low-level system I/O using open, read, write, close, and lseek system calls, and compare with buffered stdio.",
+                "learn_items": [
+                  "The File Descriptor Table",
+                  "Direct vs Buffered I/O"
+                ],
+                "learning_goal": "Understand file descriptors, low-level i/o and buffering, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "read(2) — Linux manual page",
+                    "provider": "man7.org",
+                    "url": "https://man7.org/linux/man-pages/man2/read.2.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on file descriptors, low-level i/o and buffering; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T11-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Write a C utility that copies a file using the open, read, write, and close system calls with a fixed 4KB buffer.",
+                "completion_check": "You can show and explain the outcome of: write a c utility that copies a file using the open, read, write, and close system calls with a fixed 4kb buffer. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T12",
+            "slug": "process-creation-fork-exec",
+            "title": "Process creation with fork, exec and wait",
+            "milestone_id": "M03",
+            "card": {
+              "title": "Process creation with fork, exec and wait",
+              "summary": "Create child processes with fork, replace process memory with execve, prevent zombie processes, and collect exit statuses with waitpid.",
+              "prerequisite_ids": [
+                "T11"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Systems programming and C foundations",
+              "title": "Process creation with fork, exec and wait",
+              "overview": "Create child processes with fork, replace process memory with execve, prevent zombie processes, and collect exit statuses with waitpid.",
+              "learning_outcomes": [
+                "Understand process creation with fork, exec and wait, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T12-S01",
+                  "title": "The Fork-Exec Pattern",
+                  "explanation": "How fork clones the parent process address space and exec replaces it with a new executable."
+                },
+                {
+                  "id": "T12-S02",
+                  "title": "Zombie and Orphan Processes",
+                  "explanation": "How uncollected child exit statuses become zombies until reaped by waitpid or PID 1."
+                }
+              ],
+              "practice": {
+                "instructions": "Write a minimal command-line shell in C that forks a child process, executes a command with execvp, and waits for completion."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: write a minimal command-line shell in c that forks a child process, executes a command with execvp, and waits for completion. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "fork(2) — Linux manual page",
+                  "provider": "man7.org",
+                  "url": "https://man7.org/linux/man-pages/man2/fork.2.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on process creation with fork, exec and wait; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T12-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Create child processes with fork, replace process memory with execve, prevent zombie processes, and collect exit statuses with waitpid.",
+                "learn_items": [
+                  "The Fork-Exec Pattern",
+                  "Zombie and Orphan Processes"
+                ],
+                "learning_goal": "Understand process creation with fork, exec and wait, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "fork(2) — Linux manual page",
+                    "provider": "man7.org",
+                    "url": "https://man7.org/linux/man-pages/man2/fork.2.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on process creation with fork, exec and wait; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T12-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Write a minimal command-line shell in C that forks a child process, executes a command with execvp, and waits for completion.",
+                "completion_check": "You can show and explain the outcome of: write a minimal command-line shell in c that forks a child process, executes a command with execvp, and waits for completion. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          }
+        ]
+      },
+      {
+        "id": "M04",
+        "slug": "ipc-and-concurrency",
+        "title": "Inter-process communication and concurrency",
+        "summary": "Coordinate processes using Unix pipes, signals, shared memory, semaphores, and POSIX multithreading (pthreads).",
+        "topics": [
+          {
+            "id": "T13",
+            "slug": "pipes-and-named-fifos",
+            "title": "Unix pipes and named FIFOs",
+            "milestone_id": "M04",
+            "card": {
+              "title": "Unix pipes and named FIFOs",
+              "summary": "Transfer unidirectional byte streams between processes using anonymous pipes (pipe) and named pipes (mkfifo) in the filesystem.",
+              "prerequisite_ids": [
+                "T12"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Inter-process communication and concurrency",
+              "title": "Unix pipes and named FIFOs",
+              "overview": "Transfer unidirectional byte streams between processes using anonymous pipes (pipe) and named pipes (mkfifo) in the filesystem.",
+              "learning_outcomes": [
+                "Understand unix pipes and named fifos, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T13-S01",
+                  "title": "Anonymous Kernel Pipes",
+                  "explanation": "Creating pipe file descriptors and redirecting child stdout to parent stdin."
+                },
+                {
+                  "id": "T13-S02",
+                  "title": "Named Pipes (FIFOs)",
+                  "explanation": "Creating persistent filesystem nodes that allow unrelated processes to stream data."
+                }
+              ],
+              "practice": {
+                "instructions": "Write a C program where a parent process creates a pipe, forks a child, and sends a message through the pipe."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: write a c program where a parent process creates a pipe, forks a child, and sends a message through the pipe. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "pipe(2) — Linux manual page",
+                  "provider": "man7.org",
+                  "url": "https://man7.org/linux/man-pages/man2/pipe.2.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on unix pipes and named fifos; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T13-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Transfer unidirectional byte streams between processes using anonymous pipes (pipe) and named pipes (mkfifo) in the filesystem.",
+                "learn_items": [
+                  "Anonymous Kernel Pipes",
+                  "Named Pipes (FIFOs)"
+                ],
+                "learning_goal": "Understand unix pipes and named fifos, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "pipe(2) — Linux manual page",
+                    "provider": "man7.org",
+                    "url": "https://man7.org/linux/man-pages/man2/pipe.2.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on unix pipes and named fifos; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T13-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Write a C program where a parent process creates a pipe, forks a child, and sends a message through the pipe.",
+                "completion_check": "You can show and explain the outcome of: write a c program where a parent process creates a pipe, forks a child, and sends a message through the pipe. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T14",
+            "slug": "posix-signals-handlers",
+            "title": "POSIX signals and signal handlers",
+            "milestone_id": "M04",
+            "card": {
+              "title": "POSIX signals and signal handlers",
+              "summary": "Handle asynchronous kernel notifications using sigaction, block signals with sigprocmask, and handle real-time signals.",
+              "prerequisite_ids": [
+                "T13"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Inter-process communication and concurrency",
+              "title": "POSIX signals and signal handlers",
+              "overview": "Handle asynchronous kernel notifications using sigaction, block signals with sigprocmask, and handle real-time signals.",
+              "learning_outcomes": [
+                "Understand posix signals and signal handlers, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T14-S01",
+                  "title": "Reliable Signal Handling",
+                  "explanation": "Using sigaction to register safe handler functions and avoiding reentrancy hazards."
+                },
+                {
+                  "id": "T14-S02",
+                  "title": "Async-Signal-Safe Functions",
+                  "explanation": "Why standard functions like printf and malloc must never be called inside a signal handler."
+                }
+              ],
+              "practice": {
+                "instructions": "Write a C daemon that catches SIGINT and SIGTERM, performs clean file shutdowns, and exits gracefully."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: write a c daemon that catches sigint and sigterm, performs clean file shutdowns, and exits gracefully. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "sigaction(2) — Linux manual page",
+                  "provider": "man7.org",
+                  "url": "https://man7.org/linux/man-pages/man2/sigaction.2.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on posix signals and signal handlers; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T14-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Handle asynchronous kernel notifications using sigaction, block signals with sigprocmask, and handle real-time signals.",
+                "learn_items": [
+                  "Reliable Signal Handling",
+                  "Async-Signal-Safe Functions"
+                ],
+                "learning_goal": "Understand posix signals and signal handlers, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "sigaction(2) — Linux manual page",
+                    "provider": "man7.org",
+                    "url": "https://man7.org/linux/man-pages/man2/sigaction.2.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on posix signals and signal handlers; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T14-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Write a C daemon that catches SIGINT and SIGTERM, performs clean file shutdowns, and exits gracefully.",
+                "completion_check": "You can show and explain the outcome of: write a c daemon that catches sigint and sigterm, performs clean file shutdowns, and exits gracefully. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T15",
+            "slug": "shared-memory-semaphores",
+            "title": "Shared memory and semaphores",
+            "milestone_id": "M04",
+            "card": {
+              "title": "Shared memory and semaphores",
+              "summary": "Share memory regions directly between processes using shm_open and mmap, and synchronize access using POSIX semaphores.",
+              "prerequisite_ids": [
+                "T14"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Inter-process communication and concurrency",
+              "title": "Shared memory and semaphores",
+              "overview": "Share memory regions directly between processes using shm_open and mmap, and synchronize access using POSIX semaphores.",
+              "learning_outcomes": [
+                "Understand shared memory and semaphores, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T15-S01",
+                  "title": "Shared Memory (shm_open, mmap)",
+                  "explanation": "Mapping the same physical RAM frame into the virtual address spaces of two processes."
+                },
+                {
+                  "id": "T15-S02",
+                  "title": "Semaphores and Mutexes",
+                  "explanation": "Preventing race conditions when multiple processes read and write to shared memory."
+                }
+              ],
+              "practice": {
+                "instructions": "Write a producer-consumer application using POSIX shared memory and semaphores to coordinate data updates."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: write a producer-consumer application using posix shared memory and semaphores to coordinate data updates. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "shm_open(3) — Linux manual page",
+                  "provider": "man7.org",
+                  "url": "https://man7.org/linux/man-pages/man3/shm_open.3.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on shared memory and semaphores; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T15-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Share memory regions directly between processes using shm_open and mmap, and synchronize access using POSIX semaphores.",
+                "learn_items": [
+                  "Shared Memory (shm_open, mmap)",
+                  "Semaphores and Mutexes"
+                ],
+                "learning_goal": "Understand shared memory and semaphores, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "shm_open(3) — Linux manual page",
+                    "provider": "man7.org",
+                    "url": "https://man7.org/linux/man-pages/man3/shm_open.3.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on shared memory and semaphores; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T15-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Write a producer-consumer application using POSIX shared memory and semaphores to coordinate data updates.",
+                "completion_check": "You can show and explain the outcome of: write a producer-consumer application using posix shared memory and semaphores to coordinate data updates. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T16",
+            "slug": "posix-threads-pthreads",
+            "title": "Multithreading with POSIX threads (pthreads)",
+            "milestone_id": "M04",
+            "card": {
+              "title": "Multithreading with POSIX threads (pthreads)",
+              "summary": "Create lightweight threads within a process address space using pthread_create, synchronize with mutexes, and avoid deadlocks.",
+              "prerequisite_ids": [
+                "T15"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Inter-process communication and concurrency",
+              "title": "Multithreading with POSIX threads (pthreads)",
+              "overview": "Create lightweight threads within a process address space using pthread_create, synchronize with mutexes, and avoid deadlocks.",
+              "learning_outcomes": [
+                "Understand multithreading with posix threads (pthreads), complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T16-S01",
+                  "title": "Thread Creation and Joining",
+                  "explanation": "Creating concurrent execution threads and waiting for thread completion with pthread_join."
+                },
+                {
+                  "id": "T16-S02",
+                  "title": "Thread Synchronization",
+                  "explanation": "Using pthread_mutex_t and condition variables to prevent shared memory race conditions."
+                }
+              ],
+              "practice": {
+                "instructions": "Write a multi-threaded C program where 4 worker threads increment a shared counter protected by a mutex."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: write a multi-threaded c program where 4 worker threads increment a shared counter protected by a mutex. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "pthread_create(3) — Linux manual page",
+                  "provider": "man7.org",
+                  "url": "https://man7.org/linux/man-pages/man3/pthread_create.3.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on multithreading with posix threads (pthreads); verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T16-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Create lightweight threads within a process address space using pthread_create, synchronize with mutexes, and avoid deadlocks.",
+                "learn_items": [
+                  "Thread Creation and Joining",
+                  "Thread Synchronization"
+                ],
+                "learning_goal": "Understand multithreading with posix threads (pthreads), complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "pthread_create(3) — Linux manual page",
+                    "provider": "man7.org",
+                    "url": "https://man7.org/linux/man-pages/man3/pthread_create.3.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on multithreading with posix threads (pthreads); verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T16-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Write a multi-threaded C program where 4 worker threads increment a shared counter protected by a mutex.",
+                "completion_check": "You can show and explain the outcome of: write a multi-threaded c program where 4 worker threads increment a shared counter protected by a mutex. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          }
+        ]
+      },
+      {
+        "id": "M05",
+        "slug": "kernel-modules-drivers",
+        "title": "Linux kernel modules and driver basics",
+        "summary": "Understand loadable kernel modules (LKM), module lifecycles, character devices, /dev nodes, and compile a hello-world module.",
+        "topics": [
+          {
+            "id": "T17",
+            "slug": "lkm-architecture-lifecycle",
+            "title": "Kernel module structure and lifecycles",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Kernel module structure and lifecycles",
+              "summary": "Learn how Loadable Kernel Modules (LKM) extend the running kernel dynamically without rebooting the operating system.",
+              "prerequisite_ids": [
+                "T16"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Linux kernel modules and driver basics",
+              "title": "Kernel module structure and lifecycles",
+              "overview": "Learn how Loadable Kernel Modules (LKM) extend the running kernel dynamically without rebooting the operating system.",
+              "learning_outcomes": [
+                "Understand kernel module structure and lifecycles, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T17-S01",
+                  "title": "Module Initialization and Exit",
+                  "explanation": "Defining module_init() and module_exit() entry points and kernel licensing macros."
+                },
+                {
+                  "id": "T17-S02",
+                  "title": "Kernel Log Ring Buffer",
+                  "explanation": "Printing kernel debug messages using printk() and inspecting them with dmesg."
+                }
+              ],
+              "practice": {
+                "instructions": "Inspect loaded kernel modules on your machine using lsmod and examine module details with modinfo."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: inspect loaded kernel modules on your machine using lsmod and examine module details with modinfo. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "lsmod(8) — Linux manual page",
+                  "provider": "man7.org",
+                  "url": "https://man7.org/linux/man-pages/man8/lsmod.8.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on kernel module structure and lifecycles; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T17-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Learn how Loadable Kernel Modules (LKM) extend the running kernel dynamically without rebooting the operating system.",
+                "learn_items": [
+                  "Module Initialization and Exit",
+                  "Kernel Log Ring Buffer"
+                ],
+                "learning_goal": "Understand kernel module structure and lifecycles, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "lsmod(8) — Linux manual page",
+                    "provider": "man7.org",
+                    "url": "https://man7.org/linux/man-pages/man8/lsmod.8.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on kernel module structure and lifecycles; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T17-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Inspect loaded kernel modules on your machine using lsmod and examine module details with modinfo.",
+                "completion_check": "You can show and explain the outcome of: inspect loaded kernel modules on your machine using lsmod and examine module details with modinfo. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T18",
+            "slug": "loading-inspecting-modules",
+            "title": "Loading and inspecting modules (insmod, modprobe)",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Loading and inspecting modules (insmod, modprobe)",
+              "summary": "Insert and remove kernel modules using insmod, rmmod, and modprobe, and manage dependency mappings with depmod.",
+              "prerequisite_ids": [
+                "T17"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Linux kernel modules and driver basics",
+              "title": "Loading and inspecting modules (insmod, modprobe)",
+              "overview": "Insert and remove kernel modules using insmod, rmmod, and modprobe, and manage dependency mappings with depmod.",
+              "learning_outcomes": [
+                "Understand loading and inspecting modules (insmod, modprobe), complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T18-S01",
+                  "title": "Modprobe vs Insmod",
+                  "explanation": "Why modprobe is preferred because it resolves module dependency chains automatically."
+                },
+                {
+                  "id": "T18-S02",
+                  "title": "Module Parameters",
+                  "explanation": "Passing configuration parameters into kernel modules upon loading via module_param()."
+                }
+              ],
+              "practice": {
+                "instructions": "Use modprobe to load and unload a benign kernel module (e.g. dummy network module) and check dmesg output."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: use modprobe to load and unload a benign kernel module (e.g. dummy network module) and check dmesg output. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "modprobe(8) — Linux manual page",
+                  "provider": "man7.org",
+                  "url": "https://man7.org/linux/man-pages/man8/modprobe.8.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on loading and inspecting modules (insmod, modprobe); verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T18-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Insert and remove kernel modules using insmod, rmmod, and modprobe, and manage dependency mappings with depmod.",
+                "learn_items": [
+                  "Modprobe vs Insmod",
+                  "Module Parameters"
+                ],
+                "learning_goal": "Understand loading and inspecting modules (insmod, modprobe), complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "modprobe(8) — Linux manual page",
+                    "provider": "man7.org",
+                    "url": "https://man7.org/linux/man-pages/man8/modprobe.8.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on loading and inspecting modules (insmod, modprobe); verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T18-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Use modprobe to load and unload a benign kernel module (e.g. dummy network module) and check dmesg output.",
+                "completion_check": "You can show and explain the outcome of: use modprobe to load and unload a benign kernel module (e.g. dummy network module) and check dmesg output. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T19",
+            "slug": "character-devices-udev-rules",
+            "title": "Character device nodes in /dev and udev rules",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Character device nodes in /dev and udev rules",
+              "summary": "Understand character device drivers, major and minor device numbers, and writing udev rules to manage device node creation.",
+              "prerequisite_ids": [
+                "T18"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Linux kernel modules and driver basics",
+              "title": "Character device nodes in /dev and udev rules",
+              "overview": "Understand character device drivers, major and minor device numbers, and writing udev rules to manage device node creation.",
+              "learning_outcomes": [
+                "Understand character device nodes in /dev and udev rules, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T19-S01",
+                  "title": "Major and Minor Numbers",
+                  "explanation": "How the kernel uses major numbers to identify the driver and minor numbers to identify specific devices."
+                },
+                {
+                  "id": "T19-S02",
+                  "title": "Udev Rules Engine",
+                  "explanation": "Creating persistent symlinks and setting permissions when hardware devices connect."
+                }
+              ],
+              "practice": {
+                "instructions": "Write a udev rule that sets custom permissions and creates a symlink whenever a USB device connects."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: write a udev rule that sets custom permissions and creates a symlink whenever a usb device connects. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "udev(7) — Linux manual page",
+                  "provider": "man7.org",
+                  "url": "https://man7.org/linux/man-pages/man7/udev.7.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on character device nodes in /dev and udev rules; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T19-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Understand character device drivers, major and minor device numbers, and writing udev rules to manage device node creation.",
+                "learn_items": [
+                  "Major and Minor Numbers",
+                  "Udev Rules Engine"
+                ],
+                "learning_goal": "Understand character device nodes in /dev and udev rules, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "udev(7) — Linux manual page",
+                    "provider": "man7.org",
+                    "url": "https://man7.org/linux/man-pages/man7/udev.7.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on character device nodes in /dev and udev rules; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T19-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Write a udev rule that sets custom permissions and creates a symlink whenever a USB device connects.",
+                "completion_check": "You can show and explain the outcome of: write a udev rule that sets custom permissions and creates a symlink whenever a usb device connects. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T20",
+            "slug": "compiling-hello-world-kernel-module",
+            "title": "Writing and compiling a minimal hello-world kernel module",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Writing and compiling a minimal hello-world kernel module",
+              "summary": "Write, compile using kbuild, insert, and remove a minimal C loadable kernel module on a Linux system.",
+              "prerequisite_ids": [
+                "T19"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Linux kernel modules and driver basics",
+              "title": "Writing and compiling a minimal hello-world kernel module",
+              "overview": "Write, compile using kbuild, insert, and remove a minimal C loadable kernel module on a Linux system.",
+              "learning_outcomes": [
+                "Understand writing and compiling a minimal hello-world kernel module, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T20-S01",
+                  "title": "The Kbuild Makefile",
+                  "explanation": "Using obj-m += module.o and the kernel headers build directory (/lib/modules/$(uname -r)/build)."
+                },
+                {
+                  "id": "T20-S02",
+                  "title": "Executing in Ring 0",
+                  "explanation": "Understanding safety hazards: null pointer dereferences cause kernel panics, not simple segfaults."
+                }
+              ],
+              "practice": {
+                "instructions": "Compile a hello-world kernel module that logs a message to dmesg on load and a farewell message on unload."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: compile a hello-world kernel module that logs a message to dmesg on load and a farewell message on unload. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "Building External Modules | The Linux Kernel Documentation",
+                  "provider": "www.kernel.org",
+                  "url": "https://www.kernel.org/doc/html/latest/kbuild/modules.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on writing and compiling a minimal hello-world kernel module; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T20-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Write, compile using kbuild, insert, and remove a minimal C loadable kernel module on a Linux system.",
+                "learn_items": [
+                  "The Kbuild Makefile",
+                  "Executing in Ring 0"
+                ],
+                "learning_goal": "Understand writing and compiling a minimal hello-world kernel module, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "Building External Modules | The Linux Kernel Documentation",
+                    "provider": "www.kernel.org",
+                    "url": "https://www.kernel.org/doc/html/latest/kbuild/modules.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on writing and compiling a minimal hello-world kernel module; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T20-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Compile a hello-world kernel module that logs a message to dmesg on load and a farewell message on unload.",
+                "completion_check": "You can show and explain the outcome of: compile a hello-world kernel module that logs a message to dmesg on load and a farewell message on unload. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          }
+        ]
+      },
+      {
+        "id": "M06",
+        "slug": "kernel-tuning-observability",
+        "title": "Kernel tuning, observability and systems automation",
+        "summary": "Tune kernel parameters via sysctl, trace execution with strace and perf, explore eBPF tracing, and build a systems monitoring daemon.",
+        "topics": [
+          {
+            "id": "T21",
+            "slug": "kernel-tuning-sysctl",
+            "title": "Kernel parameter tuning with sysctl",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Kernel parameter tuning with sysctl",
+              "summary": "Tune kernel network buffers, virtual memory swappiness, and file descriptor limits dynamically via sysctl and /etc/sysctl.conf.",
+              "prerequisite_ids": [
+                "T20"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Kernel tuning, observability and systems automation",
+              "title": "Kernel parameter tuning with sysctl",
+              "overview": "Tune kernel network buffers, virtual memory swappiness, and file descriptor limits dynamically via sysctl and /etc/sysctl.conf.",
+              "learning_outcomes": [
+                "Understand kernel parameter tuning with sysctl, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T21-S01",
+                  "title": "Virtual Memory Tunables",
+                  "explanation": "Tuning vm.swappiness, vm.dirty_ratio, and vm.overcommit_memory for server workloads."
+                },
+                {
+                  "id": "T21-S02",
+                  "title": "Network Stack Tunables",
+                  "explanation": "Increasing net.core.somaxconn and tcp_tw_reuse to handle high-concurrency web traffic."
+                }
+              ],
+              "practice": {
+                "instructions": "Tune a kernel parameter using sysctl -w and persist the setting across reboots in /etc/sysctl.d/99-custom.conf."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: tune a kernel parameter using sysctl -w and persist the setting across reboots in /etc/sysctl.d/99-custom.conf. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "sysctl(8) — Linux manual page",
+                  "provider": "man7.org",
+                  "url": "https://man7.org/linux/man-pages/man8/sysctl.8.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on kernel parameter tuning with sysctl; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T21-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Tune kernel network buffers, virtual memory swappiness, and file descriptor limits dynamically via sysctl and /etc/sysctl.conf.",
+                "learn_items": [
+                  "Virtual Memory Tunables",
+                  "Network Stack Tunables"
+                ],
+                "learning_goal": "Understand kernel parameter tuning with sysctl, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "sysctl(8) — Linux manual page",
+                    "provider": "man7.org",
+                    "url": "https://man7.org/linux/man-pages/man8/sysctl.8.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on kernel parameter tuning with sysctl; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T21-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Tune a kernel parameter using sysctl -w and persist the setting across reboots in /etc/sysctl.d/99-custom.conf.",
+                "completion_check": "You can show and explain the outcome of: tune a kernel parameter using sysctl -w and persist the setting across reboots in /etc/sysctl.d/99-custom.conf. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T22",
+            "slug": "tracing-strace-ltrace",
+            "title": "Tracing execution with strace and ltrace",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Tracing execution with strace and ltrace",
+              "summary": "Diagnose application crashes, missing configuration files, and permission denials by tracing system calls and library calls.",
+              "prerequisite_ids": [
+                "T21"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Kernel tuning, observability and systems automation",
+              "title": "Tracing execution with strace and ltrace",
+              "overview": "Diagnose application crashes, missing configuration files, and permission denials by tracing system calls and library calls.",
+              "learning_outcomes": [
+                "Understand tracing execution with strace and ltrace, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T22-S01",
+                  "title": "Syscall Timing and Counts",
+                  "explanation": "Using strace -c to generate a summary table of syscall counts, errors, and time spent in the kernel."
+                },
+                {
+                  "id": "T22-S02",
+                  "title": "Attaching to Running Processes",
+                  "explanation": "Attaching strace -p [pid] to live production processes to diagnose hangs."
+                }
+              ],
+              "practice": {
+                "instructions": "Trace a failing command with strace to identify the exact file path that caused a 'file not found' or permission error."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: trace a failing command with strace to identify the exact file path that caused a 'file not found' or permission error. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "strace(1) — Linux manual page",
+                  "provider": "man7.org",
+                  "url": "https://man7.org/linux/man-pages/man1/strace.1.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on tracing execution with strace and ltrace; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T22-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Diagnose application crashes, missing configuration files, and permission denials by tracing system calls and library calls.",
+                "learn_items": [
+                  "Syscall Timing and Counts",
+                  "Attaching to Running Processes"
+                ],
+                "learning_goal": "Understand tracing execution with strace and ltrace, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "strace(1) — Linux manual page",
+                    "provider": "man7.org",
+                    "url": "https://man7.org/linux/man-pages/man1/strace.1.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on tracing execution with strace and ltrace; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T22-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Trace a failing command with strace to identify the exact file path that caused a 'file not found' or permission error.",
+                "completion_check": "You can show and explain the outcome of: trace a failing command with strace to identify the exact file path that caused a 'file not found' or permission error. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T23",
+            "slug": "performance-analysis-perf-ebpf",
+            "title": "Linux performance analysis tools (perf, eBPF basics)",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Linux performance analysis tools (perf, eBPF basics)",
+              "summary": "Profile CPU cache misses, function call overhead with perf, and explore programmable in-kernel tracing with eBPF.",
+              "prerequisite_ids": [
+                "T22"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Kernel tuning, observability and systems automation",
+              "title": "Linux performance analysis tools (perf, eBPF basics)",
+              "overview": "Profile CPU cache misses, function call overhead with perf, and explore programmable in-kernel tracing with eBPF.",
+              "learning_outcomes": [
+                "Understand linux performance analysis tools (perf, ebpf basics), complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T23-S01",
+                  "title": "CPU Sampling with perf",
+                  "explanation": "Recording CPU cycles with perf record and generating flame graphs to visualize hot code paths."
+                },
+                {
+                  "id": "T23-S02",
+                  "title": "eBPF Programmable Tracing",
+                  "explanation": "How Extended Berkeley Packet Filter (eBPF) runs sandboxed bytecode safely inside the kernel for observability."
+                }
+              ],
+              "practice": {
+                "instructions": "Record a CPU profile of a busy command using perf record and view the function call overhead using perf report."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: record a cpu profile of a busy command using perf record and view the function call overhead using perf report. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "Linux perf Wiki | kernel.org",
+                  "provider": "perf.wiki.kernel.org",
+                  "url": "https://perf.wiki.kernel.org/index.php/Main_Page",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on linux performance analysis tools (perf, ebpf basics); verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T23-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Profile CPU cache misses, function call overhead with perf, and explore programmable in-kernel tracing with eBPF.",
+                "learn_items": [
+                  "CPU Sampling with perf",
+                  "eBPF Programmable Tracing"
+                ],
+                "learning_goal": "Understand linux performance analysis tools (perf, ebpf basics), complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "Linux perf Wiki | kernel.org",
+                    "provider": "perf.wiki.kernel.org",
+                    "url": "https://perf.wiki.kernel.org/index.php/Main_Page",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on linux performance analysis tools (perf, ebpf basics); verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T23-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Record a CPU profile of a busy command using perf record and view the function call overhead using perf report.",
+                "completion_check": "You can show and explain the outcome of: record a cpu profile of a busy command using perf record and view the function call overhead using perf report. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T24",
+            "slug": "systems-automation-daemon",
+            "title": "Building an automated systems monitoring daemon",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Building an automated systems monitoring daemon",
+              "summary": "Build a production-grade C or shell systems daemon that collects /proc metrics, handles signals, and logs to systemd.",
+              "prerequisite_ids": [
+                "T23"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Kernel tuning, observability and systems automation",
+              "title": "Building an automated systems monitoring daemon",
+              "overview": "Build a production-grade C or shell systems daemon that collects /proc metrics, handles signals, and logs to systemd.",
+              "learning_outcomes": [
+                "Understand building an automated systems monitoring daemon, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T24-S01",
+                  "title": "Daemonization Standards",
+                  "explanation": "Forking background processes, detaching controlling terminals, and redirecting standard I/O."
+                },
+                {
+                  "id": "T24-S02",
+                  "title": "Complete Systems Capstone",
+                  "explanation": "Synthesizing process monitoring, IPC, signal handling, and kernel tuning into a reliable utility."
+                }
+              ],
+              "practice": {
+                "instructions": "Deploy your systems monitoring daemon under systemd, verify clean signal termination, and review its journal logs."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: deploy your systems monitoring daemon under systemd, verify clean signal termination, and review its journal logs. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "daemon(7) — Linux manual page",
+                  "provider": "man7.org",
+                  "url": "https://man7.org/linux/man-pages/man7/daemon.7.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on building an automated systems monitoring daemon; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T24-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Build a production-grade C or shell systems daemon that collects /proc metrics, handles signals, and logs to systemd.",
+                "learn_items": [
+                  "Daemonization Standards",
+                  "Complete Systems Capstone"
+                ],
+                "learning_goal": "Understand building an automated systems monitoring daemon, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "daemon(7) — Linux manual page",
+                    "provider": "man7.org",
+                    "url": "https://man7.org/linux/man-pages/man7/daemon.7.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on building an automated systems monitoring daemon; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T24-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Deploy your systems monitoring daemon under systemd, verify clean signal termination, and review its journal logs.",
+                "completion_check": "You can show and explain the outcome of: deploy your systems monitoring daemon under systemd, verify clean signal termination, and review its journal logs. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,3 +1,4 @@
+import { CareerExploration } from "@/features/careers/exploration";
 import { useEffect, useRef, useState } from "react";
 import practiceData from "@/assets/data/visits.csv?url";
 import practiceReference from "@/assets/data/reference.md?url";
@@ -11,6 +12,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { BackLink, Notice, StatePanel, StatusBadge } from "@/components/shared";
+import { CounselorLauncher } from "@/features/ai-guidance";
 import { appRoutes } from "@/lib/routes";
 import { coreApi, useCoreMutation, useCoreQuery } from "@/features/core/data";
 import { topicPresentation } from "./topic-presentation";
@@ -181,6 +183,12 @@ export function RoadmapPage() {
       <BackLink to={appRoutes.careers + catalogSearch}>
         Back to catalog
       </BackLink>
+      {content.status === "published" && (
+        <CounselorLauncher query={new URLSearchParams({
+          roadmap: roadmapId,
+          ...(topic ? { topic: topic.id } : {}),
+        })} />
+      )}
       {mutationError && (
         <Notice tone="error">
           {mutationError.message}{" "}
@@ -198,7 +206,6 @@ export function RoadmapPage() {
       )}
       <div className="roadmap-layout">
         <div className="roadmap-main" role="region" aria-label="Career and roadmap milestones" tabIndex={0}>
-          <Notice>Browsing does not change your focus or progress.</Notice>
           <section className="roadmap-hero">
             <p>{categories.data?.find(category => category.id === careerContent.category_id)?.title}</p>
             <h1>{careerContent.title}</h1>
@@ -240,25 +247,28 @@ export function RoadmapPage() {
               </p>
             )}
           </section>
-          <section className="roadmap-about">
-            <h2>About this career</h2>
-            <p>{careerDescription}</p>
-            <details>
-              <summary>Read more about the work</summary>
-              <p className="whitespace-pre-line"><strong>About this roadmap:</strong> {content.description}</p>
-              <ul>
-                {careerContent.responsibilities.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-              {exampleProject && <p><strong>Example project:</strong> {exampleProject}</p>}
-              <ul className="skill-list">
-                {careerContent.skills.map((skill) => (
-                  <li key={skill}>{skill}</li>
-                ))}
-              </ul>
-            </details>
-          </section>
+          <details className="roadmap-about">
+            <summary>Read about this career</summary>
+            {careerContent.exploration ? (
+              <CareerExploration id={careerContent.id} title={careerContent.title} guide={careerContent.exploration} />
+            ) : (
+              <>
+                <p>{careerDescription}</p>
+                <p className="whitespace-pre-line"><strong>About this roadmap:</strong> {content.description}</p>
+                <ul>
+                  {careerContent.responsibilities.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+                {exampleProject && <p><strong>Example project:</strong> {exampleProject}</p>}
+                <ul className="skill-list">
+                  {careerContent.skills.map((skill) => (
+                    <li key={skill}>{skill}</li>
+                  ))}
+                </ul>
+              </>
+            )}
+          </details>
           {overview.fully_done ? (
             <Notice>
               All applicable topics are Done.{" "}

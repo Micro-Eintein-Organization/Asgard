@@ -1,0 +1,2282 @@
+[
+  {
+    "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+    "version": "learner-v1",
+    "purpose": "Help detect, investigate and communicate security risks. Practise with synthetic evidence and systems you are authorised to use.",
+    "activities": [
+      {
+        "action": "Define the boundaries of an investigation",
+        "result": "An authorised scope for a simulated incident"
+      },
+      {
+        "action": "Inspect logs and network evidence",
+        "result": "A timeline of suspicious events"
+      },
+      {
+        "action": "Explain security findings",
+        "result": "A report separating observations from uncertainty"
+      }
+    ],
+    "work_on": "Logs, network events and authorised incident evidence",
+    "produce": "A documented investigation of a simulated security incident.",
+    "check": "Corroborate events and separate evidence from suspicion.",
+    "learning_groups": [
+      {
+        "title": "Build safe security foundations / Understand defenders tools",
+        "explanation": "Learn authorization and legal boundaries, security objectives and threats, operating systems and accounts, then apply the ideas in a small task. Learn command-line and log files, network traffic inspection, endpoint telemetry concepts, then apply the ideas in a small task.",
+        "topic_id": "8deb35c7-2ae1-59be-a0cb-4b23aeee1357",
+        "roadmap_id": "e8d68528-c93a-5c08-bfa3-d83e18eab164",
+        "topic_title": "Authorization and legal boundaries"
+      },
+      {
+        "title": "Recognize attack patterns / Investigate security events",
+        "explanation": "Learn phishing analysis in samples, authentication abuse indicators, common web risks, then apply the ideas in a small task. Learn alert triage, timeline reconstruction, indicators and evidence handling, then apply the ideas in a small task.",
+        "topic_id": "09128591-0165-58f9-9248-754abdc66dc7",
+        "roadmap_id": "e8d68528-c93a-5c08-bfa3-d83e18eab164",
+        "topic_title": "Phishing analysis in samples"
+      },
+      {
+        "title": "Respond and improve / Complete a defensive investigation",
+        "explanation": "Learn incident response lifecycle, containment decisions in simulations, writing incident notes, then apply the ideas in a small task. Learn choose authorised synthetic logs, build event timeline, write a detection hypothesis, then apply the ideas in a small task.",
+        "topic_id": "3ef38477-a4ee-5792-b07d-827b85f6dc05",
+        "roadmap_id": "e8d68528-c93a-5c08-bfa3-d83e18eab164",
+        "topic_title": "Incident response lifecycle"
+      }
+    ],
+    "starter": {
+      "title": "Authorization and legal boundaries",
+      "instructions": "Write an authorisation boundary for a synthetic incident exercise.",
+      "expected_result": "A scope statement naming the synthetic system, permitted evidence and actions that are out of bounds.",
+      "topic_id": "8deb35c7-2ae1-59be-a0cb-4b23aeee1357",
+      "roadmap_id": "e8d68528-c93a-5c08-bfa3-d83e18eab164"
+    },
+    "skills": [
+      {
+        "id": "9a799d5e-c682-52dc-ba5d-88b6b9be1419",
+        "label": "Authorization and legal boundaries",
+        "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+        "question": "Have you checked what you have permission to investigate?",
+        "example": "Write an authorisation boundary for a synthetic incident exercise.",
+        "why_it_matters": "Learn authorization and legal boundaries, security objectives and threats, operating systems and accounts, then apply the ideas in a small task.",
+        "group": "Build safe security foundations",
+        "topic_id": "8deb35c7-2ae1-59be-a0cb-4b23aeee1357",
+        "roadmap_id": "e8d68528-c93a-5c08-bfa3-d83e18eab164",
+        "topic_title": "Authorization and legal boundaries",
+        "source_locator": "cybersecurity-analyst.json#/M01/T01"
+      },
+      {
+        "id": "e88efd64-b82c-5fcc-96ba-4c8dfb12e6d0",
+        "label": "Security objectives and threats",
+        "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+        "question": "Have you explained what a security threat could harm?",
+        "example": "Map three example incidents to the goal each affects.",
+        "why_it_matters": "Learn authorization and legal boundaries, security objectives and threats, operating systems and accounts, then apply the ideas in a small task.",
+        "group": "Build safe security foundations",
+        "topic_id": "506f06f1-b4e6-5fa5-9c25-8c4d8f5fd015",
+        "roadmap_id": "e8d68528-c93a-5c08-bfa3-d83e18eab164",
+        "topic_title": "Security objectives and threats",
+        "source_locator": "cybersecurity-analyst.json#/M01/T02"
+      },
+      {
+        "id": "91234095-d3ec-5aca-9713-714896c11ce0",
+        "label": "Operating systems and accounts",
+        "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+        "question": "Have you checked which users can access a system?",
+        "example": "Draw a simple user-to-service permission diagram.",
+        "why_it_matters": "Learn authorization and legal boundaries, security objectives and threats, operating systems and accounts, then apply the ideas in a small task.",
+        "group": "Build safe security foundations",
+        "topic_id": "b9943ef1-4ae2-5fb4-885c-6b14a4fc23de",
+        "roadmap_id": "e8d68528-c93a-5c08-bfa3-d83e18eab164",
+        "topic_title": "Operating systems and accounts",
+        "source_locator": "cybersecurity-analyst.json#/M01/T03"
+      },
+      {
+        "id": "7159f089-5d09-59b7-8689-26a93fa7ed26",
+        "label": "Networking protocols overview",
+        "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+        "question": "Have you explained how devices exchange messages?",
+        "example": "Identify DNS, HTTPS and SSH in a sample traffic log.",
+        "why_it_matters": "Learn authorization and legal boundaries, security objectives and threats, operating systems and accounts, then apply the ideas in a small task.",
+        "group": "Build safe security foundations",
+        "topic_id": "ae8bff2d-12cc-561c-b5b3-ce60c80a2aee",
+        "roadmap_id": "e8d68528-c93a-5c08-bfa3-d83e18eab164",
+        "topic_title": "Networking protocols overview",
+        "source_locator": "cybersecurity-analyst.json#/M01/T04"
+      },
+      {
+        "id": "7e8432a2-ea6a-5078-9bbd-94209bc5de86",
+        "label": "Command-line and log files",
+        "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+        "question": "Have you used a terminal to look through logs?",
+        "example": "Find failed login entries in a provided log file.",
+        "why_it_matters": "Learn command-line and log files, network traffic inspection, endpoint telemetry concepts, then apply the ideas in a small task.",
+        "group": "Understand defenders tools",
+        "topic_id": "58638204-8ad4-55f4-a954-92fbf25c9625",
+        "roadmap_id": "e8d68528-c93a-5c08-bfa3-d83e18eab164",
+        "topic_title": "Command-line and log files",
+        "source_locator": "cybersecurity-analyst.json#/M02/T05"
+      },
+      {
+        "id": "7e53f3f1-448d-5c72-aaa4-c5e022f937cc",
+        "label": "Network traffic inspection",
+        "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+        "question": "Have you looked at network traffic for unusual activity?",
+        "example": "Filter a permitted sample capture for DNS queries.",
+        "why_it_matters": "Learn command-line and log files, network traffic inspection, endpoint telemetry concepts, then apply the ideas in a small task.",
+        "group": "Understand defenders tools",
+        "topic_id": "d1ebb4ee-d195-5cf7-92c8-d2395d129ac3",
+        "roadmap_id": "e8d68528-c93a-5c08-bfa3-d83e18eab164",
+        "topic_title": "Network traffic inspection",
+        "source_locator": "cybersecurity-analyst.json#/M02/T06"
+      },
+      {
+        "id": "39431d77-e6d7-5dcb-b9e5-dbe6f1b14536",
+        "label": "Endpoint telemetry concepts",
+        "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+        "question": "Have you used device events to investigate what happened?",
+        "example": "Explain a suspicious process tree in synthetic telemetry.",
+        "why_it_matters": "Learn command-line and log files, network traffic inspection, endpoint telemetry concepts, then apply the ideas in a small task.",
+        "group": "Understand defenders tools",
+        "topic_id": "79d2e6be-06da-5e4c-b77a-6efdb3d6a912",
+        "roadmap_id": "e8d68528-c93a-5c08-bfa3-d83e18eab164",
+        "topic_title": "Endpoint telemetry concepts",
+        "source_locator": "cybersecurity-analyst.json#/M02/T07"
+      },
+      {
+        "id": "18749d96-6fa6-5caa-acec-9afd1f6c40a3",
+        "label": "Security frameworks and controls",
+        "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+        "question": "Have you matched a security control to a risk?",
+        "example": "Associate three security controls with their purpose.",
+        "why_it_matters": "Learn command-line and log files, network traffic inspection, endpoint telemetry concepts, then apply the ideas in a small task.",
+        "group": "Understand defenders tools",
+        "topic_id": "a93e7644-1a69-5e1f-93d4-f9d84f29edda",
+        "roadmap_id": "e8d68528-c93a-5c08-bfa3-d83e18eab164",
+        "topic_title": "Security frameworks and controls",
+        "source_locator": "cybersecurity-analyst.json#/M02/T08"
+      },
+      {
+        "id": "8c286ea7-23c4-5fef-88b9-cc9cdb5592df",
+        "label": "Phishing analysis in samples",
+        "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+        "question": "Have you spotted warning signs in a sample phishing message?",
+        "example": "Annotate warning signs in a synthetic phishing email.",
+        "why_it_matters": "Learn phishing analysis in samples, authentication abuse indicators, common web risks, then apply the ideas in a small task.",
+        "group": "Recognize attack patterns",
+        "topic_id": "09128591-0165-58f9-9248-754abdc66dc7",
+        "roadmap_id": "e8d68528-c93a-5c08-bfa3-d83e18eab164",
+        "topic_title": "Phishing analysis in samples",
+        "source_locator": "cybersecurity-analyst.json#/M03/T09"
+      },
+      {
+        "id": "462bf4d8-d2cd-5465-b301-db235611c8ef",
+        "label": "Authentication abuse indicators",
+        "career_id": "5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+        "question": "Have you noticed unusual patterns in sign-in records?",
+        "example": "Chart failures per account from sample authentication logs.",
+        "why_it_matters": "Learn phishing analysis in samples, authentication abuse indicators, common web risks, then apply the ideas in a small task.",
+        "group": "Recognize attack patterns",
+        "topic_id": "51f2d1af-dd91-5b5d-90fa-3981465c1344",
+        "roadmap_id": "e8d68528-c93a-5c08-bfa3-d83e18eab164",
+        "topic_title": "Authentication abuse indicators",
+        "source_locator": "cybersecurity-analyst.json#/M03/T10"
+      }
+    ],
+    "source_file": "cybersecurity-analyst.json",
+    "source_sha256": "6b6a5eca81d352332e1b95dfb7e6eaa2cf0763cd816c211c8768f668579601ec",
+    "limitation": "Curriculum-based examples for local exploration, not a complete occupational profile or assessment. Independent content review is pending.",
+    "occupational_review_locator": "occupational/v1/agent-review.json#/summaries/5bd57e28-f4bd-5380-8d2f-6d8927d33b9b",
+    "occupational_review_sha256": "824708e6396feb30afe7e1ff82586d06ac8a2939da5bfa82f497c2ddec19a9c0",
+    "source_scope": "Authorized monitoring, triage, evidence and incident response; the source architect table is excluded from analyst expectations."
+  },
+  {
+    "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+    "version": "learner-v1",
+    "purpose": "Turn data into clear answers to practical questions. Learn how to clean, explore, visualise and explain evidence and limitations.",
+    "activities": [
+      {
+        "action": "Turn a business question into a measure",
+        "result": "A question with a defined unit and timeframe"
+      },
+      {
+        "action": "Clean and combine records",
+        "result": "A table with consistent types and documented missing values"
+      },
+      {
+        "action": "Explain a pattern and its limits",
+        "result": "A chart and a short evidence-based explanation"
+      }
+    ],
+    "work_on": "Tables, business questions and data-quality problems",
+    "produce": "A small analysis report with tables, charts and explained findings.",
+    "check": "Check definitions, data quality and whether the evidence supports the explanation.",
+    "learning_groups": [
+      {
+        "title": "Understand analytical work / Query structured data",
+        "explanation": "Learn business questions and measures, data files and formats, spreadsheet formulas and sorting, then apply the ideas in a small task. Learn relational tables and keys, sql filtering and sorting, aggregations and grouping, then apply the ideas in a small task.",
+        "topic_id": "57740413-d6b5-5ee8-9c0c-d1865515c504",
+        "roadmap_id": "5dc235cf-4117-589c-92cb-a5ce299181f3",
+        "topic_title": "Business questions and measures"
+      },
+      {
+        "title": "Clean and explore data / Interpret results",
+        "explanation": "Learn python notebooks setup, pandas loading and typing, missing values and duplicates, then apply the ideas in a small task. Learn descriptive statistics, distributions and outliers, correlation versus causation, then apply the ideas in a small task.",
+        "topic_id": "b753674d-4fc4-5259-9be5-88b72c7bdcda",
+        "roadmap_id": "5dc235cf-4117-589c-92cb-a5ce299181f3",
+        "topic_title": "Python notebooks setup"
+      },
+      {
+        "title": "Communicate insights / Deliver an analysis report",
+        "explanation": "Learn chart selection, dashboards and filters, narrative and recommendations, then apply the ideas in a small task. Learn define a stakeholder question, clean and query example dataset, create charts with interpretation, then apply the ideas in a small task.",
+        "topic_id": "9bba9d61-d632-5622-be86-d0b0c3f08a52",
+        "roadmap_id": "5dc235cf-4117-589c-92cb-a5ce299181f3",
+        "topic_title": "Chart selection"
+      }
+    ],
+    "starter": {
+      "title": "Business questions and measures",
+      "instructions": "Turn a vague question such as 'Are sales better?' into two measurable questions.",
+      "expected_result": "Two questions with a measure and timeframe, for example: What was total sales revenue this month, and how did it compare with last month?",
+      "topic_id": "57740413-d6b5-5ee8-9c0c-d1865515c504",
+      "roadmap_id": "5dc235cf-4117-589c-92cb-a5ce299181f3"
+    },
+    "skills": [
+      {
+        "id": "b8585cc4-1527-5806-b209-281cfd1efebc",
+        "label": "Business questions and measures",
+        "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+        "question": "Have you turned a business question into something measurable?",
+        "example": "Turn a vague question such as 'Are sales better?' into two measurable questions.",
+        "why_it_matters": "Learn business questions and measures, data files and formats, spreadsheet formulas and sorting, then apply the ideas in a small task.",
+        "group": "Understand analytical work",
+        "topic_id": "57740413-d6b5-5ee8-9c0c-d1865515c504",
+        "roadmap_id": "5dc235cf-4117-589c-92cb-a5ce299181f3",
+        "topic_title": "Business questions and measures",
+        "source_locator": "data-analyst.json#/M01/T01"
+      },
+      {
+        "id": "a78d8e91-ade3-5b62-a7db-b74bc76d68c2",
+        "label": "Data files and formats",
+        "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+        "question": "Have you worked with data in different file formats?",
+        "example": "Open a CSV, identify its fields and document ambiguous or missing values.",
+        "why_it_matters": "Learn business questions and measures, data files and formats, spreadsheet formulas and sorting, then apply the ideas in a small task.",
+        "group": "Understand analytical work",
+        "topic_id": "6c05c52c-6ee5-555c-a810-e533cae5326b",
+        "roadmap_id": "5dc235cf-4117-589c-92cb-a5ce299181f3",
+        "topic_title": "Data files and formats",
+        "source_locator": "data-analyst.json#/M01/T02"
+      },
+      {
+        "id": "951be875-b301-53df-85db-199a0ec375ec",
+        "label": "Spreadsheet formulas and sorting",
+        "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+        "question": "Have you used formulas and sorting in a spreadsheet?",
+        "example": "Calculate totals and percentages, then sort a small sales table without breaking formulas.",
+        "why_it_matters": "Learn business questions and measures, data files and formats, spreadsheet formulas and sorting, then apply the ideas in a small task.",
+        "group": "Understand analytical work",
+        "topic_id": "de32001d-d8fe-50de-9e6b-197aa97f79eb",
+        "roadmap_id": "5dc235cf-4117-589c-92cb-a5ce299181f3",
+        "topic_title": "Spreadsheet formulas and sorting",
+        "source_locator": "data-analyst.json#/M01/T03"
+      },
+      {
+        "id": "37a0299a-7160-55f0-aa75-24881859e223",
+        "label": "Responsible handling of data",
+        "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+        "question": "Have you handled sensitive data responsibly?",
+        "example": "Identify sensitive fields in a sample table and describe a safe analysis copy.",
+        "why_it_matters": "Learn business questions and measures, data files and formats, spreadsheet formulas and sorting, then apply the ideas in a small task.",
+        "group": "Understand analytical work",
+        "topic_id": "6cb04655-9185-5770-8bca-594ae8910bf1",
+        "roadmap_id": "5dc235cf-4117-589c-92cb-a5ce299181f3",
+        "topic_title": "Responsible handling of data",
+        "source_locator": "data-analyst.json#/M01/T04"
+      },
+      {
+        "id": "34b8e4bb-02ae-5d63-b471-04c5a5d0efd2",
+        "label": "Relational tables and keys",
+        "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+        "question": "Have you identified how two database tables are related?",
+        "example": "Draw customer and order tables and mark their keys.",
+        "why_it_matters": "Learn relational tables and keys, sql filtering and sorting, aggregations and grouping, then apply the ideas in a small task.",
+        "group": "Query structured data",
+        "topic_id": "3091f735-319c-5b24-9e9a-21a3cc6f53a9",
+        "roadmap_id": "5dc235cf-4117-589c-92cb-a5ce299181f3",
+        "topic_title": "Relational tables and keys",
+        "source_locator": "data-analyst.json#/M02/T05"
+      },
+      {
+        "id": "3a67f81a-838f-5d42-b391-c07d4b58ddb1",
+        "label": "SQL filtering and sorting",
+        "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+        "question": "Have you filtered and sorted results with SQL?",
+        "example": "Write queries to return recent orders above a chosen amount.",
+        "why_it_matters": "Learn relational tables and keys, sql filtering and sorting, aggregations and grouping, then apply the ideas in a small task.",
+        "group": "Query structured data",
+        "topic_id": "c26f9939-935f-51be-a71d-4098a945271a",
+        "roadmap_id": "5dc235cf-4117-589c-92cb-a5ce299181f3",
+        "topic_title": "SQL filtering and sorting",
+        "source_locator": "data-analyst.json#/M02/T06"
+      },
+      {
+        "id": "224e1528-66c3-5702-8504-e7d08a46643d",
+        "label": "Aggregations and grouping",
+        "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+        "question": "Have you calculated totals or averages for groups of records?",
+        "example": "Calculate monthly totals and find months above a threshold.",
+        "why_it_matters": "Learn relational tables and keys, sql filtering and sorting, aggregations and grouping, then apply the ideas in a small task.",
+        "group": "Query structured data",
+        "topic_id": "076f9cd5-1039-5c2f-b23b-e799ecdb8f7c",
+        "roadmap_id": "5dc235cf-4117-589c-92cb-a5ce299181f3",
+        "topic_title": "Aggregations and grouping",
+        "source_locator": "data-analyst.json#/M02/T07"
+      },
+      {
+        "id": "2807ee4f-a869-5f6c-b7a7-d73873f31dc0",
+        "label": "SQL joins",
+        "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+        "question": "Have you combined information from two related tables?",
+        "example": "Compare inner and left joins for customers who have no orders.",
+        "why_it_matters": "Learn relational tables and keys, sql filtering and sorting, aggregations and grouping, then apply the ideas in a small task.",
+        "group": "Query structured data",
+        "topic_id": "1492ab36-ca9a-50df-9445-3c38143c6fef",
+        "roadmap_id": "5dc235cf-4117-589c-92cb-a5ce299181f3",
+        "topic_title": "SQL joins",
+        "source_locator": "data-analyst.json#/M02/T08"
+      },
+      {
+        "id": "be540f13-2af4-52cd-94fc-b6484665d649",
+        "label": "Python notebooks setup",
+        "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+        "question": "Have you run code in a Python notebook?",
+        "example": "Create a notebook with imports, one sample table and a written question.",
+        "why_it_matters": "Learn python notebooks setup, pandas loading and typing, missing values and duplicates, then apply the ideas in a small task.",
+        "group": "Clean and explore data",
+        "topic_id": "b753674d-4fc4-5259-9be5-88b72c7bdcda",
+        "roadmap_id": "5dc235cf-4117-589c-92cb-a5ce299181f3",
+        "topic_title": "Python notebooks setup",
+        "source_locator": "data-analyst.json#/M03/T09"
+      },
+      {
+        "id": "509066fc-07df-505a-b9b9-4be404869ac8",
+        "label": "Pandas loading and typing",
+        "career_id": "0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+        "question": "Have you loaded a table into Python and checked its column types?",
+        "example": "Load a CSV, inspect dtypes, convert a date column and report errors.",
+        "why_it_matters": "Learn python notebooks setup, pandas loading and typing, missing values and duplicates, then apply the ideas in a small task.",
+        "group": "Clean and explore data",
+        "topic_id": "89f16b1d-c978-5446-824c-1fcd0c81354c",
+        "roadmap_id": "5dc235cf-4117-589c-92cb-a5ce299181f3",
+        "topic_title": "Pandas loading and typing",
+        "source_locator": "data-analyst.json#/M03/T10"
+      }
+    ],
+    "source_file": "data-analyst.json",
+    "source_sha256": "0f40d6e5f3480fbc870c558ee16ab6030c685f24b9476c816caece8ac688fe13",
+    "limitation": "Curriculum-based examples for local exploration, not a complete occupational profile or assessment. Independent content review is pending.",
+    "occupational_review_locator": "occupational/v1/agent-review.json#/summaries/0f8f854e-4b87-5c2c-9d99-5a557fe304de",
+    "occupational_review_sha256": "824708e6396feb30afe7e1ff82586d06ac8a2939da5bfa82f497c2ddec19a9c0",
+    "source_scope": "Question framing, data preparation, analysis and communication; data-science and engineering references are complementary, not equivalent roles."
+  },
+  {
+    "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+    "version": "learner-v1",
+    "purpose": "Build reliable ways to collect, prepare and move data. Start with small local pipelines before exploring production-scale services.",
+    "activities": [
+      {
+        "action": "Plan how data moves between systems",
+        "result": "A source-to-warehouse diagram"
+      },
+      {
+        "action": "Transform and load records",
+        "result": "A repeatable pipeline with a documented schema"
+      },
+      {
+        "action": "Check whether a pipeline can run again safely",
+        "result": "A rerun that does not duplicate records"
+      }
+    ],
+    "work_on": "Data sources, schemas and pipeline stages",
+    "produce": "A repeatable local data pipeline with checks and a short readme.",
+    "check": "Check schemas, record counts and repeatable reruns.",
+    "learning_groups": [
+      {
+        "title": "Understand data platforms / Build ingestion workflows",
+        "explanation": "Learn pipeline architecture and roles, terminal git and python setup, sql foundations, then apply the ideas in a small task. Learn http and file extraction, python transformations, database loading, then apply the ideas in a small task.",
+        "topic_id": "835f100a-17ca-5cde-a842-20a7fbce820f",
+        "roadmap_id": "55f60530-9517-5b22-8c36-2dc0db96ec68",
+        "topic_title": "Pipeline architecture and roles"
+      },
+      {
+        "title": "Model storage and transformations / Orchestrate and observe",
+        "explanation": "Learn postgresql tables and indexes, data warehouse layers, sql transformations, then apply the ideas in a small task. Learn batch workflow dependencies, scheduling and retries, logging and metrics, then apply the ideas in a small task.",
+        "topic_id": "9ac65892-4764-5d35-97f6-e038949b3201",
+        "roadmap_id": "55f60530-9517-5b22-8c36-2dc0db96ec68",
+        "topic_title": "PostgreSQL tables and indexes"
+      },
+      {
+        "title": "Package portable pipelines / Deliver a local data pipeline",
+        "explanation": "Learn containers and local services, configuration and secrets hygiene, versioned pipeline deployment, then apply the ideas in a small task. Learn select a public dataset, build reproducible ingestion, create analytical tables and tests, then apply the ideas in a small task.",
+        "topic_id": "536b52d8-07a2-5cf7-90b4-61ffd17b306d",
+        "roadmap_id": "55f60530-9517-5b22-8c36-2dc0db96ec68",
+        "topic_title": "Containers and local services"
+      }
+    ],
+    "starter": {
+      "title": "Pipeline architecture and roles",
+      "instructions": "Draw a source-to-warehouse diagram naming each stage and owner.",
+      "expected_result": "A diagram with a source, extraction step, transformation, destination and an owner for each stage.",
+      "topic_id": "835f100a-17ca-5cde-a842-20a7fbce820f",
+      "roadmap_id": "55f60530-9517-5b22-8c36-2dc0db96ec68"
+    },
+    "skills": [
+      {
+        "id": "e953b0d7-8f29-58d5-9536-859b5f960038",
+        "label": "Pipeline architecture and roles",
+        "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+        "question": "Have you drawn how data moves from its source to storage?",
+        "example": "Draw a source-to-warehouse diagram naming each stage and owner.",
+        "why_it_matters": "Learn pipeline architecture and roles, terminal git and python setup, sql foundations, then apply the ideas in a small task.",
+        "group": "Understand data platforms",
+        "topic_id": "835f100a-17ca-5cde-a842-20a7fbce820f",
+        "roadmap_id": "55f60530-9517-5b22-8c36-2dc0db96ec68",
+        "topic_title": "Pipeline architecture and roles",
+        "source_locator": "data-engineer.json#/M01/T01"
+      },
+      {
+        "id": "ae3130e8-e6b7-5a59-8897-9aa9df9ea22e",
+        "label": "Terminal Git and Python setup",
+        "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+        "question": "Have you set up a Python project using a terminal and Git?",
+        "example": "Create a Git-backed Python project that prints a sample record.",
+        "why_it_matters": "Learn pipeline architecture and roles, terminal git and python setup, sql foundations, then apply the ideas in a small task.",
+        "group": "Understand data platforms",
+        "topic_id": "4444c6d9-3558-5844-926e-dd8721c2c991",
+        "roadmap_id": "55f60530-9517-5b22-8c36-2dc0db96ec68",
+        "topic_title": "Terminal Git and Python setup",
+        "source_locator": "data-engineer.json#/M01/T02"
+      },
+      {
+        "id": "8cc4ddb1-3134-54b4-a3e1-3c4c72454847",
+        "label": "SQL foundations",
+        "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+        "question": "Have you used SQL to read data from a database?",
+        "example": "Create two sample tables and query them with a join.",
+        "why_it_matters": "Learn pipeline architecture and roles, terminal git and python setup, sql foundations, then apply the ideas in a small task.",
+        "group": "Understand data platforms",
+        "topic_id": "74d43553-ce06-51e8-a2bb-02c666350150",
+        "roadmap_id": "55f60530-9517-5b22-8c36-2dc0db96ec68",
+        "topic_title": "SQL foundations",
+        "source_locator": "data-engineer.json#/M01/T03"
+      },
+      {
+        "id": "e84b4936-1754-5009-af58-801f8a4250b4",
+        "label": "Data formats and schemas",
+        "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+        "question": "Have you defined the fields and types a dataset should contain?",
+        "example": "Write a schema for five fields of a sample event.",
+        "why_it_matters": "Learn pipeline architecture and roles, terminal git and python setup, sql foundations, then apply the ideas in a small task.",
+        "group": "Understand data platforms",
+        "topic_id": "aa994166-9e60-5c56-a8de-6a2045130a5b",
+        "roadmap_id": "55f60530-9517-5b22-8c36-2dc0db96ec68",
+        "topic_title": "Data formats and schemas",
+        "source_locator": "data-engineer.json#/M01/T04"
+      },
+      {
+        "id": "8540e259-01c5-586b-8a16-1276ef32d11e",
+        "label": "HTTP and file extraction",
+        "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+        "question": "Have you collected data from a file or a web request?",
+        "example": "Retrieve a public sample response or read a local CSV and record the source metadata.",
+        "why_it_matters": "Learn http and file extraction, python transformations, database loading, then apply the ideas in a small task.",
+        "group": "Build ingestion workflows",
+        "topic_id": "6db5bd80-dc36-5f10-b6ad-9e5b08c0f8a8",
+        "roadmap_id": "55f60530-9517-5b22-8c36-2dc0db96ec68",
+        "topic_title": "HTTP and file extraction",
+        "source_locator": "data-engineer.json#/M02/T05"
+      },
+      {
+        "id": "9646085b-2aff-529a-a5b6-0cbfa99cab9a",
+        "label": "Python transformations",
+        "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+        "question": "Have you cleaned or reshaped records with Python?",
+        "example": "Normalize dates and currency amounts in ten sample records.",
+        "why_it_matters": "Learn http and file extraction, python transformations, database loading, then apply the ideas in a small task.",
+        "group": "Build ingestion workflows",
+        "topic_id": "b61f5e29-feff-5e5c-9807-81ee7aa57490",
+        "roadmap_id": "55f60530-9517-5b22-8c36-2dc0db96ec68",
+        "topic_title": "Python transformations",
+        "source_locator": "data-engineer.json#/M02/T06"
+      },
+      {
+        "id": "cc66a27c-95de-5553-9f07-600a89643c27",
+        "label": "Database loading",
+        "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+        "question": "Have you loaded records into a database?",
+        "example": "Load a small table and verify row counts against the input.",
+        "why_it_matters": "Learn http and file extraction, python transformations, database loading, then apply the ideas in a small task.",
+        "group": "Build ingestion workflows",
+        "topic_id": "50e82820-5033-5a9e-9baf-9aa401eec678",
+        "roadmap_id": "55f60530-9517-5b22-8c36-2dc0db96ec68",
+        "topic_title": "Database loading",
+        "source_locator": "data-engineer.json#/M02/T07"
+      },
+      {
+        "id": "4a6b06e9-c90a-5fe2-a23b-c07def914a47",
+        "label": "Idempotent reruns",
+        "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+        "question": "Have you rerun a data job without creating duplicates?",
+        "example": "Run a loader twice and verify no duplicate records appear.",
+        "why_it_matters": "Learn http and file extraction, python transformations, database loading, then apply the ideas in a small task.",
+        "group": "Build ingestion workflows",
+        "topic_id": "e04544fb-0892-5a29-bc0f-80d48601dd00",
+        "roadmap_id": "55f60530-9517-5b22-8c36-2dc0db96ec68",
+        "topic_title": "Idempotent reruns",
+        "source_locator": "data-engineer.json#/M02/T08"
+      },
+      {
+        "id": "272ecdb0-0cb2-5630-af29-0f7c614a8575",
+        "label": "PostgreSQL tables and indexes",
+        "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+        "question": "Have you used a database index to support a query?",
+        "example": "Create a table, primary key and one justified index.",
+        "why_it_matters": "Learn postgresql tables and indexes, data warehouse layers, sql transformations, then apply the ideas in a small task.",
+        "group": "Model storage and transformations",
+        "topic_id": "9ac65892-4764-5d35-97f6-e038949b3201",
+        "roadmap_id": "55f60530-9517-5b22-8c36-2dc0db96ec68",
+        "topic_title": "PostgreSQL tables and indexes",
+        "source_locator": "data-engineer.json#/M03/T09"
+      },
+      {
+        "id": "75dbaf9d-3261-5475-a27c-7d17dcec975b",
+        "label": "Data warehouse layers",
+        "career_id": "a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+        "question": "Have you separated raw data from cleaned data in a warehouse?",
+        "example": "Sketch raw, staging and reporting tables for a sales dataset.",
+        "why_it_matters": "Learn postgresql tables and indexes, data warehouse layers, sql transformations, then apply the ideas in a small task.",
+        "group": "Model storage and transformations",
+        "topic_id": "d34f0284-27c8-5b86-9973-7a0502c4e0a3",
+        "roadmap_id": "55f60530-9517-5b22-8c36-2dc0db96ec68",
+        "topic_title": "Data warehouse layers",
+        "source_locator": "data-engineer.json#/M03/T10"
+      }
+    ],
+    "source_file": "data-engineer.json",
+    "source_sha256": "f2ba9eaf050f5e37fb9446d92f900351933b8cb2247630a100f509f35d8fd4dc",
+    "limitation": "Curriculum-based examples for local exploration, not a complete occupational profile or assessment. Independent content review is pending.",
+    "occupational_review_locator": "occupational/v1/agent-review.json#/summaries/a4e54446-2b44-5716-bd3e-5cebb6253d9b",
+    "occupational_review_sha256": "824708e6396feb30afe7e1ff82586d06ac8a2939da5bfa82f497c2ddec19a9c0",
+    "source_scope": "Reproducible ingestion, transformation, storage and operation of data pipelines; generic software/database architecture is broader than this career."
+  },
+  {
+    "career_id": "24068b09-7695-5744-88ca-9e678a40e06b",
+    "version": "learner-v1",
+    "purpose": "Make software delivery more repeatable and reliable. Learn basic Linux, version control, containers, automation and monitoring.",
+    "activities": [
+      {
+        "action": "Trace a change from code to a running service",
+        "result": "A diagram of build, test and delivery steps"
+      },
+      {
+        "action": "Automate a repeatable task",
+        "result": "A script with explicit environment settings"
+      },
+      {
+        "action": "Package and check a service",
+        "result": "A container configuration and checks for failures"
+      }
+    ],
+    "work_on": "Code changes, build steps and service environments",
+    "produce": "A small version-controlled application with automated checks and documented deployment.",
+    "check": "Check builds, automated tests and service behaviour.",
+    "learning_groups": [
+      {
+        "title": "Learn delivery foundations / Automate development tasks",
+        "explanation": "Learn devops collaboration and flow, linux terminal essentials, git branching and review, then apply the ideas in a small task. Learn shell scripts, environment configuration, build and test scripts, then apply the ideas in a small task.",
+        "topic_id": "06364153-a2a3-5474-87a5-f6633ad3d9a1",
+        "roadmap_id": "50bb1fa3-0032-5ff0-99a6-3f6c4c37f60a",
+        "topic_title": "DevOps collaboration and flow"
+      },
+      {
+        "title": "Package applications / Build delivery pipelines",
+        "explanation": "Learn docker images and files, containers and networking, persistent data and volumes, then apply the ideas in a small task. Learn github actions workflow basics, automated checks and artifacts, secrets and least privilege, then apply the ideas in a small task.",
+        "topic_id": "52464c2d-406d-5c39-abe7-d3ec053286c1",
+        "roadmap_id": "50bb1fa3-0032-5ff0-99a6-3f6c4c37f60a",
+        "topic_title": "Docker images and files"
+      },
+      {
+        "title": "Operate observable services / Deliver a small deployment workflow",
+        "explanation": "Learn metrics logs and health checks, deployment configurations, infrastructure as code introduction, then apply the ideas in a small task. Learn select sample application, containerize and test locally, create ci checks, then apply the ideas in a small task.",
+        "topic_id": "d0f66725-3c4c-5d0b-a5ef-54e316afa248",
+        "roadmap_id": "50bb1fa3-0032-5ff0-99a6-3f6c4c37f60a",
+        "topic_title": "Metrics logs and health checks"
+      }
+    ],
+    "starter": {
+      "title": "DevOps collaboration and flow",
+      "instructions": "Draw the path from a code change to a running service.",
+      "expected_result": "A diagram showing code change, build, test, delivery and the running service, including where a failure stops delivery.",
+      "topic_id": "06364153-a2a3-5474-87a5-f6633ad3d9a1",
+      "roadmap_id": "50bb1fa3-0032-5ff0-99a6-3f6c4c37f60a"
+    },
+    "skills": [
+      {
+        "id": "329fde34-5dd6-55dc-be99-df32d69b3be2",
+        "label": "DevOps collaboration and flow",
+        "career_id": "24068b09-7695-5744-88ca-9e678a40e06b",
+        "question": "Have you mapped how a team moves a change into service?",
+        "example": "Draw the path from a code change to a running service.",
+        "why_it_matters": "Learn devops collaboration and flow, linux terminal essentials, git branching and review, then apply the ideas in a small task.",
+        "group": "Learn delivery foundations",
+        "topic_id": "06364153-a2a3-5474-87a5-f6633ad3d9a1",
+        "roadmap_id": "50bb1fa3-0032-5ff0-99a6-3f6c4c37f60a",
+        "topic_title": "DevOps collaboration and flow",
+        "source_locator": "devops-engineer.json#/M01/T01"
+      },
+      {
+        "id": "050a2a1b-1a08-580e-badc-30fd284cdf1b",
+        "label": "Linux terminal essentials",
+        "career_id": "24068b09-7695-5744-88ca-9e678a40e06b",
+        "question": "Have you used a Linux terminal to inspect files or processes?",
+        "example": "Create a project folder and inspect its permissions and files.",
+        "why_it_matters": "Learn devops collaboration and flow, linux terminal essentials, git branching and review, then apply the ideas in a small task.",
+        "group": "Learn delivery foundations",
+        "topic_id": "4d6dfdcd-a1ac-5651-bb28-dfdf8eba78d0",
+        "roadmap_id": "50bb1fa3-0032-5ff0-99a6-3f6c4c37f60a",
+        "topic_title": "Linux terminal essentials",
+        "source_locator": "devops-engineer.json#/M01/T02"
+      },
+      {
+        "id": "4c595d85-a073-5d28-b6f4-ee3f075b6213",
+        "label": "Git branching and review",
+        "career_id": "24068b09-7695-5744-88ca-9e678a40e06b",
+        "question": "Have you reviewed or merged a change in Git?",
+        "example": "Create a branch, make a change and compare it with the main branch.",
+        "why_it_matters": "Learn devops collaboration and flow, linux terminal essentials, git branching and review, then apply the ideas in a small task.",
+        "group": "Learn delivery foundations",
+        "topic_id": "2aa13c3f-8460-5c8e-990a-a7511da11297",
+        "roadmap_id": "50bb1fa3-0032-5ff0-99a6-3f6c4c37f60a",
+        "topic_title": "Git branching and review",
+        "source_locator": "devops-engineer.json#/M01/T03"
+      },
+      {
+        "id": "91f10149-2860-5ce9-950e-f395151ef189",
+        "label": "Networking and HTTP basics",
+        "career_id": "24068b09-7695-5744-88ca-9e678a40e06b",
+        "question": "Have you traced how a web request reaches a service?",
+        "example": "Trace a browser request to a local server port.",
+        "why_it_matters": "Learn devops collaboration and flow, linux terminal essentials, git branching and review, then apply the ideas in a small task.",
+        "group": "Learn delivery foundations",
+        "topic_id": "0a8973a4-8ed9-5fc3-9f5e-905edeb0de81",
+        "roadmap_id": "50bb1fa3-0032-5ff0-99a6-3f6c4c37f60a",
+        "topic_title": "Networking and HTTP basics",
+        "source_locator": "devops-engineer.json#/M01/T04"
+      },
+      {
+        "id": "00e4ee76-d7e9-5b88-9d9d-53a029939af8",
+        "label": "Shell scripts",
+        "career_id": "24068b09-7695-5744-88ca-9e678a40e06b",
+        "question": "Have you written a script to automate a terminal task?",
+        "example": "Write a script that verifies required files exist and exits on failure.",
+        "why_it_matters": "Learn shell scripts, environment configuration, build and test scripts, then apply the ideas in a small task.",
+        "group": "Automate development tasks",
+        "topic_id": "4b71c451-6245-5c54-88ac-f4bed5bf0dbb",
+        "roadmap_id": "50bb1fa3-0032-5ff0-99a6-3f6c4c37f60a",
+        "topic_title": "Shell scripts",
+        "source_locator": "devops-engineer.json#/M02/T05"
+      },
+      {
+        "id": "26cb07ef-dbd7-5f51-a2a9-a470300f5966",
+        "label": "Environment configuration",
+        "career_id": "24068b09-7695-5744-88ca-9e678a40e06b",
+        "question": "Have you configured an app through environment settings?",
+        "example": "Run a local script with a test environment variable.",
+        "why_it_matters": "Learn shell scripts, environment configuration, build and test scripts, then apply the ideas in a small task.",
+        "group": "Automate development tasks",
+        "topic_id": "32b0d5ae-b393-5236-828b-d63f1f66923b",
+        "roadmap_id": "50bb1fa3-0032-5ff0-99a6-3f6c4c37f60a",
+        "topic_title": "Environment configuration",
+        "source_locator": "devops-engineer.json#/M02/T06"
+      },
+      {
+        "id": "805bd83f-69e2-5e1d-9f71-84f2bc95580e",
+        "label": "Build and test scripts",
+        "career_id": "24068b09-7695-5744-88ca-9e678a40e06b",
+        "question": "Have you written commands to build and test an app?",
+        "example": "Create a script that runs tests and returns a nonzero exit on error.",
+        "why_it_matters": "Learn shell scripts, environment configuration, build and test scripts, then apply the ideas in a small task.",
+        "group": "Automate development tasks",
+        "topic_id": "8180d7a5-83cc-5d2d-83e4-d65c5fb0b4bb",
+        "roadmap_id": "50bb1fa3-0032-5ff0-99a6-3f6c4c37f60a",
+        "topic_title": "Build and test scripts",
+        "source_locator": "devops-engineer.json#/M02/T07"
+      },
+      {
+        "id": "cf03b4a0-eb77-59a5-997d-c3d5ff078df3",
+        "label": "Continuous integration concepts",
+        "career_id": "24068b09-7695-5744-88ca-9e678a40e06b",
+        "question": "Have you set up checks that run automatically when code changes?",
+        "example": "Diagram a pull-request workflow that tests before merge.",
+        "why_it_matters": "Learn shell scripts, environment configuration, build and test scripts, then apply the ideas in a small task.",
+        "group": "Automate development tasks",
+        "topic_id": "56682def-9a60-5ce9-9966-cbc1fb449c5c",
+        "roadmap_id": "50bb1fa3-0032-5ff0-99a6-3f6c4c37f60a",
+        "topic_title": "Continuous integration concepts",
+        "source_locator": "devops-engineer.json#/M02/T08"
+      },
+      {
+        "id": "c0424fce-599b-52d6-969c-c0c454e4df36",
+        "label": "Docker images and files",
+        "career_id": "24068b09-7695-5744-88ca-9e678a40e06b",
+        "question": "Have you written a file that defines a Docker image?",
+        "example": "Build a local image for a tiny sample web app.",
+        "why_it_matters": "Learn docker images and files, containers and networking, persistent data and volumes, then apply the ideas in a small task.",
+        "group": "Package applications",
+        "topic_id": "52464c2d-406d-5c39-abe7-d3ec053286c1",
+        "roadmap_id": "50bb1fa3-0032-5ff0-99a6-3f6c4c37f60a",
+        "topic_title": "Docker images and files",
+        "source_locator": "devops-engineer.json#/M03/T09"
+      },
+      {
+        "id": "1e0b217b-2b5e-5d06-a39e-78dd319399f1",
+        "label": "Containers and networking",
+        "career_id": "24068b09-7695-5744-88ca-9e678a40e06b",
+        "question": "Have you connected a running container to another service?",
+        "example": "Start a container and test its exposed HTTP endpoint.",
+        "why_it_matters": "Learn docker images and files, containers and networking, persistent data and volumes, then apply the ideas in a small task.",
+        "group": "Package applications",
+        "topic_id": "811f2642-9955-5818-8436-a6012fa06734",
+        "roadmap_id": "50bb1fa3-0032-5ff0-99a6-3f6c4c37f60a",
+        "topic_title": "Containers and networking",
+        "source_locator": "devops-engineer.json#/M03/T10"
+      }
+    ],
+    "source_file": "devops-engineer.json",
+    "source_sha256": "5efc95d0732cadeee32a6c1914e389d660c96b20f46499b21b7b78821002c282",
+    "limitation": "Curriculum-based examples for local exploration, not a complete occupational profile or assessment. Independent content review is pending.",
+    "occupational_review_locator": "occupational/v1/agent-review.json#/summaries/24068b09-7695-5744-88ca-9e678a40e06b",
+    "occupational_review_sha256": "824708e6396feb30afe7e1ff82586d06ac8a2939da5bfa82f497c2ddec19a9c0",
+    "source_scope": "Build/test automation, deployment, containers and observability; software development, administration and platform roles are related, not a unique equivalent occupation."
+  },
+  {
+    "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+    "version": "learner-v1",
+    "purpose": "Write software that interacts with electronic devices. Learn the basics of C, microcontrollers, inputs and timing through simulations or simple boards.",
+    "activities": [
+      {
+        "action": "Connect software to device inputs and outputs",
+        "result": "A diagram identifying GPIO, timers and peripherals"
+      },
+      {
+        "action": "Respond to buttons and sensor readings",
+        "result": "A simulated controller with documented input behaviour"
+      },
+      {
+        "action": "Coordinate timing and outputs",
+        "result": "A program that controls outputs without blocking other work"
+      }
+    ],
+    "work_on": "Microcontroller inputs, timing and device outputs",
+    "produce": "A simulated or optional board-based sensor-and-output project.",
+    "check": "Check simulated input, timing and output behaviour.",
+    "learning_groups": [
+      {
+        "title": "Understand embedded computing / Control digital input and output",
+        "explanation": "Learn microcontrollers and peripherals, voltage and safe handling, c language basics, then apply the ideas in a small task. Learn gpio modes, led and button circuits, pull resistors and debouncing, then apply the ideas in a small task.",
+        "topic_id": "c7f02386-3311-5fba-9c0c-4d5a082d4ade",
+        "roadmap_id": "40d0135e-cc8a-5e5d-8418-845214fd2111",
+        "topic_title": "Microcontrollers and peripherals"
+      },
+      {
+        "title": "Read and produce signals / Connect components",
+        "explanation": "Learn analog to digital conversion, pwm outputs, timers and interrupts, then apply the ideas in a small task. Learn uart communication, i2c addressing, spi basics, then apply the ideas in a small task.",
+        "topic_id": "028c540f-c6a8-5eff-8ce6-8abf474e2cbb",
+        "roadmap_id": "40d0135e-cc8a-5e5d-8418-845214fd2111",
+        "topic_title": "Analog to digital conversion"
+      },
+      {
+        "title": "Build dependable firmware / Deliver a sensor controller",
+        "explanation": "Learn state machines, memory and data types, debugging and testing, then apply the ideas in a small task. Learn define simulated system, implement readings and output, add error states and tests, then apply the ideas in a small task.",
+        "topic_id": "c4d3e222-9ff5-53b6-8bb8-876b27b3be7b",
+        "roadmap_id": "40d0135e-cc8a-5e5d-8418-845214fd2111",
+        "topic_title": "State machines"
+      }
+    ],
+    "starter": {
+      "title": "Microcontrollers and peripherals",
+      "instructions": "Label CPU, memory, GPIO and timers in a block diagram.",
+      "expected_result": "A block diagram distinguishing the processor, memory, input/output pins and timers; no physical wiring is needed.",
+      "topic_id": "c7f02386-3311-5fba-9c0c-4d5a082d4ade",
+      "roadmap_id": "40d0135e-cc8a-5e5d-8418-845214fd2111"
+    },
+    "skills": [
+      {
+        "id": "d17e8cd2-836c-52d5-8795-bc4423b0c905",
+        "label": "Microcontrollers and peripherals",
+        "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+        "question": "Have you identified the main parts of a microcontroller?",
+        "example": "Label CPU, memory, GPIO and timers in a block diagram.",
+        "why_it_matters": "Learn microcontrollers and peripherals, voltage and safe handling, c language basics, then apply the ideas in a small task.",
+        "group": "Understand embedded computing",
+        "topic_id": "c7f02386-3311-5fba-9c0c-4d5a082d4ade",
+        "roadmap_id": "40d0135e-cc8a-5e5d-8418-845214fd2111",
+        "topic_title": "Microcontrollers and peripherals",
+        "source_locator": "embedded-systems-developer.json#/M01/T01"
+      },
+      {
+        "id": "f948ff4a-9074-546e-844b-956c46b8fb7e",
+        "label": "Voltage and safe handling",
+        "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+        "question": "Have you checked voltage and safety limits before connecting a device?",
+        "example": "Check safe supply and I/O limits in a sample datasheet.",
+        "why_it_matters": "Learn microcontrollers and peripherals, voltage and safe handling, c language basics, then apply the ideas in a small task.",
+        "group": "Understand embedded computing",
+        "topic_id": "60115583-d3a5-583c-91c9-65b4a66a51bb",
+        "roadmap_id": "40d0135e-cc8a-5e5d-8418-845214fd2111",
+        "topic_title": "Voltage and safe handling",
+        "source_locator": "embedded-systems-developer.json#/M01/T02"
+      },
+      {
+        "id": "4c034743-f8b6-5867-aa7c-5b15967df448",
+        "label": "C language basics",
+        "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+        "question": "Have you written a small program in C?",
+        "example": "Write a C function that clamps a sensor reading to a range.",
+        "why_it_matters": "Learn microcontrollers and peripherals, voltage and safe handling, c language basics, then apply the ideas in a small task.",
+        "group": "Understand embedded computing",
+        "topic_id": "6b71f75b-f055-52de-b238-0b2342bdfc76",
+        "roadmap_id": "40d0135e-cc8a-5e5d-8418-845214fd2111",
+        "topic_title": "C language basics",
+        "source_locator": "embedded-systems-developer.json#/M01/T03"
+      },
+      {
+        "id": "1e8b7a94-a9e0-5a6f-82ed-e9a650270cf3",
+        "label": "Simulator and toolchain setup",
+        "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+        "question": "Have you built and run a program in a device simulator?",
+        "example": "Compile or simulate a simple LED example and record setup.",
+        "why_it_matters": "Learn microcontrollers and peripherals, voltage and safe handling, c language basics, then apply the ideas in a small task.",
+        "group": "Understand embedded computing",
+        "topic_id": "a4cf0521-258f-5094-92ee-facc77044ac0",
+        "roadmap_id": "40d0135e-cc8a-5e5d-8418-845214fd2111",
+        "topic_title": "Simulator and toolchain setup",
+        "source_locator": "embedded-systems-developer.json#/M01/T04"
+      },
+      {
+        "id": "4fca94f0-1d49-5c75-ac98-62bd8a53edb9",
+        "label": "GPIO modes",
+        "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+        "question": "Have you configured a microcontroller pin as input or output?",
+        "example": "Set a simulated pin high and low to control an LED.",
+        "why_it_matters": "Learn gpio modes, led and button circuits, pull resistors and debouncing, then apply the ideas in a small task.",
+        "group": "Control digital input and output",
+        "topic_id": "cd85e7b0-25d7-5dce-b614-7d4428e98b7a",
+        "roadmap_id": "40d0135e-cc8a-5e5d-8418-845214fd2111",
+        "topic_title": "GPIO modes",
+        "source_locator": "embedded-systems-developer.json#/M02/T05"
+      },
+      {
+        "id": "a2508d7b-1fcb-55ac-a6d1-6671cba8b858",
+        "label": "LED and button circuits",
+        "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+        "question": "Have you simulated an LED and a button circuit?",
+        "example": "Build a simulated LED and button circuit.",
+        "why_it_matters": "Learn gpio modes, led and button circuits, pull resistors and debouncing, then apply the ideas in a small task.",
+        "group": "Control digital input and output",
+        "topic_id": "1760962f-262e-53c3-8881-24b5cbfa2e52",
+        "roadmap_id": "40d0135e-cc8a-5e5d-8418-845214fd2111",
+        "topic_title": "LED and button circuits",
+        "source_locator": "embedded-systems-developer.json#/M02/T06"
+      },
+      {
+        "id": "8af1b3ff-36b9-5fb6-971a-f37dd2a4ff87",
+        "label": "Pull resistors and debouncing",
+        "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+        "question": "Have you handled noisy or unstable button signals?",
+        "example": "Observe a noisy button input and apply simple debouncing.",
+        "why_it_matters": "Learn gpio modes, led and button circuits, pull resistors and debouncing, then apply the ideas in a small task.",
+        "group": "Control digital input and output",
+        "topic_id": "f55582f6-9b09-5891-a945-03d55659ab7c",
+        "roadmap_id": "40d0135e-cc8a-5e5d-8418-845214fd2111",
+        "topic_title": "Pull resistors and debouncing",
+        "source_locator": "embedded-systems-developer.json#/M02/T07"
+      },
+      {
+        "id": "2eeec045-e01f-55d4-b403-db32e9f6660c",
+        "label": "Timing without blocking",
+        "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+        "question": "Have you scheduled one action without stopping other device work?",
+        "example": "Blink an LED while still responding to a button press.",
+        "why_it_matters": "Learn gpio modes, led and button circuits, pull resistors and debouncing, then apply the ideas in a small task.",
+        "group": "Control digital input and output",
+        "topic_id": "6d6dae62-9540-5968-846a-5c9c73457f3a",
+        "roadmap_id": "40d0135e-cc8a-5e5d-8418-845214fd2111",
+        "topic_title": "Timing without blocking",
+        "source_locator": "embedded-systems-developer.json#/M02/T08"
+      },
+      {
+        "id": "b0e2eef4-0e86-5304-9986-ad6fbe7c9b3d",
+        "label": "Analog to digital conversion",
+        "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+        "question": "Have you converted a varying sensor signal into a number?",
+        "example": "Map sample ADC counts to an estimated voltage.",
+        "why_it_matters": "Learn analog to digital conversion, pwm outputs, timers and interrupts, then apply the ideas in a small task.",
+        "group": "Read and produce signals",
+        "topic_id": "028c540f-c6a8-5eff-8ce6-8abf474e2cbb",
+        "roadmap_id": "40d0135e-cc8a-5e5d-8418-845214fd2111",
+        "topic_title": "Analog to digital conversion",
+        "source_locator": "embedded-systems-developer.json#/M03/T09"
+      },
+      {
+        "id": "b4056b88-8945-53b0-a81d-9de699ce2845",
+        "label": "PWM outputs",
+        "career_id": "3f53351f-851f-5aec-9ece-12f22220174f",
+        "question": "Have you controlled an output by varying the length of its pulses?",
+        "example": "Change simulated LED brightness using duty cycle.",
+        "why_it_matters": "Learn analog to digital conversion, pwm outputs, timers and interrupts, then apply the ideas in a small task.",
+        "group": "Read and produce signals",
+        "topic_id": "bc192f3e-8066-50ba-ae73-9cf8b49fd533",
+        "roadmap_id": "40d0135e-cc8a-5e5d-8418-845214fd2111",
+        "topic_title": "PWM outputs",
+        "source_locator": "embedded-systems-developer.json#/M03/T10"
+      }
+    ],
+    "source_file": "embedded-systems-developer.json",
+    "source_sha256": "cde5f8d5428eb2b3ae807d0b5186343eac36ddca1055756b8340ef761f5ed10a",
+    "limitation": "Curriculum-based examples for local exploration, not a complete occupational profile or assessment. Independent content review is pending.",
+    "occupational_review_locator": "occupational/v1/agent-review.json#/summaries/3f53351f-851f-5aec-9ece-12f22220174f",
+    "occupational_review_sha256": "824708e6396feb30afe7e1ff82586d06ac8a2939da5bfa82f497c2ddec19a9c0",
+    "source_scope": "Microcontroller software, interfaces and hardware integration; generic software/hardware occupations are complementary and senior architecture duties remain separate."
+  },
+  {
+    "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+    "version": "learner-v1",
+    "purpose": "Build the parts of websites that people see and interact with. Learn to structure pages, style layouts, add behaviour and check usability.",
+    "activities": [
+      {
+        "action": "Structure a web page",
+        "result": "A page with headings, navigation and labelled inputs"
+      },
+      {
+        "action": "Adapt an interface to different screens",
+        "result": "A layout that stays readable on a phone and desktop"
+      },
+      {
+        "action": "Check an interaction",
+        "result": "A form with understandable feedback and keyboard access"
+      }
+    ],
+    "work_on": "Web-page structure, layouts and browser interactions",
+    "produce": "A small, responsive multi-page website with at least one working interactive feature.",
+    "check": "Test layout, keyboard access and interaction feedback.",
+    "learning_groups": [
+      {
+        "title": "Understand the web and tools / Structure accessible pages",
+        "explanation": "Learn how browsers deliver pages, editor and browser developer tools, files and terminal navigation, then apply the ideas in a small task. Learn html document structure, semantic text and landmarks, links images and media, then apply the ideas in a small task.",
+        "topic_id": "339d41c7-1593-52bb-aa9e-43d50a1947b7",
+        "roadmap_id": "2e14acb0-9b16-50e3-a7a8-2e8667f60a8f",
+        "topic_title": "How browsers deliver pages"
+      },
+      {
+        "title": "Style adaptive layouts / Make pages interactive",
+        "explanation": "Learn css selectors and cascade, box model and sizing, flexbox layout, then apply the ideas in a small task. Learn javascript values and control flow, functions arrays and objects, dom selection and events, then apply the ideas in a small task.",
+        "topic_id": "5885753c-e988-56a1-aaac-f05c653e79d1",
+        "roadmap_id": "2e14acb0-9b16-50e3-a7a8-2e8667f60a8f",
+        "topic_title": "CSS selectors and cascade"
+      },
+      {
+        "title": "Build reliable interfaces / Ship a starter website",
+        "explanation": "Learn fetch and json responses, asynchronous states and errors, accessibility testing, then apply the ideas in a small task. Learn plan a small website, build responsive multi-page interface, add accessible interactions, then apply the ideas in a small task.",
+        "topic_id": "658a6925-71a0-5e62-b8a8-4b83a4502dbf",
+        "roadmap_id": "2e14acb0-9b16-50e3-a7a8-2e8667f60a8f",
+        "topic_title": "Fetch and JSON responses"
+      }
+    ],
+    "starter": {
+      "title": "How browsers deliver pages",
+      "instructions": "Inspect the Network tab after reloading a page and identify its document request and two asset requests.",
+      "expected_result": "Identify the page document request, its HTTP status and two asset requests in the browser Network panel.",
+      "topic_id": "339d41c7-1593-52bb-aa9e-43d50a1947b7",
+      "roadmap_id": "2e14acb0-9b16-50e3-a7a8-2e8667f60a8f"
+    },
+    "skills": [
+      {
+        "id": "3655468d-52ed-5780-b487-771f3e1c3bce",
+        "label": "How browsers deliver pages",
+        "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+        "question": "Have you used browser tools to see how a page and its files load?",
+        "example": "Inspect the Network tab after reloading a page and identify its document request and two asset requests.",
+        "why_it_matters": "Learn how browsers deliver pages, editor and browser developer tools, files and terminal navigation, then apply the ideas in a small task.",
+        "group": "Understand the web and tools",
+        "topic_id": "339d41c7-1593-52bb-aa9e-43d50a1947b7",
+        "roadmap_id": "2e14acb0-9b16-50e3-a7a8-2e8667f60a8f",
+        "topic_title": "How browsers deliver pages",
+        "source_locator": "frontend-developer.json#/M01/T01"
+      },
+      {
+        "id": "3fd29916-5f2a-5cf4-adce-b093334bb703",
+        "label": "Editor and browser developer tools",
+        "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+        "question": "Have you used an editor and browser tools to inspect a web page?",
+        "example": "Change a heading in a local HTML file, reload it, and inspect the element and console.",
+        "why_it_matters": "Learn how browsers deliver pages, editor and browser developer tools, files and terminal navigation, then apply the ideas in a small task.",
+        "group": "Understand the web and tools",
+        "topic_id": "03f8a848-ca03-529d-9730-f6b70243282c",
+        "roadmap_id": "2e14acb0-9b16-50e3-a7a8-2e8667f60a8f",
+        "topic_title": "Editor and browser developer tools",
+        "source_locator": "frontend-developer.json#/M01/T02"
+      },
+      {
+        "id": "7f4850a3-000c-5d8d-9053-d0ee65dcb031",
+        "label": "Files and terminal navigation",
+        "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+        "question": "Have you found and organised project files using a terminal?",
+        "example": "Create a project folder, list its files and return to its parent folder using terminal commands.",
+        "why_it_matters": "Learn how browsers deliver pages, editor and browser developer tools, files and terminal navigation, then apply the ideas in a small task.",
+        "group": "Understand the web and tools",
+        "topic_id": "53eeff75-0802-58fa-8603-0ab39a003fba",
+        "roadmap_id": "2e14acb0-9b16-50e3-a7a8-2e8667f60a8f",
+        "topic_title": "Files and terminal navigation",
+        "source_locator": "frontend-developer.json#/M01/T03"
+      },
+      {
+        "id": "0a6710b0-56af-5407-a8a7-c55dbb79a599",
+        "label": "Git commits and repositories",
+        "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+        "question": "Have you saved and reviewed project changes in Git?",
+        "example": "Initialize a repository, change a README, commit it and display the log.",
+        "why_it_matters": "Learn how browsers deliver pages, editor and browser developer tools, files and terminal navigation, then apply the ideas in a small task.",
+        "group": "Understand the web and tools",
+        "topic_id": "30c07df8-03e4-5888-a87f-7d1d44660800",
+        "roadmap_id": "2e14acb0-9b16-50e3-a7a8-2e8667f60a8f",
+        "topic_title": "Git commits and repositories",
+        "source_locator": "frontend-developer.json#/M01/T04"
+      },
+      {
+        "id": "b6fb3847-5cf3-5c15-b8cc-a12f05a1bc10",
+        "label": "HTML document structure",
+        "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+        "question": "Have you written the basic HTML structure of a page?",
+        "example": "Create an index.html page with a title, heading and paragraphs, then open it in a browser.",
+        "why_it_matters": "Learn html document structure, semantic text and landmarks, links images and media, then apply the ideas in a small task.",
+        "group": "Structure accessible pages",
+        "topic_id": "d7fe6881-8f3a-5c52-8ca9-e86e6f342dcc",
+        "roadmap_id": "2e14acb0-9b16-50e3-a7a8-2e8667f60a8f",
+        "topic_title": "HTML document structure",
+        "source_locator": "frontend-developer.json#/M02/T05"
+      },
+      {
+        "id": "d0066099-fe7f-572e-8c6c-eb4acf88576e",
+        "label": "Semantic text and landmarks",
+        "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+        "question": "Have you used meaningful headings and sections in HTML?",
+        "example": "Replace generic div wrappers with meaningful headings and landmarks, then inspect the outline.",
+        "why_it_matters": "Learn html document structure, semantic text and landmarks, links images and media, then apply the ideas in a small task.",
+        "group": "Structure accessible pages",
+        "topic_id": "92f31969-f83c-5727-9ce9-8767f2d69823",
+        "roadmap_id": "2e14acb0-9b16-50e3-a7a8-2e8667f60a8f",
+        "topic_title": "Semantic text and landmarks",
+        "source_locator": "frontend-developer.json#/M02/T06"
+      },
+      {
+        "id": "4c7d253a-52f9-5a02-a9a8-d27de81b16c7",
+        "label": "Links images and media",
+        "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+        "question": "Have you added accessible links, images or media to a page?",
+        "example": "Add two working internal links and an image with appropriate alternate text.",
+        "why_it_matters": "Learn html document structure, semantic text and landmarks, links images and media, then apply the ideas in a small task.",
+        "group": "Structure accessible pages",
+        "topic_id": "2d85bd61-e406-5111-9d45-2a5ab0740689",
+        "roadmap_id": "2e14acb0-9b16-50e3-a7a8-2e8667f60a8f",
+        "topic_title": "Links images and media",
+        "source_locator": "frontend-developer.json#/M02/T07"
+      },
+      {
+        "id": "9994a320-edbe-5845-832c-588e5f8a2304",
+        "label": "Forms and input labels",
+        "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+        "question": "Have you connected form labels to the right input fields?",
+        "example": "Build a contact form with associated labels, required fields and readable error messages.",
+        "why_it_matters": "Learn html document structure, semantic text and landmarks, links images and media, then apply the ideas in a small task.",
+        "group": "Structure accessible pages",
+        "topic_id": "6d6e7d17-6d3e-59c2-8596-717948419e72",
+        "roadmap_id": "2e14acb0-9b16-50e3-a7a8-2e8667f60a8f",
+        "topic_title": "Forms and input labels",
+        "source_locator": "frontend-developer.json#/M02/T08"
+      },
+      {
+        "id": "7372218e-1264-5d51-92c1-b78577528ff7",
+        "label": "CSS selectors and cascade",
+        "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+        "question": "Have you used CSS rules to style selected parts of a page?",
+        "example": "Write two competing rules for a heading and explain which one applies.",
+        "why_it_matters": "Learn css selectors and cascade, box model and sizing, flexbox layout, then apply the ideas in a small task.",
+        "group": "Style adaptive layouts",
+        "topic_id": "5885753c-e988-56a1-aaac-f05c653e79d1",
+        "roadmap_id": "2e14acb0-9b16-50e3-a7a8-2e8667f60a8f",
+        "topic_title": "CSS selectors and cascade",
+        "source_locator": "frontend-developer.json#/M03/T09"
+      },
+      {
+        "id": "d6927661-32b2-5c7e-8694-4a324cc689f7",
+        "label": "Box model and sizing",
+        "career_id": "79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+        "question": "Have you used padding, borders and sizing to control a layout?",
+        "example": "Create two cards with equal outer width using padding and borders.",
+        "why_it_matters": "Learn css selectors and cascade, box model and sizing, flexbox layout, then apply the ideas in a small task.",
+        "group": "Style adaptive layouts",
+        "topic_id": "8b85278d-b151-509c-a923-3b50a6c37dbe",
+        "roadmap_id": "2e14acb0-9b16-50e3-a7a8-2e8667f60a8f",
+        "topic_title": "Box model and sizing",
+        "source_locator": "frontend-developer.json#/M03/T10"
+      }
+    ],
+    "source_file": "frontend-developer.json",
+    "source_sha256": "4654eb1de0d0090d384babe33428661f06972e16dbc15ed95d310bc4825fbbe4",
+    "limitation": "Curriculum-based examples for local exploration, not a complete occupational profile or assessment. Independent content review is pending.",
+    "occupational_review_locator": "occupational/v1/agent-review.json#/summaries/79cfc498-d637-5dee-a28a-6544a3f9c5a0",
+    "occupational_review_sha256": "824708e6396feb30afe7e1ff82586d06ac8a2939da5bfa82f497c2ddec19a9c0",
+    "source_scope": "Browser-based interface implementation, accessibility, testing and delivery; broad software roles do not make backend or management duties frontend requirements."
+  },
+  {
+    "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+    "version": "learner-v1",
+    "purpose": "Understand and design basic electronic and digital circuits. Learn to calculate, simulate and document safe low-voltage designs.",
+    "activities": [
+      {
+        "action": "Reason about circuit limits",
+        "result": "Voltage, current and power calculations"
+      },
+      {
+        "action": "Simulate how a circuit behaves",
+        "result": "A circuit model with predicted and observed values"
+      },
+      {
+        "action": "Check a digital circuit",
+        "result": "A truth table compared with simulated outputs"
+      }
+    ],
+    "work_on": "Circuit diagrams, component values and simulated signals",
+    "produce": "A documented and simulated introductory circuit or digital subsystem.",
+    "check": "Compare calculations with safe simulated measurements.",
+    "learning_groups": [
+      {
+        "title": "Understand electronics safely / Analyse basic circuits",
+        "explanation": "Learn electrical safety and limits, voltage current and resistance, power and energy calculations, then apply the ideas in a small task. Learn series and parallel networks, kirchhoff laws, capacitors and transients, then apply the ideas in a small task.",
+        "topic_id": "315fbe21-b8cc-5a3a-876a-8c2ef885cecb",
+        "roadmap_id": "4186b178-90ef-5200-b03e-5b9515b587f0",
+        "topic_title": "Electrical safety and limits"
+      },
+      {
+        "title": "Work with components / Capture a design",
+        "explanation": "Learn transistors as switches, logic gates and truth tables, digital timing basics, then apply the ideas in a small task. Learn schematic symbols and nets, component values and tolerances, design rules and erc, then apply the ideas in a small task.",
+        "topic_id": "ee8dfc97-0461-5172-8fa7-4b3ba09239f7",
+        "roadmap_id": "4186b178-90ef-5200-b03e-5b9515b587f0",
+        "topic_title": "Transistors as switches"
+      },
+      {
+        "title": "Plan a simple PCB / Deliver a simulated hardware design",
+        "explanation": "Learn footprints and packages, pcb placement and routing, ground and power practices, then apply the ideas in a small task. Learn define low-voltage circuit, simulate and review behavior, create schematic and pcb layout, then apply the ideas in a small task.",
+        "topic_id": "c9b6ce70-e06c-5ec0-a91b-9eadd0edb01f",
+        "roadmap_id": "4186b178-90ef-5200-b03e-5b9515b587f0",
+        "topic_title": "Footprints and packages"
+      }
+    ],
+    "starter": {
+      "title": "Electrical safety and limits",
+      "instructions": "List hazards and safe limits for a simulated 5 V circuit.",
+      "expected_result": "A written safety checklist for a simulation; do not connect a physical circuit or mains supply for this activity.",
+      "topic_id": "315fbe21-b8cc-5a3a-876a-8c2ef885cecb",
+      "roadmap_id": "4186b178-90ef-5200-b03e-5b9515b587f0"
+    },
+    "skills": [
+      {
+        "id": "7b073fd0-b37e-548d-8d28-1ec07567571b",
+        "label": "Electrical safety and limits",
+        "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+        "question": "Have you identified unsafe conditions in a circuit plan?",
+        "example": "List hazards and safe limits for a simulated 5 V circuit.",
+        "why_it_matters": "Learn electrical safety and limits, voltage current and resistance, power and energy calculations, then apply the ideas in a small task.",
+        "group": "Understand electronics safely",
+        "topic_id": "315fbe21-b8cc-5a3a-876a-8c2ef885cecb",
+        "roadmap_id": "4186b178-90ef-5200-b03e-5b9515b587f0",
+        "topic_title": "Electrical safety and limits",
+        "source_locator": "hardware-engineer.json#/M01/T01"
+      },
+      {
+        "id": "9a2f0909-5095-5a05-bb7c-041cda4611cb",
+        "label": "Voltage current and resistance",
+        "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+        "question": "Have you calculated how voltage, current and resistance relate?",
+        "example": "Calculate current through a resistor at a specified voltage.",
+        "why_it_matters": "Learn electrical safety and limits, voltage current and resistance, power and energy calculations, then apply the ideas in a small task.",
+        "group": "Understand electronics safely",
+        "topic_id": "7fb50824-f820-5cfe-8e04-f5710f4050ae",
+        "roadmap_id": "4186b178-90ef-5200-b03e-5b9515b587f0",
+        "topic_title": "Voltage current and resistance",
+        "source_locator": "hardware-engineer.json#/M01/T02"
+      },
+      {
+        "id": "e35013ea-d1ef-5c09-92ad-d072e8e6693e",
+        "label": "Power and energy calculations",
+        "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+        "question": "Have you calculated how much power a circuit uses?",
+        "example": "Estimate resistor power in a small LED example.",
+        "why_it_matters": "Learn electrical safety and limits, voltage current and resistance, power and energy calculations, then apply the ideas in a small task.",
+        "group": "Understand electronics safely",
+        "topic_id": "86162cf8-7cb3-5cea-a058-3fb5e58039a1",
+        "roadmap_id": "4186b178-90ef-5200-b03e-5b9515b587f0",
+        "topic_title": "Power and energy calculations",
+        "source_locator": "hardware-engineer.json#/M01/T03"
+      },
+      {
+        "id": "1645a787-30c5-53aa-8c99-93f52d3e57c1",
+        "label": "Circuit simulation setup",
+        "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+        "question": "Have you built a circuit model in a simulator?",
+        "example": "Simulate a resistor network and compare voltages to a hand calculation.",
+        "why_it_matters": "Learn electrical safety and limits, voltage current and resistance, power and energy calculations, then apply the ideas in a small task.",
+        "group": "Understand electronics safely",
+        "topic_id": "79853353-0e15-58c2-9032-963f39c65315",
+        "roadmap_id": "4186b178-90ef-5200-b03e-5b9515b587f0",
+        "topic_title": "Circuit simulation setup",
+        "source_locator": "hardware-engineer.json#/M01/T04"
+      },
+      {
+        "id": "18c3abca-e54e-524b-a84b-819cba6a9a20",
+        "label": "Series and parallel networks",
+        "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+        "question": "Have you worked out how components behave in series or parallel?",
+        "example": "Calculate and simulate a mixed series-parallel network.",
+        "why_it_matters": "Learn series and parallel networks, kirchhoff laws, capacitors and transients, then apply the ideas in a small task.",
+        "group": "Analyse basic circuits",
+        "topic_id": "75dfc213-4dd3-5031-b0c8-8d5015755dac",
+        "roadmap_id": "4186b178-90ef-5200-b03e-5b9515b587f0",
+        "topic_title": "Series and parallel networks",
+        "source_locator": "hardware-engineer.json#/M02/T05"
+      },
+      {
+        "id": "c2b56cc3-0844-5e6d-9dab-f3f335a7afd4",
+        "label": "Kirchhoff laws",
+        "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+        "question": "Have you checked how current and voltage balance in a circuit?",
+        "example": "Solve a two-loop resistor circuit and check it in simulation.",
+        "why_it_matters": "Learn series and parallel networks, kirchhoff laws, capacitors and transients, then apply the ideas in a small task.",
+        "group": "Analyse basic circuits",
+        "topic_id": "09b7c4d6-4a87-5f91-a934-714483a9965f",
+        "roadmap_id": "4186b178-90ef-5200-b03e-5b9515b587f0",
+        "topic_title": "Kirchhoff laws",
+        "source_locator": "hardware-engineer.json#/M02/T06"
+      },
+      {
+        "id": "0f349152-340d-5cc1-bae0-149565f44e80",
+        "label": "Capacitors and transients",
+        "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+        "question": "Have you described what happens while a capacitor charges?",
+        "example": "Plot capacitor voltage during simulated charging.",
+        "why_it_matters": "Learn series and parallel networks, kirchhoff laws, capacitors and transients, then apply the ideas in a small task.",
+        "group": "Analyse basic circuits",
+        "topic_id": "ca83566c-9d6a-5a26-93fa-97f42ec0ca5c",
+        "roadmap_id": "4186b178-90ef-5200-b03e-5b9515b587f0",
+        "topic_title": "Capacitors and transients",
+        "source_locator": "hardware-engineer.json#/M02/T07"
+      },
+      {
+        "id": "6fe9f230-fefe-51d3-b2b8-b1690e934a76",
+        "label": "Diodes and polarity",
+        "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+        "question": "Have you identified the direction a diode should face?",
+        "example": "Simulate diode polarity and current limiting.",
+        "why_it_matters": "Learn series and parallel networks, kirchhoff laws, capacitors and transients, then apply the ideas in a small task.",
+        "group": "Analyse basic circuits",
+        "topic_id": "b44b805a-5c46-5f9b-97d1-ee8720cbd4e2",
+        "roadmap_id": "4186b178-90ef-5200-b03e-5b9515b587f0",
+        "topic_title": "Diodes and polarity",
+        "source_locator": "hardware-engineer.json#/M02/T08"
+      },
+      {
+        "id": "f9cfb97b-06e5-5b2d-a354-7bdf3731e045",
+        "label": "Transistors as switches",
+        "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+        "question": "Have you used a transistor to switch an output on and off?",
+        "example": "Design a low-voltage LED switch using a transistor model.",
+        "why_it_matters": "Learn transistors as switches, logic gates and truth tables, digital timing basics, then apply the ideas in a small task.",
+        "group": "Work with components",
+        "topic_id": "ee8dfc97-0461-5172-8fa7-4b3ba09239f7",
+        "roadmap_id": "4186b178-90ef-5200-b03e-5b9515b587f0",
+        "topic_title": "Transistors as switches",
+        "source_locator": "hardware-engineer.json#/M03/T09"
+      },
+      {
+        "id": "1761d9de-d5ed-564d-a9d4-39a12be128f3",
+        "label": "Logic gates and truth tables",
+        "career_id": "8cac2720-79c7-54d4-a2f4-2f0082568b12",
+        "question": "Have you predicted logic gate outputs from their inputs?",
+        "example": "Build and test a two-input gate circuit in simulation.",
+        "why_it_matters": "Learn transistors as switches, logic gates and truth tables, digital timing basics, then apply the ideas in a small task.",
+        "group": "Work with components",
+        "topic_id": "1e25b72c-4580-585c-aa42-217d28214dc9",
+        "roadmap_id": "4186b178-90ef-5200-b03e-5b9515b587f0",
+        "topic_title": "Logic gates and truth tables",
+        "source_locator": "hardware-engineer.json#/M03/T10"
+      }
+    ],
+    "source_file": "hardware-engineer.json",
+    "source_sha256": "5394757de1f0290369de6673b8e36e97edfc8d559eac91a2bdcea0fbb160c10d",
+    "limitation": "Curriculum-based examples for local exploration, not a complete occupational profile or assessment. Independent content review is pending.",
+    "occupational_review_locator": "occupational/v1/agent-review.json#/summaries/8cac2720-79c7-54d4-a2f4-2f0082568b12",
+    "occupational_review_sha256": "824708e6396feb30afe7e1ff82586d06ac8a2939da5bfa82f497c2ddec19a9c0",
+    "source_scope": "Low-voltage circuit and PCB design, review and testing; semiconductor circuit roles are narrower than the general career."
+  },
+  {
+    "career_id": "88ac4df4-45e5-5f6f-9e9c-5f5b35db1aa9",
+    "version": "learner-v1",
+    "purpose": "Use data and code to train, test and apply predictive models. This guide focuses on basic modelling workflows and responsible evaluation.",
+    "activities": [
+      {
+        "action": "Frame a prediction problem responsibly",
+        "result": "A defined target, intended use and simple baseline"
+      },
+      {
+        "action": "Prepare data for an experiment",
+        "result": "Documented training, validation and test partitions"
+      },
+      {
+        "action": "Evaluate a model against a baseline",
+        "result": "A comparison explaining errors and limitations"
+      }
+    ],
+    "work_on": "Training examples, prediction targets and model errors",
+    "produce": "A reproducible beginner machine-learning experiment with an evaluation report.",
+    "check": "Compare against a baseline using held-out data and appropriate error measures.",
+    "learning_groups": [
+      {
+        "title": "Set up a reproducible workspace / Prepare trustworthy datasets",
+        "explanation": "Learn ml roles and responsible scope, python notebooks and environments, git and project structure, then apply the ideas in a small task. Learn tabular data inspection, missing values and types, exploratory visualization, then apply the ideas in a small task.",
+        "topic_id": "1bc0896b-545c-5d50-9ebd-a4b662b434d0",
+        "roadmap_id": "67a93b47-ddef-5042-b0cc-33a225888458",
+        "topic_title": "ML roles and responsible scope"
+      },
+      {
+        "title": "Build baseline models / Evaluate model behavior",
+        "explanation": "Learn problem framing and baselines, linear regression, classification models, then apply the ideas in a small task. Learn regression metrics, classification metrics, overfitting and cross-validation, then apply the ideas in a small task.",
+        "topic_id": "4f7a1825-0284-5cd3-a081-d315cc613c30",
+        "roadmap_id": "67a93b47-ddef-5042-b0cc-33a225888458",
+        "topic_title": "Problem framing and baselines"
+      },
+      {
+        "title": "Improve and package models / Deliver an ML starter system",
+        "explanation": "Learn feature preprocessing pipelines, hyperparameter search, saving models and reproducibility, then apply the ideas in a small task. Learn define prediction use case, prepare a documented dataset, train and compare candidate models, then apply the ideas in a small task.",
+        "topic_id": "99497c0f-87ed-5ce9-a608-d00d01493088",
+        "roadmap_id": "67a93b47-ddef-5042-b0cc-33a225888458",
+        "topic_title": "Feature preprocessing pipelines"
+      }
+    ],
+    "starter": {
+      "title": "ML roles and responsible scope",
+      "instructions": "Write an appropriate and an inappropriate use case for predicting delivery delays.",
+      "expected_result": "One prediction use case with a clear purpose, and one inappropriate use case with an explanation of the potential harm.",
+      "topic_id": "1bc0896b-545c-5d50-9ebd-a4b662b434d0",
+      "roadmap_id": "67a93b47-ddef-5042-b0cc-33a225888458"
+    },
+    "skills": [
+      {
+        "id": "bb9b346d-90a5-55fa-a444-ffb58cae9a94",
+        "label": "ML roles and responsible scope",
+        "career_id": "88ac4df4-45e5-5f6f-9e9c-5f5b35db1aa9",
+        "question": "Have you explained when a prediction would or would not be appropriate?",
+        "example": "Write an appropriate and an inappropriate use case for predicting delivery delays.",
+        "why_it_matters": "Learn ml roles and responsible scope, python notebooks and environments, git and project structure, then apply the ideas in a small task.",
+        "group": "Set up a reproducible workspace",
+        "topic_id": "1bc0896b-545c-5d50-9ebd-a4b662b434d0",
+        "roadmap_id": "67a93b47-ddef-5042-b0cc-33a225888458",
+        "topic_title": "ML roles and responsible scope",
+        "source_locator": "machine-learning-engineer.json#/M01/T01"
+      },
+      {
+        "id": "66fbaf1e-2edb-5f8b-8b94-cdff958f4bec",
+        "label": "Python notebooks and environments",
+        "career_id": "88ac4df4-45e5-5f6f-9e9c-5f5b35db1aa9",
+        "question": "Have you run a Python notebook in a configured environment?",
+        "example": "Create an environment, run a small notebook and record package versions.",
+        "why_it_matters": "Learn ml roles and responsible scope, python notebooks and environments, git and project structure, then apply the ideas in a small task.",
+        "group": "Set up a reproducible workspace",
+        "topic_id": "52ee50a9-67a5-56d6-bff5-d0cadb2c0de8",
+        "roadmap_id": "67a93b47-ddef-5042-b0cc-33a225888458",
+        "topic_title": "Python notebooks and environments",
+        "source_locator": "machine-learning-engineer.json#/M01/T02"
+      },
+      {
+        "id": "6b509694-e1e5-5d44-989d-bdeec8bedbaf",
+        "label": "Git and project structure",
+        "career_id": "88ac4df4-45e5-5f6f-9e9c-5f5b35db1aa9",
+        "question": "Have you organised and tracked changes to a code project?",
+        "example": "Create a project with src, data notes, a README and a first commit.",
+        "why_it_matters": "Learn ml roles and responsible scope, python notebooks and environments, git and project structure, then apply the ideas in a small task.",
+        "group": "Set up a reproducible workspace",
+        "topic_id": "610c1706-f217-5fa1-8a39-d99eced372b6",
+        "roadmap_id": "67a93b47-ddef-5042-b0cc-33a225888458",
+        "topic_title": "Git and project structure",
+        "source_locator": "machine-learning-engineer.json#/M01/T03"
+      },
+      {
+        "id": "a318ee0a-ba12-5bfb-a4e5-fd4ced0d756f",
+        "label": "Numerical Python basics",
+        "career_id": "88ac4df4-45e5-5f6f-9e9c-5f5b35db1aa9",
+        "question": "Have you worked with arrays of numbers in Python?",
+        "example": "Compute a column mean from a two-dimensional numeric array.",
+        "why_it_matters": "Learn ml roles and responsible scope, python notebooks and environments, git and project structure, then apply the ideas in a small task.",
+        "group": "Set up a reproducible workspace",
+        "topic_id": "2c5e3b08-b864-5a07-afbd-3bf284a4554b",
+        "roadmap_id": "67a93b47-ddef-5042-b0cc-33a225888458",
+        "topic_title": "Numerical Python basics",
+        "source_locator": "machine-learning-engineer.json#/M01/T04"
+      },
+      {
+        "id": "4c82c3a7-1b46-526d-995c-da8ba7db3c4f",
+        "label": "Tabular data inspection",
+        "career_id": "88ac4df4-45e5-5f6f-9e9c-5f5b35db1aa9",
+        "question": "Have you checked the contents of a tabular dataset?",
+        "example": "Summarise column types, missing values and target distribution.",
+        "why_it_matters": "Learn tabular data inspection, missing values and types, exploratory visualization, then apply the ideas in a small task.",
+        "group": "Prepare trustworthy datasets",
+        "topic_id": "dc91f9e7-d596-59f4-98fa-6ee6a773827e",
+        "roadmap_id": "67a93b47-ddef-5042-b0cc-33a225888458",
+        "topic_title": "Tabular data inspection",
+        "source_locator": "machine-learning-engineer.json#/M02/T05"
+      },
+      {
+        "id": "96209d39-813c-5235-941e-3b8c5737f81f",
+        "label": "Missing values and types",
+        "career_id": "88ac4df4-45e5-5f6f-9e9c-5f5b35db1aa9",
+        "question": "Have you handled missing values or corrected data types?",
+        "example": "Prepare a table with numeric imputation and category handling.",
+        "why_it_matters": "Learn tabular data inspection, missing values and types, exploratory visualization, then apply the ideas in a small task.",
+        "group": "Prepare trustworthy datasets",
+        "topic_id": "852e26d6-fb7f-5c34-b2c9-00a2a7ea361f",
+        "roadmap_id": "67a93b47-ddef-5042-b0cc-33a225888458",
+        "topic_title": "Missing values and types",
+        "source_locator": "machine-learning-engineer.json#/M02/T06"
+      },
+      {
+        "id": "e1a0ed70-ba85-5fae-b202-bd51957ba42e",
+        "label": "Exploratory visualization",
+        "career_id": "88ac4df4-45e5-5f6f-9e9c-5f5b35db1aa9",
+        "question": "Have you made a chart to explore patterns in data?",
+        "example": "Plot a target distribution and two features, then note possible confounders.",
+        "why_it_matters": "Learn tabular data inspection, missing values and types, exploratory visualization, then apply the ideas in a small task.",
+        "group": "Prepare trustworthy datasets",
+        "topic_id": "6833cb8f-d700-56aa-9f05-6285a7c1ecea",
+        "roadmap_id": "67a93b47-ddef-5042-b0cc-33a225888458",
+        "topic_title": "Exploratory visualization",
+        "source_locator": "machine-learning-engineer.json#/M02/T07"
+      },
+      {
+        "id": "672eaa5b-8ebb-5b65-b2a8-56d01c66409d",
+        "label": "Train validation and test splits",
+        "career_id": "88ac4df4-45e5-5f6f-9e9c-5f5b35db1aa9",
+        "question": "Have you separated data for training, validation and final testing?",
+        "example": "Create a fixed-seed split and document each subset's purpose.",
+        "why_it_matters": "Learn tabular data inspection, missing values and types, exploratory visualization, then apply the ideas in a small task.",
+        "group": "Prepare trustworthy datasets",
+        "topic_id": "fff89311-79e6-5586-ab22-ed9876e10b83",
+        "roadmap_id": "67a93b47-ddef-5042-b0cc-33a225888458",
+        "topic_title": "Train validation and test splits",
+        "source_locator": "machine-learning-engineer.json#/M02/T08"
+      },
+      {
+        "id": "876803c9-940b-5cc4-b4b6-7e35c2c3deb4",
+        "label": "Problem framing and baselines",
+        "career_id": "88ac4df4-45e5-5f6f-9e9c-5f5b35db1aa9",
+        "question": "Have you defined a prediction target and a simple comparison baseline?",
+        "example": "Compare a constant-prediction baseline with a simple rule.",
+        "why_it_matters": "Learn problem framing and baselines, linear regression, classification models, then apply the ideas in a small task.",
+        "group": "Build baseline models",
+        "topic_id": "4f7a1825-0284-5cd3-a081-d315cc613c30",
+        "roadmap_id": "67a93b47-ddef-5042-b0cc-33a225888458",
+        "topic_title": "Problem framing and baselines",
+        "source_locator": "machine-learning-engineer.json#/M03/T09"
+      },
+      {
+        "id": "602c7752-c93a-57a6-89e6-1a470d39cb96",
+        "label": "Linear regression",
+        "career_id": "88ac4df4-45e5-5f6f-9e9c-5f5b35db1aa9",
+        "question": "Have you fitted a line to predict a numeric value?",
+        "example": "Fit a line to sample data and plot residuals.",
+        "why_it_matters": "Learn problem framing and baselines, linear regression, classification models, then apply the ideas in a small task.",
+        "group": "Build baseline models",
+        "topic_id": "46a0487d-8497-5632-9bfc-f255e5afd4a0",
+        "roadmap_id": "67a93b47-ddef-5042-b0cc-33a225888458",
+        "topic_title": "Linear regression",
+        "source_locator": "machine-learning-engineer.json#/M03/T10"
+      }
+    ],
+    "source_file": "machine-learning-engineer.json",
+    "source_sha256": "ac05babd227c6110c6f44738957b363c2161395b6b1372e783137a39342b5ab3",
+    "limitation": "Curriculum-based examples for local exploration, not a complete occupational profile or assessment. Independent content review is pending.",
+    "occupational_review_locator": "occupational/v1/agent-review.json#/summaries/88ac4df4-45e5-5f6f-9e9c-5f5b35db1aa9",
+    "occupational_review_sha256": "824708e6396feb30afe7e1ff82586d06ac8a2939da5bfa82f497c2ddec19a9c0",
+    "source_scope": "Prediction framing, model training/evaluation and reproducible inference; senior data-science and generic software roles are related references."
+  },
+  {
+    "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+    "version": "learner-v1",
+    "purpose": "Understand how devices connect and exchange information. Build, inspect and troubleshoot small networks using simulations and permitted test setups.",
+    "activities": [
+      {
+        "action": "Describe how devices connect",
+        "result": "A labelled network diagram"
+      },
+      {
+        "action": "Plan addresses and routes",
+        "result": "An address plan with subnet and gateway choices"
+      },
+      {
+        "action": "Investigate a connectivity problem",
+        "result": "A documented check of addressing, routing and name resolution"
+      }
+    ],
+    "work_on": "Devices, network addresses, routes and name resolution",
+    "produce": "A simulated network with an addressing plan and test evidence.",
+    "check": "Trace connectivity and verify addressing and routing assumptions.",
+    "learning_groups": [
+      {
+        "title": "Understand network communication / Configure addressing",
+        "explanation": "Learn network roles and topologies, osi and tcp ip models, ethernet basics, then apply the ideas in a small task. Learn ipv4 addresses and masks, subnet calculations, ipv6 fundamentals, then apply the ideas in a small task.",
+        "topic_id": "644242ef-6746-56de-ab50-532e23463749",
+        "roadmap_id": "51fd9a34-b976-5e04-b52a-4c72a2e47691",
+        "topic_title": "Network roles and topologies"
+      },
+      {
+        "title": "Understand essential services / Explore switching and routing",
+        "explanation": "Learn dns resolution, dhcp leases, tcp and udp, then apply the ideas in a small task. Learn switching and mac tables, vlans and segmentation, static routes, then apply the ideas in a small task.",
+        "topic_id": "f11c073b-1b72-5779-a7c2-1120bf09e5a0",
+        "roadmap_id": "51fd9a34-b976-5e04-b52a-4c72a2e47691",
+        "topic_title": "DNS resolution"
+      },
+      {
+        "title": "Diagnose traffic / Design a starter network",
+        "explanation": "Learn ping traceroute and lookup tools, wireshark capture filtering, packet interpretation, then apply the ideas in a small task. Learn document small office requirements, create logical topology, configure simulated addressing, then apply the ideas in a small task.",
+        "topic_id": "a37d3409-2b01-59d0-ae01-417a8ba4b2f0",
+        "roadmap_id": "51fd9a34-b976-5e04-b52a-4c72a2e47691",
+        "topic_title": "Ping traceroute and lookup tools"
+      }
+    ],
+    "starter": {
+      "title": "Network roles and topologies",
+      "instructions": "Draw a home or office network and explain the roles of each device.",
+      "expected_result": "A diagram labelling devices, links and the gateway, with a sentence explaining what each does.",
+      "topic_id": "644242ef-6746-56de-ab50-532e23463749",
+      "roadmap_id": "51fd9a34-b976-5e04-b52a-4c72a2e47691"
+    },
+    "skills": [
+      {
+        "id": "9083db01-52f8-571a-8278-7c6b586286bf",
+        "label": "Network roles and topologies",
+        "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+        "question": "Have you drawn a network and explained what its devices do?",
+        "example": "Draw a home or office network and explain the roles of each device.",
+        "why_it_matters": "Learn network roles and topologies, osi and tcp ip models, ethernet basics, then apply the ideas in a small task.",
+        "group": "Understand network communication",
+        "topic_id": "644242ef-6746-56de-ab50-532e23463749",
+        "roadmap_id": "51fd9a34-b976-5e04-b52a-4c72a2e47691",
+        "topic_title": "Network roles and topologies",
+        "source_locator": "network-engineer.json#/M01/T01"
+      },
+      {
+        "id": "9f695ce6-7a0d-5162-84fb-007d79b948e5",
+        "label": "OSI and TCP IP models",
+        "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+        "question": "Have you explained the stages a message passes through on a network?",
+        "example": "Map a web request to link, internet, transport and application layers.",
+        "why_it_matters": "Learn network roles and topologies, osi and tcp ip models, ethernet basics, then apply the ideas in a small task.",
+        "group": "Understand network communication",
+        "topic_id": "786f1c41-5313-5dd9-bd1d-8c6f6269fbd2",
+        "roadmap_id": "51fd9a34-b976-5e04-b52a-4c72a2e47691",
+        "topic_title": "OSI and TCP IP models",
+        "source_locator": "network-engineer.json#/M01/T02"
+      },
+      {
+        "id": "dc44208d-4e56-5e75-987f-74b23105baca",
+        "label": "Ethernet basics",
+        "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+        "question": "Have you explained how devices exchange frames on a wired network?",
+        "example": "Sketch a frame moving between two devices through a switch.",
+        "why_it_matters": "Learn network roles and topologies, osi and tcp ip models, ethernet basics, then apply the ideas in a small task.",
+        "group": "Understand network communication",
+        "topic_id": "7d1a895e-9558-5a02-9343-9d2dc5e16649",
+        "roadmap_id": "51fd9a34-b976-5e04-b52a-4c72a2e47691",
+        "topic_title": "Ethernet basics",
+        "source_locator": "network-engineer.json#/M01/T03"
+      },
+      {
+        "id": "8627571b-615e-5c21-9383-befc0f1c7d79",
+        "label": "Safe local lab setup",
+        "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+        "question": "Have you set up a safe practice network?",
+        "example": "Build a two-device simulated network with clear labels.",
+        "why_it_matters": "Learn network roles and topologies, osi and tcp ip models, ethernet basics, then apply the ideas in a small task.",
+        "group": "Understand network communication",
+        "topic_id": "4cb7dabc-15e7-58fd-882a-9a4f52c9b064",
+        "roadmap_id": "51fd9a34-b976-5e04-b52a-4c72a2e47691",
+        "topic_title": "Safe local lab setup",
+        "source_locator": "network-engineer.json#/M01/T04"
+      },
+      {
+        "id": "754bdf44-a607-5afc-8f12-ec55723acd21",
+        "label": "IPv4 addresses and masks",
+        "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+        "question": "Have you identified the network and device parts of an IPv4 address?",
+        "example": "Identify network and host portions of three example addresses.",
+        "why_it_matters": "Learn ipv4 addresses and masks, subnet calculations, ipv6 fundamentals, then apply the ideas in a small task.",
+        "group": "Configure addressing",
+        "topic_id": "718d6485-68fe-590c-86e7-003a2593f354",
+        "roadmap_id": "51fd9a34-b976-5e04-b52a-4c72a2e47691",
+        "topic_title": "IPv4 addresses and masks",
+        "source_locator": "network-engineer.json#/M02/T05"
+      },
+      {
+        "id": "e36f65b6-e832-5483-975e-bd8a03017354",
+        "label": "Subnet calculations",
+        "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+        "question": "Have you worked out the address range for a subnet?",
+        "example": "Calculate network ranges for two /27 subnets.",
+        "why_it_matters": "Learn ipv4 addresses and masks, subnet calculations, ipv6 fundamentals, then apply the ideas in a small task.",
+        "group": "Configure addressing",
+        "topic_id": "7f8ef0d4-9568-5213-a0c1-cb0c29f08b84",
+        "roadmap_id": "51fd9a34-b976-5e04-b52a-4c72a2e47691",
+        "topic_title": "Subnet calculations",
+        "source_locator": "network-engineer.json#/M02/T06"
+      },
+      {
+        "id": "30f1d168-617a-5447-875c-32fb098ee45f",
+        "label": "IPv6 fundamentals",
+        "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+        "question": "Have you read and interpreted an IPv6 address?",
+        "example": "Identify a link-local address and a global unicast address in a lab.",
+        "why_it_matters": "Learn ipv4 addresses and masks, subnet calculations, ipv6 fundamentals, then apply the ideas in a small task.",
+        "group": "Configure addressing",
+        "topic_id": "a563b540-0d10-581a-902d-e9c84dda2152",
+        "roadmap_id": "51fd9a34-b976-5e04-b52a-4c72a2e47691",
+        "topic_title": "IPv6 fundamentals",
+        "source_locator": "network-engineer.json#/M02/T07"
+      },
+      {
+        "id": "1becefef-5aa2-5df5-ae6c-5553d9447be6",
+        "label": "Default gateways and routing",
+        "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+        "question": "Have you chosen where traffic should go when its destination is elsewhere?",
+        "example": "Trace a packet from one subnet through a router to another.",
+        "why_it_matters": "Learn ipv4 addresses and masks, subnet calculations, ipv6 fundamentals, then apply the ideas in a small task.",
+        "group": "Configure addressing",
+        "topic_id": "c2c93851-ccb0-5ab4-8ea8-d81a8b4c36bd",
+        "roadmap_id": "51fd9a34-b976-5e04-b52a-4c72a2e47691",
+        "topic_title": "Default gateways and routing",
+        "source_locator": "network-engineer.json#/M02/T08"
+      },
+      {
+        "id": "b514666f-8732-5dcf-8c01-d195907f20c3",
+        "label": "DNS resolution",
+        "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+        "question": "Have you traced how a domain name becomes an IP address?",
+        "example": "Query a domain for A and AAAA records and record the answers.",
+        "why_it_matters": "Learn dns resolution, dhcp leases, tcp and udp, then apply the ideas in a small task.",
+        "group": "Understand essential services",
+        "topic_id": "f11c073b-1b72-5779-a7c2-1120bf09e5a0",
+        "roadmap_id": "51fd9a34-b976-5e04-b52a-4c72a2e47691",
+        "topic_title": "DNS resolution",
+        "source_locator": "network-engineer.json#/M03/T09"
+      },
+      {
+        "id": "5e737676-85fa-5b0c-afc1-575a1cbf0342",
+        "label": "DHCP leases",
+        "career_id": "505b7463-bb7b-5b0d-915d-1765aa364500",
+        "question": "Have you checked how a device received a temporary network address?",
+        "example": "Read a simulated client's DHCP lease fields.",
+        "why_it_matters": "Learn dns resolution, dhcp leases, tcp and udp, then apply the ideas in a small task.",
+        "group": "Understand essential services",
+        "topic_id": "88a73913-e818-592b-9a94-bd821a2c85b3",
+        "roadmap_id": "51fd9a34-b976-5e04-b52a-4c72a2e47691",
+        "topic_title": "DHCP leases",
+        "source_locator": "network-engineer.json#/M03/T10"
+      }
+    ],
+    "source_file": "network-engineer.json",
+    "source_sha256": "95678a19afe7b5003a00ce2ca93d6d8cb7e8ea6adc3979f60cb51dd5035e785b",
+    "limitation": "Curriculum-based examples for local exploration, not a complete occupational profile or assessment. Independent content review is pending.",
+    "occupational_review_locator": "occupational/v1/agent-review.json#/summaries/505b7463-bb7b-5b0d-915d-1765aa364500",
+    "occupational_review_sha256": "824708e6396feb30afe7e1ff82586d06ac8a2939da5bfa82f497c2ddec19a9c0",
+    "source_scope": "Network configuration, connectivity and troubleshooting; infrastructure operations and architecture are distinct source scopes."
+  },
+  {
+    "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+    "version": "learner-v1",
+    "purpose": "Assess the security of systems with explicit permission. Learn a systematic testing workflow using only training labs and authorised targets.",
+    "activities": [
+      {
+        "action": "Agree what a security assessment may cover",
+        "result": "Written rules of engagement for a training lab"
+      },
+      {
+        "action": "Map a permitted application",
+        "result": "A list of entry points and access boundaries"
+      },
+      {
+        "action": "Investigate a weakness safely",
+        "result": "A reproducible lab finding with impact and remediation notes"
+      }
+    ],
+    "work_on": "Explicitly permitted training applications and their access boundaries",
+    "produce": "An authorised lab assessment with findings and remediation guidance.",
+    "check": "Stay within permission and reproduce findings only in the lab.",
+    "learning_groups": [
+      {
+        "title": "Establish legal lab practice / Learn web application behavior",
+        "explanation": "Learn rules of engagement and scope, safe isolated lab setup, operating systems and terminal, then apply the ideas in a small task. Learn http messages and sessions, authentication and authorization concepts, input handling and validation, then apply the ideas in a small task.",
+        "topic_id": "1e7d09fd-b4c7-54a4-b2ba-bfb82b11b77b",
+        "roadmap_id": "48434a28-c5eb-5267-9f21-e5a0b54241f6",
+        "topic_title": "Rules of engagement and scope"
+      },
+      {
+        "title": "Study common vulnerabilities / Run controlled assessments",
+        "explanation": "Learn injection concepts in guided labs, cross-site scripting concepts in labs, access control weaknesses, then apply the ideas in a small task. Learn test planning and evidence, proxy inspection with lab targets, reproducible non-destructive validation, then apply the ideas in a small task.",
+        "topic_id": "4f69b644-5f3a-5ce8-81a4-7b94b4703e3a",
+        "roadmap_id": "48434a28-c5eb-5267-9f21-e5a0b54241f6",
+        "topic_title": "Injection concepts in guided labs"
+      },
+      {
+        "title": "Report and recommend fixes / Deliver a legal practice assessment",
+        "explanation": "Learn writing clear findings, proof of concept boundaries, remediation guidance, then apply the ideas in a small task. Learn select explicit training target, document scope and test cases, record safe evidence and mitigations, then apply the ideas in a small task.",
+        "topic_id": "38012dd2-3279-5d06-a21b-95af58309baa",
+        "roadmap_id": "48434a28-c5eb-5267-9f21-e5a0b54241f6",
+        "topic_title": "Writing clear findings"
+      }
+    ],
+    "starter": {
+      "title": "Rules of engagement and scope",
+      "instructions": "Draft a fictional rules-of-engagement document for a training lab.",
+      "expected_result": "A fictional training-lab agreement specifying permission, scope, allowed actions and stopping conditions. Do not test real systems.",
+      "topic_id": "1e7d09fd-b4c7-54a4-b2ba-bfb82b11b77b",
+      "roadmap_id": "48434a28-c5eb-5267-9f21-e5a0b54241f6"
+    },
+    "skills": [
+      {
+        "id": "4e27cf8c-f93f-57bd-ba5a-a99c04c5e9e9",
+        "label": "Rules of engagement and scope",
+        "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+        "question": "Have you written down what a permitted security test may cover?",
+        "example": "Draft a fictional rules-of-engagement document for a training lab.",
+        "why_it_matters": "Learn rules of engagement and scope, safe isolated lab setup, operating systems and terminal, then apply the ideas in a small task.",
+        "group": "Establish legal lab practice",
+        "topic_id": "1e7d09fd-b4c7-54a4-b2ba-bfb82b11b77b",
+        "roadmap_id": "48434a28-c5eb-5267-9f21-e5a0b54241f6",
+        "topic_title": "Rules of engagement and scope",
+        "source_locator": "penetration-tester.json#/M01/T01"
+      },
+      {
+        "id": "4d860e3c-7097-5c3f-895a-0c40b0c01438",
+        "label": "Safe isolated lab setup",
+        "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+        "question": "Have you set up a training environment isolated from real systems?",
+        "example": "Document a local or hosted authorised training environment.",
+        "why_it_matters": "Learn rules of engagement and scope, safe isolated lab setup, operating systems and terminal, then apply the ideas in a small task.",
+        "group": "Establish legal lab practice",
+        "topic_id": "f93f70cb-b6a8-590d-ba37-255787b8d346",
+        "roadmap_id": "48434a28-c5eb-5267-9f21-e5a0b54241f6",
+        "topic_title": "Safe isolated lab setup",
+        "source_locator": "penetration-tester.json#/M01/T02"
+      },
+      {
+        "id": "dcd2029f-0f8a-55cd-afad-14cdc486f913",
+        "label": "Operating systems and terminal",
+        "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+        "question": "Have you used a terminal to inspect a lab operating system?",
+        "example": "Record OS version and file paths inside your own lab.",
+        "why_it_matters": "Learn rules of engagement and scope, safe isolated lab setup, operating systems and terminal, then apply the ideas in a small task.",
+        "group": "Establish legal lab practice",
+        "topic_id": "21825291-7a86-5ec9-abf2-c18bbe242ae6",
+        "roadmap_id": "48434a28-c5eb-5267-9f21-e5a0b54241f6",
+        "topic_title": "Operating systems and terminal",
+        "source_locator": "penetration-tester.json#/M01/T03"
+      },
+      {
+        "id": "536383de-2917-55d6-9fb1-add6df2e2826",
+        "label": "Networking and HTTP essentials",
+        "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+        "question": "Have you explained how a request reaches a web application?",
+        "example": "Trace a browser request to a lab-hosted page.",
+        "why_it_matters": "Learn rules of engagement and scope, safe isolated lab setup, operating systems and terminal, then apply the ideas in a small task.",
+        "group": "Establish legal lab practice",
+        "topic_id": "4311a9e6-14f9-50e2-a6c1-9f94bd65e0fa",
+        "roadmap_id": "48434a28-c5eb-5267-9f21-e5a0b54241f6",
+        "topic_title": "Networking and HTTP essentials",
+        "source_locator": "penetration-tester.json#/M01/T04"
+      },
+      {
+        "id": "9ada161e-4e14-5e97-b48c-c329700a4b89",
+        "label": "HTTP messages and sessions",
+        "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+        "question": "Have you read web requests, responses and session details in a lab?",
+        "example": "Inspect harmless lab requests and identify the session cookie.",
+        "why_it_matters": "Learn http messages and sessions, authentication and authorization concepts, input handling and validation, then apply the ideas in a small task.",
+        "group": "Learn web application behavior",
+        "topic_id": "1870e29d-c350-5fea-be29-16cd095f4871",
+        "roadmap_id": "48434a28-c5eb-5267-9f21-e5a0b54241f6",
+        "topic_title": "HTTP messages and sessions",
+        "source_locator": "penetration-tester.json#/M02/T05"
+      },
+      {
+        "id": "de7b6525-5d77-52de-876c-798d7c5e90b2",
+        "label": "Authentication and authorization concepts",
+        "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+        "question": "Have you distinguished proving identity from deciding what someone may access?",
+        "example": "Compare a lab guest account with a test administrator role.",
+        "why_it_matters": "Learn http messages and sessions, authentication and authorization concepts, input handling and validation, then apply the ideas in a small task.",
+        "group": "Learn web application behavior",
+        "topic_id": "21acf0d0-0bea-5491-85ad-f140d6b70258",
+        "roadmap_id": "48434a28-c5eb-5267-9f21-e5a0b54241f6",
+        "topic_title": "Authentication and authorization concepts",
+        "source_locator": "penetration-tester.json#/M02/T06"
+      },
+      {
+        "id": "33f99f18-9897-58ce-88d8-6c4362eb3a31",
+        "label": "Input handling and validation",
+        "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+        "question": "Have you checked how a training app handles unexpected input?",
+        "example": "Trace where a harmless form input appears in a training app.",
+        "why_it_matters": "Learn http messages and sessions, authentication and authorization concepts, input handling and validation, then apply the ideas in a small task.",
+        "group": "Learn web application behavior",
+        "topic_id": "bcaf5cc1-436d-50b7-97bd-66811fac0fe6",
+        "roadmap_id": "48434a28-c5eb-5267-9f21-e5a0b54241f6",
+        "topic_title": "Input handling and validation",
+        "source_locator": "penetration-tester.json#/M02/T07"
+      },
+      {
+        "id": "c381e229-069b-5400-8833-ee99e4535f99",
+        "label": "Application mapping in labs",
+        "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+        "question": "Have you mapped the pages and entry points of a training app?",
+        "example": "Record the pages and functions of an authorised lab target.",
+        "why_it_matters": "Learn http messages and sessions, authentication and authorization concepts, input handling and validation, then apply the ideas in a small task.",
+        "group": "Learn web application behavior",
+        "topic_id": "b6d47ba3-04be-569e-a201-008abd0896bf",
+        "roadmap_id": "48434a28-c5eb-5267-9f21-e5a0b54241f6",
+        "topic_title": "Application mapping in labs",
+        "source_locator": "penetration-tester.json#/M02/T08"
+      },
+      {
+        "id": "035628aa-3c6a-5672-90da-1cbfb13f85ea",
+        "label": "Injection concepts in guided labs",
+        "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+        "question": "Have you explained how untrusted input can change a database query in a lab?",
+        "example": "Complete a guided injection lesson in a deliberately vulnerable lab.",
+        "why_it_matters": "Learn injection concepts in guided labs, cross-site scripting concepts in labs, access control weaknesses, then apply the ideas in a small task.",
+        "group": "Study common vulnerabilities",
+        "topic_id": "4f69b644-5f3a-5ce8-81a4-7b94b4703e3a",
+        "roadmap_id": "48434a28-c5eb-5267-9f21-e5a0b54241f6",
+        "topic_title": "Injection concepts in guided labs",
+        "source_locator": "penetration-tester.json#/M03/T09"
+      },
+      {
+        "id": "0b017018-0539-5a94-9910-523252f3f385",
+        "label": "Cross-site scripting concepts in labs",
+        "career_id": "f1756a96-98af-5abe-8439-423486b168d1",
+        "question": "Have you explained how untrusted text can become executable script in a lab?",
+        "example": "Observe a harmless scripted marker in a provided XSS lab.",
+        "why_it_matters": "Learn injection concepts in guided labs, cross-site scripting concepts in labs, access control weaknesses, then apply the ideas in a small task.",
+        "group": "Study common vulnerabilities",
+        "topic_id": "01b7c283-8964-5b3b-9127-37d20bddfc98",
+        "roadmap_id": "48434a28-c5eb-5267-9f21-e5a0b54241f6",
+        "topic_title": "Cross-site scripting concepts in labs",
+        "source_locator": "penetration-tester.json#/M03/T10"
+      }
+    ],
+    "source_file": "penetration-tester.json",
+    "source_sha256": "935bf93d50cfc7328b4a58fb338aea179e96bf8e1b4f466ffb3805e8315ee2aa",
+    "limitation": "Curriculum-based examples for local exploration, not a complete occupational profile or assessment. Independent content review is pending.",
+    "occupational_review_locator": "occupational/v1/agent-review.json#/summaries/f1756a96-98af-5abe-8439-423486b168d1",
+    "occupational_review_sha256": "824708e6396feb30afe7e1ff82586d06ac8a2939da5bfa82f497c2ddec19a9c0",
+    "source_scope": "Explicitly authorized assessment, safe validation and remediation reporting; manager duties and conflicting levels do not define analyst thresholds."
+  },
+  {
+    "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+    "version": "learner-v1",
+    "purpose": "Design clear, consistent screens and interface components. Practise visual hierarchy, responsive layouts and accessible interaction states.",
+    "activities": [
+      {
+        "action": "Organise a screen so its purpose is clear",
+        "result": "An annotated layout with visual hierarchy"
+      },
+      {
+        "action": "Define consistent visual and interactive elements",
+        "result": "Typography, colour, spacing and component states"
+      },
+      {
+        "action": "Check whether an interface is readable and usable",
+        "result": "A critique covering contrast, labels and feedback"
+      }
+    ],
+    "work_on": "Screen layouts, typography and component states",
+    "produce": "A small component library and annotated multi-screen prototype.",
+    "check": "Check hierarchy, consistency, contrast and interaction states.",
+    "learning_groups": [
+      {
+        "title": "Understand interface design / Establish visual foundations",
+        "explanation": "Learn ui role and interface anatomy, design tools and files, visual hierarchy, then apply the ideas in a small task. Learn typography scales, color and contrast, spacing grids and alignment, then apply the ideas in a small task.",
+        "topic_id": "40f79263-22a7-584b-9bb1-26ee395b4fff",
+        "roadmap_id": "43dd0b90-799b-5e0f-813b-bf963cdf9509",
+        "topic_title": "UI role and interface anatomy"
+      },
+      {
+        "title": "Design reusable controls / Compose responsive screens",
+        "explanation": "Learn buttons and interactive states, forms and field feedback, navigation patterns, then apply the ideas in a small task. Learn layout constraints and grids, mobile and desktop adaptation, content density and hierarchy, then apply the ideas in a small task.",
+        "topic_id": "371905b5-5b6f-5d28-b1d9-d6275a611ffe",
+        "roadmap_id": "43dd0b90-799b-5e0f-813b-bf963cdf9509",
+        "topic_title": "Buttons and interactive states"
+      },
+      {
+        "title": "Make designs inclusive and usable / Deliver a UI starter kit",
+        "explanation": "Learn accessibility contrast and focus, keyboard and touch affordances, microcopy and feedback, then apply the ideas in a small task. Learn define product scenario, build a small component library, design three responsive screens, then apply the ideas in a small task.",
+        "topic_id": "217ef86b-8710-5ed5-a3ae-6ee006d1ff22",
+        "roadmap_id": "43dd0b90-799b-5e0f-813b-bf963cdf9509",
+        "topic_title": "Accessibility contrast and focus"
+      }
+    ],
+    "starter": {
+      "title": "UI role and interface anatomy",
+      "instructions": "Annotate the controls and visual hierarchy of a familiar screen.",
+      "expected_result": "An annotated screen identifying primary and secondary actions and which visual cues draw attention to them.",
+      "topic_id": "40f79263-22a7-584b-9bb1-26ee395b4fff",
+      "roadmap_id": "43dd0b90-799b-5e0f-813b-bf963cdf9509"
+    },
+    "skills": [
+      {
+        "id": "a72c4f5e-8f09-5311-92d6-a4dddd79cebf",
+        "label": "UI role and interface anatomy",
+        "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+        "question": "Have you identified the main controls and regions on a screen?",
+        "example": "Annotate the controls and visual hierarchy of a familiar screen.",
+        "why_it_matters": "Learn ui role and interface anatomy, design tools and files, visual hierarchy, then apply the ideas in a small task.",
+        "group": "Understand interface design",
+        "topic_id": "40f79263-22a7-584b-9bb1-26ee395b4fff",
+        "roadmap_id": "43dd0b90-799b-5e0f-813b-bf963cdf9509",
+        "topic_title": "UI role and interface anatomy",
+        "source_locator": "ui-designer.json#/M01/T01"
+      },
+      {
+        "id": "6d0641da-fdc6-5edb-a9ac-e78390edc05d",
+        "label": "Design tools and files",
+        "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+        "question": "Have you organised screens and components in a design file?",
+        "example": "Create two frames and one reusable button component.",
+        "why_it_matters": "Learn ui role and interface anatomy, design tools and files, visual hierarchy, then apply the ideas in a small task.",
+        "group": "Understand interface design",
+        "topic_id": "bfc93798-b4a1-577e-b28f-21fab5d3cd56",
+        "roadmap_id": "43dd0b90-799b-5e0f-813b-bf963cdf9509",
+        "topic_title": "Design tools and files",
+        "source_locator": "ui-designer.json#/M01/T02"
+      },
+      {
+        "id": "875ab514-e162-58e5-81c5-688f2023f19f",
+        "label": "Visual hierarchy",
+        "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+        "question": "Have you used visual cues to make the main action stand out?",
+        "example": "Redesign a cluttered panel with one clear primary action.",
+        "why_it_matters": "Learn ui role and interface anatomy, design tools and files, visual hierarchy, then apply the ideas in a small task.",
+        "group": "Understand interface design",
+        "topic_id": "4fdc7f3d-66e6-53b7-981f-470c61d10495",
+        "roadmap_id": "43dd0b90-799b-5e0f-813b-bf963cdf9509",
+        "topic_title": "Visual hierarchy",
+        "source_locator": "ui-designer.json#/M01/T03"
+      },
+      {
+        "id": "67dba08d-d723-56fa-af55-185ed83f84fb",
+        "label": "Design critique and references",
+        "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+        "question": "Have you explained what works or fails in a reference design?",
+        "example": "Write three actionable critiques of a sample screen.",
+        "why_it_matters": "Learn ui role and interface anatomy, design tools and files, visual hierarchy, then apply the ideas in a small task.",
+        "group": "Understand interface design",
+        "topic_id": "ba85e636-6fca-5b99-acc9-10964e040a21",
+        "roadmap_id": "43dd0b90-799b-5e0f-813b-bf963cdf9509",
+        "topic_title": "Design critique and references",
+        "source_locator": "ui-designer.json#/M01/T04"
+      },
+      {
+        "id": "000a957d-f264-5c9c-8321-f9496b4658b5",
+        "label": "Typography scales",
+        "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+        "question": "Have you chosen a consistent set of text sizes and styles?",
+        "example": "Create a type scale and apply it to a sample settings page.",
+        "why_it_matters": "Learn typography scales, color and contrast, spacing grids and alignment, then apply the ideas in a small task.",
+        "group": "Establish visual foundations",
+        "topic_id": "fe3a9393-06ea-5860-bd6c-ca43d1ce5030",
+        "roadmap_id": "43dd0b90-799b-5e0f-813b-bf963cdf9509",
+        "topic_title": "Typography scales",
+        "source_locator": "ui-designer.json#/M02/T05"
+      },
+      {
+        "id": "8a4ac394-0245-5869-9ac1-282834e27031",
+        "label": "Color and contrast",
+        "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+        "question": "Have you checked that text has enough contrast against its background?",
+        "example": "Create a small palette and test text combinations for contrast.",
+        "why_it_matters": "Learn typography scales, color and contrast, spacing grids and alignment, then apply the ideas in a small task.",
+        "group": "Establish visual foundations",
+        "topic_id": "89d19547-4de9-5afb-8244-79db23eb0fd4",
+        "roadmap_id": "43dd0b90-799b-5e0f-813b-bf963cdf9509",
+        "topic_title": "Color and contrast",
+        "source_locator": "ui-designer.json#/M02/T06"
+      },
+      {
+        "id": "80174b35-194b-5a16-8b4c-d78500ceed30",
+        "label": "Spacing grids and alignment",
+        "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+        "question": "Have you aligned elements using consistent spacing?",
+        "example": "Apply a spacing scale to a form and align its fields.",
+        "why_it_matters": "Learn typography scales, color and contrast, spacing grids and alignment, then apply the ideas in a small task.",
+        "group": "Establish visual foundations",
+        "topic_id": "eeb14647-4595-5c51-8edb-41156e9c4ee2",
+        "roadmap_id": "43dd0b90-799b-5e0f-813b-bf963cdf9509",
+        "topic_title": "Spacing grids and alignment",
+        "source_locator": "ui-designer.json#/M02/T07"
+      },
+      {
+        "id": "487af43c-ab94-5342-8453-e0c528478a63",
+        "label": "Icons and imagery",
+        "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+        "question": "Have you chosen icons or images that communicate a clear purpose?",
+        "example": "Choose icons for three actions and add visible labels where ambiguous.",
+        "why_it_matters": "Learn typography scales, color and contrast, spacing grids and alignment, then apply the ideas in a small task.",
+        "group": "Establish visual foundations",
+        "topic_id": "eacfe221-9fe9-5002-a726-80234dd4c124",
+        "roadmap_id": "43dd0b90-799b-5e0f-813b-bf963cdf9509",
+        "topic_title": "Icons and imagery",
+        "source_locator": "ui-designer.json#/M02/T08"
+      },
+      {
+        "id": "9a4bed53-fb8e-5021-969e-37709accf57e",
+        "label": "Buttons and interactive states",
+        "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+        "question": "Have you designed how a button looks in different interaction states?",
+        "example": "Design a button component with five named states.",
+        "why_it_matters": "Learn buttons and interactive states, forms and field feedback, navigation patterns, then apply the ideas in a small task.",
+        "group": "Design reusable controls",
+        "topic_id": "371905b5-5b6f-5d28-b1d9-d6275a611ffe",
+        "roadmap_id": "43dd0b90-799b-5e0f-813b-bf963cdf9509",
+        "topic_title": "Buttons and interactive states",
+        "source_locator": "ui-designer.json#/M03/T09"
+      },
+      {
+        "id": "e135bb43-1836-56f7-8fb6-9bc70c20cc74",
+        "label": "Forms and field feedback",
+        "career_id": "467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+        "question": "Have you designed form labels and feedback that explain what to fix?",
+        "example": "Design a signup form with helpful field-level errors.",
+        "why_it_matters": "Learn buttons and interactive states, forms and field feedback, navigation patterns, then apply the ideas in a small task.",
+        "group": "Design reusable controls",
+        "topic_id": "7aeda5e4-acee-5491-8a6b-11144c0b23e6",
+        "roadmap_id": "43dd0b90-799b-5e0f-813b-bf963cdf9509",
+        "topic_title": "Forms and field feedback",
+        "source_locator": "ui-designer.json#/M03/T10"
+      }
+    ],
+    "source_file": "ui-designer.json",
+    "source_sha256": "cd45287ed6a47170835b9bacbd723d7b75cbc92daa1e227fcd41337ca7dbe4ec",
+    "limitation": "Curriculum-based examples for local exploration, not a complete occupational profile or assessment. Independent content review is pending.",
+    "occupational_review_locator": "occupational/v1/agent-review.json#/summaries/467303dd-7d03-5c1a-bd44-3b5fdb996cc3",
+    "occupational_review_sha256": "824708e6396feb30afe7e1ff82586d06ac8a2939da5bfa82f497c2ddec19a9c0",
+    "source_scope": "Visual interface hierarchy, components, responsive states and design handoff; broad interface occupations include tasks outside this career."
+  },
+  {
+    "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+    "version": "learner-v1",
+    "purpose": "Study people’s goals and difficulties, then design and test better experiences. Start with a small problem you can investigate ethically.",
+    "activities": [
+      {
+        "action": "Identify what needs to be learned about users",
+        "result": "A research question and plan"
+      },
+      {
+        "action": "Gather evidence about a user task",
+        "result": "Consent-aware interview or observation notes"
+      },
+      {
+        "action": "Turn findings into design decisions",
+        "result": "A synthesis linking observations to a proposed change"
+      }
+    ],
+    "work_on": "User tasks, research questions and observations",
+    "produce": "A researched, tested user-flow prototype and concise case study.",
+    "check": "Trace conclusions to observations and identify remaining assumptions.",
+    "learning_groups": [
+      {
+        "title": "Frame the user problem / Study user needs",
+        "explanation": "Learn ux roles and evidence, stakeholders and goals, research ethics and consent, then apply the ideas in a small task. Learn interview planning, conducting interviews, observation and contextual inquiry, then apply the ideas in a small task.",
+        "topic_id": "6ee1d473-3047-5504-a41b-e22f1ac5e419",
+        "roadmap_id": "bee435ef-26d3-53c9-a415-5b67345df4d1",
+        "topic_title": "UX roles and evidence"
+      },
+      {
+        "title": "Model tasks and journeys / Design interaction structure",
+        "explanation": "Learn affinity mapping, personas grounded in research, task analysis and user flows, then apply the ideas in a small task. Learn information architecture, navigation and labeling, sketches and wireframes, then apply the ideas in a small task.",
+        "topic_id": "db72ac11-ee44-5f08-be42-381eaa87dcaa",
+        "roadmap_id": "bee435ef-26d3-53c9-a415-5b67345df4d1",
+        "topic_title": "Affinity mapping"
+      },
+      {
+        "title": "Test and improve designs / Present a UX case study",
+        "explanation": "Learn prototype planning, moderated usability tests, usability findings and prioritization, then apply the ideas in a small task. Learn choose a bounded problem, document evidence and decisions, revise prototype from testing, then apply the ideas in a small task.",
+        "topic_id": "c5c21509-2771-532a-b45b-e3657742203c",
+        "roadmap_id": "bee435ef-26d3-53c9-a415-5b67345df4d1",
+        "topic_title": "Prototype planning"
+      }
+    ],
+    "starter": {
+      "title": "UX roles and evidence",
+      "instructions": "Describe one user task and identify assumptions requiring research.",
+      "expected_result": "A named user task, one assumption about the user and a question that would help investigate that assumption.",
+      "topic_id": "6ee1d473-3047-5504-a41b-e22f1ac5e419",
+      "roadmap_id": "bee435ef-26d3-53c9-a415-5b67345df4d1"
+    },
+    "skills": [
+      {
+        "id": "ecdd9976-ce09-524a-af80-7fc5f3830e1c",
+        "label": "UX roles and evidence",
+        "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+        "question": "Have you identified a user task and what you still need to learn?",
+        "example": "Describe one user task and identify assumptions requiring research.",
+        "why_it_matters": "Learn ux roles and evidence, stakeholders and goals, research ethics and consent, then apply the ideas in a small task.",
+        "group": "Frame the user problem",
+        "topic_id": "6ee1d473-3047-5504-a41b-e22f1ac5e419",
+        "roadmap_id": "bee435ef-26d3-53c9-a415-5b67345df4d1",
+        "topic_title": "UX roles and evidence",
+        "source_locator": "ux-designer.json#/M01/T01"
+      },
+      {
+        "id": "33d76720-04cb-5afd-a533-b9b96be6a9bd",
+        "label": "Stakeholders and goals",
+        "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+        "question": "Have you clarified what users and stakeholders want from a project?",
+        "example": "Interview a stakeholder and list user questions still unanswered.",
+        "why_it_matters": "Learn ux roles and evidence, stakeholders and goals, research ethics and consent, then apply the ideas in a small task.",
+        "group": "Frame the user problem",
+        "topic_id": "c05f9be9-a2ad-5d29-9270-9e7305888b6a",
+        "roadmap_id": "bee435ef-26d3-53c9-a415-5b67345df4d1",
+        "topic_title": "Stakeholders and goals",
+        "source_locator": "ux-designer.json#/M01/T02"
+      },
+      {
+        "id": "6f858312-ecc4-51cf-a36c-50839be4ba09",
+        "label": "Research ethics and consent",
+        "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+        "question": "Have you planned consent and safe handling of research notes?",
+        "example": "Draft a short consent statement and data-retention note for mock interviews.",
+        "why_it_matters": "Learn ux roles and evidence, stakeholders and goals, research ethics and consent, then apply the ideas in a small task.",
+        "group": "Frame the user problem",
+        "topic_id": "f589b4bb-fb8d-55ea-acf3-816e0d8ebb6c",
+        "roadmap_id": "bee435ef-26d3-53c9-a415-5b67345df4d1",
+        "topic_title": "Research ethics and consent",
+        "source_locator": "ux-designer.json#/M01/T03"
+      },
+      {
+        "id": "670d051f-3e40-519e-8266-8f3a4854a66c",
+        "label": "Research plan and questions",
+        "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+        "question": "Have you written research questions for a user task?",
+        "example": "Choose a research method for finding why people abandon a booking flow.",
+        "why_it_matters": "Learn ux roles and evidence, stakeholders and goals, research ethics and consent, then apply the ideas in a small task.",
+        "group": "Frame the user problem",
+        "topic_id": "41f25d23-d224-5463-91f8-897b7803f1ee",
+        "roadmap_id": "bee435ef-26d3-53c9-a415-5b67345df4d1",
+        "topic_title": "Research plan and questions",
+        "source_locator": "ux-designer.json#/M01/T04"
+      },
+      {
+        "id": "18ac9a33-2890-5728-ad4e-5c6eea0543c6",
+        "label": "Interview planning",
+        "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+        "question": "Have you prepared interview questions without leading the participant?",
+        "example": "Rewrite five leading questions into neutral prompts.",
+        "why_it_matters": "Learn interview planning, conducting interviews, observation and contextual inquiry, then apply the ideas in a small task.",
+        "group": "Study user needs",
+        "topic_id": "6f74c294-7dd5-54c0-8d4c-8572f94107e0",
+        "roadmap_id": "bee435ef-26d3-53c9-a415-5b67345df4d1",
+        "topic_title": "Interview planning",
+        "source_locator": "ux-designer.json#/M02/T05"
+      },
+      {
+        "id": "fd5e9382-1e67-5056-8244-ee4c3c4eaaf1",
+        "label": "Conducting interviews",
+        "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+        "question": "Have you conducted an interview about how someone does a task?",
+        "example": "Conduct a consented practice interview and capture direct observations.",
+        "why_it_matters": "Learn interview planning, conducting interviews, observation and contextual inquiry, then apply the ideas in a small task.",
+        "group": "Study user needs",
+        "topic_id": "ca087f2a-6b50-56e0-8106-05831e1742bc",
+        "roadmap_id": "bee435ef-26d3-53c9-a415-5b67345df4d1",
+        "topic_title": "Conducting interviews",
+        "source_locator": "ux-designer.json#/M02/T06"
+      },
+      {
+        "id": "d86fe4fb-b94d-52c0-95eb-6a2a51ee8d5a",
+        "label": "Observation and contextual inquiry",
+        "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+        "question": "Have you observed someone doing a task and noted what happened?",
+        "example": "Observe a willing participant doing a simple task and map the sequence.",
+        "why_it_matters": "Learn interview planning, conducting interviews, observation and contextual inquiry, then apply the ideas in a small task.",
+        "group": "Study user needs",
+        "topic_id": "277ab153-a6ca-5d1d-84a0-44809e008405",
+        "roadmap_id": "bee435ef-26d3-53c9-a415-5b67345df4d1",
+        "topic_title": "Observation and contextual inquiry",
+        "source_locator": "ux-designer.json#/M02/T07"
+      },
+      {
+        "id": "581eab4a-ed21-57d3-bfea-ab3684e00be9",
+        "label": "Research notes and synthesis",
+        "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+        "question": "Have you turned research notes into findings supported by observations?",
+        "example": "Group ten anonymised observations and note conflicting evidence.",
+        "why_it_matters": "Learn interview planning, conducting interviews, observation and contextual inquiry, then apply the ideas in a small task.",
+        "group": "Study user needs",
+        "topic_id": "c0dd9a8d-3775-56b8-8da9-1fec849ddffc",
+        "roadmap_id": "bee435ef-26d3-53c9-a415-5b67345df4d1",
+        "topic_title": "Research notes and synthesis",
+        "source_locator": "ux-designer.json#/M02/T08"
+      },
+      {
+        "id": "df660189-ca43-5798-9d90-24429766994e",
+        "label": "Affinity mapping",
+        "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+        "question": "Have you grouped related observations to find themes?",
+        "example": "Cluster observations and name three evidence-backed themes.",
+        "why_it_matters": "Learn affinity mapping, personas grounded in research, task analysis and user flows, then apply the ideas in a small task.",
+        "group": "Model tasks and journeys",
+        "topic_id": "db72ac11-ee44-5f08-be42-381eaa87dcaa",
+        "roadmap_id": "bee435ef-26d3-53c9-a415-5b67345df4d1",
+        "topic_title": "Affinity mapping",
+        "source_locator": "ux-designer.json#/M03/T09"
+      },
+      {
+        "id": "11fa5460-6f6a-5bfe-b8d2-ead9fc49d223",
+        "label": "Personas grounded in research",
+        "career_id": "dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+        "question": "Have you summarised a user group using evidence rather than assumptions?",
+        "example": "Draft a research-based persona with goals and constraints.",
+        "why_it_matters": "Learn affinity mapping, personas grounded in research, task analysis and user flows, then apply the ideas in a small task.",
+        "group": "Model tasks and journeys",
+        "topic_id": "993a5927-209a-5174-a8eb-b56845f49daa",
+        "roadmap_id": "bee435ef-26d3-53c9-a415-5b67345df4d1",
+        "topic_title": "Personas grounded in research",
+        "source_locator": "ux-designer.json#/M03/T10"
+      }
+    ],
+    "source_file": "ux-designer.json",
+    "source_sha256": "141a3000a51a23cb2c622894d269523956fb488c5301b0085aaff3dd92747609",
+    "limitation": "Curriculum-based examples for local exploration, not a complete occupational profile or assessment. Independent content review is pending.",
+    "occupational_review_locator": "occupational/v1/agent-review.json#/summaries/dbd9109d-1d9c-53e2-840f-b91c3f860dfe",
+    "occupational_review_sha256": "824708e6396feb30afe7e1ff82586d06ac8a2939da5bfa82f497c2ddec19a9c0",
+    "source_scope": "Research, synthesis, flows, prototyping and usability evidence; UI and UX remain distinct despite a shared O*NET occupation."
+  }
+]

@@ -7,6 +7,21 @@ from pydantic import Field
 from app.api.contracts import Contract, Revision
 
 
+class ResumeReviewAvailability(Contract):
+    enabled: bool
+
+
+class ResumeSkillSuggestion(Contract):
+    skill_id: UUID
+    label: str
+    page: int
+    passage: str
+
+
+class ResumeSkillReview(Contract):
+    suggestions: list[ResumeSkillSuggestion]
+
+
 class DocumentEvidence(Contract):
     kind: Literal["skill", "education", "experience", "project"]
     text: Annotated[str, Field(min_length=1, max_length=250)]

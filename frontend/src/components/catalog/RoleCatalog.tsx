@@ -19,7 +19,6 @@ function RoadmapProgress({ id }: { id: string }) {
   return <span className="career-progress" role="meter" aria-label="Roadmap completion" aria-valuemin={0} aria-valuemax={100} aria-valuenow={summary.data.percentage}>{Math.round(summary.data.percentage)}%</span>;
 }
 export default function RoleCatalog({
-  onBack,
   onSelectRole,
 }: RoleCatalogProps) {
   const navigate = useNavigate();
@@ -27,6 +26,22 @@ export default function RoleCatalog({
   const searchInput = useRef<HTMLInputElement>(null);
   const restoreFocus = useRef(false);
   const categories = useCoreQuery(["categories"], coreApi.categories);
+  const fieldCounts = useCoreQuery(["catalog-field-counts"], async () => {
+    const limit = 100;
+    const first = await coreApi.catalog({ limit });
+    const byCategory: Record<string, number> = {};
+    let page = first;
+    for (let offset = 0; offset < first.total; offset += limit) {
+      if (offset > 0) page = await coreApi.catalog({ limit, offset });
+      if (page.catalog_release_id !== first.catalog_release_id || page.total !== first.total) {
+        throw new Error("The career catalog changed while loading field counts.");
+      }
+      for (const career of page.items) {
+        byCategory[career.category_id] = (byCategory[career.category_id] ?? 0) + 1;
+      }
+    }
+    return { total: first.total, byCategory };
+  });
   const preferences = useCoreQuery(["preferences"], coreApi.preferences);
   const recommendations = useCoreQuery(
     ["recommendations"],
@@ -127,13 +142,13 @@ export default function RoleCatalog({
             {careerSummary(role.description)}
           </p>
           <div className="career-skills">
-            <h3>Skills used in this career</h3>
+            <h3>{role.exploration ? "What you could do" : "Roadmap topics"}</h3>
             <ul>
-              {role.skills.slice(0, 3).map((skill) => <li key={skill}>{skill}</li>)}
+              {(role.exploration?.activities.map(activity => activity.action) ?? role.skills).slice(0, 3).map((skill) => <li key={skill}>{skill}</li>)}
             </ul>
-            {role.skills.length > 3 && <p className="catalog-more-skills">{role.skills.length - 3} more skills in this roadmap</p>}
+            {!role.exploration && role.skills.length > 3 && <p className="catalog-more-skills">{role.skills.length - 3} more skills in this roadmap</p>}
           </div>
-          <Button variant="outline" className="card-action" onClick={() => proceed(role.id)} aria-label={`View ${role.title} roadmap`}>View roadmap</Button>
+          <Button variant="outline" className="card-action" onClick={() => proceed(role.id)} aria-label={`View ${role.title} roadmap`}>Explore career</Button>
         </Card>
       ))}
     </div>
@@ -148,35 +163,29 @@ export default function RoleCatalog({
         <nav
           aria-label="Career categories"
         >
-          {[{id: "All", title: "All fields"}, ...(categories.data ?? [])].map((item, index) => (
-            <Button variant="ghost"
-              key={item.id}
-              type="button"
-              onClick={() => update("category", index === 0 ? "All" : item.title)}
-              aria-pressed={category === (index === 0 ? "All" : item.title)}
-            >
-              <span aria-hidden="true" className="category-number">{index > 0 ? String(index).padStart(2, "0") : ""}</span>
-              <span className="category-name">{item.title}</span>
-            </Button>
-          ))}
+          {[{ id: "All", title: "All fields" }, ...(categories.data ?? [])].map((item) => {
+            const value = item.id === "All" ? "All" : item.title;
+            const counts = fieldCounts.data;
+            const count = counts && (item.id === "All" ? counts.total : counts.byCategory[item.id] ?? 0);
+            return (
+              <Button variant="ghost"
+                key={item.id}
+                type="button"
+                onClick={() => update("category", value)}
+                aria-pressed={category === value}
+                aria-description={count === undefined ? undefined : `${count} available ${count === 1 ? "career" : "careers"}`}
+              >
+                <span aria-hidden="true" className="category-number">{count}</span>
+                <span className="category-name">{item.title}</span>
+              </Button>
+            );
+          })}
         </nav>
-        <p className="pt-5 text-sm text-gray-600">You can explore any field. Discovery is optional.</p>
       </aside>
       <div className="catalog-content space-y-8">
         <div className="search-field"><Search size={19} aria-hidden="true" />
         <input ref={searchInput} id="career-search" type="search" aria-label="Search career roles or skills" value={search} onChange={(event) => update("q", event.target.value)} onKeyDown={event => {if (event.key === "Escape") {event.preventDefault(); update("q", "");}}} placeholder="Search career roles or skills" className="min-h-11 w-full px-4 py-3 text-sm" />
         {search && <button type="button" aria-label="Clear search query" onClick={() => {restoreFocus.current = true; update("q", "");}}><X size={19} /></button>}
-        </div>
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <button
-            onClick={() =>
-              onBack ? onBack() : void navigate(appRoutes.dashboard)
-            }
-            className="min-h-11 rounded-full border px-5 text-sm font-semibold"
-          >
-            ← Return to dashboard
-          </button>
-          <p role="status" className="text-sm text-gray-600">{careers.data?.total ?? 0} matching roles</p>
         </div>
         {recommendations.isError && (
           <p role="status" className="text-sm text-gray-600">
@@ -190,17 +199,12 @@ export default function RoleCatalog({
             </button>
           </p>
         )}
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <h2 className="text-2xl font-bold">{suggested.length ? "Suggested careers" : "Explore careers"}</h2>
+          <Button asChild variant="outline"><Link to="/careers/compare">Compare careers</Link></Button>
+        </div>
         {suggested.length > 0 && (
           <section className="space-y-4">
-            <h2 className="text-2xl font-bold">Suggested careers</h2>
-            <p className="text-sm text-gray-600">
-              {run?.outdated || run !== state?.current
-                ? "These saved suggestions may be out of date."
-                : "Based on your saved Discovery and learning context."}{" "}
-              <Link className="underline" to={appRoutes.results}>
-                View suggestion details
-              </Link>
-            </p>
             {cards(suggested)}
           </section>
         )}
@@ -221,9 +225,7 @@ export default function RoleCatalog({
           </p>
         )}
         <section className="space-y-4 border-t pt-7">
-          <h2 className="text-2xl font-bold">
-            {suggested.length ? "All other careers" : "Explore careers"}
-          </h2>
+          {suggested.length > 0 && <h2 className="text-2xl font-bold">All other careers</h2>}
           {others.length ? (
             cards(others)
           ) : (

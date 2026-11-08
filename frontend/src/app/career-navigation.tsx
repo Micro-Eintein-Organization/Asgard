@@ -34,7 +34,6 @@ export function CareerNavigation() {
             <Link to={appRoutes.careers}>Career catalog</Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
-            <Link to={appRoutes.results}>Discovery results</Link>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

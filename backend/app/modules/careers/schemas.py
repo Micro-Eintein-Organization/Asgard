@@ -3,6 +3,7 @@ from typing import Literal
 from uuid import UUID
 
 from app.api.contracts import Contract, Page, Revision
+from app.modules.careers.exploration import Exploration
 
 
 class Category(Contract):
@@ -13,7 +14,10 @@ class Category(Contract):
     position: int
 
 
+
+
 class Career(Contract):
+    exploration: Exploration | None = None
     id: UUID
     category_id: UUID
     slug: str

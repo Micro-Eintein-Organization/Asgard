@@ -21,6 +21,51 @@ requirements:
 
 # Asgard: Product requirements and scope
 
+
+## Owner-authorized local testing, 2026-11-04
+
+After setup stopped on the new pending migration, the owner explicitly requested
+applying it and implementing all required local activation so they could test.
+The single competency migration and 120 Asgard-authored mappings are now installed
+in the normal local environment, preserving all pre-existing private-table digests.
+This is a local-test publication exception with independent content/code review
+still pending; it does not approve hosted use or claim validated occupational
+requirements. See [activation evidence](features/competency-comparison.md#normal-local-test-activation-2026-11-04).
+
+## Docker verification follow-up, 2026-11-04
+
+The resumed competency checks passed the isolated migration/private-state upgrade,
+draft/repeat/conflict publication, 21 pinned-container unit/Auth integration cases,
+and scoped Chrome persistence/comparison/removal/layout/focus checks. SQL policy
+quoting, readback ordering and comparison-trigger contrast were corrected. Normal
+migration/activation, real content approval and independent human review remain
+pending. See [dated execution evidence](features/competency-comparison.md#resumed-docker-acceptance-2026-11-04).
+This does not change final-MVP or hosted release gates.
+
+## Implementation follow-up, 2026-11-04
+
+The owner subsequently approved proceeding with the proposed migration/API scope
+and selected Anti Slop during. Skill-profile/comparison source and generated clients
+are now implemented. Independent review, database activation, content publication
+and end-to-end acceptance remain pending; earlier preparation-only status below is
+historical. See [implementation evidence and limitations](features/competency-comparison.md).
+No final-MVP release gate is marked complete by this update.
+
+
+## Skill comparison increment: owner direction, 2026-11-04
+
+The owner selected feature-first local delivery: manual skill profiles and
+comparison across the 12 current careers, using Asgard-authored learning content.
+The [decision resolution](decisions.md#skill-comparison-delivery-resolution-2026-11-04)
+and [feature specification](specs/competency-comparison.md) own this bounded addition.
+It adds a manually editable skill capability to the later increment, superseding
+the exclusion of that form in REQ-11 only for this new increment. Existing PDF-derived
+context and recommendation behavior are unchanged. Hosting/additional account
+controls are deferred from its immediate sequence, not removed from final-MVP scope.
+Technical/content review and mandatory focused checks remain required. Earlier
+seven-role launch coverage is a minimum; this increment targets all 12 current roles.
+
+
 **Version 0.3 · Updated 26 October 2026 · Status: Product baseline with recorded owner resolutions; partial foundation implemented, feature acceptance pending**
 
 Consolidated 25 October 2026 from the product brief, PRD, and scope. Original requirements and acceptance statements are retained. The owner delegated outstanding choices on 25 October 2026; [decisions](decisions.md) distinguishes selected policy from provider conflicts, authored content and unrun evidence. [Journeys](user-journeys.md) describe routes and [pages and interactions](pages-and-interactions.md) describe screen behavior.

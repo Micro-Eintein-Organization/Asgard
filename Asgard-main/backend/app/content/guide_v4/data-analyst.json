@@ -1,0 +1,2901 @@
+{
+  "schema_version": "4.0.0-draft",
+  "career": {
+    "name": "Data Analyst",
+    "slug": "data-analyst",
+    "category": "Data & Analytics",
+    "status": "Draft — pending human review"
+  },
+  "career_overview": {
+    "short_description": "Turn data into clear answers to practical questions. Learn how to clean, explore, visualise and explain evidence and limitations.",
+    "responsibilities": [
+      "Assess goals and constraints relevant to data analyst work",
+      "Apply appropriate tools and methods to a bounded task",
+      "Test, document and communicate results",
+      "Collaborate and incorporate feedback"
+    ],
+    "representative_work": [
+      "A small analysis report with tables, charts and explained findings."
+    ],
+    "core_skills": [
+      "Business questions and measures",
+      "Data files and formats",
+      "Spreadsheet formulas and sorting",
+      "Responsible handling of data",
+      "Relational tables and keys",
+      "SQL filtering and sorting",
+      "Aggregations and grouping",
+      "SQL joins",
+      "Python notebooks setup",
+      "Pandas loading and typing"
+    ]
+  },
+  "roadmap": {
+    "title": "Data Analyst: beginner foundations and starter project",
+    "intended_learner": "Motivated beginner; basic computer literacy assumed, with no prior professional experience.",
+    "starting_requirements": "Computer, internet access, text editor and browser. Most tasks use free software or simulation; specialist equipment, accounts and costs are flagged for review when applicable.",
+    "final_outcome": "A small analysis report with tables, charts and explained findings.",
+    "milestones": [
+      {
+        "id": "M01",
+        "slug": "understand-analytical-work",
+        "title": "Understand analytical work",
+        "summary": "Learn business questions and measures, data files and formats, spreadsheet formulas and sorting, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T01",
+            "slug": "business-questions-and-measures",
+            "title": "Business questions and measures",
+            "milestone_id": "M01",
+            "card": {
+              "title": "Business questions and measures",
+              "summary": "An analysis begins with a decision someone needs to make, not with a chart. A measure must have a clear definition, unit and timeframe.",
+              "prerequisite_ids": []
+            },
+            "detail": {
+              "eyebrow": "M01 · Understand analytical work",
+              "title": "Business questions and measures",
+              "overview": "An analysis begins with a decision someone needs to make, not with a chart. A measure must have a clear definition, unit and timeframe.",
+              "learning_outcomes": [
+                "Use what you learn about business questions and measures to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T01-S01",
+                  "title": "Business questions",
+                  "explanation": "Find how business questions works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T01-S02",
+                  "title": "Measures",
+                  "explanation": "Find how measures works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Turn a vague question such as 'Are sales better?' into two measurable questions."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: turn a vague question such as 'Are sales better?' into two measurable questions. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Kaggle Python",
+                  "provider": "Kaggle",
+                  "url": "https://www.kaggle.com/learn/python",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on business questions and measures; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T01-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "Microsoft Data Analytics",
+                  "provider": "Microsoft Learn",
+                  "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on business questions and measures; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T01-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "An analysis begins with a decision someone needs to make, not with a chart. A measure must have a clear definition, unit and timeframe.",
+                "learn_items": [
+                  "Business questions",
+                  "Measures"
+                ],
+                "learning_goal": "Use what you learn about business questions and measures to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Kaggle Python",
+                    "provider": "Kaggle",
+                    "url": "https://www.kaggle.com/learn/python",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on business questions and measures; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T01-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "Microsoft Data Analytics",
+                    "provider": "Microsoft Learn",
+                    "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on business questions and measures; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T01-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Turn a vague question such as 'Are sales better?' into two measurable questions.",
+                "completion_check": "You can show or explain the result of this task: turn a vague question such as 'Are sales better?' into two measurable questions. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T02",
+            "slug": "data-files-and-formats",
+            "title": "Data files and formats",
+            "milestone_id": "M01",
+            "card": {
+              "title": "Data files and formats",
+              "summary": "CSV files store tabular rows, while JSON can represent nested records. Column names, types and missing values affect how a dataset can be interpreted.",
+              "prerequisite_ids": [
+                "T01"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M01 · Understand analytical work",
+              "title": "Data files and formats",
+              "overview": "CSV files store tabular rows, while JSON can represent nested records. Column names, types and missing values affect how a dataset can be interpreted.",
+              "learning_outcomes": [
+                "Use what you learn about data files and formats to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T02-S01",
+                  "title": "Data files",
+                  "explanation": "Find how data files works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T02-S02",
+                  "title": "Formats",
+                  "explanation": "Find how formats works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Open a CSV, identify its fields and document ambiguous or missing values."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: open a CSV, identify its fields and document ambiguous or missing values. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Kaggle Python",
+                  "provider": "Kaggle",
+                  "url": "https://www.kaggle.com/learn/python",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on data files and formats; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T02-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "Microsoft Data Analytics",
+                  "provider": "Microsoft Learn",
+                  "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on data files and formats; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T02-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "CSV files store tabular rows, while JSON can represent nested records. Column names, types and missing values affect how a dataset can be interpreted.",
+                "learn_items": [
+                  "Data files",
+                  "Formats"
+                ],
+                "learning_goal": "Use what you learn about data files and formats to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Kaggle Python",
+                    "provider": "Kaggle",
+                    "url": "https://www.kaggle.com/learn/python",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on data files and formats; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T02-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "Microsoft Data Analytics",
+                    "provider": "Microsoft Learn",
+                    "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on data files and formats; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T02-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Open a CSV, identify its fields and document ambiguous or missing values.",
+                "completion_check": "You can show or explain the result of this task: open a CSV, identify its fields and document ambiguous or missing values. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T03",
+            "slug": "spreadsheet-formulas-and-sorting",
+            "title": "Spreadsheet formulas and sorting",
+            "milestone_id": "M01",
+            "card": {
+              "title": "Spreadsheet formulas and sorting",
+              "summary": "Spreadsheets support quick analysis through formulas, sorting and filtering. Formula references can change when copied unless intentionally fixed.",
+              "prerequisite_ids": [
+                "T02"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M01 · Understand analytical work",
+              "title": "Spreadsheet formulas and sorting",
+              "overview": "Spreadsheets support quick analysis through formulas, sorting and filtering. Formula references can change when copied unless intentionally fixed.",
+              "learning_outcomes": [
+                "Use what you learn about spreadsheet formulas and sorting to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T03-S01",
+                  "title": "Spreadsheet formulas",
+                  "explanation": "Find how spreadsheet formulas works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T03-S02",
+                  "title": "Sorting",
+                  "explanation": "Find how sorting works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Calculate totals and percentages, then sort a small sales table without breaking formulas."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: calculate totals and percentages, then sort a small sales table without breaking formulas. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Kaggle Python",
+                  "provider": "Kaggle",
+                  "url": "https://www.kaggle.com/learn/python",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on spreadsheet formulas and sorting; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T03-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "Microsoft Data Analytics",
+                  "provider": "Microsoft Learn",
+                  "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on spreadsheet formulas and sorting; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T03-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Spreadsheets support quick analysis through formulas, sorting and filtering. Formula references can change when copied unless intentionally fixed.",
+                "learn_items": [
+                  "Spreadsheet formulas",
+                  "Sorting"
+                ],
+                "learning_goal": "Use what you learn about spreadsheet formulas and sorting to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Kaggle Python",
+                    "provider": "Kaggle",
+                    "url": "https://www.kaggle.com/learn/python",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on spreadsheet formulas and sorting; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T03-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "Microsoft Data Analytics",
+                    "provider": "Microsoft Learn",
+                    "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on spreadsheet formulas and sorting; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T03-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Calculate totals and percentages, then sort a small sales table without breaking formulas.",
+                "completion_check": "You can show or explain the result of this task: calculate totals and percentages, then sort a small sales table without breaking formulas. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T04",
+            "slug": "responsible-handling-of-data",
+            "title": "Responsible handling of data",
+            "milestone_id": "M01",
+            "card": {
+              "title": "Responsible handling of data",
+              "summary": "Real datasets may contain private information, bias or misleading fields. Minimise personal data and record where a dataset came from.",
+              "prerequisite_ids": [
+                "T03"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M01 · Understand analytical work",
+              "title": "Responsible handling of data",
+              "overview": "Real datasets may contain private information, bias or misleading fields. Minimise personal data and record where a dataset came from.",
+              "learning_outcomes": [
+                "Use what you learn about responsible handling of data to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T04-S01",
+                  "title": "Responsible handling of data: purpose and essential vocabulary",
+                  "explanation": "Find how responsible handling of data: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T04-S02",
+                  "title": "Responsible handling of data: application and common pitfalls",
+                  "explanation": "Find how responsible handling of data: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Identify sensitive fields in a sample table and describe a safe analysis copy."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: identify sensitive fields in a sample table and describe a safe analysis copy. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Kaggle Python",
+                  "provider": "Kaggle",
+                  "url": "https://www.kaggle.com/learn/python",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on responsible handling of data; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T04-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "Microsoft Data Analytics",
+                  "provider": "Microsoft Learn",
+                  "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on responsible handling of data; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T04-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Real datasets may contain private information, bias or misleading fields. Minimise personal data and record where a dataset came from.",
+                "learn_items": [
+                  "Responsible handling of data: purpose and essential vocabulary",
+                  "Responsible handling of data: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about responsible handling of data to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Kaggle Python",
+                    "provider": "Kaggle",
+                    "url": "https://www.kaggle.com/learn/python",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on responsible handling of data; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T04-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "Microsoft Data Analytics",
+                    "provider": "Microsoft Learn",
+                    "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on responsible handling of data; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T04-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Identify sensitive fields in a sample table and describe a safe analysis copy.",
+                "completion_check": "You can show or explain the result of this task: identify sensitive fields in a sample table and describe a safe analysis copy. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M02",
+        "slug": "query-structured-data",
+        "title": "Query structured data",
+        "summary": "Learn relational tables and keys, sql filtering and sorting, aggregations and grouping, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T05",
+            "slug": "relational-tables-and-keys",
+            "title": "Relational tables and keys",
+            "milestone_id": "M02",
+            "card": {
+              "title": "Relational tables and keys",
+              "summary": "Relational tables store rows and columns, while primary and foreign keys connect entities. One-to-many relationships can duplicate rows after careless joins.",
+              "prerequisite_ids": [
+                "T04"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Query structured data",
+              "title": "Relational tables and keys",
+              "overview": "Relational tables store rows and columns, while primary and foreign keys connect entities. One-to-many relationships can duplicate rows after careless joins.",
+              "learning_outcomes": [
+                "Use what you learn about relational tables and keys to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T05-S01",
+                  "title": "Relational tables",
+                  "explanation": "Find how relational tables works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T05-S02",
+                  "title": "Keys",
+                  "explanation": "Find how keys works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Draw customer and order tables and mark their keys."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: draw customer and order tables and mark their keys. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Kaggle Python",
+                  "provider": "Kaggle",
+                  "url": "https://www.kaggle.com/learn/python",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on relational tables and keys; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T05-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "Microsoft Data Analytics",
+                  "provider": "Microsoft Learn",
+                  "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on relational tables and keys; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T05-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Relational tables store rows and columns, while primary and foreign keys connect entities. One-to-many relationships can duplicate rows after careless joins.",
+                "learn_items": [
+                  "Relational tables",
+                  "Keys"
+                ],
+                "learning_goal": "Use what you learn about relational tables and keys to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Kaggle Python",
+                    "provider": "Kaggle",
+                    "url": "https://www.kaggle.com/learn/python",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on relational tables and keys; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T05-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "Microsoft Data Analytics",
+                    "provider": "Microsoft Learn",
+                    "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on relational tables and keys; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T05-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Draw customer and order tables and mark their keys.",
+                "completion_check": "You can show or explain the result of this task: draw customer and order tables and mark their keys. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T06",
+            "slug": "sql-filtering-and-sorting",
+            "title": "SQL filtering and sorting",
+            "milestone_id": "M02",
+            "card": {
+              "title": "SQL filtering and sorting",
+              "summary": "SELECT chooses columns, WHERE filters records, and ORDER BY controls result order. Conditions and null checks change which rows appear.",
+              "prerequisite_ids": [
+                "T05"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Query structured data",
+              "title": "SQL filtering and sorting",
+              "overview": "SELECT chooses columns, WHERE filters records, and ORDER BY controls result order. Conditions and null checks change which rows appear.",
+              "learning_outcomes": [
+                "Use what you learn about sql filtering and sorting to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T06-S01",
+                  "title": "Sql filtering",
+                  "explanation": "Find how sql filtering works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T06-S02",
+                  "title": "Sorting",
+                  "explanation": "Find how sorting works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Write queries to return recent orders above a chosen amount."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: write queries to return recent orders above a chosen amount. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Kaggle Python",
+                  "provider": "Kaggle",
+                  "url": "https://www.kaggle.com/learn/python",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on sql filtering and sorting; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T06-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "Microsoft Data Analytics",
+                  "provider": "Microsoft Learn",
+                  "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on sql filtering and sorting; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T06-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "SELECT chooses columns, WHERE filters records, and ORDER BY controls result order. Conditions and null checks change which rows appear.",
+                "learn_items": [
+                  "Sql filtering",
+                  "Sorting"
+                ],
+                "learning_goal": "Use what you learn about sql filtering and sorting to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Kaggle Python",
+                    "provider": "Kaggle",
+                    "url": "https://www.kaggle.com/learn/python",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on sql filtering and sorting; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T06-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "Microsoft Data Analytics",
+                    "provider": "Microsoft Learn",
+                    "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on sql filtering and sorting; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T06-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Write queries to return recent orders above a chosen amount.",
+                "completion_check": "You can show or explain the result of this task: write queries to return recent orders above a chosen amount. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T07",
+            "slug": "aggregations-and-grouping",
+            "title": "Aggregations and grouping",
+            "milestone_id": "M02",
+            "card": {
+              "title": "Aggregations and grouping",
+              "summary": "GROUP BY collects rows into groups, and aggregate functions summarise each group. HAVING filters groups after aggregation.",
+              "prerequisite_ids": [
+                "T06"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Query structured data",
+              "title": "Aggregations and grouping",
+              "overview": "GROUP BY collects rows into groups, and aggregate functions summarise each group. HAVING filters groups after aggregation.",
+              "learning_outcomes": [
+                "Use what you learn about aggregations and grouping to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T07-S01",
+                  "title": "Aggregations",
+                  "explanation": "Find how aggregations works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T07-S02",
+                  "title": "Grouping",
+                  "explanation": "Find how grouping works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Calculate monthly totals and find months above a threshold."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: calculate monthly totals and find months above a threshold. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Kaggle Python",
+                  "provider": "Kaggle",
+                  "url": "https://www.kaggle.com/learn/python",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on aggregations and grouping; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T07-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "Microsoft Data Analytics",
+                  "provider": "Microsoft Learn",
+                  "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on aggregations and grouping; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T07-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "GROUP BY collects rows into groups, and aggregate functions summarise each group. HAVING filters groups after aggregation.",
+                "learn_items": [
+                  "Aggregations",
+                  "Grouping"
+                ],
+                "learning_goal": "Use what you learn about aggregations and grouping to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Kaggle Python",
+                    "provider": "Kaggle",
+                    "url": "https://www.kaggle.com/learn/python",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on aggregations and grouping; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T07-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "Microsoft Data Analytics",
+                    "provider": "Microsoft Learn",
+                    "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on aggregations and grouping; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T07-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Calculate monthly totals and find months above a threshold.",
+                "completion_check": "You can show or explain the result of this task: calculate monthly totals and find months above a threshold. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T08",
+            "slug": "sql-joins",
+            "title": "SQL joins",
+            "milestone_id": "M02",
+            "card": {
+              "title": "SQL joins",
+              "summary": "JOIN combines related tables using a condition. INNER JOIN excludes unmatched records, whereas LEFT JOIN preserves all rows from the left input.",
+              "prerequisite_ids": [
+                "T07"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Query structured data",
+              "title": "SQL joins",
+              "overview": "JOIN combines related tables using a condition. INNER JOIN excludes unmatched records, whereas LEFT JOIN preserves all rows from the left input.",
+              "learning_outcomes": [
+                "Use what you learn about sql joins to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T08-S01",
+                  "title": "SQL joins: purpose and essential vocabulary",
+                  "explanation": "Find how sql joins: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T08-S02",
+                  "title": "SQL joins: application and common pitfalls",
+                  "explanation": "Find how sql joins: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Compare inner and left joins for customers who have no orders."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: compare inner and left joins for customers who have no orders. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Kaggle Python",
+                  "provider": "Kaggle",
+                  "url": "https://www.kaggle.com/learn/python",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on sql joins; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T08-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "Microsoft Data Analytics",
+                  "provider": "Microsoft Learn",
+                  "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on sql joins; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T08-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "JOIN combines related tables using a condition. INNER JOIN excludes unmatched records, whereas LEFT JOIN preserves all rows from the left input.",
+                "learn_items": [
+                  "SQL joins: purpose and essential vocabulary",
+                  "SQL joins: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about sql joins to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Kaggle Python",
+                    "provider": "Kaggle",
+                    "url": "https://www.kaggle.com/learn/python",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on sql joins; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T08-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "Microsoft Data Analytics",
+                    "provider": "Microsoft Learn",
+                    "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on sql joins; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T08-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Compare inner and left joins for customers who have no orders.",
+                "completion_check": "You can show or explain the result of this task: compare inner and left joins for customers who have no orders. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M03",
+        "slug": "clean-and-explore-data",
+        "title": "Clean and explore data",
+        "summary": "Learn python notebooks setup, pandas loading and typing, missing values and duplicates, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T09",
+            "slug": "python-notebooks-setup",
+            "title": "Python notebooks setup",
+            "milestone_id": "M03",
+            "card": {
+              "title": "Python notebooks setup",
+              "summary": "A notebook combines executable code, notes and outputs. A reproducible notebook should run in order using a clearly specified environment.",
+              "prerequisite_ids": [
+                "T08"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Clean and explore data",
+              "title": "Python notebooks setup",
+              "overview": "A notebook combines executable code, notes and outputs. A reproducible notebook should run in order using a clearly specified environment.",
+              "learning_outcomes": [
+                "Use what you learn about python notebooks setup to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T09-S01",
+                  "title": "Python notebooks setup: purpose and essential vocabulary",
+                  "explanation": "Find how python notebooks setup: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T09-S02",
+                  "title": "Python notebooks setup: application and common pitfalls",
+                  "explanation": "Find how python notebooks setup: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Create a notebook with imports, one sample table and a written question."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: create a notebook with imports, one sample table and a written question. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Kaggle Python",
+                  "provider": "Kaggle",
+                  "url": "https://www.kaggle.com/learn/python",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on python notebooks setup; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T09-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "Microsoft Data Analytics",
+                  "provider": "Microsoft Learn",
+                  "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on python notebooks setup; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T09-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A notebook combines executable code, notes and outputs. A reproducible notebook should run in order using a clearly specified environment.",
+                "learn_items": [
+                  "Python notebooks setup: purpose and essential vocabulary",
+                  "Python notebooks setup: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about python notebooks setup to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Kaggle Python",
+                    "provider": "Kaggle",
+                    "url": "https://www.kaggle.com/learn/python",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on python notebooks setup; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T09-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "Microsoft Data Analytics",
+                    "provider": "Microsoft Learn",
+                    "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on python notebooks setup; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T09-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Create a notebook with imports, one sample table and a written question.",
+                "completion_check": "You can show or explain the result of this task: create a notebook with imports, one sample table and a written question. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T10",
+            "slug": "pandas-loading-and-typing",
+            "title": "Pandas loading and typing",
+            "milestone_id": "M03",
+            "card": {
+              "title": "Pandas loading and typing",
+              "summary": "Pandas reads tables into DataFrames and provides explicit data-type conversions. Incorrect types can silently distort dates, numbers and grouping.",
+              "prerequisite_ids": [
+                "T09"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Clean and explore data",
+              "title": "Pandas loading and typing",
+              "overview": "Pandas reads tables into DataFrames and provides explicit data-type conversions. Incorrect types can silently distort dates, numbers and grouping.",
+              "learning_outcomes": [
+                "Use what you learn about pandas loading and typing to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T10-S01",
+                  "title": "Pandas loading",
+                  "explanation": "Find how pandas loading works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T10-S02",
+                  "title": "Typing",
+                  "explanation": "Find how typing works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Load a CSV, inspect dtypes, convert a date column and report errors."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: load a CSV, inspect dtypes, convert a date column and report errors. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Kaggle Python",
+                  "provider": "Kaggle",
+                  "url": "https://www.kaggle.com/learn/python",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on pandas loading and typing; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T10-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "Microsoft Data Analytics",
+                  "provider": "Microsoft Learn",
+                  "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on pandas loading and typing; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T10-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Pandas reads tables into DataFrames and provides explicit data-type conversions. Incorrect types can silently distort dates, numbers and grouping.",
+                "learn_items": [
+                  "Pandas loading",
+                  "Typing"
+                ],
+                "learning_goal": "Use what you learn about pandas loading and typing to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Kaggle Python",
+                    "provider": "Kaggle",
+                    "url": "https://www.kaggle.com/learn/python",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on pandas loading and typing; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T10-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "Microsoft Data Analytics",
+                    "provider": "Microsoft Learn",
+                    "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on pandas loading and typing; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T10-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Load a CSV, inspect dtypes, convert a date column and report errors.",
+                "completion_check": "You can show or explain the result of this task: load a CSV, inspect dtypes, convert a date column and report errors. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T11",
+            "slug": "missing-values-and-duplicates",
+            "title": "Missing values and duplicates",
+            "milestone_id": "M03",
+            "card": {
+              "title": "Missing values and duplicates",
+              "summary": "Missing data can mean 'unknown', 'not applicable' or an entry mistake. Duplicate rows may be real transactions or accidental copies.",
+              "prerequisite_ids": [
+                "T10"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Clean and explore data",
+              "title": "Missing values and duplicates",
+              "overview": "Missing data can mean 'unknown', 'not applicable' or an entry mistake. Duplicate rows may be real transactions or accidental copies.",
+              "learning_outcomes": [
+                "Use what you learn about missing values and duplicates to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T11-S01",
+                  "title": "Missing values",
+                  "explanation": "Find how missing values works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T11-S02",
+                  "title": "Duplicates",
+                  "explanation": "Find how duplicates works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Create a cleaning log describing how two missing cases and duplicates were handled."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: create a cleaning log describing how two missing cases and duplicates were handled. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Kaggle Python",
+                  "provider": "Kaggle",
+                  "url": "https://www.kaggle.com/learn/python",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on missing values and duplicates; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T11-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "Microsoft Data Analytics",
+                  "provider": "Microsoft Learn",
+                  "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on missing values and duplicates; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T11-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Missing data can mean 'unknown', 'not applicable' or an entry mistake. Duplicate rows may be real transactions or accidental copies.",
+                "learn_items": [
+                  "Missing values",
+                  "Duplicates"
+                ],
+                "learning_goal": "Use what you learn about missing values and duplicates to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Kaggle Python",
+                    "provider": "Kaggle",
+                    "url": "https://www.kaggle.com/learn/python",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on missing values and duplicates; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T11-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "Microsoft Data Analytics",
+                    "provider": "Microsoft Learn",
+                    "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on missing values and duplicates; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T11-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Create a cleaning log describing how two missing cases and duplicates were handled.",
+                "completion_check": "You can show or explain the result of this task: create a cleaning log describing how two missing cases and duplicates were handled. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T12",
+            "slug": "exploratory-summaries",
+            "title": "Exploratory summaries",
+            "milestone_id": "M03",
+            "card": {
+              "title": "Exploratory summaries",
+              "summary": "Exploratory analysis checks distributions, categories and unusual observations before claiming an explanation. Summaries and simple charts reveal quality issues.",
+              "prerequisite_ids": [
+                "T11"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Clean and explore data",
+              "title": "Exploratory summaries",
+              "overview": "Exploratory analysis checks distributions, categories and unusual observations before claiming an explanation. Summaries and simple charts reveal quality issues.",
+              "learning_outcomes": [
+                "Use what you learn about exploratory summaries to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T12-S01",
+                  "title": "Exploratory summaries: purpose and essential vocabulary",
+                  "explanation": "Find how exploratory summaries: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T12-S02",
+                  "title": "Exploratory summaries: application and common pitfalls",
+                  "explanation": "Find how exploratory summaries: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Produce a summary table and list two questions raised by outliers."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: produce a summary table and list two questions raised by outliers. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Kaggle Python",
+                  "provider": "Kaggle",
+                  "url": "https://www.kaggle.com/learn/python",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on exploratory summaries; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T12-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "Microsoft Data Analytics",
+                  "provider": "Microsoft Learn",
+                  "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on exploratory summaries; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T12-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Exploratory analysis checks distributions, categories and unusual observations before claiming an explanation. Summaries and simple charts reveal quality issues.",
+                "learn_items": [
+                  "Exploratory summaries: purpose and essential vocabulary",
+                  "Exploratory summaries: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about exploratory summaries to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Kaggle Python",
+                    "provider": "Kaggle",
+                    "url": "https://www.kaggle.com/learn/python",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on exploratory summaries; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T12-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "Microsoft Data Analytics",
+                    "provider": "Microsoft Learn",
+                    "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on exploratory summaries; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T12-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Produce a summary table and list two questions raised by outliers.",
+                "completion_check": "You can show or explain the result of this task: produce a summary table and list two questions raised by outliers. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M04",
+        "slug": "interpret-results",
+        "title": "Interpret results",
+        "summary": "Learn descriptive statistics, distributions and outliers, correlation versus causation, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T13",
+            "slug": "descriptive-statistics",
+            "title": "Descriptive statistics",
+            "milestone_id": "M04",
+            "card": {
+              "title": "Descriptive statistics",
+              "summary": "Mean and median describe typical values differently when a distribution is skewed. Spread describes variation, not just the average.",
+              "prerequisite_ids": [
+                "T12"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Interpret results",
+              "title": "Descriptive statistics",
+              "overview": "Mean and median describe typical values differently when a distribution is skewed. Spread describes variation, not just the average.",
+              "learning_outcomes": [
+                "Use what you learn about descriptive statistics to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T13-S01",
+                  "title": "Descriptive statistics: purpose and essential vocabulary",
+                  "explanation": "Find how descriptive statistics: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T13-S02",
+                  "title": "Descriptive statistics: application and common pitfalls",
+                  "explanation": "Find how descriptive statistics: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Calculate mean, median and range for a skewed set of salaries."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: calculate mean, median and range for a skewed set of salaries. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Kaggle Python",
+                  "provider": "Kaggle",
+                  "url": "https://www.kaggle.com/learn/python",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on descriptive statistics; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T13-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "Microsoft Data Analytics",
+                  "provider": "Microsoft Learn",
+                  "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on descriptive statistics; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T13-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Mean and median describe typical values differently when a distribution is skewed. Spread describes variation, not just the average.",
+                "learn_items": [
+                  "Descriptive statistics: purpose and essential vocabulary",
+                  "Descriptive statistics: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about descriptive statistics to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Kaggle Python",
+                    "provider": "Kaggle",
+                    "url": "https://www.kaggle.com/learn/python",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on descriptive statistics; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T13-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "Microsoft Data Analytics",
+                    "provider": "Microsoft Learn",
+                    "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on descriptive statistics; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T13-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Calculate mean, median and range for a skewed set of salaries.",
+                "completion_check": "You can show or explain the result of this task: calculate mean, median and range for a skewed set of salaries. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T14",
+            "slug": "distributions-and-outliers",
+            "title": "Distributions and outliers",
+            "milestone_id": "M04",
+            "card": {
+              "title": "Distributions and outliers",
+              "summary": "A histogram shows a distribution, while a box plot highlights spread and potential outliers. Outliers need investigation before removal.",
+              "prerequisite_ids": [
+                "T13"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Interpret results",
+              "title": "Distributions and outliers",
+              "overview": "A histogram shows a distribution, while a box plot highlights spread and potential outliers. Outliers need investigation before removal.",
+              "learning_outcomes": [
+                "Use what you learn about distributions and outliers to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T14-S01",
+                  "title": "Distributions",
+                  "explanation": "Find how distributions works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T14-S02",
+                  "title": "Outliers",
+                  "explanation": "Find how outliers works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Plot a numeric field and describe whether a few values dominate it."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: plot a numeric field and describe whether a few values dominate it. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Kaggle Python",
+                  "provider": "Kaggle",
+                  "url": "https://www.kaggle.com/learn/python",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on distributions and outliers; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T14-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "Microsoft Data Analytics",
+                  "provider": "Microsoft Learn",
+                  "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on distributions and outliers; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T14-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A histogram shows a distribution, while a box plot highlights spread and potential outliers. Outliers need investigation before removal.",
+                "learn_items": [
+                  "Distributions",
+                  "Outliers"
+                ],
+                "learning_goal": "Use what you learn about distributions and outliers to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Kaggle Python",
+                    "provider": "Kaggle",
+                    "url": "https://www.kaggle.com/learn/python",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on distributions and outliers; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T14-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "Microsoft Data Analytics",
+                    "provider": "Microsoft Learn",
+                    "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on distributions and outliers; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T14-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Plot a numeric field and describe whether a few values dominate it.",
+                "completion_check": "You can show or explain the result of this task: plot a numeric field and describe whether a few values dominate it. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T15",
+            "slug": "correlation-versus-causation",
+            "title": "Correlation versus causation",
+            "milestone_id": "M04",
+            "card": {
+              "title": "Correlation versus causation",
+              "summary": "Correlation describes association, not proof of cause. Confounders and reverse causality can create convincing but incorrect stories.",
+              "prerequisite_ids": [
+                "T14"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Interpret results",
+              "title": "Correlation versus causation",
+              "overview": "Correlation describes association, not proof of cause. Confounders and reverse causality can create convincing but incorrect stories.",
+              "learning_outcomes": [
+                "Use what you learn about correlation versus causation to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T15-S01",
+                  "title": "Correlation versus causation: purpose and essential vocabulary",
+                  "explanation": "Find how correlation versus causation: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T15-S02",
+                  "title": "Correlation versus causation: application and common pitfalls",
+                  "explanation": "Find how correlation versus causation: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Write two plausible explanations for a correlation in a sample dataset."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: write two plausible explanations for a correlation in a sample dataset. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Kaggle Python",
+                  "provider": "Kaggle",
+                  "url": "https://www.kaggle.com/learn/python",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on correlation versus causation; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T15-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "Microsoft Data Analytics",
+                  "provider": "Microsoft Learn",
+                  "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on correlation versus causation; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T15-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Correlation describes association, not proof of cause. Confounders and reverse causality can create convincing but incorrect stories.",
+                "learn_items": [
+                  "Correlation versus causation: purpose and essential vocabulary",
+                  "Correlation versus causation: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about correlation versus causation to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Kaggle Python",
+                    "provider": "Kaggle",
+                    "url": "https://www.kaggle.com/learn/python",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on correlation versus causation; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T15-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "Microsoft Data Analytics",
+                    "provider": "Microsoft Learn",
+                    "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on correlation versus causation; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T15-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Write two plausible explanations for a correlation in a sample dataset.",
+                "completion_check": "You can show or explain the result of this task: write two plausible explanations for a correlation in a sample dataset. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T16",
+            "slug": "basic-uncertainty-and-sampling",
+            "title": "Basic uncertainty and sampling",
+            "milestone_id": "M04",
+            "card": {
+              "title": "Basic uncertainty and sampling",
+              "summary": "A sample is only part of a population; sampling choices influence uncertainty and representativeness. Small or biased samples need careful language.",
+              "prerequisite_ids": [
+                "T15"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Interpret results",
+              "title": "Basic uncertainty and sampling",
+              "overview": "A sample is only part of a population; sampling choices influence uncertainty and representativeness. Small or biased samples need careful language.",
+              "learning_outcomes": [
+                "Use what you learn about basic uncertainty and sampling to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T16-S01",
+                  "title": "Basic uncertainty",
+                  "explanation": "Find how basic uncertainty works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T16-S02",
+                  "title": "Sampling",
+                  "explanation": "Find how sampling works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Compare conclusions from a random sample and a convenience sample."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: compare conclusions from a random sample and a convenience sample. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Kaggle Python",
+                  "provider": "Kaggle",
+                  "url": "https://www.kaggle.com/learn/python",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on basic uncertainty and sampling; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T16-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "Microsoft Data Analytics",
+                  "provider": "Microsoft Learn",
+                  "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on basic uncertainty and sampling; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T16-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A sample is only part of a population; sampling choices influence uncertainty and representativeness. Small or biased samples need careful language.",
+                "learn_items": [
+                  "Basic uncertainty",
+                  "Sampling"
+                ],
+                "learning_goal": "Use what you learn about basic uncertainty and sampling to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Kaggle Python",
+                    "provider": "Kaggle",
+                    "url": "https://www.kaggle.com/learn/python",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on basic uncertainty and sampling; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T16-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "Microsoft Data Analytics",
+                    "provider": "Microsoft Learn",
+                    "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on basic uncertainty and sampling; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T16-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Compare conclusions from a random sample and a convenience sample.",
+                "completion_check": "You can show or explain the result of this task: compare conclusions from a random sample and a convenience sample. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M05",
+        "slug": "communicate-insights",
+        "title": "Communicate insights",
+        "summary": "Learn chart selection, dashboards and filters, narrative and recommendations, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T17",
+            "slug": "chart-selection",
+            "title": "Chart selection",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Chart selection",
+              "summary": "Choose charts based on the question: bars compare groups, lines show ordered time, and scatterplots show relationships. Axes and labels must not mislead.",
+              "prerequisite_ids": [
+                "T16"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Communicate insights",
+              "title": "Chart selection",
+              "overview": "Choose charts based on the question: bars compare groups, lines show ordered time, and scatterplots show relationships. Axes and labels must not mislead.",
+              "learning_outcomes": [
+                "Use what you learn about chart selection to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T17-S01",
+                  "title": "Chart selection: purpose and essential vocabulary",
+                  "explanation": "Find how chart selection: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T17-S02",
+                  "title": "Chart selection: application and common pitfalls",
+                  "explanation": "Find how chart selection: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Create two charts of the same data and explain which answers the question better."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: create two charts of the same data and explain which answers the question better. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Kaggle Python",
+                  "provider": "Kaggle",
+                  "url": "https://www.kaggle.com/learn/python",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on chart selection; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T17-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "Microsoft Data Analytics",
+                  "provider": "Microsoft Learn",
+                  "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on chart selection; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T17-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Choose charts based on the question: bars compare groups, lines show ordered time, and scatterplots show relationships. Axes and labels must not mislead.",
+                "learn_items": [
+                  "Chart selection: purpose and essential vocabulary",
+                  "Chart selection: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about chart selection to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Kaggle Python",
+                    "provider": "Kaggle",
+                    "url": "https://www.kaggle.com/learn/python",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on chart selection; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T17-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "Microsoft Data Analytics",
+                    "provider": "Microsoft Learn",
+                    "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on chart selection; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T17-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Create two charts of the same data and explain which answers the question better.",
+                "completion_check": "You can show or explain the result of this task: create two charts of the same data and explain which answers the question better. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T18",
+            "slug": "dashboards-and-filters",
+            "title": "Dashboards and filters",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Dashboards and filters",
+              "summary": "A dashboard brings key measures and filters into one coherent view. Each filter should be labelled and charts should update consistently.",
+              "prerequisite_ids": [
+                "T17"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Communicate insights",
+              "title": "Dashboards and filters",
+              "overview": "A dashboard brings key measures and filters into one coherent view. Each filter should be labelled and charts should update consistently.",
+              "learning_outcomes": [
+                "Use what you learn about dashboards and filters to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T18-S01",
+                  "title": "Dashboards",
+                  "explanation": "Find how dashboards works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T18-S02",
+                  "title": "Filters",
+                  "explanation": "Find how filters works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Sketch a one-page dashboard with three measures and one useful filter."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: sketch a one-page dashboard with three measures and one useful filter. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Kaggle Python",
+                  "provider": "Kaggle",
+                  "url": "https://www.kaggle.com/learn/python",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on dashboards and filters; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T18-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "Microsoft Data Analytics",
+                  "provider": "Microsoft Learn",
+                  "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on dashboards and filters; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T18-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A dashboard brings key measures and filters into one coherent view. Each filter should be labelled and charts should update consistently.",
+                "learn_items": [
+                  "Dashboards",
+                  "Filters"
+                ],
+                "learning_goal": "Use what you learn about dashboards and filters to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Kaggle Python",
+                    "provider": "Kaggle",
+                    "url": "https://www.kaggle.com/learn/python",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on dashboards and filters; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T18-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "Microsoft Data Analytics",
+                    "provider": "Microsoft Learn",
+                    "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on dashboards and filters; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T18-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Sketch a one-page dashboard with three measures and one useful filter.",
+                "completion_check": "You can show or explain the result of this task: sketch a one-page dashboard with three measures and one useful filter. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T19",
+            "slug": "narrative-and-recommendations",
+            "title": "Narrative and recommendations",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Narrative and recommendations",
+              "summary": "A helpful analytical narrative states the question, evidence, interpretation and decision. Recommendations should not pretend uncertainty has disappeared.",
+              "prerequisite_ids": [
+                "T18"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Communicate insights",
+              "title": "Narrative and recommendations",
+              "overview": "A helpful analytical narrative states the question, evidence, interpretation and decision. Recommendations should not pretend uncertainty has disappeared.",
+              "learning_outcomes": [
+                "Use what you learn about narrative and recommendations to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T19-S01",
+                  "title": "Narrative",
+                  "explanation": "Find how narrative works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T19-S02",
+                  "title": "Recommendations",
+                  "explanation": "Find how recommendations works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Write a short finding including a quantified result and one limitation."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: write a short finding including a quantified result and one limitation. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Kaggle Python",
+                  "provider": "Kaggle",
+                  "url": "https://www.kaggle.com/learn/python",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on narrative and recommendations; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T19-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "Microsoft Data Analytics",
+                  "provider": "Microsoft Learn",
+                  "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on narrative and recommendations; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T19-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A helpful analytical narrative states the question, evidence, interpretation and decision. Recommendations should not pretend uncertainty has disappeared.",
+                "learn_items": [
+                  "Narrative",
+                  "Recommendations"
+                ],
+                "learning_goal": "Use what you learn about narrative and recommendations to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Kaggle Python",
+                    "provider": "Kaggle",
+                    "url": "https://www.kaggle.com/learn/python",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on narrative and recommendations; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T19-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "Microsoft Data Analytics",
+                    "provider": "Microsoft Learn",
+                    "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on narrative and recommendations; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T19-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Write a short finding including a quantified result and one limitation.",
+                "completion_check": "You can show or explain the result of this task: write a short finding including a quantified result and one limitation. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T20",
+            "slug": "quality-checks-and-reproducibility",
+            "title": "Quality checks and reproducibility",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Quality checks and reproducibility",
+              "summary": "Reproducibility means another person can trace input files, transformations and calculations. Quality checks catch unexpected row counts or totals.",
+              "prerequisite_ids": [
+                "T19"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Communicate insights",
+              "title": "Quality checks and reproducibility",
+              "overview": "Reproducibility means another person can trace input files, transformations and calculations. Quality checks catch unexpected row counts or totals.",
+              "learning_outcomes": [
+                "Use what you learn about quality checks and reproducibility to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T20-S01",
+                  "title": "Quality checks",
+                  "explanation": "Find how quality checks works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T20-S02",
+                  "title": "Reproducibility",
+                  "explanation": "Find how reproducibility works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Re-run an analysis and compare row counts and a control total."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: re-run an analysis and compare row counts and a control total. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Kaggle Python",
+                  "provider": "Kaggle",
+                  "url": "https://www.kaggle.com/learn/python",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on quality checks and reproducibility; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T20-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "Microsoft Data Analytics",
+                  "provider": "Microsoft Learn",
+                  "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on quality checks and reproducibility; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T20-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Reproducibility means another person can trace input files, transformations and calculations. Quality checks catch unexpected row counts or totals.",
+                "learn_items": [
+                  "Quality checks",
+                  "Reproducibility"
+                ],
+                "learning_goal": "Use what you learn about quality checks and reproducibility to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Kaggle Python",
+                    "provider": "Kaggle",
+                    "url": "https://www.kaggle.com/learn/python",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on quality checks and reproducibility; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T20-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "Microsoft Data Analytics",
+                    "provider": "Microsoft Learn",
+                    "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on quality checks and reproducibility; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T20-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Re-run an analysis and compare row counts and a control total.",
+                "completion_check": "You can show or explain the result of this task: re-run an analysis and compare row counts and a control total. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "M06",
+        "slug": "deliver-an-analysis-report",
+        "title": "Deliver an analysis report",
+        "summary": "Learn define a stakeholder question, clean and query example dataset, create charts with interpretation, then apply the ideas in a small task.",
+        "topics": [
+          {
+            "id": "T21",
+            "slug": "define-a-stakeholder-question",
+            "title": "Define a stakeholder question",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Define a stakeholder question",
+              "summary": "A stakeholder question should identify an audience, decision, metric and time window. Ambiguous questions waste analysis time.",
+              "prerequisite_ids": [
+                "T20"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Deliver an analysis report",
+              "title": "Define a stakeholder question",
+              "overview": "A stakeholder question should identify an audience, decision, metric and time window. Ambiguous questions waste analysis time.",
+              "learning_outcomes": [
+                "Use what you learn about define a stakeholder question to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T21-S01",
+                  "title": "Define a stakeholder question: purpose and essential vocabulary",
+                  "explanation": "Find how define a stakeholder question: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T21-S02",
+                  "title": "Define a stakeholder question: application and common pitfalls",
+                  "explanation": "Find how define a stakeholder question: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Write a one-paragraph brief for a monthly operations report."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: write a one-paragraph brief for a monthly operations report. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Kaggle Python",
+                  "provider": "Kaggle",
+                  "url": "https://www.kaggle.com/learn/python",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on define a stakeholder question; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T21-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "Microsoft Data Analytics",
+                  "provider": "Microsoft Learn",
+                  "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on define a stakeholder question; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T21-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A stakeholder question should identify an audience, decision, metric and time window. Ambiguous questions waste analysis time.",
+                "learn_items": [
+                  "Define a stakeholder question: purpose and essential vocabulary",
+                  "Define a stakeholder question: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about define a stakeholder question to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Kaggle Python",
+                    "provider": "Kaggle",
+                    "url": "https://www.kaggle.com/learn/python",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on define a stakeholder question; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T21-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "Microsoft Data Analytics",
+                    "provider": "Microsoft Learn",
+                    "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on define a stakeholder question; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T21-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Write a one-paragraph brief for a monthly operations report.",
+                "completion_check": "You can show or explain the result of this task: write a one-paragraph brief for a monthly operations report. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T22",
+            "slug": "clean-and-query-example-dataset",
+            "title": "Clean and query example dataset",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Clean and query example dataset",
+              "summary": "Cleaning and querying should produce a documented, trustworthy table before visualization. Keep raw data separate from transformed outputs.",
+              "prerequisite_ids": [
+                "T21"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Deliver an analysis report",
+              "title": "Clean and query example dataset",
+              "overview": "Cleaning and querying should produce a documented, trustworthy table before visualization. Keep raw data separate from transformed outputs.",
+              "learning_outcomes": [
+                "Use what you learn about clean and query example dataset to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T22-S01",
+                  "title": "Clean",
+                  "explanation": "Find how clean works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T22-S02",
+                  "title": "Query example dataset",
+                  "explanation": "Find how query example dataset works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Prepare a clean dataset and save the SQL or notebook steps."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: prepare a clean dataset and save the SQL or notebook steps. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Kaggle Python",
+                  "provider": "Kaggle",
+                  "url": "https://www.kaggle.com/learn/python",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on clean and query example dataset; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T22-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "Microsoft Data Analytics",
+                  "provider": "Microsoft Learn",
+                  "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on clean and query example dataset; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T22-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "Cleaning and querying should produce a documented, trustworthy table before visualization. Keep raw data separate from transformed outputs.",
+                "learn_items": [
+                  "Clean",
+                  "Query example dataset"
+                ],
+                "learning_goal": "Use what you learn about clean and query example dataset to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Kaggle Python",
+                    "provider": "Kaggle",
+                    "url": "https://www.kaggle.com/learn/python",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on clean and query example dataset; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T22-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "Microsoft Data Analytics",
+                    "provider": "Microsoft Learn",
+                    "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on clean and query example dataset; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T22-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Prepare a clean dataset and save the SQL or notebook steps.",
+                "completion_check": "You can show or explain the result of this task: prepare a clean dataset and save the SQL or notebook steps. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T23",
+            "slug": "create-charts-with-interpretation",
+            "title": "Create charts with interpretation",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Create charts with interpretation",
+              "summary": "A useful figure includes readable labels, units, source context and a short interpretation. Charts alone do not explain business implications.",
+              "prerequisite_ids": [
+                "T22"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Deliver an analysis report",
+              "title": "Create charts with interpretation",
+              "overview": "A useful figure includes readable labels, units, source context and a short interpretation. Charts alone do not explain business implications.",
+              "learning_outcomes": [
+                "Use what you learn about create charts with interpretation to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T23-S01",
+                  "title": "Create charts with interpretation: purpose and essential vocabulary",
+                  "explanation": "Find how create charts with interpretation: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T23-S02",
+                  "title": "Create charts with interpretation: application and common pitfalls",
+                  "explanation": "Find how create charts with interpretation: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Create three charts with a one-sentence takeaway for each."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: create three charts with a one-sentence takeaway for each. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Kaggle Python",
+                  "provider": "Kaggle",
+                  "url": "https://www.kaggle.com/learn/python",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on create charts with interpretation; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T23-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "Microsoft Data Analytics",
+                  "provider": "Microsoft Learn",
+                  "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on create charts with interpretation; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T23-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A useful figure includes readable labels, units, source context and a short interpretation. Charts alone do not explain business implications.",
+                "learn_items": [
+                  "Create charts with interpretation: purpose and essential vocabulary",
+                  "Create charts with interpretation: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about create charts with interpretation to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Kaggle Python",
+                    "provider": "Kaggle",
+                    "url": "https://www.kaggle.com/learn/python",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on create charts with interpretation; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T23-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "Microsoft Data Analytics",
+                    "provider": "Microsoft Learn",
+                    "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on create charts with interpretation; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T23-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Create three charts with a one-sentence takeaway for each.",
+                "completion_check": "You can show or explain the result of this task: create three charts with a one-sentence takeaway for each. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          },
+          {
+            "id": "T24",
+            "slug": "present-a-concise-findings-report",
+            "title": "Present a concise findings report",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Present a concise findings report",
+              "summary": "A concise report separates observations from recommendations and known limitations. The supporting files must allow a reviewer to reproduce the main totals.",
+              "prerequisite_ids": [
+                "T23"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Deliver an analysis report",
+              "title": "Present a concise findings report",
+              "overview": "A concise report separates observations from recommendations and known limitations. The supporting files must allow a reviewer to reproduce the main totals.",
+              "learning_outcomes": [
+                "Use what you learn about present a concise findings report to complete the practice task and explain the result."
+              ],
+              "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+              "subtopics": [
+                {
+                  "id": "T24-S01",
+                  "title": "Present a concise findings report: purpose and essential vocabulary",
+                  "explanation": "Find how present a concise findings report: purpose and essential vocabulary works in the recommended lesson, then recognise it in the practice task."
+                },
+                {
+                  "id": "T24-S02",
+                  "title": "Present a concise findings report: application and common pitfalls",
+                  "explanation": "Find how present a concise findings report: application and common pitfalls works in the recommended lesson, then recognise it in the practice task."
+                }
+              ],
+              "practice": {
+                "instructions": "Deliver a two-page report with tables, figures and source notes."
+              },
+              "completion_check": {
+                "criteria": "You can show or explain the result of this task: deliver a two-page report with tables, figures and source notes. Check that it works as intended and identify one issue you would fix."
+              },
+              "resources": [
+                {
+                  "title": "Kaggle Python",
+                  "provider": "Kaggle",
+                  "url": "https://www.kaggle.com/learn/python",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on present a concise findings report; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T24-R01",
+                  "resource_role": "supplementary"
+                },
+                {
+                  "title": "Microsoft Data Analytics",
+                  "provider": "Microsoft Learn",
+                  "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                  "type": "documentation / course",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on present a concise findings report; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T24-R02",
+                  "resource_role": "supplementary"
+                }
+              ],
+              "guide": {
+                "overview": "A concise report separates observations from recommendations and known limitations. The supporting files must allow a reviewer to reproduce the main totals.",
+                "learn_items": [
+                  "Present a concise findings report: purpose and essential vocabulary",
+                  "Present a concise findings report: application and common pitfalls"
+                ],
+                "learning_goal": "Use what you learn about present a concise findings report to complete the practice task and explain the result.",
+                "tools_and_setup": "Use a free editor, browser or local simulator as applicable; no paid service is required by this exercise. Resource-specific hardware and account conditions are listed in resource metadata where known; otherwise they require verification.",
+                "resources": [
+                  {
+                    "title": "Kaggle Python",
+                    "provider": "Kaggle",
+                    "url": "https://www.kaggle.com/learn/python",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on present a concise findings report; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T24-R01",
+                    "resource_role": "supplementary"
+                  },
+                  {
+                    "title": "Microsoft Data Analytics",
+                    "provider": "Microsoft Learn",
+                    "url": "https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft",
+                    "type": "documentation / course",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on present a concise findings report; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T24-R02",
+                    "resource_role": "supplementary"
+                  }
+                ],
+                "practice": "Deliver a two-page report with tables, figures and source notes.",
+                "completion_check": "You can show or explain the result of this task: deliver a two-page report with tables, figures and source notes. Check that it works as intended and identify one issue you would fix."
+              }
+            },
+            "editorial_status": "guide-refactored-pending-lesson-level-review",
+            "review_notes": [
+              "Guide copy shortened; inspect the lesson-level resource mapping before publishing.",
+              "Practice and completion checks are drafts requiring career-specific editorial review."
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "display_contract": {
+    "layout": "milestone-accordion-with-topic-detail-panel",
+    "milestone_card": [
+      "title",
+      "summary",
+      "topics"
+    ],
+    "topic_row": [
+      "title",
+      "id"
+    ],
+    "topic_detail_order": [
+      "overview",
+      "learn_items",
+      "learning_goal",
+      "tools_and_setup",
+      "resources",
+      "practice",
+      "completion_check"
+    ],
+    "subtopics_are_tracked": false,
+    "prerequisites_are_advisory": true,
+    "completion_state_source": "application_only",
+    "notes": "Use topic.detail.guide; preserve legacy detail keys as compatibility aliases. No content-owned Done states."
+  },
+  "research_and_review_notes": {
+    "human_review": "Pending",
+    "content_readiness": "Not production ready; legacy generic content remains in most topics",
+    "verified_free_topic_coverage": "Not yet established for all topics"
+  }
+}

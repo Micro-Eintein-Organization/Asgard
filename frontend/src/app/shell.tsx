@@ -16,6 +16,7 @@ import { useAuth } from "@/auth/context";
 import { LogoutBoundary } from "./logout-boundary";
 import { useLogout } from "./logout";
 import { BrandLogo } from "@/components/brand-logo";
+import { CounselorLauncher } from "@/features/ai-guidance";
 import { CareerNavigation } from "./career-navigation";
 import { GuidanceBanner } from "./guidance";
 
@@ -213,7 +214,10 @@ export function AppShell() {
 function ShellContent() {
   const { user } = useAuth();
   const { pathname } = useLocation();
-  const onboarding = onboardingPaths.has(pathname.replace(/\/+$/, ""));
+  const pagePath = pathname.replace(/\/+$/, "");
+  const onboarding = onboardingPaths.has(pagePath);
+  const showCounselor = user?.email_confirmed_at &&
+    (pagePath === appRoutes.dashboard || pagePath === appRoutes.profile);
   return (
     <>
       <a className="skip-link" href="#main-content">
@@ -237,14 +241,16 @@ function ShellContent() {
             </StatePanel>
           }
         >
-          {!onboarding &&
-            pathname !== appRoutes.dashboard &&
+          {(!onboarding || pathname === appRoutes.results) &&
             user?.email_confirmed_at &&
             !Object.values(routes).includes(pathname) && <GuidanceBanner />}
           <Outlet />
           <PageFocus />
         </Suspense>
       </main>
+      {showCounselor && (
+        <CounselorLauncher key={pagePath} page={pagePath === appRoutes.dashboard ? "Dashboard" : "Settings"} />
+      )}
       {!onboarding && (
         <footer className="site-footer">
           <span>

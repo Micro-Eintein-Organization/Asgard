@@ -2,7 +2,7 @@
 
 - Implementer: Codex
 - Created: 2026-11-02
-- Last updated: 2026-11-03
+- Last updated: 2026-11-08
 - Status: compact-card/sidebar correction implemented with focused local browser evidence; human review and full browser/zoom acceptance pending
 - Requirements: [REQ-02 and REQ-03](../product.md)
 - Technical reviewer: [CODEOWNERS](../../.github/CODEOWNERS)
@@ -11,8 +11,8 @@
 ## Behavior
 
 [RoleCatalog](../../frontend/src/components/catalog/RoleCatalog.tsx) displays
-published categories in its left navigation, with All fields and numbered category
-buttons. The selected category has a dark background and a pressed state. Search
+published categories in its left navigation, with an availability count for each
+field and for All fields. The selected category has a dark background and a pressed state. Search
 appears above the role cards. Cards contain the category, career title, short
 description, up to three skills and a direct View roadmap button; no preliminary selection
 is required. Saved recommendation groups, errors, loading and no-match states
@@ -65,6 +65,22 @@ claim complete visual integration across the application.
 The catalog displays published API content; the unreviewed v4 drafts are not
 silently presented as published curricula. Source research and release readiness
 are recorded in [roadmap content expansion](roadmap-content-expansion.md).
+
+## Published career counts, 2026-11-08
+
+Codex implemented the owner-requested sidebar counts for REQ-02 and REQ-03.
+The catalog reads the existing unfiltered, paginated list of published careers
+and groups it by category. Counts stay stable while search and category filters
+change. Empty fields show zero after the count loads. Each button exposes the
+count as an accessible description. Review owner: @YakisobaNissin.
+
+Frontend TypeScript and all six focused catalog tests passed. The sidebar test
+covers the all-fields total, an empty field, and stable counts during filtering.
+
+Manual verification at `http://127.0.0.1:5173/careers` is pending. On the local
+23-career catalog, expect All fields to show 23 and Software and AI to show 7.
+Enter a search term and switch fields. The cards should filter while the sidebar
+counts stay the same.
 
 ## Verification
 

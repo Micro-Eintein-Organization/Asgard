@@ -1,0 +1,1683 @@
+{
+  "format_version": 1,
+  "created": "2026-11-04",
+  "author": "Codex",
+  "status": "draft-not-for-publication",
+  "source_kind": "Asgard-authored",
+  "external_dataset_imported": false,
+  "notes": [
+    "Exact source-title matches are candidates, not reviewed learning mappings.",
+    "Career-qualified keys avoid unreviewed cross-career identity merges.",
+    "Published database UUID resolution and canonical skill identities await review."
+  ],
+  "careers": [
+    {
+      "career_slug": "cybersecurity-analyst",
+      "career_name": "Cybersecurity Analyst",
+      "source": "backend/app/content/guide_v4/cybersecurity-analyst.json",
+      "source_sha256": "6b6a5eca81d352332e1b95dfb7e6eaa2cf0763cd816c211c8768f668579601ec",
+      "source_schema_version": "4.0.0-draft",
+      "skills": [
+        {
+          "proposed_key": "cybersecurity-analyst/authorization-and-legal-boundaries",
+          "label": "Authorization and legal boundaries",
+          "source_pointer": "/career_overview/core_skills/0",
+          "topic_matches": [
+            {
+              "source_topic_id": "T01",
+              "source_topic_slug": "authorization-and-legal-boundaries"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "cybersecurity-analyst/security-objectives-and-threats",
+          "label": "Security objectives and threats",
+          "source_pointer": "/career_overview/core_skills/1",
+          "topic_matches": [
+            {
+              "source_topic_id": "T02",
+              "source_topic_slug": "security-objectives-and-threats"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "cybersecurity-analyst/operating-systems-and-accounts",
+          "label": "Operating systems and accounts",
+          "source_pointer": "/career_overview/core_skills/2",
+          "topic_matches": [
+            {
+              "source_topic_id": "T03",
+              "source_topic_slug": "operating-systems-and-accounts"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "cybersecurity-analyst/networking-protocols-overview",
+          "label": "Networking protocols overview",
+          "source_pointer": "/career_overview/core_skills/3",
+          "topic_matches": [
+            {
+              "source_topic_id": "T04",
+              "source_topic_slug": "networking-protocols-overview"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "cybersecurity-analyst/command-line-and-log-files",
+          "label": "Command-line and log files",
+          "source_pointer": "/career_overview/core_skills/4",
+          "topic_matches": [
+            {
+              "source_topic_id": "T05",
+              "source_topic_slug": "command-line-and-log-files"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "cybersecurity-analyst/network-traffic-inspection",
+          "label": "Network traffic inspection",
+          "source_pointer": "/career_overview/core_skills/5",
+          "topic_matches": [
+            {
+              "source_topic_id": "T06",
+              "source_topic_slug": "network-traffic-inspection"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "cybersecurity-analyst/endpoint-telemetry-concepts",
+          "label": "Endpoint telemetry concepts",
+          "source_pointer": "/career_overview/core_skills/6",
+          "topic_matches": [
+            {
+              "source_topic_id": "T07",
+              "source_topic_slug": "endpoint-telemetry-concepts"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "cybersecurity-analyst/security-frameworks-and-controls",
+          "label": "Security frameworks and controls",
+          "source_pointer": "/career_overview/core_skills/7",
+          "topic_matches": [
+            {
+              "source_topic_id": "T08",
+              "source_topic_slug": "security-frameworks-and-controls"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "cybersecurity-analyst/phishing-analysis-in-samples",
+          "label": "Phishing analysis in samples",
+          "source_pointer": "/career_overview/core_skills/8",
+          "topic_matches": [
+            {
+              "source_topic_id": "T09",
+              "source_topic_slug": "phishing-analysis-in-samples"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "cybersecurity-analyst/authentication-abuse-indicators",
+          "label": "Authentication abuse indicators",
+          "source_pointer": "/career_overview/core_skills/9",
+          "topic_matches": [
+            {
+              "source_topic_id": "T10",
+              "source_topic_slug": "authentication-abuse-indicators"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        }
+      ]
+    },
+    {
+      "career_slug": "data-analyst",
+      "career_name": "Data Analyst",
+      "source": "backend/app/content/guide_v4/data-analyst.json",
+      "source_sha256": "0f40d6e5f3480fbc870c558ee16ab6030c685f24b9476c816caece8ac688fe13",
+      "source_schema_version": "4.0.0-draft",
+      "skills": [
+        {
+          "proposed_key": "data-analyst/business-questions-and-measures",
+          "label": "Business questions and measures",
+          "source_pointer": "/career_overview/core_skills/0",
+          "topic_matches": [
+            {
+              "source_topic_id": "T01",
+              "source_topic_slug": "business-questions-and-measures"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "data-analyst/data-files-and-formats",
+          "label": "Data files and formats",
+          "source_pointer": "/career_overview/core_skills/1",
+          "topic_matches": [
+            {
+              "source_topic_id": "T02",
+              "source_topic_slug": "data-files-and-formats"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "data-analyst/spreadsheet-formulas-and-sorting",
+          "label": "Spreadsheet formulas and sorting",
+          "source_pointer": "/career_overview/core_skills/2",
+          "topic_matches": [
+            {
+              "source_topic_id": "T03",
+              "source_topic_slug": "spreadsheet-formulas-and-sorting"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "data-analyst/responsible-handling-of-data",
+          "label": "Responsible handling of data",
+          "source_pointer": "/career_overview/core_skills/3",
+          "topic_matches": [
+            {
+              "source_topic_id": "T04",
+              "source_topic_slug": "responsible-handling-of-data"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "data-analyst/relational-tables-and-keys",
+          "label": "Relational tables and keys",
+          "source_pointer": "/career_overview/core_skills/4",
+          "topic_matches": [
+            {
+              "source_topic_id": "T05",
+              "source_topic_slug": "relational-tables-and-keys"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "data-analyst/sql-filtering-and-sorting",
+          "label": "SQL filtering and sorting",
+          "source_pointer": "/career_overview/core_skills/5",
+          "topic_matches": [
+            {
+              "source_topic_id": "T06",
+              "source_topic_slug": "sql-filtering-and-sorting"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "data-analyst/aggregations-and-grouping",
+          "label": "Aggregations and grouping",
+          "source_pointer": "/career_overview/core_skills/6",
+          "topic_matches": [
+            {
+              "source_topic_id": "T07",
+              "source_topic_slug": "aggregations-and-grouping"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "data-analyst/sql-joins",
+          "label": "SQL joins",
+          "source_pointer": "/career_overview/core_skills/7",
+          "topic_matches": [
+            {
+              "source_topic_id": "T08",
+              "source_topic_slug": "sql-joins"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "data-analyst/python-notebooks-setup",
+          "label": "Python notebooks setup",
+          "source_pointer": "/career_overview/core_skills/8",
+          "topic_matches": [
+            {
+              "source_topic_id": "T09",
+              "source_topic_slug": "python-notebooks-setup"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "data-analyst/pandas-loading-and-typing",
+          "label": "Pandas loading and typing",
+          "source_pointer": "/career_overview/core_skills/9",
+          "topic_matches": [
+            {
+              "source_topic_id": "T10",
+              "source_topic_slug": "pandas-loading-and-typing"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        }
+      ]
+    },
+    {
+      "career_slug": "data-engineer",
+      "career_name": "Data Engineer",
+      "source": "backend/app/content/guide_v4/data-engineer.json",
+      "source_sha256": "f2ba9eaf050f5e37fb9446d92f900351933b8cb2247630a100f509f35d8fd4dc",
+      "source_schema_version": "4.0.0-draft",
+      "skills": [
+        {
+          "proposed_key": "data-engineer/pipeline-architecture-and-roles",
+          "label": "Pipeline architecture and roles",
+          "source_pointer": "/career_overview/core_skills/0",
+          "topic_matches": [
+            {
+              "source_topic_id": "T01",
+              "source_topic_slug": "pipeline-architecture-and-roles"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "data-engineer/terminal-git-and-python-setup",
+          "label": "Terminal Git and Python setup",
+          "source_pointer": "/career_overview/core_skills/1",
+          "topic_matches": [
+            {
+              "source_topic_id": "T02",
+              "source_topic_slug": "terminal-git-and-python-setup"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "data-engineer/sql-foundations",
+          "label": "SQL foundations",
+          "source_pointer": "/career_overview/core_skills/2",
+          "topic_matches": [
+            {
+              "source_topic_id": "T03",
+              "source_topic_slug": "sql-foundations"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "data-engineer/data-formats-and-schemas",
+          "label": "Data formats and schemas",
+          "source_pointer": "/career_overview/core_skills/3",
+          "topic_matches": [
+            {
+              "source_topic_id": "T04",
+              "source_topic_slug": "data-formats-and-schemas"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "data-engineer/http-and-file-extraction",
+          "label": "HTTP and file extraction",
+          "source_pointer": "/career_overview/core_skills/4",
+          "topic_matches": [
+            {
+              "source_topic_id": "T05",
+              "source_topic_slug": "http-and-file-extraction"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "data-engineer/python-transformations",
+          "label": "Python transformations",
+          "source_pointer": "/career_overview/core_skills/5",
+          "topic_matches": [
+            {
+              "source_topic_id": "T06",
+              "source_topic_slug": "python-transformations"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "data-engineer/database-loading",
+          "label": "Database loading",
+          "source_pointer": "/career_overview/core_skills/6",
+          "topic_matches": [
+            {
+              "source_topic_id": "T07",
+              "source_topic_slug": "database-loading"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "data-engineer/idempotent-reruns",
+          "label": "Idempotent reruns",
+          "source_pointer": "/career_overview/core_skills/7",
+          "topic_matches": [
+            {
+              "source_topic_id": "T08",
+              "source_topic_slug": "idempotent-reruns"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "data-engineer/postgresql-tables-and-indexes",
+          "label": "PostgreSQL tables and indexes",
+          "source_pointer": "/career_overview/core_skills/8",
+          "topic_matches": [
+            {
+              "source_topic_id": "T09",
+              "source_topic_slug": "postgresql-tables-and-indexes"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "data-engineer/data-warehouse-layers",
+          "label": "Data warehouse layers",
+          "source_pointer": "/career_overview/core_skills/9",
+          "topic_matches": [
+            {
+              "source_topic_id": "T10",
+              "source_topic_slug": "data-warehouse-layers"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        }
+      ]
+    },
+    {
+      "career_slug": "devops-engineer",
+      "career_name": "DevOps Engineer",
+      "source": "backend/app/content/guide_v4/devops-engineer.json",
+      "source_sha256": "5efc95d0732cadeee32a6c1914e389d660c96b20f46499b21b7b78821002c282",
+      "source_schema_version": "4.0.0-draft",
+      "skills": [
+        {
+          "proposed_key": "devops-engineer/devops-collaboration-and-flow",
+          "label": "DevOps collaboration and flow",
+          "source_pointer": "/career_overview/core_skills/0",
+          "topic_matches": [
+            {
+              "source_topic_id": "T01",
+              "source_topic_slug": "devops-collaboration-and-flow"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "devops-engineer/linux-terminal-essentials",
+          "label": "Linux terminal essentials",
+          "source_pointer": "/career_overview/core_skills/1",
+          "topic_matches": [
+            {
+              "source_topic_id": "T02",
+              "source_topic_slug": "linux-terminal-essentials"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "devops-engineer/git-branching-and-review",
+          "label": "Git branching and review",
+          "source_pointer": "/career_overview/core_skills/2",
+          "topic_matches": [
+            {
+              "source_topic_id": "T03",
+              "source_topic_slug": "git-branching-and-review"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "devops-engineer/networking-and-http-basics",
+          "label": "Networking and HTTP basics",
+          "source_pointer": "/career_overview/core_skills/3",
+          "topic_matches": [
+            {
+              "source_topic_id": "T04",
+              "source_topic_slug": "networking-and-http-basics"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "devops-engineer/shell-scripts",
+          "label": "Shell scripts",
+          "source_pointer": "/career_overview/core_skills/4",
+          "topic_matches": [
+            {
+              "source_topic_id": "T05",
+              "source_topic_slug": "shell-scripts"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "devops-engineer/environment-configuration",
+          "label": "Environment configuration",
+          "source_pointer": "/career_overview/core_skills/5",
+          "topic_matches": [
+            {
+              "source_topic_id": "T06",
+              "source_topic_slug": "environment-configuration"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "devops-engineer/build-and-test-scripts",
+          "label": "Build and test scripts",
+          "source_pointer": "/career_overview/core_skills/6",
+          "topic_matches": [
+            {
+              "source_topic_id": "T07",
+              "source_topic_slug": "build-and-test-scripts"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "devops-engineer/continuous-integration-concepts",
+          "label": "Continuous integration concepts",
+          "source_pointer": "/career_overview/core_skills/7",
+          "topic_matches": [
+            {
+              "source_topic_id": "T08",
+              "source_topic_slug": "continuous-integration-concepts"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "devops-engineer/docker-images-and-files",
+          "label": "Docker images and files",
+          "source_pointer": "/career_overview/core_skills/8",
+          "topic_matches": [
+            {
+              "source_topic_id": "T09",
+              "source_topic_slug": "docker-images-and-files"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "devops-engineer/containers-and-networking",
+          "label": "Containers and networking",
+          "source_pointer": "/career_overview/core_skills/9",
+          "topic_matches": [
+            {
+              "source_topic_id": "T10",
+              "source_topic_slug": "containers-and-networking"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        }
+      ]
+    },
+    {
+      "career_slug": "embedded-systems-developer",
+      "career_name": "Embedded Systems Developer",
+      "source": "backend/app/content/guide_v4/embedded-systems-developer.json",
+      "source_sha256": "cde5f8d5428eb2b3ae807d0b5186343eac36ddca1055756b8340ef761f5ed10a",
+      "source_schema_version": "4.0.0-draft",
+      "skills": [
+        {
+          "proposed_key": "embedded-systems-developer/microcontrollers-and-peripherals",
+          "label": "Microcontrollers and peripherals",
+          "source_pointer": "/career_overview/core_skills/0",
+          "topic_matches": [
+            {
+              "source_topic_id": "T01",
+              "source_topic_slug": "microcontrollers-and-peripherals"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "embedded-systems-developer/voltage-and-safe-handling",
+          "label": "Voltage and safe handling",
+          "source_pointer": "/career_overview/core_skills/1",
+          "topic_matches": [
+            {
+              "source_topic_id": "T02",
+              "source_topic_slug": "voltage-and-safe-handling"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "embedded-systems-developer/c-language-basics",
+          "label": "C language basics",
+          "source_pointer": "/career_overview/core_skills/2",
+          "topic_matches": [
+            {
+              "source_topic_id": "T03",
+              "source_topic_slug": "c-language-basics"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "embedded-systems-developer/simulator-and-toolchain-setup",
+          "label": "Simulator and toolchain setup",
+          "source_pointer": "/career_overview/core_skills/3",
+          "topic_matches": [
+            {
+              "source_topic_id": "T04",
+              "source_topic_slug": "simulator-and-toolchain-setup"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "embedded-systems-developer/gpio-modes",
+          "label": "GPIO modes",
+          "source_pointer": "/career_overview/core_skills/4",
+          "topic_matches": [
+            {
+              "source_topic_id": "T05",
+              "source_topic_slug": "gpio-modes"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "embedded-systems-developer/led-and-button-circuits",
+          "label": "LED and button circuits",
+          "source_pointer": "/career_overview/core_skills/5",
+          "topic_matches": [
+            {
+              "source_topic_id": "T06",
+              "source_topic_slug": "led-and-button-circuits"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "embedded-systems-developer/pull-resistors-and-debouncing",
+          "label": "Pull resistors and debouncing",
+          "source_pointer": "/career_overview/core_skills/6",
+          "topic_matches": [
+            {
+              "source_topic_id": "T07",
+              "source_topic_slug": "pull-resistors-and-debouncing"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "embedded-systems-developer/timing-without-blocking",
+          "label": "Timing without blocking",
+          "source_pointer": "/career_overview/core_skills/7",
+          "topic_matches": [
+            {
+              "source_topic_id": "T08",
+              "source_topic_slug": "timing-without-blocking"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "embedded-systems-developer/analog-to-digital-conversion",
+          "label": "Analog to digital conversion",
+          "source_pointer": "/career_overview/core_skills/8",
+          "topic_matches": [
+            {
+              "source_topic_id": "T09",
+              "source_topic_slug": "analog-to-digital-conversion"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "embedded-systems-developer/pwm-outputs",
+          "label": "PWM outputs",
+          "source_pointer": "/career_overview/core_skills/9",
+          "topic_matches": [
+            {
+              "source_topic_id": "T10",
+              "source_topic_slug": "pwm-outputs"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        }
+      ]
+    },
+    {
+      "career_slug": "frontend-developer",
+      "career_name": "Frontend Developer",
+      "source": "backend/app/content/guide_v4/frontend-developer.json",
+      "source_sha256": "4654eb1de0d0090d384babe33428661f06972e16dbc15ed95d310bc4825fbbe4",
+      "source_schema_version": "4.0.0-draft",
+      "skills": [
+        {
+          "proposed_key": "frontend-developer/how-browsers-deliver-pages",
+          "label": "How browsers deliver pages",
+          "source_pointer": "/career_overview/core_skills/0",
+          "topic_matches": [
+            {
+              "source_topic_id": "T01",
+              "source_topic_slug": "how-browsers-deliver-pages"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "frontend-developer/editor-and-browser-developer-tools",
+          "label": "Editor and browser developer tools",
+          "source_pointer": "/career_overview/core_skills/1",
+          "topic_matches": [
+            {
+              "source_topic_id": "T02",
+              "source_topic_slug": "editor-and-browser-developer-tools"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "frontend-developer/files-and-terminal-navigation",
+          "label": "Files and terminal navigation",
+          "source_pointer": "/career_overview/core_skills/2",
+          "topic_matches": [
+            {
+              "source_topic_id": "T03",
+              "source_topic_slug": "files-and-terminal-navigation"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "frontend-developer/git-commits-and-repositories",
+          "label": "Git commits and repositories",
+          "source_pointer": "/career_overview/core_skills/3",
+          "topic_matches": [
+            {
+              "source_topic_id": "T04",
+              "source_topic_slug": "git-commits-and-repositories"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "frontend-developer/html-document-structure",
+          "label": "HTML document structure",
+          "source_pointer": "/career_overview/core_skills/4",
+          "topic_matches": [
+            {
+              "source_topic_id": "T05",
+              "source_topic_slug": "html-document-structure"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "frontend-developer/semantic-text-and-landmarks",
+          "label": "Semantic text and landmarks",
+          "source_pointer": "/career_overview/core_skills/5",
+          "topic_matches": [
+            {
+              "source_topic_id": "T06",
+              "source_topic_slug": "semantic-text-and-landmarks"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "frontend-developer/links-images-and-media",
+          "label": "Links images and media",
+          "source_pointer": "/career_overview/core_skills/6",
+          "topic_matches": [
+            {
+              "source_topic_id": "T07",
+              "source_topic_slug": "links-images-and-media"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "frontend-developer/forms-and-input-labels",
+          "label": "Forms and input labels",
+          "source_pointer": "/career_overview/core_skills/7",
+          "topic_matches": [
+            {
+              "source_topic_id": "T08",
+              "source_topic_slug": "forms-and-input-labels"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "frontend-developer/css-selectors-and-cascade",
+          "label": "CSS selectors and cascade",
+          "source_pointer": "/career_overview/core_skills/8",
+          "topic_matches": [
+            {
+              "source_topic_id": "T09",
+              "source_topic_slug": "css-selectors-and-cascade"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "frontend-developer/box-model-and-sizing",
+          "label": "Box model and sizing",
+          "source_pointer": "/career_overview/core_skills/9",
+          "topic_matches": [
+            {
+              "source_topic_id": "T10",
+              "source_topic_slug": "box-model-and-sizing"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        }
+      ]
+    },
+    {
+      "career_slug": "hardware-engineer",
+      "career_name": "Hardware Engineer",
+      "source": "backend/app/content/guide_v4/hardware-engineer.json",
+      "source_sha256": "5394757de1f0290369de6673b8e36e97edfc8d559eac91a2bdcea0fbb160c10d",
+      "source_schema_version": "4.0.0-draft",
+      "skills": [
+        {
+          "proposed_key": "hardware-engineer/electrical-safety-and-limits",
+          "label": "Electrical safety and limits",
+          "source_pointer": "/career_overview/core_skills/0",
+          "topic_matches": [
+            {
+              "source_topic_id": "T01",
+              "source_topic_slug": "electrical-safety-and-limits"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "hardware-engineer/voltage-current-and-resistance",
+          "label": "Voltage current and resistance",
+          "source_pointer": "/career_overview/core_skills/1",
+          "topic_matches": [
+            {
+              "source_topic_id": "T02",
+              "source_topic_slug": "voltage-current-and-resistance"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "hardware-engineer/power-and-energy-calculations",
+          "label": "Power and energy calculations",
+          "source_pointer": "/career_overview/core_skills/2",
+          "topic_matches": [
+            {
+              "source_topic_id": "T03",
+              "source_topic_slug": "power-and-energy-calculations"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "hardware-engineer/circuit-simulation-setup",
+          "label": "Circuit simulation setup",
+          "source_pointer": "/career_overview/core_skills/3",
+          "topic_matches": [
+            {
+              "source_topic_id": "T04",
+              "source_topic_slug": "circuit-simulation-setup"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "hardware-engineer/series-and-parallel-networks",
+          "label": "Series and parallel networks",
+          "source_pointer": "/career_overview/core_skills/4",
+          "topic_matches": [
+            {
+              "source_topic_id": "T05",
+              "source_topic_slug": "series-and-parallel-networks"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "hardware-engineer/kirchhoff-laws",
+          "label": "Kirchhoff laws",
+          "source_pointer": "/career_overview/core_skills/5",
+          "topic_matches": [
+            {
+              "source_topic_id": "T06",
+              "source_topic_slug": "kirchhoff-laws"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "hardware-engineer/capacitors-and-transients",
+          "label": "Capacitors and transients",
+          "source_pointer": "/career_overview/core_skills/6",
+          "topic_matches": [
+            {
+              "source_topic_id": "T07",
+              "source_topic_slug": "capacitors-and-transients"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "hardware-engineer/diodes-and-polarity",
+          "label": "Diodes and polarity",
+          "source_pointer": "/career_overview/core_skills/7",
+          "topic_matches": [
+            {
+              "source_topic_id": "T08",
+              "source_topic_slug": "diodes-and-polarity"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "hardware-engineer/transistors-as-switches",
+          "label": "Transistors as switches",
+          "source_pointer": "/career_overview/core_skills/8",
+          "topic_matches": [
+            {
+              "source_topic_id": "T09",
+              "source_topic_slug": "transistors-as-switches"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "hardware-engineer/logic-gates-and-truth-tables",
+          "label": "Logic gates and truth tables",
+          "source_pointer": "/career_overview/core_skills/9",
+          "topic_matches": [
+            {
+              "source_topic_id": "T10",
+              "source_topic_slug": "logic-gates-and-truth-tables"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        }
+      ]
+    },
+    {
+      "career_slug": "machine-learning-engineer",
+      "career_name": "Machine Learning Engineer",
+      "source": "backend/app/content/guide_v4/machine-learning-engineer.json",
+      "source_sha256": "ac05babd227c6110c6f44738957b363c2161395b6b1372e783137a39342b5ab3",
+      "source_schema_version": "4.0.0-draft",
+      "skills": [
+        {
+          "proposed_key": "machine-learning-engineer/ml-roles-and-responsible-scope",
+          "label": "ML roles and responsible scope",
+          "source_pointer": "/career_overview/core_skills/0",
+          "topic_matches": [
+            {
+              "source_topic_id": "T01",
+              "source_topic_slug": "ml-roles-and-responsible-scope"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "machine-learning-engineer/python-notebooks-and-environments",
+          "label": "Python notebooks and environments",
+          "source_pointer": "/career_overview/core_skills/1",
+          "topic_matches": [
+            {
+              "source_topic_id": "T02",
+              "source_topic_slug": "python-notebooks-and-environments"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "machine-learning-engineer/git-and-project-structure",
+          "label": "Git and project structure",
+          "source_pointer": "/career_overview/core_skills/2",
+          "topic_matches": [
+            {
+              "source_topic_id": "T03",
+              "source_topic_slug": "git-and-project-structure"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "machine-learning-engineer/numerical-python-basics",
+          "label": "Numerical Python basics",
+          "source_pointer": "/career_overview/core_skills/3",
+          "topic_matches": [
+            {
+              "source_topic_id": "T04",
+              "source_topic_slug": "numerical-python-basics"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "machine-learning-engineer/tabular-data-inspection",
+          "label": "Tabular data inspection",
+          "source_pointer": "/career_overview/core_skills/4",
+          "topic_matches": [
+            {
+              "source_topic_id": "T05",
+              "source_topic_slug": "tabular-data-inspection"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "machine-learning-engineer/missing-values-and-types",
+          "label": "Missing values and types",
+          "source_pointer": "/career_overview/core_skills/5",
+          "topic_matches": [
+            {
+              "source_topic_id": "T06",
+              "source_topic_slug": "missing-values-and-types"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "machine-learning-engineer/exploratory-visualization",
+          "label": "Exploratory visualization",
+          "source_pointer": "/career_overview/core_skills/6",
+          "topic_matches": [
+            {
+              "source_topic_id": "T07",
+              "source_topic_slug": "exploratory-visualization"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "machine-learning-engineer/train-validation-and-test-splits",
+          "label": "Train validation and test splits",
+          "source_pointer": "/career_overview/core_skills/7",
+          "topic_matches": [
+            {
+              "source_topic_id": "T08",
+              "source_topic_slug": "train-validation-and-test-splits"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "machine-learning-engineer/problem-framing-and-baselines",
+          "label": "Problem framing and baselines",
+          "source_pointer": "/career_overview/core_skills/8",
+          "topic_matches": [
+            {
+              "source_topic_id": "T09",
+              "source_topic_slug": "problem-framing-and-baselines"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "machine-learning-engineer/linear-regression",
+          "label": "Linear regression",
+          "source_pointer": "/career_overview/core_skills/9",
+          "topic_matches": [
+            {
+              "source_topic_id": "T10",
+              "source_topic_slug": "linear-regression"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        }
+      ]
+    },
+    {
+      "career_slug": "network-engineer",
+      "career_name": "Network Engineer",
+      "source": "backend/app/content/guide_v4/network-engineer.json",
+      "source_sha256": "95678a19afe7b5003a00ce2ca93d6d8cb7e8ea6adc3979f60cb51dd5035e785b",
+      "source_schema_version": "4.0.0-draft",
+      "skills": [
+        {
+          "proposed_key": "network-engineer/network-roles-and-topologies",
+          "label": "Network roles and topologies",
+          "source_pointer": "/career_overview/core_skills/0",
+          "topic_matches": [
+            {
+              "source_topic_id": "T01",
+              "source_topic_slug": "network-roles-and-topologies"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "network-engineer/osi-and-tcp-ip-models",
+          "label": "OSI and TCP IP models",
+          "source_pointer": "/career_overview/core_skills/1",
+          "topic_matches": [
+            {
+              "source_topic_id": "T02",
+              "source_topic_slug": "osi-and-tcp-ip-models"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "network-engineer/ethernet-basics",
+          "label": "Ethernet basics",
+          "source_pointer": "/career_overview/core_skills/2",
+          "topic_matches": [
+            {
+              "source_topic_id": "T03",
+              "source_topic_slug": "ethernet-basics"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "network-engineer/safe-local-lab-setup",
+          "label": "Safe local lab setup",
+          "source_pointer": "/career_overview/core_skills/3",
+          "topic_matches": [
+            {
+              "source_topic_id": "T04",
+              "source_topic_slug": "safe-local-lab-setup"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "network-engineer/ipv4-addresses-and-masks",
+          "label": "IPv4 addresses and masks",
+          "source_pointer": "/career_overview/core_skills/4",
+          "topic_matches": [
+            {
+              "source_topic_id": "T05",
+              "source_topic_slug": "ipv4-addresses-and-masks"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "network-engineer/subnet-calculations",
+          "label": "Subnet calculations",
+          "source_pointer": "/career_overview/core_skills/5",
+          "topic_matches": [
+            {
+              "source_topic_id": "T06",
+              "source_topic_slug": "subnet-calculations"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "network-engineer/ipv6-fundamentals",
+          "label": "IPv6 fundamentals",
+          "source_pointer": "/career_overview/core_skills/6",
+          "topic_matches": [
+            {
+              "source_topic_id": "T07",
+              "source_topic_slug": "ipv6-fundamentals"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "network-engineer/default-gateways-and-routing",
+          "label": "Default gateways and routing",
+          "source_pointer": "/career_overview/core_skills/7",
+          "topic_matches": [
+            {
+              "source_topic_id": "T08",
+              "source_topic_slug": "default-gateways-and-routing"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "network-engineer/dns-resolution",
+          "label": "DNS resolution",
+          "source_pointer": "/career_overview/core_skills/8",
+          "topic_matches": [
+            {
+              "source_topic_id": "T09",
+              "source_topic_slug": "dns-resolution"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "network-engineer/dhcp-leases",
+          "label": "DHCP leases",
+          "source_pointer": "/career_overview/core_skills/9",
+          "topic_matches": [
+            {
+              "source_topic_id": "T10",
+              "source_topic_slug": "dhcp-leases"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        }
+      ]
+    },
+    {
+      "career_slug": "penetration-tester",
+      "career_name": "Penetration Tester",
+      "source": "backend/app/content/guide_v4/penetration-tester.json",
+      "source_sha256": "935bf93d50cfc7328b4a58fb338aea179e96bf8e1b4f466ffb3805e8315ee2aa",
+      "source_schema_version": "4.0.0-draft",
+      "skills": [
+        {
+          "proposed_key": "penetration-tester/rules-of-engagement-and-scope",
+          "label": "Rules of engagement and scope",
+          "source_pointer": "/career_overview/core_skills/0",
+          "topic_matches": [
+            {
+              "source_topic_id": "T01",
+              "source_topic_slug": "rules-of-engagement-and-scope"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "penetration-tester/safe-isolated-lab-setup",
+          "label": "Safe isolated lab setup",
+          "source_pointer": "/career_overview/core_skills/1",
+          "topic_matches": [
+            {
+              "source_topic_id": "T02",
+              "source_topic_slug": "safe-isolated-lab-setup"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "penetration-tester/operating-systems-and-terminal",
+          "label": "Operating systems and terminal",
+          "source_pointer": "/career_overview/core_skills/2",
+          "topic_matches": [
+            {
+              "source_topic_id": "T03",
+              "source_topic_slug": "operating-systems-and-terminal"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "penetration-tester/networking-and-http-essentials",
+          "label": "Networking and HTTP essentials",
+          "source_pointer": "/career_overview/core_skills/3",
+          "topic_matches": [
+            {
+              "source_topic_id": "T04",
+              "source_topic_slug": "networking-and-http-essentials"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "penetration-tester/http-messages-and-sessions",
+          "label": "HTTP messages and sessions",
+          "source_pointer": "/career_overview/core_skills/4",
+          "topic_matches": [
+            {
+              "source_topic_id": "T05",
+              "source_topic_slug": "http-messages-and-sessions"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "penetration-tester/authentication-and-authorization-concepts",
+          "label": "Authentication and authorization concepts",
+          "source_pointer": "/career_overview/core_skills/5",
+          "topic_matches": [
+            {
+              "source_topic_id": "T06",
+              "source_topic_slug": "authentication-and-authorization-concepts"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "penetration-tester/input-handling-and-validation",
+          "label": "Input handling and validation",
+          "source_pointer": "/career_overview/core_skills/6",
+          "topic_matches": [
+            {
+              "source_topic_id": "T07",
+              "source_topic_slug": "input-handling-and-validation"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "penetration-tester/application-mapping-in-labs",
+          "label": "Application mapping in labs",
+          "source_pointer": "/career_overview/core_skills/7",
+          "topic_matches": [
+            {
+              "source_topic_id": "T08",
+              "source_topic_slug": "application-mapping-in-labs"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "penetration-tester/injection-concepts-in-guided-labs",
+          "label": "Injection concepts in guided labs",
+          "source_pointer": "/career_overview/core_skills/8",
+          "topic_matches": [
+            {
+              "source_topic_id": "T09",
+              "source_topic_slug": "injection-concepts-in-guided-labs"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "penetration-tester/cross-site-scripting-concepts-in-labs",
+          "label": "Cross-site scripting concepts in labs",
+          "source_pointer": "/career_overview/core_skills/9",
+          "topic_matches": [
+            {
+              "source_topic_id": "T10",
+              "source_topic_slug": "cross-site-scripting-concepts-in-labs"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        }
+      ]
+    },
+    {
+      "career_slug": "ui-designer",
+      "career_name": "UI Designer",
+      "source": "backend/app/content/guide_v4/ui-designer.json",
+      "source_sha256": "cd45287ed6a47170835b9bacbd723d7b75cbc92daa1e227fcd41337ca7dbe4ec",
+      "source_schema_version": "4.0.0-draft",
+      "skills": [
+        {
+          "proposed_key": "ui-designer/ui-role-and-interface-anatomy",
+          "label": "UI role and interface anatomy",
+          "source_pointer": "/career_overview/core_skills/0",
+          "topic_matches": [
+            {
+              "source_topic_id": "T01",
+              "source_topic_slug": "ui-role-and-interface-anatomy"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "ui-designer/design-tools-and-files",
+          "label": "Design tools and files",
+          "source_pointer": "/career_overview/core_skills/1",
+          "topic_matches": [
+            {
+              "source_topic_id": "T02",
+              "source_topic_slug": "design-tools-and-files"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "ui-designer/visual-hierarchy",
+          "label": "Visual hierarchy",
+          "source_pointer": "/career_overview/core_skills/2",
+          "topic_matches": [
+            {
+              "source_topic_id": "T03",
+              "source_topic_slug": "visual-hierarchy"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "ui-designer/design-critique-and-references",
+          "label": "Design critique and references",
+          "source_pointer": "/career_overview/core_skills/3",
+          "topic_matches": [
+            {
+              "source_topic_id": "T04",
+              "source_topic_slug": "design-critique-and-references"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "ui-designer/typography-scales",
+          "label": "Typography scales",
+          "source_pointer": "/career_overview/core_skills/4",
+          "topic_matches": [
+            {
+              "source_topic_id": "T05",
+              "source_topic_slug": "typography-scales"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "ui-designer/color-and-contrast",
+          "label": "Color and contrast",
+          "source_pointer": "/career_overview/core_skills/5",
+          "topic_matches": [
+            {
+              "source_topic_id": "T06",
+              "source_topic_slug": "color-and-contrast"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "ui-designer/spacing-grids-and-alignment",
+          "label": "Spacing grids and alignment",
+          "source_pointer": "/career_overview/core_skills/6",
+          "topic_matches": [
+            {
+              "source_topic_id": "T07",
+              "source_topic_slug": "spacing-grids-and-alignment"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "ui-designer/icons-and-imagery",
+          "label": "Icons and imagery",
+          "source_pointer": "/career_overview/core_skills/7",
+          "topic_matches": [
+            {
+              "source_topic_id": "T08",
+              "source_topic_slug": "icons-and-imagery"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "ui-designer/buttons-and-interactive-states",
+          "label": "Buttons and interactive states",
+          "source_pointer": "/career_overview/core_skills/8",
+          "topic_matches": [
+            {
+              "source_topic_id": "T09",
+              "source_topic_slug": "buttons-and-interactive-states"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "ui-designer/forms-and-field-feedback",
+          "label": "Forms and field feedback",
+          "source_pointer": "/career_overview/core_skills/9",
+          "topic_matches": [
+            {
+              "source_topic_id": "T10",
+              "source_topic_slug": "forms-and-field-feedback"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        }
+      ]
+    },
+    {
+      "career_slug": "ux-designer",
+      "career_name": "UX Designer",
+      "source": "backend/app/content/guide_v4/ux-designer.json",
+      "source_sha256": "141a3000a51a23cb2c622894d269523956fb488c5301b0085aaff3dd92747609",
+      "source_schema_version": "4.0.0-draft",
+      "skills": [
+        {
+          "proposed_key": "ux-designer/ux-roles-and-evidence",
+          "label": "UX roles and evidence",
+          "source_pointer": "/career_overview/core_skills/0",
+          "topic_matches": [
+            {
+              "source_topic_id": "T01",
+              "source_topic_slug": "ux-roles-and-evidence"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "ux-designer/stakeholders-and-goals",
+          "label": "Stakeholders and goals",
+          "source_pointer": "/career_overview/core_skills/1",
+          "topic_matches": [
+            {
+              "source_topic_id": "T02",
+              "source_topic_slug": "stakeholders-and-goals"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "ux-designer/research-ethics-and-consent",
+          "label": "Research ethics and consent",
+          "source_pointer": "/career_overview/core_skills/2",
+          "topic_matches": [
+            {
+              "source_topic_id": "T03",
+              "source_topic_slug": "research-ethics-and-consent"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "ux-designer/research-plan-and-questions",
+          "label": "Research plan and questions",
+          "source_pointer": "/career_overview/core_skills/3",
+          "topic_matches": [
+            {
+              "source_topic_id": "T04",
+              "source_topic_slug": "research-plan-and-questions"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "ux-designer/interview-planning",
+          "label": "Interview planning",
+          "source_pointer": "/career_overview/core_skills/4",
+          "topic_matches": [
+            {
+              "source_topic_id": "T05",
+              "source_topic_slug": "interview-planning"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "ux-designer/conducting-interviews",
+          "label": "Conducting interviews",
+          "source_pointer": "/career_overview/core_skills/5",
+          "topic_matches": [
+            {
+              "source_topic_id": "T06",
+              "source_topic_slug": "conducting-interviews"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "ux-designer/observation-and-contextual-inquiry",
+          "label": "Observation and contextual inquiry",
+          "source_pointer": "/career_overview/core_skills/6",
+          "topic_matches": [
+            {
+              "source_topic_id": "T07",
+              "source_topic_slug": "observation-and-contextual-inquiry"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "ux-designer/research-notes-and-synthesis",
+          "label": "Research notes and synthesis",
+          "source_pointer": "/career_overview/core_skills/7",
+          "topic_matches": [
+            {
+              "source_topic_id": "T08",
+              "source_topic_slug": "research-notes-and-synthesis"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "ux-designer/affinity-mapping",
+          "label": "Affinity mapping",
+          "source_pointer": "/career_overview/core_skills/8",
+          "topic_matches": [
+            {
+              "source_topic_id": "T09",
+              "source_topic_slug": "affinity-mapping"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        },
+        {
+          "proposed_key": "ux-designer/personas-grounded-in-research",
+          "label": "Personas grounded in research",
+          "source_pointer": "/career_overview/core_skills/9",
+          "topic_matches": [
+            {
+              "source_topic_id": "T10",
+              "source_topic_slug": "personas-grounded-in-research"
+            }
+          ],
+          "match_method": "exact-title-only",
+          "review_status": "draft"
+        }
+      ]
+    }
+  ]
+}

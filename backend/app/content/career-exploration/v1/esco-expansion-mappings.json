@@ -1,0 +1,294 @@
+[
+  {
+    "career_slug": "ai-engineer",
+    "career_id": "fe9ab18e-e5fe-5a27-9f57-8c92ec4613b2",
+    "occupation_uri": "http://data.europa.eu/esco/occupation/35553663-deab-4d9a-bf22-15c1625d28e8",
+    "occupation_label": "artificial intelligence engineer",
+    "locator": "occupations_en.csv#674",
+    "source_version": "1.2.1",
+    "rationale": "AI principles and information extraction overlap. The source covers a broader range of AI than this generative AI roadmap.",
+    "relationship": "partial",
+    "links": [
+      {
+        "skill_uri": "http://data.europa.eu/esco/skill/e465a154-93f7-4973-9ce1-31659fe16dd2",
+        "relationship": "essential",
+        "locator": "occupationSkillRelations_en.csv#27222"
+      },
+      {
+        "skill_uri": "http://data.europa.eu/esco/skill/696e3b5b-8b61-45af-ae4c-3ab700f197ec",
+        "relationship": "essential",
+        "locator": "occupationSkillRelations_en.csv#27215"
+      }
+    ]
+  },
+  {
+    "career_slug": "backend-developer",
+    "career_id": "cced74bd-db5a-51e2-9306-1209dd41dec7",
+    "occupation_uri": "http://data.europa.eu/esco/occupation/f2b15a0e-e65a-438a-affb-29b9d50b77d1",
+    "occupation_label": "software developer",
+    "locator": "occupations_en.csv#2889",
+    "source_version": "1.2.1",
+    "rationale": "Web services, interfaces and debugging align with server API development. The source covers broader software development.",
+    "relationship": "partial",
+    "links": [
+      {
+        "skill_uri": "http://data.europa.eu/esco/skill/f84a433f-34f1-4083-b0a3-24802623509c",
+        "relationship": "essential",
+        "locator": "occupationSkillRelations_en.csv#119764"
+      },
+      {
+        "skill_uri": "http://data.europa.eu/esco/skill/04fe962b-4017-4eb7-9139-7d69b6922bc9",
+        "relationship": "essential",
+        "locator": "occupationSkillRelations_en.csv#119765"
+      },
+      {
+        "skill_uri": "http://data.europa.eu/esco/skill/2522a6ce-3202-4ac8-9f5b-b9cb5a3a83a1",
+        "relationship": "essential",
+        "locator": "occupationSkillRelations_en.csv#119769"
+      }
+    ]
+  },
+  {
+    "career_slug": "bi-analyst",
+    "career_id": "12a912b3-a9f2-5acc-b397-814a61a5ccfd",
+    "occupation_uri": "http://data.europa.eu/esco/occupation/d3edb8f8-3a06-47a0-8fb9-9b212c006aa2",
+    "occupation_label": "data analyst",
+    "locator": "occupations_en.csv#2585",
+    "source_version": "1.2.1",
+    "rationale": "Business intelligence, visualization software and queries align with dashboard and warehouse work. The source covers broader analysis.",
+    "relationship": "partial",
+    "links": [
+      {
+        "skill_uri": "http://data.europa.eu/esco/skill/143769cb-b61e-47d8-a61e-eedfbec1016c",
+        "relationship": "essential",
+        "locator": "occupationSkillRelations_en.csv#107689"
+      },
+      {
+        "skill_uri": "http://data.europa.eu/esco/skill/65e58886-bd1e-4c5b-8ca5-8d9b353c8aa1",
+        "relationship": "essential",
+        "locator": "occupationSkillRelations_en.csv#107694"
+      },
+      {
+        "skill_uri": "http://data.europa.eu/esco/skill/9cf681c7-89ec-470c-b651-7fe03786f586",
+        "relationship": "essential",
+        "locator": "occupationSkillRelations_en.csv#107700"
+      }
+    ]
+  },
+  {
+    "career_slug": "cloud-engineer",
+    "career_id": "d5da6f7f-acfb-5fce-a703-3ee858526264",
+    "occupation_uri": "http://data.europa.eu/esco/occupation/349ee6f6-c295-4c38-9b98-48765b55280e",
+    "occupation_label": "cloud engineer",
+    "locator": "occupations_en.csv#663",
+    "source_version": "1.2.1",
+    "rationale": "Cloud architecture, networks and deployment align with the infrastructure exercises.",
+    "relationship": "partial",
+    "links": [
+      {
+        "skill_uri": "http://data.europa.eu/esco/skill/11430d93-c835-48ed-8e70-285fa69c9ae6",
+        "relationship": "essential",
+        "locator": "occupationSkillRelations_en.csv#26854"
+      },
+      {
+        "skill_uri": "http://data.europa.eu/esco/skill/4da4587a-fd0b-4ca2-886c-c42a1562d432",
+        "relationship": "essential",
+        "locator": "occupationSkillRelations_en.csv#26859"
+      },
+      {
+        "skill_uri": "http://data.europa.eu/esco/skill/6195c5f7-a4fb-425d-a3dd-c4467c4471a3",
+        "relationship": "essential",
+        "locator": "occupationSkillRelations_en.csv#26860"
+      }
+    ]
+  },
+  {
+    "career_slug": "cloud-security-engineer",
+    "career_id": "e57a6553-a0b1-5512-ba66-4037c27886dc",
+    "occupation_uri": "http://data.europa.eu/esco/occupation/349ee6f6-c295-4c38-9b98-48765b55280e",
+    "occupation_label": "cloud engineer",
+    "locator": "occupations_en.csv#663",
+    "source_version": "1.2.1",
+    "rationale": "Cloud compliance, incident response and key management align with the security exercises. The source is a broader engineering role.",
+    "relationship": "partial",
+    "links": [
+      {
+        "skill_uri": "http://data.europa.eu/esco/skill/c13fb093-5ffb-491a-b8b7-fa2d42a57e2e",
+        "relationship": "essential",
+        "locator": "occupationSkillRelations_en.csv#26867"
+      },
+      {
+        "skill_uri": "http://data.europa.eu/esco/skill/440d5784-52a5-4729-8b04-29f978bd896d",
+        "relationship": "essential",
+        "locator": "occupationSkillRelations_en.csv#26858"
+      },
+      {
+        "skill_uri": "http://data.europa.eu/esco/skill/e5beeff8-7c98-490a-ae2c-16fbb6a87305",
+        "relationship": "essential",
+        "locator": "occupationSkillRelations_en.csv#26871"
+      }
+    ]
+  },
+  {
+    "career_slug": "data-scientist",
+    "career_id": "c93df31e-9fe9-5ca2-95da-b7b6307d1ab8",
+    "occupation_uri": "http://data.europa.eu/esco/occupation/258e46f9-0075-4a2e-adae-1ff0477e0f30",
+    "occupation_label": "data scientist",
+    "locator": "occupations_en.csv#483",
+    "source_version": "1.2.1",
+    "rationale": "Statistical modeling, statistics and communicating results align with the project.",
+    "relationship": "partial",
+    "links": [
+      {
+        "skill_uri": "http://data.europa.eu/esco/skill/68ef0e4d-5542-4e64-84f4-752cce5a3c22",
+        "relationship": "essential",
+        "locator": "occupationSkillRelations_en.csv#19756"
+      },
+      {
+        "skill_uri": "http://data.europa.eu/esco/skill/7ee4c2ea-b349-4bd2-81a3-ec31475d4833",
+        "relationship": "essential",
+        "locator": "occupationSkillRelations_en.csv#19759"
+      },
+      {
+        "skill_uri": "http://data.europa.eu/esco/skill/c544a9f3-5945-4b54-afed-de0697852817",
+        "relationship": "essential",
+        "locator": "occupationSkillRelations_en.csv#19803"
+      }
+    ]
+  },
+  {
+    "career_slug": "full-stack-developer",
+    "career_id": "1c5a1b58-47c2-569c-9f18-77486cc9d829",
+    "occupation_uri": "http://data.europa.eu/esco/occupation/c40a2919-48a9-40ea-b506-1f34f693496d",
+    "occupation_label": "web developer",
+    "locator": "occupations_en.csv#2406",
+    "source_version": "1.2.1",
+    "rationale": "Web programming, web services and front-end development overlap across browser and server layers.",
+    "relationship": "partial",
+    "links": [
+      {
+        "skill_uri": "http://data.europa.eu/esco/skill/69bbd53f-fbb0-4476-b4b2-ef7844464e28",
+        "relationship": "essential",
+        "locator": "occupationSkillRelations_en.csv#100290"
+      },
+      {
+        "skill_uri": "http://data.europa.eu/esco/skill/f84a433f-34f1-4083-b0a3-24802623509c",
+        "relationship": "essential",
+        "locator": "occupationSkillRelations_en.csv#100298"
+      },
+      {
+        "skill_uri": "http://data.europa.eu/esco/skill/c4b1f326-224a-420a-b8b3-814a8f13b6cb",
+        "relationship": "essential",
+        "locator": "occupationSkillRelations_en.csv#100311"
+      }
+    ]
+  },
+  {
+    "career_slug": "game-developer",
+    "career_id": "c5259752-baf4-59ce-9682-596375a5cc7f",
+    "occupation_uri": "http://data.europa.eu/esco/occupation/9ebaf3f0-0be0-47b7-b2b1-b3b04130fa81",
+    "occupation_label": "digital games developer",
+    "locator": "occupations_en.csv#1953",
+    "source_version": "1.2.1",
+    "rationale": "Graphics, debugging and prototyping support the game project. Source graphics work extends beyond the 2D starting path.",
+    "relationship": "partial",
+    "links": [
+      {
+        "skill_uri": "http://data.europa.eu/esco/skill/afda6ca0-7aa8-41ef-ba5e-8dc607839daf",
+        "relationship": "essential",
+        "locator": "occupationSkillRelations_en.csv#80943"
+      },
+      {
+        "skill_uri": "http://data.europa.eu/esco/skill/2522a6ce-3202-4ac8-9f5b-b9cb5a3a83a1",
+        "relationship": "essential",
+        "locator": "occupationSkillRelations_en.csv#80946"
+      },
+      {
+        "skill_uri": "http://data.europa.eu/esco/skill/797a4416-0b8d-44f3-8fcd-eb10bd0be6b4",
+        "relationship": "essential",
+        "locator": "occupationSkillRelations_en.csv#80950"
+      }
+    ]
+  },
+  {
+    "career_slug": "linux-systems-engineer",
+    "career_id": "bc160707-e98f-5f72-b9dc-b77a5c02083e",
+    "occupation_uri": "http://data.europa.eu/esco/occupation/9e2e6e1e-363b-4e1b-a673-7bc0f7343300",
+    "occupation_label": "ICT system administrator",
+    "locator": "occupations_en.csv#1948",
+    "source_version": "1.2.1",
+    "rationale": "Systems programming, operating systems and monitoring overlap. Kernel module and eBPF coverage is outside this mapping.",
+    "relationship": "partial",
+    "links": [
+      {
+        "skill_uri": "http://data.europa.eu/esco/skill/b105ec9b-0857-41d6-8d07-a83e58b73d90",
+        "relationship": "essential",
+        "locator": "occupationSkillRelations_en.csv#80707"
+      },
+      {
+        "skill_uri": "http://data.europa.eu/esco/skill/f9a6f35b-01a7-40c9-8b61-b6ee46f97272",
+        "relationship": "essential",
+        "locator": "occupationSkillRelations_en.csv#80712"
+      },
+      {
+        "skill_uri": "http://data.europa.eu/esco/skill/9190d87f-9792-42e0-bb7f-64294a656bcd",
+        "relationship": "essential",
+        "locator": "occupationSkillRelations_en.csv#80721"
+      }
+    ]
+  },
+  {
+    "career_slug": "mobile-developer",
+    "career_id": "3556bbb7-ac30-5aec-ac42-46c277abf825",
+    "occupation_uri": "http://data.europa.eu/esco/occupation/2ed56c3f-61d6-4f7e-9ef8-8849eb102e4c",
+    "occupation_label": "mobile application developer",
+    "locator": "occupations_en.csv#594",
+    "source_version": "1.2.1",
+    "rationale": "Mobile operating systems, debugging and prototyping align with building and testing a mobile app.",
+    "relationship": "partial",
+    "links": [
+      {
+        "skill_uri": "http://data.europa.eu/esco/skill/976455eb-5bbe-4493-ae64-ed16c3b009ea",
+        "relationship": "essential",
+        "locator": "occupationSkillRelations_en.csv#24125"
+      },
+      {
+        "skill_uri": "http://data.europa.eu/esco/skill/2522a6ce-3202-4ac8-9f5b-b9cb5a3a83a1",
+        "relationship": "essential",
+        "locator": "occupationSkillRelations_en.csv#24132"
+      },
+      {
+        "skill_uri": "http://data.europa.eu/esco/skill/797a4416-0b8d-44f3-8fcd-eb10bd0be6b4",
+        "relationship": "essential",
+        "locator": "occupationSkillRelations_en.csv#24135"
+      }
+    ]
+  },
+  {
+    "career_slug": "system-administrator",
+    "career_id": "e46a121b-b0b8-5e62-bedd-ebd9303f2eca",
+    "occupation_uri": "http://data.europa.eu/esco/occupation/9e2e6e1e-363b-4e1b-a673-7bc0f7343300",
+    "occupation_label": "ICT system administrator",
+    "locator": "occupations_en.csv#1948",
+    "source_version": "1.2.1",
+    "rationale": "Administration, recovery tools and firewall work align with maintaining a Linux host.",
+    "relationship": "partial",
+    "links": [
+      {
+        "skill_uri": "http://data.europa.eu/esco/skill/0868eef3-2213-4572-9343-74931345a7d3",
+        "relationship": "essential",
+        "locator": "occupationSkillRelations_en.csv#80715"
+      },
+      {
+        "skill_uri": "http://data.europa.eu/esco/skill/82de2df7-0d6c-42b1-94ac-b3e9a029e917",
+        "relationship": "essential",
+        "locator": "occupationSkillRelations_en.csv#80719"
+      },
+      {
+        "skill_uri": "http://data.europa.eu/esco/skill/e5b5053e-0ef6-4c4e-a3f2-42f955f4322c",
+        "relationship": "essential",
+        "locator": "occupationSkillRelations_en.csv#80729"
+      }
+    ]
+  }
+]

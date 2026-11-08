@@ -1,5 +1,8 @@
 import { lazy } from "react";
 
+export const CareerComparisonPage = lazy(async () => ({ default: (await import("@/features/careers/comparison-page")).CareerComparisonPage }));
+export const CareerSourcesPage = lazy(async () => ({ default: (await import("@/features/careers/comparison-page")).CareerSourcesPage }));
+
 export const LandingPage = lazy(async () => ({
   default: (await import("@/features/auth/pages")).LandingPage,
 }));

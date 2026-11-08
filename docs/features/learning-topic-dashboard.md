@@ -1,5 +1,40 @@
 # Shared Learning Topic on Dashboard
 
+## Not started collapsed by default, 2026-11-08
+
+Codex implemented the owner-requested default for REQ-10. The [Dashboard
+accordion](../../frontend/src/screens/DashboardScreen.tsx) opens with In progress
+expanded and Not started collapsed. The Not started heading and count stay
+visible and activate the existing accordion. Review owner: @YakisobaNissin.
+
+Frontend TypeScript and the focused Dashboard test passed. The test verifies
+the initial accordion state and that activating Not started reveals the topic.
+
+Manual verification is pending. With a current roadmap, refresh
+`http://127.0.0.1:5173/dashboard`, then activate Not started to reveal the topics.
+
+## Dashboard simplification, 2026-11-06
+
+Codex removed the bottom guidance announcement, saved-suggestions link and
+profile prompt card from Dashboard, plus repeated status badges on topic rows.
+The Career menu no longer lists Discovery results. The new-user heading appears
+when no current roadmap is selected. Existing topic status groups and learning
+actions remain. No tests ran at the owner's request. Manual verification is
+pending on Dashboard for accounts with and without a current roadmap.
+
+The owner subsequently removed the active-topic notice and consolidated browsing
+reminders into the shared blue alert. Codex added previous and next controls for
+available alerts and consistent spacing in the shared app shell. Each alert keeps
+its own dismissal. Tests and browser verification remain pending.
+
+The owner removed the visible Dashboard heading and Browse careers button for
+learners with a current roadmap. The shared alert has a consistent full container
+width, minimum height and padding. Codex implemented the adjustments on
+2026-11-06. Browser verification remains pending.
+
+Codex also removed the redundant Current learning topic label and status badge
+from the Dashboard hero. The topic title and resume action remain visible.
+
 Historical Cabusao source record. The [current integration](cabusao-ui-integration.md)
 excludes the browser-local learning store and uses saved account state. Original
 tests below describe the older sample build, not current acceptance.

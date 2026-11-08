@@ -5,10 +5,16 @@ import { fileURLToPath } from "node:url";
 import { parseEnv } from "node:util";
 import { updateEnvironment, localConfig } from "./dev-config.mjs";
 import { publicationSQL } from "./content-publication.mjs";
+import { competencyAcceptance } from "./competency-acceptance.mjs";
 import { publicationAcceptance } from "./publication-acceptance.mjs";
+import { careerEvidenceAcceptance } from "./career-evidence-acceptance.mjs";
 
 if (process.argv[2] !== "--run-local")
   throw new Error("Use --run-local to explicitly create isolated local acceptance resources.");
+const careerEvidence = process.argv.includes("--career-evidence");
+const competenciesOnly = process.argv.includes("--competencies") || careerEvidence;
+const migrationName = "20261104000100_competencies.sql";
+const deferredMigrations = [migrationName, "20261104000200_occupational_releases.sql", "20261104000300_skill_recommendation_privacy.sql"];
 const source = fileURLToPath(new URL("../", import.meta.url));
 mkdirSync(join(source, "tmp"), { recursive: true });
 const root = mkdtempSync(join(source, "tmp/core-acceptance-"));
@@ -32,16 +38,24 @@ function run(command, args, input, cwd = root) {
 function docker(args, input) { return run("docker", args, input); }
 function sql(content) {
   return docker(["exec", "-i", "supabase_db_" + project, "psql", "-U", "postgres",
-    "-d", "postgres", "-v", "ON_ERROR_STOP=1", "-b"], content);
+    "-d", "postgres", "-v", "ON_ERROR_STOP=1", "-b", "-Atq"], content);
 }
 try {
   for (const name of ["backend", "frontend", "scripts", "supabase"])
     cpSync(join(source, name), join(root, name), { recursive: true, filter: path =>
       !/(^|[/\\])(node_modules|dist|\.ruff_cache|__pycache__|\.temp)([/\\]|$)/.test(path) &&
-      !/[/\\](\.env|signing-keys\.json)$/.test(path),
+      !/[/\\](\.env|signing-keys\.json)$/.test(path) &&
+      !(competenciesOnly && deferredMigrations.some(name => path.endsWith(name))),
     });
   for (const name of ["compose.yaml", ".env.example"])
     cpSync(join(source, name), join(root, name));
+  if (careerEvidence) {
+    const compose = readFileSync(join(root, "compose.yaml"), "utf8")
+      .replace('      - ./backend/app:/workspace/app', '      - ./:/checkout:ro\n      - ./backend/app:/workspace/app')
+      .replace('      - "127.0.0.1:${BACKEND_PORT:-8000}:8000"',
+        '      - "127.0.0.1:${BACKEND_PORT:-8000}:8000"\n      - "127.0.0.1:' + (base + 7) + ':8001"');
+    writeFileSync(join(root, "compose.yaml"), compose);
+  }
   let configText = readFileSync(join(root, "supabase/config.toml"), "utf8")
     .replace(/^project_id = .*/m, 'project_id = "' + project + '"')
     .replace(/55320/g, String(base)).replace(/55321/g, String(base + 1))
@@ -67,23 +81,39 @@ try {
   stage = "new restricted-role credential";
   console.log(stage);
   run(process.execPath, [join(root, "scripts/provision-local-db.mjs"), "--approve-local-password"]);
-  stage = "release 1 publication";
-  sql(readFileSync(join(root, "supabase/content/20261028_connected_prototype.sql"), "utf8"));
+  stage = competenciesOnly ? "current catalog publication" : "release 1 publication";
+  sql(competenciesOnly ? publicationSQL(root) : readFileSync(join(root, "supabase/content/20261028_connected_prototype.sql"), "utf8"));
   stage = "isolated application build";
   console.log(stage);
   docker(["compose", "build"]);
   docker(["compose", "up", "-d", "--wait"]);
-  stage = "publication and saved-state acceptance";
-  console.log(stage);
-  await publicationAcceptance({ root, project, config,
-    backend: "http://127.0.0.1:" + (base + 6),
-    publish: () => sql(publicationSQL(root)),
-  });
-  stage = "browser registration and core journey";
-  console.log(stage);
-  // Browser dependencies come from the installed checkout; runtime/config use only the isolated root.
-  const browser = run(process.execPath, [join(source, "scripts/check-browser-local.mjs")]);
-  console.log(browser.trim());
+  if (competenciesOnly) {
+    stage = "competency migration, publication, authorization and browser acceptance";
+    console.log(stage);
+    await competencyAcceptance({ root, source, project, config, sql, docker,
+      backend: "http://127.0.0.1:" + (base + 6),
+      applyMigration: () => {
+        cpSync(join(source, "supabase/migrations", migrationName), join(root, "supabase/migrations", migrationName));
+        run(process.execPath, [cli, "db", "push", "--local"]);
+      },
+    });
+    if (careerEvidence) {
+      stage = "career evidence integrated acceptance";
+      await careerEvidenceAcceptance({ root, source, project, config, sql, docker, base });
+    }
+  } else {
+    stage = "publication and saved-state acceptance";
+    console.log(stage);
+    await publicationAcceptance({ root, project, config,
+      backend: "http://127.0.0.1:" + (base + 6),
+      publish: () => sql(publicationSQL(root)),
+    });
+    stage = "browser registration and core journey";
+    console.log(stage);
+    // Browser dependencies come from the installed checkout; runtime/config use only the isolated root.
+    const browser = run(process.execPath, [join(source, "scripts/check-browser-local.mjs")]);
+    console.log(browser.trim());
+  }
   const finalEnv = parseEnv(readFileSync(join(root, ".env"), "utf8"));
   if (!finalEnv.ASGARD_DATABASE_URL.includes("supabase_db_" + project))
     throw new Error("Isolated credentials lost their project boundary.");

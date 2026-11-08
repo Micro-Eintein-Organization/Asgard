@@ -21,7 +21,105 @@ async function result<T>(
 }
 
 export const coreApi = {
+  roadmapGuidance: (roadmapId: string, signal?: AbortSignal) =>
+    result(api.GET("/api/v1/me/roadmaps/{roadmap_id}/guidance", {
+      params: { path: { roadmap_id: roadmapId } }, signal,
+    })),
+  savePractice: ({ roadmapId, topicId, body }: {
+    roadmapId: string; topicId: string; body: Schemas["SavePractice"];
+  }) => result(api.PUT("/api/v1/me/roadmaps/{roadmap_id}/guidance/practice/{topic_id}", {
+    params: { path: { roadmap_id: roadmapId, topic_id: topicId } }, body,
+  })),
+  saveMilestoneReflection: ({ roadmapId, milestoneId, body }: {
+    roadmapId: string; milestoneId: string; body: Schemas["SaveReflection"];
+  }) => result(api.PUT("/api/v1/me/roadmaps/{roadmap_id}/guidance/reflections/{milestone_id}", {
+    params: { path: { roadmap_id: roadmapId, milestone_id: milestoneId } }, body,
+  })),
+  deleteMilestoneReflection: ({ roadmapId, milestoneId, body }: {
+    roadmapId: string; milestoneId: string; body: Schemas["VersionedChange"];
+  }) => result(api.DELETE("/api/v1/me/roadmaps/{roadmap_id}/guidance/reflections/{milestone_id}", {
+    params: { path: { roadmap_id: roadmapId, milestone_id: milestoneId } }, body,
+  })),
+  escoConcepts: (
+    query: { q: string; kind?: "occupation" | "skill"; offset: number; expected_release_id?: string; career_id?: string },
+    signal?: AbortSignal,
+  ) => result(api.GET("/api/v1/esco/concepts", { params: { query }, signal })),
+  escoConcept: (
+    query: { uri: string; offset: number; expected_release_id?: string },
+    signal?: AbortSignal,
+  ) => result(api.GET("/api/v1/esco/concept", { params: { query }, signal })),
+  careerShortlist: () => result(api.GET("/api/v1/me/career-shortlist")),
+  saveCareer: ({ id, body }: { id: string; body: Schemas["SaveCareer"] }) => result(api.PATCH("/api/v1/me/career-shortlist/{career_id}", { params: { path: { career_id: id } }, body })),
+  removeCareer: ({ id, body }: { id: string; body: Schemas["VersionedChange"] }) => result(api.POST("/api/v1/me/career-shortlist/{career_id}/remove", { params: { path: { career_id: id } }, body })),
+  compareCareers: (left: string, right: string, signal?: AbortSignal) => result(api.GET("/api/v1/me/career-comparison", { params: { query: { left, right } }, signal })),
+  careerEvidence: (
+    careerId: string,
+    query: {
+      limit?: number;
+      offset?: number;
+      source_role?: string;
+      expected_release_id?: string;
+    } = {},
+    signal?: AbortSignal,
+  ) =>
+    result(
+      api.GET("/api/v1/careers/{career_id}/evidence", {
+        params: { path: { career_id: careerId }, query },
+        signal,
+      }),
+    ),
+  competencies: (
+    query: {
+      q?: string;
+      career_id?: string;
+      limit?: number;
+      offset?: number;
+    } = {},
+  ) => result(api.GET("/api/v1/competencies", { params: { query } })),
+  myCompetencies: () => result(api.GET("/api/v1/me/competencies")),
+  saveCompetency: ({
+    id,
+    body,
+  }: {
+    id: string;
+    body: Schemas["SaveCompetency"];
+  }) =>
+    result(
+      api.PATCH("/api/v1/me/competencies/{competency_id}", {
+        params: { path: { competency_id: id } },
+        body,
+      }),
+    ),
+  removeCompetency: ({
+    id,
+    body,
+  }: {
+    id: string;
+    body: Schemas["VersionedChange"];
+  }) =>
+    result(
+      api.POST("/api/v1/me/competencies/{competency_id}/remove", {
+        params: { path: { competency_id: id } },
+        body,
+      }),
+    ),
+  competencyComparison: (careerId: string) =>
+    result(
+      api.GET("/api/v1/me/careers/{career_id}/competency-comparison", {
+        params: { path: { career_id: careerId } },
+      }),
+    ),
   documents: () => result(api.GET("/api/v1/me/documents")),
+  resumeReviewAvailability: () => result(api.GET("/api/v1/me/documents/resume-skill-review")),
+  reviewResume: (careerId: string, file: File, signal: AbortSignal) =>
+    result(api.POST("/api/v1/me/documents/resume-skill-review", {
+      params: { query: { career_id: careerId } },
+      body: file as unknown as string,
+      bodySerializer: () => file,
+      headers: { "Content-Type": "application/pdf" },
+      cache: "no-store",
+      signal,
+    })),
   uploadDocument: ({ file, revision }: { file: File; revision: number }) =>
     result(
       api.POST("/api/v1/me/documents/upload", {
@@ -162,7 +260,8 @@ export const coreApi = {
     ),
   retakeDiscovery: (body: Schemas["RetakeDiscovery"]) =>
     result(api.POST("/api/v1/me/discovery/retake", { body })),
-  recommendations: () => result(api.GET("/api/v1/me/recommendations")),
+  recommendations: (signal?: AbortSignal) =>
+    result(api.GET("/api/v1/me/recommendations", { signal })),
   generateRecommendations: (body: Schemas["RequestRecommendations"]) =>
     result(api.POST("/api/v1/me/recommendations", { body })),
   retryRecommendations: ({
@@ -197,20 +296,27 @@ export const coreApi = {
 
 export function useCoreQuery<T>(
   key: readonly unknown[],
-  load: () => Promise<T>,
+  load: (signal?: AbortSignal) => Promise<T>,
   enabled = true,
 ) {
   const { user } = useAuth();
   return useQuery({
     queryKey: ["account", user?.id, ...key],
-    queryFn: load,
+    queryFn: ({ signal }) => load(signal),
     enabled: !!user && enabled,
     retry: false,
   });
 }
 
+export function useRoadmapGuidance(roadmapId: string) {
+  return useCoreQuery(["roadmap-guidance", roadmapId], (signal) =>
+    coreApi.roadmapGuidance(roadmapId, signal), !!roadmapId,
+  );
+}
+
 export function useCoreMutation<TVariables, TData>(
   save: (variables: TVariables) => Promise<TData>,
+  options?: { clearSuggestions?: (variables: TVariables) => boolean },
 ) {
   const { user } = useAuth();
   const client = useQueryClient();
@@ -223,9 +329,15 @@ export function useCoreMutation<TVariables, TData>(
         );
       return save(variables);
     },
-    onSuccess: async () => {
-      if (userId && isCurrentAccount(userId))
+    onSuccess: async (_data, variables) => {
+      if (userId && isCurrentAccount(userId)) {
+        if (options?.clearSuggestions?.(variables)) {
+          const queryKey = ["account", userId, "recommendations"];
+          await client.cancelQueries({ queryKey });
+          await client.resetQueries({ queryKey });
+        }
         await client.invalidateQueries({ queryKey: ["account", userId] });
+      }
     },
   });
 }

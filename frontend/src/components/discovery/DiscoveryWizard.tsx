@@ -166,10 +166,7 @@ function DiscoveryEditor({
       />
       <div>
         <header className="discovery-header">
-          <h1
-            ref={heading}
-            tabIndex={-1}
-          >
+          <h1 ref={heading} tabIndex={-1}>
             {editor.question.prompt}
           </h1>
           <p id="question-helper" className="text-sm text-gray-500">
@@ -185,16 +182,17 @@ function DiscoveryEditor({
           disabled={editor.busy}
           aria-describedby="question-helper"
           className="choice-grid question-choices border-0 p-0"
-          style={{ "--choice-count": editor.question.options.length } as CSSProperties}
+          style={
+            {
+              "--choice-count": editor.question.options.length,
+            } as CSSProperties
+          }
         >
           <legend className="sr-only">{editor.question.prompt}</legend>
           {editor.question.options.map((option) => {
             const selected = editor.selected.includes(option.id);
             return (
-              <label
-                key={option.id}
-                className="choice-card selectable-card"
-              >
+              <label key={option.id} className="choice-card selectable-card">
                 <input
                   type={editor.question.multiple ? "checkbox" : "radio"}
                   name={editor.question.question_id}
@@ -207,12 +205,8 @@ function DiscoveryEditor({
                     ✓
                   </span>
                 )}
-                  <strong>
-                    {option.label}
-                  </strong>
-                  <span>
-                    {option.description}
-                  </span>
+                <strong>{option.label}</strong>
+                <span>{option.description}</span>
               </label>
             );
           })}
@@ -247,10 +241,7 @@ function DiscoveryEditor({
           </div>
         )}
         <div className="question-actions" data-align="end">
-          <Button
-            disabled={editor.busy}
-            onClick={() => void editor.move(1)}
-          >
+          <Button disabled={editor.busy} onClick={() => void editor.move(1)}>
             {editor.busy
               ? "Saving…"
               : editor.index === editor.total - 1
@@ -343,8 +334,10 @@ export function DiscoveryResults() {
     started.current = true;
     void navigate(appRoutes.results, { replace: true, state: null });
     const current = flow.query.data.current;
-    const alreadyPrepared = current?.discovery?.session_id === completed.id &&
-      current.discovery.revision === completed.revision && !current.outdated;
+    const alreadyPrepared =
+      current?.discovery?.session_id === completed.id &&
+      current.discovery.revision === completed.revision &&
+      !current.outdated;
     if (flow.query.data.available && !alreadyPrepared)
       void flow.request(completed.id);
   }, [generateFor, completed, flow, navigate, state.isFetching]);
@@ -352,7 +345,16 @@ export function DiscoveryResults() {
     <section className="recommendations-page">
       <BackLink to={appRoutes.discovery}>Back to Discovery</BackLink>
       <div>
-        <PageHeading title="Careers to explore." description={completed ? "Your Discovery answers are saved. Suggestions are starting points. You can explore any career in the catalog." : "Complete Discovery or choose a learning focus to provide context. You can browse all careers."} />
+        <PageHeading
+          title="Careers to explore."
+          description={
+            completed
+              ? "Your Discovery answers are saved. Suggestions are starting points. You can explore any career in the catalog."
+              : flow.query.data?.has_reported_skills
+                ? "Suggestions can use your reported experience. Your interests remain unknown until you provide them in Discovery. You can explore any career."
+                : "Complete Discovery or choose a learning focus to provide context. You can browse all careers."
+          }
+        />
         {state.error && (
           <StatePanel
             kind="error"
@@ -364,7 +366,12 @@ export function DiscoveryResults() {
             {state.error.message}
           </StatePanel>
         )}
-        <RecommendationCards flow={flow} allowInitialRequest={false} />
+        <RecommendationCards
+          flow={flow}
+          allowInitialRequest={
+            !!flow.query.data?.has_reported_skills && !generateFor
+          }
+        />
         <div className="flex flex-wrap justify-center gap-4 pt-4">
           <Link
             to={appRoutes.careers}

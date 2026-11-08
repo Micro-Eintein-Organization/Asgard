@@ -1,4 +1,5 @@
 from app.core.errors import APIError
+from app.modules.careers.exploration import career_explanation
 from app.modules.storage import one, required, rows
 
 
@@ -23,9 +24,11 @@ async def career(connection, career_id):
             {"id": str(career_id)},
         )
     ]
+    result["exploration"] = career_explanation(career_id)
     return {
         key: result[key]
         for key in (
+            "exploration",
             "id",
             "category_id",
             "slug",
