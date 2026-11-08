@@ -1,5 +1,0 @@
--c requirements.lock
--r requirements.in
-pytest
-ruff
-pip-tools==7.6.2
