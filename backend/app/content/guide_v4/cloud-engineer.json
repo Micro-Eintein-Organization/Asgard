@@ -1,0 +1,2104 @@
+{
+  "schema_version": "4.0.0-draft",
+  "career": {
+    "name": "Cloud Engineer",
+    "slug": "cloud-engineer",
+    "category": "Networking & Infrastructure",
+    "status": "Draft — pending human review"
+  },
+  "career_overview": {
+    "short_description": "Design, provision, and maintain scalable, reliable cloud infrastructure and services across virtual networks, compute, and storage.",
+    "responsibilities": [
+      "Architect and provision resilient cloud infrastructure using Infrastructure as Code (Terraform)",
+      "Configure secure virtual private clouds (VPCs), subnets, routing tables, and gateways",
+      "Deploy and scale compute workloads using virtual machines, containers, and serverless functions",
+      "Manage cloud storage lifecycle policies, relational and NoSQL databases, and CDNs",
+      "Implement automated monitoring, resource alarms, backup policies, and disaster recovery"
+    ],
+    "representative_work": [
+      "A production-grade multi-tier cloud infrastructure provisioned entirely with Terraform, featuring public/private VPC subnets, an auto-scaling compute cluster behind an Application Load Balancer, a managed database, and automated CloudWatch alarms."
+    ],
+    "core_skills": [
+      "Cloud service models (IaaS, PaaS, Serverless)",
+      "Cloud global infrastructure and regions",
+      "Virtual Private Clouds (VPC) and CIDR subnets",
+      "Compute instances, auto-scaling, and load balancing",
+      "Cloud storage (S3/Blob) and lifecycle policies",
+      "Managed relational and NoSQL database services",
+      "Infrastructure as Code (IaC) with Terraform",
+      "DNS management, routing, and CDN distribution",
+      "Cloud monitoring, metrics, and automated alerting",
+      "High availability and disaster recovery planning"
+    ]
+  },
+  "roadmap": {
+    "title": "Cloud Engineer: beginner foundations and starter project",
+    "intended_learner": "Motivated beginner; basic computer literacy assumed, with no prior professional experience.",
+    "starting_requirements": "Computer, internet access, text editor, terminal and modern browser. Most tasks use free software or local runtimes.",
+    "final_outcome": "A production-grade multi-tier cloud infrastructure provisioned entirely with Terraform, featuring public/private VPC subnets, an auto-scaling compute cluster behind an Application Load Balancer, a managed database, and automated CloudWatch alarms.",
+    "milestones": [
+      {
+        "id": "M01",
+        "slug": "cloud-concepts-fundamentals",
+        "title": "Cloud computing concepts and fundamentals",
+        "summary": "Understand cloud service models, global regions, cloud console and CLI tooling, and cost management.",
+        "topics": [
+          {
+            "id": "T01",
+            "slug": "cloud-service-models-iaas-paas",
+            "title": "Cloud service models: IaaS, PaaS, SaaS",
+            "milestone_id": "M01",
+            "card": {
+              "title": "Cloud service models: IaaS, PaaS, SaaS",
+              "summary": "Learn the trade-offs between Infrastructure as a Service, Platform as a Service, and Software as a Service.",
+              "prerequisite_ids": []
+            },
+            "detail": {
+              "eyebrow": "M01 · Cloud computing concepts and fundamentals",
+              "title": "Cloud service models: IaaS, PaaS, SaaS",
+              "overview": "Learn the trade-offs between Infrastructure as a Service, Platform as a Service, and Software as a Service.",
+              "learning_outcomes": [
+                "Understand cloud service models: iaas, paas, saas, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T01-S01",
+                  "title": "Service Model Trade-offs",
+                  "explanation": "Comparing control, operational overhead, and flexibility across IaaS, PaaS, and serverless."
+                },
+                {
+                  "id": "T01-S02",
+                  "title": "Shared Responsibility",
+                  "explanation": "Understanding which security and maintenance responsibilities belong to the cloud provider vs the customer."
+                }
+              ],
+              "practice": {
+                "instructions": "Categorize 5 common enterprise workloads into their optimal cloud service model (IaaS, PaaS, or SaaS)."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: categorize 5 common enterprise workloads into their optimal cloud service model (iaas, paas, or saas). Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "Types of Cloud Computing | AWS Documentation",
+                  "provider": "aws.amazon.com",
+                  "url": "https://aws.amazon.com/types-of-cloud-computing/",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on cloud service models: iaas, paas, saas; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T01-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Learn the trade-offs between Infrastructure as a Service, Platform as a Service, and Software as a Service.",
+                "learn_items": [
+                  "Service Model Trade-offs",
+                  "Shared Responsibility"
+                ],
+                "learning_goal": "Understand cloud service models: iaas, paas, saas, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "Types of Cloud Computing | AWS Documentation",
+                    "provider": "aws.amazon.com",
+                    "url": "https://aws.amazon.com/types-of-cloud-computing/",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on cloud service models: iaas, paas, saas; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T01-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Categorize 5 common enterprise workloads into their optimal cloud service model (IaaS, PaaS, or SaaS).",
+                "completion_check": "You can show and explain the outcome of: categorize 5 common enterprise workloads into their optimal cloud service model (iaas, paas, or saas). Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T02",
+            "slug": "global-infrastructure-regions-azs",
+            "title": "Global infrastructure: regions and availability zones",
+            "milestone_id": "M01",
+            "card": {
+              "title": "Global infrastructure: regions and availability zones",
+              "summary": "Understand how cloud providers structure regions, multiple independent availability zones (AZs), and edge locations.",
+              "prerequisite_ids": [
+                "T01"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M01 · Cloud computing concepts and fundamentals",
+              "title": "Global infrastructure: regions and availability zones",
+              "overview": "Understand how cloud providers structure regions, multiple independent availability zones (AZs), and edge locations.",
+              "learning_outcomes": [
+                "Understand global infrastructure: regions and availability zones, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T02-S01",
+                  "title": "Regions and Availability Zones",
+                  "explanation": "Why deploying across multiple AZs provides fault tolerance against localized data center outages."
+                },
+                {
+                  "id": "T02-S02",
+                  "title": "Edge Locations and Latency",
+                  "explanation": "Using edge points of presence (PoP) to cache content close to global end users."
+                }
+              ],
+              "practice": {
+                "instructions": "Draft a multi-AZ deployment plan for a web app that remains available if an entire availability zone experiences a blackout."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: draft a multi-az deployment plan for a web app that remains available if an entire availability zone experiences a blackout. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "Global Infrastructure | AWS",
+                  "provider": "aws.amazon.com",
+                  "url": "https://aws.amazon.com/about-aws/global-infrastructure/",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on global infrastructure: regions and availability zones; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T02-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Understand how cloud providers structure regions, multiple independent availability zones (AZs), and edge locations.",
+                "learn_items": [
+                  "Regions and Availability Zones",
+                  "Edge Locations and Latency"
+                ],
+                "learning_goal": "Understand global infrastructure: regions and availability zones, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "Global Infrastructure | AWS",
+                    "provider": "aws.amazon.com",
+                    "url": "https://aws.amazon.com/about-aws/global-infrastructure/",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on global infrastructure: regions and availability zones; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T02-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Draft a multi-AZ deployment plan for a web app that remains available if an entire availability zone experiences a blackout.",
+                "completion_check": "You can show and explain the outcome of: draft a multi-az deployment plan for a web app that remains available if an entire availability zone experiences a blackout. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T03",
+            "slug": "cloud-console-cli-sdk",
+            "title": "Cloud console, CLI tools and SDK configuration",
+            "milestone_id": "M01",
+            "card": {
+              "title": "Cloud console, CLI tools and SDK configuration",
+              "summary": "Install, authenticate, and configure cloud command-line interfaces (AWS CLI, gcloud, or Azure CLI) and SDK profiles.",
+              "prerequisite_ids": [
+                "T02"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M01 · Cloud computing concepts and fundamentals",
+              "title": "Cloud console, CLI tools and SDK configuration",
+              "overview": "Install, authenticate, and configure cloud command-line interfaces (AWS CLI, gcloud, or Azure CLI) and SDK profiles.",
+              "learning_outcomes": [
+                "Understand cloud console, cli tools and sdk configuration, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T03-S01",
+                  "title": "CLI Authentication",
+                  "explanation": "Configuring access keys, default output formats, and regional settings in CLI configuration files."
+                },
+                {
+                  "id": "T03-S02",
+                  "title": "Command Line Automation",
+                  "explanation": "Querying cloud resource states, creating instances, and parsing JSON responses with jq."
+                }
+              ],
+              "practice": {
+                "instructions": "Configure a cloud CLI profile, authenticate, and execute a command listing all available regions in your account."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: configure a cloud cli profile, authenticate, and execute a command listing all available regions in your account. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "What is the AWS Command Line Interface? | AWS CLI Docs",
+                  "provider": "docs.aws.amazon.com",
+                  "url": "https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on cloud console, cli tools and sdk configuration; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T03-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Install, authenticate, and configure cloud command-line interfaces (AWS CLI, gcloud, or Azure CLI) and SDK profiles.",
+                "learn_items": [
+                  "CLI Authentication",
+                  "Command Line Automation"
+                ],
+                "learning_goal": "Understand cloud console, cli tools and sdk configuration, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "What is the AWS Command Line Interface? | AWS CLI Docs",
+                    "provider": "docs.aws.amazon.com",
+                    "url": "https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on cloud console, cli tools and sdk configuration; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T03-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Configure a cloud CLI profile, authenticate, and execute a command listing all available regions in your account.",
+                "completion_check": "You can show and explain the outcome of: configure a cloud cli profile, authenticate, and execute a command listing all available regions in your account. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T04",
+            "slug": "resource-tagging-budgets-billing",
+            "title": "Resource tagging, budgets and cost alerts",
+            "milestone_id": "M01",
+            "card": {
+              "title": "Resource tagging, budgets and cost alerts",
+              "summary": "Organize cloud resources with mandatory tags, create monthly cost budgets, and set up automated billing threshold alerts.",
+              "prerequisite_ids": [
+                "T03"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M01 · Cloud computing concepts and fundamentals",
+              "title": "Resource tagging, budgets and cost alerts",
+              "overview": "Organize cloud resources with mandatory tags, create monthly cost budgets, and set up automated billing threshold alerts.",
+              "learning_outcomes": [
+                "Understand resource tagging, budgets and cost alerts, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T04-S01",
+                  "title": "Tagging Strategies",
+                  "explanation": "Using tags (Environment, Project, Owner, CostCenter) to track ownership and allocate expenses."
+                },
+                {
+                  "id": "T04-S02",
+                  "title": "Cost Alerts and Budgets",
+                  "explanation": "Configuring email or Slack alerts when forecasted monthly spend reaches 80% of budget limits."
+                }
+              ],
+              "practice": {
+                "instructions": "Define a corporate tagging policy schema and configure a budget alert that triggers if monthly spend exceeds a dollar threshold."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: define a corporate tagging policy schema and configure a budget alert that triggers if monthly spend exceeds a dollar threshold. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "Managing your costs with AWS Budgets | AWS Docs",
+                  "provider": "docs.aws.amazon.com",
+                  "url": "https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on resource tagging, budgets and cost alerts; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T04-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Organize cloud resources with mandatory tags, create monthly cost budgets, and set up automated billing threshold alerts.",
+                "learn_items": [
+                  "Tagging Strategies",
+                  "Cost Alerts and Budgets"
+                ],
+                "learning_goal": "Understand resource tagging, budgets and cost alerts, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "Managing your costs with AWS Budgets | AWS Docs",
+                    "provider": "docs.aws.amazon.com",
+                    "url": "https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on resource tagging, budgets and cost alerts; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T04-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Define a corporate tagging policy schema and configure a budget alert that triggers if monthly spend exceeds a dollar threshold.",
+                "completion_check": "You can show and explain the outcome of: define a corporate tagging policy schema and configure a budget alert that triggers if monthly spend exceeds a dollar threshold. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          }
+        ]
+      },
+      {
+        "id": "M02",
+        "slug": "cloud-compute-and-scaling",
+        "title": "Cloud compute and scaling",
+        "summary": "Provision virtual machine instances, deploy serverless functions, configure auto-scaling groups, and set up load balancers.",
+        "topics": [
+          {
+            "id": "T05",
+            "slug": "vm-provisioning-lifecycle",
+            "title": "Virtual machine provisioning and lifecycle",
+            "milestone_id": "M02",
+            "card": {
+              "title": "Virtual machine provisioning and lifecycle",
+              "summary": "Launch, configure, and connect to cloud virtual machine instances (e.g., EC2, Compute Engine) using SSH and cloud-init.",
+              "prerequisite_ids": [
+                "T04"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Cloud compute and scaling",
+              "title": "Virtual machine provisioning and lifecycle",
+              "overview": "Launch, configure, and connect to cloud virtual machine instances (e.g., EC2, Compute Engine) using SSH and cloud-init.",
+              "learning_outcomes": [
+                "Understand virtual machine provisioning and lifecycle, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T05-S01",
+                  "title": "Instance Types and Sizes",
+                  "explanation": "Selecting appropriate compute-optimized, memory-optimized, or general-purpose instance families."
+                },
+                {
+                  "id": "T05-S02",
+                  "title": "User Data Bootstrapping",
+                  "explanation": "Using cloud-init user data scripts to automatically install web servers and packages upon first boot."
+                }
+              ],
+              "practice": {
+                "instructions": "Launch a virtual machine instance with a user data script that installs Nginx, and access its default web page via public IP."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: launch a virtual machine instance with a user data script that installs nginx, and access its default web page via public ip. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "What is Amazon EC2? | Amazon EC2 User Guide",
+                  "provider": "docs.aws.amazon.com",
+                  "url": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on virtual machine provisioning and lifecycle; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T05-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Launch, configure, and connect to cloud virtual machine instances (e.g., EC2, Compute Engine) using SSH and cloud-init.",
+                "learn_items": [
+                  "Instance Types and Sizes",
+                  "User Data Bootstrapping"
+                ],
+                "learning_goal": "Understand virtual machine provisioning and lifecycle, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "What is Amazon EC2? | Amazon EC2 User Guide",
+                    "provider": "docs.aws.amazon.com",
+                    "url": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on virtual machine provisioning and lifecycle; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T05-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Launch a virtual machine instance with a user data script that installs Nginx, and access its default web page via public IP.",
+                "completion_check": "You can show and explain the outcome of: launch a virtual machine instance with a user data script that installs nginx, and access its default web page via public ip. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T06",
+            "slug": "serverless-functions-triggers",
+            "title": "Serverless functions and event triggers",
+            "milestone_id": "M02",
+            "card": {
+              "title": "Serverless functions and event triggers",
+              "summary": "Deploy event-driven serverless functions (AWS Lambda, Google Cloud Functions) triggered by HTTP requests, storage events, or timers.",
+              "prerequisite_ids": [
+                "T05"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Cloud compute and scaling",
+              "title": "Serverless functions and event triggers",
+              "overview": "Deploy event-driven serverless functions (AWS Lambda, Google Cloud Functions) triggered by HTTP requests, storage events, or timers.",
+              "learning_outcomes": [
+                "Understand serverless functions and event triggers, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T06-S01",
+                  "title": "Event-Driven Execution",
+                  "explanation": "How serverless runtimes spin up containers on demand, execute event payloads, and shut down."
+                },
+                {
+                  "id": "T06-S02",
+                  "title": "Cold Starts and Timeouts",
+                  "explanation": "Managing initialization latency (cold starts), execution memory allocation, and maximum timeout limits."
+                }
+              ],
+              "practice": {
+                "instructions": "Deploy a serverless function that triggers when an image is uploaded to a storage bucket and creates a thumbnail."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: deploy a serverless function that triggers when an image is uploaded to a storage bucket and creates a thumbnail. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "What is AWS Lambda? | AWS Lambda Developer Guide",
+                  "provider": "docs.aws.amazon.com",
+                  "url": "https://docs.aws.amazon.com/lambda/latest/dg/welcome.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on serverless functions and event triggers; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T06-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Deploy event-driven serverless functions (AWS Lambda, Google Cloud Functions) triggered by HTTP requests, storage events, or timers.",
+                "learn_items": [
+                  "Event-Driven Execution",
+                  "Cold Starts and Timeouts"
+                ],
+                "learning_goal": "Understand serverless functions and event triggers, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "What is AWS Lambda? | AWS Lambda Developer Guide",
+                    "provider": "docs.aws.amazon.com",
+                    "url": "https://docs.aws.amazon.com/lambda/latest/dg/welcome.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on serverless functions and event triggers; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T06-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Deploy a serverless function that triggers when an image is uploaded to a storage bucket and creates a thumbnail.",
+                "completion_check": "You can show and explain the outcome of: deploy a serverless function that triggers when an image is uploaded to a storage bucket and creates a thumbnail. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T07",
+            "slug": "auto-scaling-groups-configurations",
+            "title": "Auto-scaling groups and launch configurations",
+            "milestone_id": "M02",
+            "card": {
+              "title": "Auto-scaling groups and launch configurations",
+              "summary": "Maintain application availability by automatically scaling compute instances up or down based on CPU and traffic demand.",
+              "prerequisite_ids": [
+                "T06"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Cloud compute and scaling",
+              "title": "Auto-scaling groups and launch configurations",
+              "overview": "Maintain application availability by automatically scaling compute instances up or down based on CPU and traffic demand.",
+              "learning_outcomes": [
+                "Understand auto-scaling groups and launch configurations, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T07-S01",
+                  "title": "Scaling Policies",
+                  "explanation": "Configuring target-tracking scaling policies (e.g., maintain average CPU at 60%) and step scaling."
+                },
+                {
+                  "id": "T07-S02",
+                  "title": "Launch Templates",
+                  "explanation": "Defining standardized AMI images, instance types, key pairs, and security groups for new instances."
+                }
+              ],
+              "practice": {
+                "instructions": "Configure an auto-scaling group with min 2 and max 5 instances, and simulate CPU load to verify that a new instance launches."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: configure an auto-scaling group with min 2 and max 5 instances, and simulate cpu load to verify that a new instance launches. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "What is Amazon EC2 Auto Scaling? | AWS Docs",
+                  "provider": "docs.aws.amazon.com",
+                  "url": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on auto-scaling groups and launch configurations; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T07-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Maintain application availability by automatically scaling compute instances up or down based on CPU and traffic demand.",
+                "learn_items": [
+                  "Scaling Policies",
+                  "Launch Templates"
+                ],
+                "learning_goal": "Understand auto-scaling groups and launch configurations, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "What is Amazon EC2 Auto Scaling? | AWS Docs",
+                    "provider": "docs.aws.amazon.com",
+                    "url": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on auto-scaling groups and launch configurations; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T07-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Configure an auto-scaling group with min 2 and max 5 instances, and simulate CPU load to verify that a new instance launches.",
+                "completion_check": "You can show and explain the outcome of: configure an auto-scaling group with min 2 and max 5 instances, and simulate cpu load to verify that a new instance launches. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T08",
+            "slug": "application-load-balancers-health",
+            "title": "Application load balancers and health checks",
+            "milestone_id": "M02",
+            "card": {
+              "title": "Application load balancers and health checks",
+              "summary": "Distribute incoming HTTP/HTTPS traffic across healthy targets using Application Load Balancers with automated health checks.",
+              "prerequisite_ids": [
+                "T07"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M02 · Cloud compute and scaling",
+              "title": "Application load balancers and health checks",
+              "overview": "Distribute incoming HTTP/HTTPS traffic across healthy targets using Application Load Balancers with automated health checks.",
+              "learning_outcomes": [
+                "Understand application load balancers and health checks, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T08-S01",
+                  "title": "Target Groups and Routing",
+                  "explanation": "Routing requests based on path rules (/api, /static) or host headers to distinct target groups."
+                },
+                {
+                  "id": "T08-S02",
+                  "title": "Health Check Monitoring",
+                  "explanation": "Periodically probing instance endpoints and automatically routing traffic away from failing targets."
+                }
+              ],
+              "practice": {
+                "instructions": "Deploy an Application Load Balancer in front of two web instances and verify that shutting down one does not disrupt service."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: deploy an application load balancer in front of two web instances and verify that shutting down one does not disrupt service. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "What is an Application Load Balancer? | AWS Docs",
+                  "provider": "docs.aws.amazon.com",
+                  "url": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on application load balancers and health checks; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T08-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Distribute incoming HTTP/HTTPS traffic across healthy targets using Application Load Balancers with automated health checks.",
+                "learn_items": [
+                  "Target Groups and Routing",
+                  "Health Check Monitoring"
+                ],
+                "learning_goal": "Understand application load balancers and health checks, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "What is an Application Load Balancer? | AWS Docs",
+                    "provider": "docs.aws.amazon.com",
+                    "url": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on application load balancers and health checks; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T08-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Deploy an Application Load Balancer in front of two web instances and verify that shutting down one does not disrupt service.",
+                "completion_check": "You can show and explain the outcome of: deploy an application load balancer in front of two web instances and verify that shutting down one does not disrupt service. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          }
+        ]
+      },
+      {
+        "id": "M03",
+        "slug": "cloud-networking-connectivity",
+        "title": "Cloud networking and connectivity",
+        "summary": "Design virtual private clouds, isolate public and private subnets, configure NAT gateways, and manage cloud DNS.",
+        "topics": [
+          {
+            "id": "T09",
+            "slug": "vpc-cidr-blocks-subnets",
+            "title": "Virtual Private Clouds (VPC) and CIDR blocks",
+            "milestone_id": "M03",
+            "card": {
+              "title": "Virtual Private Clouds (VPC) and CIDR blocks",
+              "summary": "Create isolated virtual network environments, allocate private IPv4 CIDR blocks, and subdivide networks into subnets.",
+              "prerequisite_ids": [
+                "T08"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Cloud networking and connectivity",
+              "title": "Virtual Private Clouds (VPC) and CIDR blocks",
+              "overview": "Create isolated virtual network environments, allocate private IPv4 CIDR blocks, and subdivide networks into subnets.",
+              "learning_outcomes": [
+                "Understand virtual private clouds (vpc) and cidr blocks, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T09-S01",
+                  "title": "CIDR Notation and IP Math",
+                  "explanation": "Calculating available host IP addresses for /16, /20, and /24 network masks."
+                },
+                {
+                  "id": "T09-S02",
+                  "title": "Subnet Isolation",
+                  "explanation": "Creating distinct subnets for public ingress, application logic, and private database tiers."
+                }
+              ],
+              "practice": {
+                "instructions": "Design a VPC with a 10.0.0.0/16 CIDR block and divide it into two public and two private /24 subnets across two AZs."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: design a vpc with a 10.0.0.0/16 cidr block and divide it into two public and two private /24 subnets across two azs. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "What is Amazon VPC? | Amazon VPC User Guide",
+                  "provider": "docs.aws.amazon.com",
+                  "url": "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on virtual private clouds (vpc) and cidr blocks; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T09-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Create isolated virtual network environments, allocate private IPv4 CIDR blocks, and subdivide networks into subnets.",
+                "learn_items": [
+                  "CIDR Notation and IP Math",
+                  "Subnet Isolation"
+                ],
+                "learning_goal": "Understand virtual private clouds (vpc) and cidr blocks, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "What is Amazon VPC? | Amazon VPC User Guide",
+                    "provider": "docs.aws.amazon.com",
+                    "url": "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on virtual private clouds (vpc) and cidr blocks; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T09-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Design a VPC with a 10.0.0.0/16 CIDR block and divide it into two public and two private /24 subnets across two AZs.",
+                "completion_check": "You can show and explain the outcome of: design a vpc with a 10.0.0.0/16 cidr block and divide it into two public and two private /24 subnets across two azs. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T10",
+            "slug": "subnets-internet-nat-gateways",
+            "title": "Public and private subnets, internet and NAT gateways",
+            "milestone_id": "M03",
+            "card": {
+              "title": "Public and private subnets, internet and NAT gateways",
+              "summary": "Provide direct internet access to public subnets via Internet Gateways and secure outbound-only access for private subnets via NAT.",
+              "prerequisite_ids": [
+                "T09"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Cloud networking and connectivity",
+              "title": "Public and private subnets, internet and NAT gateways",
+              "overview": "Provide direct internet access to public subnets via Internet Gateways and secure outbound-only access for private subnets via NAT.",
+              "learning_outcomes": [
+                "Understand public and private subnets, internet and nat gateways, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T10-S01",
+                  "title": "Internet Gateway (IGW)",
+                  "explanation": "Attaching an IGW to a VPC route table to allow instances with public IPs to receive incoming traffic."
+                },
+                {
+                  "id": "T10-S02",
+                  "title": "NAT Gateway / NAT Instance",
+                  "explanation": "Allowing private backend instances to download software patches without exposing public IP addresses."
+                }
+              ],
+              "practice": {
+                "instructions": "Configure a NAT gateway in a public subnet and verify that a database in a private subnet can fetch outbound updates."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: configure a nat gateway in a public subnet and verify that a database in a private subnet can fetch outbound updates. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "NAT gateways | Amazon VPC User Guide",
+                  "provider": "docs.aws.amazon.com",
+                  "url": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on public and private subnets, internet and nat gateways; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T10-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Provide direct internet access to public subnets via Internet Gateways and secure outbound-only access for private subnets via NAT.",
+                "learn_items": [
+                  "Internet Gateway (IGW)",
+                  "NAT Gateway / NAT Instance"
+                ],
+                "learning_goal": "Understand public and private subnets, internet and nat gateways, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "NAT gateways | Amazon VPC User Guide",
+                    "provider": "docs.aws.amazon.com",
+                    "url": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on public and private subnets, internet and nat gateways; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T10-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Configure a NAT gateway in a public subnet and verify that a database in a private subnet can fetch outbound updates.",
+                "completion_check": "You can show and explain the outcome of: configure a nat gateway in a public subnet and verify that a database in a private subnet can fetch outbound updates. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T11",
+            "slug": "cloud-dns-domain-routing",
+            "title": "DNS management and domain routing",
+            "milestone_id": "M03",
+            "card": {
+              "title": "DNS management and domain routing",
+              "summary": "Manage public and private DNS hosted zones (e.g. Route 53, Cloud DNS), alias records, health-check failovers, and routing policies.",
+              "prerequisite_ids": [
+                "T10"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Cloud networking and connectivity",
+              "title": "DNS management and domain routing",
+              "overview": "Manage public and private DNS hosted zones (e.g. Route 53, Cloud DNS), alias records, health-check failovers, and routing policies.",
+              "learning_outcomes": [
+                "Understand dns management and domain routing, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T11-S01",
+                  "title": "DNS Record Types",
+                  "explanation": "Configuring A, AAAA, CNAME, MX, TXT records and cloud-native apex Alias records."
+                },
+                {
+                  "id": "T11-S02",
+                  "title": "Routing Policies",
+                  "explanation": "Using latency-based routing, weighted routing, and geo-proximity routing to optimize global performance."
+                }
+              ],
+              "practice": {
+                "instructions": "Create a DNS hosted zone, add an A record pointing to a load balancer, and configure a CNAME alias."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: create a dns hosted zone, add an a record pointing to a load balancer, and configure a cname alias. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "What is Amazon Route 53? | Amazon Route 53 Developer Guide",
+                  "provider": "docs.aws.amazon.com",
+                  "url": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on dns management and domain routing; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T11-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Manage public and private DNS hosted zones (e.g. Route 53, Cloud DNS), alias records, health-check failovers, and routing policies.",
+                "learn_items": [
+                  "DNS Record Types",
+                  "Routing Policies"
+                ],
+                "learning_goal": "Understand dns management and domain routing, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "What is Amazon Route 53? | Amazon Route 53 Developer Guide",
+                    "provider": "docs.aws.amazon.com",
+                    "url": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on dns management and domain routing; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T11-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Create a DNS hosted zone, add an A record pointing to a load balancer, and configure a CNAME alias.",
+                "completion_check": "You can show and explain the outcome of: create a dns hosted zone, add an a record pointing to a load balancer, and configure a cname alias. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T12",
+            "slug": "hybrid-connectivity-vpns-peering",
+            "title": "Hybrid connectivity: VPNs and transit gateways",
+            "milestone_id": "M03",
+            "card": {
+              "title": "Hybrid connectivity: VPNs and transit gateways",
+              "summary": "Connect multiple cloud VPCs together using VPC Peering, or link on-premises corporate data centers with Site-to-Site VPNs.",
+              "prerequisite_ids": [
+                "T11"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M03 · Cloud networking and connectivity",
+              "title": "Hybrid connectivity: VPNs and transit gateways",
+              "overview": "Connect multiple cloud VPCs together using VPC Peering, or link on-premises corporate data centers with Site-to-Site VPNs.",
+              "learning_outcomes": [
+                "Understand hybrid connectivity: vpns and transit gateways, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T12-S01",
+                  "title": "VPC Peering",
+                  "explanation": "Routing traffic directly between two VPCs using private IPs without traffic traversing the public internet."
+                },
+                {
+                  "id": "T12-S02",
+                  "title": "Site-to-Site IPsec VPN",
+                  "explanation": "Establishing encrypted tunnels between cloud VPCs and corporate on-premises routers."
+                }
+              ],
+              "practice": {
+                "instructions": "Set up a VPC peering connection between two virtual networks and verify that instances can ping across private IP addresses."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: set up a vpc peering connection between two virtual networks and verify that instances can ping across private ip addresses. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "What is VPC peering? | Amazon VPC Peering Guide",
+                  "provider": "docs.aws.amazon.com",
+                  "url": "https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on hybrid connectivity: vpns and transit gateways; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T12-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Connect multiple cloud VPCs together using VPC Peering, or link on-premises corporate data centers with Site-to-Site VPNs.",
+                "learn_items": [
+                  "VPC Peering",
+                  "Site-to-Site IPsec VPN"
+                ],
+                "learning_goal": "Understand hybrid connectivity: vpns and transit gateways, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "What is VPC peering? | Amazon VPC Peering Guide",
+                    "provider": "docs.aws.amazon.com",
+                    "url": "https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on hybrid connectivity: vpns and transit gateways; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T12-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Set up a VPC peering connection between two virtual networks and verify that instances can ping across private IP addresses.",
+                "completion_check": "You can show and explain the outcome of: set up a vpc peering connection between two virtual networks and verify that instances can ping across private ip addresses. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          }
+        ]
+      },
+      {
+        "id": "M04",
+        "slug": "cloud-storage-and-databases",
+        "title": "Cloud storage, databases and caching",
+        "summary": "Configure object storage with lifecycle rules, deploy managed relational and NoSQL databases, and accelerate delivery with CDNs.",
+        "topics": [
+          {
+            "id": "T13",
+            "slug": "object-storage-lifecycle-rules",
+            "title": "Object storage buckets and lifecycle policies",
+            "milestone_id": "M04",
+            "card": {
+              "title": "Object storage buckets and lifecycle policies",
+              "summary": "Store unstructured data (images, backups, logs) in cloud object storage (S3/Cloud Storage) and configure automatic lifecycle transitions.",
+              "prerequisite_ids": [
+                "T12"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Cloud storage, databases and caching",
+              "title": "Object storage buckets and lifecycle policies",
+              "overview": "Store unstructured data (images, backups, logs) in cloud object storage (S3/Cloud Storage) and configure automatic lifecycle transitions.",
+              "learning_outcomes": [
+                "Understand object storage buckets and lifecycle policies, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T13-S01",
+                  "title": "Bucket Permissions and Versioning",
+                  "explanation": "Enabling object versioning and blocking accidental public bucket exposure."
+                },
+                {
+                  "id": "T13-S02",
+                  "title": "Storage Tiers and Lifecycle Rules",
+                  "explanation": "Transitioning objects from Standard to Infrequent Access (IA) and Glacier archival over time."
+                }
+              ],
+              "practice": {
+                "instructions": "Create an object storage bucket with a lifecycle rule that moves objects to cold archival storage after 90 days."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: create an object storage bucket with a lifecycle rule that moves objects to cold archival storage after 90 days. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "What is Amazon S3? | Amazon S3 User Guide",
+                  "provider": "docs.aws.amazon.com",
+                  "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on object storage buckets and lifecycle policies; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T13-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Store unstructured data (images, backups, logs) in cloud object storage (S3/Cloud Storage) and configure automatic lifecycle transitions.",
+                "learn_items": [
+                  "Bucket Permissions and Versioning",
+                  "Storage Tiers and Lifecycle Rules"
+                ],
+                "learning_goal": "Understand object storage buckets and lifecycle policies, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "What is Amazon S3? | Amazon S3 User Guide",
+                    "provider": "docs.aws.amazon.com",
+                    "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on object storage buckets and lifecycle policies; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T13-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Create an object storage bucket with a lifecycle rule that moves objects to cold archival storage after 90 days.",
+                "completion_check": "You can show and explain the outcome of: create an object storage bucket with a lifecycle rule that moves objects to cold archival storage after 90 days. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T14",
+            "slug": "managed-relational-databases-rds",
+            "title": "Managed relational database provisioning",
+            "milestone_id": "M04",
+            "card": {
+              "title": "Managed relational database provisioning",
+              "summary": "Deploy managed relational database instances (PostgreSQL / MySQL) with automated patching, multi-AZ failover, and read replicas.",
+              "prerequisite_ids": [
+                "T13"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Cloud storage, databases and caching",
+              "title": "Managed relational database provisioning",
+              "overview": "Deploy managed relational database instances (PostgreSQL / MySQL) with automated patching, multi-AZ failover, and read replicas.",
+              "learning_outcomes": [
+                "Understand managed relational database provisioning, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T14-S01",
+                  "title": "Multi-AZ Deployments",
+                  "explanation": "Synchronous replication to a standby instance in a secondary AZ for automatic disaster failover."
+                },
+                {
+                  "id": "T14-S02",
+                  "title": "Read Replicas",
+                  "explanation": "Offloading analytical read traffic to asynchronous read replicas to protect primary database throughput."
+                }
+              ],
+              "practice": {
+                "instructions": "Provision a managed PostgreSQL database in private subnets and configure an automated daily backup snapshot window."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: provision a managed postgresql database in private subnets and configure an automated daily backup snapshot window. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "What is Amazon RDS? | Amazon RDS User Guide",
+                  "provider": "docs.aws.amazon.com",
+                  "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on managed relational database provisioning; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T14-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Deploy managed relational database instances (PostgreSQL / MySQL) with automated patching, multi-AZ failover, and read replicas.",
+                "learn_items": [
+                  "Multi-AZ Deployments",
+                  "Read Replicas"
+                ],
+                "learning_goal": "Understand managed relational database provisioning, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "What is Amazon RDS? | Amazon RDS User Guide",
+                    "provider": "docs.aws.amazon.com",
+                    "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on managed relational database provisioning; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T14-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Provision a managed PostgreSQL database in private subnets and configure an automated daily backup snapshot window.",
+                "completion_check": "You can show and explain the outcome of: provision a managed postgresql database in private subnets and configure an automated daily backup snapshot window. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T15",
+            "slug": "managed-nosql-databases",
+            "title": "Managed NoSQL databases",
+            "milestone_id": "M04",
+            "card": {
+              "title": "Managed NoSQL databases",
+              "summary": "Provision fully managed, horizontally scalable key-value and document databases (e.g. DynamoDB, Firestore) with single-digit millisecond latency.",
+              "prerequisite_ids": [
+                "T14"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Cloud storage, databases and caching",
+              "title": "Managed NoSQL databases",
+              "overview": "Provision fully managed, horizontally scalable key-value and document databases (e.g. DynamoDB, Firestore) with single-digit millisecond latency.",
+              "learning_outcomes": [
+                "Understand managed nosql databases, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T15-S01",
+                  "title": "Partition and Sort Keys",
+                  "explanation": "Designing primary keys that evenly distribute data access across physical storage partitions."
+                },
+                {
+                  "id": "T15-S02",
+                  "title": "On-Demand vs Provisioned Capacity",
+                  "explanation": "Choosing between auto-scaling read/write units and pay-per-request billing models."
+                }
+              ],
+              "practice": {
+                "instructions": "Create a managed NoSQL table with a composite primary key and insert and query a document record."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: create a managed nosql table with a composite primary key and insert and query a document record. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "What is Amazon DynamoDB? | DynamoDB Developer Guide",
+                  "provider": "docs.aws.amazon.com",
+                  "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on managed nosql databases; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T15-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Provision fully managed, horizontally scalable key-value and document databases (e.g. DynamoDB, Firestore) with single-digit millisecond latency.",
+                "learn_items": [
+                  "Partition and Sort Keys",
+                  "On-Demand vs Provisioned Capacity"
+                ],
+                "learning_goal": "Understand managed nosql databases, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "What is Amazon DynamoDB? | DynamoDB Developer Guide",
+                    "provider": "docs.aws.amazon.com",
+                    "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on managed nosql databases; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T15-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Create a managed NoSQL table with a composite primary key and insert and query a document record.",
+                "completion_check": "You can show and explain the outcome of: create a managed nosql table with a composite primary key and insert and query a document record. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T16",
+            "slug": "managed-caching-cdn-distribution",
+            "title": "Managed caching clusters and CDN distribution",
+            "milestone_id": "M04",
+            "card": {
+              "title": "Managed caching clusters and CDN distribution",
+              "summary": "Accelerate read latency with managed in-memory Redis clusters (ElastiCache) and global Content Delivery Networks (CloudFront).",
+              "prerequisite_ids": [
+                "T15"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M04 · Cloud storage, databases and caching",
+              "title": "Managed caching clusters and CDN distribution",
+              "overview": "Accelerate read latency with managed in-memory Redis clusters (ElastiCache) and global Content Delivery Networks (CloudFront).",
+              "learning_outcomes": [
+                "Understand managed caching clusters and cdn distribution, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T16-S01",
+                  "title": "In-Memory Caching",
+                  "explanation": "Clustering Redis nodes for sub-millisecond query caching and session state persistence."
+                },
+                {
+                  "id": "T16-S02",
+                  "title": "CDN Edge Caching",
+                  "explanation": "Configuring CDN distributions with custom domain SSL certificates, cache TTLs, and origin fallbacks."
+                }
+              ],
+              "practice": {
+                "instructions": "Configure a CDN distribution in front of an S3 bucket and verify that static assets return HTTP cache-hit headers."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: configure a cdn distribution in front of an s3 bucket and verify that static assets return http cache-hit headers. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "What is Amazon CloudFront? | CloudFront Developer Guide",
+                  "provider": "docs.aws.amazon.com",
+                  "url": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on managed caching clusters and cdn distribution; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T16-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Accelerate read latency with managed in-memory Redis clusters (ElastiCache) and global Content Delivery Networks (CloudFront).",
+                "learn_items": [
+                  "In-Memory Caching",
+                  "CDN Edge Caching"
+                ],
+                "learning_goal": "Understand managed caching clusters and cdn distribution, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "What is Amazon CloudFront? | CloudFront Developer Guide",
+                    "provider": "docs.aws.amazon.com",
+                    "url": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on managed caching clusters and cdn distribution; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T16-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Configure a CDN distribution in front of an S3 bucket and verify that static assets return HTTP cache-hit headers.",
+                "completion_check": "You can show and explain the outcome of: configure a cdn distribution in front of an s3 bucket and verify that static assets return http cache-hit headers. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          }
+        ]
+      },
+      {
+        "id": "M05",
+        "slug": "infrastructure-as-code-terraform",
+        "title": "Infrastructure as Code (IaC) and automation",
+        "summary": "Declare, plan, and provision cloud infrastructure repeatably using Terraform, manage remote state, and build modular templates.",
+        "topics": [
+          {
+            "id": "T17",
+            "slug": "iac-fundamentals-declarative",
+            "title": "IaC fundamentals and declarative configuration",
+            "milestone_id": "M05",
+            "card": {
+              "title": "IaC fundamentals and declarative configuration",
+              "summary": "Understand why declarative Infrastructure as Code eliminates manual configuration drift and provides versioned infrastructure history.",
+              "prerequisite_ids": [
+                "T16"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Infrastructure as Code (IaC) and automation",
+              "title": "IaC fundamentals and declarative configuration",
+              "overview": "Understand why declarative Infrastructure as Code eliminates manual configuration drift and provides versioned infrastructure history.",
+              "learning_outcomes": [
+                "Understand iac fundamentals and declarative configuration, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T17-S01",
+                  "title": "Declarative vs Imperative",
+                  "explanation": "Specifying the desired end state in code and letting the engine determine the execution plan."
+                },
+                {
+                  "id": "T17-S02",
+                  "title": "Idempotency",
+                  "explanation": "Running the same IaC configuration multiple times safely without creating duplicate resources."
+                }
+              ],
+              "practice": {
+                "instructions": "Write a simple Terraform file declaring a local file or cloud resource and execute terraform plan to inspect changes."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: write a simple terraform file declaring a local file or cloud resource and execute terraform plan to inspect changes. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "What is Terraform? | HashiCorp Developer",
+                  "provider": "developer.hashicorp.com",
+                  "url": "https://developer.hashicorp.com/terraform/intro",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on iac fundamentals and declarative configuration; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T17-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Understand why declarative Infrastructure as Code eliminates manual configuration drift and provides versioned infrastructure history.",
+                "learn_items": [
+                  "Declarative vs Imperative",
+                  "Idempotency"
+                ],
+                "learning_goal": "Understand iac fundamentals and declarative configuration, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "What is Terraform? | HashiCorp Developer",
+                    "provider": "developer.hashicorp.com",
+                    "url": "https://developer.hashicorp.com/terraform/intro",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on iac fundamentals and declarative configuration; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T17-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Write a simple Terraform file declaring a local file or cloud resource and execute terraform plan to inspect changes.",
+                "completion_check": "You can show and explain the outcome of: write a simple terraform file declaring a local file or cloud resource and execute terraform plan to inspect changes. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T18",
+            "slug": "terraform-providers-resources-variables",
+            "title": "Terraform providers, resources and variables",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Terraform providers, resources and variables",
+              "summary": "Configure cloud providers, declare resource blocks, define input variables with validation, and output computed values.",
+              "prerequisite_ids": [
+                "T17"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Infrastructure as Code (IaC) and automation",
+              "title": "Terraform providers, resources and variables",
+              "overview": "Configure cloud providers, declare resource blocks, define input variables with validation, and output computed values.",
+              "learning_outcomes": [
+                "Understand terraform providers, resources and variables, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T18-S01",
+                  "title": "Provider Configuration",
+                  "explanation": "Configuring provider plugins, credentials, and default resource tags."
+                },
+                {
+                  "id": "T18-S02",
+                  "title": "Variables and Outputs",
+                  "explanation": "Parameterizing environments with variable defaults, types, and exporting endpoint URLs in outputs."
+                }
+              ],
+              "practice": {
+                "instructions": "Write a Terraform configuration that provisions a VPC, parameterized with input variables for CIDR and environment name."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: write a terraform configuration that provisions a vpc, parameterized with input variables for cidr and environment name. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "The Terraform Configuration Language | HashiCorp Developer",
+                  "provider": "developer.hashicorp.com",
+                  "url": "https://developer.hashicorp.com/terraform/language",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on terraform providers, resources and variables; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T18-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Configure cloud providers, declare resource blocks, define input variables with validation, and output computed values.",
+                "learn_items": [
+                  "Provider Configuration",
+                  "Variables and Outputs"
+                ],
+                "learning_goal": "Understand terraform providers, resources and variables, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "The Terraform Configuration Language | HashiCorp Developer",
+                    "provider": "developer.hashicorp.com",
+                    "url": "https://developer.hashicorp.com/terraform/language",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on terraform providers, resources and variables; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T18-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Write a Terraform configuration that provisions a VPC, parameterized with input variables for CIDR and environment name.",
+                "completion_check": "You can show and explain the outcome of: write a terraform configuration that provisions a vpc, parameterized with input variables for cidr and environment name. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T19",
+            "slug": "managing-terraform-state",
+            "title": "Managing Terraform state and remote backends",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Managing Terraform state and remote backends",
+              "summary": "Store the terraform.tfstate mapping file in a secure remote backend (S3 bucket with DynamoDB state locking) to prevent race conditions.",
+              "prerequisite_ids": [
+                "T18"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Infrastructure as Code (IaC) and automation",
+              "title": "Managing Terraform state and remote backends",
+              "overview": "Store the terraform.tfstate mapping file in a secure remote backend (S3 bucket with DynamoDB state locking) to prevent race conditions.",
+              "learning_outcomes": [
+                "Understand managing terraform state and remote backends, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T19-S01",
+                  "title": "State File Mechanics",
+                  "explanation": "How the state file maps declarative code to real-world cloud resource IDs and attributes."
+                },
+                {
+                  "id": "T19-S02",
+                  "title": "Remote State Locking",
+                  "explanation": "Using distributed locks to prevent two engineers from modifying infrastructure simultaneously."
+                }
+              ],
+              "practice": {
+                "instructions": "Configure a remote backend block using cloud storage and a lock table, and migrate local state to the cloud."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: configure a remote backend block using cloud storage and a lock table, and migrate local state to the cloud. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "Backends | Terraform | HashiCorp Developer",
+                  "provider": "developer.hashicorp.com",
+                  "url": "https://developer.hashicorp.com/terraform/language/state/backends",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on managing terraform state and remote backends; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T19-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Store the terraform.tfstate mapping file in a secure remote backend (S3 bucket with DynamoDB state locking) to prevent race conditions.",
+                "learn_items": [
+                  "State File Mechanics",
+                  "Remote State Locking"
+                ],
+                "learning_goal": "Understand managing terraform state and remote backends, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "Backends | Terraform | HashiCorp Developer",
+                    "provider": "developer.hashicorp.com",
+                    "url": "https://developer.hashicorp.com/terraform/language/state/backends",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on managing terraform state and remote backends; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T19-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Configure a remote backend block using cloud storage and a lock table, and migrate local state to the cloud.",
+                "completion_check": "You can show and explain the outcome of: configure a remote backend block using cloud storage and a lock table, and migrate local state to the cloud. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T20",
+            "slug": "modularizing-cloud-infrastructure",
+            "title": "Modularizing cloud infrastructure",
+            "milestone_id": "M05",
+            "card": {
+              "title": "Modularizing cloud infrastructure",
+              "summary": "Package reusable cloud patterns (e.g. standard VPC module, database module) into reusable Terraform modules with clean interfaces.",
+              "prerequisite_ids": [
+                "T19"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M05 · Infrastructure as Code (IaC) and automation",
+              "title": "Modularizing cloud infrastructure",
+              "overview": "Package reusable cloud patterns (e.g. standard VPC module, database module) into reusable Terraform modules with clean interfaces.",
+              "learning_outcomes": [
+                "Understand modularizing cloud infrastructure, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T20-S01",
+                  "title": "Module Structure",
+                  "explanation": "Organizing main.tf, variables.tf, and outputs.tf into self-contained reusable directories."
+                },
+                {
+                  "id": "T20-S02",
+                  "title": "Instantiating Modules",
+                  "explanation": "Calling child modules multiple times to spin up identical staging and production environments."
+                }
+              ],
+              "practice": {
+                "instructions": "Build a reusable web-server module and instantiate it twice with different instance types for dev and prod."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: build a reusable web-server module and instantiate it twice with different instance types for dev and prod. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "Modules Overview | Terraform | HashiCorp Developer",
+                  "provider": "developer.hashicorp.com",
+                  "url": "https://developer.hashicorp.com/terraform/language/modules",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on modularizing cloud infrastructure; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T20-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Package reusable cloud patterns (e.g. standard VPC module, database module) into reusable Terraform modules with clean interfaces.",
+                "learn_items": [
+                  "Module Structure",
+                  "Instantiating Modules"
+                ],
+                "learning_goal": "Understand modularizing cloud infrastructure, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "Modules Overview | Terraform | HashiCorp Developer",
+                    "provider": "developer.hashicorp.com",
+                    "url": "https://developer.hashicorp.com/terraform/language/modules",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on modularizing cloud infrastructure; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T20-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Build a reusable web-server module and instantiate it twice with different instance types for dev and prod.",
+                "completion_check": "You can show and explain the outcome of: build a reusable web-server module and instantiate it twice with different instance types for dev and prod. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          }
+        ]
+      },
+      {
+        "id": "M06",
+        "slug": "observability-disaster-recovery",
+        "title": "Observability, backup and disaster recovery",
+        "summary": "Configure CloudWatch metrics and alarms, automate snapshot backups, design multi-region disaster recovery, and deploy complete architectures.",
+        "topics": [
+          {
+            "id": "T21",
+            "slug": "cloud-metrics-alarms-logs",
+            "title": "Cloud metrics, alarms and log aggregation",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Cloud metrics, alarms and log aggregation",
+              "summary": "Collect system metrics (CPU, disk I/O, network), aggregate application logs, and trigger SNS alerts on anomalous spikes.",
+              "prerequisite_ids": [
+                "T20"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Observability, backup and disaster recovery",
+              "title": "Cloud metrics, alarms and log aggregation",
+              "overview": "Collect system metrics (CPU, disk I/O, network), aggregate application logs, and trigger SNS alerts on anomalous spikes.",
+              "learning_outcomes": [
+                "Understand cloud metrics, alarms and log aggregation, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T21-S01",
+                  "title": "Metric Alarms",
+                  "explanation": "Configuring alarms that trigger automated actions when error rates or CPU cross thresholds."
+                },
+                {
+                  "id": "T21-S02",
+                  "title": "Centralized Log Groups",
+                  "explanation": "Streaming container and OS logs to central log stores for real-time querying and filtering."
+                }
+              ],
+              "practice": {
+                "instructions": "Create a metric alarm that sends an alert notification if server CPU utilization exceeds 80% for 5 consecutive minutes."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: create a metric alarm that sends an alert notification if server cpu utilization exceeds 80% for 5 consecutive minutes. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "What is Amazon CloudWatch? | CloudWatch User Guide",
+                  "provider": "docs.aws.amazon.com",
+                  "url": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on cloud metrics, alarms and log aggregation; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T21-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Collect system metrics (CPU, disk I/O, network), aggregate application logs, and trigger SNS alerts on anomalous spikes.",
+                "learn_items": [
+                  "Metric Alarms",
+                  "Centralized Log Groups"
+                ],
+                "learning_goal": "Understand cloud metrics, alarms and log aggregation, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "What is Amazon CloudWatch? | CloudWatch User Guide",
+                    "provider": "docs.aws.amazon.com",
+                    "url": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on cloud metrics, alarms and log aggregation; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T21-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Create a metric alarm that sends an alert notification if server CPU utilization exceeds 80% for 5 consecutive minutes.",
+                "completion_check": "You can show and explain the outcome of: create a metric alarm that sends an alert notification if server cpu utilization exceeds 80% for 5 consecutive minutes. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T22",
+            "slug": "automated-snapshot-backup-strategies",
+            "title": "Automated snapshot and backup strategies",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Automated snapshot and backup strategies",
+              "summary": "Automate daily snapshot backups of block storage volumes (EBS) and database instances with retention lifecycle rules.",
+              "prerequisite_ids": [
+                "T21"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Observability, backup and disaster recovery",
+              "title": "Automated snapshot and backup strategies",
+              "overview": "Automate daily snapshot backups of block storage volumes (EBS) and database instances with retention lifecycle rules.",
+              "learning_outcomes": [
+                "Understand automated snapshot and backup strategies, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T22-S01",
+                  "title": "RPO and RTO Targets",
+                  "explanation": "Understanding Recovery Point Objective (acceptable data loss) and Recovery Time Objective (time to recover)."
+                },
+                {
+                  "id": "T22-S02",
+                  "title": "Automated Backup Policies",
+                  "explanation": "Using AWS Backup or cloud schedulers to enforce immutable, encrypted snapshot retention."
+                }
+              ],
+              "practice": {
+                "instructions": "Configure an automated backup plan that creates daily encrypted snapshots of a database and deletes snapshots older than 30 days."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: configure an automated backup plan that creates daily encrypted snapshots of a database and deletes snapshots older than 30 days. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "What is AWS Backup? | AWS Backup Developer Guide",
+                  "provider": "docs.aws.amazon.com",
+                  "url": "https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on automated snapshot and backup strategies; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T22-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Automate daily snapshot backups of block storage volumes (EBS) and database instances with retention lifecycle rules.",
+                "learn_items": [
+                  "RPO and RTO Targets",
+                  "Automated Backup Policies"
+                ],
+                "learning_goal": "Understand automated snapshot and backup strategies, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "What is AWS Backup? | AWS Backup Developer Guide",
+                    "provider": "docs.aws.amazon.com",
+                    "url": "https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on automated snapshot and backup strategies; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T22-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Configure an automated backup plan that creates daily encrypted snapshots of a database and deletes snapshots older than 30 days.",
+                "completion_check": "You can show and explain the outcome of: configure an automated backup plan that creates daily encrypted snapshots of a database and deletes snapshots older than 30 days. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T23",
+            "slug": "high-availability-disaster-recovery",
+            "title": "High availability and multi-region disaster recovery",
+            "milestone_id": "M06",
+            "card": {
+              "title": "High availability and multi-region disaster recovery",
+              "summary": "Evaluate disaster recovery strategies: Backup & Restore, Pilot Light, Warm Standby, and Multi-Region Active-Active.",
+              "prerequisite_ids": [
+                "T22"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Observability, backup and disaster recovery",
+              "title": "High availability and multi-region disaster recovery",
+              "overview": "Evaluate disaster recovery strategies: Backup & Restore, Pilot Light, Warm Standby, and Multi-Region Active-Active.",
+              "learning_outcomes": [
+                "Understand high availability and multi-region disaster recovery, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T23-S01",
+                  "title": "DR Architecture Comparison",
+                  "explanation": "Balancing business recovery speed against cost across the four standard DR tiers."
+                },
+                {
+                  "id": "T23-S02",
+                  "title": "Cross-Region Replication",
+                  "explanation": "Replicating database transactions and storage buckets asynchronously to a secondary geographical region."
+                }
+              ],
+              "practice": {
+                "instructions": "Write a disaster recovery runbook detailing step-by-step failover procedures to a backup region during a primary region outage."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: write a disaster recovery runbook detailing step-by-step failover procedures to a backup region during a primary region outage. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "Disaster Recovery Options in the Cloud | AWS Whitepapers",
+                  "provider": "docs.aws.amazon.com",
+                  "url": "https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on high availability and multi-region disaster recovery; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T23-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Evaluate disaster recovery strategies: Backup & Restore, Pilot Light, Warm Standby, and Multi-Region Active-Active.",
+                "learn_items": [
+                  "DR Architecture Comparison",
+                  "Cross-Region Replication"
+                ],
+                "learning_goal": "Understand high availability and multi-region disaster recovery, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "Disaster Recovery Options in the Cloud | AWS Whitepapers",
+                    "provider": "docs.aws.amazon.com",
+                    "url": "https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on high availability and multi-region disaster recovery; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T23-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Write a disaster recovery runbook detailing step-by-step failover procedures to a backup region during a primary region outage.",
+                "completion_check": "You can show and explain the outcome of: write a disaster recovery runbook detailing step-by-step failover procedures to a backup region during a primary region outage. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          },
+          {
+            "id": "T24",
+            "slug": "deploying-scalable-multi-tier-app",
+            "title": "Deploying a scalable multi-tier web architecture",
+            "milestone_id": "M06",
+            "card": {
+              "title": "Deploying a scalable multi-tier web architecture",
+              "summary": "Synthesize VPC networking, load balancers, auto-scaling groups, managed databases, and IaC into a production deployment.",
+              "prerequisite_ids": [
+                "T23"
+              ]
+            },
+            "detail": {
+              "eyebrow": "M06 · Observability, backup and disaster recovery",
+              "title": "Deploying a scalable multi-tier web architecture",
+              "overview": "Synthesize VPC networking, load balancers, auto-scaling groups, managed databases, and IaC into a production deployment.",
+              "learning_outcomes": [
+                "Understand deploying a scalable multi-tier web architecture, complete the practical exercise, and explain the key concepts."
+              ],
+              "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+              "subtopics": [
+                {
+                  "id": "T24-S01",
+                  "title": "The Reference Architecture",
+                  "explanation": "Public load balancer tier > private application compute tier > private isolated database tier."
+                },
+                {
+                  "id": "T24-S02",
+                  "title": "Final Verification",
+                  "explanation": "Conducting end-to-end failover tests, load testing, and security group verification on the live system."
+                }
+              ],
+              "practice": {
+                "instructions": "Provision and verify a complete 3-tier web architecture in code, proving that public internet traffic cannot directly reach the database."
+              },
+              "completion_check": {
+                "criteria": "You can show and explain the outcome of: provision and verify a complete 3-tier web architecture in code, proving that public internet traffic cannot directly reach the database. Check that it functions as expected and meets requirements."
+              },
+              "resources": [
+                {
+                  "title": "Web Application Hosting Best Practices | AWS Whitepapers",
+                  "provider": "docs.aws.amazon.com",
+                  "url": "https://docs.aws.amazon.com/whitepapers/latest/web-application-hosting-best-practices/an-aws-cloud-architecture-for-web-hosting.html",
+                  "type": "documentation",
+                  "covers": [],
+                  "access": "free to read; exercises, accounts or equipment may have conditions",
+                  "use_this_for": "Consult relevant sections for background on deploying a scalable multi-tier web architecture; verify subtopic coverage before treating this as a complete lesson.",
+                  "license_or_usage_notice": "Not verified; external link only",
+                  "last_checked": "Not verified",
+                  "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                  "id": "T24-R01",
+                  "resource_role": "primary"
+                }
+              ],
+              "guide": {
+                "overview": "Synthesize VPC networking, load balancers, auto-scaling groups, managed databases, and IaC into a production deployment.",
+                "learn_items": [
+                  "The Reference Architecture",
+                  "Final Verification"
+                ],
+                "learning_goal": "Understand deploying a scalable multi-tier web architecture, complete the practical exercise, and explain the key concepts.",
+                "tools_and_setup": "Use a free editor (such as VS Code), modern web browser, and relevant local runtime/CLI; no paid service or subscription is required for these exercises.",
+                "resources": [
+                  {
+                    "title": "Web Application Hosting Best Practices | AWS Whitepapers",
+                    "provider": "docs.aws.amazon.com",
+                    "url": "https://docs.aws.amazon.com/whitepapers/latest/web-application-hosting-best-practices/an-aws-cloud-architecture-for-web-hosting.html",
+                    "type": "documentation",
+                    "covers": [],
+                    "access": "free to read; exercises, accounts or equipment may have conditions",
+                    "use_this_for": "Consult relevant sections for background on deploying a scalable multi-tier web architecture; verify subtopic coverage before treating this as a complete lesson.",
+                    "license_or_usage_notice": "Not verified; external link only",
+                    "last_checked": "Not verified",
+                    "verification_scope": "URL, exact lesson coverage and access not independently verified",
+                    "id": "T24-R01",
+                    "resource_role": "primary"
+                  }
+                ],
+                "practice": "Provision and verify a complete 3-tier web architecture in code, proving that public internet traffic cannot directly reach the database.",
+                "completion_check": "You can show and explain the outcome of: provision and verify a complete 3-tier web architecture in code, proving that public internet traffic cannot directly reach the database. Check that it functions as expected and meets requirements."
+              }
+            },
+            "editorial_status": "Draft — pending human review"
+          }
+        ]
+      }
+    ]
+  }
+}

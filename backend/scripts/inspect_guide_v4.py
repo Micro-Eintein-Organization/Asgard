@@ -51,6 +51,6 @@ def inspect(path):
 
 if __name__ == "__main__":
     paths = sorted(ROOT.glob("*.json"))
-    if len(paths) != 12:
+    if len(paths) != 23:
         raise ValueError(f"Expected 12 draft roadmaps, found {len(paths)}")
     print(json.dumps([inspect(path) for path in paths], indent=2))
