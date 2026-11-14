@@ -151,3 +151,12 @@ Configuration references checked during preparation:
 [Render port binding](https://render.com/docs/web-services#port-binding) and
 [Render health checks](https://render.com/docs/health-checks).
 Verify current account-specific capability and plan terms before releasing.
+
+
+## Content performance rollout, 2026-11-15
+
+Owner-approved additive read contracts and frontend batching are documented in
+[hosted content performance](features/hosted-content-performance.md). Review and
+deploy backend before frontend; retain the previous deployment for rollback.
+Schema and secrets are unchanged. Hosted warm/cold timings and isolated live
+security/load acceptance remain pending; local tests are not deployment acceptance.

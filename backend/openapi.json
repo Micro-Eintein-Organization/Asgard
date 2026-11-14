@@ -517,6 +517,45 @@
         "title": "CareerShortlist",
         "type": "object"
       },
+      "CatalogProgress": {
+        "additionalProperties": false,
+        "properties": {
+          "has_progress": {
+            "title": "Has Progress",
+            "type": "boolean"
+          },
+          "percentage": {
+            "anyOf": [
+              {
+                "maximum": 100.0,
+                "minimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Percentage"
+          },
+          "requires_branch_choice": {
+            "title": "Requires Branch Choice",
+            "type": "boolean"
+          },
+          "roadmap_id": {
+            "format": "uuid",
+            "title": "Roadmap Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "roadmap_id",
+          "has_progress",
+          "percentage",
+          "requires_branch_choice"
+        ],
+        "title": "CatalogProgress",
+        "type": "object"
+      },
       "Category": {
         "additionalProperties": false,
         "properties": {
@@ -3591,6 +3630,43 @@
           "reflections"
         ],
         "title": "RoadmapGuidance",
+        "type": "object"
+      },
+      "RoadmapView": {
+        "additionalProperties": false,
+        "properties": {
+          "branches": {
+            "items": {
+              "$ref": "#/components/schemas/BranchChoice"
+            },
+            "title": "Branches",
+            "type": "array"
+          },
+          "learning_state": {
+            "$ref": "#/components/schemas/LearningState"
+          },
+          "progress": {
+            "items": {
+              "$ref": "#/components/schemas/TopicProgress"
+            },
+            "title": "Progress",
+            "type": "array"
+          },
+          "roadmap": {
+            "$ref": "#/components/schemas/Roadmap"
+          },
+          "summary": {
+            "$ref": "#/components/schemas/ProgressSummary"
+          }
+        },
+        "required": [
+          "roadmap",
+          "progress",
+          "summary",
+          "branches",
+          "learning_state"
+        ],
+        "title": "RoadmapView",
         "type": "object"
       },
       "SaveBranchChoice": {
@@ -9001,6 +9077,113 @@
         ]
       }
     },
+    "/api/v1/me/roadmaps/catalog-progress": {
+      "get": {
+        "operationId": "get_my_catalog_progress",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "roadmap_ids",
+            "required": true,
+            "schema": {
+              "items": {
+                "format": "uuid",
+                "type": "string"
+              },
+              "maxItems": 100,
+              "minItems": 1,
+              "title": "Roadmap Ids",
+              "type": "array"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/CatalogProgress"
+                  },
+                  "title": "Response Get My Catalog Progress",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Get Catalog Progress",
+        "tags": [
+          "foundation-contracts"
+        ]
+      }
+    },
     "/api/v1/me/roadmaps/{roadmap_id}/branches": {
       "get": {
         "operationId": "get_my_branch_choices",
@@ -9944,6 +10127,104 @@
           }
         ],
         "summary": "Save Progress",
+        "tags": [
+          "foundation-contracts"
+        ]
+      }
+    },
+    "/api/v1/me/roadmaps/{roadmap_id}/view": {
+      "get": {
+        "operationId": "get_my_roadmap_view",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "roadmap_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Roadmap Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadmapView"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Get Roadmap View",
         "tags": [
           "foundation-contracts"
         ]

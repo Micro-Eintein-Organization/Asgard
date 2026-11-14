@@ -23,10 +23,12 @@ from app.modules.progress import service as progress_service
 from app.modules.progress.schemas import (
     ActivityMonth,
     BranchChoice,
+    CatalogProgress,
     Dashboard,
     LearningState,
     Preferences,
     ProgressSummary,
+    RoadmapView,
     SaveBranchChoice,
     SavePreferences,
     SaveTopicProgress,
@@ -255,6 +257,23 @@ async def get_learning_state(request: Request, identity: Auth):
 async def select_roadmap(request: Request, body: SelectRoadmap, identity: Auth):
     async with transaction(request, identity) as connection:
         return await progress_service.select_roadmap(connection, identity.user_id, body)
+
+
+@router.get("/me/roadmaps/catalog-progress", response_model=list[CatalogProgress],
+            operation_id="get_my_catalog_progress")
+async def get_catalog_progress(
+    request: Request, identity: Auth,
+    roadmap_ids: Annotated[list[UUID], Query(min_length=1, max_length=100)],
+):
+    async with transaction(request, identity) as connection:
+        return await progress_service.catalog_progress(connection, identity.user_id, roadmap_ids)
+
+
+@router.get("/me/roadmaps/{roadmap_id}/view", response_model=RoadmapView,
+            operation_id="get_my_roadmap_view")
+async def get_roadmap_view(request: Request, roadmap_id: UUID, identity: Auth):
+    async with transaction(request, identity) as connection:
+        return await progress_service.roadmap_view(connection, identity.user_id, roadmap_id)
 
 
 @router.get(

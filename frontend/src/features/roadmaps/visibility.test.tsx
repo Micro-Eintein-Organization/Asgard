@@ -17,7 +17,7 @@ describe("roadmap task visibility", () => {
       summary:{milestones:[{milestone_id:"milestone",percentage:100}],done:1,applicable:1,percentage:100},
       branches:[],
     };
-    vi.mocked(useCoreQuery).mockImplementation(key => ({data:data[String(key[0])],refetch:vi.fn(),error:null}) as never);
+    vi.mocked(useCoreQuery).mockImplementation(key => ({data:key[0] === "roadmap-view" ? (data.summary ? {roadmap:data.roadmap,learning_state:data.learning,progress:data.progress,summary:data.summary,branches:data.branches} : undefined) : data[String(key[0])],refetch:vi.fn(),error:null}) as never);
     vi.mocked(useCoreMutation).mockReturnValue({mutate:save,isPending:false,error:null} as never);
     render(<MemoryRouter initialEntries={["/roadmaps/career"]}><Routes><Route path="/roadmaps/:careerId" element={<RoadmapPage />} /></Routes></MemoryRouter>);
     const hide = screen.getByRole("button",{name:"Hide task: Saved task"});

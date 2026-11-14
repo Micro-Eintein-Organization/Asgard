@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { Link } from "react-router";
 import {
   ArrowLeft,
@@ -94,6 +94,12 @@ export function StatePanel({
   children?: ReactNode;
   action?: ReactNode;
 }) {
+  const [slow, setSlow] = useState(false);
+  useEffect(() => {
+    if (kind !== "loading") return;
+    const timer = setTimeout(() => setSlow(true), 5000);
+    return () => { clearTimeout(timer); };
+  }, [kind]);
   return (
     <Card
       className={`state-panel state-${kind}`}
@@ -118,6 +124,7 @@ export function StatePanel({
       </div>
       <h2>{title}</h2>
       {children && <p>{children}</p>}
+      {kind === "loading" && slow && <p>This is taking longer than usual. The service may be waking up.</p>}
       {kind === "loading" && (
         <div className="loading-lines" aria-hidden="true">
           <Skeleton className="h-3 w-full" />

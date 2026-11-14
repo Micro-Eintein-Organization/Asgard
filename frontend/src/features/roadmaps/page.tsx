@@ -53,27 +53,13 @@ export function RoadmapPage() {
   const categories = useCoreQuery(["categories"], coreApi.categories);
   const roadmapId = params.get("roadmap") ?? career.data?.roadmap_ids[0] ??
     (career.data?.slug === "ui-ux-designer" ? "27a28a6f-33b0-5d93-92de-b243c11401b0" : "");
-  const roadmap = useCoreQuery(
-    ["roadmap", roadmapId],
-    () => coreApi.roadmap(roadmapId),
-    !!roadmapId,
-  );
-  const learning = useCoreQuery(["learning"], coreApi.learning);
-  const progress = useCoreQuery(
-    ["progress", roadmapId],
-    () => coreApi.progress(roadmapId),
-    !!roadmapId,
-  );
-  const summary = useCoreQuery(
-    ["summary", roadmapId],
-    () => coreApi.summary(roadmapId),
-    !!roadmapId,
-  );
-  const branches = useCoreQuery(
-    ["branches", roadmapId],
-    () => coreApi.branches(roadmapId),
-    !!roadmapId,
-  );
+  const view = useCoreQuery(["roadmap-view", roadmapId],
+    signal => coreApi.roadmapView(roadmapId, signal), !!roadmapId);
+  const roadmap = { ...view, data: view.data?.roadmap };
+  const learning = { ...view, data: view.data?.learning_state };
+  const progress = { ...view, data: view.data?.progress };
+  const summary = { ...view, data: view.data?.summary };
+  const branches = { ...view, data: view.data?.branches };
   const focus = useCoreMutation(coreApi.selectRoadmap);
   const change = useCoreMutation(coreApi.saveProgress);
   const branch = useCoreMutation(coreApi.saveBranch);
@@ -121,12 +107,9 @@ export function RoadmapPage() {
           <Button
             onClick={() => {
               void career.refetch();
-              void learning.refetch();
+
               if (roadmapId) {
-                void roadmap.refetch();
-                void progress.refetch();
-                void summary.refetch();
-                void branches.refetch();
+                void view.refetch();
               }
             }}
           >
@@ -195,7 +178,7 @@ export function RoadmapPage() {
           {mutationError.message}{" "}
           <button
             onClick={() => {
-              void learning.refetch();
+
               void progress.refetch();
               void branches.refetch();
             }}

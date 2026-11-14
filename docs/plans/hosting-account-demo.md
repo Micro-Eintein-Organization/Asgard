@@ -70,3 +70,13 @@ render.yaml, backend startup, its existing runtime-argument check and deployment
 guides. Check the relevant startup tests and whitespace; no application build,
 live deployment or database change is needed. Git publication remains an operator
 step unless separately authorized.
+
+## Performance implementation, 2026-11-15
+
+Owner: Codex; reviewer/operator: @YakisobaNissin. Owner approved the chat plan,
+including additive batch contracts. QA-09/A-09. Implement catalog-progress and
+combined roadmap view using existing restricted transactions, lightweight batched
+summary metadata, account-scoped cancellable frontend reads and sanitized database
+metrics. Preserve existing routes and security gates. Focused unit, contract,
+authorization and SQL checks; hosted load and manual journeys require owner access.
+No migration, dependency, pool expansion or Git publication.

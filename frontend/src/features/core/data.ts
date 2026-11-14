@@ -21,6 +21,14 @@ async function result<T>(
 }
 
 export const coreApi = {
+  catalogProgress: (ids: string[], signal?: AbortSignal) =>
+    result(api.GET("/api/v1/me/roadmaps/catalog-progress", {
+      params: { query: { roadmap_ids: ids } }, signal: signal ? AbortSignal.any([signal, AbortSignal.timeout(90_000)]) : AbortSignal.timeout(90_000),
+    })),
+  roadmapView: (id: string, signal?: AbortSignal) =>
+    result(api.GET("/api/v1/me/roadmaps/{roadmap_id}/view", {
+      params: { path: { roadmap_id: id } }, signal: signal ? AbortSignal.any([signal, AbortSignal.timeout(90_000)]) : AbortSignal.timeout(90_000),
+    })),
   roadmapGuidance: (roadmapId: string, signal?: AbortSignal) =>
     result(api.GET("/api/v1/me/roadmaps/{roadmap_id}/guidance", {
       params: { path: { roadmap_id: roadmapId } }, signal,
@@ -145,15 +153,15 @@ export const coreApi = {
   removeDocuments: (body: Schemas["DocumentCommand"]) =>
     result(api.POST("/api/v1/me/documents/remove", { body })),
   cleanupDocuments: () => result(api.POST("/api/v1/me/documents/cleanup")),
-  categories: () => result(api.GET("/api/v1/categories")),
+  categories: (signal?: AbortSignal) => result(api.GET("/api/v1/categories", { signal })),
   catalog: (
     query: {
       q?: string;
       category_id?: string;
       limit?: number;
       offset?: number;
-    } = {},
-  ) => result(api.GET("/api/v1/careers", { params: { query } })),
+    } = {}, signal?: AbortSignal,
+  ) => result(api.GET("/api/v1/careers", { params: { query }, signal })),
   career: (id: string) =>
     result(
       api.GET("/api/v1/careers/{career_id}", {
@@ -166,7 +174,7 @@ export const coreApi = {
         params: { path: { roadmap_id: id } },
       }),
     ),
-  preferences: () => result(api.GET("/api/v1/me/preferences")),
+  preferences: (signal?: AbortSignal) => result(api.GET("/api/v1/me/preferences", { signal })),
   savePreferences: (body: Schemas["SavePreferences"]) =>
     result(api.PATCH("/api/v1/me/preferences", { body })),
   learning: () => result(api.GET("/api/v1/me/learning")),
@@ -223,15 +231,15 @@ export const coreApi = {
   dashboard: () => result(api.GET("/api/v1/me/dashboard")),
   activity: (month: string) =>
     result(api.GET("/api/v1/me/activity", { params: { query: { month } } })),
-  discovery: () => result(api.GET("/api/v1/me/discovery")),
+  discovery: (signal?: AbortSignal) => result(api.GET("/api/v1/me/discovery", { signal })),
   discoverySession: (id: string) =>
     result(api.GET("/api/v1/me/discovery/{session_id}", {
       params: { path: { session_id: id } },
     })),
-  questionnaire: (id?: string) =>
+  questionnaire: (id?: string, signal?: AbortSignal) =>
     result(
       api.GET("/api/v1/discovery/questionnaire", {
-        params: { query: { questionnaire_id: id } },
+        params: { query: { questionnaire_id: id } }, signal,
       }),
     ),
   startDiscovery: (body: Schemas["StartDiscovery"]) =>
@@ -306,7 +314,7 @@ export function useCoreQuery<T>(
   const { user } = useAuth();
   return useQuery({
     queryKey: ["account", user?.id, ...key],
-    queryFn: ({ signal }) => load(signal),
+    queryFn: ({ signal }) => load(AbortSignal.any([signal, AbortSignal.timeout(90_000)])),
     enabled: !!user && enabled,
     retry: false,
   });

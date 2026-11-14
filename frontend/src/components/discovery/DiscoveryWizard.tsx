@@ -26,7 +26,8 @@ export function DiscoveryWizard() {
   const state = useCoreQuery(["discovery"], coreApi.discovery);
   const definition = useCoreQuery(
     ["questionnaire", state.data?.draft?.questionnaire_id],
-    () => coreApi.questionnaire(state.data?.draft?.questionnaire_id),
+    signal => coreApi.questionnaire(state.data?.draft?.questionnaire_id, signal),
+    !!state.data,
   );
   const start = useCoreMutation(coreApi.startDiscovery);
 

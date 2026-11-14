@@ -12,7 +12,7 @@ it("waits for all roadmap reads before focusing a requested milestone", async ()
     categories: [], learning: { current_roadmap_id: "roadmap", version: 1 }, progress: [], branches: [],
     roadmap: { id: "roadmap", career_id: "career", status: "published", milestones: [{ id: "first", title: "Foundations", topics: [], branch_groups: [] }] },
   };
-  vi.mocked(useCoreQuery).mockImplementation(key => ({ data: data[String(key[0])], error: null }) as never);
+  vi.mocked(useCoreQuery).mockImplementation(key => ({ data: key[0] === "roadmap-view" ? (data.summary ? {roadmap:data.roadmap,learning_state:data.learning,progress:data.progress,summary:data.summary,branches:data.branches} : undefined) : data[String(key[0])], error: null }) as never);
   vi.mocked(useCoreMutation).mockReturnValue({ isPending: false, error: null } as never);
   const scroll = HTMLElement.prototype.scrollIntoView;
   HTMLElement.prototype.scrollIntoView = vi.fn();

@@ -307,3 +307,12 @@ and removal invalidate dependent analyses. Do not add unused assessment tables n
 Use statuses proposed, approved, in progress, completed or deferred. When promoting
 an entry, record the named owner/reviewer, date, decision reference, scope and
 acceptance evidence. Preserve unresolved decisions and link the owning specification.
+
+
+## Hosted performance acceptance, 2026-11-15
+
+Owner approved targeted content batching instead of a provider change. Source and
+focused checks are implemented; the 20-user performance target, hosted timings,
+and isolated live security verification remain pending. Owner/operator:
+@YakisobaNissin. Evidence and exact manual steps:
+[hosted content performance](features/hosted-content-performance.md).

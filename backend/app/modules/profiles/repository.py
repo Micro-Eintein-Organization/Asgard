@@ -1,8 +1,10 @@
 from contextlib import asynccontextmanager
+from time import perf_counter
 
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncEngine, create_async_engine
 
+from app.core.database_metrics import current_metrics, instrument
 from app.core.errors import APIError
 from app.core.security import Identity, unauthorized
 from app.modules.profiles.schemas import Profile, ProfileUpdate
@@ -13,6 +15,7 @@ FIELDS = "first_name, surname, version, created_at, updated_at, photo_id IS NOT 
 class ProfileRepository:
     def __init__(self, engine: AsyncEngine):
         self.engine = engine
+        instrument(engine)
 
     @classmethod
     def connect(cls, url: str):
@@ -33,7 +36,11 @@ class ProfileRepository:
 
     @asynccontextmanager
     async def transaction(self, identity: Identity):
+        started = perf_counter()
         async with self.engine.begin() as connection:
+            metrics = current_metrics.get()
+            if metrics is not None:
+                metrics["database_acquisition_ms"] += (perf_counter() - started) * 1000
             role = (
                 (
                     await connection.execute(

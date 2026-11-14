@@ -708,6 +708,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/me/roadmaps/catalog-progress": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Catalog Progress */
+        get: operations["get_my_catalog_progress"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/me/roadmaps/{roadmap_id}/branches": {
         parameters: {
             query?: never;
@@ -843,6 +860,23 @@ export interface paths {
         head?: never;
         /** Save Progress */
         patch: operations["save_my_topic_progress"];
+        trace?: never;
+    };
+    "/api/v1/me/roadmaps/{roadmap_id}/view": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Roadmap View */
+        get: operations["get_my_roadmap_view"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
         trace?: never;
     };
     "/api/v1/ready": {
@@ -1141,6 +1175,20 @@ export interface components {
             items: components["schemas"]["SavedCareer"][];
             /** Version */
             version: number;
+        };
+        /** CatalogProgress */
+        CatalogProgress: {
+            /** Has Progress */
+            has_progress: boolean;
+            /** Percentage */
+            percentage: number | null;
+            /** Requires Branch Choice */
+            requires_branch_choice: boolean;
+            /**
+             * Roadmap Id
+             * Format: uuid
+             */
+            roadmap_id: string;
         };
         /** Category */
         Category: {
@@ -2247,6 +2295,16 @@ export interface components {
             topics: components["schemas"]["GuidanceTopic"][];
             /** Version */
             version: number;
+        };
+        /** RoadmapView */
+        RoadmapView: {
+            /** Branches */
+            branches: components["schemas"]["BranchChoice"][];
+            learning_state: components["schemas"]["LearningState"];
+            /** Progress */
+            progress: components["schemas"]["TopicProgress"][];
+            roadmap: components["schemas"]["Roadmap"];
+            summary: components["schemas"]["ProgressSummary"];
         };
         /** SaveBranchChoice */
         SaveBranchChoice: {
@@ -6066,6 +6124,82 @@ export interface operations {
             };
         };
     };
+    get_my_catalog_progress: {
+        parameters: {
+            query: {
+                roadmap_ids: string[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CatalogProgress"][];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Unprocessable Content */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
     get_my_branch_choices: {
         parameters: {
             query?: never;
@@ -6681,6 +6815,82 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["TopicProgress"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Unprocessable Content */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    get_my_roadmap_view: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                roadmap_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RoadmapView"];
                 };
             };
             /** @description Unauthorized */

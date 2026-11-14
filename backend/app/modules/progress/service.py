@@ -343,9 +343,14 @@ async def save_branch(connection, uid, roadmap_id, group_id, body):
 
 
 async def summary(connection, uid, roadmap_id):
-    content = await roadmap(connection, roadmap_id)
-    states = {row["topic_id"]: row for row in await progress(connection, uid, roadmap_id)}
-    choices = {row["branch_id"] for row in await branches(connection, uid, roadmap_id)}
+    contents, saved, selected = await summary_data(connection, uid, [roadmap_id])
+    content = contents[roadmap_id]
+    states = {row["topic_id"]: row for row in saved}
+    choices = {row["branch_id"] for row in selected}
+    return calculate_summary(content, states, choices, roadmap_id)
+
+
+def calculate_summary(content, states, choices, roadmap_id):
     items, applicable, pending = [], [], False
     for milestone in content["milestones"]:
         if milestone["retired_at"] is not None:
@@ -572,3 +577,71 @@ async def dashboard(connection, uid):
         "discovery_draft_id": draft["id"] if draft else None,
         "guidance_id": guidance,
     }
+
+
+async def summary_data(connection, uid, roadmap_ids):
+    ids = list(dict.fromkeys(roadmap_ids))
+    params = {"ids": ids, "uid": str(uid)}
+    contents = await rows(connection,
+        "SELECT id, revision FROM asgard_catalog.roadmaps WHERE id = ANY(:ids)", params)
+    if len(contents) != len(ids):
+        raise APIError(404, "not_found", "This item is unavailable.")
+    milestones = await rows(connection,
+        "SELECT id, roadmap_id, retired_at FROM asgard_catalog.milestones "
+        "WHERE roadmap_id = ANY(:ids) ORDER BY position, id", params)
+    topics = await rows(connection,
+        "SELECT id, roadmap_id, milestone_id, branch_id, revision, retired_at "
+        "FROM asgard_catalog.topics WHERE roadmap_id = ANY(:ids) ORDER BY position, id", params)
+    groups = await rows(connection,
+        "SELECT g.id, g.milestone_id FROM asgard_catalog.branch_groups g "
+        "JOIN asgard_catalog.milestones m ON m.id=g.milestone_id "
+        "WHERE m.roadmap_id = ANY(:ids) ORDER BY g.position, g.id", params)
+    branch_rows = await rows(connection,
+        "SELECT b.id, b.group_id FROM asgard_catalog.branches b "
+        "JOIN asgard_catalog.branch_groups g ON g.id=b.group_id "
+        "JOIN asgard_catalog.milestones m ON m.id=g.milestone_id "
+        "WHERE m.roadmap_id = ANY(:ids) ORDER BY b.position, b.id", params)
+    states = await rows(connection,
+        "SELECT roadmap_id, topic_id, status, version, updated_at "
+        "FROM asgard_private.topic_progress WHERE user_id=CAST(:uid AS uuid) "
+        "AND roadmap_id = ANY(:ids) ORDER BY topic_id", params)
+    choices = await rows(connection,
+        "SELECT roadmap_id, group_id, branch_id, version "
+        "FROM asgard_private.branch_choices WHERE user_id=CAST(:uid AS uuid) "
+        "AND roadmap_id = ANY(:ids) ORDER BY group_id", params)
+    by_id = {item["id"]: item | {"milestones": []} for item in contents}
+    by_milestone = {item["id"]: item | {"topics": [], "branch_groups": []}
+                    for item in milestones}
+    by_group = {item["id"]: item | {"branches": []} for item in groups}
+    for item in by_milestone.values():
+        by_id[item["roadmap_id"]]["milestones"].append(item)
+    for item in topics:
+        by_milestone[item["milestone_id"]]["topics"].append(item)
+    for item in by_group.values():
+        by_milestone[item["milestone_id"]]["branch_groups"].append(item)
+    for item in branch_rows:
+        by_group[item["group_id"]]["branches"].append(item)
+    return by_id, states, choices
+
+
+async def catalog_progress(connection, uid, roadmap_ids):
+    contents, states, choices = await summary_data(connection, uid, roadmap_ids)
+    result = []
+    for rid in dict.fromkeys(roadmap_ids):
+        saved = {item["topic_id"]: item for item in states if item["roadmap_id"] == rid}
+        selected = {item["branch_id"] for item in choices if item["roadmap_id"] == rid}
+        value = calculate_summary(contents[rid], saved, selected, rid)
+        result.append({"roadmap_id": rid, "has_progress": bool(saved),
+                       "percentage": value["percentage"],
+                       "requires_branch_choice": value["requires_branch_choice"]})
+    return result
+
+
+async def roadmap_view(connection, uid, roadmap_id):
+    content = await roadmap(connection, roadmap_id)
+    saved = await progress(connection, uid, roadmap_id)
+    selected = await branches(connection, uid, roadmap_id)
+    value = calculate_summary(content, {item["topic_id"]: item for item in saved},
+                              {item["branch_id"] for item in selected}, roadmap_id)
+    return {"roadmap": content, "progress": saved, "summary": value,
+            "branches": selected, "learning_state": await learning(connection, uid)}

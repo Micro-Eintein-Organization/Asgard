@@ -12,13 +12,11 @@ interface RoleCatalogProps {
   onBack?: () => void;
   onSelectRole?: (roleId: string) => void;
 }
-function RoadmapProgress({ id }: { id: string }) {
-  const progress = useCoreQuery(["progress", id], () => coreApi.progress(id), !!id);
-  const summary = useCoreQuery(
-    ["summary", id], () => coreApi.summary(id), !!id && !!progress.data?.length,
-  );
-  if (!progress.data?.length || summary.data?.percentage == null || summary.data.requires_branch_choice) return null;
-  return <span className="career-progress" role="meter" aria-label="Roadmap completion" aria-valuemin={0} aria-valuemax={100} aria-valuenow={summary.data.percentage}>{Math.round(summary.data.percentage)}%</span>;
+function RoadmapProgress({ value }: {
+  value?: { has_progress: boolean; percentage: number | null; requires_branch_choice: boolean };
+}) {
+  if (!value?.has_progress || value.percentage == null || value.requires_branch_choice) return null;
+  return <span className="career-progress" role="meter" aria-label="Roadmap completion" aria-valuemin={0} aria-valuemax={100} aria-valuenow={value.percentage}>{Math.round(value.percentage)}%</span>;
 }
 export default function RoleCatalog({
   onSelectRole,
@@ -28,13 +26,13 @@ export default function RoleCatalog({
   const searchInput = useRef<HTMLInputElement>(null);
   const restoreFocus = useRef(false);
   const categories = useCoreQuery(["categories"], coreApi.categories);
-  const fieldCounts = useCoreQuery(["catalog-field-counts"], async () => {
+  const fieldCounts = useCoreQuery(["catalog-field-counts"], async signal => {
     const limit = 100;
-    const first = await coreApi.catalog({ limit });
+    const first = await coreApi.catalog({ limit }, signal);
     const byCategory: Record<string, number> = {};
     let page = first;
     for (let offset = 0; offset < first.total; offset += limit) {
-      if (offset > 0) page = await coreApi.catalog({ limit, offset });
+      if (offset > 0) page = await coreApi.catalog({ limit, offset }, signal);
       if (page.catalog_release_id !== first.catalog_release_id || page.total !== first.total) {
         throw new Error("The career catalog changed while loading field counts.");
       }
@@ -65,14 +63,20 @@ export default function RoleCatalog({
   const categoryId = categories.data?.find((c) => c.title === category)?.id;
   const careers = useCoreQuery(
     ["careers", search, categoryId],
-    () =>
+    signal =>
       coreApi.catalog({
         q: search || undefined,
         category_id: categoryId,
         limit: 100,
-      }),
+      }, signal),
     !categories.isPending && !preferences.isPending,
   );
+  const state = recommendations.data;
+  const run = state?.current?.status === "completed" ? state.current : state?.previous_eligible_success;
+  const cardRoadmap = (role: NonNullable<typeof careers.data>["items"][number]) =>
+    run?.items.find(item => item.career_id === role.id && !!item.roadmap_id && role.roadmap_ids.includes(item.roadmap_id))?.roadmap_id ?? role.roadmap_ids[0] ?? "";
+  const ids = [...new Set((careers.data?.items ?? []).map(cardRoadmap).filter(Boolean))].sort();
+  const badges = useCoreQuery(["catalog-progress", ids], signal => coreApi.catalogProgress(ids, signal), ids.length > 0);
   const update = (key: string, value: string) => {
     const next = new URLSearchParams(params);
     if (value) next.set(key, value);
@@ -107,11 +111,6 @@ export default function RoleCatalog({
       </StatePanel>
     );
   const all = careers.data?.items ?? [];
-  const state = recommendations.data;
-  const run =
-    state?.current?.status === "completed"
-      ? state.current
-      : state?.previous_eligible_success;
   const suggestedIds = new Set(run?.items.map((item) => item.career_id) ?? []);
   const suggested = all.filter((role) => suggestedIds.has(role.id));
   const others = all.filter((role) => !suggestedIds.has(role.id));
@@ -138,7 +137,7 @@ export default function RoleCatalog({
           className="career-card catalog-career-card"
         >
           <div className="career-card-meta"><p className="card-category">{categories.data?.find((item) => item.id === role.category_id)?.title}</p>
-          <RoadmapProgress id={run?.items.find(item => item.career_id === role.id && !!item.roadmap_id && role.roadmap_ids.includes(item.roadmap_id))?.roadmap_id ?? role.roadmap_ids[0] ?? ""} /></div>
+          <RoadmapProgress value={badges.data?.find(item => item.roadmap_id === cardRoadmap(role))} /></div>
           <h2>{role.title}</h2>
           <p>
             {careerSummary(role.description)}

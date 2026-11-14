@@ -12,6 +12,7 @@ from fastapi.responses import JSONResponse
 from app.api.foundation import router as foundation_router
 from app.api.health import router
 from app.core.config import Settings, get_settings
+from app.core.database_metrics import current_metrics
 from app.core.errors import APIError, api_error
 from app.core.logging import configure_logging
 from app.core.security import TokenVerifier
@@ -62,6 +63,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     async def request_context(request: Request, call_next):
         request_id = str(uuid4())
         request.state.request_id = request_id
+        metrics = {"database_query_count": 0, "database_execution_ms": 0.0,
+                   "database_acquisition_ms": 0.0}
+        metrics_token = current_metrics.set(metrics)
         started = perf_counter()
         try:
             response = await call_next(request)
@@ -82,6 +86,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             "http_request",
             extra={
                 "fields": {
+                    **{key: round(value, 2) for key, value in metrics.items()},
                     "request_id": request_id,
                     "method": request.method,
                     "route": getattr(route, "path", "unmatched"),
@@ -90,6 +95,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                 }
             },
         )
+        current_metrics.reset(metrics_token)
         return response
 
     app.include_router(router, prefix="/api/v1")
@@ -105,7 +111,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     from app.modules.careers.comparison import router as comparison_router
 
     app.include_router(comparison_router, prefix="/api/v1")
-    from app.modules.ai_guidance import ComparisonInsights, router as ai_guidance_router
+    from app.modules.ai_guidance import ComparisonInsights
+    from app.modules.ai_guidance import router as ai_guidance_router
 
     app.state.comparison_insights = ComparisonInsights()
     app.include_router(ai_guidance_router, prefix="/api/v1")
