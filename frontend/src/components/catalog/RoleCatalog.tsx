@@ -14,7 +14,9 @@ interface RoleCatalogProps {
 }
 function RoadmapProgress({ id }: { id: string }) {
   const progress = useCoreQuery(["progress", id], () => coreApi.progress(id), !!id);
-  const summary = useCoreQuery(["summary", id], () => coreApi.summary(id), !!id);
+  const summary = useCoreQuery(
+    ["summary", id], () => coreApi.summary(id), !!id && !!progress.data?.length,
+  );
   if (!progress.data?.length || summary.data?.percentage == null || summary.data.requires_branch_choice) return null;
   return <span className="career-progress" role="meter" aria-label="Roadmap completion" aria-valuemin={0} aria-valuemax={100} aria-valuenow={summary.data.percentage}>{Math.round(summary.data.percentage)}%</span>;
 }

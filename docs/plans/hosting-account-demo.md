@@ -1,5 +1,20 @@
 # Hosted account demo implementation plan
 
+## Hosted content latency correction, 2026-11-15
+
+Owner/implementer: Codex; reviewer/operator: @YakisobaNissin. QA-09, A-09.
+Owner runtime logs show concurrent roadmap reads taking 27–41 seconds, pool
+timeouts and readiness failures. Existing roadmap assembly queries each topic's
+details, prerequisites and resources separately. Batch those catalog reads by
+roadmap in backend/app/modules/roadmaps/service.py, preserving ordering, missing
+roadmap errors, response fields, retired content and existing authorization.
+In frontend/src/components/catalog/RoleCatalog.tsx, defer summary requests until
+the existing progress query confirms saved rows. Cards without saved progress
+already render no meter; preserve that behavior and account-scoped query keys.
+No schema, shared HTTP contract, pool-size or permission change. Add focused
+assembly/query-count regression coverage; run relevant progress/catalog tests,
+changed-file lint and whitespace. Hosted timings remain an owner verification step.
+
 ## Readiness diagnostics, 2026-11-14
 
 Follow-up within the same approved hosting scope: the hosted diagnostic shows the

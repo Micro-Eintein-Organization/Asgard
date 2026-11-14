@@ -1,5 +1,38 @@
 # Core acceptance and deployment preparation
 
+## Hosted roadmap latency correction, 2026-11-15
+
+Implementer: Codex; created/updated: 2026-11-15. Status: implemented, required
+technical review by @YakisobaNissin and hosted timing acceptance pending.
+Requirements: QA-09, A-09; [bounded plan](../plans/hosting-account-demo.md).
+Owner logs showed roadmap summary/progress requests lasting 27–41 seconds and
+pool/readiness timeouts. Roadmap assembly in
+`backend/app/modules/roadmaps/service.py` now fetches milestones, groups, branches,
+topics, prerequisites and resources in six collection queries plus the existing
+roadmap existence lookup, instead of querying children per topic. Ordering,
+response fields, retired records and the existing restricted session transaction
+are preserved. No database grant, schema, pool-size or API contract changed.
+Catalog cards defer summaries until saved progress exists; see the
+[catalog guide](career-catalog.md).
+
+Focused backend batching/progress checks: 4 passed; changed-file Ruff passed.
+Frontend TypeScript, changed-file ESLint and 7 catalog tests passed. Whitespace
+checks passed. Browser journeys remain owner-operated and were not run by Codex.
+An initial test harness attempt used an unavailable pytest async plugin; corrected
+to the existing asyncio.run convention before the passing run. The regression
+checks cover empty/100-topic assembly, constant query count, grouping, missing
+roadmaps and existing branch-summary calculations. These are unit checks, not
+live SQL or hosted performance evidence. Unchanged authentication/session/ownership
+enforcement reuses the existing foundation evidence; no new authorization change.
+
+After owner publication/deployment, browse careers once, open a roadmap, return
+and open another. In Render service Logs record route/status/duration_ms for the
+catalog, roadmap, summary and progress requests. Confirm warm requests improve
+and no burst of 30-second 503 responses occurs. Compare saved progress/branch
+selection and content with the prior version. Manual acceptance remains pending;
+catalog progress reads still scale with visible cards and cross-region latency
+or other slow queries can remain.
+
 ## Hosted readiness diagnostics, 2026-11-14
 
 Hosted follow-up: owner-provided logs show Supabase HTTP 401 with no database

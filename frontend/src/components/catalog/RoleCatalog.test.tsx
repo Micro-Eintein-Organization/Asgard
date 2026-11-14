@@ -6,20 +6,29 @@ import RoleCatalog from "./RoleCatalog";
 
 vi.mock("@/features/core/data", () => ({coreApi:{},useCoreQuery:vi.fn()}));
 let branchRequired: boolean;
+let hasProgress: boolean;
 function Location() {const location=useLocation(); return <output>{location.pathname}{location.search}</output>;}
 beforeEach(() => {
   branchRequired=false;
+  hasProgress=true;
   vi.mocked(useCoreQuery).mockImplementation(key => {
     const records: Record<string,unknown> = {
       categories:[{id:"category",title:"Design"}],preferences:{preferred_category_id:null},
       recommendations:{current:{status:"completed",items:[{career_id:"career",roadmap_id:"recommended"}]}},
       careers:{total:1,items:[{id:"career",title:"Designer",description:"Design",category_id:"category",skills:[],roadmap_ids:["first","recommended"]}]},
-      progress:[{status:"done"}],summary:{percentage:branchRequired?null:50,requires_branch_choice:branchRequired},
+      progress:hasProgress?[{status:"done"}]:[],summary:{percentage:branchRequired?null:50,requires_branch_choice:branchRequired},
     };
     return {data:records[String(key[0])],isPending:false,error:null} as never;
   });
 });
 describe("connected catalog interactions", () => {
+  it("does not request summaries for roadmaps without saved progress", () => {
+    hasProgress = false;
+    render(<MemoryRouter><RoleCatalog /></MemoryRouter>);
+    const summary = vi.mocked(useCoreQuery).mock.calls.find(call => call[0][0] === "summary");
+    expect(summary?.[2]).toBe(false);
+    expect(screen.queryByRole("meter")).toBeNull();
+  });
   it("clears only search and returns focus to the input", async () => {
     render(<MemoryRouter initialEntries={["/careers?category=Design&q=designer"]}><RoleCatalog /><Location /></MemoryRouter>);
     fireEvent.click(screen.getByRole("button",{name:"Clear search query"}));
