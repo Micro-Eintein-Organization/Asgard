@@ -2,6 +2,12 @@
 
 ## Hosted readiness diagnostics, 2026-11-14
 
+Hosted follow-up: owner-provided logs show Supabase HTTP 401 with no database
+failure. The REST OpenAPI root is restricted to privileged keys; readiness now
+probes `/auth/v1/settings` using the existing public key instead. No service-role
+credential is required. Operations tests assert that endpoint and key header.
+Hosted verification of this correction remains pending owner publication.
+
 Implementer: Codex. Created/updated: 2026-11-14. Status: implemented;
 technical review by @YakisobaNissin and hosted verification pending. Acceptance:
 QA-09/11; scope recorded in the [hosting plan](../plans/hosting-account-demo.md).

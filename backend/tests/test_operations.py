@@ -38,6 +38,9 @@ def test_readiness_reports_upstream_failure(client, status_code):
     response = client.get("/api/v1/ready")
     assert response.status_code == (200 if status_code == 200 else 503)
     assert response.json()["status"] == ("ready" if status_code == 200 else "not_ready")
+    call = client.app.state.http.get.call_args
+    assert call.args[0] == "http://supabase.invalid/auth/v1/settings"
+    assert call.kwargs["headers"] == {"apikey": "fixture-public-key"}
 
 
 def test_readiness_timeout_is_bounded_and_sanitized(client):

@@ -41,7 +41,7 @@ async def ready(request: Request) -> ReadinessResponse | JSONResponse:
     if api_key:
         try:
             response = await request.app.state.http.get(
-                f"{settings.supabase_url.rstrip('/')}/rest/v1/",
+                f"{settings.supabase_url.rstrip('/')}/auth/v1/settings",
                 headers={"apikey": api_key},
                 timeout=settings.readiness_timeout_seconds,
             )

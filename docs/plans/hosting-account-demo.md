@@ -2,6 +2,12 @@
 
 ## Readiness diagnostics, 2026-11-14
 
+Follow-up within the same approved hosting scope: the hosted diagnostic shows the
+database passes but the REST OpenAPI root returns 401. Replace that privileged
+schema-discovery probe with the public-key-compatible Auth settings endpoint.
+Preserve the response contract, database gate and credential privileges. Verify
+the probe URL/header in focused operations tests; reviewer remains @YakisobaNissin.
+
 Owner/implementer: Codex; required reviewer/operator: @YakisobaNissin.
 Within the approved hosting troubleshooting scope (QA-09/11), add sanitized
 server-side readiness failure categories in backend/app/api/health.py and focused
