@@ -129,6 +129,10 @@ def main(project, live):
                 try:
                     questionnaire = api.get("/api/v1/discovery/questionnaire", headers=headers)
                     require(questionnaire.status_code == 200, "questionnaire_read")
+                    require(
+                        questionnaire.json()["version"] == 1,
+                        "v2_uses_local_rules_run_scripts_check_discovery_v2",
+                    )
                     started = api.post(
                         "/api/v1/me/discovery",
                         headers=headers,
@@ -162,7 +166,7 @@ def main(project, live):
                     )
                     require(completed.status_code == 200, "synthetic_completion")
                     before = api.get("/api/v1/me/learning", headers=headers).json()
-                    catalog = api.get("/api/v1/careers", headers=headers)
+                    catalog = api.get("/api/v1/careers?limit=100", headers=headers)
                     require(
                         catalog.status_code == 200 and bool(catalog.json()["items"]),
                         "published_catalog_read",

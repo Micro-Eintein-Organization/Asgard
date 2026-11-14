@@ -1,5 +1,13 @@
 # Deployment preparation and release gates
 
+2026-11-13 account-demo update: use the
+[owner setup checklist](deployment-account-demo.md) for the zero-cost, protected
+Vercel preview demo. The owner selected built-in email to their eligible organization
+address; this is a bounded nonproduction exception, not external SMTP acceptance.
+Optional MFA source and its disabled-by-default AUTH-C2 gate are recorded in the
+[implementation guide](features/optional-two-factor-authentication.md). Provider
+setup, hosted checks and owner manual acceptance remain pending.
+
 Updated 2026-10-29. Implementer: Codex. Operator/reviewer: @YakisobaNissin
 (human review deferred, not recorded as completed).
 

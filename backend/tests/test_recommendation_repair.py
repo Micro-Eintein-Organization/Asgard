@@ -148,7 +148,7 @@ def test_valid_provider_output_is_bounded_and_diagnostics_exclude_payloads(caplo
     async def scenario():
         def respond(request):
             body = json.loads(request.content)
-            assert body["max_completion_tokens"] == 4096
+            assert body["max_completion_tokens"] == 1536
             assert body["response_format"]["json_schema"]["strict"] is True
             return httpx.Response(
                 200,
@@ -253,6 +253,7 @@ def test_provider_retry_requires_a_persisted_reservation():
 
 def service_boundary(monkeypatch, content, records):
     connection = SimpleNamespace(execute=AsyncMock())
+    monkeypatch.setattr(service.discovery, "latest_completed_identity", AsyncMock(return_value=None))
 
     @asynccontextmanager
     async def transaction(*args):
@@ -289,6 +290,28 @@ def service_boundary(monkeypatch, content, records):
 
     service.release_id.return_value = UUID(content["catalog_release_id"])
     return request, SimpleNamespace(user_id=uuid4()), body, connection
+
+
+def test_v2_request_uses_rules_with_groq_disabled_and_no_quota_reservation(monkeypatch):
+    from app.modules.discovery.definition import QUESTIONNAIRE_V2_ID
+
+    request, identity, body, connection = service_boundary(monkeypatch, fixture_content(), [])
+    request.app.state.settings = SimpleNamespace(groq_enabled=False)
+    completed = {"id": uuid4(), "revision": 1, "questionnaire_id": QUESTIONNAIRE_V2_ID}
+    monkeypatch.setattr(service.discovery, "latest_completed_identity", AsyncMock(return_value=completed))
+    local = SimpleNamespace(status="completed", model_id=None)
+    rules = AsyncMock(return_value=local)
+    provider = AsyncMock()
+    reserve = AsyncMock()
+    monkeypatch.setattr(service, "request_rules", rules)
+    monkeypatch.setattr(service, "generate", provider)
+    monkeypatch.setattr(service, "reserve_attempt", reserve)
+
+    assert asyncio.run(service.request_run(request, identity, body)) is local
+    assert rules.await_args.args[0] is connection
+    assert rules.await_args.args[-1] == completed
+    provider.assert_not_awaited()
+    reserve.assert_not_awaited()
 
 
 def test_duplicate_request_reuses_saved_run_without_provider(monkeypatch):
@@ -354,12 +377,14 @@ def test_token_limit_boundary(monkeypatch):
     from app.modules.recommendations import provider
 
     payload, _, _ = provider_payload(fixture_content())
-    monkeypatch.setattr(provider, "input_tokens", lambda _: 12000)
-    assert prepare_request(Settings(), payload)
-    monkeypatch.setattr(provider, "input_tokens", lambda _: 12001)
-    with pytest.raises(ProviderFailure, match="invalid_output") as error:
-        prepare_request(Settings(), payload)
-    assert error.value.stage == "input_budget"
+    for model, limit in (("openai/gpt-oss-120b", 6064), ("other-model", 12000)):
+        settings = Settings(groq_model=model)
+        monkeypatch.setattr(provider, "input_tokens", lambda _: limit)
+        assert prepare_request(settings, payload)
+        monkeypatch.setattr(provider, "input_tokens", lambda _: limit + 1)
+        with pytest.raises(ProviderFailure, match="invalid_output") as error:
+            prepare_request(settings, payload)
+        assert error.value.stage == "input_budget"
 
 
 def test_oversized_preflight_does_not_insert_reserve_or_call_provider(monkeypatch):

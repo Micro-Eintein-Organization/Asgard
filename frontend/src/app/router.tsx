@@ -22,6 +22,7 @@ import { CareerDestination } from "./career-navigation";
 import { EscoReferencePage } from "@/features/catalog/esco";
 
 import { CounselorPage } from "@/features/ai-guidance";
+import { MfaPage } from "@/features/auth/mfa-page";
 
 export const router = createBrowserRouter([
   {
@@ -44,6 +45,8 @@ export const router = createBrowserRouter([
       { path: routes.recovery, element: <AuthPage mode="recovery" /> },
       { path: routes.verify, element: <AuthPage mode="verify" /> },
       { path: routes.status, element: <FoundationStatus /> },
+      { path: routes.mfaSetup, element: <MfaPage /> },
+      { path: routes.mfaChallenge, element: <MfaPage challenge /> },
       {
         element: <ProtectedRoute />,
         children: [

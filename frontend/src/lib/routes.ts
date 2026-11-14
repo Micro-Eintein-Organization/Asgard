@@ -5,6 +5,8 @@ export const routes = {
   recovery: "/password-recovery",
   verify: "/check-email",
   status: "/status",
+  mfaSetup: "/set-up-2fa",
+  mfaChallenge: "/verify-2fa",
 };
 
 export const appRoutes = {
@@ -18,4 +20,12 @@ export const appRoutes = {
   account: "/settings/account",
   roadmaps: "/roadmaps",
   roadmap: (id: string) => `/roadmaps/${id}`,
+  skillComparison: (careerId: string, roadmapId: string) =>
+    `/roadmaps/${encodeURIComponent(careerId)}?${new URLSearchParams({
+      roadmap: roadmapId, reviewSkills: "1",
+    })}`,
+  resumeReview: (careerId: string, roadmapId: string) =>
+    `/settings/profile?${new URLSearchParams({
+      reviewCareer: careerId, reviewRoadmap: roadmapId,
+    })}#resume-skill-review`,
 };

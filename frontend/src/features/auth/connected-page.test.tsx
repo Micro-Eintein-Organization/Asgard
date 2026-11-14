@@ -1,6 +1,6 @@
 import { beforeEach, expect, it, vi } from "vitest";
 import { fireEvent, render, screen } from "@testing-library/react";
-import { MemoryRouter, Route, Routes } from "react-router";
+import { Link, MemoryRouter, Route, Routes } from "react-router";
 import { AuthContext } from "@/auth/context";
 import { ConnectedAuthPage } from "./connected-page";
 import { WelcomePage } from "@/features/discovery/page";
@@ -28,6 +28,8 @@ function renderVerificationPage(mode: "verify" | "recovery" = "verify") {
           user: null,
           loading: false,
           error: null,
+          mfa: "ready",
+          refreshAssurance: async () => {},
           signOut: async () => {},
         }}
       >
@@ -38,6 +40,7 @@ function renderVerificationPage(mode: "verify" | "recovery" = "verify") {
             element={<h1>Create an account destination</h1>}
           />
           <Route path="/welcome" element={<WelcomePage />} />
+          <Route path="/set-up-2fa" element={<><h1>Protect your account</h1><Link to="/welcome">Skip for now</Link></>} />
           <Route
             path="/careers"
             element={<h1>Career catalog destination</h1>}
@@ -118,6 +121,8 @@ it.each([
     target: { value: "123456" },
   });
   fireEvent.click(screen.getByRole("button", { name: "Verify" }));
+  expect(await screen.findByRole("heading", { name: "Protect your account" })).toBeVisible();
+  fireEvent.click(screen.getByRole("link", { name: "Skip for now" }));
   expect(
     await screen.findByRole("heading", {
       name: "How would you like to begin?",

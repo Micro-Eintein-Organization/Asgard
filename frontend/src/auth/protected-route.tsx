@@ -4,7 +4,7 @@ import { useAuth } from "./context";
 import { authConfigured } from "./supabase";
 
 export function ProtectedRoute() {
-  const { user, loading, error } = useAuth();
+  const { user, loading, error, mfa } = useAuth();
   if (!authConfigured)
     return (
       <StatePanel kind="empty" title="Account setup awaits approval">
@@ -29,5 +29,7 @@ export function ProtectedRoute() {
     );
   if (!user) return <Navigate to="/sign-in" replace />;
   if (!user.email_confirmed_at) return <Navigate to="/check-email" replace />;
+  if (mfa === "required") return <Navigate to="/verify-2fa" replace />;
+  if (mfa === "checking") return <StatePanel kind="loading" title="Checking account security">Please wait.</StatePanel>;
   return <Outlet />;
 }

@@ -259,7 +259,7 @@ function CounselorConversation({ params, page, onFollowSource }: {
   const prompts = page === "Settings"
     ? ["What happens when I upload a resume?", "How do saved skills affect my career suggestions?"]
     : page === "Dashboard"
-      ? ["How do I resume learning?", "How does my learning streak work?"]
+      ? ["What should I learn next?", "How does my learning streak work?"]
       : params.has("left") && params.has("right")
     ? ["What work do these careers share?", "Give me an exercise to try both roles."]
     : params.has("topic")
@@ -315,7 +315,7 @@ function CounselorConversation({ params, page, onFollowSource }: {
             </Button>
           </div>
         </div>
-        <p className="counselor-disclosure">Groq receives your question, recent turns, and relevant career context. Public search uses career names.</p>
+        <p className="counselor-disclosure">Groq receives your question, recent turns, and relevant career or next-step context. Public search uses career names.</p>
       </form>
     </div>
   );

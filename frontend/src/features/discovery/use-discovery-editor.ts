@@ -21,6 +21,7 @@ function valid(question: Question, selected: string[]) {
     selected.length > 0 &&
     options.length === selected.length &&
     (question.multiple || selected.length === 1) &&
+    selected.length <= (question.max_selections ?? Infinity) &&
     !(selected.length > 1 && options.some((item) => item.exclusive)) &&
     !options.some((item) => item.excludes.some((id) => selected.includes(id)))
   );
@@ -111,6 +112,10 @@ export function useDiscoveryEditor(initial: Session, definition: Definition) {
         }),
         id,
       ];
+    if (question.max_selections && next.length > question.max_selections) {
+      setFeedback(`Choose up to ${question.max_selections} options. Deselect one to change your choices.`);
+      return;
+    }
     setDrafts((previous) => ({ ...previous, [question.question_id]: next }));
     setError("");
     setFeedback(
@@ -135,7 +140,7 @@ export function useDiscoveryEditor(initial: Session, definition: Definition) {
         throw new Error("Your account changed. Reopen Discovery.");
       setSaved(result);
     };
-    if (!same(drafts.interests, savedAnswers.interests)) {
+    if (definition.version === 1 && !same(drafts.interests, savedAnswers.interests)) {
       const first = definition.questions.find(
         (item) => item.question_id === "interests",
       )!;
@@ -147,9 +152,9 @@ export function useDiscoveryEditor(initial: Session, definition: Definition) {
       result.answers.map((answer) => [answer.question_id, answer.option_ids]),
     );
     const changes = Object.entries(drafts).filter(
-      ([id, values]) => id !== "interests" && !same(values, baseline[id]),
+      ([id, values]) => !same(values, baseline[id]),
     );
-    if (changes.some(([id]) => !result.active_question_ids.includes(id)))
+    if (definition.version === 1 && changes.some(([id]) => !result.active_question_ids.includes(id)))
       throw new Error(
         "There are unsaved edits on an inactive question. Return to that branch to save them, or leave without saving.",
       );
@@ -176,13 +181,13 @@ export function useDiscoveryEditor(initial: Session, definition: Definition) {
     return result;
   }
 
-  async function saveCurrent() {
-    if (same(selected, savedAnswers[question.question_id])) return saved;
+  async function saveCurrent(values = selected) {
+    if (same(values, savedAnswers[question.question_id])) return saved;
     const result = await checkpoint.mutateAsync({
       id: saved.id,
       body: {
         expected_version: saved.revision,
-        answers: [{ question_id: question.question_id, option_ids: selected }],
+        answers: [{ question_id: question.question_id, option_ids: values }],
       },
     });
     if (!isCurrentAccount(userId))
@@ -232,6 +237,7 @@ export function useDiscoveryEditor(initial: Session, definition: Definition) {
       const finalStep =
         direction > 0 && index === saved.active_question_ids.length - 1;
       const result = finalStep ? await saveAll() : await saveCurrent();
+      const savedIndex = result.active_question_ids.indexOf(question.question_id);
       if (direction < 0 && index === 0) {
         const baseline = Object.fromEntries(
           result.answers.map((answer) => [
@@ -245,7 +251,7 @@ export function useDiscoveryEditor(initial: Session, definition: Definition) {
         void navigate(appRoutes.welcome);
       } else if (
         direction > 0 &&
-        index === result.active_question_ids.length - 1
+        savedIndex === result.active_question_ids.length - 1
       ) {
         const completed = await completion.mutateAsync({
           id: result.id,
@@ -257,9 +263,17 @@ export function useDiscoveryEditor(initial: Session, definition: Definition) {
           replace: true,
           state: { generateFor: completed.id },
         });
-      } else setIndex(index + direction);
+      } else setIndex(savedIndex + direction);
     });
   }
+
+  const skipExperience = () =>
+    perform(async () => {
+      if (question.kind !== "experience_preference") return;
+      const result = await saveCurrent(["unsure"]);
+      setDrafts(previous => ({ ...previous, [question.question_id]: ["unsure"] }));
+      setIndex(result.active_question_ids.indexOf(question.question_id) + 1);
+    });
 
   const skip = () =>
     perform(async () => {
@@ -325,6 +339,7 @@ export function useDiscoveryEditor(initial: Session, definition: Definition) {
     toggle,
     move,
     skip,
+    skipExperience,
     leaveWithoutSaving,
     reload,
     blocker,

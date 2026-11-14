@@ -68,8 +68,9 @@ def prepare_selection(settings, content, diagnostics=None):
     from app.modules.recommendations.provider import ProviderFailure, prepare_request
     from app.modules.recommendations.selection import provider_payload
 
+    compact = settings.groq_model in ("openai/gpt-oss-120b", "openai/gpt-oss-20b")
     while True:
-        payload, candidates, facts = provider_payload(content)
+        payload, candidates, facts = provider_payload(content, compact=compact)
         try:
             prepared = prepare_request(settings, payload, diagnostics=diagnostics)
             return payload, candidates, facts, prepared

@@ -16,6 +16,7 @@ import { useProfileEditor } from "@/features/profile/use-profile-editor";
 import { ProfileEditorDialogs } from "@/features/profile/profile-editor-dialogs";
 import { ProfileDetailsCard, ProfileNameFields, SettingsLayout } from "@/features/profile/settings-layout";
 import { ProfilePhoto } from "@/features/profile/profile-photo";
+import { AuthenticatorSetting } from "@/features/auth/mfa-page";
 
 export function SettingsScreen() {
   const { user } = useAuth();
@@ -29,11 +30,7 @@ function AccountCards() {
       <Button disabled variant="outline">Link Google</Button>
       <Unavailable>Google linking is not available yet.</Unavailable>
     </Card>
-    <Card className="settings-card">
-      <header><h2>Authenticator app</h2><p>Optional two-factor authentication adds a second verification step.</p></header>
-      <Button disabled variant="outline">Set up authenticator</Button>
-      <Unavailable>Enrollment and recovery are not available yet.</Unavailable>
-    </Card>
+    <AuthenticatorSetting />
     <Card className="settings-card">
       <header><h2>Delete account</h2><p>Account deletion and removal of personal records are not available yet.</p></header>
       <Button disabled variant="destructive">Delete account</Button>
@@ -44,7 +41,8 @@ function AccountCards() {
 
 function SettingsEditor({ userId }: { userId: string }) {
   const navigate = useNavigate();
-  const { hash } = useLocation();
+  const { hash, search } = useLocation();
+  const review = new URLSearchParams(search);
   const accountView = hash === "#account-security";
   const logout = useLogout();
   const [primaryField, setPrimaryField] = useState<string | null>(null);
@@ -161,7 +159,7 @@ function SettingsEditor({ userId }: { userId: string }) {
           </form>
         </ProfileDetailsCard>
         <Card className="settings-card settings-discovery" id="saved-discovery" tabIndex={-1}>
-          <header><h2>Saved Discovery suggestions</h2><p>Discovery results are separate from your current roadmap.</p></header>
+          <header><h2>Guided Discovery</h2><p>Explore careers based on the work you’d like to try.</p></header>
           {discovery.isPending || recommendations.isPending ? <p role="status">Loading saved Discovery.</p>
             : discovery.error || recommendations.error ? <p role="alert" className="field-error">{(discovery.error ?? recommendations.error)?.message} <Button variant="outline" onClick={() => { void discovery.refetch(); void recommendations.refetch(); }}>Reload Discovery</Button></p>
             : savedRun ? <p>{savedRun.items.length} saved career {savedRun.items.length === 1 ? "suggestion" : "suggestions"}.{savedRun.outdated && " Your saved context has changed."}</p>
@@ -172,6 +170,9 @@ function SettingsEditor({ userId }: { userId: string }) {
             </Button>
             {discovery.data?.latest_completed && <Button asChild variant="outline"><Link to={appRoutes.results}>View saved career suggestions</Link></Button>}
           </div>
+          {discovery.data?.latest_completed && !discovery.data.draft && (
+            <p className="field-help">Retake Discovery to answer the whole questionnaire again. Your previous answers stay saved.</p>
+          )}
           {retake.error && <p role="alert" className="field-error">{retake.error.message} <Button variant="outline" onClick={() => void discovery.refetch()}>Reload Discovery</Button></p>}
           {editing && <p className="field-help">Save or discard your edits before opening Discovery.</p>}
         </Card>
@@ -205,6 +206,8 @@ function SettingsEditor({ userId }: { userId: string }) {
           {preferenceError && <p role="alert" className="field-error">{preferenceError.message} <Button variant="outline" disabled={preferenceSave.isPending} onClick={() => void reloadPreferences()}>Reload preferences</Button></p>}
         </Card>
         <ProfileSkills key={userId} active={!accountView} onGuardChange={onSkillGuardChange}
+          reviewCareer={review.get("reviewCareer") ?? undefined}
+          reviewRoadmap={review.get("reviewRoadmap") ?? undefined}
           documents={<ProfileDocuments compact onGuardChange={onDocumentGuardChange} />} />
       </div>
       <section id="account-security" tabIndex={-1} className="settings-account-content" aria-label="Account and security" hidden={!accountView}>

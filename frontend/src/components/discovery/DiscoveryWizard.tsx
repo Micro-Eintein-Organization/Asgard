@@ -16,6 +16,8 @@ import { coreApi, useCoreMutation, useCoreQuery } from "@/features/core/data";
 import { useDiscoveryEditor } from "@/features/discovery/use-discovery-editor";
 import { RecommendationCards } from "@/features/recommendations/components";
 import { useRecommendationFlow } from "@/features/recommendations/use-recommendation-flow";
+import { useAuth } from "@/auth/context";
+import { isCurrentAccount } from "@/auth/transport";
 
 type Schemas = components["schemas"];
 
@@ -79,7 +81,6 @@ export function DiscoveryWizard() {
       />
     );
   const completed = state.data.latest_completed;
-  const authored = definition.data;
   if (!completed)
     return start.error ? (
       <StatePanel
@@ -88,7 +89,13 @@ export function DiscoveryWizard() {
         action={
           <button
             disabled={start.isPending}
-            onClick={() => start.mutate({ questionnaire_id: authored.id })}
+            onClick={() => {
+              void definition.refetch().then(({ data }) => {
+                if (!data) return;
+                opening.current = true;
+                start.mutate({ questionnaire_id: data.id });
+              });
+            }}
           >
             Try again
           </button>
@@ -116,15 +123,13 @@ export function DiscoveryWizard() {
             : "Explore what interests you"}
         </h2>
         <p className="text-sm text-gray-500">
-          Five short themes include an activities question based on your
-          interests. You can choose uncertainty, save and leave, or browse
-          careers at any time.
+          Discovery asks about work you’d like to try. You can choose
+          uncertainty, save and leave, or browse careers at any time.
         </p>
         <p className="text-xs text-gray-500">
-          Your active answers and relevant learning context can be sent to Groq
-          to suggest careers from the small published catalog. Names and contact
-          details are excluded. Suggestions are exploration options, not an
-          assessment of ability.
+          {definition.data.version === 2
+            ? "Suggestions use your active answers and the published career catalog. They are starting points for exploration."
+            : "Your active answers and relevant learning context can be sent to Groq to suggest careers from the published catalog. Names and contact details are excluded."}
         </p>
         <Link to={appRoutes.profile} className="underline">
           Retake Discovery in Settings
@@ -174,7 +179,9 @@ function DiscoveryEditor({
           </p>
           <p className="text-xs text-gray-500">
             {editor.question.multiple
-              ? "Choose all that apply, or uncertainty on its own."
+              ? editor.question.max_selections
+                ? `Choose up to ${editor.question.max_selections}, or uncertainty on its own.`
+                : "Choose all that apply, or uncertainty on its own."
               : "Choose one."}
           </p>
         </header>
@@ -184,7 +191,9 @@ function DiscoveryEditor({
           className="choice-grid question-choices border-0 p-0"
           style={
             {
-              "--choice-count": editor.question.options.length,
+              "--choice-count": definition.version === 2
+                ? Math.min(editor.question.options.length, 4)
+                : editor.question.options.length,
             } as CSSProperties
           }
         >
@@ -206,7 +215,7 @@ function DiscoveryEditor({
                   </span>
                 )}
                 <strong>{option.label}</strong>
-                <span>{option.description}</span>
+                {option.description && <span>{option.description}</span>}
               </label>
             );
           })}
@@ -241,6 +250,11 @@ function DiscoveryEditor({
           </div>
         )}
         <div className="question-actions" data-align="end">
+          {editor.question.kind === "experience_preference" && (
+            <Button variant="outline" disabled={editor.busy} onClick={() => void editor.skipExperience()}>
+              Skip
+            </Button>
+          )}
           <Button disabled={editor.busy} onClick={() => void editor.move(1)}>
             {editor.busy
               ? "Saving…"
@@ -309,38 +323,67 @@ function DiscoveryEditor({
 }
 
 export function DiscoveryResults() {
+  const { user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const state = useCoreQuery(["discovery"], coreApi.discovery);
-  const flow = useRecommendationFlow();
+  const retake = useCoreMutation(coreApi.retakeDiscovery);
   const started = useRef(false);
+  const requestedRules = useRef<string | null>(null);
   const completed = state.data?.latest_completed;
+  const questionnaire = useCoreQuery(
+    ["questionnaire", completed?.questionnaire_id],
+    () => coreApi.questionnaire(completed?.questionnaire_id),
+    !!completed?.questionnaire_id,
+  );
+  const rulesMode = questionnaire.data?.version === 2;
+  const flow = useRecommendationFlow(rulesMode);
   const generateFor =
     typeof location.state?.generateFor === "string"
       ? location.state.generateFor
       : null;
   useEffect(() => {
     if (
-      !generateFor ||
-      started.current ||
       !completed ||
-      generateFor !== completed.id ||
       !flow.query.data ||
       state.isFetching ||
+      (!!completed.questionnaire_id && !questionnaire.data) ||
       flow.query.isFetching ||
-      flow.pending
+      flow.pending ||
+      flow.cooldown
     )
       return;
+    const saved = flow.query.data;
+    const current = saved.current;
+    const matchingCompletion = current?.discovery?.session_id === completed.id &&
+      current.discovery.revision === completed.revision && !current.outdated;
+    if (rulesMode) {
+      if (generateFor) void navigate(appRoutes.results, { replace: true, state: null });
+      const finished = matchingCompletion && current?.model_id === null &&
+        (current.status === "completed" || current.failure_code === "no_supported_careers");
+      const scope = JSON.stringify([user?.id, completed.id, completed.revision, saved.catalog_release_id]);
+      if (!saved.available || finished || requestedRules.current === scope) return;
+      requestedRules.current = scope;
+      void flow.request();
+      return;
+    }
+    if (!generateFor || started.current || generateFor !== completed.id) return;
     started.current = true;
     void navigate(appRoutes.results, { replace: true, state: null });
-    const current = flow.query.data.current;
-    const alreadyPrepared =
-      current?.discovery?.session_id === completed.id &&
-      current.discovery.revision === completed.revision &&
-      !current.outdated;
-    if (flow.query.data.available && !alreadyPrepared)
-      void flow.request(completed.id);
-  }, [generateFor, completed, flow, navigate, state.isFetching]);
+    if (saved.available && !matchingCompletion) void flow.request(completed.id);
+  }, [generateFor, completed, flow, navigate, state.isFetching, questionnaire.data, rulesMode, user?.id]);
+  async function retakeDiscovery() {
+    if (!completed || !user || state.data?.draft || retake.isPending) return;
+    try {
+      await retake.mutateAsync({
+        source_session_id: completed.id,
+        expected_revision: completed.revision,
+      });
+      if (isCurrentAccount(user.id)) void navigate(appRoutes.discovery);
+    } catch {
+      void state.refetch();
+    }
+  }
   return (
     <section className="recommendations-page">
       <BackLink to={appRoutes.discovery}>Back to Discovery</BackLink>
@@ -366,34 +409,38 @@ export function DiscoveryResults() {
             {state.error.message}
           </StatePanel>
         )}
-        <RecommendationCards
-          flow={flow}
-          allowInitialRequest={
-            !!flow.query.data?.has_reported_skills && !generateFor
-          }
-        />
-        <div className="flex flex-wrap justify-center gap-4 pt-4">
+        <div className="action-row mb-6">
           <Link
             to={appRoutes.careers}
             className="bg-black text-white px-6 py-3 rounded-full text-xs"
           >
             Browse careers
           </Link>
-          {state.data?.draft && (
+          {state.data?.draft ? (
             <Link
               to={appRoutes.discovery}
               className="border px-6 py-3 rounded-full text-xs"
             >
               Resume Discovery
             </Link>
+          ) : completed && (
+            <Button variant="outline" disabled={retake.isPending || state.isFetching}
+              onClick={() => void retakeDiscovery()}>
+              {retake.isPending ? "Opening…" : "Retake Discovery"}
+            </Button>
           )}
-          <Link
-            to={appRoutes.profileSetup}
-            className="border px-6 py-3 rounded-full text-xs"
-          >
-            Set up your profile (optional)
-          </Link>
         </div>
+        {retake.error && <p role="alert" className="field-error">{retake.error.message}</p>}
+        <RecommendationCards
+          flow={flow}
+          rulesMode={rulesMode}
+          allowInitialRequest={
+            !rulesMode && !!flow.query.data?.has_reported_skills && !generateFor
+          }
+        />
+        <Link to={appRoutes.profileSetup} className="mt-4 inline-block text-xs underline">
+          Set up your profile (optional)
+        </Link>
       </div>
     </section>
   );

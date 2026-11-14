@@ -1,5 +1,34 @@
 # Discovery reliability, comparison insights, and AI Counselor
 
+## Learning progress and authored practice, 2026-11-09
+
+Codex implemented REQ-12 / PM-W08 under Yakisoba Nissin's approved local
+plan. Technical reviewer `@YakisobaNissin`. Local signed-in acceptance passed.
+
+The [Counselor](../../backend/app/modules/ai_guidance.py) and Dashboard share
+the [Progress module's milestone rule](../../backend/app/modules/progress/service.py).
+General questions prioritize an eligible active topic, then the current roadmap.
+An explicit roadmap scopes that choice. Next-step replies link to the topic,
+branch choice, roadmap, or Careers as applicable. For practice, the Counselor
+uses an authored starter only when its topic and roadmap match. Other topics can
+offer their curated resources. It can ask one short question when the intended
+topic or roadmap is unclear. Groq receives the resolved action and bounded
+evidence. The server attaches the destination using Asgard's source list.
+
+Focused Counselor, Progress, and resume checks passed (11 tests). TypeScript,
+OpenAPI drift, and generated client synchronization passed. In local Chrome,
+a disposable learner asked the live Counselor what to learn next. Its link
+matched Dashboard's **Resume learning**. After marking the topic Done, the next
+reply in the same chat linked to the next authored topic. The learner was
+removed. Branch-choice and practice fallback cases used a stubbed provider.
+
+To repeat, sign in locally at `http://127.0.0.1:5173/dashboard`, select a roadmap,
+and mark a topic Learning. Open AI Counselor, ask **What should I learn next?**,
+and compare its link with **Resume learning**. Mark the topic Done and ask
+again. Expect the next authored step. For practice, open a topic with a matching
+authored starter and ask what to practise. Report the roadmap, topic, expected
+and actual result, and any safe request ID.
+
 Implementer Codex. Created and updated 2026-11-06. Scope REQ-05, REQ-06,
 REQ-12, PM-W04, PM-W06, and PM-W08. Technical reviewer @YakisobaNissin.
 Source implemented and enabled on the owner's local stack. Technical review and signed-in acceptance are pending.

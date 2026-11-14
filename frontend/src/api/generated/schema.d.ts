@@ -1996,6 +1996,10 @@ export interface components {
             helper: string;
             /** Interest Option Id */
             interest_option_id: string | null;
+            /** Kind */
+            kind?: ("experience_preference" | "activity_follow_up") | null;
+            /** Max Selections */
+            max_selections?: number | null;
             /** Multiple */
             multiple: boolean;
             /** Options */

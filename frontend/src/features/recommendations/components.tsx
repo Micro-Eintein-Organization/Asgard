@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { CounselorLauncher } from "@/features/ai-guidance";
 import { Link } from "react-router";
 import { Button } from "@/components/ui/button";
@@ -10,9 +11,11 @@ import { useRecommendationFlow } from "./use-recommendation-flow";
 export function RecommendationCards({
   flow,
   allowInitialRequest = true,
+  rulesMode = false,
 }: {
   flow: ReturnType<typeof useRecommendationFlow>;
   allowInitialRequest?: boolean;
+  rulesMode?: boolean;
 }) {
   const catalog = useCoreQuery(["recommendation-careers"], () =>
     coreApi.catalog({ limit: 100 }),
@@ -23,10 +26,30 @@ export function RecommendationCards({
   );
   const state = flow.query.data;
   const current = state?.current;
-  const displayed =
-    current?.status === "completed"
-      ? current
-      : state?.previous_eligible_success;
+  const [shownPrevious, setShownPrevious] = useState<string>();
+  const fresh = current?.status === "completed" && !current.outdated ? current : null;
+  const previous = current?.status === "completed" && current.outdated
+    ? current : state?.previous_eligible_success;
+  const showingPrevious = !!previous && previous.id === shownPrevious;
+  const displayed = fresh ?? (showingPrevious ? previous : null);
+  const discoveryId = displayed?.discovery?.session_id;
+  const resultDiscovery = useCoreQuery(
+    ["discovery-session", discoveryId],
+    () => coreApi.discoverySession(discoveryId!),
+    !!discoveryId,
+  );
+  const preference = resultDiscovery.data?.answers.find(
+    (answer) => answer.question_id === "experience_preference",
+  )?.option_ids[0];
+  const goal = resultDiscovery.data?.answers.find(
+    (answer) => answer.question_id === "goals",
+  )?.option_ids[0];
+  const goalIntros: Record<string, string> = {
+    start: "Ready to learn? Open a roadmap to see its first topics.",
+    explore: "Look at what each career involves and open a roadmap when you find one you want to explore.",
+    change: "Considering a career change? Open a role to explore its roadmap or compare the skills you already use.",
+  };
+  const goalIntro = goal ? goalIntros[goal] : undefined;
   const error = flow.query.error ?? catalog.error;
   if (error)
     return (
@@ -81,12 +104,17 @@ export function RecommendationCards({
           {state.unavailable_reason}
         </p>
       )}
-      {flow.pending && (
+      {flow.pending ? (
         <p role="status" className="text-center py-8 text-sm">
           Preparing your career suggestions…
         </p>
+      ) : flow.willRetry && (
+        <p role="status" className="text-sm">
+          Your answers are saved. We’ll retry automatically.
+          {flow.cooldown > 0 && <span aria-hidden="true"> {flow.cooldown}s</span>}
+        </p>
       )}
-      {current?.status === "failed" && !flow.pending && (
+      {current?.status === "failed" && !flow.pending && !flow.willRetry && !flow.error && (
         <div role="status" className="border rounded-2xl p-5 space-y-3 text-sm">
           <p>
             {current.payload_erased_at
@@ -101,34 +129,30 @@ export function RecommendationCards({
           )}
         </div>
       )}
-      {flow.error && (
+      {flow.error && !flow.willRetry && (
         <p role="alert" className="field-error">
           {flow.error.message}{" "}
-          <button disabled={flow.pending} onClick={() => void flow.reload()}>
-            Reload saved state
-          </button>
+          {!rulesMode && (
+            <button disabled={flow.pending} onClick={() => void flow.reload()}>
+              Reload saved state
+            </button>
+          )}
         </p>
       )}
       {displayed && <CounselorLauncher />}
       {displayed && (
         <>
-          <p className="text-center text-xs text-gray-500">
-            {displayed !== current
-              ? "Previous saved suggestions"
-              : displayed.outdated
-                ? "Saved suggestions — your context or catalog has changed"
-                : "Saved suggestions"}{" "}
-            ·{" "}
-            {new Date(
-              displayed.finished_at ?? displayed.created_at,
-            ).toLocaleString()}
-          </p>
+          {goalIntro && <p className="text-center text-sm">{goalIntro}</p>}
+          {showingPrevious && !fresh && (
+            <p className="text-sm text-gray-500">Previous suggestions from earlier answers or context.</p>
+          )}
           <div className="career-grid results-grid mt-6">
             {displayed.items.map((item) => {
               const career = careers.find(
                 (entry) => entry.id === item.career_id,
               );
-              if (!career)
+              const roadmapId = item.roadmap_id;
+              if (!career || !roadmapId || !career.roadmap_ids.includes(roadmapId))
                 return (
                   <div
                     key={item.career_id}
@@ -138,6 +162,20 @@ export function RecommendationCards({
                     <Link to={appRoutes.careers}>Browse careers</Link>
                   </div>
                 );
+              const roadmapAction = (
+                <Button key="roadmap" asChild variant={preference === "use_experience" ? "outline" : "default"} className="h-auto min-h-9 whitespace-normal py-2 text-center">
+                  <Link to={appRoutes.roadmap(career.id) + "?" + new URLSearchParams({ roadmap: roadmapId })}>
+                    See where to start
+                  </Link>
+                </Button>
+              );
+              const comparisonAction = (
+                <Button key="compare" asChild variant={preference === "use_experience" ? "default" : "outline"} className="h-auto min-h-9 whitespace-normal py-2 text-center">
+                  <Link to={appRoutes.skillComparison(career.id, roadmapId)}>
+                    Compare my skills to this career
+                  </Link>
+                </Button>
+              );
               return (
                 <article
                   key={item.career_id}
@@ -152,109 +190,56 @@ export function RecommendationCards({
                   <p>{careerSummary(career.description)}</p>
                   <div className="suggestion-reason">
                     <h3>Why this was suggested</h3>
-                    <p className="text-sm">{item.reason}</p>
-                    {!!displayed?.evidence?.length && (
-                      <details className="text-xs">
-                        <summary>Evidence used</summary>
-                        <ul className="mt-2 space-y-1">
-                          {displayed.evidence
-                            .filter((fact) =>
-                              item.evidence_fact_ids.includes(fact.id),
-                            )
-                            .map((fact) => (
-                              <li key={fact.id}>{fact.description}</li>
-                            ))}
-                          {displayed.source_references
-                            ?.filter((reference) =>
-                              item.source_reference_ids?.includes(reference.id),
-                            )
-                            .map((reference) => (
-                              <li key={reference.id}>
-                                <p>
-                                  {reference.label}
-                                  {reference.evidence_type !== "esco_occupation_skill" && (
-                                    <>
-                                      {" · "}
-                                      {reference.relationship === "partial"
-                                        ? "Partial experience relationship"
-                                        : "Occupational reference"}
-                                    </>
-                                  )}
-                                </p>
-                                <p>{reference.definition}</p>
-                                {reference.evidence_type !== "esco_occupation_skill" && (
-                                  <>
-                                    <p>
-                                      {reference.source_title} ·{" "}
-                                      {reference.source_version} ·{" "}
-                                      {reference.locator}
-                                    </p>
-                                    <p>{reference.limitation}</p>
-                                  </>
-                                )}
-                              </li>
-                            ))}
-                        </ul>
-                        {!!displayed.coverage_limitations?.length && (
-                          <ul className="mt-2 space-y-1">
-                            {displayed.coverage_limitations.map((note) => (
-                              <li key={note}>{note}</li>
-                            ))}
-                          </ul>
-                        )}
-                      </details>
-                    )}
-                    {item.uncertainty_note && (
-                      <p className="text-xs text-gray-500">
-                        {item.uncertainty_note}
-                      </p>
-                    )}
+                    <p className="text-sm">{careerSummary(item.reason)}</p>
                   </div>
-                  <div className="career-skills">
-                    <h3>{career.exploration ? "What you could do" : "Roadmap topics"}</h3>
-                    <ul>
-                      {(career.exploration?.activities.map(activity => activity.action) ?? career.skills).slice(0, 3).map((skill) => (
+                  {!!career.skills.length && (
+                    <ul className="skill-list" aria-label="Skills in this roadmap">
+                      {career.skills.slice(0, 3).map((skill) => (
                         <li key={skill}>{skill}</li>
                       ))}
                     </ul>
-                    {!career.exploration && career.skills.length > 3 && (
-                      <p className="catalog-more-skills">
-                        {career.skills.length - 3} more skills in this roadmap
-                      </p>
-                    )}
-                  </div>
-                  <div className="action-row">
-                    <Button asChild variant="outline">
-                      <Link
-                        to={
-                          appRoutes.roadmap(career.id) +
-                          (item.roadmap_id ? "?roadmap=" + item.roadmap_id : "")
-                        }
-                      >
-                        Explore career
-                      </Link>
-                    </Button>
+                  )}
+                  <div className="action-row mt-auto !gap-2">
+                    {preference === "use_experience"
+                      ? [comparisonAction, roadmapAction]
+                      : [roadmapAction, comparisonAction]}
                   </div>
                 </article>
               );
             })}
           </div>
-          <Link
-            className="underline"
-            to={appRoutes.profile + "#saved-discovery"}
-          >
-            Review Discovery answers
-          </Link>
+          <details key={displayed.id} className="text-sm">
+            <summary>Suggestion details</summary>
+            {displayed.items.map(item => (
+              <section className="mt-3 space-y-1" key={item.career_id}>
+                <h3 className="font-semibold">{careers.find(career => career.id === item.career_id)?.title ?? "Career suggestion"}</h3>
+                <p>{item.reason}</p>
+                {item.uncertainty_note && <p>{item.uncertainty_note}</p>}
+                <ul>
+                  {displayed.evidence?.filter(fact => item.evidence_fact_ids.includes(fact.id))
+                    .map(fact => <li key={fact.id}>{fact.description}</li>)}
+                  {displayed.source_references?.filter(reference => item.source_reference_ids?.includes(reference.id))
+                    .map(reference => <li key={reference.id}>
+                      {reference.label} · {reference.definition} · {reference.source_title} · {reference.source_version} · {reference.locator}
+                      {reference.limitation && <p>{reference.limitation}</p>}
+                    </li>)}
+                </ul>
+              </section>
+            ))}
+            {displayed.coverage_limitations?.map(note => <p className="mt-2" key={note}>{note}</p>)}
+            <Link className="underline" to={appRoutes.profile + "#saved-discovery"}>Review Discovery answers</Link>
+          </details>
         </>
       )}
-      {!displayed && !flow.pending && !current && (
+      {!displayed && !flow.pending && !flow.willRetry && !flow.error && !current && (
         <p className="text-center text-sm text-gray-500">
-          No suggestions have been generated yet. You can explore every career
-          in the catalog.
+          {rulesMode && state.available
+            ? "Preparing your career suggestions…"
+            : "No suggestions have been generated yet. You can explore every career in the catalog."}
         </p>
       )}
-      <div className="action-row justify-center">
-        {state.available &&
+      <div className="action-row">
+        {!rulesMode && state.available && !flow.willRetry &&
           !gap &&
           ((allowInitialRequest && !displayed) ||
             !!flow.error ||
@@ -281,16 +266,21 @@ export function RecommendationCards({
                         : "Prepare suggestions"}
             </Button>
           )}
+        {!fresh && previous && (
+          <Button variant="ghost" aria-expanded={showingPrevious}
+            onClick={() => setShownPrevious(showingPrevious ? undefined : previous.id)}>
+            {showingPrevious ? "Hide previous suggestions" : "View previous suggestions"}
+          </Button>
+        )}
       </div>
       <p className="text-center text-xs text-gray-500">
         Suggestions use the published career catalog. They do not assess
         proficiency, guarantee suitability, or change your learning focus.
       </p>
       <p className="text-center text-xs text-gray-500">
-        Preparing suggestions sends your active Discovery choices, self-reported
-        skills, relevant saved learning context, occupational references and
-        validated document background to Groq. Names, contact details and
-        inactive answers are excluded.
+        {rulesMode
+          ? "Suggestions use your active Discovery answers and the published career catalog."
+          : "Preparing suggestions sends active Discovery choices, self-reported skills, relevant learning context, occupational references and validated document background to Groq. Names, contact details and inactive answers are excluded."}
       </p>
     </div>
   );

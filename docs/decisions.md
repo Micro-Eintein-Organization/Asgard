@@ -1,5 +1,55 @@
 # Asgard: Decisions and delivery gates
 
+## W05 Guided Discovery revision scope, 2026-11-09
+
+The project owner requested implementation of a four-to-six-question Guided
+Discovery route, with six fields, activities based on the chosen fields, at
+most one follow-up and an optional skill comparison after career selection.
+This supersedes the earlier proposed 8–10-question length. The owner’s
+“PLEASE IMPLEMENT THIS PLAN: # Asgard Guided Discovery redesign” message in
+this task supplies scope approval. The [review packet](plans/discovery-v2.md)
+records the shared contract. On 2026-11-09, the owner confirmed their identity
+and replied “please approve and implement,” approving the bounded W01 proposal
+and directing source implementation to proceed. The owner also requested a
+full retake from both Results and Profile and preservation of the existing
+design. Learner comprehension and signed-in acceptance remain release checks.
+See the [implementation guide](features/guided-discovery-v2.md).
+
+Local activation, 2026-11-09: the owner confirmed “i want the full
+implementation please. i accept already” after being told v2 was staged.
+The v2 registry was published alongside v1 in the existing local Asgard
+database. New drafts and full retakes now use v2. Existing drafts resume on
+their original version.
+
+Results follow-up, 2026-11-09: the owner requested automatic retry for
+temporary failures, optional previous suggestions, a prominent full retake,
+and smaller cards with less evidence clutter. The open Results flow may
+retry once after a user-initiated request under existing quota and cooldown
+rules. The request does not schedule generation on routine revisits.
+See the [Results follow-up](features/guided-discovery-v2.md#results-recovery-and-card-layout-2026-11-09).
+
+Deterministic first results, 2026-11-09: the owner replied “approved” to
+the [W01 saved-results proposal](plans/discovery-deterministic-results.md#shared-behavior-requiring-w01-review).
+This authorizes rule-based first results for completed Discovery v2 using
+existing storage and API operations, a Discovery-only snapshot, and no
+provider quota reservation. Existing AI runs retain their existing privacy
+and retirement protections. Optional AI refinement is a separate increment.
+
+Automatic v2 Results, 2026-11-09: the owner requested that learners never
+have to initiate the first suggestions or retry them manually. Results
+automatically prepares the current completed v2 session when it lacks an
+eligible result, including on a direct visit after an older completion.
+The client reuses valid results and bounds recovery from temporary errors.
+This does not authorize sending free text to a provider without the W01
+refinement review.
+
+Related careers, 2026-11-09: the owner requested related suggestions even
+when an activity has a strong match. Direct matches stay first. Up to three
+total results may include published roles that share concrete work, with a
+reason that distinguishes them from direct matches. Ask an extra question
+only when an unresolved choice can change the suggestions.
+[Rules follow-up](plans/discovery-deterministic-results.md#related-careers-and-clarification-2026-11-09).
+
 ## W08 implementation scope, 2026-11-06
 
 Project owner @YakisobaNissin selected a session-only read-only counselor, automatic

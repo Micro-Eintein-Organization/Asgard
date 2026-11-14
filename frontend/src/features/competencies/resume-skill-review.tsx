@@ -5,14 +5,15 @@ import { coreApi, useCoreQuery } from "@/features/core/data";
 
 type Suggestion = components["schemas"]["ResumeSkillSuggestion"];
 
-export function ResumeSkillReview({ careers, onReview, disabled, active = true }: {
+export function ResumeSkillReview({ careers, onReview, disabled, active = true, initialCareer = "" }: {
   careers: { id: string; title: string }[];
   onReview: (item: Suggestion) => ReactNode;
   disabled: boolean;
   active?: boolean;
+  initialCareer?: string;
 }) {
   const availability = useCoreQuery(["resume-review-availability"], coreApi.resumeReviewAvailability);
-  const [career, setCareer] = useState("");
+  const [career, setCareer] = useState(initialCareer);
   const [file, setFile] = useState<File | null>(null);
   const [items, setItems] = useState<Suggestion[] | null>(null);
   const [pending, setPending] = useState(false);

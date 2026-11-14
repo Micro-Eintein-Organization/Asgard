@@ -18,6 +18,14 @@ services:
         value: "false"
       - key: ASGARD_DOCUMENTS_REAL_DATA_APPROVED
         value: "false"
+      - key: ASGARD_DOCUMENTS_ENABLED
+        value: "false"
+      - key: ASGARD_RESUME_SKILL_REVIEW_ENABLED
+        value: "false"
+      - key: ASGARD_PROFILE_PHOTOS_ENABLED
+        value: "false"
+      - key: ASGARD_AI_GUIDANCE_ENABLED
+        value: "false"
       - key: ASGARD_CORS_ORIGINS
         sync: false
       - key: ASGARD_SUPABASE_URL

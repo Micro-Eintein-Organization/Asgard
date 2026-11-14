@@ -15,6 +15,8 @@ from app.modules.recommendations.token_budget import TOKEN_LIMIT, input_tokens
 PROMPT_VERSION = "experience-evidence-3"
 SCHEMA_VERSION = "5"
 DEADLINE_SECONDS = 30
+GPT_OSS_RECOMMENDATION_BUDGET = 7600
+GPT_OSS_RECOMMENDATION_OUTPUT = 1536
 SYSTEM_PROMPT = (
     "Reported skills are unassessed experience, not career preferences. Unknown and level 0 "
     "do not demonstrate ability. Partial learning links never transfer proficiency. "
@@ -92,18 +94,28 @@ def strict_schema(payload):
 def prepare_request(settings, payload, *, diagnostics=None):
     if not payload["candidates"] or not payload["facts"]:
         raise ProviderFailure("provider_unavailable", "empty_candidates_or_evidence")
-    return prepare_structured(settings, payload, SYSTEM_PROMPT, strict_schema(payload),
-                              "career_exploration", diagnostics=diagnostics)
+    completion = settings.groq_max_completion_tokens
+    input_limit = TOKEN_LIMIT
+    if settings.groq_model in ("openai/gpt-oss-120b", "openai/gpt-oss-20b"):
+        completion = min(completion, GPT_OSS_RECOMMENDATION_OUTPUT)
+        input_limit = GPT_OSS_RECOMMENDATION_BUDGET - completion
+    return prepare_structured(
+        settings, payload, SYSTEM_PROMPT, strict_schema(payload), "career_exploration",
+        diagnostics=diagnostics, completion_tokens=completion, input_limit=input_limit,
+    )
 
 
-def prepare_structured(settings, payload, prompt, schema, name, *, diagnostics=None):
+def prepare_structured(
+    settings, payload, prompt, schema, name, *, diagnostics=None,
+    completion_tokens=None, input_limit=TOKEN_LIMIT,
+):
     body = {
         "model": settings.groq_model,
         "messages": [
             {"role": "system", "content": prompt},
             {"role": "user", "content": json.dumps(payload, ensure_ascii=False, separators=(",", ":"))},
         ],
-        "max_completion_tokens": settings.groq_max_completion_tokens,
+        "max_completion_tokens": completion_tokens or settings.groq_max_completion_tokens,
         "reasoning_effort": "low",
         "response_format": {
             "type": "json_schema",
@@ -121,7 +133,7 @@ def prepare_structured(settings, payload, prompt, schema, name, *, diagnostics=N
     except (OSError, ValueError):
         raise ProviderFailure("provider_unavailable", "tokenizer_not_bundled") from None
     diagnostic(diagnostics, "request_prepared", request_bytes=size, estimated_input_tokens=tokens)
-    if tokens > TOKEN_LIMIT:
+    if tokens > input_limit:
         raise ProviderFailure("invalid_output", "input_budget")
     return body
 
@@ -171,6 +183,8 @@ async def generate(
             transient = response.status_code == 429 or response.status_code >= 500
             if not transient:
                 if response.status_code != 200:
+                    if response.status_code == 413:
+                        fail("invalid_output", "provider_payload_too_large", http_status=413)
                     fail(
                         "provider_unavailable",
                         "provider_request_rejected" if response.status_code == 400

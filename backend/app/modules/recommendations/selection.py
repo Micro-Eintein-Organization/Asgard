@@ -36,7 +36,7 @@ class SelectionFailure(ValueError):
     """Only the fixed stage identifier is safe to log."""
 
 
-def provider_payload(content):
+def provider_payload(content, *, compact=False):
     reference_map, references = {}, []
     for ref in content["context"].get("source_references", []):
         key = "r" + str(len(references) + 1)
@@ -81,6 +81,17 @@ def provider_payload(content):
             )
             candidates[-1]["description"] = career["description"][:280]
             candidates[-1]["skills"] = career["skills"][:8]
+            if compact:
+                candidate = candidates[-1]
+                candidate["description"] = career["description"][:170]
+                candidate["skills"] = career["skills"][:4]
+                candidate.pop("roadmap_description")
+                relevance = career["relevance"]
+                candidate["relevance"] = {
+                    field: [value[:100] for value in relevance[field][:2] if isinstance(value, str)]
+                    for field in ("activities", "boundaries")
+                    if isinstance(relevance.get(field), list)
+                }
             if "source_references" in content["context"]:
                 candidates[-1]["source_reference_keys"] = list(matching)
     fact_map, facts = {}, []
