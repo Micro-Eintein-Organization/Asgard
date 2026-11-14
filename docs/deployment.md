@@ -49,8 +49,10 @@ The root `render.yaml` prepares a Docker web service with automatic deployment
 off, runtime `python -m app.start` and readiness check `/ready`. The Dockerfile
 ends in the non-root production stage; Compose explicitly uses development.
 The runtime binds 0.0.0.0 to the platform PORT (8000 locally), uses exec for
-signal delivery and allows 40 seconds for graceful shutdown. Render is configured
-to allow 60 seconds; verify actual shutdown and cold-start behavior on the host.
+signal delivery and allows 20 seconds for graceful shutdown, leaving headroom
+within Render's default 30-second shutdown window. The Free Blueprint omits
+`maxShutdownDelaySeconds`: Render rejects this override on Free services. Verify
+actual shutdown and cold-start behavior on the host.
 
 | Variable | Configuration and ownership |
 | --- | --- |

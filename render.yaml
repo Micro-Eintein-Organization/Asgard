@@ -8,7 +8,6 @@ services:
     dockerCommand: python -m app.start
     autoDeployTrigger: "off"
     healthCheckPath: /ready
-    maxShutdownDelaySeconds: 60
     envVars:
       - key: ASGARD_DEPLOYMENT_ENVIRONMENT
         value: staging

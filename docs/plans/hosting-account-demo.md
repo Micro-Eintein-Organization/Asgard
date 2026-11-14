@@ -28,3 +28,14 @@ protection and separate API/Auth boundaries. Built-in email only supports eligib
 organization addresses. The owner explicitly retained built-in email and signup
 with their eligible address; teammate signup/custom SMTP remains deferred.
 Do not grant organization permissions just to enable email.
+
+## Render Free validation correction, 2026-11-14
+
+Owner: Codex; reviewer/operator: @YakisobaNissin. Within the approved hosting
+preparation scope, correct the provider rejection observed during Blueprint setup:
+remove the unsupported Free-plan shutdown-delay override and shorten Uvicorn's
+shutdown budget below Render's default 30-second window. Affected modules:
+render.yaml, backend startup, its existing runtime-argument check and deployment
+guides. Check the relevant startup tests and whitespace; no application build,
+live deployment or database change is needed. Git publication remains an operator
+step unless separately authorized.
