@@ -1,5 +1,15 @@
 # Hosted account demo implementation plan
 
+## Readiness diagnostics, 2026-11-14
+
+Owner/implementer: Codex; required reviewer/operator: @YakisobaNissin.
+Within the approved hosting troubleshooting scope (QA-09/11), add sanitized
+server-side readiness failure categories in backend/app/api/health.py and focused
+coverage in backend/tests/test_hosted_config.py. Preserve the HTTP response,
+authorization, TLS verification and readiness gates. Never log exception messages,
+credentials or connection URLs. Check focused hosted/operations tests and whitespace.
+Publication and hosted verification remain separate owner steps.
+
 Created/updated: 2026-11-13. Implementer: Codex. Required technical reviewer and
 operator: @YakisobaNissin. Status: owner requested implementation of the reviewed
 chat plan; executed checks and hosted acceptance are recorded separately.

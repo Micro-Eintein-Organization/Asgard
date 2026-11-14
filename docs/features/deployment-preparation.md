@@ -1,5 +1,21 @@
 # Core acceptance and deployment preparation
 
+## Hosted readiness diagnostics, 2026-11-14
+
+Implementer: Codex. Created/updated: 2026-11-14. Status: implemented;
+technical review by @YakisobaNissin and hosted verification pending. Acceptance:
+QA-09/11; scope recorded in the [hosting plan](../plans/hosting-account-demo.md).
+`backend/app/api/health.py` logs `readiness_failed` with Supabase HTTP status and
+fixed database failure categories. Raw exception messages, URLs and credentials
+are omitted; the public response and readiness gates are unchanged.
+`backend/tests/test_hosted_config.py` covers category selection and sanitization.
+Focused hosted configuration/operations checks: 28 passed. The first run had
+7 configuration failures from inherited local profile-photo enablement; rerunning
+with local-only features explicitly disabled passed. Whitespace checks passed.
+No hosted diagnosis is established by these tests. After owner publication and
+deployment, inspect Render logs for `readiness_failed`; report only those sanitized
+fields. Resolve the reported dependency failure before claiming hosted readiness.
+
 ## Account-demo follow-up, 2026-11-13
 
 Codex prepared optional MFA source and the

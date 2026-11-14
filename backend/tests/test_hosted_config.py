@@ -1,6 +1,6 @@
 from contextlib import asynccontextmanager
 from types import SimpleNamespace
-from unittest.mock import AsyncMock
+from unittest.mock import AsyncMock, patch
 
 import httpx
 import pytest
@@ -71,5 +71,35 @@ def test_hosted_readiness_requires_database(database_ready):
             response = client.get("/ready")
             assert response.status_code == (200 if database_ready else 503)
             assert response.json()["supabase_api"] == "available"
+        finally:
+            client.app.state.profiles = original
+
+
+@pytest.mark.parametrize("detail, category", [
+    ("certificate verify failed: secret", "tls_certificate"),
+    ("password authentication failed: secret", "database_password"),
+    ("permission denied: secret", "database_permission"),
+    ("unexpected secret", "connection_or_query"),
+])
+def test_readiness_logs_sanitized_failure(detail, category):
+    class Engine:
+        @asynccontextmanager
+        async def connect(self):
+            raise RuntimeError(detail)
+            yield
+
+    with TestClient(create_app(Settings(**configuration()))) as client:
+        original = client.app.state.profiles
+        try:
+            client.app.state.profiles = SimpleNamespace(engine=Engine())
+            client.app.state.http.get = AsyncMock(return_value=httpx.Response(200))
+            with patch("app.api.health.logger.warning") as warning:
+                response = client.get("/ready")
+            assert response.status_code == 503
+            fields = warning.call_args.kwargs["extra"]["fields"]
+            assert fields["database_failure"] == category
+            assert fields["supabase_http_status"] == 200
+            assert "secret" not in str(warning.call_args)
+            assert "secret" not in response.text
         finally:
             client.app.state.profiles = original
