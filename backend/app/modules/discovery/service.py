@@ -1,12 +1,26 @@
 from sqlalchemy import text
 
 from app.core.errors import APIError
-from app.modules.discovery.definition import active_route, definition, validate_answer
+from app.modules.discovery.definition import (
+    QUESTIONNAIRE_V2_ID,
+    active_route,
+    definition,
+    validate_answer,
+)
 from app.modules.discovery.schemas import DiscoverySession
 from app.modules.storage import lock_account, one, required, rows
 
 
 async def questionnaire(connection, questionnaire_id=None):
+    if questionnaire_id is None:
+        published_v2 = await one(
+            connection,
+            "SELECT id FROM asgard_catalog.questionnaires "
+            "WHERE id = CAST(:id AS uuid) AND published_at IS NOT NULL",
+            {"id": str(QUESTIONNAIRE_V2_ID)},
+        )
+        if published_v2:
+            questionnaire_id = QUESTIONNAIRE_V2_ID
     authored = definition(questionnaire_id)
     published = await one(
         connection,
@@ -58,7 +72,7 @@ async def session(connection, uid, session_id, *, locked=False):
         {"uid": str(uid), "id": str(session_id)},
     )
     by_id = {item["question_id"]: item["option_ids"] for item in answers}
-    route = active_route(by_id)
+    route = active_route(by_id, authored.version)
     questions = {item.question_id: item for item in authored.questions}
     for key, selected in by_id.items():
         validate_answer(questions[key], selected)
@@ -86,9 +100,18 @@ async def state(connection, uid):
     return result
 
 
+async def latest_completed_identity(connection, uid):
+    return await one(
+        connection,
+        "SELECT id, revision, questionnaire_id FROM asgard_private.discovery_sessions "
+        "WHERE user_id = CAST(:uid AS uuid) AND status = 'completed' "
+        "ORDER BY completed_at DESC NULLS LAST, created_at DESC, id DESC LIMIT 1",
+        {"uid": str(uid)},
+    )
+
+
 async def start(connection, uid, questionnaire_id):
     await lock_account(connection, uid)
-    await questionnaire(connection, questionnaire_id)
     draft = await one(
         connection,
         (
@@ -105,6 +128,13 @@ async def start(connection, uid, questionnaire_id):
                 "Resume your existing Discovery draft before starting another version.",
             )
         return await session(connection, uid, draft["id"])
+    authored = await questionnaire(connection)
+    if authored.id != questionnaire_id:
+        raise APIError(
+            409,
+            "discovery_conflict",
+            "A newer questionnaire is available. Reload Discovery to start.",
+        )
     saved = await one(
         connection,
         (
@@ -137,7 +167,7 @@ async def checkpoint(connection, uid, session_id, body):
             )
         validate_answer(question, answer.option_ids)
         merged[answer.question_id] = answer.option_ids
-    route = active_route(merged)
+    route = active_route(merged, authored.version)
     if any(answer.question_id not in route for answer in body.answers):
         raise APIError(
             409,
@@ -239,6 +269,7 @@ async def retake(connection, uid, body):
                 "You already have an unfinished Discovery. Resume that draft first.",
             )
         return await session(connection, uid, draft["id"])
+    authored = await questionnaire(connection)
     new = await one(
         connection,
         (
@@ -246,6 +277,6 @@ async def retake(connection, uid, body):
             "questionnaire_id, source_session_id) VALUES (CAST(:uid AS uuid), "
             "CAST(:qid AS uuid), CAST(:source AS uuid)) RETURNING id"
         ),
-        {"uid": str(uid), "qid": str(source.questionnaire_id), "source": str(source.id)},
+        {"uid": str(uid), "qid": str(authored.id), "source": str(source.id)},
     )
     return await session(connection, uid, new["id"])

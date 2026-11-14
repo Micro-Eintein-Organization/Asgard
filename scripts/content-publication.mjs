@@ -15,6 +15,8 @@ export function publicationSQL(root) {
   const resources = body(root, "20261102_topic_resources.sql").replace("SELECT pg_advisory_xact_lock(72611029);", "");
   const expansion = body(root, "20261104_guide_expansion_11_careers.sql").replace("SELECT pg_advisory_xact_lock(72611029);", "");
   const resourceFixes = body(root, "20261108_expansion_resources.sql");
+  const discovery = body(root, "20261109_discovery_v2.sql")
+    .replace("SELECT pg_advisory_xact_lock(72611029);", "");
   return [
     "BEGIN;",
     "SELECT pg_advisory_xact_lock(72611029);",
@@ -46,6 +48,7 @@ END IF; END $versions$;`,
     "DO $expansion_sequence$ BEGIN IF EXISTS(SELECT 1 FROM asgard_catalog.releases WHERE version=5) AND NOT EXISTS(SELECT 1 FROM asgard_catalog.releases WHERE version=4) THEN RAISE EXCEPTION 'Missing release 4'; END IF; END $expansion_sequence$;",
     expansion,
     resourceFixes,
+    discovery,
     "COMMIT;",
   ].join("\n");
 }

@@ -16,9 +16,12 @@ from sqlalchemy import text
 from app.api.contracts import Contract
 from app.core.errors import APIError, ErrorBody
 from app.core.security import Identity, current_identity
+from app.modules.careers.exploration import career_explanation
 from app.modules.careers.service import career
+from app.modules.progress import service as progress
 from app.modules.recommendations import provider
 from app.modules.recommendations.service import state as recommendation_state
+from app.modules.roadmaps.service import resources
 from app.modules.storage import lock_account, one, rows, transaction
 
 router = APIRouter(
@@ -45,6 +48,14 @@ GUIDANCE_PROMPT = (
     "Write the answer in plain text with no Markdown or inline citation markers. "
     "Put citations only in source_keys. Use only supplied keys. "
     "Never include URLs in the answer, invent facts, score aptitude, or claim to change records."
+)
+COUNSELOR_PROMPT = GUIDANCE_PROMPT + (
+    " Classify the reply as next_step or practice only when the corresponding key is in "
+    "learning_context. Explain the supplied action or activity. Use current evidence over history. "
+    "For practice, explain the authored instructions and expected result when available. Otherwise "
+    "say there is no authored activity and offer any supplied curated resources. Do not invent an "
+    "authored task. If the intended roadmap or topic is materially ambiguous, classify as "
+    "clarification and ask one short question. Classify other replies as general."
 )
 COMPARISON_CACHE_SECONDS = 3600
 COMPARISON_WEB_CACHE_SECONDS = 300
@@ -128,6 +139,10 @@ class GuidanceQuestion(Contract):
 class GuidanceSelection(Contract):
     answer: Annotated[str, Field(min_length=1, max_length=3000)]
     source_keys: Annotated[list[str], Field(max_length=8)]
+
+
+class CounselorSelection(GuidanceSelection):
+    reply_kind: Literal["general", "clarification", "next_step", "practice"]
 
 
 class ComparisonSelectionRow(Contract):
@@ -243,28 +258,126 @@ async def reserve(request, identity, mode: Mode):
             """), {"uid": uid, "mode": mode, "key": str(uuid4())})
 
 
+async def published_path(connection, roadmap_id):
+    return await one(connection, """
+        SELECT r.id, r.career_id, r.title FROM asgard_catalog.roadmaps r
+        JOIN asgard_catalog.careers c ON c.id = r.career_id
+        WHERE r.id = :id AND r.status = 'published' AND c.status = 'published'
+        """, {"id": roadmap_id})
+
+
+def roadmap_url(path):
+    return f"/roadmaps/{path['career_id']}?roadmap={path['id']}"
+
+
+async def learning_topic(connection, uid, path, topic_id, action):
+    topic = await one(connection, """
+        SELECT t.title, t.explanation FROM asgard_catalog.topics t
+        JOIN asgard_catalog.milestones m ON m.id = t.milestone_id
+        WHERE t.id = :topic AND t.roadmap_id = :roadmap AND t.retired_at IS NULL
+        AND m.retired_at IS NULL AND (t.branch_id IS NULL OR EXISTS (
+            SELECT 1 FROM asgard_private.branch_choices b WHERE b.user_id = :uid
+            AND b.roadmap_id = t.roadmap_id AND b.branch_id = t.branch_id
+        ))
+        """, {"topic": topic_id, "roadmap": path["id"], "uid": uid})
+    if topic is None:
+        return None
+    curated = (await resources(connection, topic_id))[:2]
+    excerpt = {
+        "action": action,
+        "topic": topic["title"][:160],
+        "explanation": topic["explanation"][:400],
+        "curated_resources": [resource["title"][:160] for resource in curated],
+    }
+    exploration = career_explanation(path["career_id"])
+    if exploration:
+        starter = exploration["starter"]
+        starter_target = (str(starter["roadmap_id"]), str(starter["topic_id"]))
+        if starter_target == (str(path["id"]), str(topic_id)):
+            excerpt["authored_activity"] = {
+                key: starter[key][:500] for key in ("title", "instructions", "expected_result")
+            }
+    source = GuidanceSource(
+        title=topic["title"], url=f"{roadmap_url(path)}&topic={topic_id}", kind="asgard",
+    )
+    return source, json.dumps(excerpt, ensure_ascii=False)
+
+
+async def learning_context(connection, uid, path, topic_id, *, use_global_active):
+    active = await progress.active_topic(connection, uid)
+    if active:
+        active_path = path if path and active["roadmap_id"] == path["id"] else None
+        if active_path is None and use_global_active:
+            active_path = await published_path(connection, active["roadmap_id"])
+        if active_path:
+            entry = await learning_topic(
+                connection, uid, active_path, active["topic_id"], "Resume learning",
+            )
+            if entry:
+                practice = entry
+                if topic_id and topic_id != active["topic_id"]:
+                    practice = await learning_topic(
+                        connection, uid, path, topic_id, "Practise this topic",
+                    )
+                return {"next_step": entry, "practice": practice}
+
+    if path is None:
+        return {"next_step": (
+            GuidanceSource(title="Browse careers", url="/careers", kind="asgard"),
+            "No current published roadmap or available active topic. Browse careers to choose one.",
+        )}
+
+    summary = await progress.summary(connection, uid, path["id"])
+    core = await progress.core_milestone(connection, summary, None)
+    milestone = next((item for item in summary["milestones"] if item["milestone_id"] == core), None)
+    next_topic_id = next(iter(summary["next_topic_ids"]), None)
+    topic_entry = None
+    url = roadmap_url(path)
+    if milestone and milestone["requires_branch_choice"]:
+        title, url = "Choose your tool path", f"{url}#milestone-{core}"
+    elif next_topic_id:
+        topic_entry = await learning_topic(
+            connection, uid, path, next_topic_id, "Continue learning",
+        )
+        title = "View roadmap"
+    elif summary["no_remaining_suggestions"]:
+        title = "Review skipped topics"
+    else:
+        title = "View completed roadmap" if summary["fully_done"] else "View roadmap"
+    next_step = topic_entry or (
+        GuidanceSource(title=title, url=url, kind="asgard"), f"{title}: {path['title'][:160]}",
+    )
+    practice = topic_entry
+    if topic_id and (topic_id != next_topic_id or practice is None):
+        practice = await learning_topic(connection, uid, path, topic_id, "Practise this topic")
+    return {"next_step": next_step, "practice": practice}
+
+
 async def context(request, identity, ids, roadmap_id, topic_id, include_saved):
     evidence = []
     titles = []
+    learning = {}
+    use_global_active = not ids and not roadmap_id
+    explicit_roadmap = roadmap_id is not None
     async with transaction(request, identity) as conn:
-        if include_saved and not ids and not roadmap_id:
-            learning = await one(conn, """
+        if include_saved and use_global_active:
+            focus = await one(conn, """
                 SELECT current_roadmap_id FROM asgard_private.learning_state
                 WHERE user_id = CAST(:uid AS uuid)
                 """, {"uid": str(identity.user_id)})
-            roadmap_id = learning["current_roadmap_id"] if learning else None
+            roadmap_id = focus["current_roadmap_id"] if focus else None
         if topic_id and not roadmap_id:
             raise APIError(422, "roadmap_required", "Select the topic's roadmap.")
-        if roadmap_id:
-            path = await one(conn, """
-                SELECT id, career_id, title FROM asgard_catalog.roadmaps
-                WHERE id = CAST(:id AS uuid) AND status = 'published'
-                """, {"id": str(roadmap_id)})
-            if not path:
-                raise APIError(404, "not_found", "This roadmap is unavailable.")
+        path = await published_path(conn, roadmap_id) if roadmap_id else None
+        if explicit_roadmap and path is None:
+            raise APIError(404, "not_found", "This roadmap is unavailable.")
+        if path:
             ids = list(dict.fromkeys([*ids, path["career_id"]]))
             if len(ids) > 2:
                 raise APIError(422, "invalid_context", "Choose up to two careers.")
+        if include_saved and (use_global_active or (path and len(ids) == 1)):
+            learning = await learning_context(conn, identity.user_id, path, topic_id,
+                                              use_global_active=use_global_active)
         saved = None
         if include_saved:
             state = await recommendation_state(conn, identity.user_id, request.app.state.settings)
@@ -310,7 +423,7 @@ async def context(request, identity, ids, roadmap_id, topic_id, include_saved):
                 if item.career_id in ids and item.roadmap_id:
                     evidence.append((GuidanceSource(title="Saved recommendation", url="/recommendations", kind="asgard"),
                                      item.reason[:500]))
-    return evidence, titles
+    return evidence, titles, learning
 
 
 async def web_evidence(request, identity, mode, titles):
@@ -371,11 +484,18 @@ def comparison_rows(items, sides, pair):
 
 
 async def answer(
-    request, identity, mode, evidence, titles, question, history, search, *, pair=None,
+    request, identity, mode, evidence, titles, question, history, search, *, pair=None, learning=None,
 ):
     started = monotonic()
     settings = request.app.state.settings
     public = await web_evidence(request, identity, mode, titles) if search else []
+    learning_keys = {}
+    evidence = list(evidence)
+    for kind, entry in (learning or {}).items():
+        if entry is not None:
+            if entry not in evidence:
+                evidence.append(entry)
+            learning_keys[kind] = str(evidence.index(entry) + 1)
     sources = {str(i): source for i, (source, _) in enumerate(evidence + public, 1)}
     payload = {"question": question, "history": [turn.model_dump() for turn in history],
                "evidence": [{"key": str(i), "title": source.title, "text": excerpt}
@@ -408,8 +528,16 @@ async def answer(
         "required": ["answer", "source_keys"],
         "additionalProperties": False,
     }
-    output_model = GuidanceSelection
-    if pair is not None:
+    prompt = GUIDANCE_PROMPT
+    if pair is None:
+        prompt = COUNSELOR_PROMPT
+        payload["learning_context"] = learning_keys
+        schema["properties"]["reply_kind"] = {
+            "type": "string", "enum": ["general", "clarification", "next_step", "practice"],
+        }
+        schema["required"].append("reply_kind")
+        output_model = CounselorSelection
+    else:
         row_fields = {name: {"type": "string"} for name in ComparisonSelectionRow.model_fields}
         row_schema = {
             "type": "object", "properties": row_fields,
@@ -423,7 +551,7 @@ async def answer(
         schema["required"].extend(("work", "skills", "handoff"))
         output_model = ComparisonSelection
     try:
-        prepared = provider.prepare_structured(settings, payload, GUIDANCE_PROMPT,
+        prepared = provider.prepare_structured(settings, payload, prompt,
                                                schema, "career_guidance",
                                                diagnostics=diagnostics)
         await reserve_call()
@@ -435,6 +563,13 @@ async def answer(
         if any(key not in sources for key in result.source_keys):
             raise provider.ProviderFailure("invalid_output", "unknown_guidance_citation")
         source_keys = list(result.source_keys)
+        if isinstance(result, CounselorSelection) and result.reply_kind in (
+            "next_step", "practice",
+        ):
+            key = learning_keys.get(result.reply_kind)
+            if key is None:
+                raise provider.ProviderFailure("invalid_output", "missing_learning_context")
+            source_keys.insert(0, key)
         comparison = {}
         if isinstance(result, ComparisonSelection) and pair is not None:
             comparison = {
@@ -448,8 +583,16 @@ async def answer(
         provider.diagnostic(diagnostics, exc.stage)
         raise APIError(503, "guidance_unavailable", "We couldn’t prepare guidance. Try again.") from None
     answer_text = re.sub(r"【[^】\n]{1,50}】|〖[^〗\n]{1,50}〗", "", result.answer)
-    return {"answer": answer_text, "sources": [sources[key] for key in dict.fromkeys(source_keys)],
-            "web_unavailable": search and not public, **comparison}
+    cited = []
+    for key in source_keys:
+        if sources[key] not in cited:
+            cited.append(sources[key])
+    return {
+        "answer": answer_text,
+        "sources": cited,
+        "web_unavailable": search and not public,
+        **comparison,
+    }
 
 
 @router.post("/comparison", response_model=ComparisonAnswer)
@@ -458,7 +601,7 @@ async def comparison_insight(request: Request, identity: Owner, body: GuidancePa
     if body.left == body.right:
         raise APIError(422, "distinct_careers_required", "Choose two different careers.")
     pair = sorted((body.left, body.right))
-    evidence, titles = await context(request, identity, pair, None, None, False)
+    evidence, titles, _ = await context(request, identity, pair, None, None, False)
     settings = request.app.state.settings
     web_enabled = bool(settings.exa_api_key.get_secret_value() and settings.ai_search_domains.strip())
     # Hash the actual public evidence so any change to the input invalidates reuse.
@@ -482,6 +625,8 @@ async def comparison_insight(request: Request, identity: Owner, body: GuidancePa
 @router.post("/counselor", response_model=GuidanceAnswer)
 async def counselor_turn(request: Request, identity: Owner, body: GuidanceQuestion):
     require_available(request)
-    evidence, titles = await context(request, identity, body.career_ids, body.roadmap_id, body.topic_id, True)
+    evidence, titles, learning = await context(
+        request, identity, body.career_ids, body.roadmap_id, body.topic_id, True,
+    )
     return await answer(request, identity, "counselor_turn", [*APP_HELP, *evidence], titles,
-                        body.question, body.history, body.search_web)
+                        body.question, body.history, body.search_web, learning=learning)

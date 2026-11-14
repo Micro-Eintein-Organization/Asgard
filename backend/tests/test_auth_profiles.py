@@ -135,7 +135,9 @@ def test_profile_http_contract_and_conflict_without_live_database():
         repository.get.return_value = None
         repository.update.return_value = saved
         app.state.profiles = repository
-        assert client.get("/api/v1/me/profile").json() == {"profile": None}
+        assert client.get("/api/v1/me/profile").json() == {
+            "profile": None, "photo_enabled": False,
+        }
         response = client.patch(
             "/api/v1/me/profile", json={"first_name": "Ada", "expected_version": 0}
         )

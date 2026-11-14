@@ -22,6 +22,7 @@ function useMockEditor() {
   const form = useForm({ defaultValues: { firstName: "Saved", surname: "Name" } });
   return {
     form, query: { isPending: false, isSuccess: true },
+    profileDirty: form.formState.isDirty,
     mutation: { isPending: false }, feedback: "", errorSummary: { current: null },
     setReloadOpen: vi.fn(), persist,
     discard: () => form.reset({ firstName: "Saved", surname: "Name" }),
@@ -46,13 +47,14 @@ beforeEach(() => {
 });
 
 describe("Cabusao Settings with connected controllers", () => {
-  it("restores the shared personal/background/suggestions/preferences cards", () => {
+  it("shows Profile, Guided Discovery and preferences with separate saved suggestions", () => {
     open();
-    for (const name of ["Personal details", "Career background", "Saved Discovery suggestions", "Preferred primary field"]) {
+    expect(screen.getByRole("region", { name: "Personal details" })).toBeVisible();
+    for (const name of ["Guided Discovery", "Preferred primary field"]) {
       expect(screen.getByRole("heading", { name }).closest('[data-slot="card"]')).toHaveClass("settings-card");
     }
-    expect(screen.getByRole("button", { name: "Change photo" })).toBeDisabled();
-    expect(screen.getByRole("button", { name: "Choose PDF" })).toBeDisabled();
+    expect(screen.getByRole("button", { name: "Retake Discovery" })).toBeEnabled();
+    expect(screen.getByRole("link", { name: "View saved career suggestions" })).toHaveAttribute("href", "/recommendations");
     expect(screen.getByRole("textbox", { name: "First name" })).toHaveValue("Saved");
   });
   it("keeps profile and preference writes separate with the saved preference revision", async () => {
@@ -71,7 +73,7 @@ describe("Cabusao Settings with connected controllers", () => {
     fireEvent.change(screen.getByRole("textbox", { name: "First name" }), { target: { value: "Unsaved" } });
     const nav = screen.getByRole("navigation", { name: "Settings sections" });
     fireEvent.click(within(nav).getByRole("link", { name: "Account and security" }));
-    expect(screen.queryByRole("heading", { name: "Personal details" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("region", { name: "Personal details" })).not.toBeInTheDocument();
     for (const name of ["Link Google", "Set up authenticator", "Delete account"]) expect(screen.getByRole("button", { name })).toBeDisabled();
     expect(within(nav).getByRole("link", { name: "Account and security" })).toHaveAttribute("aria-current", "page");
     fireEvent.click(within(nav).getByRole("link", { name: "Profile" }));

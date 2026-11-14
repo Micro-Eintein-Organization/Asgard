@@ -7,6 +7,8 @@ import { Input } from "@/components/ui/input";
 import { coreApi, useCoreMutation, useCoreQuery } from "@/features/core/data";
 import { experienceLabel, experienceLevels } from "./levels";
 import { ResumeSkillReview } from "./resume-skill-review";
+import { Link } from "react-router";
+import { appRoutes } from "@/lib/routes";
 
 type Draft = { id: string; label: string; level: string; version: number; example?: string };
 const skillPageSize = 8;
@@ -15,16 +17,25 @@ export function ProfileSkills({
   onGuardChange,
   documents,
   active = true,
+  reviewCareer,
+  reviewRoadmap,
 }: {
   onGuardChange: (dirty: boolean, pending: boolean) => void;
   documents?: ReactNode;
   active?: boolean;
+  reviewCareer?: string;
+  reviewRoadmap?: string;
 }) {
   const { user } = useAuth();
   const [careerId, setCareerId] = useState("");
   const careers = useCoreQuery(["experience-careers"], () =>
     coreApi.catalog({ limit: 100 }),
   );
+  const resumeCareer = reviewCareer && reviewRoadmap
+    ? careers.data?.items.find(item =>
+        item.id === reviewCareer && item.roadmap_ids.includes(reviewRoadmap),
+      )
+    : undefined;
   const [search, setSearch] = useState("");
   const [adding, setAdding] = useState(false);
   const [offset, setOffset] = useState(0);
@@ -105,10 +116,11 @@ export function ProfileSkills({
   }
   return (
     <>
-    <Card className="settings-card">
+    <Card className="settings-card" id="resume-skill-review" tabIndex={-1}>
       <header><h2>Academic profile &amp; document management</h2><p>Review skills from a resume or add your experience below.</p></header>
       <ResumeSkillReview
-        key={user?.id}
+        key={`${user?.id}:${resumeCareer?.id ?? ""}`}
+        initialCareer={resumeCareer?.id}
         active={active}
         careers={careers.data?.items ?? []}
         disabled={pending || draft !== null}
@@ -126,6 +138,11 @@ export function ProfileSkills({
           </>;
         }}
       />
+      {resumeCareer && reviewRoadmap && (
+        <Link className="underline" to={appRoutes.skillComparison(resumeCareer.id, reviewRoadmap)}>
+          Return to skill comparison
+        </Link>
+      )}
       {documents}
     </Card>
     <Card className="settings-card" id="profile-skills" tabIndex={-1}>

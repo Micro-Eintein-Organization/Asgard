@@ -15,6 +15,8 @@ class QuestionReference(Contract):
     helper: str
     multiple: bool
     interest_option_id: Identifier | None
+    max_selections: Annotated[int, Field(ge=1, le=5)] | None = None
+    kind: Literal["experience_preference", "activity_follow_up"] | None = None
     options: list["DiscoveryOption"]
 
 
@@ -67,7 +69,7 @@ class StartDiscovery(Contract):
 
 
 class SaveDiscovery(VersionedChange):
-    answers: Annotated[list[DiscoveryAnswer], Field(min_length=1, max_length=5)]
+    answers: Annotated[list[DiscoveryAnswer], Field(min_length=1, max_length=6)]
 
     @field_validator("answers")
     @classmethod

@@ -2855,6 +2855,34 @@
             ],
             "title": "Interest Option Id"
           },
+          "kind": {
+            "anyOf": [
+              {
+                "enum": [
+                  "experience_preference",
+                  "activity_follow_up"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Kind"
+          },
+          "max_selections": {
+            "anyOf": [
+              {
+                "maximum": 5.0,
+                "minimum": 1.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Selections"
+          },
           "multiple": {
             "title": "Multiple",
             "type": "boolean"
@@ -3643,7 +3671,7 @@
             "items": {
               "$ref": "#/components/schemas/DiscoveryAnswer"
             },
-            "maxItems": 5,
+            "maxItems": 6,
             "minItems": 1,
             "title": "Answers",
             "type": "array"

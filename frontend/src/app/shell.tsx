@@ -212,11 +212,11 @@ export function AppShell() {
 }
 
 function ShellContent() {
-  const { user } = useAuth();
+  const { user, mfa } = useAuth();
   const { pathname } = useLocation();
   const pagePath = pathname.replace(/\/+$/, "");
   const onboarding = onboardingPaths.has(pagePath);
-  const showCounselor = user?.email_confirmed_at &&
+  const showCounselor = mfa === "ready" && user?.email_confirmed_at &&
     (pagePath === appRoutes.dashboard || pagePath === appRoutes.profile);
   return (
     <>
@@ -243,6 +243,7 @@ function ShellContent() {
         >
           {(!onboarding || pathname === appRoutes.results) &&
             user?.email_confirmed_at &&
+            mfa === "ready" &&
             !Object.values(routes).includes(pathname) && <GuidanceBanner />}
           <Outlet />
           <PageFocus />

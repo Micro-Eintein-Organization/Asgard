@@ -80,8 +80,8 @@ beforeEach(() => {
   );
 });
 it("distinguishes unassessed, saved unknown and explicit zero", () => {
-  expect(experienceLabel(false, null)).toBe("Unassessed");
-  expect(experienceLabel(true, null)).toBe("Experience unknown");
+  expect(experienceLabel(false, null)).toBe("Not recorded");
+  expect(experienceLabel(true, null)).toBe("Not sure yet");
   expect(experienceLabel(true, 0)).toContain("No experience");
 });
 it("saves zero with the revision captured when editing and clears the guard", async () => {
@@ -112,12 +112,14 @@ it("keeps a failed edit available for reconciliation", async () => {
 it("opens a bounded comparison with exact topic links and no learning writes", () => {
   render(
     <MemoryRouter>
-      <SkillComparison careerId="career" />
+      <SkillComparison careerId="career" roadmapId="roadmap" initiallyOpen />
     </MemoryRouter>,
   );
-  fireEvent.click(screen.getByRole("button", { name: "Compare my skills" }));
   expect(screen.getByRole("dialog")).toBeVisible();
-  expect(screen.getByText("Unassessed")).toBeVisible();
+  expect(screen.getByText("Not recorded")).toBeVisible();
+  expect(screen.getByRole("link", { name: "Review skills from a resume" })).toHaveAttribute(
+    "href", "/settings/profile?reviewCareer=career&reviewRoadmap=roadmap#resume-skill-review",
+  );
   expect(screen.getByRole("link", { name: "Practice SQL" })).toHaveAttribute(
     "href",
     "/roadmaps/career?roadmap=roadmap&topic=topic",

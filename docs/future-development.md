@@ -1,5 +1,19 @@
 # Future development
 
+## Hosted account demo, 2026-11-13
+
+The owner paused unrelated planned features and approved zero-cost deployment
+preparation plus optional authenticator/recovery UI on the current app branch.
+Codex implements source and technical checks; @YakisobaNissin owns provider setup,
+technical review, actual email and browser journeys. The team observes a protected
+Vercel preview; signup is demonstrated with the owner's eligible organization email.
+Custom SMTP remains deferred for ordinary-user signup. MFA enrollment remains
+disabled until hosted AUTH-C2/fresh-auth evidence passes. Hosting, backup/restore,
+maintenance and real-user operation remain pending. See the
+[implementation guide](features/optional-two-factor-authentication.md) and
+[owner checklist](deployment-account-demo.md). This demo exception does not
+change the architecture, approve public signup or count as completed acceptance.
+
 ## Resume review follow-up, 2026-11-06
 
 The owner enabled the temporary resume reader for local school-project use.
@@ -256,7 +270,7 @@ of 2026-10-28. Owner/reviewer are unassigned unless explicitly recorded later.
 | FUT-02 | Compare careers and save alternatives | Catalog, preferences; decide criteria and shortlist lifecycle | Saved comparisons preserve focus/progress and explain sources |
 | FUT-03 | Reflect after trying a learning activity | Discovery/recommendations; decide questions and interpretation | Optional feedback persists without inferred ability |
 | FUT-04 | Ask conversational guidance questions | Provider, privacy, history; decide tutoring and advice boundaries | Grounded responses, validated links, failure recovery |
-| FUT-05 | Receive deeper adaptive Discovery | Versioned definitions/routing; author and review further branches | Resume, retakes and inactive answers remain coherent |
+| FUT-05 | Receive deeper adaptive Discovery | [Guided Discovery v2](features/guided-discovery-v2.md) published locally 2026-11-09. Deterministic first results are automatic; [optional AI refinement](plans/discovery-ai-refinement.md) awaits W01 review | Resume, retakes and inactive answers remain coherent |
 | FUT-06 | Start at a suitable learning point | Evidence and authored prerequisites; decide admissible evidence | No automatic completion or unsupported competence claims |
 | FUT-07 | Explore broader curricula | Content publication and review capacity | Stable IDs, genuine resource provenance and retained progress |
 | FUT-08 | Understand labor-market context | Licensed regional data, freshness and provenance policy | Dated sourced claims; no fabricated demand or salaries |

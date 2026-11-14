@@ -13,8 +13,12 @@ import { coreApi, useCoreMutation, useCoreQuery } from "@/features/core/data";
 import { appRoutes } from "@/lib/routes";
 import { experienceLevels, experienceLabel } from "./levels";
 
-export function SkillComparison({ careerId }: { careerId: string }) {
-  const [open, setOpen] = useState(false);
+export function SkillComparison({ careerId, roadmapId, initiallyOpen = false }: {
+  careerId: string;
+  roadmapId?: string;
+  initiallyOpen?: boolean;
+}) {
+  const [open, setOpen] = useState(initiallyOpen);
   const [draft, setDraft] = useState<{
     id: string;
     level: string;
@@ -274,6 +278,18 @@ export function SkillComparison({ careerId }: { careerId: string }) {
         <Link className="underline" to={appRoutes.profile + "#profile-skills"}>
           Manage all experience in Profile
         </Link>
+        {roadmapId && (
+          <Link
+            className="block underline"
+            to={appRoutes.resumeReview(careerId, roadmapId)}
+            onClick={(event) => {
+              if (pending || (draft && !window.confirm("Discard your unsaved experience edit?")))
+                event.preventDefault();
+            }}
+          >
+            Review skills from a resume
+          </Link>
+        )}
       </DialogContent>
     </Dialog>
   );

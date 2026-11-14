@@ -15,8 +15,9 @@ export function FoundationStatus() {
     <section>
       <h1>Asgard foundation</h1>
       <p>
-        Technical connectivity check. Account access and product services are
-        not connected.
+        Technical connectivity check. A successful check does not verify email
+        delivery, account access or two-factor authentication. The demo API may
+        need about a minute to start after inactivity; check again after waiting.
       </p>
       <section aria-label="Service connectivity" aria-live="polite">
         <p>

@@ -9,6 +9,24 @@ acceptance: [F-002-AC-01, F-002-AC-02, F-002-AC-03, F-002-AC-04, F-002-AC-05, F-
 
 # Asgard: Career recommendations
 
+Owner-approved update, 2026-11-09: completed Guided Discovery v2 uses
+[deterministic first results](../plans/discovery-deterministic-results.md).
+The backend uses active Discovery answers and published catalog entries, saves
+the validated result without a provider call or provider quota reservation, and
+reuses it while the completed Discovery revision, catalog release, and rules
+version match. Opening Results automatically prepares a missing or outdated
+v2 result, with bounded recovery from transient errors. A valid saved result
+is reused on visits. Discovery-only results carry no skill or document evidence.
+The provider rules below continue to apply to v1 and recommendations without
+completed v2. [Approval record](../decisions.md#w05-guided-discovery-revision-scope-2026-11-09).
+
+When v2 has a direct activity match, place the direct results first and
+include related published careers where a reviewed activity relationship
+supports them, up to three suggestions total. Explain the relationship on
+each alternative. Ask for clarification only when the answer could resolve
+an open choice between directly supported activities. Related suggestions
+alone are not a trigger.
+
 Local handoff extension, 2026-10-28: the owner approved simple optional PDF
 analysis, source-backed recommendation evidence, private document lifecycle and
 synthetic evaluation in the connected MVP handoff task. Source now implements
@@ -55,7 +73,7 @@ Validate unique allowed career IDs, bounds, evidence references, catalog version
 
 1. Save a successful final Discovery submission, then request recommendations once. Retake uses a separate draft; failed saving/generation does not erase the previous successful result.
 2. Accepted changes to current roadmap, applicable topic states, selected branch, or successful PDF replacement mark recommendation context outdated. Do not call the provider on every change or page visit. Show Update suggestions in Careers when context differs; an explicit action refreshes once. Name/photo/default-category edits do not invalidate results.
-3. Identical input/catalog/prompt/schema revisions reuse the saved eligible result. Revisits never regenerate automatically. Failed generations allow explicit retry under quota; do not promise different ordering.
+3. Identical input/catalog/prompt/schema revisions reuse the saved eligible result. Revisits never regenerate automatically. A request explicitly initiated in the open Results flow can recover from a temporary failure once under the existing cooldown and quota. Honor short Retry-After values and cancel recovery on navigation or a change of account, run, or context. Keep manual retry available after recovery fails. Do not promise different ordering.
 4. PDF removal immediately invalidates and suppresses result payloads using that document, including cached results. Do not show their explanations as current or as a fallback. Show browsing and Update suggestions from remaining inputs. Unrelated previous results can remain only when their provenance proves independence from removed context.
 5. Take an immutable context/version snapshot before the provider call. On completion, save only if the account remains active and all relevant revisions match. A late result cannot restore deleted/replaced inputs or overwrite a newer result. Report outdated work and offer refresh.
 6. Use one in-flight generation/account and a persisted idempotency key tied to context/catalog/prompt/schema revision. Duplicate requests reuse pending/success status rather than spend again. Do not hold a database transaction across a model call.

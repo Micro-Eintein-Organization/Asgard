@@ -1,5 +1,29 @@
 # Skill profiles and career comparison
 
+## Local resume skill matching, 2026-11-09
+
+Codex implemented the approved PM-W03 / FUT-13 matcher update for local use.
+Technical reviewer `@YakisobaNissin`. Local signed-in acceptance passed.
+
+The [local matcher](../../backend/app/modules/documents/resume_review.py)
+treats punctuation in names such as C++ and C# as part of the skill and skips
+direct negative phrases immediately before a match. Later positive mentions
+can still qualify. The learner sees the original page and passage and chooses
+which skills and experience levels to save. The negation rules cover explicit
+phrases such as “no experience with,” “never used,” and “not familiar with.”
+
+Focused tests passed for punctuation, negation, contrast, later positive
+mentions, and the existing no-store PDF review endpoint. Local Chrome verified
+that a synthetic PDF yielded the positive skill only and that the disposable
+learner saved it by choosing an experience level and confirming. The learner was
+removed after the check.
+
+To repeat, open `http://127.0.0.1:5173/settings/profile`, select a career in
+resume review, and upload a synthetic selectable-text PDF with one positive and
+one directly negated mention of two skills linked to that career. Expect only
+the positive skill in the suggestions. Choose an experience level, save it, and
+check that it appears under Skills. Report the career, phrases, and result.
+
 ## Profile layout and compact skill entry, 2026-11-06
 
 The owner requested separate Profile and Account and security tabs and a PDF

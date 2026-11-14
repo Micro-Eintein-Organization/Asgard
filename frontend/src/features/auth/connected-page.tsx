@@ -12,6 +12,7 @@ import { StatePanel, Unavailable } from "@/components/shared";
 import { resendCooldown, startResendCooldown } from "@/auth/cooldown";
 import { validateNewPassword } from "@/auth/password";
 import { appRoutes, routes } from "@/lib/routes";
+import { emailDeliveryError } from "@/auth/email-errors";
 
 type Fields = {
   email: string;
@@ -42,14 +43,15 @@ export function ConnectedAuthPage({ mode }: { mode: Mode }) {
   const [resending, setResending] = useState(false);
   const [remaining, setRemaining] = useState(resendCooldown);
   useEffect(() => {
-    if (mode !== "recovery" && auth.user?.email_confirmed_at && !auth.loading)
+    if (mode !== "recovery" && auth.user?.email_confirmed_at && !auth.loading &&
+        auth.mfa !== "checking" && !auth.error)
       void navigate(
-        mode === "verify" ? appRoutes.welcome : appRoutes.dashboard,
+        auth.mfa === "required" ? routes.mfaChallenge : mode === "verify" ? routes.mfaSetup + "?welcome=1" : appRoutes.dashboard,
         {
           replace: true,
         },
       );
-  }, [auth.user, auth.loading, navigate, mode]);
+  }, [auth.user, auth.loading, auth.mfa, auth.error, navigate, mode]);
   useEffect(() => {
     const timer = setInterval(() => setRemaining(resendCooldown()), 1000);
     return () => clearInterval(timer);
@@ -83,7 +85,7 @@ export function ConnectedAuthPage({ mode }: { mode: Mode }) {
           throw new Error(
             error.code === "weak_password"
               ? "Use at least 8 characters for your password."
-              : "Could not start registration. Check the details or try again later.",
+              : emailDeliveryError(error.code, "Could not start registration. Check the details or try again later."),
           );
         if (data.session) {
           await supabase.auth.signOut({ scope: "local" });
@@ -111,7 +113,7 @@ export function ConnectedAuthPage({ mode }: { mode: Mode }) {
         sessionStorage.removeItem("asgard.signup-email");
         sessionStorage.removeItem("asgard.resend-at");
         setVerificationComplete(true);
-        void navigate(appRoutes.welcome, { replace: true });
+        void navigate(routes.mfaSetup + "?welcome=1", { replace: true });
       }
     } catch (cause) {
       setError(
@@ -137,15 +139,15 @@ export function ConnectedAuthPage({ mode }: { mode: Mode }) {
       beginCooldown();
       if (error)
         throw new Error(
-          "We could not send another code. Check the email address and connection, then try again when the timer ends.",
+          emailDeliveryError(error.code, "We could not send another code. Check the email address and connection, then try again when the timer ends."),
         );
       sessionStorage.setItem("asgard.signup-email", email);
       setMessage(
         "If this address can receive a verification code, a new email is on its way.",
       );
-    } catch {
+    } catch (cause) {
       setError(
-        "We could not send another code. Check the email address and connection, then try again when the timer ends.",
+        cause instanceof Error ? cause.message : "We could not send another code. Check the email address and connection, then try again when the timer ends.",
       );
     } finally {
       setResending(false);

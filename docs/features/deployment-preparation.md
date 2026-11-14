@@ -1,5 +1,17 @@
 # Core acceptance and deployment preparation
 
+## Account-demo follow-up, 2026-11-13
+
+Codex prepared optional MFA source and the
+[owner's hosted setup checklist](../deployment-account-demo.md) under the approved
+[account-demo plan](../plans/hosting-account-demo.md). Reviewer/operator:
+@YakisobaNissin. The [MFA guide](optional-two-factor-authentication.md) owns this
+increment's implementation, technical results and pending manual acceptance.
+The existing production runtime and database/session guard are reused. Built-in
+email is an owner-selected demo exception; hosting, SMTP/operations acceptance and
+AUTH-C2 are not established by source checks. Historical evidence below describes
+the earlier preparation and does not certify the current hosted app.
+
 Implementer: Codex. Created: 2026-10-29. Updated: 2026-10-29.
 Status: implementation and local acceptance complete; hosted gates not run.
 Required reviewer: @YakisobaNissin; human review deferred by owner.

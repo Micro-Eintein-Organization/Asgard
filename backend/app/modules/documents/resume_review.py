@@ -1,6 +1,12 @@
 import re
 from collections import defaultdict
 
+DIRECT_NEGATION = re.compile(
+    r"\b(?:no\s+(?:prior\s+)?experience\s+(?:with|in|using)"
+    r"|never\s+used|not\s+familiar\s+with)\s+$",
+    re.IGNORECASE,
+)
+
 
 def suggest(pages, skills):
     phrases = defaultdict(dict)
@@ -12,7 +18,10 @@ def suggest(pages, skills):
 
     patterns = [
         (
-            re.compile(r"(?<!\w)" + r"\s+".join(map(re.escape, phrase.split())) + r"(?!\w)", re.I),
+            re.compile(
+                r"(?<![\w.+#])" + r"\s+".join(map(re.escape, phrase.split())) + r"(?![\w+#])",
+                re.I,
+            ),
             next(iter(matches.values())) if len(matches) == 1 else None,
         )
         for phrase, matches in phrases.items()
@@ -30,6 +39,8 @@ def suggest(pages, skills):
                 continue
             covered = end
             if skill is None or skill["id"] in suggestions:
+                continue
+            if DIRECT_NEGATION.search(page[max(0, start - 60):start]):
                 continue
             suggestions[skill["id"]] = {
                 "skill_id": skill["id"],

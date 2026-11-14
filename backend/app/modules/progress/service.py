@@ -464,19 +464,45 @@ async def activity(connection, uid, month):
     return {"month": month, "days": days, "streak_days": streak}
 
 
-async def dashboard(connection, uid):
-    state = await learning(connection, uid)
-    parameters = {"uid": str(uid)}
-    pref = await preferences(connection, uid)
-    active = await one(
+async def active_topic(connection, uid):
+    return await one(
         connection,
         (
             "SELECT roadmap_id, topic_id, status, version, updated_at FROM "
             "asgard_private.topic_progress WHERE user_id = CAST(:uid AS uuid) AND "
             "status = 'learning'"
         ),
-        parameters,
+        {"uid": str(uid)},
     )
+
+
+async def core_milestone(connection, calculated, active):
+    next_ids = calculated["next_topic_ids"]
+    milestones = calculated["milestones"]
+    missing_branch = next((item for item in milestones if item["requires_branch_choice"]), None)
+    core = None
+    if next_ids:
+        topic = await one(
+            connection,
+            "SELECT milestone_id FROM asgard_catalog.topics WHERE id = CAST(:id AS uuid)",
+            {"id": str(next_ids[0])},
+        )
+        core = topic["milestone_id"] if topic else None
+    active_applies = active and active["roadmap_id"] == calculated["roadmap_id"] and (
+        active["topic_id"] in next_ids
+    )
+    if missing_branch and not active_applies:
+        ids = [item["milestone_id"] for item in milestones]
+        if core not in ids or ids.index(missing_branch["milestone_id"]) < ids.index(core):
+            return missing_branch["milestone_id"]
+    return core if core is not None or not milestones else milestones[-1]["milestone_id"]
+
+
+async def dashboard(connection, uid):
+    state = await learning(connection, uid)
+    parameters = {"uid": str(uid)}
+    pref = await preferences(connection, uid)
+    active = await active_topic(connection, uid)
     draft = await one(
         connection,
         (
@@ -514,27 +540,7 @@ async def dashboard(connection, uid):
     calculated, core = None, None
     if state["current_roadmap_id"]:
         calculated = await summary(connection, uid, state["current_roadmap_id"])
-        next_ids = calculated["next_topic_ids"]
-        missing_branch = next(
-            (item for item in calculated["milestones"] if item["requires_branch_choice"]), None
-        )
-        if next_ids:
-            core = (
-                await one(
-                    connection,
-                    "SELECT milestone_id FROM asgard_catalog.topics WHERE id = CAST(:id AS uuid)",
-                    {"id": str(next_ids[0])},
-                )
-            )["milestone_id"]
-        active_applies = active and active["roadmap_id"] == state["current_roadmap_id"] and (
-            active["topic_id"] in next_ids
-        )
-        if missing_branch and not active_applies:
-            ids = [item["milestone_id"] for item in calculated["milestones"]]
-            if core not in ids or ids.index(missing_branch["milestone_id"]) < ids.index(core):
-                core = missing_branch["milestone_id"]
-        if core is None and calculated["milestones"]:
-            core = calculated["milestones"][-1]["milestone_id"]
+        core = await core_milestone(connection, calculated, active)
     recent = await rows(
         connection,
         (

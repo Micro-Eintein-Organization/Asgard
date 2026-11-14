@@ -6,6 +6,75 @@ from app.core.errors import APIError
 from app.modules.discovery.schemas import Questionnaire
 
 QUESTIONNAIRE_ID = uuid5(NAMESPACE_URL, "asgard/content/questionnaire/1")
+QUESTIONNAIRE_V2_ID = uuid5(NAMESPACE_URL, "asgard/content/questionnaire/2")
+
+FIELDS = (
+    (
+        "build",
+        "Build apps, websites, or games",
+        (
+            ("web", "Build pages people interact with"),
+            ("backend", "Build the services behind an app"),
+            ("full_stack", "Build both the screens and services"),
+            ("mobile", "Build phone apps"),
+            ("games", "Build games"),
+            ("ai_features", "Add AI features to a product"),
+        ),
+    ),
+    (
+        "data",
+        "Find answers in data",
+        (
+            ("analyze", "Investigate questions using data"),
+            ("dashboards", "Build dashboards people use regularly"),
+            ("pipelines", "Move and prepare data for others to use"),
+            ("statistics", "Test ideas and make predictions with statistics"),
+            ("train_models", "Train models and improve how they perform"),
+        ),
+    ),
+    (
+        "design",
+        "Design how products look and work",
+        (
+            ("layouts", "Design screen layouts and visuals"),
+            ("research", "Research how people use a product and improve their experience"),
+        ),
+    ),
+    (
+        "security",
+        "Find and fix security weaknesses",
+        (
+            ("test_security", "Test for weaknesses with permission"),
+            ("respond", "Spot and respond to security incidents"),
+            ("cloud_security", "Protect services running in the cloud"),
+        ),
+    ),
+    (
+        "infrastructure",
+        "Keep networks and services running",
+        (
+            ("networks", "Connect devices and troubleshoot networks"),
+            ("servers", "Manage servers and user accounts"),
+            ("cloud", "Set up cloud services"),
+            ("releases", "Automate software releases"),
+        ),
+    ),
+    (
+        "devices",
+        "Work with devices and electronics",
+        (
+            ("circuits", "Design and test circuits"),
+            ("embedded", "Write software that runs inside a device"),
+            ("linux", "Work on how Linux runs underneath applications"),
+        ),
+    ),
+)
+
+FOLLOW_UPS = (
+    ("prefer_ai_ml", "ai_features", "train_models"),
+    ("prefer_ui_ux", "layouts", "research"),
+    ("prefer_cloud_devops", "cloud", "releases"),
+)
 
 
 def option(key, label, description, *, exclusive=False, excludes=()):
@@ -23,6 +92,8 @@ def uncertain(description="I would like to explore the options."):
 
 
 def definition(questionnaire_id=None):
+    if str(questionnaire_id) == str(QUESTIONNAIRE_V2_ID):
+        return definition_v2()
     if questionnaire_id is not None and str(questionnaire_id) != str(QUESTIONNAIRE_ID):
         raise APIError(
             503, "questionnaire_unavailable", "This saved questionnaire version is unavailable."
@@ -254,7 +325,98 @@ def definition(questionnaire_id=None):
     return Questionnaire(id=QUESTIONNAIRE_ID, version=1, questions=questions)
 
 
-def active_route(answers):
+def definition_v2():
+    questions = []
+
+    def add(key, stage, prompt, helper, options, limit=1, kind=None):
+        questions.append(
+            {
+                "question_id": key,
+                "position": len(questions),
+                "stage": stage,
+                "prompt": prompt,
+                "helper": helper,
+                "options": options,
+                "multiple": limit > 1,
+                "interest_option_id": None,
+                "max_selections": limit,
+                "kind": kind,
+            }
+        )
+
+    add(
+        "experience_preference",
+        "background",
+        "Would you like to build on skills or experience you already have?",
+        "Optional. Your answer changes what you see first on Results.",
+        [
+            option("use_experience", "Use my experience", ""),
+            option("basics", "Start with the basics", ""),
+            uncertain(""),
+        ],
+        kind="experience_preference",
+    )
+    add(
+        "interests",
+        "interests",
+        "What kind of work would you like to try?",
+        "Pick up to two fields you’re curious about.",
+        [option(key, label, "") for key, label, _ in FIELDS] + [uncertain("")],
+        limit=2,
+    )
+    for key, label, choices in FIELDS:
+        add(
+            f"activities_{key}",
+            "activities",
+            "Which activities would you like to try?",
+            label,
+            [option(value, name, "") for value, name in choices] + [uncertain("")],
+            limit=2,
+        )
+    add(
+        "activities_general",
+        "activities",
+        "Which activities would you like to try?",
+        "Pick up to two, or continue if you’re still unsure.",
+        [option(*choices[0], "") for _, _, choices in FIELDS]
+        + [option("unsure", "Still not sure", "", exclusive=True)],
+        limit=2,
+    )
+    labels = dict(choice for _, _, choices in FIELDS for choice in choices)
+    for key, left, right in FOLLOW_UPS:
+        add(
+            key,
+            "activities",
+            "Which would you rather try first?",
+            "",
+            [
+                option(left, labels[left], ""),
+                option(right, labels[right], ""),
+                option("both", "Both or I’m not sure", ""),
+            ],
+            kind="activity_follow_up",
+        )
+    goal = definition().questions[-1].model_dump()
+    questions.append({**goal, "position": len(questions), "max_selections": 1})
+    return Questionnaire(id=QUESTIONNAIRE_V2_ID, version=2, questions=questions)
+
+
+def active_route(answers, version=1):
+    if version == 2:
+        interests = answers.get("interests", [])
+        activities = [f"activities_{key}" for key, _, _ in FIELDS if key in interests]
+        if not activities:
+            activities = ["activities_general"]
+        route = ["experience_preference", "interests", *activities]
+        if all(answers.get(key) for key in activities):
+            selected = {value for key in activities for value in answers[key]}
+            follow_up = next(
+                (key for key, left, right in FOLLOW_UPS if {left, right} <= selected), None
+            )
+            if follow_up:
+                route.append(follow_up)
+        return [*route, "goals"]
+
     interests = answers.get("interests", [])
     branch = (
         interests[0]
@@ -270,6 +432,8 @@ def validate_answer(question, selected):
         raise APIError(422, "invalid_answer", "Choose valid options for this question.")
     if not question.multiple and len(selected) != 1:
         raise APIError(422, "invalid_answer", "Choose one option for this question.")
+    if question.max_selections is not None and len(selected) > question.max_selections:
+        raise APIError(422, "invalid_answer", f"Choose up to {question.max_selections} options.")
     if len(selected) > 1 and any(options[key].exclusive for key in selected):
         raise APIError(422, "invalid_answer", "The uncertainty option must be selected on its own.")
     if any(set(options[key].excludes) & set(selected) for key in selected):

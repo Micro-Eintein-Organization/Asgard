@@ -10,6 +10,7 @@ vi.mock("@/features/core/data", () => ({
   coreApi: { catalog: vi.fn() },
   useCoreQuery: vi.fn(),
 }));
+vi.mock("@/features/ai-guidance", () => ({ CounselorLauncher: () => null }));
 
 function flow(failed = false) {
   const catalog = {
@@ -21,6 +22,7 @@ function flow(failed = false) {
           title: "Published career",
           description: "Starter path",
           skills: ["HTML"],
+          roadmap_ids: ["roadmap-1"],
         },
       ],
     },
@@ -28,7 +30,12 @@ function flow(failed = false) {
   };
   vi.mocked(useCoreQuery).mockImplementation(key => (key[0] === "recommendation-categories"
     ? { data: [{ id: "software", title: "Software and AI" }], error: null }
-    : catalog) as never);
+    : key[0] === "discovery-session"
+      ? { data: key[1] ? { answers: [
+          { question_id: "experience_preference", option_ids: ["use_experience"] },
+          { question_id: "goals", option_ids: ["change"] },
+        ] } : undefined }
+      : catalog) as never);
   return {
     query: {
       data: {
@@ -73,7 +80,7 @@ describe("saved recommendation cards", () => {
       </MemoryRouter>,
     );
     expect(
-      screen.queryByText(/returned suggestions could not be validated/),
+      screen.queryByText(/couldn’t prepare suggestions/),
     ).not.toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Preparing…" })).toBeDisabled();
   });
@@ -83,16 +90,25 @@ describe("saved recommendation cards", () => {
         <RecommendationCards flow={flow()} />
       </MemoryRouter>,
     );
-    expect(screen.getByRole("button", { name: "View selected roadmap" })).toBeDisabled();
-    fireEvent.click(screen.getByRole("radio", { name: /Published career/ }));
-    expect(screen.getByRole("link", { name: "View selected roadmap" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "See where to start" })).toHaveAttribute(
       "href",
       "/roadmaps/career-1?roadmap=roadmap-1",
     );
     expect(screen.getByText("Why this was suggested")).toBeVisible();
-    expect(screen.getByText("A limited catalog option.")).toBeVisible();
+    expect(screen.getByText("A limited catalog option.")).not.toBeVisible();
     expect(screen.getByText("Software and AI")).toHaveClass("card-category");
-    expect(screen.getByRole("link", { name: "Retake Discovery" })).toHaveAttribute("href", "/settings/profile#saved-discovery");
+    fireEvent.click(screen.getByText("Suggestion details"));
+    expect(screen.getByText("A limited catalog option.")).toBeVisible();
+    expect(screen.getByRole("link", { name: "Review Discovery answers" })).toHaveAttribute("href", "/settings/profile#saved-discovery");
+  });
+  it("uses the displayed run's Discovery session to order its actions", () => {
+    const current = flow();
+    current.query.data!.current!.discovery = { session_id: "completed-v2" } as never;
+    render(<MemoryRouter><RecommendationCards flow={current} /></MemoryRouter>);
+    const compare = screen.getByRole("link", { name: "Compare my skills to this career" });
+    expect(compare).toHaveAttribute("href", "/roadmaps/career-1?roadmap=roadmap-1&reviewSkills=1");
+    expect(compare.parentElement?.firstElementChild).toBe(compare);
+    expect(screen.getByText(/Considering a career change/)).toBeVisible();
   });
 
   it("keeps the saved failure visible alongside retry cooldown feedback", () => {
@@ -115,12 +131,23 @@ describe("saved recommendation cards", () => {
     expect(screen.getByRole("alert")).toHaveTextContent(
       "Wait before requesting again.",
     );
-    expect(
-      screen.queryByText(/returned suggestions could not be validated/),
-    ).toBeInTheDocument();
+    expect(screen.queryByText(/couldn’t prepare suggestions/)).not.toBeInTheDocument();
     expect(
       screen.getByRole("button", { name: "Try again in 45s" }),
     ).toBeDisabled();
+  });
+  it("keeps older cards out of view while retrying and reveals them on demand", () => {
+    const current = flow(true);
+    const previous = flow().query.data!.current!;
+    current.query.data!.previous_eligible_success = { ...previous, id: "old-run" };
+    current.willRetry = true;
+    current.cooldown = 60;
+    render(<MemoryRouter><RecommendationCards flow={current} /></MemoryRouter>);
+    expect(screen.getByRole("status")).toHaveTextContent("retry automatically. 60s");
+    expect(screen.queryByRole("heading", { name: "Published career" })).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "View previous suggestions" }));
+    expect(screen.getByRole("heading", { name: "Published career", level: 2 })).toBeVisible();
+    expect(screen.getByText("Previous suggestions from earlier answers or context.")).toBeVisible();
   });
   it("does not require an initial generate button in the Discovery results flow", () => {
     const current = flow();

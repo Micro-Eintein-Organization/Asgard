@@ -5,6 +5,8 @@ export type AuthState = {
   user: User | null;
   loading: boolean;
   error: string | null;
+  mfa: "checking" | "required" | "ready";
+  refreshAssurance: () => Promise<void>;
   signOut: () => Promise<void>;
 };
 export const AuthContext = createContext<AuthState | null>(null);

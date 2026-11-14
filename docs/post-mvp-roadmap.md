@@ -356,8 +356,12 @@ final improvement after the other learner journeys and their presentation have
 settled. This defers only revised questions or interaction design, not the
 existing Discovery feature.
 
-- Depends on approved content and W01 where contracts change. Preserve existing
-  five-theme conditional sessions; the proposed 8-10-question route is new content.
+- The owner selected a four-to-six-question route on 2026-11-09. Preserve
+  existing five-theme conditional sessions. The new route adds a general
+  activity question for uncertainty and an optional skill comparison after
+  career selection. The [review packet](plans/discovery-v2.md) records
+  W01 approval and the [implementation guide](features/guided-discovery-v2.md)
+  records source and publication status.
 - Review wording, branches, ambiguity, inactive answers and old-session support
   before publishing a new questionnaire version. Do not mutate saved meanings.
 - Exit checks: blank entry, conditional Back/edit, save/resume, version compatibility,

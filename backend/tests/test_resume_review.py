@@ -25,6 +25,21 @@ def test_matches_are_unique_verbatim_and_ordered():
     ]
 
 
+def test_matches_distinguish_punctuation_and_skip_direct_negation():
+    skills = SKILLS + [
+        {"id": UUID(int=index), "label": label, "aliases": []}
+        for index, label in enumerate(("C", "C#", "AWS"), 3)
+    ]
+    pages = [
+        "Used C#. No experience with SQL. Never used C++. Not familiar with AWS.",
+        "No experience with AWS, but used SQL. Later built a tool in C++.",
+    ]
+    assert [(item["label"], item["page"]) for item in suggest(pages, skills)] == [
+        ("C#", 1), ("SQL", 2), ("C++", 2),
+    ]
+    assert [item["label"] for item in suggest(["Used C."], skills)] == ["C"]
+
+
 def test_resume_endpoint(monkeypatch):
     app = create_app()
     app.state.settings = SimpleNamespace(resume_skill_review_enabled=False)

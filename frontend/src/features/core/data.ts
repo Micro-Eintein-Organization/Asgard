@@ -224,6 +224,10 @@ export const coreApi = {
   activity: (month: string) =>
     result(api.GET("/api/v1/me/activity", { params: { query: { month } } })),
   discovery: () => result(api.GET("/api/v1/me/discovery")),
+  discoverySession: (id: string) =>
+    result(api.GET("/api/v1/me/discovery/{session_id}", {
+      params: { path: { session_id: id } },
+    })),
   questionnaire: (id?: string) =>
     result(
       api.GET("/api/v1/discovery/questionnaire", {
