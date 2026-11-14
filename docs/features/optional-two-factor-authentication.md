@@ -1,5 +1,16 @@
 # Optional two-factor authentication and hosted account demo
 
+2026-11-14 Render Free correction: the owner encountered Blueprint rejection of
+`maxShutdownDelaySeconds`. Codex removed that unsupported override and shortened
+Uvicorn shutdown from 40 to 20 seconds to fit the host's default 30-second window.
+The existing startup check now guards that bound. This is a hosting compatibility
+fix under the approved plan; no provider/plan, API or database change. Required
+reviewer remains @YakisobaNissin. Focused verification on 2026-11-14: six existing
+startup/port tests passed in the existing Docker image with no network and a
+read-only source mount; scoped whitespace checks passed. The existing
+Starlette/httpx deprecation warning remains. Hosted Blueprint revalidation and
+shutdown acceptance remain pending publication.
+
 2026-11-14 setup follow-up: the owner's reported hosted migration application,
 verified-TLS restricted-role login and Gmail SMTP/template configuration are
 recorded in the [deployment progress](../deployment-account-demo.md#setup-progress-2026-11-14).

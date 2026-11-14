@@ -50,7 +50,10 @@ def test_invalid_runtime_port(port):
 
 
 def test_platform_port_used():
-    assert runtime_arguments("10000")[5] == "10000"
+    arguments = runtime_arguments("10000")
+    assert arguments[5] == "10000"
+    shutdown_budget = int(arguments[arguments.index("--timeout-graceful-shutdown") + 1])
+    assert 0 < shutdown_budget < 30
 
 
 @pytest.mark.parametrize("database_ready", [True, False])

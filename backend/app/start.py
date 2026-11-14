@@ -8,7 +8,7 @@ def runtime_arguments(port: str):
         raise ValueError("PORT must be an unprivileged TCP port.")
     return [
         "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", port,
-        "--no-access-log", "--timeout-graceful-shutdown", "40",
+        "--no-access-log", "--timeout-graceful-shutdown", "20",
     ]
 
 
