@@ -110,3 +110,7 @@ existing versioned progress mutation to clear it, explicitly labeled. Never mark
 Done or replay the blocked selection automatically. Improve stale-state reload,
 preserve account/session guards, no API/schema change. TypeScript and focused
 roadmap interaction check only; hosted performance uses owner logs.
+
+
+## Approved round-trip reduction, 2026-11-16
+Owner/reviewer: @YakisobaNissin; implementer: Codex. Chat approval: implement the proposed optimization plan. Requirements QA-09, A-09, REQ-02/03. Scope: repository transaction setup, query metrics, published content cache, roadmap/Dashboard reads and frontend scheduling. Preserve contracts, authorization and write guards. Focused security/cache/progress tests and TypeScript/build checks; hosted timings and 20-user acceptance remain operator checks. No commit or deployment authorized.

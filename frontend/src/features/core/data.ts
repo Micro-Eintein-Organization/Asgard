@@ -319,7 +319,8 @@ export function useCoreQuery<T>(
     queryKey: ["account", user?.id, ...key],
     queryFn: ({ signal }) => load(AbortSignal.any([signal, AbortSignal.timeout(90_000)])),
     enabled: !!user && enabled,
-    refetchInterval: ["catalog-summary", "careers", "career", "roadmap", "roadmap-view", "dashboard-view"].includes(String(key[0])) ? 30_000 : false,
+    staleTime: ["catalog-summary", "careers", "career", "roadmap"].includes(String(key[0])) ? 30_000 : 0,
+    refetchInterval: false,
     refetchIntervalInBackground: false,
     retry: false,
   });
@@ -387,7 +388,9 @@ export function useCoreMutation<TVariables, TData>(
             ["dashboard", "dashboard-view", "learning", "roadmap-view", "progress", "summary", "branches",
               "catalog-progress", "activity", "recommendations", "roadmap-guidance"]
               .includes(String(query.queryKey[2])),
+            refetchType: "none",
           });
+          void client.invalidateQueries({ queryKey: viewKey, exact: true });
           return;
         }
         if (options?.clearSuggestions?.(variables)) {
@@ -414,10 +417,12 @@ export function useRoadmapPreload() {
     clearTimeout(work.current.timer);
     work.current.controller?.abort();
     const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
-    if (!user || !id || connection?.saveData) return;
+    if (!user || !id || connection?.saveData || document.hidden ||
+        client.isMutating() > 0 || client.isFetching() > 0) return;
     const userId = user.id;
     work.current.timer = setTimeout(() => {
-      if (!isCurrentAccount(userId)) return;
+      if (!isCurrentAccount(userId) || document.hidden ||
+          client.isMutating() > 0 || client.isFetching() > 0) return;
       const controller = new AbortController();
       work.current.controller = controller;
       void client.prefetchQuery({

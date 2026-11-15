@@ -123,12 +123,28 @@ async def milestones(connection, roadmap_id):
 
 @published_content
 async def roadmap(connection, roadmap_id):
-    result = required(
-        await one(
-            connection,
-            "SELECT * FROM asgard_catalog.roadmaps WHERE id = CAST(:id AS uuid)",
-            {"id": str(roadmap_id)},
-        )
-    )
-    result["milestones"] = await milestones(connection, roadmap_id)
-    return result
+    # One statement supplies one publication snapshot, including every nested collection.
+    record = required(await one(connection, """
+        SELECT to_jsonb(r) || jsonb_build_object('milestones', COALESCE((
+          SELECT jsonb_agg((to_jsonb(m) - 'roadmap_id') || jsonb_build_object(
+            'branch_groups', COALESCE((SELECT jsonb_agg(
+              (to_jsonb(g) - 'milestone_id' - 'roadmap_id') || jsonb_build_object('branches',
+                COALESCE((SELECT jsonb_agg(to_jsonb(b) - 'group_id' - 'roadmap_id' - 'milestone_id' ORDER BY b.position, b.id)
+                  FROM asgard_catalog.branches b WHERE b.group_id=g.id), '[]'::jsonb))
+              ORDER BY g.position, g.id) FROM asgard_catalog.branch_groups g
+              WHERE g.milestone_id=m.id), '[]'::jsonb),
+            'topics', COALESCE((SELECT jsonb_agg(to_jsonb(t) || jsonb_build_object(
+              'prerequisite_ids', COALESCE((SELECT jsonb_agg(p.prerequisite_id ORDER BY p.prerequisite_id)
+                FROM asgard_catalog.topic_prerequisites p WHERE p.topic_id=t.id
+                AND p.roadmap_id=r.id), '[]'::jsonb),
+              'resources', COALESCE((SELECT jsonb_agg(to_jsonb(x) - 'topic_id' ORDER BY x.position, x.id)
+                FROM asgard_catalog.resources x WHERE x.topic_id=t.id), '[]'::jsonb))
+              ORDER BY t.position, t.id) FROM asgard_catalog.topics t
+              WHERE t.milestone_id=m.id AND t.roadmap_id=r.id), '[]'::jsonb))
+            ORDER BY m.position, m.id) FROM asgard_catalog.milestones m
+          WHERE m.roadmap_id=r.id), '[]'::jsonb)) AS payload
+        FROM asgard_catalog.roadmaps r WHERE r.id=CAST(:id AS uuid)
+    """, {"id": str(roadmap_id)}))
+    from app.modules.roadmaps.schemas import Roadmap
+
+    return Roadmap.model_validate(record["payload"]).model_dump()

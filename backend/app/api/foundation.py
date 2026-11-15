@@ -360,7 +360,7 @@ async def get_dashboard_view(request: Request, identity: Auth):
     async with transaction(request, identity) as connection:
         learning = await progress_service.learning(connection, identity.user_id)
         rid = learning["current_roadmap_id"]
-        current = await progress_service.roadmap_view(connection, identity.user_id, rid) if rid else None
+        current = await progress_service.roadmap_view(connection, identity.user_id, rid, learning) if rid else None
         saved = await progress_service.dashboard(connection, identity.user_id, current, learning)
         career = await careers_service.career(connection, current["roadmap"]["career_id"]) if current else None
         active = saved["active_topic"]

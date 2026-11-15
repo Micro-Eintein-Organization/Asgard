@@ -10,6 +10,7 @@ from app.core.errors import APIError
 from app.modules.discovery import service as discovery
 from app.modules.discovery.definition import QUESTIONNAIRE_V2_ID, definition
 from app.modules.discovery.schemas import DiscoverySession
+from app.modules.progress.service import learning as read_learning
 from app.modules.recommendations import discovery_rules, occupational_runtime
 from app.modules.recommendations.provider import (
     PROMPT_VERSION,
@@ -59,6 +60,17 @@ async def expire(connection, uid):
         ),
         {"uid": str(uid)},
     )
+
+
+async def expire_if_needed(connection, uid):
+    pending = await one(connection,
+        "SELECT id FROM asgard_private.recommendation_runs WHERE user_id=CAST(:uid AS uuid) "
+        "AND status='pending' AND deadline_at <= statement_timestamp() LIMIT 1",
+        {"uid": str(uid)})
+    if pending:
+        # Expiry remains a serialized state transition; ordinary reads do not lock the account.
+        await lock_account(connection, uid)
+        await expire(connection, uid)
 
 
 async def eligible(connection, uid, run_id):
@@ -190,8 +202,8 @@ async def run(connection, uid, run_id, context_revision, catalog_release_id):
 
 
 async def state(connection, uid, settings):
-    learning = await lock_account(connection, uid)
-    await expire(connection, uid)
+    learning = await read_learning(connection, uid)
+    await expire_if_needed(connection, uid)
     release = await release_id(connection)
     latest = await one(
         connection,
@@ -258,8 +270,8 @@ async def state(connection, uid, settings):
 
 async def get_run(request, identity, run_id):
     async with transaction(request, identity) as connection:
-        learning = await lock_account(connection, identity.user_id)
-        await expire(connection, identity.user_id)
+        learning = await read_learning(connection, identity.user_id)
+        await expire_if_needed(connection, identity.user_id)
         return await run(
             connection,
             identity.user_id,

@@ -175,3 +175,75 @@ and Dashboard view 1481-2289 ms. This is improvement evidence for that sample,
 not p95 or 20-user acceptance. Repeated writes returned 409; request logs alone
 cannot distinguish learning-resolution guards from version conflicts. Further
 Dashboard query reduction and hosted tail-latency acceptance remain pending.
+
+
+## Round-trip reduction, 2026-11-16
+
+Implementer: Codex. Reviewer/operator: @YakisobaNissin. Requirements QA-09,
+A-09, REQ-02/03. Owner approved implementation in chat. Status: implementation
+and focused local checks complete; review and hosted acceptance pending.
+
+Authorization now checks the restricted role, live session/MFA and conditional
+transaction-local user context in one guarded statement on every transaction.
+Pre-ping, pool size three, verify-full TLS and no write replay remain. Unsafe
+roles fail with the existing 503 and denied sessions with the existing 401.
+Published roadmap and catalog page/summary bundles use individual SQL statements,
+so each bundle has one statement snapshot. Internal editorial metadata is filtered
+from API responses. No schema or wire contract changes.
+
+Roadmap views batch progress and branch choices. Dashboard reuses learning state,
+batches preferences/guidance/active/recent/recommendation context and derives its
+core milestone from the loaded roadmap. Recommendations avoid an unconditional
+account lock; expired pending runs still take the lock and transition to failed.
+Further recommendation query consolidation and the five-feature-query target
+remain pending hosted statement evidence; no new indexes or write-guard rewrites.
+
+Shared content entries now contain typed serialized JSON bytes. The 32 MiB bound
+covers payload bytes, not total process memory. UUID/date/datetime values survive
+cache hits. TTL remains 30 seconds; failures are not cached. Followers recover
+from leader cancellation using their own request connection, with bounded retries.
+Private data and AI results are never stored in this cache.
+
+Frontend removes blanket polling. Pure content has 30-second staleTime; combined
+private views revalidate on revisit/focus/reconnect. Progress saves patch confirmed
+rows, mark dependents stale and refetch the displayed roadmap only. Speculative
+preload is suppressed during foreground requests/mutations, hidden tabs and
+Save-Data. Existing single-target delay/cancellation and account scoping remain.
+
+Safe statement logs contain a hash, phase, occurrence, elapsed time and failure
+flag; no SQL text or parameters. Connection establishment is logged separately
+when a new connection opens. Acquisition still includes checkout/pre-ping and
+cannot be described as pure pool wait. SQL timings include network/driver time.
+Use the existing backend container to run `python scripts/measure_database.py`
+for ten SELECT 1 samples (acquisition, SELECT, and total including cleanup).
+This command was syntax/lint checked; hosted execution is pending.
+
+Verification: 45 focused backend checks passed, including four new guarded-role/
+session and typed-cache/cancelled-leader checks; TypeScript, changed frontend lint
+and production build passed. Six existing frontend catalog/Dashboard/suggestion-cache
+tests passed. Existing auth fixture initially inherited local
+photo enablement; rerun with ASGARD_PROFILE_PHOTOS_ENABLED=false passed. Local
+read-only SQL exercised all 26 roadmap bundles, catalog summary and a 20-item
+catalog page. EXPLAIN without ANALYZE planned Dashboard/private-state aggregates;
+it did not execute their writes or establish actual query-plan performance.
+
+Pending: real pooled revoked-session/MFA/account-isolation integration, concurrent
+expiry/save acceptance, publication freshness, save-to-screen timing and 20-user
+hosted p95. These are release gates, not established by mocked/local checks.
+AI provider code/prompts are unchanged; live AI acceptance remains pending.
+
+Rollout: review backend first, then frontend. Keep existing deployments available.
+At https://asgard-navy.vercel.app, browse catalog, open two roadmaps, select current,
+change topic state, return to Dashboard and refresh. Verify confirmed state,
+percentages and next topic. Resolve Learning conflicts explicitly. Switch accounts
+and confirm isolation. Report safe request IDs, expected/actual outcome and timings.
+Compare ten warm journeys against previous Render logs; record cold start separately.
+Run the approved 20-user hosted scenario before claiming p95 <=2 seconds. Keep
+Supabase migration separate. Revert the reviewed change to roll back; no database
+migration is needed.
+
+Operator SQL evidence: in Supabase SQL Editor, inspect pg_stat_statements columns
+queryid/calls/total_exec_time/mean_exec_time/rows ordered by total_exec_time and
+mean_exec_time (LIMIT 20), using the installed extension schema. Keep raw query
+text private. Match EXPLAIN (ANALYZE, BUFFERS) to identified slow SELECTs only;
+do not execute ANALYZE on mutations without a reviewed rollback procedure.
