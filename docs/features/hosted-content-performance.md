@@ -153,3 +153,25 @@ catalog, roadmap, selection, progress and Dashboard actions ten times warm. Comp
 hosted query counts, request durations and connection waits with the supplied
 baseline. Verify saves after refresh and account switch. The p95 <=2-second target
 is pending, and no hosted improvement is claimed before those results arrive.
+
+
+## Actionable Learning conflict, 2026-11-16
+
+Implementer: Codex; reviewer @YakisobaNissin; owner requested in chat. Local UI
+implementation: a learning_resolution_required response explains the one-Learning-
+topic restriction, loads the active topic using the authenticated Dashboard view,
+and offers Clear active lesson. This calls the existing versioned progress write
+with not_started, never marks Done and never automatically retries the blocked
+roadmap selection. Failed clear reloads active state and displays its error.
+Other 409s retain server messages and Reload saved state. No API/schema change.
+Source: frontend/src/features/roadmaps/page.tsx. Owner manual acceptance pending:
+start a lesson on roadmap A, attempt roadmap B, use Clear active lesson, then
+explicitly select B. Confirm A retains other progress and is no longer Learning;
+refresh to verify. Stale-version failures must require reload rather than blind
+write replay. See handoff for minimal TypeScript/lint/interaction results.
+
+Owner's new hosted logs show catalog 7 queries/859 ms, warm roadmap view 782 ms
+and Dashboard view 1481-2289 ms. This is improvement evidence for that sample,
+not p95 or 20-user acceptance. Repeated writes returned 409; request logs alone
+cannot distinguish learning-resolution guards from version conflicts. Further
+Dashboard query reduction and hosted tail-latency acceptance remain pending.

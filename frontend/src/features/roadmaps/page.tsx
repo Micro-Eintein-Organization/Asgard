@@ -14,6 +14,7 @@ import {
 import { BackLink, Notice, StatePanel, StatusBadge } from "@/components/shared";
 import { CounselorLauncher } from "@/features/ai-guidance";
 import { appRoutes } from "@/lib/routes";
+import { APIRequestError } from "@/api/errors";
 import { coreApi, useCoreMutation, useCoreQuery } from "@/features/core/data";
 import { topicPresentation } from "./topic-presentation";
 import { SkillComparison } from "@/features/competencies/comparison";
@@ -63,6 +64,26 @@ export function RoadmapPage() {
   const focus = useCoreMutation(coreApi.selectRoadmap, { learningChange: "selection" });
   const change = useCoreMutation(coreApi.saveProgress, { learningChange: "progress" });
   const branch = useCoreMutation(coreApi.saveBranch, { learningChange: "progress" });
+  const clearActive = useCoreMutation(coreApi.saveProgress, { learningChange: "progress" });
+  const resolutionRequired = [focus.error, change.error, branch.error].some(error =>
+    error instanceof APIRequestError && error.body.code === "learning_resolution_required",
+  );
+  const resolution = useCoreQuery(["learning-resolution"], coreApi.dashboardView, resolutionRequired);
+  const activeLesson = resolution.data?.dashboard.active_topic;
+  async function clearActiveLesson() {
+    if (!activeLesson) return;
+    try {
+      await clearActive.mutateAsync({
+        roadmapId: activeLesson.roadmap_id, topicId: activeLesson.topic_id,
+        body: { status: "not_started", expected_version: activeLesson.version },
+      });
+      focus.reset(); change.reset(); branch.reset();
+      void view.refetch();
+      void resolution.refetch();
+    } catch {
+      void resolution.refetch();
+    }
+  }
   const topicId = params.get("topic");
   const topic = roadmap.data?.milestones
     .flatMap((milestone) => milestone.topics)
@@ -160,7 +181,7 @@ export function RoadmapPage() {
         This roadmap does not belong to the selected career.
       </StatePanel>
     );
-  const pending = focus.isPending || change.isPending || branch.isPending;
+  const pending = focus.isPending || change.isPending || branch.isPending || clearActive.isPending;
   const mutationError = focus.error ?? change.error ?? branch.error;
   return (
     <>
@@ -174,18 +195,22 @@ export function RoadmapPage() {
         })} />
       )}
       {view.isFetching && (change.isSuccess || branch.isSuccess) && <Notice>Saved. Updating progress totals…</Notice>}
+      {clearActive.isSuccess && !resolutionRequired && <Notice>Active lesson cleared. You can now choose a roadmap or start another lesson.</Notice>}
+      {clearActive.error && <Notice tone="error">{clearActive.error.message}</Notice>}
       {mutationError && (
         <Notice tone="error">
-          {mutationError.message}{" "}
-          <button
-            onClick={() => {
-
-              void progress.refetch();
-              void branches.refetch();
-            }}
-          >
-            Reload saved state
-          </button>{" "}
+          {resolutionRequired
+            ? "You already have a lesson marked Learning. Finish it, skip it, or clear its Learning status before switching."
+            : mutationError.message}{" "}
+          {resolutionRequired && activeLesson && <Button
+            variant="outline" disabled={pending} onClick={() => void clearActiveLesson()}
+          >{clearActive.isPending ? "Clearing…" : "Clear active lesson"}</Button>}
+          {resolutionRequired && resolution.isPending && <span>Finding your active lesson… </span>}
+          {resolutionRequired && resolution.error && <span>Could not load the active lesson. </span>}
+          <button onClick={() => {
+            void view.refetch();
+            if (resolutionRequired) void resolution.refetch();
+          }}>Reload saved state</button>{" "}
           <Link to={appRoutes.dashboard}>Resolve Learning on Dashboard</Link>
         </Notice>
       )}

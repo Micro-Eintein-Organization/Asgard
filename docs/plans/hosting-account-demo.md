@@ -101,3 +101,12 @@ cache behind live session enforcement, catalog summary and Dashboard view
 contracts, explicit mutation refresh policies and selective preloading. Keep
 private account state out of shared caches. Preserve existing local edits.
 Minimal correctness/contract checks only; no offline performance claim.
+
+## Learning conflict resolution, 2026-11-16
+
+Owner requested actionable conflict warning after hosted 409s. Codex implements;
+@YakisobaNissin reviews. Use existing Dashboard view to identify active topic and
+existing versioned progress mutation to clear it, explicitly labeled. Never mark
+Done or replay the blocked selection automatically. Improve stale-state reload,
+preserve account/session guards, no API/schema change. TypeScript and focused
+roadmap interaction check only; hosted performance uses owner logs.
