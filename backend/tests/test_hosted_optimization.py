@@ -77,3 +77,21 @@ def test_cache_preserves_types_and_recovers_cancelled_leader():
         assert await follower == value
         assert await cache.get("key", load) == value
     asyncio.run(check())
+
+
+@pytest.mark.skipif(__import__("os").environ.get("ASGARD_RUN_DATABASE_REGRESSION") != "1",
+                    reason="Requires provisioned local restricted-role database credentials")
+def test_real_database_guard_rejects_unknown_session():
+    from app.core.config import Settings
+
+    async def check():
+        repository = ProfileRepository.connect(Settings().database_url.get_secret_value())
+        try:
+            for _ in range(2):
+                with pytest.raises(APIError) as caught:
+                    async with repository.transaction(Identity(uuid4(), uuid4(), "aal1")):
+                        pytest.fail("An unknown session reached feature SQL")
+                assert caught.value.status == 401
+        finally:
+            await repository.engine.dispose()
+    asyncio.run(check())

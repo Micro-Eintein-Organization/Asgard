@@ -59,7 +59,7 @@ class ProfileRepository:
                     FROM role_guard
                 )
                 SELECT safe, allowed, CASE WHEN safe AND allowed THEN
-                    set_config('asgard.user_id', :uid, true) ELSE NULL END AS context
+                    set_config('asgard.user_id', CAST(:uid AS text), true) ELSE NULL END AS context
                 FROM session_guard
             """), params)).mappings().one_or_none()
             if not guard or not guard["safe"]:

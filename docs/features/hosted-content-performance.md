@@ -247,3 +247,19 @@ queryid/calls/total_exec_time/mean_exec_time/rows ordered by total_exec_time and
 mean_exec_time (LIMIT 20), using the installed extension schema. Keep raw query
 text private. Match EXPLAIN (ANALYZE, BUFFERS) to identified slow SELECTs only;
 do not execute ANALYZE on mutations without a reviewed rollback procedure.
+
+
+## Authorization parameter correction, 2026-11-16
+
+Implementer: Codex; reviewer/operator @YakisobaNissin; requirements QA-09/A-09.
+Owner supplied hosted failures after commit 5a16630: all database routes failed
+on the first authorization statement. Reproduced locally with the actual driver:
+PostgreSQL inferred the reused uid parameter as UUID and rejected
+set_config(unknown, uuid, boolean). Added CAST(:uid AS text) specifically at
+set_config; live role/session checks and transaction context scope remain.
+The real restricted-role query now returns the intended 401 for unknown sessions.
+Four focused guard/cache checks passed. Added an opt-in real-database regression
+that exercises initial and reused connections with invalid sessions. Previous
+mock tests did not establish SQL parameter compatibility. Hosted valid-session
+acceptance is pending deployment of this backend-only correction; frontend does
+not need rebuilding. No migration, credential change or feature disablement needed.
