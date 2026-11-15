@@ -17,7 +17,13 @@ def learning_fields(state):
 
 
 async def learning(connection, uid):
-    return learning_fields(await lock_account(connection, uid))
+    state = await one(connection,
+        "SELECT current_roadmap_id, version, context_revision "
+        "FROM asgard_private.learning_state WHERE user_id = CAST(:uid AS uuid)",
+        {"uid": str(uid)})
+    if state is None:
+        state = await lock_account(connection, uid)
+    return learning_fields(state)
 
 
 async def preferences(connection, uid):
@@ -503,8 +509,8 @@ async def core_milestone(connection, calculated, active):
     return core if core is not None or not milestones else milestones[-1]["milestone_id"]
 
 
-async def dashboard(connection, uid):
-    state = await learning(connection, uid)
+async def dashboard(connection, uid, view=None, learning_state=None):
+    state = learning_state if learning_state is not None else await learning(connection, uid)
     parameters = {"uid": str(uid)}
     pref = await preferences(connection, uid)
     active = await active_topic(connection, uid)
@@ -544,7 +550,7 @@ async def dashboard(connection, uid):
     )
     calculated, core = None, None
     if state["current_roadmap_id"]:
-        calculated = await summary(connection, uid, state["current_roadmap_id"])
+        calculated = view["summary"] if view is not None else await summary(connection, uid, state["current_roadmap_id"])
         core = await core_milestone(connection, calculated, active)
     recent = await rows(
         connection,

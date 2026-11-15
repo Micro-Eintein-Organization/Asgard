@@ -4,7 +4,7 @@ import { Search, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { PageHeading, StatePanel } from "@/components/shared";
-import { coreApi, useCoreQuery } from "@/features/core/data";
+import { coreApi, useCoreQuery, useRoadmapPreload } from "@/features/core/data";
 import { appRoutes } from "@/lib/routes";
 import { careerSummary } from "@/lib/career-summary";
 
@@ -22,26 +22,15 @@ export default function RoleCatalog({
   onSelectRole,
 }: RoleCatalogProps) {
   const navigate = useNavigate();
+  const preload = useRoadmapPreload();
   const [params, setParams] = useSearchParams();
   const searchInput = useRef<HTMLInputElement>(null);
   const restoreFocus = useRef(false);
-  const categories = useCoreQuery(["categories"], coreApi.categories);
-  const fieldCounts = useCoreQuery(["catalog-field-counts"], async signal => {
-    const limit = 100;
-    const first = await coreApi.catalog({ limit }, signal);
-    const byCategory: Record<string, number> = {};
-    let page = first;
-    for (let offset = 0; offset < first.total; offset += limit) {
-      if (offset > 0) page = await coreApi.catalog({ limit, offset }, signal);
-      if (page.catalog_release_id !== first.catalog_release_id || page.total !== first.total) {
-        throw new Error("The career catalog changed while loading field counts.");
-      }
-      for (const career of page.items) {
-        byCategory[career.category_id] = (byCategory[career.category_id] ?? 0) + 1;
-      }
-    }
-    return { total: first.total, byCategory };
-  });
+  const catalogSummary = useCoreQuery(["catalog-summary"], coreApi.catalogSummary);
+  const categories = { ...catalogSummary, data: catalogSummary.data?.categories };
+  const fieldCounts = { ...catalogSummary, data: catalogSummary.data && {
+    total: catalogSummary.data.total, byCategory: catalogSummary.data.by_category,
+  } };
   const preferences = useCoreQuery(["preferences"], coreApi.preferences);
   const recommendations = useCoreQuery(
     ["recommendations"],
@@ -149,7 +138,7 @@ export default function RoleCatalog({
             </ul>
             {!role.exploration && role.skills.length > 3 && <p className="catalog-more-skills">{role.skills.length - 3} more skills in this roadmap</p>}
           </div>
-          <Button variant="outline" className="card-action" onClick={() => proceed(role.id)} aria-label={`View ${role.title} roadmap`}>Explore career</Button>
+          <Button variant="outline" className="card-action" onFocus={() => preload(cardRoadmap(role))} onMouseEnter={() => preload(cardRoadmap(role))} onMouseLeave={() => preload("")} onBlur={() => preload("")} onClick={() => proceed(role.id)} aria-label={`View ${role.title} roadmap`}>Explore career</Button>
         </Card>
       ))}
     </div>

@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { api } from "@/api/client";
 import { requestError } from "@/api/errors";
@@ -21,6 +22,8 @@ async function result<T>(
 }
 
 export const coreApi = {
+  catalogSummary: (signal?: AbortSignal) => result(api.GET("/api/v1/catalog/summary", { signal })),
+  dashboardView: (signal?: AbortSignal) => result(api.GET("/api/v1/me/dashboard/view", { signal })),
   catalogProgress: (ids: string[], signal?: AbortSignal) =>
     result(api.GET("/api/v1/me/roadmaps/catalog-progress", {
       params: { query: { roadmap_ids: ids } }, signal: signal ? AbortSignal.any([signal, AbortSignal.timeout(90_000)]) : AbortSignal.timeout(90_000),
@@ -316,6 +319,8 @@ export function useCoreQuery<T>(
     queryKey: ["account", user?.id, ...key],
     queryFn: ({ signal }) => load(AbortSignal.any([signal, AbortSignal.timeout(90_000)])),
     enabled: !!user && enabled,
+    refetchInterval: ["catalog-summary", "careers", "career", "roadmap", "roadmap-view", "dashboard-view"].includes(String(key[0])) ? 30_000 : false,
+    refetchIntervalInBackground: false,
     retry: false,
   });
 }
@@ -328,7 +333,7 @@ export function useRoadmapGuidance(roadmapId: string) {
 
 export function useCoreMutation<TVariables, TData>(
   save: (variables: TVariables) => Promise<TData>,
-  options?: { clearSuggestions?: (variables: TVariables) => boolean },
+  options?: { clearSuggestions?: (variables: TVariables) => boolean; learningChange?: "selection" | "progress" },
 ) {
   const { user } = useAuth();
   const client = useQueryClient();
@@ -343,6 +348,48 @@ export function useCoreMutation<TVariables, TData>(
     },
     onSuccess: async (_data, variables) => {
       if (userId && isCurrentAccount(userId)) {
+        if (options?.learningChange === "selection") {
+          const state = _data as Schemas["LearningState"];
+          await client.cancelQueries({ predicate: query =>
+            query.queryKey[0] === "account" && query.queryKey[1] === userId &&
+            ["learning", "roadmap-view", "dashboard", "dashboard-view", "recommendations", "roadmap-guidance"]
+              .includes(String(query.queryKey[2])),
+          });
+          if (!isCurrentAccount(userId)) return;
+          client.setQueryData(["account", userId, "learning"], state);
+          client.setQueriesData<Schemas["RoadmapView"]>(
+            { queryKey: ["account", userId, "roadmap-view"] },
+            previous => previous ? { ...previous, learning_state: state } : previous,
+          );
+          void client.invalidateQueries({ predicate: query =>
+            query.queryKey[0] === "account" && query.queryKey[1] === userId &&
+            ["dashboard", "dashboard-view", "recommendations", "roadmap-guidance"].includes(String(query.queryKey[2])),
+            refetchType: "none",
+          });
+          return;
+        }
+        if (options?.learningChange === "progress") {
+          const change = variables as { roadmapId: string; groupId?: string; topicId?: string };
+          const viewKey = ["account", userId, "roadmap-view", change.roadmapId];
+          await client.cancelQueries({ queryKey: viewKey });
+          if (!isCurrentAccount(userId)) return;
+          client.setQueryData<Schemas["RoadmapView"]>(viewKey, previous => {
+            if (!previous) return previous;
+            if (change.topicId) {
+              const saved = _data as Schemas["TopicProgress"];
+              return { ...previous, progress: [...previous.progress.filter(item => item.topic_id !== saved.topic_id), saved] };
+            }
+            const saved = _data as Schemas["BranchChoice"];
+            return { ...previous, branches: [...previous.branches.filter(item => item.group_id !== saved.group_id), saved] };
+          });
+          void client.invalidateQueries({ predicate: query =>
+            query.queryKey[0] === "account" && query.queryKey[1] === userId &&
+            ["dashboard", "dashboard-view", "learning", "roadmap-view", "progress", "summary", "branches",
+              "catalog-progress", "activity", "recommendations", "roadmap-guidance"]
+              .includes(String(query.queryKey[2])),
+          });
+          return;
+        }
         if (options?.clearSuggestions?.(variables)) {
           const queryKey = ["account", userId, "recommendations"];
           await client.cancelQueries({ queryKey });
@@ -352,4 +399,31 @@ export function useCoreMutation<TVariables, TData>(
       }
     },
   });
+}
+
+
+export function useRoadmapPreload() {
+  const { user } = useAuth();
+  const client = useQueryClient();
+  const work = useRef<{ timer?: ReturnType<typeof setTimeout>; controller?: AbortController }>({});
+  useEffect(() => () => {
+    clearTimeout(work.current.timer);
+    work.current.controller?.abort();
+  }, [user?.id]);
+  return (id: string) => {
+    clearTimeout(work.current.timer);
+    work.current.controller?.abort();
+    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+    if (!user || !id || connection?.saveData) return;
+    const userId = user.id;
+    work.current.timer = setTimeout(() => {
+      if (!isCurrentAccount(userId)) return;
+      const controller = new AbortController();
+      work.current.controller = controller;
+      void client.prefetchQuery({
+        queryKey: ["account", userId, "roadmap-view", id], staleTime: 30_000,
+        queryFn: ({ signal }) => coreApi.roadmapView(id, AbortSignal.any([signal, controller.signal])),
+      });
+    }, 200);
+  };
 }

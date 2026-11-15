@@ -60,9 +60,9 @@ export function RoadmapPage() {
   const progress = { ...view, data: view.data?.progress };
   const summary = { ...view, data: view.data?.summary };
   const branches = { ...view, data: view.data?.branches };
-  const focus = useCoreMutation(coreApi.selectRoadmap);
-  const change = useCoreMutation(coreApi.saveProgress);
-  const branch = useCoreMutation(coreApi.saveBranch);
+  const focus = useCoreMutation(coreApi.selectRoadmap, { learningChange: "selection" });
+  const change = useCoreMutation(coreApi.saveProgress, { learningChange: "progress" });
+  const branch = useCoreMutation(coreApi.saveBranch, { learningChange: "progress" });
   const topicId = params.get("topic");
   const topic = roadmap.data?.milestones
     .flatMap((milestone) => milestone.topics)
@@ -173,6 +173,7 @@ export function RoadmapPage() {
           ...(topic ? { topic: topic.id } : {}),
         })} />
       )}
+      {view.isFetching && (change.isSuccess || branch.isSuccess) && <Notice>Saved. Updating progress totals…</Notice>}
       {mutationError && (
         <Notice tone="error">
           {mutationError.message}{" "}

@@ -80,3 +80,24 @@ summary metadata, account-scoped cancellable frontend reads and sanitized databa
 metrics. Preserve existing routes and security gates. Focused unit, contract,
 authorization and SQL checks; hosted load and manual journeys require owner access.
 No migration, dependency, pool expansion or Git publication.
+
+## Singapore measured follow-up, 2026-11-15
+
+Owner: Codex; reviewer/operator: @YakisobaNissin. Approved correction plan in chat.
+Hosted evidence: selection write 916 ms, catalog 52 queries/3890 ms, subsequent
+account-wide refreshes cause acquisition waits up to 1610 ms. Replace catalog N+1
+reads, confirm selection from its response, narrow learning mutation invalidation,
+reuse roadmap view on Dashboard, remove write locks from established learning
+reads while preserving first-use initialization. Recommendation GET includes
+expiry cleanup and retains its existing lock until separately reviewed. No AI,
+schema, contract, pool or permission changes. Only focused correctness checks;
+hosted owner logs alone establish performance improvement.
+
+## Coordinated read/cache redesign, 2026-11-15
+
+Owner approved chat plan: Codex implements; @YakisobaNissin reviews/deploys and
+provides hosted acceptance. QA-09/A-09. Add 30-second bounded published-content
+cache behind live session enforcement, catalog summary and Dashboard view
+contracts, explicit mutation refresh policies and selective preloading. Keep
+private account state out of shared caches. Preserve existing local edits.
+Minimal correctness/contract checks only; no offline performance claim.

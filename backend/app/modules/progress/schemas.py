@@ -6,6 +6,7 @@ from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 from pydantic import Field, field_validator, model_validator
 
 from app.api.contracts import Contract, Identifier, Revision, VersionedChange
+from app.modules.careers.schemas import Career
 from app.modules.roadmaps.schemas import Roadmap
 
 TopicStatus = Literal["not_started", "learning", "done", "skipped"]
@@ -133,3 +134,10 @@ class RoadmapView(Contract):
     summary: ProgressSummary
     branches: list[BranchChoice]
     learning_state: LearningState
+
+
+class DashboardView(Contract):
+    dashboard: Dashboard
+    current: RoadmapView | None
+    career: Career | None
+    active_roadmap: Roadmap | None

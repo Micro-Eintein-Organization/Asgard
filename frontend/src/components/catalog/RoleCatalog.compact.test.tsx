@@ -4,7 +4,7 @@ import { describe, expect, it, vi } from "vitest";
 import { useCoreQuery } from "@/features/core/data";
 import RoleCatalog from "./RoleCatalog";
 
-vi.mock("@/features/core/data", () => ({ coreApi: {}, useCoreQuery: vi.fn() }));
+vi.mock("@/features/core/data", () => ({ coreApi: {}, useRoadmapPreload: () => vi.fn(), useCoreQuery: vi.fn() }));
 
 function setup(description = "Build website interfaces. Learn layouts and tools. Representative work: a complete project.") {
   const career = { id: "career", category_id: "software", title: "Frontend Developer", description,
@@ -15,7 +15,7 @@ function setup(description = "Build website interfaces. Learn layouts and tools.
     "catalog-field-counts": { total: 2, byCategory: { software: 2 } },
     progress: [], summary: {},
   };
-  vi.mocked(useCoreQuery).mockImplementation(key => ({ data: data[String(key[0])], isPending: false, isError: false }) as never);
+  vi.mocked(useCoreQuery).mockImplementation(key => ({ data: key[0] === "catalog-summary" ? {categories:data.categories,total:2,by_category:{software:2}} : data[String(key[0])], isPending: false, isError: false }) as never);
   return career;
 }
 function Location() { return <output data-testid="location">{useLocation().search}</output>; }

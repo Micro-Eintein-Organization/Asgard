@@ -316,3 +316,5 @@ focused checks are implemented; the 20-user performance target, hosted timings,
 and isolated live security verification remain pending. Owner/operator:
 @YakisobaNissin. Evidence and exact manual steps:
 [hosted content performance](features/hosted-content-performance.md).
+
+2026-11-16: coordinated content cache/page reads implemented locally; backend-first rollout and hosted performance/security acceptance remain pending. See [performance evidence](features/hosted-content-performance.md).

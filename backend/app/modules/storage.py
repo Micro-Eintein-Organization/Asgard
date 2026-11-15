@@ -16,7 +16,11 @@ async def transaction(request: Request, identity):
         raise APIError(503, "database_not_configured", "Account storage is unavailable.")
     try:
         async with repository.transaction(identity) as connection:
-            yield connection
+            connection.info["asgard_content_cache"] = request.method == "GET"
+            try:
+                yield connection
+            finally:
+                connection.info.pop("asgard_content_cache", None)
     except IntegrityError as exc:
         raise APIError(
             409,

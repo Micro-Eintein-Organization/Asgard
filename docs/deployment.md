@@ -160,3 +160,5 @@ Owner-approved additive read contracts and frontend batching are documented in
 deploy backend before frontend; retain the previous deployment for rollback.
 Schema and secrets are unchanged. Hosted warm/cold timings and isolated live
 security/load acceptance remain pending; local tests are not deployment acceptance.
+
+2026-11-16: coordinated content cache/page reads implemented locally; backend-first rollout and hosted performance/security acceptance remain pending. See [performance evidence](features/hosted-content-performance.md).

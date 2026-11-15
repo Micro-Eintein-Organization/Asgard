@@ -1,12 +1,15 @@
+from app.core.content_cache import published_content
 from app.core.errors import APIError
 from app.modules.careers.exploration import career_explanation
 from app.modules.storage import one, required, rows
 
 
+@published_content
 async def categories(connection):
     return await rows(connection, "SELECT * FROM asgard_catalog.categories ORDER BY position, id")
 
 
+@published_content
 async def career(connection, career_id):
     result = required(
         await one(
@@ -45,6 +48,7 @@ async def career(connection, career_id):
     }
 
 
+@published_content
 async def list_careers(connection, q=None, category_id=None, limit=20, offset=0):
     release = await one(
         connection, "SELECT id FROM asgard_catalog.releases ORDER BY version DESC LIMIT 1"
@@ -69,17 +73,45 @@ async def list_careers(connection, q=None, category_id=None, limit=20, offset=0)
         "SELECT count(*) AS total FROM asgard_catalog.careers WHERE " + predicate,
         parameters,
     )
-    ids = await rows(
+    items = await rows(
         connection,
-        "SELECT id FROM asgard_catalog.careers WHERE "
-        + predicate
+        "SELECT * FROM asgard_catalog.careers WHERE " + predicate
         + " ORDER BY title, id LIMIT :limit OFFSET :offset",
         parameters,
     )
+    roadmap_rows = await rows(
+        connection,
+        "SELECT id, career_id FROM asgard_catalog.roadmaps "
+        "WHERE career_id = ANY(:ids) AND status = 'published' ORDER BY id",
+        {"ids": [item["id"] for item in items]},
+    ) if items else []
+    by_career = {item["id"]: [] for item in items}
+    for item in roadmap_rows:
+        by_career[item["career_id"]].append(item["id"])
+    fields = ("id", "category_id", "slug", "title", "description", "responsibilities",
+              "skills", "revision", "status", "revision_note", "reviewed_at")
+    results = [
+        {**{key: item[key] for key in fields},
+         "roadmap_ids": by_career[item["id"]],
+         "exploration": career_explanation(item["id"])}
+        for item in items
+    ]
     return {
-        "items": [await career(connection, row["id"]) for row in ids],
+        "items": results,
         "total": count["total"],
         "limit": limit,
         "offset": offset,
         "catalog_release_id": release["id"],
     }
+
+
+@published_content
+async def catalog_summary(connection):
+    release = required(await one(connection,
+        "SELECT id FROM asgard_catalog.releases ORDER BY version DESC LIMIT 1"))
+    counts = await rows(connection,
+        "SELECT category_id, count(*) AS total FROM asgard_catalog.careers "
+        "WHERE status='published' GROUP BY category_id")
+    return {"categories": await categories.__wrapped__(connection), "catalog_release_id": release["id"],
+            "by_category": {str(row["category_id"]): row["total"] for row in counts},
+            "total": sum(row["total"] for row in counts)}

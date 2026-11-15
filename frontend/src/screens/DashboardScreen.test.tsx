@@ -13,7 +13,7 @@ describe("account-backed Cabusao Dashboard",()=>{
       preferences:{timezone:"Asia/Manila"},roadmap:{career_id:"career",milestones:[{id:"milestone",title:"Foundations",topics}]},career:{title:"Saved career"},
       progress:[{topic_id:"done",status:"done"},{topic_id:"skipped",status:"skipped"}],branches:[],activity:{days:[],streak_days:2},
     };
-    vi.mocked(useCoreQuery).mockImplementation(key=>({data:data[String(key[0])],error:null,refetch:vi.fn()}) as never);
+    vi.mocked(useCoreQuery).mockImplementation(key=>({data:key[0] === "dashboard-view" ? {dashboard:data.dashboard,current:{roadmap:data.roadmap,progress:data.progress,branches:data.branches},career:data.career,active_roadmap:null} : data[String(key[0])],error:null,refetch:vi.fn()}) as never);
     vi.mocked(useCoreMutation).mockReturnValue({error:null,isPending:false} as never);
     render(<MemoryRouter><DashboardScreen /></MemoryRouter>);
     const title=screen.getByRole("heading",{name:"Saved career"});

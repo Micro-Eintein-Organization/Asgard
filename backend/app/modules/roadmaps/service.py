@@ -1,3 +1,4 @@
+from app.core.content_cache import published_content
 from app.modules.storage import one, required, rows
 
 
@@ -120,6 +121,7 @@ async def milestones(connection, roadmap_id):
     return result
 
 
+@published_content
 async def roadmap(connection, roadmap_id):
     result = required(
         await one(

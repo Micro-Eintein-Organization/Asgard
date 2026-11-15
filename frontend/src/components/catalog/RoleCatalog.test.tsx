@@ -4,7 +4,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { useCoreQuery } from "@/features/core/data";
 import RoleCatalog from "./RoleCatalog";
 
-vi.mock("@/features/core/data", () => ({coreApi:{},useCoreQuery:vi.fn()}));
+vi.mock("@/features/core/data", () => ({coreApi:{},useRoadmapPreload:()=>vi.fn(),useCoreQuery:vi.fn()}));
 let branchRequired: boolean;
 let hasProgress: boolean;
 function Location() {const location=useLocation(); return <output>{location.pathname}{location.search}</output>;}
@@ -18,7 +18,7 @@ beforeEach(() => {
       careers:{total:1,items:[{id:"career",title:"Designer",description:"Design",category_id:"category",skills:[],roadmap_ids:["first","recommended"]}]},
       "catalog-progress":[{roadmap_id:"recommended",has_progress:hasProgress,percentage:branchRequired?null:50,requires_branch_choice:branchRequired}],
     };
-    return {data:records[String(key[0])],isPending:false,error:null} as never;
+    return {data:key[0] === "catalog-summary" ? {categories:records.categories,total:1,by_category:{}} : records[String(key[0])],isPending:false,error:null} as never;
   });
 });
 describe("connected catalog interactions", () => {
