@@ -1,5 +1,16 @@
 # Profile identity and contextual counselor
 
+## Composer refinement, 2026-11-16
+
+Later owner screenshot feedback supersedes the context-switch presentation below:
+page context is now included automatically in existing scoped request fields.
+The visible Using/page-context switch and per-answer context labels are removed.
+No extra context fields or provider permissions were added. The provider
+disclosure and separate opt-in for web sources remain. The composer uses a dark
+neutral focus border, replacing its green textarea outline, and a centered 44 px
+circular send button. Implementer Codex; reviewer @YakisobaNissin pending.
+See [verification and manual review](ui-refinement-and-motion.md).
+
 Implementer Codex. Created/updated 2026-11-16. Owner/reviewer @YakisobaNissin.
 Owner approved the expanded chat plan, general knowledge and session continuity.
 Requirements REQ-12, FUT-10, QA-09. Status implemented locally; human visual,

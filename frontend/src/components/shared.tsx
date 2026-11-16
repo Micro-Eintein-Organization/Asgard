@@ -4,7 +4,6 @@ import {
   ArrowLeft,
   Check,
   Circle,
-  Clock3,
   Info,
   TriangleAlert,
 } from "lucide-react";
@@ -12,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
+import { LoadingIndicator } from "@/components/loading-indicator";
 
 export function PageHeading({
   title,
@@ -113,7 +113,7 @@ export function StatePanel({
     >
       <div>
         {kind === "loading" ? (
-          <Clock3 aria-hidden="true" size={24} />
+          <LoadingIndicator size="panel" />
         ) : kind === "error" ? (
           <TriangleAlert aria-hidden="true" size={24} />
         ) : kind === "success" ? (

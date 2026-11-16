@@ -17,7 +17,6 @@ import { appRoutes } from "@/lib/routes";
 import { APIRequestError } from "@/api/errors";
 import { coreApi, useCoreMutation, useCoreQuery } from "@/features/core/data";
 import { topicPresentation } from "./topic-presentation";
-import { SkillComparison } from "@/features/competencies/comparison";
 
 export function RoadmapPage() {
   const { careerId = "" } = useParams();
@@ -247,14 +246,6 @@ export function RoadmapPage() {
                     ? "Current roadmap"
                     : "Set as current roadmap"}
               </Button>
-              {content.status === "published" && (
-                <SkillComparison
-                  key={`${content.id}:${params.get("reviewSkills") === "1"}`}
-                  careerId={careerContent.id}
-                  roadmapId={content.id}
-                  initiallyOpen={params.get("reviewSkills") === "1"}
-                />
-              )}
             </div>
             {content.status === "retired" && (
               <p>

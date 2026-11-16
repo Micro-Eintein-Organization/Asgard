@@ -19,7 +19,9 @@ describe("roadmap task visibility", () => {
     };
     vi.mocked(useCoreQuery).mockImplementation(key => ({data:key[0] === "roadmap-view" ? (data.summary ? {roadmap:data.roadmap,learning_state:data.learning,progress:data.progress,summary:data.summary,branches:data.branches} : undefined) : data[String(key[0])],refetch:vi.fn(),error:null}) as never);
     vi.mocked(useCoreMutation).mockReturnValue({mutate:save,isPending:false,error:null} as never);
-    render(<MemoryRouter initialEntries={["/roadmaps/career"]}><Routes><Route path="/roadmaps/:careerId" element={<RoadmapPage />} /></Routes></MemoryRouter>);
+    render(<MemoryRouter initialEntries={["/roadmaps/career?reviewSkills=1"]}><Routes><Route path="/roadmaps/:careerId" element={<RoadmapPage />} /></Routes></MemoryRouter>);
+    expect(screen.queryByRole("button", {name:"Review your experience"})).not.toBeInTheDocument();
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
     const hide = screen.getByRole("button",{name:"Hide task: Saved task"});
     fireEvent.click(hide);
     const show = screen.getByRole("button",{name:"Show task: Saved task"});

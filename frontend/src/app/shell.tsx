@@ -21,6 +21,7 @@ import { BrandLogo } from "@/components/brand-logo";
 import { CounselorLauncher } from "@/features/ai-guidance";
 import { CareerNavigation } from "./career-navigation";
 import { GuidanceBanner } from "./guidance";
+import { PageMotion } from "@/components/page-motion";
 
 const onboardingPaths = new Set([
   appRoutes.welcome,
@@ -251,6 +252,7 @@ function ShellContent() {
             mfa === "ready" &&
             !Object.values(routes).includes(pathname) && <GuidanceBanner />}
           <Outlet />
+          <PageMotion />
           <PageFocus />
         </Suspense>
       </main>

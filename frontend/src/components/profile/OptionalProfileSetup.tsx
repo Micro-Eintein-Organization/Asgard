@@ -4,6 +4,9 @@ import { useAuth } from "@/auth/context";
 import { isCurrentAccount } from "@/auth/transport";
 import { appRoutes } from "@/lib/routes";
 import { StatePanel } from "@/components/shared";
+import { Input } from "@/components/ui/input";
+import { LoadingIndicator } from "@/components/loading-indicator";
+import { Button } from "@/components/ui/button";
 import { useProfileEditor } from "@/features/profile/use-profile-editor";
 import { ProfileEditorDialogs } from "@/features/profile/profile-editor-dialogs";
 import {
@@ -72,13 +75,12 @@ function SetupEditor({ userId }: { userId: string }) {
     <div className="max-w-4xl mx-auto px-6 py-10 space-y-8 bg-white min-h-screen text-gray-900">
       {/* Top Header */}
       <div className="flex justify-between items-center">
-        <button
+        <Button variant="outline"
           onClick={skip}
           disabled={mutation.isPending}
-          className="text-xs font-semibold px-4 py-2 rounded-full border border-gray-200 hover:bg-gray-50 transition-colors flex items-center space-x-1 cursor-pointer"
         >
           <span>&larr; Back</span>
-        </button>
+        </Button>
       </div>
 
       {/* Title & Subtitle */}
@@ -115,30 +117,28 @@ function SetupEditor({ userId }: { userId: string }) {
         <div className="space-y-2">
           <label
             htmlFor="setup-first-name"
-            className="text-xs font-bold text-gray-900"
+            className="text-sm font-semibold text-foreground"
           >
             First name
           </label>
-          <input
+          <Input
             type="text"
             id="setup-first-name"
             disabled={mutation.isPending || returnRequested}
             aria-invalid={!!errors.firstName}
             {...register("firstName", { validate: validateFirstName })}
-            className="w-full px-4 py-3 rounded-xl border border-gray-200 text-xs focus:outline-none focus:border-black transition-colors"
           />
         </div>
 
         <div className="space-y-2">
-          <label htmlFor="setup-surname" className="text-xs font-bold">
+          <label htmlFor="setup-surname" className="text-sm font-semibold">
             Surname (optional)
           </label>
-          <input
+          <Input
             id="setup-surname"
             disabled={mutation.isPending || returnRequested}
             aria-invalid={!!errors.surname}
             {...register("surname", { validate: validateSurname })}
-            className="w-full px-4 py-3 rounded-xl border border-gray-200 text-xs focus:outline-none focus:border-black transition-colors"
           />
         </div>
         {(errors.firstName || errors.surname) && (
@@ -186,29 +186,30 @@ function SetupEditor({ userId }: { userId: string }) {
 
         {/* Proceed Button */}
         <div className="pt-2">
-          <button
+          <Button
             type="submit"
             disabled={mutation.isPending || returnRequested}
-            className="w-full bg-black text-white py-3 rounded-full text-xs font-semibold hover:bg-gray-800 transition-colors cursor-pointer shadow-sm"
+            className="w-full"
           >
+            {mutation.isPending && <LoadingIndicator />}
             {mutation.isPending
               ? "Saving…"
               : !isDirty && query.data.profile?.first_name
                 ? "Continue to results"
                 : "Save and return to results"}
-          </button>
+          </Button>
         </div>
       </form>
 
       {/* Footer Skip Link */}
       <div className="text-center pt-2">
-        <button
+        <Button variant="link"
           onClick={skip}
           disabled={mutation.isPending}
-          className="text-xs text-gray-400 hover:text-black font-medium transition-colors cursor-pointer"
+          className="text-muted-foreground"
         >
           I'll set this up later
-        </button>
+        </Button>
       </div>
       <ProfileEditorDialogs editor={editor} />
     </div>

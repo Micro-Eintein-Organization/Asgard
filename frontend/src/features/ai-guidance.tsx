@@ -11,6 +11,7 @@ import snowflake from "@/assets/Logo_Standalone_Snowflake.png";
 import type { components } from "@/api/generated/schema";
 import { useAuth } from "@/auth/context";
 import { PageHeading } from "@/components/shared";
+import { LoadingIndicator } from "@/components/loading-indicator";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
@@ -28,7 +29,6 @@ type Messages = { question: string; result: Answer; context?: string }[];
 type Session = { messages: Messages; setMessages: React.Dispatch<React.SetStateAction<Messages>>;
   draft: string; setDraft: React.Dispatch<React.SetStateAction<string>>;
   web: boolean; setWeb: React.Dispatch<React.SetStateAction<boolean>>;
-  usePage: boolean; setUsePage: React.Dispatch<React.SetStateAction<boolean>>;
   busy: boolean; setBusy: React.Dispatch<React.SetStateAction<boolean>>; controller: React.RefObject<AbortController> };
 type Turn = components["schemas"]["GuidanceTurn"];
 
@@ -54,7 +54,6 @@ function CounselorDialog({ query, page }: CounselorLauncherProps) {
   const [messages, setMessages] = useState<Messages>([]);
   const [draft, setDraft] = useState("");
   const [web, setWeb] = useState(false);
-  const [usePage, setUsePage] = useState(true);
   const [busy, setBusy] = useState(false);
   const controller = useRef(new AbortController());
   useEffect(() => { controller.current = new AbortController(); return () => controller.current.abort(); }, []);
@@ -75,7 +74,7 @@ function CounselorDialog({ query, page }: CounselorLauncherProps) {
         document.body,
       )}
       <DialogPortal>
-        <div className="counselor-overlay" aria-hidden="true" />
+        <DialogPrimitive.Overlay className="counselor-overlay" />
         <DialogPrimitive.Content className="counselor-panel">
           <div className="counselor-panel-header">
             <div>
@@ -94,7 +93,7 @@ function CounselorDialog({ query, page }: CounselorLauncherProps) {
             {(
               <CounselorConversation
                 key={user.id}
-                session={{ messages, setMessages, draft, setDraft, web, setWeb, usePage, setUsePage, busy, setBusy, controller }}
+                session={{ messages, setMessages, draft, setDraft, web, setWeb, busy, setBusy, controller }}
                 params={query ?? new URLSearchParams()}
                 page={page}
                 onFollowSource={() => setOpen(false)}
@@ -251,9 +250,6 @@ function CounselorConversation({ params, page, onFollowSource, session }: {
 }) {
   const savedProfile = useSavedProfile();
   const screen = useCurrentScreen();
-  const [localUsePage, setLocalUsePage] = useState(true);
-  const usePage = session?.usePage ?? localUsePage;
-  const setUsePage = session?.setUsePage ?? setLocalUsePage;
   const inputId = useId();
   const input = useRef<HTMLTextAreaElement>(null);
   const transcript = useRef<HTMLDivElement>(null);
@@ -266,7 +262,7 @@ function CounselorConversation({ params, page, onFollowSource, session }: {
   const setSearchWeb = session?.setWeb ?? setLocalWeb;
   const [localMessages, setLocalMessages] = useState<Messages>([]);
   const { messages, setMessages } = session ?? { messages: localMessages, setMessages: setLocalMessages };
-  const contextLabel = !usePage ? "General questions" : screen?.label ?? (params.has("left") && params.has("right") ? "Selected career pair" : params.has("topic") ? "Selected roadmap topic" : params.has("roadmap") ? "Selected roadmap" : page?.split("/").filter(Boolean).join(" → ") || "Career exploration");
+  const contextLabel = screen?.label ?? (params.has("left") && params.has("right") ? "Selected career pair" : params.has("topic") ? "Selected roadmap topic" : params.has("roadmap") ? "Selected roadmap" : page?.split("/").filter(Boolean).join(" → ") || "Career exploration");
   const turn = useMutation({
     gcTime: 0,
     mutationFn: async (text: string) => {
@@ -276,9 +272,9 @@ function CounselorConversation({ params, page, onFollowSource, session }: {
       ]);
       const { data } = await api.POST("/api/v1/me/ai-guidance/counselor", { body: {
         question: text, history, search_web: searchWeb,
-        page_context: usePage ? { path: page ?? "/counselor", questionnaire_id: screen?.questionnaire_id, question_id: screen?.question_id, category_id: screen?.category_id, filter: screen?.filter?.slice(0,120), recommendation_run_id: screen?.recommendation_run_id } : null,
-        career_ids: (usePage ? screen?.career_ids ?? [params.get("left"), params.get("right")].filter((id): id is string => !!id) : []),
-        roadmap_id: usePage ? screen?.roadmap_id ?? params.get("roadmap") : null, topic_id: usePage ? screen?.topic_id ?? params.get("topic") : null,
+        page_context: { path: page ?? "/counselor", questionnaire_id: screen?.questionnaire_id, question_id: screen?.question_id, category_id: screen?.category_id, filter: screen?.filter?.slice(0,120), recommendation_run_id: screen?.recommendation_run_id },
+        career_ids: screen?.career_ids ?? [params.get("left"), params.get("right")].filter((id): id is string => !!id),
+        roadmap_id: screen?.roadmap_id ?? params.get("roadmap"), topic_id: screen?.topic_id ?? params.get("topic"),
       }, signal: session?.controller.current.signal });
       if (!data) throw new Error("The counselor couldn’t answer. Try again.");
       return { ...data, turnContext: contextLabel };
@@ -311,7 +307,7 @@ function CounselorConversation({ params, page, onFollowSource, session }: {
 
   return (
     <div className="counselor-conversation">
-      <div className="counselor-context"><span>Using: {contextLabel}</span><label><input type="checkbox" checked={usePage} onChange={event => setUsePage(event.target.checked)} /> Use page context</label><Button type="button" variant="ghost" disabled={pending} onClick={() => { setMessages([]); setQuestion(""); turn.reset(); }}>New conversation</Button></div>
+      <div className="counselor-context"><Button type="button" variant="ghost" disabled={pending} onClick={() => { setMessages([]); setQuestion(""); turn.reset(); }}>New conversation</Button></div>
       <div ref={transcript} onScroll={event => { const el = event.currentTarget; readingOlder.current = el.scrollHeight - el.scrollTop - el.clientHeight > 100; }} className="counselor-transcript" role="log" aria-label="Conversation">
         {messages.length === 0 && (
           <div className="counselor-welcome">
@@ -320,10 +316,9 @@ function CounselorConversation({ params, page, onFollowSource, session }: {
             <p>Explore a career, understand a topic, or find a first step.</p>
           </div>
         )}
-        {messages.map(({ question, result, context }, index) => (
+        {messages.map(({ question, result }, index) => (
           <section key={index} ref={index === messages.length - 1 ? latest : undefined} className="counselor-turn">
             <p className="counselor-question">{question}</p>
-            {context && <p className="text-xs text-muted-foreground">Context: {context}</p>}
             <GuidanceAnswer data={result} onFollowSource={onFollowSource} />
           </section>
         ))}
@@ -343,7 +338,7 @@ function CounselorConversation({ params, page, onFollowSource, session }: {
             ))}
           </div>
         )}
-        {pending && <p role="status">Preparing your answer…</p>}
+        {pending && <p role="status"><LoadingIndicator />{" "}Preparing your answer…</p>}
         {turn.isError && <p role="alert">{turn.error.message}</p>}
         <div className="counselor-composer">
           <label className="sr-only" htmlFor={inputId}>Your question</label>
@@ -353,7 +348,7 @@ function CounselorConversation({ params, page, onFollowSource, session }: {
           <div className="counselor-composer-actions">
             <label><input type="checkbox" checked={searchWeb} disabled={pending}
               onChange={(event) => setSearchWeb(event.target.checked)} /> Include web sources</label>
-            <Button type="submit" size="icon" className="min-h-11 min-w-11"
+            <Button type="submit" size="icon" className="counselor-send"
               aria-label="Send question" disabled={!question.trim() || pending}>
               <ArrowUp aria-hidden="true" />
             </Button>

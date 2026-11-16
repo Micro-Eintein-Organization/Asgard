@@ -10,6 +10,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { StatePanel, Unavailable } from "@/components/shared";
+import { LoadingIndicator } from "@/components/loading-indicator";
 import { coreApi, useCoreMutation, useCoreQuery } from "@/features/core/data";
 import { isCurrentAccount } from "@/auth/transport";
 import { ProfileDocuments } from "@/features/profile/documents";
@@ -153,9 +154,9 @@ function SettingsEditor({ userId }: { userId: string }) {
             {(errors.firstName || errors.surname) && <p ref={errorSummary} role="alert" tabIndex={-1} className="field-error">Check the name fields below.</p>}
             <ProfileNameFields register={register} errors={errors} disabled={mutation.isPending} />
             {mutation.error && <div role="alert" className="field-error"><p>{mutation.error.message}</p><Button type="button" variant="outline" onClick={() => setReloadOpen(true)}>Reload saved profile</Button></div>}
-            {feedback && !isDirty && <p role="status">{feedback}</p>}
+            {feedback && !isDirty && <p role="status" className="save-feedback">{feedback}</p>}
             <div className="action-row">
-              <Button type="submit" disabled={!isDirty || mutation.isPending}>{mutation.isPending ? "Saving…" : "Save profile"}</Button>
+              <Button type="submit" disabled={!isDirty || mutation.isPending}>{mutation.isPending && <LoadingIndicator />}{mutation.isPending ? "Saving…" : "Save profile"}</Button>
               <Button type="button" variant="outline" disabled={!isDirty || mutation.isPending} onClick={editor.discard}>Discard changes</Button>
             </div>
           </form>
@@ -201,10 +202,10 @@ function SettingsEditor({ userId }: { userId: string }) {
             </div>
           </details>
           <div className="action-row">
-            <Button disabled={!preferences.data || !preferenceDirty || preferenceSave.isPending} onClick={() => void savePreferences()}>{preferenceSave.isPending ? "Saving…" : "Save preferences"}</Button>
+            <Button disabled={!preferences.data || !preferenceDirty || preferenceSave.isPending} onClick={() => void savePreferences()}>{preferenceSave.isPending && <LoadingIndicator />}{preferenceSave.isPending ? "Saving…" : "Save preferences"}</Button>
             <Button variant="outline" disabled={!preferenceDirty || preferenceSave.isPending} onClick={() => { preferenceVersion.current = null; setPrimaryField(null); setTimezoneDraft(null); preferenceSave.reset(); }}>Discard preference changes</Button>
           </div>
-          {preferenceSave.isSuccess && !preferenceDirty && <p role="status">Preferences saved.</p>}
+          {preferenceSave.isSuccess && !preferenceDirty && <p role="status" className="save-feedback">Preferences saved.</p>}
           {preferenceError && <p role="alert" className="field-error">{preferenceError.message} <Button variant="outline" disabled={preferenceSave.isPending} onClick={() => void reloadPreferences()}>Reload preferences</Button></p>}
         </Card>
         <ProfileSkills key={userId} active={!accountView} onGuardChange={onSkillGuardChange}

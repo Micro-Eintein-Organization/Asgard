@@ -1023,6 +1023,8 @@ export interface components {
         ActivityMonth: {
             /** Days */
             days: components["schemas"]["ActivityDay"][];
+            /** Longest Streak Days */
+            longest_streak_days: number;
             /** Month */
             month: string;
             /** Streak Days */

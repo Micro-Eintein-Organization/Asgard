@@ -108,6 +108,7 @@ class ActivityMonth(Contract):
     month: str
     days: list[ActivityDay]
     streak_days: Annotated[int, Field(ge=0)]
+    longest_streak_days: Annotated[int, Field(ge=0)]
 
 
 class Dashboard(Contract):

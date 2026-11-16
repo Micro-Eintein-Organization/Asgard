@@ -1,5 +1,13 @@
 # Shared Learning Topic on Dashboard
 
+## Longest streak enabled, 2026-11-16
+
+Codex implemented the owner/reviewer-approved additive activity contract and
+replaced the unavailable placeholder with the actual longest recorded run.
+See [learning streaks](learning-streaks.md) for REQ-10 behaviour, checks, approval
+reference and pending manual journeys. Earlier placeholder descriptions are
+historical; the current Dashboard shows both account-wide streak values.
+
 ## Not started collapsed by default, 2026-11-08
 
 Codex implemented the owner-requested default for REQ-10. The [Dashboard

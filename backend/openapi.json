@@ -51,6 +51,11 @@
             "title": "Days",
             "type": "array"
           },
+          "longest_streak_days": {
+            "minimum": 0.0,
+            "title": "Longest Streak Days",
+            "type": "integer"
+          },
           "month": {
             "title": "Month",
             "type": "string"
@@ -64,7 +69,8 @@
         "required": [
           "month",
           "days",
-          "streak_days"
+          "streak_days",
+          "longest_streak_days"
         ],
         "title": "ActivityMonth",
         "type": "object"

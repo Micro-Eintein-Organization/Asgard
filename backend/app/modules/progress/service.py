@@ -472,7 +472,18 @@ async def activity(connection, uid, month):
     while cursor in dates:
         streak += 1
         cursor -= timedelta(days=1)
-    return {"month": month, "days": days, "streak_days": streak}
+    longest = run = 0
+    previous = None
+    for day in sorted(dates):
+        run = run + 1 if previous is not None and (day - previous).days == 1 else 1
+        longest = max(longest, run)
+        previous = day
+    return {
+        "month": month,
+        "days": days,
+        "streak_days": streak,
+        "longest_streak_days": longest,
+    }
 
 
 async def active_topic(connection, uid):

@@ -5,6 +5,7 @@ import type { components } from "@/api/generated/schema";
 import { DiscoveryHeader } from "./DiscoveryHeader";
 import { BackLink, PageHeading, StatePanel } from "@/components/shared";
 import { Button } from "@/components/ui/button";
+import { LoadingIndicator } from "@/components/loading-indicator";
 import {
   Dialog,
   DialogContent,
@@ -259,6 +260,7 @@ function DiscoveryEditor({
             </Button>
           )}
           <Button disabled={editor.busy} onClick={() => void editor.move(1)}>
+            {editor.busy && <LoadingIndicator />}
             {editor.busy
               ? "Saving…"
               : editor.index === editor.total - 1

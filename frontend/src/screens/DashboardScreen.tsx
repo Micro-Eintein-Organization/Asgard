@@ -97,7 +97,7 @@ export function DashboardScreen() {
         </Card>
         <Card id="progress" className="support-card">
           <div className="calendar-title"><h2>{monthLabel}</h2><div className="flex"><Button variant="ghost" size="icon" aria-label="Previous month" onClick={() => setMonthOffset(value => value-1)}><ChevronLeft /></Button><Button variant="ghost" size="icon" aria-label="Next month" disabled={monthOffset === 0} onClick={() => setMonthOffset(value => value+1)}><ChevronRight /></Button></div></div>
-          <div className="streak-summary" role="group" aria-label="Learning streak"><p>Current streak <strong>{savedActivity?.streak_days ?? "Loading"} days</strong></p><p>Longest streak <strong className="streak-unavailable">Not available</strong></p></div>
+          <div className="streak-summary" role="group" aria-label="Learning streak"><p>Current streak <strong>{savedActivity ? `${savedActivity.streak_days} days` : activity.error ? "Unavailable" : "Loading"}</strong></p><p>Longest streak <strong>{savedActivity?.longest_streak_days != null ? `${savedActivity.longest_streak_days} days` : activity.error || savedActivity ? "Unavailable" : "Loading"}</strong></p></div>
           {activity.isPending && <p>Loading activityâ€¦</p>}
           {activity.error && <p>Activity unavailable. <button onClick={() => void activity.refetch()}>Try again</button></p>}
           {savedActivity && !savedActivity.days.length && <p className="streak-empty">Complete a topic to start your learning streak.</p>}

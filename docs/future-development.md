@@ -1,5 +1,13 @@
 # Future development
 
+## Roadmap experience comparison disabled, 2026-11-16
+
+Owner decision in chat: disable the roadmap experience-comparison dialog and its
+recommendation-card links. Codex removed the UI entry points; the implementation
+and stored data are retained. Reactivation needs a new owner decision. Profile
+skills, resume skill review and career-to-career comparison remain available.
+Evidence and pending reviewer: [implementation guide](features/ui-refinement-and-motion.md).
+
 ## Hosted account demo, 2026-11-13
 
 The owner paused unrelated planned features and approved zero-cost deployment
