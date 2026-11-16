@@ -1,3 +1,4 @@
+import { useScreenContext } from "@/features/counselor-context";
 import { ProfileSkills } from "@/features/competencies/profile-skills";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
@@ -44,6 +45,7 @@ function SettingsEditor({ userId }: { userId: string }) {
   const { hash, search } = useLocation();
   const review = new URLSearchParams(search);
   const accountView = hash === "#account-security";
+  useScreenContext({ label: accountView ? "Settings → Account and security" : "Settings → Profile" });
   const logout = useLogout();
   const [primaryField, setPrimaryField] = useState<string | null>(null);
   const [timezoneDraft, setTimezoneDraft] = useState<string | null>(null);

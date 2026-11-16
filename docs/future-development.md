@@ -321,3 +321,6 @@ and isolated live security verification remain pending. Owner/operator:
 
 
 2026-11-16: @YakisobaNissin approved hosted FUT-10/FUT-13 activation and Groq processing in chat. Source support is in progress; hosted verification and unattended cross-account cleanup remain pending. See [activation guide](features/hosted-feature-activation.md).
+
+
+2026-11-16: owner-approved counselor/profile follow-up now includes route-scoped Discovery, filter, selected-topic and recommendation-run context, shared profile identity and in-memory conversation continuity. Source implementation and focused checks complete; hosted visual/answer-quality acceptance pending. See [implementation guide](features/contextual-counselor-profile.md).

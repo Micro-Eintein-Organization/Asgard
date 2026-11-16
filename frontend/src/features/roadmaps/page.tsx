@@ -1,3 +1,4 @@
+import { useScreenContext } from "@/features/counselor-context";
 import { CareerExploration } from "@/features/careers/exploration";
 import { useEffect, useRef, useState } from "react";
 import practiceData from "@/assets/data/visits.csv?url";
@@ -12,7 +13,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { BackLink, Notice, StatePanel, StatusBadge } from "@/components/shared";
-import { CounselorLauncher } from "@/features/ai-guidance";
 import { appRoutes } from "@/lib/routes";
 import { APIRequestError } from "@/api/errors";
 import { coreApi, useCoreMutation, useCoreQuery } from "@/features/core/data";
@@ -56,6 +56,9 @@ export function RoadmapPage() {
     (career.data?.slug === "ui-ux-designer" ? "27a28a6f-33b0-5d93-92de-b243c11401b0" : "");
   const view = useCoreQuery(["roadmap-view", roadmapId],
     signal => coreApi.roadmapView(roadmapId, signal), !!roadmapId);
+  const selected = view.data?.roadmap.milestones.flatMap(item => item.topics).find(item => item.id === params.get("topic"));
+  useScreenContext(view.data ? { label: [career.data?.title, view.data.roadmap.title, selected?.title].filter(Boolean).join(" → "),
+    career_ids: career.data ? [career.data.id] : [], roadmap_id: roadmapId, topic_id: selected?.id } : null);
   const roadmap = { ...view, data: view.data?.roadmap };
   const learning = { ...view, data: view.data?.learning_state };
   const progress = { ...view, data: view.data?.progress };
@@ -188,12 +191,6 @@ export function RoadmapPage() {
       <BackLink to={appRoutes.careers + catalogSearch}>
         Back to catalog
       </BackLink>
-      {content.status === "published" && (
-        <CounselorLauncher query={new URLSearchParams({
-          roadmap: roadmapId,
-          ...(topic ? { topic: topic.id } : {}),
-        })} />
-      )}
       {view.isFetching && (change.isSuccess || branch.isSuccess) && <Notice>Saved. Updating progress totals…</Notice>}
       {clearActive.isSuccess && !resolutionRequired && <Notice>Active lesson cleared. You can now choose a roadmap or start another lesson.</Notice>}
       {clearActive.error && <Notice tone="error">{clearActive.error.message}</Notice>}

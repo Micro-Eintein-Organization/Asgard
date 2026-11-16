@@ -1,3 +1,4 @@
+import { useScreenContext } from "@/features/counselor-context";
 import { WorkExamples, LearningExamples } from "./exploration";
 import { useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router";
@@ -7,7 +8,7 @@ import { coreApi, useCoreQuery } from "@/features/core/data";
 import { OccupationalProfile } from "@/features/competencies/occupational-profile";
 import { experienceLabel } from "@/features/competencies/levels";
 import { Button } from "@/components/ui/button";
-import { ComparisonCitations, ComparisonInsight, CounselorLauncher, useComparisonInsight } from "@/features/ai-guidance";
+import { ComparisonCitations, ComparisonInsight, useComparisonInsight } from "@/features/ai-guidance";
 import { SharedPractice } from "./shared-practice";
 import { SavedCareerEditor } from "./saved-career";
 import { EscoCareerSources } from "@/features/catalog/esco";
@@ -118,6 +119,7 @@ export function CareerComparisonPage() {
     (signal) => coreApi.compareCareers(left, right, signal),
     valid,
   );
+  useScreenContext({ label: query.data ? query.data.careers.map(item => item.career.title).join(" versus ") : "Compare careers", career_ids: valid ? [left, right] : [] });
   const insight = useComparisonInsight(left, right, valid && !!query.data && !query.error);
   return (
     <section className="space-y-6">
@@ -134,7 +136,7 @@ export function CareerComparisonPage() {
         right={right}
         submit={(left, right) => setParams({ left, right })}
       />
-      {query.data && <CounselorLauncher query={new URLSearchParams({ left, right })} />}
+
       {!valid ? (
         params.has("left") || params.has("right") ? (
           <p role="alert">Choose two different published careers.</p>

@@ -807,3 +807,7 @@ Engineering requirements such as authorization, storage, backup procedures, perf
 | NFR-08 Availability/recovery | Understandable outage states and honest restored/saved data presentation. |
 | NFR-09 Maintainability | Stable screen/content references and traceable changes; environment setup belongs in engineering guidance. |
 | NFR-10 Operational visibility | Distinct operation outcomes and supportable error identifiers without raw credentials, document text, or server traces. |
+
+
+## Counselor personalization decision, 2026-11-16
+Owner @YakisobaNissin approved page-aware chat, saved-profile identity, in-memory conversation continuity and separately labeled general model knowledge in chat. Recommendations retain existing evidence rules. See [implementation and pending acceptance](features/contextual-counselor-profile.md).

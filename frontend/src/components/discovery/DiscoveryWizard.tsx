@@ -1,3 +1,4 @@
+import { useScreenContext } from "@/features/counselor-context";
 import { useEffect, useRef, type CSSProperties } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import type { components } from "@/api/generated/schema";
@@ -152,6 +153,7 @@ function DiscoveryEditor({
   definition: Schemas["Questionnaire"];
 }) {
   const editor = useDiscoveryEditor(initial, definition);
+  useScreenContext({ label: "Discovery → " + editor.question.prompt, questionnaire_id: definition.id, question_id: editor.question.question_id });
   const heading = useRef<HTMLHeadingElement>(null);
   const errorSummary = useRef<HTMLDivElement>(null);
   useEffect(() => {

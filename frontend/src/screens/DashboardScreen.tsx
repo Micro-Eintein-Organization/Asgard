@@ -1,3 +1,5 @@
+import { useScreenContext } from "@/features/counselor-context";
+import { useSavedProfile } from "@/features/profile/identity";
 import { useState } from "react";
 import { Link } from "react-router";
 import { ChevronLeft, ChevronRight, SquarePen } from "lucide-react";
@@ -17,7 +19,10 @@ const groups = [
 ] as const;
 
 export function DashboardScreen() {
+  const savedProfile = useSavedProfile();
+  const greeting = savedProfile.data?.profile?.first_name ? `Welcome back, ${savedProfile.data.profile.first_name}` : "Your next step is here.";
   const page = useCoreQuery(["dashboard-view"], coreApi.dashboardView);
+  useScreenContext(page.data ? { label: ["Dashboard", page.data.current?.roadmap.title].filter(Boolean).join(" → ") } : null);
   const dashboard = { ...page, data: page.data?.dashboard };
   const preferences = useCoreQuery(["preferences"], coreApi.preferences);
   const id = dashboard.data?.learning_state.current_roadmap_id ?? "";
@@ -60,11 +65,11 @@ export function DashboardScreen() {
   const days = new Date(Date.UTC(calendar.getUTCFullYear(),calendar.getUTCMonth()+1,0)).getUTCDate();
   const monthLabel = calendar.toLocaleDateString("en",{month:"long",year:"numeric",timeZone:"UTC"});
   if (!id && !overview.active_topic) return <>
-    <PageHeading title="Your next step is here." />
+    <PageHeading title={greeting} />
     <StatePanel kind="empty" title="Choose your first roadmap" action={<Button asChild><Link to={appRoutes.careers}>Browse careers</Link></Button>}>Choose a roadmap to see your learning topics and progress here.</StatePanel>
   </>;
   return <>
-    {id ? <h1 className="sr-only">Dashboard</h1> : <PageHeading title="Your next step is here." action={<Button asChild variant="outline"><Link to={appRoutes.careers}>Browse careers</Link></Button>} />}
+    {id ? <h1 className="sr-only">Dashboard</h1> : <PageHeading title={greeting} action={<Button asChild variant="outline"><Link to={appRoutes.careers}>Browse careers</Link></Button>} />}
     <div className="dashboard-layout">
       <div className="dashboard-main">
         <section className="milestone-hero" aria-labelledby="milestone-heading">

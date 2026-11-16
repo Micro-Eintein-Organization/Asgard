@@ -634,6 +634,17 @@
             "title": "Answer",
             "type": "string"
           },
+          "general_knowledge": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "General Knowledge"
+          },
           "handoff": {
             "anyOf": [
               {
@@ -2100,6 +2111,17 @@
             "title": "Answer",
             "type": "string"
           },
+          "general_knowledge": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "General Knowledge"
+          },
           "sources": {
             "items": {
               "$ref": "#/components/schemas/GuidanceSource"
@@ -2174,6 +2196,16 @@
             "maxItems": 6,
             "title": "History",
             "type": "array"
+          },
+          "page_context": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PageContext"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "question": {
             "maxLength": 1000,
@@ -2732,6 +2764,84 @@
           "limitation"
         ],
         "title": "OccupationalReference",
+        "type": "object"
+      },
+      "PageContext": {
+        "additionalProperties": false,
+        "properties": {
+          "category_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Category Id"
+          },
+          "filter": {
+            "anyOf": [
+              {
+                "maxLength": 120,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Filter"
+          },
+          "path": {
+            "maxLength": 160,
+            "minLength": 1,
+            "pattern": "^/[a-zA-Z0-9/_-]*$",
+            "title": "Path",
+            "type": "string"
+          },
+          "question_id": {
+            "anyOf": [
+              {
+                "maxLength": 100,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Question Id"
+          },
+          "questionnaire_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Questionnaire Id"
+          },
+          "recommendation_run_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Recommendation Run Id"
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "title": "PageContext",
         "type": "object"
       },
       "Preferences": {

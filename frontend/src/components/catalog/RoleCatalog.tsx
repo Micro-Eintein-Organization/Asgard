@@ -1,3 +1,4 @@
+import { useScreenContext } from "@/features/counselor-context";
 import { Link, useNavigate, useSearchParams } from "react-router";
 import { useEffect, useRef } from "react";
 import { Search, X } from "lucide-react";
@@ -51,6 +52,7 @@ export default function RoleCatalog({
     )?.title ??
     "All";
   const categoryId = categories.data?.find((c) => c.title === category)?.id;
+  useScreenContext({ label: `Careers → ${category}`, category_id: categoryId, filter: search });
   const careers = useCoreQuery(
     ["careers", search, categoryId],
     signal =>

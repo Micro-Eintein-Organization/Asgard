@@ -57,6 +57,13 @@ COUNSELOR_PROMPT = GUIDANCE_PROMPT + (
     "authored task. If the intended roadmap or topic is materially ambiguous, classify as "
     "clarification and ask one short question. Classify other replies as general."
 )
+COUNSELOR_PROMPT += (
+    " The current question overrides page context and history. Career differences are comparison, "
+    "never next_step merely because learning_context exists. Put evidence-supported content in "
+    "answer with source_keys. Put additional general model knowledge in general_knowledge, "
+    "without implying it is supported by catalog citations. Use null when unnecessary. "
+    "Never invent account state. When evidence is insufficient, say so briefly in answer."
+)
 COMPARISON_CACHE_SECONDS = 3600
 COMPARISON_WEB_CACHE_SECONDS = 300
 COMPARISON_CACHE_SIZE = 64
@@ -127,7 +134,17 @@ class GuidanceTurn(Contract):
     text: Annotated[str, Field(min_length=1, max_length=1800)]
 
 
+class PageContext(Contract):
+    questionnaire_id: UUID | None = None
+    question_id: Annotated[str, Field(min_length=1, max_length=100)] | None = None
+    recommendation_run_id: UUID | None = None
+    category_id: UUID | None = None
+    filter: Annotated[str, Field(max_length=120)] | None = None
+    path: Annotated[str, Field(min_length=1, max_length=160, pattern=r"^/[a-zA-Z0-9/_-]*$")]
+
+
 class GuidanceQuestion(Contract):
+    page_context: PageContext | None = None
     question: Annotated[str, Field(min_length=1, max_length=1000)]
     history: Annotated[list[GuidanceTurn], Field(max_length=6)] = Field(default_factory=list)
     career_ids: Annotated[list[UUID], Field(max_length=2)] = Field(default_factory=list)
@@ -142,7 +159,8 @@ class GuidanceSelection(Contract):
 
 
 class CounselorSelection(GuidanceSelection):
-    reply_kind: Literal["general", "clarification", "next_step", "practice"]
+    general_knowledge: Annotated[str, Field(max_length=3000)] | None = None
+    reply_kind: Literal["general", "clarification", "next_step", "practice", "comparison"]
 
 
 class ComparisonSelectionRow(Contract):
@@ -194,6 +212,7 @@ APP_HELP = (
 
 
 class GuidanceAnswer(Contract):
+    general_knowledge: str | None = None
     answer: str
     sources: list[GuidanceSource]
     web_unavailable: bool
@@ -353,7 +372,7 @@ async def learning_context(connection, uid, path, topic_id, *, use_global_active
     return {"next_step": next_step, "practice": practice}
 
 
-async def context(request, identity, ids, roadmap_id, topic_id, include_saved):
+async def context(request, identity, ids, roadmap_id, topic_id, include_saved, include_recommendations=True, recommendation_run_id=None):
     evidence = []
     titles = []
     learning = {}
@@ -379,10 +398,13 @@ async def context(request, identity, ids, roadmap_id, topic_id, include_saved):
             learning = await learning_context(conn, identity.user_id, path, topic_id,
                                               use_global_active=use_global_active)
         saved = None
-        if include_saved:
+        if include_saved and include_recommendations:
             state = await recommendation_state(conn, identity.user_id, request.app.state.settings)
             saved = next((run for run in (state["current"], state["previous_eligible_success"])
-                          if run and run.status == "completed" and not run.outdated), None)
+                          if run and run.status == "completed" and not run.outdated
+                          and (recommendation_run_id is None or run.id == recommendation_run_id)), None)
+            if recommendation_run_id is not None and saved is None:
+                raise APIError(409, "context_outdated", "These suggestions changed. Reload them before asking about them.")
             if saved and not ids:
                 ids = [item.career_id for item in saved.items[:2]]
         for cid in ids:
@@ -426,7 +448,7 @@ async def context(request, identity, ids, roadmap_id, topic_id, include_saved):
     return evidence, titles, learning
 
 
-async def web_evidence(request, identity, mode, titles):
+async def web_evidence(request, identity, mode, titles, question=""):
     settings = request.app.state.settings
     domains = tuple(item.strip().lower() for item in settings.ai_search_domains.split(",") if item.strip())
     key = settings.exa_api_key.get_secret_value()
@@ -440,7 +462,7 @@ async def web_evidence(request, identity, mode, titles):
                 "https://api.exa.ai/search",
                 headers={"x-api-key": key},
                 json={
-                    "query": " and ".join(titles) + " career tasks and beginner learning examples",
+                    "query": " and ".join(titles) + " " + " ".join(term for term in ("skills", "networking", "projects", "education", "differences", "responsibilities") if term in question.casefold()) + " career learning examples",
                     "numResults": 4,
                     "includeDomains": domains,
                     "contents": {"highlights": True},
@@ -484,11 +506,11 @@ def comparison_rows(items, sides, pair):
 
 
 async def answer(
-    request, identity, mode, evidence, titles, question, history, search, *, pair=None, learning=None,
+    request, identity, mode, evidence, titles, question, history, search, *, pair=None, learning=None, page=None,
 ):
     started = monotonic()
     settings = request.app.state.settings
-    public = await web_evidence(request, identity, mode, titles) if search else []
+    public = await web_evidence(request, identity, mode, titles, question) if search else []
     learning_keys = {}
     evidence = list(evidence)
     for kind, entry in (learning or {}).items():
@@ -497,7 +519,7 @@ async def answer(
                 evidence.append(entry)
             learning_keys[kind] = str(evidence.index(entry) + 1)
     sources = {str(i): source for i, (source, _) in enumerate(evidence + public, 1)}
-    payload = {"question": question, "history": [turn.model_dump() for turn in history],
+    payload = {"page_context": page, "question": question, "history": [turn.model_dump() for turn in history],
                "evidence": [{"key": str(i), "title": source.title, "text": excerpt}
                             for i, (source, excerpt) in enumerate(evidence + public, 1)]}
     sides = {}
@@ -533,9 +555,10 @@ async def answer(
         prompt = COUNSELOR_PROMPT
         payload["learning_context"] = learning_keys
         schema["properties"]["reply_kind"] = {
-            "type": "string", "enum": ["general", "clarification", "next_step", "practice"],
+            "type": "string", "enum": ["general", "clarification", "next_step", "practice", "comparison"],
         }
-        schema["required"].append("reply_kind")
+        schema["properties"]["general_knowledge"] = {"type": ["string", "null"]}
+        schema["required"].extend(("reply_kind", "general_knowledge"))
         output_model = CounselorSelection
     else:
         row_fields = {name: {"type": "string"} for name in ComparisonSelectionRow.model_fields}
@@ -588,6 +611,7 @@ async def answer(
         if sources[key] not in cited:
             cited.append(sources[key])
     return {
+        "general_knowledge": getattr(result, "general_knowledge", None),
         "answer": answer_text,
         "sources": cited,
         "web_unavailable": search and not public,
@@ -625,8 +649,54 @@ async def comparison_insight(request: Request, identity: Owner, body: GuidancePa
 @router.post("/counselor", response_model=GuidanceAnswer)
 async def counselor_turn(request: Request, identity: Owner, body: GuidanceQuestion):
     require_available(request)
+    page = body.page_context.model_dump(mode="json") if body.page_context else None
+    async with transaction(request, identity) as connection:
+        if page and page["path"].startswith("/settings") and re.search(r"\b(my|saved|profile|resume|skill)\b", body.question, re.I):
+            page["saved_skills"] = await rows(connection,
+                "SELECT c.label FROM asgard_private.user_competencies u JOIN asgard_catalog.competencies c ON c.id=u.competency_id WHERE u.user_id=CAST(:uid AS uuid) ORDER BY c.label LIMIT 12",
+                {"uid": str(identity.user_id)})
+        if body.page_context and body.page_context.questionnaire_id and body.page_context.question_id:
+            from app.modules.discovery.service import questionnaire
+            definition = await questionnaire(connection, body.page_context.questionnaire_id)
+            current = next((q for q in definition.questions if q.question_id == body.page_context.question_id), None)
+            if current is None:
+                raise APIError(422, "invalid_context", "Reopen the current Discovery question.")
+            page["discovery_question"] = current.model_dump(mode="json")
+            page["instruction"] = "Explain the question and options; never choose an answer or infer interests for the learner."
+        if body.page_context and body.page_context.category_id:
+            category = await one(connection, "SELECT title FROM asgard_catalog.categories WHERE id=CAST(:id AS uuid)",
+                                 {"id": str(body.page_context.category_id)})
+            if not category:
+                raise APIError(422, "invalid_context", "Choose an available category.")
+            page["category"] = category["title"]
+        catalog = await rows(connection,
+            "SELECT id,title,slug FROM asgard_catalog.careers WHERE status='published' ORDER BY title,id")
+    question = body.question.casefold()
+    resolve_text = question
+    if re.search(r"\b(which|these|those|they|both)\b", question):
+        prior = next((turn.text for turn in reversed(body.history) if turn.role == "user"), "")
+        resolve_text += " " + prior.casefold()
+    matches = []
+    for record in catalog:
+        names = [record["title"].casefold(), record["slug"].replace("-", " ").casefold()]
+        if record["title"].casefold() in ("software engineer", "software developer"):
+            names.append("swe")
+        if any(re.search(r"(?<!\w)" + re.escape(name) + r"(?!\w)", resolve_text) for name in names):
+            matches.append(record["id"])
+    if len(matches) > 2:
+        return {"answer": "Which two careers would you like to compare?", "sources": [], "web_unavailable": False}
+    comparison = bool(re.search(r"\b(compare|compared|comparison|difference|different|versus|vs)\b", question))
+    learning_request = bool(re.search(r"\b(next|resume|continue|practice|practise|exercise|learn first)\b", question))
     evidence, titles, learning = await context(
-        request, identity, body.career_ids, body.roadmap_id, body.topic_id, True,
+        request, identity, matches or body.career_ids,
+        None if matches or comparison else body.roadmap_id,
+        None if matches or comparison else body.topic_id, (learning_request or "suggest" in question or "recommend" in question or bool(body.page_context and body.page_context.recommendation_run_id)) and not (matches or comparison),
+        include_recommendations="suggest" in question or "recommend" in question or bool(body.page_context and body.page_context.recommendation_run_id),
+        recommendation_run_id=body.page_context.recommendation_run_id if body.page_context else None,
     )
+    if page:
+        evidence.append((GuidanceSource(title="Current Asgard page", url=page["path"], kind="asgard"),
+                         json.dumps(page, ensure_ascii=False)))
     return await answer(request, identity, "counselor_turn", [*APP_HELP, *evidence], titles,
-                        body.question, body.history, body.search_web, learning=learning)
+                        body.question, body.history, body.search_web, learning=learning,
+                        page=page)

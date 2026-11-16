@@ -1,5 +1,5 @@
+import { useScreenContext } from "@/features/counselor-context";
 import { useState } from "react";
-import { CounselorLauncher } from "@/features/ai-guidance";
 import { Link } from "react-router";
 import { Button } from "@/components/ui/button";
 import { StatePanel } from "@/components/shared";
@@ -32,6 +32,7 @@ export function RecommendationCards({
     ? current : state?.previous_eligible_success;
   const showingPrevious = !!previous && previous.id === shownPrevious;
   const displayed = fresh ?? (showingPrevious ? previous : null);
+  useScreenContext(displayed ? { label: "Saved career suggestions", recommendation_run_id: displayed.id } : null);
   const discoveryId = displayed?.discovery?.session_id;
   const resultDiscovery = useCoreQuery(
     ["discovery-session", discoveryId],
@@ -139,7 +140,7 @@ export function RecommendationCards({
           )}
         </p>
       )}
-      {displayed && <CounselorLauncher />}
+
       {displayed && (
         <>
           {goalIntro && <p className="text-center text-sm">{goalIntro}</p>}

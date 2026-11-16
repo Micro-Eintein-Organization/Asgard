@@ -1260,6 +1260,8 @@ export interface components {
         ComparisonAnswer: {
             /** Answer */
             answer: string;
+            /** General Knowledge */
+            general_knowledge?: string | null;
             /** Handoff */
             handoff: string | null;
             /** Skills */
@@ -1740,6 +1742,8 @@ export interface components {
         GuidanceAnswer: {
             /** Answer */
             answer: string;
+            /** General Knowledge */
+            general_knowledge?: string | null;
             /** Sources */
             sources: components["schemas"]["GuidanceSource"][];
             /** Web Unavailable */
@@ -1769,6 +1773,7 @@ export interface components {
             career_ids?: string[];
             /** History */
             history?: components["schemas"]["GuidanceTurn"][];
+            page_context?: components["schemas"]["PageContext"] | null;
             /** Question */
             question: string;
             /** Roadmap Id */
@@ -2007,6 +2012,21 @@ export interface components {
              * @default Unknown version
              */
             source_version: string;
+        };
+        /** PageContext */
+        PageContext: {
+            /** Category Id */
+            category_id?: string | null;
+            /** Filter */
+            filter?: string | null;
+            /** Path */
+            path: string;
+            /** Question Id */
+            question_id?: string | null;
+            /** Questionnaire Id */
+            questionnaire_id?: string | null;
+            /** Recommendation Run Id */
+            recommendation_run_id?: string | null;
         };
         /** Preferences */
         Preferences: {

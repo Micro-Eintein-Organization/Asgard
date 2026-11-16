@@ -190,3 +190,38 @@ def test_reply_uses_server_destination(monkeypatch, kind):
         )
     )
     assert reply["sources"] == ([] if kind == "clarification" else [source])
+
+
+def test_explicit_comparison_overrides_active_roadmap(monkeypatch):
+    from contextlib import asynccontextmanager
+    from unittest.mock import AsyncMock
+    from uuid import uuid4
+
+    cloud, software = uuid4(), uuid4()
+    @asynccontextmanager
+    async def tx(*args):
+        yield None
+
+    monkeypatch.setattr(guidance, "require_available", lambda request: None)
+    monkeypatch.setattr(guidance, "transaction", tx)
+    monkeypatch.setattr(guidance, "rows", AsyncMock(return_value=[
+        {"id": cloud, "title": "Cloud Engineer", "slug": "cloud-engineer"},
+        {"id": software, "title": "Software Engineer", "slug": "software-engineer"},
+    ]))
+    context = AsyncMock(return_value=([], [], {}))
+    monkeypatch.setattr(guidance, "context", context)
+    monkeypatch.setattr(guidance, "answer", AsyncMock(return_value={"answer": "Comparison"}))
+    question = guidance.GuidanceQuestion(
+        question="what does a cloud engineer skills have in difference compared to SWE",
+        roadmap_id=uuid4(), topic_id=uuid4(), search_web=False)
+    asyncio.run(guidance.counselor_turn(None, None, question))
+    assert context.call_args.args[2] == [cloud, software]
+    assert context.call_args.args[3:6] == (None, None, False)
+
+
+def test_page_context_uses_authored_question_identifiers_and_json():
+    from uuid import uuid4
+    value = guidance.PageContext(path="/discovery", questionnaire_id=uuid4(),
+                                 question_id="experience_preference")
+    assert value.question_id == "experience_preference"
+    json.dumps(value.model_dump(mode="json"))

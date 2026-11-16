@@ -1,6 +1,8 @@
+import { CounselorContextProvider } from "@/features/counselor-context";
+import { AccountAvatar, useSavedProfile } from "@/features/profile/identity";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { Link, NavLink, Outlet, useLocation } from "react-router";
-import { Menu, UserRound, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -29,6 +31,8 @@ const onboardingPaths = new Set([
 
 function Header() {
   const { user } = useAuth();
+  const savedProfile = useSavedProfile();
+  const displayName = [savedProfile.data?.profile?.first_name, savedProfile.data?.profile?.surname].filter(Boolean).join(" ");
   const signOut = useLogout();
   const pageRoutes = appRoutes;
   const navigation = [
@@ -140,11 +144,11 @@ function Header() {
                     className="account-trigger"
                     aria-label="Account menu"
                   >
-                    <UserRound aria-hidden="true" />
+                    <AccountAvatar />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="account-menu">
-                  <DropdownMenuLabel>{user?.email}</DropdownMenuLabel>
+                  <DropdownMenuLabel>{displayName && <span className="block">{displayName}</span>}<span className="block text-sm">{user?.email}</span></DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem asChild>
                     <Link to={pageRoutes.profile}>Edit profile</Link>
@@ -204,20 +208,21 @@ function PageFocus() {
 }
 
 export function AppShell() {
+  const { user } = useAuth();
   return (
-    <LogoutBoundary>
+    <CounselorContextProvider key={user?.id ?? "anonymous"}><LogoutBoundary>
       <ShellContent />
-    </LogoutBoundary>
+    </LogoutBoundary></CounselorContextProvider>
   );
 }
 
 function ShellContent() {
   const { user, mfa } = useAuth();
-  const { pathname } = useLocation();
+  const { pathname, search } = useLocation();
   const pagePath = pathname.replace(/\/+$/, "");
   const onboarding = onboardingPaths.has(pagePath);
   const showCounselor = mfa === "ready" && user?.email_confirmed_at &&
-    (pagePath === appRoutes.dashboard || pagePath === appRoutes.profile);
+    !Object.values(routes).includes(pagePath);
   return (
     <>
       <a className="skip-link" href="#main-content">
@@ -250,7 +255,7 @@ function ShellContent() {
         </Suspense>
       </main>
       {showCounselor && (
-        <CounselorLauncher key={pagePath} page={pagePath === appRoutes.dashboard ? "Dashboard" : "Settings"} />
+        <CounselorLauncher key={user.id} query={new URLSearchParams(search)} page={pagePath} />
       )}
       {!onboarding && (
         <footer className="site-footer">

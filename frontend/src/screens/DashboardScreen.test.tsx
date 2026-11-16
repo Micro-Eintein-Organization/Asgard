@@ -41,3 +41,5 @@ describe("account-backed Cabusao Dashboard",()=>{
     expect(screen.getByRole("group",{name:"Learning streak"})).toHaveTextContent("Longest streak Not available");
   });
 });
+
+vi.mock("@/features/profile/identity", () => ({ useSavedProfile: () => ({ data: undefined }) }));
