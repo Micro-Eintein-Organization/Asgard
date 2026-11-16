@@ -34,7 +34,7 @@ export function DashboardScreen() {
   const today = `${part("year")}-${part("month")}-${part("day")}`;
   const calendar = new Date(Date.UTC(Number(part("year")), Number(part("month")) - 1 + monthOffset, 1));
   const month = calendar.toISOString().slice(0,7);
-  const activity = useCoreQuery(["activity",month], () => coreApi.activity(month));
+  const activity = useCoreQuery(["activity",month], () => coreApi.activity(month), !!page.data && !!preferences.data);
   const queries = [page,preferences];
   const error = queries.find(query => query.error)?.error;
   if (error) return <StatePanel kind="error" title="Dashboard unavailable" action={<Button onClick={() => queries.forEach(query => {if (query.data || query.error) void query.refetch();})}>Try again</Button>}>{error.message}</StatePanel>;
@@ -71,7 +71,7 @@ export function DashboardScreen() {
           <h2 id="milestone-heading">{activeTitle ?? next?.title ?? milestone?.title ?? "Choose a learning path"}</h2>
           {milestone && <p>{milestone.title}</p>}
           <Link to={nextLink}>{activeLink ? "Resume learning" : needsBranch ? "Choose your tool path" : overview.progress?.fully_done ? "View roadmap" : overview.progress?.no_remaining_suggestions ? "Review skipped topics" : "Continue learning"} <ChevronRight aria-hidden="true" size={17} /></Link>
-          <div className="sample-progress"><div><span>{summary?.requires_branch_choice ? `${summary.common_done} of ${summary.common_total} common topics Done · choose a tool path` : `${summary?.done ?? 0} of ${summary?.applicable ?? 0} topics Done`}</span><span>{summary?.percentage != null ? `${summary.percentage}%` : ""}</span></div>{summary?.percentage != null && <Progress value={summary.percentage} aria-label={`Milestone progress, ${summary.percentage} percent`} />}</div>
+          <div className="sample-progress"><div><span>{summary?.requires_branch_choice ? `${summary.common_done} of ${summary.common_total} common topics Done Â· choose a tool path` : `${summary?.done ?? 0} of ${summary?.applicable ?? 0} topics Done`}</span><span>{summary?.percentage != null ? `${summary.percentage}%` : ""}</span></div>{summary?.percentage != null && <Progress value={summary.percentage} aria-label={`Milestone progress, ${summary.percentage} percent`} />}</div>
           {overview.progress?.requires_branch_choice && <p>Choose the remaining tool paths to see full-roadmap progress.</p>}
         </section>
         <section>
@@ -93,7 +93,7 @@ export function DashboardScreen() {
         <Card id="progress" className="support-card">
           <div className="calendar-title"><h2>{monthLabel}</h2><div className="flex"><Button variant="ghost" size="icon" aria-label="Previous month" onClick={() => setMonthOffset(value => value-1)}><ChevronLeft /></Button><Button variant="ghost" size="icon" aria-label="Next month" disabled={monthOffset === 0} onClick={() => setMonthOffset(value => value+1)}><ChevronRight /></Button></div></div>
           <div className="streak-summary" role="group" aria-label="Learning streak"><p>Current streak <strong>{savedActivity?.streak_days ?? "Loading"} days</strong></p><p>Longest streak <strong className="streak-unavailable">Not available</strong></p></div>
-          {activity.isPending && <p>Loading activity…</p>}
+          {activity.isPending && <p>Loading activityâ€¦</p>}
           {activity.error && <p>Activity unavailable. <button onClick={() => void activity.refetch()}>Try again</button></p>}
           {savedActivity && !savedActivity.days.length && <p className="streak-empty">Complete a topic to start your learning streak.</p>}
           <div className="calendar-grid" aria-label="Activity calendar">{["Su","Mo","Tu","We","Th","Fr","Sa"].map(day => <span key={day}>{day}</span>)}{Array.from({length:calendar.getUTCDay()},(_,i) => <span key={`space-${i}`} aria-hidden="true" />)}{Array.from({length:days},(_,i) => {

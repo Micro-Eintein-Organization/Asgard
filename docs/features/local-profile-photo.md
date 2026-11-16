@@ -27,3 +27,7 @@ To review in the [local app](http://127.0.0.1:5173/settings/profile), select
 **Change photo**, choose an image, and check the preview. Choose **Save profile**
 and refresh. Select **Remove photo**, save again, and confirm the placeholder
 returns.
+
+
+## Hosted activation follow-up, 2026-11-16
+Owner approved hosted photos/PDF processing and Groq service use. Codex implemented dependency gates and bounded processing; focused checks/hosted acceptance remain pending. See [activation guide](hosted-feature-activation.md) for scope, sources, credentials, cleanup limitations and exact manual steps.

@@ -35,6 +35,7 @@ export default function RoleCatalog({
   const recommendations = useCoreQuery(
     ["recommendations"],
     coreApi.recommendations,
+    !catalogSummary.isPending && !preferences.isPending,
   );
   const search = params.get("q") ?? "";
   useEffect(() => {

@@ -103,3 +103,16 @@ def test_readiness_logs_sanitized_failure(detail, category):
             assert "secret" not in response.text
         finally:
             client.app.state.profiles = original
+
+
+def test_hosted_files_require_credentials_and_allow_configured_features():
+    from app.modules.profiles.photos import enabled
+
+    with pytest.raises(ValidationError):
+        Settings(**configuration(profile_photos_enabled=True, storage_service_key=""))
+    settings = Settings(**configuration(
+        profile_photos_enabled=True, storage_service_key="synthetic-private",
+        documents_enabled=True, documents_processing_enabled=True,
+        documents_real_data_approved=True, resume_skill_review_enabled=True,
+        groq_enabled=True, groq_api_key="synthetic-groq"))
+    assert enabled(settings)

@@ -263,3 +263,7 @@ that exercises initial and reused connections with invalid sessions. Previous
 mock tests did not establish SQL parameter compatibility. Hosted valid-session
 acceptance is pending deployment of this backend-only correction; frontend does
 not need rebuilding. No migration, credential change or feature disablement needed.
+
+
+## Hosted activation follow-up, 2026-11-16
+Owner approved hosted photos/PDF processing and Groq service use. Codex implemented dependency gates and bounded processing; focused checks/hosted acceptance remain pending. See [activation guide](hosted-feature-activation.md) for scope, sources, credentials, cleanup limitations and exact manual steps.

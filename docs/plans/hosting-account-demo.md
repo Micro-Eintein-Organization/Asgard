@@ -114,3 +114,7 @@ roadmap interaction check only; hosted performance uses owner logs.
 
 ## Approved round-trip reduction, 2026-11-16
 Owner/reviewer: @YakisobaNissin; implementer: Codex. Chat approval: implement the proposed optimization plan. Requirements QA-09, A-09, REQ-02/03. Scope: repository transaction setup, query metrics, published content cache, roadmap/Dashboard reads and frontend scheduling. Preserve contracts, authorization and write guards. Focused security/cache/progress tests and TypeScript/build checks; hosted timings and 20-user acceptance remain operator checks. No commit or deployment authorized.
+
+
+## Hosted feature activation, 2026-11-16
+Owner/reviewer @YakisobaNissin approved hosted photos/PDF processing and Groq processing in chat. Implementer Codex. Scope FUT-10/FUT-13, REQ-12, QA-09: dependency checks, bounded parser, private storage lifecycle, recommendation batching and page scheduling. Preserve APIs, ownership, versions and filtering. Focused security/configuration/document/photo tests plus frontend checks; hosted operator acceptance remains required. No publication operation included.

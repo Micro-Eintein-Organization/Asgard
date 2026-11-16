@@ -318,3 +318,6 @@ and isolated live security verification remain pending. Owner/operator:
 [hosted content performance](features/hosted-content-performance.md).
 
 2026-11-16: coordinated content cache/page reads implemented locally; backend-first rollout and hosted performance/security acceptance remain pending. See [performance evidence](features/hosted-content-performance.md).
+
+
+2026-11-16: @YakisobaNissin approved hosted FUT-10/FUT-13 activation and Groq processing in chat. Source support is in progress; hosted verification and unattended cross-account cleanup remain pending. See [activation guide](features/hosted-feature-activation.md).
