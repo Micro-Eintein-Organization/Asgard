@@ -1,3 +1,5 @@
+> Implementation record. Dated sections preserve their original evidence and limitations. For current behavior and activation status, use the [documentation baseline](../README.md) and linked owning specifications. Earlier plans do not override later recorded decisions.
+
 # Career catalog
 
 ## Hosted request reduction, 2026-11-15
@@ -20,7 +22,7 @@ batching and the owner’s exact hosted verification steps.
 - Status: compact-card/sidebar correction implemented with focused local browser evidence; human review and full browser/zoom acceptance pending
 - Requirements: [REQ-02 and REQ-03](../product.md)
 - Technical reviewer: [CODEOWNERS](../../.github/CODEOWNERS)
-- Review reference: owner supplied category-sidebar screenshot and requested implementation in this chat.
+- Review reference: owner supplied category-sidebar screenshot and requested implementation in the recorded task.
 
 ## Behavior
 

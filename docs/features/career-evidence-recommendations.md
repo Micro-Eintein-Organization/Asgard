@@ -1,3 +1,5 @@
+> Implementation record. Dated sections preserve their original evidence and limitations. For current behavior and activation status, use the [documentation baseline](../README.md) and linked owning specifications. Earlier plans do not override later recorded decisions.
+
 # Full career evidence and skills-aware recommendations
 
 ## Learner-facing exploration update, 2026-11-05
@@ -19,7 +21,7 @@ Implementer: Codex. Created: 2026-11-04. Updated: 2026-11-05.
 Status: implemented, integrated isolated acceptance passed, owner-approved local
 activation applied and normal startup/authenticated smoke passed. Independent
 content review and broader release acceptance remain pending.
-Requirements: the owner's supplied four-part implementation plan in this chat;
+Requirements: the owner's supplied four-part implementation plan in the recorded task;
 PM-W02/W03/W04/W07 and existing PM-I1 acceptance boundaries where applicable.
 Technical reviewer: @YakisobaNissin. Independent content reviewer: unassigned.
 

@@ -1,5 +1,8 @@
 # Manual skill profiles and career comparison
 
+Documentation baseline: 2026-11-17. Current [decisions](../decisions.md#current-resolutions) supersede earlier delivery sequencing and fixed catalog counts. Profile skill editing, confirmed resume review, and career-to-career comparison are implemented; roadmap experience comparison is disabled. Occupational reference entries require authored roadmaps and reviewed publication before becoming recommendation candidates. Hosted activation and unrun quality/privacy acceptance remain separate. Dated increment details below retain their original scope.
+
+
 ## Planned W03 resume-assisted Profile review, 2026-11-06
 
 The owner selected an optional resume-assisted path within Profile. Manual skill
@@ -25,14 +28,12 @@ Technical reviewer: @YakisobaNissin. Content reviewer: unassigned.
 
 ## Selected behavior
 
-Support the 12 current published careers using versioned Asgard-authored skill
-mappings. These describe learning-path coverage, not validated employer requirements.
+Use published, reviewed career mappings; the original increment covered twelve careers. These describe learning-path coverage, not validated employer requirements.
 Published catalog labels and draft curriculum source are not evidence of independent
-competency review. ESCO import and occupational crosswalks are deferred.
+competency review. The ESCO reference and occupational-evidence extensions are implemented separately; their provenance/reuse review remains required.
 
 Users choose canonical skills, save self-reports, edit them and remove records.
-No free-text skill creation, PDF extraction, rating history, numerical gap score,
-readiness percentage or automatic learning updates are included.
+No free-text skill creation, rating history, numerical gap score, readiness percentage, or automatic learning updates are included in the manual-profile slice. Resume/PDF review is a separately gated implemented extension and requires confirmation for saved skills.
 
 | Saved value | Meaning |
 | --- | --- |

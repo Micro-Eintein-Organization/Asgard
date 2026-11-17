@@ -1,3 +1,5 @@
+> Research material. This is not current implementation or release authority. Use the [documentation index](../README.md) and owning specifications; any dated approvals retain their recorded scope.
+
 # Asgard research papers
 
 Recreated by Codex on 2026-11-05 at the owner's request after the previously linked Markdown and PDF files were absent from the current checkout. These are reconstructed drafts, not byte-for-byte recoveries. They incorporate the scope agreed in chat and the dated local implementation records available on 2026-11-05. Neither edition is an approved product specification or completed research report.

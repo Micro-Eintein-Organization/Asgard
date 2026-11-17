@@ -1,5 +1,7 @@
 # Deployment preparation and release gates
 
+Documentation baseline: 2026-11-17. This is the operational runbook, not proof of deployment acceptance. Optional hosted photos/PDF/Groq support is implemented; see [hosted activation](features/hosted-feature-activation.md). Account deletion has separate [maintenance and activation gates](features/account-deletion.md). Earlier preparation evidence retains its dated scope.
+
 2026-11-13 account-demo update: use the
 [owner setup checklist](deployment-account-demo.md) for the zero-cost, protected
 Vercel preview demo. The owner selected built-in email to their eligible organization
@@ -66,7 +68,7 @@ actual shutdown and cold-start behavior on the host.
 | ASGARD_GROQ_ENABLED | false until provider/quality gates permit recommendations |
 | ASGARD_GROQ_API_KEY | Backend secret only; supply privately when enabled |
 | ASGARD_GROQ_MODEL / MAX_COMPLETION_TOKENS | Existing bounded candidate configuration; token setting uses ASGARD_GROQ_MAX_COMPLETION_TOKENS |
-| ASGARD_DOCUMENTS_PROCESSING_ENABLED | false; PDF work is deferred |
+| ASGARD_DOCUMENTS_PROCESSING_ENABLED | false by default; enable only with the dependencies and approval in the hosted activation guide |
 | ASGARD_DOCUMENTS_REAL_DATA_APPROVED | false |
 | ASGARD_DOCUMENTS_ENABLED / STORAGE_SERVICE_KEY | Configure only if this environment needs removal/cleanup of existing private files; server-side secrets |
 

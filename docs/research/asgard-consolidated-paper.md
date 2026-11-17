@@ -1,3 +1,5 @@
+> Research material. This is not current implementation or release authority. Use the [documentation index](../README.md) and owning specifications; any dated approvals retain their recorded scope.
+
 # Asgard: An AI-Assisted Career Decision Support System Integrating Career Recommendations, Skill Comparison, and Learning Guidance for Philippine Computer Science Students
 
 Research proposal | CS-student study edition | Reconstructed and updated 2026-11-05 | Draft for team and adviser review

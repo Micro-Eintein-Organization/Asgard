@@ -1,3 +1,5 @@
+> Implementation record. Dated sections preserve their original evidence and limitations. For current behavior and activation status, use the [documentation baseline](../README.md) and linked owning specifications. Earlier plans do not override later recorded decisions.
+
 # ESCO reference catalog
 
 Implementer: Codex. Created and updated 2026-11-05. Requirements PM-W02, PM-W04 and FUT-01. Status is offline staging and draft mapping review. Technical reviewer @YakisobaNissin approved the implementation plan and removed the deferral on 2026-11-05. Independent data/content reviewer is unassigned. [Scope resolution](../decisions.md#esco-integration-scope-resolution-2026-11-05)

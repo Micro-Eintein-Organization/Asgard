@@ -66,6 +66,8 @@ See the [local development and onboarding guide](docs/getting-started.md) for pr
 
 ## Documentation
 
+See the [documentation index](docs/README.md) for current guides, implementation records, and the historical archive.
+
 | Document | Purpose |
 | --- | --- |
 | [Product requirements](docs/product.md) | Product scope and acceptance criteria |

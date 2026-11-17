@@ -1,5 +1,8 @@
 # Asgard: Security and operations baseline
 
+Documentation baseline: 2026-11-17. The controls below remain policy. Implemented optional photo/document processing, MFA source, and deletion maintenance do not establish active hosted configuration. Use [hosted activation](features/hosted-feature-activation.md), [MFA](features/optional-two-factor-authentication.md), and [account deletion](features/account-deletion.md) for current implementation and activation requirements. Unverified provider/backup/restore gates remain open.
+
+
 Implementation update, 2026-11-17: the owner-approved account deletion source and
 maintenance workflow are implemented behind a disabled backend gate. See the
 [implementation guide](features/account-deletion.md) for activation order and
@@ -8,7 +11,7 @@ hosted scheduler, independent alerts, backup/restore or purge acceptance.
 
 25 October 2026. Documentation decisions delegated by the project owner. These are required controls and starting operating limits, not deployed settings, measured capacity, or a security certification. Preserve the foundation in [architecture](architecture.md). Schema, endpoint, and privileged-operation implementations still require technical review under AGENTS.md.
 
-Updated 26 October 2026: the owner selected an eight-character password minimum in the [password resolution](decisions.md#password-minimum-resolution). Local Auth/Profile source and Stage 4 storage/constraints exist; [Development](development.md#current-foundation-status-and-evidence) records their bounded evidence. Hosted protection, lifecycle jobs and final security acceptance remain pending. Requirements below must not be read as an inventory of deployed controls.
+The eight-character password minimum is recorded in [Decisions](decisions.md#password-minimum-resolution). Core authorization and lifecycle services now exist; feature guides own their dated checks. Hosted protection, active maintenance, independent monitoring, and final security acceptance remain separate evidence gates.
 
 ## Public entry points and abuse
 
