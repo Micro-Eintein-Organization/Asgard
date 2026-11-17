@@ -722,6 +722,11 @@
   margin-top: 2rem;
   max-width: 12rem;
 }
+.catalog-results-loading {
+  display: grid;
+  min-block-size: 24rem;
+  place-items: center;
+}
 .catalog-content {
   min-width: 0;
 }

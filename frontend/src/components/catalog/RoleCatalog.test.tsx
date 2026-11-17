@@ -39,6 +39,12 @@ describe("connected catalog interactions", () => {
     fireEvent.change(input, { target: { value: "bac" } });
     expect(screen.getByRole("searchbox")).toBe(input);
     expect(input).toHaveFocus();
+    const results = document.querySelector(".catalog-results")!;
+    expect(results).toHaveAttribute("aria-busy", "true");
+    expect(results.querySelector('.loading-indicator[data-size="panel"]')).not.toBeNull();
+    expect(screen.getByText("Updating careers")).toHaveClass("sr-only");
+    expect(screen.queryByText("Loading published careers")).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Design" })).toBeEnabled();
     fireEvent.change(input, { target: { value: "backend" } });
     await waitFor(() => expect(vi.mocked(useCoreQuery).mock.calls.some(call =>
       call[0][0] === "careers" && call[0][1] === "backend")).toBe(true));
@@ -49,6 +55,7 @@ describe("connected catalog interactions", () => {
     expect(screen.getByText("Could not update careers")).toBeVisible();
     expect(screen.getByRole("searchbox")).toBe(input);
     expect(input).toHaveFocus();
+    expect(results.querySelector(".loading-indicator")).toBeNull();
     fireEvent.keyDown(input, { key: "Escape" });
     expect(input).toHaveValue("");
   });
