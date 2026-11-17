@@ -8,7 +8,7 @@
 
 Rank careers by the count of distinct benchmark-sample skills matched. Display “n of N.” No percentages, numeric gap score, readiness score, or mastery claim.
 
-The career-side source is a curated Postgres snapshot imported from the task-named ph_tech_postings_2026.csv (task describes 20 Philippine postings) and dict_psf_taxonomy.csv (task describes nine PSF codes). Both files are NOT FOUND in this repository. Verify existence, row counts, field meanings, provenance, and rights before import. PSF code is display-only and is not a skill or match key.
+The career-side source is a curated Postgres snapshot imported from docs/data/ph_tech_postings_2026.csv (20 postings) and docs/data/dict_psf_taxonomy.csv (9 placeholder skill groups). Both files are a hardcoded sample from a Colab notebook, not crawled data. Provenance and source_url are unverified. FSC-* codes are placeholders, not verified PSF-SDS codes. PSF code is display-only and is not a skill or match key.
 
 Non-goals: live job-posting crawl; treating competency_links as employer requirements; semantic/embedding matching; AI recommendation integration; progress mutation; auto-saving skills; score/percentage output. Exact matching only; semantic matching is future work.
 
@@ -654,9 +654,16 @@ Response schema must type identifiers and fields, use status enum MATCHED|UNKNOW
 ## 8. Open questions, default, decision owner
 
 - Who reviews the data? Default: named labor-market/content reviewer maps titles and skills; second reviewer approves publication. Product owner assigns, designated content/architecture reviewers approve. Named reviewer: NOT FOUND.
-- Level-1 cutoff? Default yes, already decided by the task's MATCHED level 1–4 rule. Product owner records in acceptance/spec; do not silently change.
-- Do finished topics count? Default no; only saved level 1–4 or exact resume mention. Product owner decides any change before implementation.
 - Crawl terms of use? Default no crawl in V1. Any future crawl needs source terms/access/license/retention/attribution review. Product owner and legal/privacy reviewer decide. Named reviewer: NOT FOUND.
+
+### Decided
+- Resume mention with saved level 0: MATCHED (resume evidence). The
+  resume signal is shown and the level stays 0. A resume mention never
+  sets or infers a level.
+- Resume evidence comes from the user's most recent active document
+  only. The UI states this. Older documents are ignored.
+- Level 1 counts as MATCHED. Finished topics do not count as a skill
+  signal.
 
 ## 9. Risks
 
