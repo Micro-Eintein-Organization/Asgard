@@ -1,4 +1,5 @@
 import { useScreenContext } from "@/features/counselor-context";
+import { useContentMotion } from "@/components/use-content-motion";
 import { useEffect, useRef, type CSSProperties } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import type { components } from "@/api/generated/schema";
@@ -154,6 +155,8 @@ function DiscoveryEditor({
   definition: Schemas["Questionnaire"];
 }) {
   const editor = useDiscoveryEditor(initial, definition);
+  const questionContent = useRef<HTMLDivElement>(null);
+  useContentMotion(questionContent, editor.question.question_id);
   useScreenContext({ label: "Discovery → " + editor.question.prompt, questionnaire_id: definition.id, question_id: editor.question.question_id });
   const heading = useRef<HTMLHeadingElement>(null);
   const errorSummary = useRef<HTMLDivElement>(null);
@@ -173,7 +176,7 @@ function DiscoveryEditor({
         onBack={() => void editor.move(-1)}
         onSkip={() => void editor.skip()}
       />
-      <div>
+      <div ref={questionContent}>
         <header className="discovery-header">
           <h1 ref={heading} tabIndex={-1}>
             {editor.question.prompt}

@@ -1,4 +1,5 @@
 import { useScreenContext } from "@/features/counselor-context";
+import { useContentMotion } from "@/components/use-content-motion";
 import { CareerExploration } from "@/features/careers/exploration";
 import { useEffect, useRef, useState } from "react";
 import practiceData from "@/assets/data/visits.csv?url";
@@ -87,6 +88,7 @@ export function RoadmapPage() {
     }
   }
   const topicId = params.get("topic");
+  useContentMotion(panel, view.data ? topicId ?? "empty" : null);
   const topic = roadmap.data?.milestones
     .flatMap((milestone) => milestone.topics)
     .find((item) => item.id === topicId);
