@@ -1,0 +1,10 @@
+competency_id,role_domain,competency_name,proficiency_level,standard_keywords
+FSC-DEV-01,Software Engineering,API Architecture & Integration,1,"REST, GraphQL, FastAPI, Express.js, Axios, Webhooks, gRPC"
+FSC-DEV-02,Software Engineering,Object-Oriented & Modular Design,1,"Java, C++, C#, Python, OOP, Design Patterns, SOLID"
+FSC-DEV-03,Software Engineering,Version Control & Collaborative Workflow,1,"Git, GitHub, GitLab, Branching, Pull Requests, Agile, Scrum"
+FSC-DEV-04,Software Engineering,Frontend Client Engineering,1,"React, Next.js, TypeScript, JavaScript, Tailwind CSS, Redux, Zustand"
+FSC-OPS-01,DevOps & Infrastructure,Containerization & Deployment,1,"Docker, Docker Compose, Linux CLI, Bash, CI/CD, GitHub Actions, AWS, GCP"
+FSC-DAT-01,Data Management,Relational Database Systems,1,"PostgreSQL, MySQL, SQLite, Relational Schemas, SQL Queries, ACID"
+FSC-DAT-02,Data Analytics,Data Wrangling & Pipeline Construction,1,"Pandas, NumPy, ETL, Data Cleaning, Data Processing"
+FSC-DAT-03,Data Analytics,Business Intelligence & Visualization,1,"PowerBI, Tableau, Matplotlib, Seaborn, Dashboarding"
+FSC-TST-01,Quality Assurance,Automated Testing & Code Verification,1,"Unit Testing, PyTest, Jest, JUnit, Postman, Selenium, Playwright"
