@@ -200,6 +200,12 @@ function SettingsEditor({ userId }: { userId: string }) {
           {preferenceSave.isSuccess && !preferenceDirty && <p role="status" className="save-feedback">Preferences saved.</p>}
           {preferenceError && <p role="alert" className="field-error">{preferenceError.message} <Button variant="outline" disabled={preferenceSave.isPending} onClick={() => void reloadPreferences()}>Reload preferences</Button></p>}
         </Card>
+        <Card className="settings-card">
+          <header><h2>Career skill matches</h2><p>See how your saved skills and resume mentions compare across careers.</p></header>
+          <Button asChild variant="outline" className="rounded-full">
+            <Link to={appRoutes.careerSkillMatches}>View career matches</Link>
+          </Button>
+        </Card>
         <ProfileSkills key={userId} active={!accountView} onGuardChange={onSkillGuardChange}
           reviewCareer={review.get("reviewCareer") ?? undefined}
           reviewRoadmap={review.get("reviewRoadmap") ?? undefined}
