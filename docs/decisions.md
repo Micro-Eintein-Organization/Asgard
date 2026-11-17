@@ -1,5 +1,17 @@
 # Asgard: Decisions and delivery gates
 
+## Longest activity streak approval, 2026-11-16
+
+The owner identified themselves as @YakisobaNissin (the CODEOWNERS reviewer) and
+approved the bounded [longest-streak plan](plans/longest-streak.md) and end-to-end
+implementation in chat after the shared-contract review requirement was raised.
+Scope: account-wide maximum consecutive recorded qualifying local days; required
+nonnegative `longest_streak_days` on the existing activity response; Dashboard
+placeholder replacement; focused verification. No migration or new dependency.
+Current-streak/H6 rules remain unchanged. This records technical/product scope
+approval, not completed human implementation review or permission to publish.
+[Local results and pending journeys](features/learning-streaks.md).
+
 ## W05 Guided Discovery revision scope, 2026-11-09
 
 The project owner requested implementation of a four-to-six-question Guided

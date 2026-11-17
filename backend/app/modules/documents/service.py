@@ -164,7 +164,7 @@ async def cleanup(request, identity):
 async def upload(request, identity, expected, data):
     settings = request.app.state.settings
     if not configured(settings):
-        raise APIError(503, "documents_unavailable", "Document processing is not enabled locally.")
+        raise APIError(503, "documents_unavailable", "Document processing is not configured.")
     if not data.startswith(b"%PDF-") or len(data) > 10_000_000:
         raise APIError(422, "invalid_pdf", "Choose a PDF no larger than 10 MB.")
     uid = str(identity.user_id)

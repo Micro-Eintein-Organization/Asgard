@@ -51,6 +51,11 @@
             "title": "Days",
             "type": "array"
           },
+          "longest_streak_days": {
+            "minimum": 0.0,
+            "title": "Longest Streak Days",
+            "type": "integer"
+          },
           "month": {
             "title": "Month",
             "type": "string"
@@ -64,7 +69,8 @@
         "required": [
           "month",
           "days",
-          "streak_days"
+          "streak_days",
+          "longest_streak_days"
         ],
         "title": "ActivityMonth",
         "type": "object"
@@ -517,6 +523,81 @@
         "title": "CareerShortlist",
         "type": "object"
       },
+      "CatalogProgress": {
+        "additionalProperties": false,
+        "properties": {
+          "has_progress": {
+            "title": "Has Progress",
+            "type": "boolean"
+          },
+          "percentage": {
+            "anyOf": [
+              {
+                "maximum": 100.0,
+                "minimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Percentage"
+          },
+          "requires_branch_choice": {
+            "title": "Requires Branch Choice",
+            "type": "boolean"
+          },
+          "roadmap_id": {
+            "format": "uuid",
+            "title": "Roadmap Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "roadmap_id",
+          "has_progress",
+          "percentage",
+          "requires_branch_choice"
+        ],
+        "title": "CatalogProgress",
+        "type": "object"
+      },
+      "CatalogSummary": {
+        "additionalProperties": false,
+        "properties": {
+          "by_category": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "title": "By Category",
+            "type": "object"
+          },
+          "catalog_release_id": {
+            "format": "uuid",
+            "title": "Catalog Release Id",
+            "type": "string"
+          },
+          "categories": {
+            "items": {
+              "$ref": "#/components/schemas/Category"
+            },
+            "title": "Categories",
+            "type": "array"
+          },
+          "total": {
+            "title": "Total",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "categories",
+          "by_category",
+          "total",
+          "catalog_release_id"
+        ],
+        "title": "CatalogSummary",
+        "type": "object"
+      },
       "Category": {
         "additionalProperties": false,
         "properties": {
@@ -558,6 +639,17 @@
           "answer": {
             "title": "Answer",
             "type": "string"
+          },
+          "general_knowledge": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "General Knowledge"
           },
           "handoff": {
             "anyOf": [
@@ -1046,6 +1138,135 @@
           "guidance_id"
         ],
         "title": "Dashboard",
+        "type": "object"
+      },
+      "DashboardView": {
+        "additionalProperties": false,
+        "properties": {
+          "active_roadmap": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Roadmap"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "career": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Career"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "current": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RoadmapView"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "dashboard": {
+            "$ref": "#/components/schemas/Dashboard"
+          }
+        },
+        "required": [
+          "dashboard",
+          "current",
+          "career",
+          "active_roadmap"
+        ],
+        "title": "DashboardView",
+        "type": "object"
+      },
+      "DeleteAccount": {
+        "additionalProperties": false,
+        "properties": {
+          "confirmation": {
+            "const": "DELETE",
+            "title": "Confirmation",
+            "type": "string"
+          },
+          "idempotency_key": {
+            "format": "uuid",
+            "title": "Idempotency Key",
+            "type": "string"
+          },
+          "mfa_code": {
+            "anyOf": [
+              {
+                "format": "password",
+                "maxLength": 100,
+                "minLength": 1,
+                "type": "string",
+                "writeOnly": true
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mfa Code"
+          },
+          "password": {
+            "format": "password",
+            "maxLength": 1024,
+            "minLength": 1,
+            "title": "Password",
+            "type": "string",
+            "writeOnly": true
+          },
+          "recovery": {
+            "default": false,
+            "title": "Recovery",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "confirmation",
+          "password",
+          "idempotency_key"
+        ],
+        "title": "DeleteAccount",
+        "type": "object"
+      },
+      "DeletionReceipt": {
+        "additionalProperties": false,
+        "properties": {
+          "accepted_at": {
+            "format": "date-time",
+            "title": "Accepted At",
+            "type": "string"
+          },
+          "deadline_at": {
+            "format": "date-time",
+            "title": "Deadline At",
+            "type": "string"
+          },
+          "request_id": {
+            "format": "uuid",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "status": {
+            "const": "accepted",
+            "default": "accepted",
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "request_id",
+          "accepted_at",
+          "deadline_at"
+        ],
+        "title": "DeletionReceipt",
         "type": "object"
       },
       "DiscoveryAnswer": {
@@ -1979,6 +2200,17 @@
             "title": "Answer",
             "type": "string"
           },
+          "general_knowledge": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "General Knowledge"
+          },
           "sources": {
             "items": {
               "$ref": "#/components/schemas/GuidanceSource"
@@ -2053,6 +2285,16 @@
             "maxItems": 6,
             "title": "History",
             "type": "array"
+          },
+          "page_context": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PageContext"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "question": {
             "maxLength": 1000,
@@ -2267,6 +2509,19 @@
           "text"
         ],
         "title": "GuidanceTurn",
+        "type": "object"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "title": "Detail",
+            "type": "array"
+          }
+        },
+        "title": "HTTPValidationError",
         "type": "object"
       },
       "HealthResponse": {
@@ -2611,6 +2866,84 @@
           "limitation"
         ],
         "title": "OccupationalReference",
+        "type": "object"
+      },
+      "PageContext": {
+        "additionalProperties": false,
+        "properties": {
+          "category_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Category Id"
+          },
+          "filter": {
+            "anyOf": [
+              {
+                "maxLength": 120,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Filter"
+          },
+          "path": {
+            "maxLength": 160,
+            "minLength": 1,
+            "pattern": "^/[a-zA-Z0-9/_-]*$",
+            "title": "Path",
+            "type": "string"
+          },
+          "question_id": {
+            "anyOf": [
+              {
+                "maxLength": 100,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Question Id"
+          },
+          "questionnaire_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Questionnaire Id"
+          },
+          "recommendation_run_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Recommendation Run Id"
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "title": "PageContext",
         "type": "object"
       },
       "Preferences": {
@@ -3593,6 +3926,43 @@
         "title": "RoadmapGuidance",
         "type": "object"
       },
+      "RoadmapView": {
+        "additionalProperties": false,
+        "properties": {
+          "branches": {
+            "items": {
+              "$ref": "#/components/schemas/BranchChoice"
+            },
+            "title": "Branches",
+            "type": "array"
+          },
+          "learning_state": {
+            "$ref": "#/components/schemas/LearningState"
+          },
+          "progress": {
+            "items": {
+              "$ref": "#/components/schemas/TopicProgress"
+            },
+            "title": "Progress",
+            "type": "array"
+          },
+          "roadmap": {
+            "$ref": "#/components/schemas/Roadmap"
+          },
+          "summary": {
+            "$ref": "#/components/schemas/ProgressSummary"
+          }
+        },
+        "required": [
+          "roadmap",
+          "progress",
+          "summary",
+          "branches",
+          "learning_state"
+        ],
+        "title": "RoadmapView",
+        "type": "object"
+      },
       "SaveBranchChoice": {
         "additionalProperties": false,
         "properties": {
@@ -4260,6 +4630,46 @@
         "title": "ValidatedRecommendationItem",
         "type": "object"
       },
+      "ValidationError": {
+        "properties": {
+          "ctx": {
+            "title": "Context",
+            "type": "object"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "title": "Location",
+            "type": "array"
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError",
+        "type": "object"
+      },
       "VersionedChange": {
         "additionalProperties": false,
         "properties": {
@@ -4675,6 +5085,92 @@
         "summary": "Evidence",
         "tags": [
           "competencies"
+        ]
+      }
+    },
+    "/api/v1/catalog/summary": {
+      "get": {
+        "operationId": "get_catalog_summary",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogSummary"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Get Catalog Summary",
+        "tags": [
+          "foundation-contracts"
         ]
       }
     },
@@ -5314,6 +5810,180 @@
         "summary": "Health",
         "tags": [
           "operations"
+        ]
+      }
+    },
+    "/api/v1/me/account-deletion": {
+      "get": {
+        "operationId": "available_api_v1_me_account_deletion_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "boolean"
+                  },
+                  "title": "Response Available Api V1 Me Account Deletion Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Available",
+        "tags": [
+          "account"
+        ]
+      },
+      "post": {
+        "operationId": "accept_api_v1_me_account_deletion_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteAccount"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeletionReceipt"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Accept",
+        "tags": [
+          "account"
         ]
       }
     },
@@ -6474,6 +7144,92 @@
           }
         ],
         "summary": "Get Dashboard",
+        "tags": [
+          "foundation-contracts"
+        ]
+      }
+    },
+    "/api/v1/me/dashboard/view": {
+      "get": {
+        "operationId": "get_my_dashboard_view",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DashboardView"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Get Dashboard View",
         "tags": [
           "foundation-contracts"
         ]
@@ -9001,6 +9757,113 @@
         ]
       }
     },
+    "/api/v1/me/roadmaps/catalog-progress": {
+      "get": {
+        "operationId": "get_my_catalog_progress",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "roadmap_ids",
+            "required": true,
+            "schema": {
+              "items": {
+                "format": "uuid",
+                "type": "string"
+              },
+              "maxItems": 100,
+              "minItems": 1,
+              "title": "Roadmap Ids",
+              "type": "array"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/CatalogProgress"
+                  },
+                  "title": "Response Get My Catalog Progress",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Get Catalog Progress",
+        "tags": [
+          "foundation-contracts"
+        ]
+      }
+    },
     "/api/v1/me/roadmaps/{roadmap_id}/branches": {
       "get": {
         "operationId": "get_my_branch_choices",
@@ -9944,6 +10807,104 @@
           }
         ],
         "summary": "Save Progress",
+        "tags": [
+          "foundation-contracts"
+        ]
+      }
+    },
+    "/api/v1/me/roadmaps/{roadmap_id}/view": {
+      "get": {
+        "operationId": "get_my_roadmap_view",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "roadmap_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Roadmap Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoadmapView"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Get Roadmap View",
         "tags": [
           "foundation-contracts"
         ]

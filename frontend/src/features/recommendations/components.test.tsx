@@ -101,13 +101,12 @@ describe("saved recommendation cards", () => {
     expect(screen.getByText("A limited catalog option.")).toBeVisible();
     expect(screen.getByRole("link", { name: "Review Discovery answers" })).toHaveAttribute("href", "/settings/profile#saved-discovery");
   });
-  it("uses the displayed run's Discovery session to order its actions", () => {
+  it("keeps the roadmap action without offering the disabled experience comparison", () => {
     const current = flow();
     current.query.data!.current!.discovery = { session_id: "completed-v2" } as never;
     render(<MemoryRouter><RecommendationCards flow={current} /></MemoryRouter>);
-    const compare = screen.getByRole("link", { name: "Compare my skills to this career" });
-    expect(compare).toHaveAttribute("href", "/roadmaps/career-1?roadmap=roadmap-1&reviewSkills=1");
-    expect(compare.parentElement?.firstElementChild).toBe(compare);
+    expect(screen.queryByRole("link", { name: "Compare my skills to this career" })).not.toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "See where to start" })).toHaveAttribute("href", "/roadmaps/career-1?roadmap=roadmap-1");
     expect(screen.getByText(/Considering a career change/)).toBeVisible();
   });
 

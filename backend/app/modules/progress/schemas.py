@@ -6,6 +6,8 @@ from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 from pydantic import Field, field_validator, model_validator
 
 from app.api.contracts import Contract, Identifier, Revision, VersionedChange
+from app.modules.careers.schemas import Career
+from app.modules.roadmaps.schemas import Roadmap
 
 TopicStatus = Literal["not_started", "learning", "done", "skipped"]
 
@@ -106,6 +108,7 @@ class ActivityMonth(Contract):
     month: str
     days: list[ActivityDay]
     streak_days: Annotated[int, Field(ge=0)]
+    longest_streak_days: Annotated[int, Field(ge=0)]
 
 
 class Dashboard(Contract):
@@ -117,3 +120,25 @@ class Dashboard(Contract):
     recommendation_run_id: UUID | None
     discovery_draft_id: UUID | None
     guidance_id: Identifier | None
+
+
+class CatalogProgress(Contract):
+    roadmap_id: UUID
+    has_progress: bool
+    percentage: Annotated[float, Field(ge=0, le=100)] | None
+    requires_branch_choice: bool
+
+
+class RoadmapView(Contract):
+    roadmap: Roadmap
+    progress: list[TopicProgress]
+    summary: ProgressSummary
+    branches: list[BranchChoice]
+    learning_state: LearningState
+
+
+class DashboardView(Contract):
+    dashboard: Dashboard
+    current: RoadmapView | None
+    career: Career | None
+    active_roadmap: Roadmap | None

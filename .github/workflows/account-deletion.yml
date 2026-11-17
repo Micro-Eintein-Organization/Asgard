@@ -1,0 +1,34 @@
+name: Account deletion maintenance
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 * * * *'
+permissions:
+  contents: read
+concurrency:
+  group: account-deletion-maintenance
+  cancel-in-progress: false
+jobs:
+  purge:
+    if: vars.ASGARD_DELETION_MAINTENANCE_ENABLED == 'true'
+    environment: account-maintenance
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Build reviewed maintenance image
+        run: docker build --target maintenance -t asgard-maintenance backend
+      - name: Purge accepted accounts
+        env:
+          ASGARD_MAINTENANCE_DATABASE_URL: ${{ secrets.ASGARD_MAINTENANCE_DATABASE_URL }}
+          ASGARD_AUTH_ADMIN_KEY: ${{ secrets.ASGARD_AUTH_ADMIN_KEY }}
+          ASGARD_SUPABASE_URL: ${{ secrets.ASGARD_SUPABASE_URL }}
+          ASGARD_DATABASE_CA_PEM: ${{ secrets.ASGARD_DATABASE_CA_PEM }}
+        run: |
+          test -n "$ASGARD_MAINTENANCE_DATABASE_URL"
+          test -n "$ASGARD_AUTH_ADMIN_KEY"
+          test -n "$ASGARD_DATABASE_CA_PEM"
+          umask 077
+          printf '%s' "$ASGARD_DATABASE_CA_PEM" > "$RUNNER_TEMP/asgard-db-ca.crt"
+          chmod 644 "$RUNNER_TEMP/asgard-db-ca.crt"
+          docker run --rm --read-only --tmpfs /tmp:rw,noexec,nosuid,size=16m             -v "$RUNNER_TEMP/asgard-db-ca.crt:/etc/secrets/supabase-root.crt:ro"             -e ASGARD_MAINTENANCE_DATABASE_URL -e ASGARD_AUTH_ADMIN_KEY             -e ASGARD_SUPABASE_URL asgard-maintenance

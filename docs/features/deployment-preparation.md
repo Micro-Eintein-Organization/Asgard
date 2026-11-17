@@ -1,5 +1,60 @@
 # Core acceptance and deployment preparation
 
+## Hosted roadmap latency correction, 2026-11-15
+
+Implementer: Codex; created/updated: 2026-11-15. Status: implemented, required
+technical review by @YakisobaNissin and hosted timing acceptance pending.
+Requirements: QA-09, A-09; [bounded plan](../plans/hosting-account-demo.md).
+Owner logs showed roadmap summary/progress requests lasting 27–41 seconds and
+pool/readiness timeouts. Roadmap assembly in
+`backend/app/modules/roadmaps/service.py` now fetches milestones, groups, branches,
+topics, prerequisites and resources in six collection queries plus the existing
+roadmap existence lookup, instead of querying children per topic. Ordering,
+response fields, retired records and the existing restricted session transaction
+are preserved. No database grant, schema, pool-size or API contract changed.
+Catalog cards defer summaries until saved progress exists; see the
+[catalog guide](career-catalog.md).
+
+Focused backend batching/progress checks: 4 passed; changed-file Ruff passed.
+Frontend TypeScript, changed-file ESLint and 7 catalog tests passed. Whitespace
+checks passed. Browser journeys remain owner-operated and were not run by Codex.
+An initial test harness attempt used an unavailable pytest async plugin; corrected
+to the existing asyncio.run convention before the passing run. The regression
+checks cover empty/100-topic assembly, constant query count, grouping, missing
+roadmaps and existing branch-summary calculations. These are unit checks, not
+live SQL or hosted performance evidence. Unchanged authentication/session/ownership
+enforcement reuses the existing foundation evidence; no new authorization change.
+
+After owner publication/deployment, browse careers once, open a roadmap, return
+and open another. In Render service Logs record route/status/duration_ms for the
+catalog, roadmap, summary and progress requests. Confirm warm requests improve
+and no burst of 30-second 503 responses occurs. Compare saved progress/branch
+selection and content with the prior version. Manual acceptance remains pending;
+catalog progress reads still scale with visible cards and cross-region latency
+or other slow queries can remain.
+
+## Hosted readiness diagnostics, 2026-11-14
+
+Hosted follow-up: owner-provided logs show Supabase HTTP 401 with no database
+failure. The REST OpenAPI root is restricted to privileged keys; readiness now
+probes `/auth/v1/settings` using the existing public key instead. No service-role
+credential is required. Operations tests assert that endpoint and key header.
+Hosted verification of this correction remains pending owner publication.
+
+Implementer: Codex. Created/updated: 2026-11-14. Status: implemented;
+technical review by @YakisobaNissin and hosted verification pending. Acceptance:
+QA-09/11; scope recorded in the [hosting plan](../plans/hosting-account-demo.md).
+`backend/app/api/health.py` logs `readiness_failed` with Supabase HTTP status and
+fixed database failure categories. Raw exception messages, URLs and credentials
+are omitted; the public response and readiness gates are unchanged.
+`backend/tests/test_hosted_config.py` covers category selection and sanitization.
+Focused hosted configuration/operations checks: 28 passed. The first run had
+7 configuration failures from inherited local profile-photo enablement; rerunning
+with local-only features explicitly disabled passed. Whitespace checks passed.
+No hosted diagnosis is established by these tests. After owner publication and
+deployment, inspect Render logs for `readiness_failed`; report only those sanitized
+fields. Resolve the reported dependency failure before claiming hosted readiness.
+
 ## Account-demo follow-up, 2026-11-13
 
 Codex prepared optional MFA source and the

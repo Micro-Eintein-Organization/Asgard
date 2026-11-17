@@ -1,5 +1,22 @@
 # Future development
 
+## Account deletion implementation, 2026-11-17
+
+The owner approved implementation in chat. Source now includes verified acceptance,
+an immediate application access block, a resumable Storage/Auth purge worker and
+the Settings confirmation dialog. Activation remains off until reviewed migration,
+protected maintenance credentials, independent monitoring, ledger preservation and
+disposable hosted-account acceptance are established. @YakisobaNissin owns review
+and hosted setup. See the [implementation and activation guide](features/account-deletion.md).
+
+## Roadmap experience comparison disabled, 2026-11-16
+
+Owner decision in chat: disable the roadmap experience-comparison dialog and its
+recommendation-card links. Codex removed the UI entry points; the implementation
+and stored data are retained. Reactivation needs a new owner decision. Profile
+skills, resume skill review and career-to-career comparison remain available.
+Evidence and pending reviewer: [implementation guide](features/ui-refinement-and-motion.md).
+
 ## Hosted account demo, 2026-11-13
 
 The owner paused unrelated planned features and approved zero-cost deployment
@@ -307,3 +324,20 @@ and removal invalidate dependent analyses. Do not add unused assessment tables n
 Use statuses proposed, approved, in progress, completed or deferred. When promoting
 an entry, record the named owner/reviewer, date, decision reference, scope and
 acceptance evidence. Preserve unresolved decisions and link the owning specification.
+
+
+## Hosted performance acceptance, 2026-11-15
+
+Owner approved targeted content batching instead of a provider change. Source and
+focused checks are implemented; the 20-user performance target, hosted timings,
+and isolated live security verification remain pending. Owner/operator:
+@YakisobaNissin. Evidence and exact manual steps:
+[hosted content performance](features/hosted-content-performance.md).
+
+2026-11-16: coordinated content cache/page reads implemented locally; backend-first rollout and hosted performance/security acceptance remain pending. See [performance evidence](features/hosted-content-performance.md).
+
+
+2026-11-16: @YakisobaNissin approved hosted FUT-10/FUT-13 activation and Groq processing in chat. Source support is in progress; hosted verification and unattended cross-account cleanup remain pending. See [activation guide](features/hosted-feature-activation.md).
+
+
+2026-11-16: owner-approved counselor/profile follow-up now includes route-scoped Discovery, filter, selected-topic and recommendation-run context, shared profile identity and in-memory conversation continuity. Source implementation and focused checks complete; hosted visual/answer-quality acceptance pending. See [implementation guide](features/contextual-counselor-profile.md).

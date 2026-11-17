@@ -1,5 +1,6 @@
 import { createBrowserRouter, Link, Navigate } from "react-router";
 import { FoundationStatus } from "./status";
+import { InformationPage } from "./information";
 import { AppShell } from "./shell";
 import {
   LandingPage,
@@ -45,6 +46,9 @@ export const router = createBrowserRouter([
       { path: routes.recovery, element: <AuthPage mode="recovery" /> },
       { path: routes.verify, element: <AuthPage mode="verify" /> },
       { path: routes.status, element: <FoundationStatus /> },
+      { path: routes.licenses, element: <InformationPage page="licenses" /> },
+      { path: routes.credits, element: <InformationPage page="credits" /> },
+      { path: routes.terms, element: <InformationPage page="terms" /> },
       { path: routes.mfaSetup, element: <MfaPage /> },
       { path: routes.mfaChallenge, element: <MfaPage challenge /> },
       {
@@ -94,7 +98,7 @@ export const router = createBrowserRouter([
             action={<Link to={routes.home}>Return to Asgard</Link>}
           >
             This page could not be found.{" "}
-            <Link to={routes.status}>Foundation status</Link>
+            <Link to={routes.status}>Service status</Link>
           </StatePanel>
         ),
       },

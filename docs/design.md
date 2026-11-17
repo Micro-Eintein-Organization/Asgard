@@ -1,5 +1,31 @@
 # Asgard: Implemented UI foundation
 
+Footer follow-up, 2026-11-17: the black footer now links to public Licenses,
+Credits, draft Terms and conditions, and Service status. The existing `/status`
+connectivity checks now have an availability summary, separate API/data results,
+last-check time and manual retry. No historical uptime claim is displayed.
+These public pages reuse current typography, surfaces and focus behavior;
+focused-onboarding exclusions remain. See the
+[implementation and verification](features/footer-information-and-service-status.md)
+for completed checks, remaining browser coverage and Terms review.
+
+Longest streak, 2026-11-16: the Dashboard's existing calendar card now shows the
+account's actual longest qualifying run in place of Not available. Composition
+is unchanged. See [learning-streak evidence](features/learning-streaks.md).
+
+Loading follow-up, 2026-11-16: existing loading text now pairs with the supplied
+snowflake (2.4 s rotation; stationary under reduced motion). Existing save
+confirmation fades share the motion tokens. Counselor context is automatic;
+its composer has neutral focus feedback and a 44 px circular send action.
+The owner disabled roadmap experience comparison and its suggestion-card links.
+See [current implementation evidence](features/ui-refinement-and-motion.md).
+
+Refinement, 2026-11-16: shared control sizing and CSS/Radix motion presets now
+follow the existing presentation. Page changes use a brief fade; reduced motion
+disables animation. See [implementation and verification](features/ui-refinement-and-motion.md)
+for scope, evidence and pending human/desktop acceptance. Existing layouts and
+colour meanings remain the baseline; no palette, font or page redesign was added.
+
 Catalog correction/review, 2026-11-03: catalog cards use a short authored opening
 sentence and up to three skill chips; category numbers/labels have separate,
 left-aligned wrapping columns. See [catalog evidence](features/career-catalog.md#compact-cards-and-sidebar-correction-2026-11-03).

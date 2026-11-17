@@ -15,8 +15,7 @@ BUCKET = "asgard-profile-photos"
 
 def enabled(settings):
     return (
-        settings.deployment_environment == "local"
-        and settings.profile_photos_enabled
+        settings.profile_photos_enabled
         and bool(settings.storage_service_key.get_secret_value())
     )
 

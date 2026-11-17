@@ -1,9 +1,11 @@
+import { useScreenContext } from "@/features/counselor-context";
 import { useEffect, useRef, type CSSProperties } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import type { components } from "@/api/generated/schema";
 import { DiscoveryHeader } from "./DiscoveryHeader";
 import { BackLink, PageHeading, StatePanel } from "@/components/shared";
 import { Button } from "@/components/ui/button";
+import { LoadingIndicator } from "@/components/loading-indicator";
 import {
   Dialog,
   DialogContent,
@@ -26,7 +28,8 @@ export function DiscoveryWizard() {
   const state = useCoreQuery(["discovery"], coreApi.discovery);
   const definition = useCoreQuery(
     ["questionnaire", state.data?.draft?.questionnaire_id],
-    () => coreApi.questionnaire(state.data?.draft?.questionnaire_id),
+    signal => coreApi.questionnaire(state.data?.draft?.questionnaire_id, signal),
+    !!state.data,
   );
   const start = useCoreMutation(coreApi.startDiscovery);
 
@@ -151,6 +154,7 @@ function DiscoveryEditor({
   definition: Schemas["Questionnaire"];
 }) {
   const editor = useDiscoveryEditor(initial, definition);
+  useScreenContext({ label: "Discovery → " + editor.question.prompt, questionnaire_id: definition.id, question_id: editor.question.question_id });
   const heading = useRef<HTMLHeadingElement>(null);
   const errorSummary = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -256,6 +260,7 @@ function DiscoveryEditor({
             </Button>
           )}
           <Button disabled={editor.busy} onClick={() => void editor.move(1)}>
+            {editor.busy && <LoadingIndicator />}
             {editor.busy
               ? "Saving…"
               : editor.index === editor.total - 1

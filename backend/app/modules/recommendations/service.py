@@ -10,6 +10,7 @@ from app.core.errors import APIError
 from app.modules.discovery import service as discovery
 from app.modules.discovery.definition import QUESTIONNAIRE_V2_ID, definition
 from app.modules.discovery.schemas import DiscoverySession
+from app.modules.progress.service import learning as read_learning
 from app.modules.recommendations import discovery_rules, occupational_runtime
 from app.modules.recommendations.provider import (
     PROMPT_VERSION,
@@ -61,6 +62,17 @@ async def expire(connection, uid):
     )
 
 
+async def expire_if_needed(connection, uid):
+    pending = await one(connection,
+        "SELECT id FROM asgard_private.recommendation_runs WHERE user_id=CAST(:uid AS uuid) "
+        "AND status='pending' AND deadline_at <= statement_timestamp() LIMIT 1",
+        {"uid": str(uid)})
+    if pending:
+        # Expiry remains a serialized state transition; ordinary reads do not lock the account.
+        await lock_account(connection, uid)
+        await expire(connection, uid)
+
+
 async def eligible(connection, uid, run_id):
     invalid = await one(
         connection,
@@ -79,8 +91,8 @@ async def eligible(connection, uid, run_id):
     return invalid is None
 
 
-async def run(connection, uid, run_id, context_revision, catalog_release_id):
-    saved = required(
+async def run(connection, uid, run_id, context_revision, catalog_release_id, *, bundled=None):
+    saved = bundled["saved"] if bundled is not None else required(
         await one(
             connection,
             (
@@ -90,13 +102,13 @@ async def run(connection, uid, run_id, context_revision, catalog_release_id):
             {"uid": str(uid), "id": str(run_id)},
         )
     )
-    if saved["status"] == "completed" and not await eligible(connection, uid, run_id):
+    if saved["status"] == "completed" and not (bundled["eligible"] if bundled is not None else await eligible(connection, uid, run_id)):
         raise APIError(
             404,
             "recommendation_unavailable",
             "These suggestions refer to content that is no longer published.",
         )
-    items = (
+    items = bundled["items"] if bundled is not None else (
         await rows(
             connection,
             (
@@ -190,41 +202,52 @@ async def run(connection, uid, run_id, context_revision, catalog_release_id):
 
 
 async def state(connection, uid, settings):
-    learning = await lock_account(connection, uid)
-    await expire(connection, uid)
+    learning = await read_learning(connection, uid)
+    await expire_if_needed(connection, uid)
     release = await release_id(connection)
-    latest = await one(
-        connection,
-        (
-            "SELECT id, status FROM asgard_private.recommendation_runs WHERE "
-            "user_id = CAST(:uid AS uuid) ORDER BY created_at DESC, id DESC LIMIT 1"
-        ),
-        {"uid": str(uid)},
-    )
+    bundles = await rows(connection, """
+      WITH ranked AS MATERIALIZED (
+        SELECT r.*, row_number() OVER (ORDER BY created_at DESC,id DESC) AS rank
+        FROM asgard_private.recommendation_runs r WHERE user_id=CAST(:uid AS uuid)
+      ), checked AS (
+        SELECT r.*, NOT EXISTS (
+          SELECT 1 FROM asgard_private.recommendation_items i
+          JOIN asgard_catalog.careers c ON c.id=i.career_id
+          LEFT JOIN asgard_catalog.roadmaps p ON p.id=i.roadmap_id
+          LEFT JOIN asgard_catalog.topics t ON t.id=i.starting_topic_id
+          WHERE i.user_id=CAST(:uid AS uuid) AND i.run_id=r.id AND
+            (c.status <> 'published' OR (i.roadmap_id IS NOT NULL AND p.status <> 'published')
+             OR (i.starting_topic_id IS NOT NULL AND t.retired_at IS NOT NULL))) AS eligible
+        FROM ranked r WHERE rank=1 OR status='completed'
+      ), chosen AS (
+        (SELECT * FROM checked WHERE rank=1)
+        UNION
+        (SELECT * FROM checked WHERE status='completed' AND eligible
+          ORDER BY created_at DESC,id DESC LIMIT 2)
+      )
+      SELECT *, COALESCE((SELECT jsonb_agg(jsonb_build_object(
+        'career_id',i.career_id,'reason',i.reason,'evidence_fact_ids',i.evidence_fact_ids,
+        'uncertainty_note',i.uncertainty_note,'source_reference_ids',i.source_reference_ids,
+        'roadmap_id',i.roadmap_id,'starting_topic_id',i.starting_topic_id) ORDER BY i.position)
+        FROM asgard_private.recommendation_items i WHERE i.user_id=CAST(:uid AS uuid)
+        AND i.run_id=chosen.id), '[]'::jsonb) AS bundled_items
+      FROM chosen ORDER BY created_at DESC,id DESC
+    """, {"uid": str(uid)})
     current, previous = None, None
-    if latest and (
-        latest["status"] != "completed" or await eligible(connection, uid, latest["id"])
-    ):
-        current = await run(connection, uid, latest["id"], learning["context_revision"], release)
-    prior = await one(
-        connection,
-        (
-            "SELECT r.id FROM asgard_private.recommendation_runs r WHERE r.user_id "
-            "= CAST(:uid AS uuid) AND r.status = 'completed' AND (CAST(:current AS "
-            "uuid) IS NULL OR r.id <> CAST(:current AS uuid)) AND NOT EXISTS "
-            "(SELECT 1 FROM asgard_private.recommendation_items i JOIN "
-            "asgard_catalog.careers c ON c.id = i.career_id LEFT JOIN "
-            "asgard_catalog.roadmaps p ON p.id = i.roadmap_id LEFT JOIN "
-            "asgard_catalog.topics t ON t.id = i.starting_topic_id WHERE i.user_id "
-            "= CAST(:uid AS uuid) AND i.run_id = r.id AND (c.status <> 'published' "
-            "OR (i.roadmap_id IS NOT NULL AND p.status <> 'published') OR "
-            "(i.starting_topic_id IS NOT NULL AND t.retired_at IS NOT NULL))) ORDER"
-            " BY r.created_at DESC, r.id DESC LIMIT 1"
-        ),
-        {"uid": str(uid), "current": str(current.id) if current else None},
-    )
-    if prior:
-        previous = await run(connection, uid, prior["id"], learning["context_revision"], release)
+    for row in bundles:
+        valid = row["status"] != "completed" or row["eligible"]
+        if not valid:
+            continue
+        is_current = row["rank"] == 1
+        if not is_current and (previous is not None or row["status"] != "completed"):
+            continue
+        value = await run(connection, uid, row["id"], learning["context_revision"], release,
+            bundled={"saved": row, "eligible": row["eligible"],
+                     "items": row["bundled_items"] if row["status"] == "completed" else []})
+        if is_current:
+            current = value
+        elif previous is None:
+            previous = value
     completed = await discovery.latest_completed_identity(connection, uid)
     available = release is not None and (
         (completed and completed["questionnaire_id"] == QUESTIONNAIRE_V2_ID)
@@ -258,8 +281,8 @@ async def state(connection, uid, settings):
 
 async def get_run(request, identity, run_id):
     async with transaction(request, identity) as connection:
-        learning = await lock_account(connection, identity.user_id)
-        await expire(connection, identity.user_id)
+        learning = await read_learning(connection, identity.user_id)
+        await expire_if_needed(connection, identity.user_id)
         return await run(
             connection,
             identity.user_id,

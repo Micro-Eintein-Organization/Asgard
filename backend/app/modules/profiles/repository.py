@@ -1,8 +1,10 @@
 from contextlib import asynccontextmanager
+from time import perf_counter
 
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncEngine, create_async_engine
 
+from app.core.database_metrics import current_metrics, instrument
 from app.core.errors import APIError
 from app.core.security import Identity, unauthorized
 from app.modules.profiles.schemas import Profile, ProfileUpdate
@@ -13,6 +15,7 @@ FIELDS = "first_name, surname, version, created_at, updated_at, photo_id IS NOT 
 class ProfileRepository:
     def __init__(self, engine: AsyncEngine):
         self.engine = engine
+        instrument(engine)
 
     @classmethod
     def connect(cls, url: str):
@@ -32,47 +35,47 @@ class ProfileRepository:
         )
 
     @asynccontextmanager
-    async def transaction(self, identity: Identity):
+    async def transaction(self, identity: Identity, *, deletion=False):
+        started = perf_counter()
         async with self.engine.begin() as connection:
-            role = (
-                (
-                    await connection.execute(
-                        text(
-                            "SELECT current_user AS name, rolsuper, rolbypassrls, "
-                            "rolcreaterole, rolcreatedb "
-                            "FROM pg_roles WHERE rolname = current_user"
-                        )
-                    )
-                )
-                .mappings()
-                .one()
-            )
-            if role["name"] != "asgard_app" or any(
-                role[name] for name in ("rolsuper", "rolbypassrls", "rolcreaterole", "rolcreatedb")
-            ):
-                raise APIError(
-                    503,
-                    "unsafe_database_role",
-                    "Application database access is not configured safely.",
-                )
+            metrics = current_metrics.get()
+            if metrics is not None:
+                metrics["database_acquisition_ms"] += (perf_counter() - started) * 1000
             params = {
                 "uid": str(identity.user_id),
                 "sid": str(identity.session_id),
                 "aal": identity.aal,
             }
-            allowed = await connection.scalar(
-                text(
-                    "SELECT asgard_private.session_allowed("
-                    "CAST(:uid AS uuid), CAST(:sid AS uuid), :aal)"
-                ),
-                params,
-            )
-            if not allowed:
+            connection.info["asgard_statement_counts"] = {}
+            connection.info["asgard_query_phase"] = "authorization"
+            lock = "pg_advisory_xact_lock" if deletion else "pg_advisory_xact_lock_shared"
+            await connection.execute(text(
+                f"SELECT {lock}(hashtextextended(CAST(:uid AS text), 481516))"), params)
+            guard = (await connection.execute(text("""
+                WITH role_guard AS MATERIALIZED (
+                    SELECT current_user = 'asgard_app' AND NOT rolsuper
+                        AND NOT rolbypassrls AND NOT rolcreaterole AND NOT rolcreatedb AS safe
+                    FROM pg_roles WHERE rolname = current_user
+                ), session_guard AS MATERIALIZED (
+                    SELECT safe, CASE WHEN safe THEN asgard_private.session_allowed(
+                        CAST(:uid AS uuid), CAST(:sid AS uuid), :aal) ELSE false END AS allowed
+                    FROM role_guard
+                )
+                SELECT safe, allowed, CASE WHEN safe AND allowed THEN
+                    set_config('asgard.user_id', CAST(:uid AS text), true) ELSE NULL END AS context
+                FROM session_guard
+            """), params)).mappings().one_or_none()
+            if not guard or not guard["safe"]:
+                raise APIError(503, "unsafe_database_role",
+                               "Application database access is not configured safely.")
+            if not guard["allowed"]:
                 raise unauthorized()
-            await connection.execute(
-                text("SELECT set_config('asgard.user_id', :uid, true)"), params
-            )
-            yield connection
+            connection.info["asgard_query_phase"] = "feature"
+            try:
+                yield connection
+            finally:
+                connection.info.pop("asgard_query_phase", None)
+                connection.info.pop("asgard_statement_counts", None)
 
     async def get(self, identity: Identity) -> Profile | None:
         async with self.transaction(identity) as connection:

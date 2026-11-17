@@ -1,5 +1,19 @@
 # Career catalog
 
+## Hosted request reduction, 2026-11-15
+
+Implementer: Codex; created/updated: 2026-11-15. Status: implemented; technical
+review by @YakisobaNissin and hosted manual acceptance pending. Requirements:
+REQ-02/03, QA-09. `RoleCatalog.tsx` now enables the roadmap summary query only
+after its account-scoped progress query returns saved rows. Cards already hide
+the percentage without saved progress, so this preserves their presentation
+while avoiding unnecessary full roadmap summaries. Existing invalidation refreshes
+progress after writes; summary becomes enabled when progress appears. No new
+cache, API contract or cross-account data sharing. Focused coverage in
+`RoleCatalog.test.tsx` checks the disabled query and absent meter for unstarted
+roadmaps. See the [hosting evidence](deployment-preparation.md) for backend
+batching and the owner’s exact hosted verification steps.
+
 - Implementer: Codex
 - Created: 2026-11-02
 - Last updated: 2026-11-08

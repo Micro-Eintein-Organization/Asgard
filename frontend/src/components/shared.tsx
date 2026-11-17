@@ -1,10 +1,9 @@
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { Link } from "react-router";
 import {
   ArrowLeft,
   Check,
   Circle,
-  Clock3,
   Info,
   TriangleAlert,
 } from "lucide-react";
@@ -12,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
+import { LoadingIndicator } from "@/components/loading-indicator";
 
 export function PageHeading({
   title,
@@ -94,6 +94,12 @@ export function StatePanel({
   children?: ReactNode;
   action?: ReactNode;
 }) {
+  const [slow, setSlow] = useState(false);
+  useEffect(() => {
+    if (kind !== "loading") return;
+    const timer = setTimeout(() => setSlow(true), 5000);
+    return () => { clearTimeout(timer); };
+  }, [kind]);
   return (
     <Card
       className={`state-panel state-${kind}`}
@@ -107,7 +113,7 @@ export function StatePanel({
     >
       <div>
         {kind === "loading" ? (
-          <Clock3 aria-hidden="true" size={24} />
+          <LoadingIndicator size="panel" />
         ) : kind === "error" ? (
           <TriangleAlert aria-hidden="true" size={24} />
         ) : kind === "success" ? (
@@ -118,6 +124,7 @@ export function StatePanel({
       </div>
       <h2>{title}</h2>
       {children && <p>{children}</p>}
+      {kind === "loading" && slow && <p>This is taking longer than usual. The service may be waking up.</p>}
       {kind === "loading" && (
         <div className="loading-lines" aria-hidden="true">
           <Skeleton className="h-3 w-full" />

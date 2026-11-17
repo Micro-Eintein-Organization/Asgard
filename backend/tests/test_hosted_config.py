@@ -1,6 +1,6 @@
 from contextlib import asynccontextmanager
 from types import SimpleNamespace
-from unittest.mock import AsyncMock
+from unittest.mock import AsyncMock, patch
 
 import httpx
 import pytest
@@ -73,3 +73,46 @@ def test_hosted_readiness_requires_database(database_ready):
             assert response.json()["supabase_api"] == "available"
         finally:
             client.app.state.profiles = original
+
+
+@pytest.mark.parametrize("detail, category", [
+    ("certificate verify failed: secret", "tls_certificate"),
+    ("password authentication failed: secret", "database_password"),
+    ("permission denied: secret", "database_permission"),
+    ("unexpected secret", "connection_or_query"),
+])
+def test_readiness_logs_sanitized_failure(detail, category):
+    class Engine:
+        @asynccontextmanager
+        async def connect(self):
+            raise RuntimeError(detail)
+            yield
+
+    with TestClient(create_app(Settings(**configuration()))) as client:
+        original = client.app.state.profiles
+        try:
+            client.app.state.profiles = SimpleNamespace(engine=Engine())
+            client.app.state.http.get = AsyncMock(return_value=httpx.Response(200))
+            with patch("app.api.health.logger.warning") as warning:
+                response = client.get("/ready")
+            assert response.status_code == 503
+            fields = warning.call_args.kwargs["extra"]["fields"]
+            assert fields["database_failure"] == category
+            assert fields["supabase_http_status"] == 200
+            assert "secret" not in str(warning.call_args)
+            assert "secret" not in response.text
+        finally:
+            client.app.state.profiles = original
+
+
+def test_hosted_files_require_credentials_and_allow_configured_features():
+    from app.modules.profiles.photos import enabled
+
+    with pytest.raises(ValidationError):
+        Settings(**configuration(profile_photos_enabled=True, storage_service_key=""))
+    settings = Settings(**configuration(
+        profile_photos_enabled=True, storage_service_key="synthetic-private",
+        documents_enabled=True, documents_processing_enabled=True,
+        documents_real_data_approved=True, resume_skill_review_enabled=True,
+        groq_enabled=True, groq_api_key="synthetic-groq"))
+    assert enabled(settings)

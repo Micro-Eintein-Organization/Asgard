@@ -1,5 +1,15 @@
 # Skill profiles and career comparison
 
+## Roadmap experience comparison disabled, 2026-11-16
+
+Owner requested disabling this specific feature in chat; Codex removed the
+roadmap trigger/mount and recommendation comparison links. `reviewSkills=1`
+URLs open ordinary roadmaps. The implementation is retained but unreachable
+from application UI. Profile skill editing, resume review, career-to-career
+comparison, stored records and backend contracts remain unchanged. Focused
+recommendation and roadmap regression tests pass. Human review by
+@YakisobaNissin remains pending. See [refinement evidence](ui-refinement-and-motion.md).
+
 ## Local resume skill matching, 2026-11-09
 
 Codex implemented the approved PM-W03 / FUT-13 matcher update for local use.

@@ -1,8 +1,9 @@
+import { useScreenContext } from "@/features/counselor-context";
 import { useState } from "react";
-import { CounselorLauncher } from "@/features/ai-guidance";
 import { Link } from "react-router";
 import { Button } from "@/components/ui/button";
 import { StatePanel } from "@/components/shared";
+import { LoadingIndicator } from "@/components/loading-indicator";
 import { coreApi, useCoreQuery } from "@/features/core/data";
 import { appRoutes } from "@/lib/routes";
 import { careerSummary } from "@/lib/career-summary";
@@ -32,22 +33,20 @@ export function RecommendationCards({
     ? current : state?.previous_eligible_success;
   const showingPrevious = !!previous && previous.id === shownPrevious;
   const displayed = fresh ?? (showingPrevious ? previous : null);
+  useScreenContext(displayed ? { label: "Saved career suggestions", recommendation_run_id: displayed.id } : null);
   const discoveryId = displayed?.discovery?.session_id;
   const resultDiscovery = useCoreQuery(
     ["discovery-session", discoveryId],
     () => coreApi.discoverySession(discoveryId!),
     !!discoveryId,
   );
-  const preference = resultDiscovery.data?.answers.find(
-    (answer) => answer.question_id === "experience_preference",
-  )?.option_ids[0];
   const goal = resultDiscovery.data?.answers.find(
     (answer) => answer.question_id === "goals",
   )?.option_ids[0];
   const goalIntros: Record<string, string> = {
     start: "Ready to learn? Open a roadmap to see its first topics.",
     explore: "Look at what each career involves and open a roadmap when you find one you want to explore.",
-    change: "Considering a career change? Open a role to explore its roadmap or compare the skills you already use.",
+    change: "Considering a career change? Open a role to explore its roadmap.",
   };
   const goalIntro = goal ? goalIntros[goal] : undefined;
   const error = flow.query.error ?? catalog.error;
@@ -106,6 +105,7 @@ export function RecommendationCards({
       )}
       {flow.pending ? (
         <p role="status" className="text-center py-8 text-sm">
+          <LoadingIndicator />{" "}
           Preparing your career suggestions…
         </p>
       ) : flow.willRetry && (
@@ -139,7 +139,7 @@ export function RecommendationCards({
           )}
         </p>
       )}
-      {displayed && <CounselorLauncher />}
+
       {displayed && (
         <>
           {goalIntro && <p className="text-center text-sm">{goalIntro}</p>}
@@ -163,16 +163,9 @@ export function RecommendationCards({
                   </div>
                 );
               const roadmapAction = (
-                <Button key="roadmap" asChild variant={preference === "use_experience" ? "outline" : "default"} className="h-auto min-h-9 whitespace-normal py-2 text-center">
+                <Button key="roadmap" asChild className="h-auto min-h-9 whitespace-normal py-2 text-center">
                   <Link to={appRoutes.roadmap(career.id) + "?" + new URLSearchParams({ roadmap: roadmapId })}>
                     See where to start
-                  </Link>
-                </Button>
-              );
-              const comparisonAction = (
-                <Button key="compare" asChild variant={preference === "use_experience" ? "default" : "outline"} className="h-auto min-h-9 whitespace-normal py-2 text-center">
-                  <Link to={appRoutes.skillComparison(career.id, roadmapId)}>
-                    Compare my skills to this career
                   </Link>
                 </Button>
               );
@@ -200,9 +193,7 @@ export function RecommendationCards({
                     </ul>
                   )}
                   <div className="action-row mt-auto !gap-2">
-                    {preference === "use_experience"
-                      ? [comparisonAction, roadmapAction]
-                      : [roadmapAction, comparisonAction]}
+                    {roadmapAction}
                   </div>
                 </article>
               );

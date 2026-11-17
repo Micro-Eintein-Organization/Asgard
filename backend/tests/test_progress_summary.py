@@ -33,9 +33,10 @@ def test_roadmap_summary_counts_only_the_chosen_branch(monkeypatch):
     async def get_branches(*args):
         return choices
 
-    monkeypatch.setattr(service, "roadmap", get_roadmap)
-    monkeypatch.setattr(service, "progress", get_progress)
-    monkeypatch.setattr(service, "branches", get_branches)
+    async def summary_data(*args):
+        return {roadmap_id: content}, states, choices
+
+    monkeypatch.setattr(service, "summary_data", summary_data)
     result = asyncio.run(service.summary(None, uuid4(), roadmap_id))
     assert (result["state"], result["done"], result["applicable"], result["percentage"]) == (
         "branch_required", 1, 1, None

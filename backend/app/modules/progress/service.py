@@ -17,7 +17,13 @@ def learning_fields(state):
 
 
 async def learning(connection, uid):
-    return learning_fields(await lock_account(connection, uid))
+    state = await one(connection,
+        "SELECT current_roadmap_id, version, context_revision "
+        "FROM asgard_private.learning_state WHERE user_id = CAST(:uid AS uuid)",
+        {"uid": str(uid)})
+    if state is None:
+        state = await lock_account(connection, uid)
+    return learning_fields(state)
 
 
 async def preferences(connection, uid):
@@ -343,9 +349,14 @@ async def save_branch(connection, uid, roadmap_id, group_id, body):
 
 
 async def summary(connection, uid, roadmap_id):
-    content = await roadmap(connection, roadmap_id)
-    states = {row["topic_id"]: row for row in await progress(connection, uid, roadmap_id)}
-    choices = {row["branch_id"] for row in await branches(connection, uid, roadmap_id)}
+    contents, saved, selected = await summary_data(connection, uid, [roadmap_id])
+    content = contents[roadmap_id]
+    states = {row["topic_id"]: row for row in saved}
+    choices = {row["branch_id"] for row in selected}
+    return calculate_summary(content, states, choices, roadmap_id)
+
+
+def calculate_summary(content, states, choices, roadmap_id):
     items, applicable, pending = [], [], False
     for milestone in content["milestones"]:
         if milestone["retired_at"] is not None:
@@ -461,7 +472,18 @@ async def activity(connection, uid, month):
     while cursor in dates:
         streak += 1
         cursor -= timedelta(days=1)
-    return {"month": month, "days": days, "streak_days": streak}
+    longest = run = 0
+    previous = None
+    for day in sorted(dates):
+        run = run + 1 if previous is not None and (day - previous).days == 1 else 1
+        longest = max(longest, run)
+        previous = day
+    return {
+        "month": month,
+        "days": days,
+        "streak_days": streak,
+        "longest_streak_days": longest,
+    }
 
 
 async def active_topic(connection, uid):
@@ -476,12 +498,15 @@ async def active_topic(connection, uid):
     )
 
 
-async def core_milestone(connection, calculated, active):
+async def core_milestone(connection, calculated, active, content=None):
     next_ids = calculated["next_topic_ids"]
     milestones = calculated["milestones"]
     missing_branch = next((item for item in milestones if item["requires_branch_choice"]), None)
     core = None
-    if next_ids:
+    if next_ids and content is not None:
+        core = next((m["id"] for m in content["milestones"]
+                     if any(t["id"] == next_ids[0] for t in m["topics"])), None)
+    elif next_ids:
         topic = await one(
             connection,
             "SELECT milestone_id FROM asgard_catalog.topics WHERE id = CAST(:id AS uuid)",
@@ -498,32 +523,45 @@ async def core_milestone(connection, calculated, active):
     return core if core is not None or not milestones else milestones[-1]["milestone_id"]
 
 
-async def dashboard(connection, uid):
-    state = await learning(connection, uid)
+async def dashboard(connection, uid, view=None, learning_state=None):
+    state = learning_state if learning_state is not None else await learning(connection, uid)
     parameters = {"uid": str(uid)}
-    pref = await preferences(connection, uid)
-    active = await active_topic(connection, uid)
-    draft = await one(
-        connection,
-        (
-            "SELECT id FROM asgard_private.discovery_sessions WHERE user_id = "
-            "CAST(:uid AS uuid) AND status = 'draft'"
-        ),
-        parameters,
-    )
-    profile = await one(
-        connection,
-        "SELECT first_name FROM asgard_private.profiles WHERE user_id = CAST(:uid AS uuid)",
-        parameters,
-    )
-    completed = await one(
-        connection,
-        (
-            "SELECT id FROM asgard_private.discovery_sessions WHERE user_id = "
-            "CAST(:uid AS uuid) AND status = 'completed' LIMIT 1"
-        ),
-        parameters,
-    )
+    context = await one(connection, """
+        WITH inserted AS (
+          INSERT INTO asgard_private.preferences(user_id) VALUES (CAST(:uid AS uuid))
+          ON CONFLICT (user_id) DO NOTHING RETURNING dismissed_guidance
+        )
+        SELECT COALESCE((SELECT dismissed_guidance FROM inserted),
+          (SELECT dismissed_guidance FROM asgard_private.preferences
+           WHERE user_id=CAST(:uid AS uuid))) AS dismissed_guidance,
+          (SELECT id FROM asgard_private.discovery_sessions
+           WHERE user_id=CAST(:uid AS uuid) AND status='draft') AS draft_id,
+          (SELECT first_name FROM asgard_private.profiles
+           WHERE user_id=CAST(:uid AS uuid)) AS first_name,
+          EXISTS(SELECT 1 FROM asgard_private.discovery_sessions
+           WHERE user_id=CAST(:uid AS uuid) AND status='completed') AS completed,
+          (SELECT jsonb_build_object('roadmap_id', roadmap_id, 'topic_id', topic_id,
+             'status', status, 'version', version, 'updated_at', updated_at)
+           FROM asgard_private.topic_progress WHERE user_id=CAST(:uid AS uuid)
+           AND status='learning') AS active,
+          COALESCE((SELECT jsonb_agg(to_jsonb(done)) FROM (
+            SELECT roadmap_id,topic_id,status,version,updated_at
+            FROM asgard_private.topic_progress WHERE user_id=CAST(:uid AS uuid)
+            AND status='done' ORDER BY updated_at DESC,topic_id LIMIT 10) done), '[]'::jsonb) AS recent,
+          (SELECT r.id FROM asgard_private.recommendation_runs r
+            WHERE r.user_id=CAST(:uid AS uuid) AND r.status='completed'
+            AND NOT EXISTS (SELECT 1 FROM asgard_private.recommendation_items i
+              JOIN asgard_catalog.careers c ON c.id=i.career_id
+              WHERE i.run_id=r.id AND c.status <> 'published')
+            ORDER BY r.created_at DESC,r.id DESC LIMIT 1) AS recommendation_id
+    """, parameters)
+    from app.modules.progress.schemas import TopicProgress
+
+    pref = {"dismissed_guidance": context["dismissed_guidance"]}
+    active = TopicProgress.model_validate(context["active"]).model_dump() if context["active"] else None
+    draft = {"id": context["draft_id"]} if context["draft_id"] else None
+    profile = {"first_name": context["first_name"]} if context["first_name"] is not None else None
+    completed = context["completed"]
     guidance_candidates = [
         ("resume_discovery", bool(draft)),
         ("basic_profile", not profile or not profile["first_name"].strip()),
@@ -539,29 +577,10 @@ async def dashboard(connection, uid):
     )
     calculated, core = None, None
     if state["current_roadmap_id"]:
-        calculated = await summary(connection, uid, state["current_roadmap_id"])
-        core = await core_milestone(connection, calculated, active)
-    recent = await rows(
-        connection,
-        (
-            "SELECT roadmap_id, topic_id, status, version, updated_at FROM "
-            "asgard_private.topic_progress WHERE user_id = CAST(:uid AS uuid) AND "
-            "status = 'done' ORDER BY updated_at DESC, topic_id LIMIT 10"
-        ),
-        parameters,
-    )
-    recommendation = await one(
-        connection,
-        (
-            "SELECT r.id FROM asgard_private.recommendation_runs r WHERE r.user_id "
-            "= CAST(:uid AS uuid) AND r.status = 'completed' AND NOT EXISTS (SELECT"
-            " 1 FROM asgard_private.recommendation_items i JOIN "
-            "asgard_catalog.careers c ON c.id = i.career_id WHERE i.run_id = r.id "
-            "AND c.status <> 'published') ORDER BY r.created_at DESC, r.id DESC "
-            "LIMIT 1"
-        ),
-        parameters,
-    )
+        calculated = view["summary"] if view is not None else await summary(connection, uid, state["current_roadmap_id"])
+        core = await core_milestone(connection, calculated, active, view["roadmap"] if view else None)
+    recent = [TopicProgress.model_validate(item).model_dump() for item in context["recent"]]
+    recommendation = {"id": context["recommendation_id"]} if context["recommendation_id"] else None
     return {
         "learning_state": state,
         "active_topic": active,
@@ -572,3 +591,88 @@ async def dashboard(connection, uid):
         "discovery_draft_id": draft["id"] if draft else None,
         "guidance_id": guidance,
     }
+
+
+async def summary_data(connection, uid, roadmap_ids):
+    ids = list(dict.fromkeys(roadmap_ids))
+    params = {"ids": ids, "uid": str(uid)}
+    contents = await rows(connection,
+        "SELECT id, revision FROM asgard_catalog.roadmaps WHERE id = ANY(:ids)", params)
+    if len(contents) != len(ids):
+        raise APIError(404, "not_found", "This item is unavailable.")
+    milestones = await rows(connection,
+        "SELECT id, roadmap_id, retired_at FROM asgard_catalog.milestones "
+        "WHERE roadmap_id = ANY(:ids) ORDER BY position, id", params)
+    topics = await rows(connection,
+        "SELECT id, roadmap_id, milestone_id, branch_id, revision, retired_at "
+        "FROM asgard_catalog.topics WHERE roadmap_id = ANY(:ids) ORDER BY position, id", params)
+    groups = await rows(connection,
+        "SELECT g.id, g.milestone_id FROM asgard_catalog.branch_groups g "
+        "JOIN asgard_catalog.milestones m ON m.id=g.milestone_id "
+        "WHERE m.roadmap_id = ANY(:ids) ORDER BY g.position, g.id", params)
+    branch_rows = await rows(connection,
+        "SELECT b.id, b.group_id FROM asgard_catalog.branches b "
+        "JOIN asgard_catalog.branch_groups g ON g.id=b.group_id "
+        "JOIN asgard_catalog.milestones m ON m.id=g.milestone_id "
+        "WHERE m.roadmap_id = ANY(:ids) ORDER BY b.position, b.id", params)
+    states = await rows(connection,
+        "SELECT roadmap_id, topic_id, status, version, updated_at "
+        "FROM asgard_private.topic_progress WHERE user_id=CAST(:uid AS uuid) "
+        "AND roadmap_id = ANY(:ids) ORDER BY topic_id", params)
+    choices = await rows(connection,
+        "SELECT roadmap_id, group_id, branch_id, version "
+        "FROM asgard_private.branch_choices WHERE user_id=CAST(:uid AS uuid) "
+        "AND roadmap_id = ANY(:ids) ORDER BY group_id", params)
+    by_id = {item["id"]: item | {"milestones": []} for item in contents}
+    by_milestone = {item["id"]: item | {"topics": [], "branch_groups": []}
+                    for item in milestones}
+    by_group = {item["id"]: item | {"branches": []} for item in groups}
+    for item in by_milestone.values():
+        by_id[item["roadmap_id"]]["milestones"].append(item)
+    for item in topics:
+        by_milestone[item["milestone_id"]]["topics"].append(item)
+    for item in by_group.values():
+        by_milestone[item["milestone_id"]]["branch_groups"].append(item)
+    for item in branch_rows:
+        by_group[item["group_id"]]["branches"].append(item)
+    return by_id, states, choices
+
+
+async def catalog_progress(connection, uid, roadmap_ids):
+    contents, states, choices = await summary_data(connection, uid, roadmap_ids)
+    result = []
+    for rid in dict.fromkeys(roadmap_ids):
+        saved = {item["topic_id"]: item for item in states if item["roadmap_id"] == rid}
+        selected = {item["branch_id"] for item in choices if item["roadmap_id"] == rid}
+        value = calculate_summary(contents[rid], saved, selected, rid)
+        result.append({"roadmap_id": rid, "has_progress": bool(saved),
+                       "percentage": value["percentage"],
+                       "requires_branch_choice": value["requires_branch_choice"]})
+    return result
+
+
+async def roadmap_view(connection, uid, roadmap_id, learning_state=None):
+    content = await roadmap(connection, roadmap_id)
+    from pydantic import TypeAdapter
+
+    from app.modules.progress.schemas import BranchChoice, TopicProgress
+
+    private = await one(connection, """
+        SELECT COALESCE((SELECT jsonb_agg(jsonb_build_object(
+          'roadmap_id',roadmap_id,'topic_id',topic_id,'status',status,
+          'version',version,'updated_at',updated_at) ORDER BY topic_id)
+          FROM asgard_private.topic_progress WHERE user_id=CAST(:uid AS uuid)
+          AND roadmap_id=CAST(:rid AS uuid)), '[]'::jsonb) AS progress,
+          COALESCE((SELECT jsonb_agg(jsonb_build_object(
+          'roadmap_id',roadmap_id,'group_id',group_id,'branch_id',branch_id,'version',version)
+          ORDER BY group_id) FROM asgard_private.branch_choices
+          WHERE user_id=CAST(:uid AS uuid) AND roadmap_id=CAST(:rid AS uuid)), '[]'::jsonb) AS branches
+    """, {"uid": str(uid), "rid": str(roadmap_id)})
+    saved = TypeAdapter(list[TopicProgress]).validate_python(private["progress"])
+    selected = TypeAdapter(list[BranchChoice]).validate_python(private["branches"])
+    saved = [item.model_dump() for item in saved]
+    selected = [item.model_dump() for item in selected]
+    value = calculate_summary(content, {item["topic_id"]: item for item in saved},
+                              {item["branch_id"] for item in selected}, roadmap_id)
+    return {"roadmap": content, "progress": saved, "summary": value,
+            "branches": selected, "learning_state": learning_state if learning_state is not None else await learning(connection, uid)}

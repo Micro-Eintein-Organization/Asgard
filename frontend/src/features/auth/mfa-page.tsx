@@ -127,26 +127,28 @@ function MfaForm({ challenge }: { challenge: boolean }) {
     const link = document.createElement("a"); link.href = url; link.download = "asgard-recovery-codes.txt";
     link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
-  return <div className="auth-container"><Card className="auth-card">
-    <header><h1>{challenge ? "Verify your sign-in" : "Protect your account"}</h1>
-      <p>{challenge ? "Enter your authenticator code to finish signing in." : "We strongly recommend an authenticator app. You can skip setup and add it later in Settings."}</p></header>
+  return <div className={challenge || welcome ? "auth-container security-page" : "security-page security-management"}>
+    {!challenge && !welcome && <Link className="security-back" to={appRoutes.account}>Back to Account and security</Link>}
+    <Card className="auth-card security-card">
+    <header><h1>{challenge ? "Verify your sign-in" : welcome ? "Protect your account" : "Authenticator and recovery codes"}</h1>
+      <p>{challenge ? "Enter your authenticator code to finish signing in." : welcome ? "Add an authenticator app for an extra sign-in step. You can also set it up later in Settings." : "Manage the authenticator and backup codes used to protect your sign-in."}</p></header>
     {loading ? <p role="status">Loading security settings.</p> : <>
-      {error && <p role="alert">{error}</p>}
-      {message && <p role="status">{message}</p>}
+      {error && <p role="alert" className="security-feedback security-feedback-error">{error}</p>}
+      {message && <p role="status" className="security-feedback">{message}</p>}
       {!challenge && !mfaEnrollmentApproved && <p role="status">Authenticator setup and changes are not enabled for this demo yet. Existing two-factor sign-in still works.</p>}
-      {codes.length > 0 ? <section aria-label="Save recovery codes">
+      {codes.length > 0 ? <section className="security-recovery" aria-label="Save recovery codes">
         <h2>Save your recovery codes</h2><p>These codes are shown once. Keep them somewhere private. Each code works only once.</p>
-        <pre className="whitespace-pre-wrap break-all">{codes.join("\n")}</pre>
+        <pre className="security-codes">{codes.join("\n")}</pre>
         <Button onClick={downloadCodes}>Download recovery codes</Button>
         <Button variant="outline" onClick={() => void perform(async () => {
           await navigator.clipboard.writeText(codes.join("\n")); setMessage("Recovery codes copied. Store them privately.");
         })}>Copy recovery codes</Button>
         <Button variant="outline" onClick={() => { setCodes([]); void navigate(destination, { replace: true }); }}>I saved my codes</Button>
       </section> : <>
-        {!challenge && factors.length > 0 && <p>Authenticator enabled. {remaining === null ? "Recovery-code status unavailable or no codes issued." : `${remaining} recovery codes remain.`}</p>}
-        {pending && <section aria-label="Authenticator setup">
+        {!challenge && factors.length > 0 && <p className="security-feedback">Authenticator enabled. {remaining === null ? "Recovery-code status unavailable or no codes issued." : `${remaining} recovery codes remain.`}</p>}
+        {pending && <section className="security-setup" aria-label="Authenticator setup">
           <img src={pending.qr.startsWith("data:image/") ? pending.qr : "data:image/svg+xml;charset=utf-8," + encodeURIComponent(pending.qr)} alt="Scan this code with your authenticator app" width="200" height="200" />
-          <p>Or enter this setup key manually:</p><code className="break-all">{pending.secret}</code>
+          <p>Or enter this setup key manually:</p><code className="security-setup-key">{pending.secret}</code>
         </section>}
         <form className="form-grid" onSubmit={submit}>
           {!challenge && !pending && <div className="field"><Label htmlFor="mfa-password">Confirm your password</Label>
@@ -162,7 +164,7 @@ function MfaForm({ challenge }: { challenge: boolean }) {
             <Button type="button" disabled={busy || !password || !code || !mfaEnrollmentApproved} onClick={() => void perform(async () => {
               await freshAuthentication(); await generateCodes(remaining !== null); await auth.refreshAssurance();
             })}>{remaining === null ? "Generate recovery codes" : "Replace recovery codes"}</Button>
-            <Label><input type="checkbox" checked={disableConfirmed} onChange={event => setDisableConfirmed(event.target.checked)} /> I understand disabling 2FA removes this extra sign-in protection.</Label>
+            <Label className="security-confirm"><input type="checkbox" checked={disableConfirmed} onChange={event => setDisableConfirmed(event.target.checked)} /> I understand disabling 2FA removes this extra sign-in protection.</Label>
             <Button type="button" variant="destructive" disabled={busy || !password || !code || !mfaEnrollmentApproved} onClick={() => void perform(async () => {
               if (!disableConfirmed)
                 throw new Error("Confirm that you want to disable two-factor authentication.");
@@ -190,8 +192,8 @@ function MfaForm({ challenge }: { challenge: boolean }) {
 }
 
 export function AuthenticatorSetting() {
-  return <Card className="settings-card"><header><h2>Authenticator app</h2><p>We strongly recommend optional two-factor authentication to protect your account.</p></header>
-    {mfaEnrollmentApproved ? <Link to={routes.mfaSetup}>Manage authenticator and recovery codes</Link> : <>
+  return <Card className="settings-card security-setting"><header><h2>Authenticator app</h2><p>We strongly recommend optional two-factor authentication to protect your account.</p></header>
+    {mfaEnrollmentApproved ? <div className="action-row"><Button asChild variant="outline"><Link to={routes.mfaSetup}>Manage authenticator and recovery codes</Link></Button></div> : <>
       <Button disabled variant="outline">Set up authenticator</Button><p>Authenticator setup is not enabled for this demo yet.</p></>}
   </Card>;
 }

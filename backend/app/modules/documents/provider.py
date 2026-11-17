@@ -9,8 +9,21 @@ import httpx
 from app.core.errors import APIError
 from app.modules.documents.schemas import Extraction
 
+_parser_slots = asyncio.Semaphore(1)
+
 
 async def parse(data):
+    try:
+        await asyncio.wait_for(_parser_slots.acquire(), 2)
+    except TimeoutError as error:
+        raise APIError(503, "pdf_busy", "PDF processing is busy. Try again shortly.") from error
+    try:
+        return await _parse(data)
+    finally:
+        _parser_slots.release()
+
+
+async def _parse(data):
     process = await asyncio.create_subprocess_exec(
         sys.executable,
         "-I",

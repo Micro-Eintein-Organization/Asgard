@@ -16,6 +16,7 @@ class Settings(BaseSettings):
     supabase_url: str = "http://supabase_kong_asgard-foundation:8000"
     supabase_anon_key: SecretStr = SecretStr("")
     readiness_timeout_seconds: float = Field(default=2.0, gt=0, le=10)
+    account_deletion_enabled: bool = False
     auth_enabled: bool = False
     auth_issuer: str = "http://127.0.0.1:55321/auth/v1"
     database_url: SecretStr = SecretStr("")
@@ -37,8 +38,7 @@ class Settings(BaseSettings):
     def hosted_configuration(self):
         if self.deployment_environment == "local":
             return self
-        if self.profile_photos_enabled:
-            raise ValueError("Profile photos are enabled only for local development.")
+
         endpoint = urlsplit(self.supabase_url)
         if endpoint.scheme != "https" or not endpoint.hostname or endpoint.hostname in (
             "localhost", "127.0.0.1", "::1",
@@ -66,8 +66,17 @@ class Settings(BaseSettings):
             parse_qs(database.query).get("sslmode") != ["verify-full"]
         ):
             raise ValueError("Hosted database requires a remote host and verified TLS.")
-        if self.documents_processing_enabled or self.resume_skill_review_enabled:
-            raise ValueError("PDF processing remains deferred for hosted preparation.")
+        if (self.profile_photos_enabled or self.documents_enabled) and not self.storage_service_key.get_secret_value():
+            raise ValueError("Enabled private file features require the backend Storage credential.")
+        if self.documents_processing_enabled and not (
+            self.documents_enabled and self.documents_real_data_approved
+            and self.groq_enabled and self.groq_api_key.get_secret_value()
+        ):
+            raise ValueError("PDF processing requires document storage, owner approval and Groq configuration.")
+        if self.resume_skill_review_enabled and not self.documents_processing_enabled:
+            raise ValueError("Resume skill review requires enabled PDF processing.")
+        if self.ai_guidance_enabled and not (self.groq_enabled and self.groq_api_key.get_secret_value()):
+            raise ValueError("AI guidance requires Groq configuration.")
         return self
 
 

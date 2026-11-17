@@ -13,18 +13,20 @@ services:
         value: staging
       - key: ASGARD_AUTH_ENABLED
         value: "true"
+      - key: ASGARD_ACCOUNT_DELETION_ENABLED
+        value: "false"
       - key: ASGARD_DOCUMENTS_PROCESSING_ENABLED
-        value: "false"
+        value: "true"
       - key: ASGARD_DOCUMENTS_REAL_DATA_APPROVED
-        value: "false"
+        value: "true"
       - key: ASGARD_DOCUMENTS_ENABLED
-        value: "false"
+        value: "true"
       - key: ASGARD_RESUME_SKILL_REVIEW_ENABLED
-        value: "false"
+        value: "true"
       - key: ASGARD_PROFILE_PHOTOS_ENABLED
-        value: "false"
+        value: "true"
       - key: ASGARD_AI_GUIDANCE_ENABLED
-        value: "false"
+        value: "true"
       - key: ASGARD_CORS_ORIGINS
         sync: false
       - key: ASGARD_SUPABASE_URL
@@ -36,4 +38,8 @@ services:
       - key: ASGARD_DATABASE_URL
         sync: false
       - key: ASGARD_GROQ_ENABLED
-        value: "false"
+        value: "true"
+      - key: ASGARD_STORAGE_SERVICE_KEY
+        sync: false
+      - key: ASGARD_GROQ_API_KEY
+        sync: false

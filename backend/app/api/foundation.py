@@ -8,7 +8,7 @@ from fastapi import APIRouter, Depends, Query, Request
 from app.core.errors import ErrorBody
 from app.core.security import Identity, current_identity
 from app.modules.careers import service as careers_service
-from app.modules.careers.schemas import Career, CareerPage, Category
+from app.modules.careers.schemas import Career, CareerPage, CatalogSummary, Category
 from app.modules.discovery import service as discovery_service
 from app.modules.discovery.schemas import (
     CompleteDiscovery,
@@ -23,10 +23,13 @@ from app.modules.progress import service as progress_service
 from app.modules.progress.schemas import (
     ActivityMonth,
     BranchChoice,
+    CatalogProgress,
     Dashboard,
+    DashboardView,
     LearningState,
     Preferences,
     ProgressSummary,
+    RoadmapView,
     SaveBranchChoice,
     SavePreferences,
     SaveTopicProgress,
@@ -257,6 +260,23 @@ async def select_roadmap(request: Request, body: SelectRoadmap, identity: Auth):
         return await progress_service.select_roadmap(connection, identity.user_id, body)
 
 
+@router.get("/me/roadmaps/catalog-progress", response_model=list[CatalogProgress],
+            operation_id="get_my_catalog_progress")
+async def get_catalog_progress(
+    request: Request, identity: Auth,
+    roadmap_ids: Annotated[list[UUID], Query(min_length=1, max_length=100)],
+):
+    async with transaction(request, identity) as connection:
+        return await progress_service.catalog_progress(connection, identity.user_id, roadmap_ids)
+
+
+@router.get("/me/roadmaps/{roadmap_id}/view", response_model=RoadmapView,
+            operation_id="get_my_roadmap_view")
+async def get_roadmap_view(request: Request, roadmap_id: UUID, identity: Auth):
+    async with transaction(request, identity) as connection:
+        return await progress_service.roadmap_view(connection, identity.user_id, roadmap_id)
+
+
 @router.get(
     "/me/roadmaps/{roadmap_id}/progress",
     response_model=list[TopicProgress],
@@ -327,3 +347,25 @@ async def get_activity(
 ):
     async with transaction(request, identity) as connection:
         return await progress_service.activity(connection, identity.user_id, month)
+
+
+@router.get("/catalog/summary", response_model=CatalogSummary, operation_id="get_catalog_summary")
+async def get_catalog_summary(request: Request, identity: Auth):
+    async with transaction(request, identity) as connection:
+        return await careers_service.catalog_summary(connection)
+
+
+@router.get("/me/dashboard/view", response_model=DashboardView, operation_id="get_my_dashboard_view")
+async def get_dashboard_view(request: Request, identity: Auth):
+    async with transaction(request, identity) as connection:
+        learning = await progress_service.learning(connection, identity.user_id)
+        rid = learning["current_roadmap_id"]
+        current = await progress_service.roadmap_view(connection, identity.user_id, rid, learning) if rid else None
+        saved = await progress_service.dashboard(connection, identity.user_id, current, learning)
+        career = await careers_service.career(connection, current["roadmap"]["career_id"]) if current else None
+        active = saved["active_topic"]
+        active_roadmap = None
+        if active:
+            active_roadmap = current["roadmap"] if current and active["roadmap_id"] == rid else await roadmaps_service.roadmap(connection, active["roadmap_id"])
+        return {"dashboard": saved, "current": current, "career": career,
+                "active_roadmap": active_roadmap}

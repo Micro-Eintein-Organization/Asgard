@@ -55,6 +55,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/catalog/summary": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Catalog Summary */
+        get: operations["get_catalog_summary"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/categories": {
         parameters: {
             query?: never;
@@ -151,6 +168,24 @@ export interface paths {
         get: operations["get_health"];
         put?: never;
         post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/account-deletion": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Available */
+        get: operations["available_api_v1_me_account_deletion_get"];
+        put?: never;
+        /** Accept */
+        post: operations["accept_api_v1_me_account_deletion_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -370,6 +405,23 @@ export interface paths {
         };
         /** Get Dashboard */
         get: operations["get_my_dashboard"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/dashboard/view": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Dashboard View */
+        get: operations["get_my_dashboard_view"];
         put?: never;
         post?: never;
         delete?: never;
@@ -708,6 +760,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/me/roadmaps/catalog-progress": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Catalog Progress */
+        get: operations["get_my_catalog_progress"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/me/roadmaps/{roadmap_id}/branches": {
         parameters: {
             query?: never;
@@ -845,6 +914,23 @@ export interface paths {
         patch: operations["save_my_topic_progress"];
         trace?: never;
     };
+    "/api/v1/me/roadmaps/{roadmap_id}/view": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Roadmap View */
+        get: operations["get_my_roadmap_view"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/ready": {
         parameters: {
             query?: never;
@@ -955,6 +1041,8 @@ export interface components {
         ActivityMonth: {
             /** Days */
             days: components["schemas"]["ActivityDay"][];
+            /** Longest Streak Days */
+            longest_streak_days: number;
             /** Month */
             month: string;
             /** Streak Days */
@@ -1142,6 +1230,36 @@ export interface components {
             /** Version */
             version: number;
         };
+        /** CatalogProgress */
+        CatalogProgress: {
+            /** Has Progress */
+            has_progress: boolean;
+            /** Percentage */
+            percentage: number | null;
+            /** Requires Branch Choice */
+            requires_branch_choice: boolean;
+            /**
+             * Roadmap Id
+             * Format: uuid
+             */
+            roadmap_id: string;
+        };
+        /** CatalogSummary */
+        CatalogSummary: {
+            /** By Category */
+            by_category: {
+                [key: string]: number;
+            };
+            /**
+             * Catalog Release Id
+             * Format: uuid
+             */
+            catalog_release_id: string;
+            /** Categories */
+            categories: components["schemas"]["Category"][];
+            /** Total */
+            total: number;
+        };
         /** Category */
         Category: {
             /** Description */
@@ -1162,6 +1280,8 @@ export interface components {
         ComparisonAnswer: {
             /** Answer */
             answer: string;
+            /** General Knowledge */
+            general_knowledge?: string | null;
             /** Handoff */
             handoff: string | null;
             /** Skills */
@@ -1312,6 +1432,62 @@ export interface components {
             recent_done: components["schemas"]["TopicProgress"][];
             /** Recommendation Run Id */
             recommendation_run_id: string | null;
+        };
+        /** DashboardView */
+        DashboardView: {
+            active_roadmap: components["schemas"]["Roadmap"] | null;
+            career: components["schemas"]["Career"] | null;
+            current: components["schemas"]["RoadmapView"] | null;
+            dashboard: components["schemas"]["Dashboard"];
+        };
+        /** DeleteAccount */
+        DeleteAccount: {
+            /**
+             * Confirmation
+             * @constant
+             */
+            confirmation: "DELETE";
+            /**
+             * Idempotency Key
+             * Format: uuid
+             */
+            idempotency_key: string;
+            /** Mfa Code */
+            mfa_code?: string | null;
+            /**
+             * Password
+             * Format: password
+             */
+            password: string;
+            /**
+             * Recovery
+             * @default false
+             */
+            recovery: boolean;
+        };
+        /** DeletionReceipt */
+        DeletionReceipt: {
+            /**
+             * Accepted At
+             * Format: date-time
+             */
+            accepted_at: string;
+            /**
+             * Deadline At
+             * Format: date-time
+             */
+            deadline_at: string;
+            /**
+             * Request Id
+             * Format: uuid
+             */
+            request_id: string;
+            /**
+             * Status
+             * @default accepted
+             * @constant
+             */
+            status: "accepted";
         };
         /** DiscoveryAnswer */
         DiscoveryAnswer: {
@@ -1635,6 +1811,8 @@ export interface components {
         GuidanceAnswer: {
             /** Answer */
             answer: string;
+            /** General Knowledge */
+            general_knowledge?: string | null;
             /** Sources */
             sources: components["schemas"]["GuidanceSource"][];
             /** Web Unavailable */
@@ -1664,6 +1842,7 @@ export interface components {
             career_ids?: string[];
             /** History */
             history?: components["schemas"]["GuidanceTurn"][];
+            page_context?: components["schemas"]["PageContext"] | null;
             /** Question */
             question: string;
             /** Roadmap Id */
@@ -1741,6 +1920,11 @@ export interface components {
             role: "user" | "assistant";
             /** Text */
             text: string;
+        };
+        /** HTTPValidationError */
+        HTTPValidationError: {
+            /** Detail */
+            detail?: components["schemas"]["ValidationError"][];
         };
         /** HealthResponse */
         HealthResponse: {
@@ -1902,6 +2086,21 @@ export interface components {
              * @default Unknown version
              */
             source_version: string;
+        };
+        /** PageContext */
+        PageContext: {
+            /** Category Id */
+            category_id?: string | null;
+            /** Filter */
+            filter?: string | null;
+            /** Path */
+            path: string;
+            /** Question Id */
+            question_id?: string | null;
+            /** Questionnaire Id */
+            questionnaire_id?: string | null;
+            /** Recommendation Run Id */
+            recommendation_run_id?: string | null;
         };
         /** Preferences */
         Preferences: {
@@ -2248,6 +2447,16 @@ export interface components {
             /** Version */
             version: number;
         };
+        /** RoadmapView */
+        RoadmapView: {
+            /** Branches */
+            branches: components["schemas"]["BranchChoice"][];
+            learning_state: components["schemas"]["LearningState"];
+            /** Progress */
+            progress: components["schemas"]["TopicProgress"][];
+            roadmap: components["schemas"]["Roadmap"];
+            summary: components["schemas"]["ProgressSummary"];
+        };
         /** SaveBranchChoice */
         SaveBranchChoice: {
             /**
@@ -2515,6 +2724,19 @@ export interface components {
             /** Uncertainty Note */
             uncertainty_note?: string | null;
         };
+        /** ValidationError */
+        ValidationError: {
+            /** Context */
+            ctx?: Record<string, never>;
+            /** Input */
+            input?: unknown;
+            /** Location */
+            loc: (string | number)[];
+            /** Message */
+            msg: string;
+            /** Error Type */
+            type: string;
+        };
         /** VersionedChange */
         VersionedChange: {
             /** Expected Version */
@@ -2738,6 +2960,80 @@ export interface operations {
             };
             /** @description Unprocessable Content */
             422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    get_catalog_summary: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CatalogSummary"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Unprocessable Content */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -3134,6 +3430,151 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["HealthResponse"];
+                };
+            };
+        };
+    };
+    available_api_v1_me_account_deletion_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: boolean;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    accept_api_v1_me_account_deletion_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DeleteAccount"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DeletionReceipt"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
                 };
             };
         };
@@ -3982,6 +4423,80 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Dashboard"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Unprocessable Content */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    get_my_dashboard_view: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DashboardView"];
                 };
             };
             /** @description Unauthorized */
@@ -6066,6 +6581,82 @@ export interface operations {
             };
         };
     };
+    get_my_catalog_progress: {
+        parameters: {
+            query: {
+                roadmap_ids: string[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CatalogProgress"][];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Unprocessable Content */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
     get_my_branch_choices: {
         parameters: {
             query?: never;
@@ -6681,6 +7272,82 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["TopicProgress"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Unprocessable Content */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    get_my_roadmap_view: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                roadmap_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RoadmapView"];
                 };
             };
             /** @description Unauthorized */

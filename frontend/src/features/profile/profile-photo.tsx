@@ -1,3 +1,5 @@
+import { useQuery } from "@tanstack/react-query";
+import { useAuth } from "@/auth/context";
 import { useEffect, useRef, useState } from "react";
 import { UserRound } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -10,6 +12,11 @@ export function ProfilePhoto({ enabled, savedVersion, draft, onChange, disabled 
   onChange: (draft: File | null | undefined) => void;
   disabled: boolean;
 }) {
+  const { user } = useAuth();
+  const saved = useQuery({ queryKey: ["profile-photo", user?.id, savedVersion],
+    queryFn: ({ signal }) => readProfilePhoto(signal),
+    enabled: !!user && enabled && draft === undefined && savedVersion !== null,
+    staleTime: 30_000, gcTime: 0, retry: false });
   const input = useRef<HTMLInputElement>(null);
   const [url, setUrl] = useState<string | null>(null);
   const [selectionError, setSelectionError] = useState("");
@@ -26,15 +33,14 @@ export function ProfilePhoto({ enabled, savedVersion, draft, onChange, disabled 
     };
     if (draft) show(draft);
     else if (enabled && draft === undefined && savedVersion !== null) {
-      void readProfilePhoto(controller.signal).then(show).catch(() => {
-        if (!controller.signal.aborted) setReadError("Could not load your saved photo.");
-      });
+      if (saved.data) show(saved.data);
+      else if (saved.error) queueMicrotask(() => { if (!controller.signal.aborted) setReadError("Could not load your saved photo."); });
     }
     return () => {
       controller.abort();
       if (objectUrl) URL.revokeObjectURL(objectUrl);
     };
-  }, [draft, enabled, savedVersion]);
+  }, [draft, enabled, savedVersion, saved.data, saved.error]);
 
   return (
     <div className="profile-photo">

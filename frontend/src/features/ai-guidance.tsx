@@ -1,14 +1,17 @@
+import { useCurrentScreen } from "@/features/counselor-context";
+import { useSavedProfile } from "@/features/profile/identity";
 import { useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { ArrowUp, X } from "lucide-react";
 import { Dialog as DialogPrimitive } from "radix-ui";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { Link, useSearchParams } from "react-router";
+import { Link } from "react-router";
 import { api } from "@/api/client";
 import snowflake from "@/assets/Logo_Standalone_Snowflake.png";
 import type { components } from "@/api/generated/schema";
 import { useAuth } from "@/auth/context";
 import { PageHeading } from "@/components/shared";
+import { LoadingIndicator } from "@/components/loading-indicator";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
@@ -22,6 +25,11 @@ import {
 import { useCoreQuery } from "@/features/core/data";
 
 type Answer = components["schemas"]["GuidanceAnswer"];
+type Messages = { question: string; result: Answer; context?: string }[];
+type Session = { messages: Messages; setMessages: React.Dispatch<React.SetStateAction<Messages>>;
+  draft: string; setDraft: React.Dispatch<React.SetStateAction<string>>;
+  web: boolean; setWeb: React.Dispatch<React.SetStateAction<boolean>>;
+  busy: boolean; setBusy: React.Dispatch<React.SetStateAction<boolean>>; controller: React.RefObject<AbortController> };
 type Turn = components["schemas"]["GuidanceTurn"];
 
 function useAvailability() {
@@ -31,7 +39,7 @@ function useAvailability() {
   });
 }
 
-type CounselorPageContext = "Dashboard" | "Settings";
+type CounselorPageContext = string;
 
 type CounselorLauncherProps = { query?: URLSearchParams; page?: CounselorPageContext };
 
@@ -43,13 +51,18 @@ export function CounselorLauncher(props: CounselorLauncherProps) {
 function CounselorDialog({ query, page }: CounselorLauncherProps) {
   const { user } = useAuth();
   const [open, setOpen] = useState(false);
-  const [context, setContext] = useState(() => new URLSearchParams());
+  const [messages, setMessages] = useState<Messages>([]);
+  const [draft, setDraft] = useState("");
+  const [web, setWeb] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const controller = useRef(new AbortController());
+  useEffect(() => { controller.current = new AbortController(); return () => controller.current.abort(); }, []);
+
 
   if (!user) return null;
 
   return (
     <Dialog open={open} onOpenChange={(nextOpen) => {
-      if (nextOpen) setContext(new URLSearchParams(query));
       setOpen(nextOpen);
     }}>
       {createPortal(
@@ -61,7 +74,7 @@ function CounselorDialog({ query, page }: CounselorLauncherProps) {
         document.body,
       )}
       <DialogPortal>
-        <div className="counselor-overlay" aria-hidden="true" />
+        <DialogPrimitive.Overlay className="counselor-overlay" />
         <DialogPrimitive.Content className="counselor-panel">
           <div className="counselor-panel-header">
             <div>
@@ -77,10 +90,11 @@ function CounselorDialog({ query, page }: CounselorLauncherProps) {
             </DialogClose>
           </div>
           <div className="counselor-panel-body">
-            {open && (
+            {(
               <CounselorConversation
                 key={user.id}
-                params={context}
+                session={{ messages, setMessages, draft, setDraft, web, setWeb, busy, setBusy, controller }}
+                params={query ?? new URLSearchParams()}
                 page={page}
                 onFollowSource={() => setOpen(false)}
               />
@@ -92,10 +106,20 @@ function CounselorDialog({ query, page }: CounselorLauncherProps) {
   );
 }
 
+function AnswerText({ text }: { text: string }) {
+  return <div className="space-y-2">{text.split(/\n\s*\n/).map((block, index) => {
+    const lines = block.split("\n");
+    return lines.every(line => /^\s*(?:[-*]|\d+\.)\s+/.test(line))
+      ? <ul key={index} className="list-disc pl-5">{lines.map((line, i) => <li key={i}>{line.replace(/^\s*(?:[-*]|\d+\.)\s+/, "")}</li>)}</ul>
+      : <p key={index} className="whitespace-pre-wrap">{block}</p>;
+  })}</div>;
+}
+
 function GuidanceAnswer({ data, onFollowSource }: { data: Answer; onFollowSource?: () => void }) {
   return (
     <div className="space-y-3">
-      <p className="whitespace-pre-wrap">{data.answer}</p>
+      {data.answer && <AnswerText text={data.answer} />}
+      {data.general_knowledge && <div><h3>General explanation</h3><p className="text-sm text-muted-foreground">From model knowledge; not verified against web sources.</p><AnswerText text={data.general_knowledge} /></div>}
       <GuidanceSources data={data} onFollowSource={onFollowSource} />
     </div>
   );
@@ -125,7 +149,7 @@ function GuidanceSources({ data, onFollowSource }: { data: Answer; onFollowSourc
           </div>
         );
       })}
-      {data.web_unavailable && <p>Public web sources were unavailable for this answer.</p>}
+      {data.web_unavailable && <p>Web search was unavailable. This answer uses available app context and model knowledge.</p>}
     </div>
   );
 }
@@ -218,47 +242,60 @@ export function ComparisonCitations({ data }: { data?: Answer }) {
   return <GuidanceSources data={data} />;
 }
 
-function CounselorConversation({ params, page, onFollowSource }: {
+function CounselorConversation({ params, page, onFollowSource, session }: {
+  session?: Session;
   params: URLSearchParams;
   page?: CounselorPageContext;
   onFollowSource?: () => void;
 }) {
+  const savedProfile = useSavedProfile();
+  const screen = useCurrentScreen();
   const inputId = useId();
   const input = useRef<HTMLTextAreaElement>(null);
   const transcript = useRef<HTMLDivElement>(null);
   const latest = useRef<HTMLElement>(null);
-  const [question, setQuestion] = useState("");
-  const [searchWeb, setSearchWeb] = useState(false);
-  const [messages, setMessages] = useState<{ question: string; result: Answer }[]>([]);
-  const pageIntro = page ? `I’m on the Asgard ${page} page. ` : "";
+  const [localQuestion, setLocalQuestion] = useState("");
+  const [localWeb, setLocalWeb] = useState(false);
+  const question = session?.draft ?? localQuestion;
+  const setQuestion = session?.setDraft ?? setLocalQuestion;
+  const searchWeb = session?.web ?? localWeb;
+  const setSearchWeb = session?.setWeb ?? setLocalWeb;
+  const [localMessages, setLocalMessages] = useState<Messages>([]);
+  const { messages, setMessages } = session ?? { messages: localMessages, setMessages: setLocalMessages };
+  const contextLabel = screen?.label ?? (params.has("left") && params.has("right") ? "Selected career pair" : params.has("topic") ? "Selected roadmap topic" : params.has("roadmap") ? "Selected roadmap" : page?.split("/").filter(Boolean).join(" → ") || "Career exploration");
   const turn = useMutation({
     gcTime: 0,
     mutationFn: async (text: string) => {
+      session?.setBusy(true);
       const history: Turn[] = messages.slice(-3).flatMap(({ question, result }) => [
-        { role: "user", text: question }, { role: "assistant", text: result.answer.slice(0, 1800) },
+        { role: "user", text: question }, { role: "assistant", text: [result.answer, result.general_knowledge].filter(Boolean).join("\n").slice(0, 1800) },
       ]);
       const { data } = await api.POST("/api/v1/me/ai-guidance/counselor", { body: {
-        question: pageIntro + text, history, search_web: searchWeb,
-        career_ids: [params.get("left"), params.get("right")].filter((id): id is string => !!id),
-        roadmap_id: params.get("roadmap"), topic_id: params.get("topic"),
-      } });
+        question: text, history, search_web: searchWeb,
+        page_context: { path: page ?? "/counselor", questionnaire_id: screen?.questionnaire_id, question_id: screen?.question_id, category_id: screen?.category_id, filter: screen?.filter?.slice(0,120), recommendation_run_id: screen?.recommendation_run_id },
+        career_ids: screen?.career_ids ?? [params.get("left"), params.get("right")].filter((id): id is string => !!id),
+        roadmap_id: screen?.roadmap_id ?? params.get("roadmap"), topic_id: screen?.topic_id ?? params.get("topic"),
+      }, signal: session?.controller.current.signal });
       if (!data) throw new Error("The counselor couldn’t answer. Try again.");
-      return data;
+      return { ...data, turnContext: contextLabel };
     },
+    onSettled: () => session?.setBusy(false),
     onSuccess: (result, text) => {
-      setMessages((previous) => [...previous, { question: text, result }].slice(-12));
+      setMessages((previous) => [...previous, { question: text, result, context: result.turnContext }].slice(-12));
       setQuestion("");
     },
   });
+  const readingOlder = useRef(false);
   useEffect(() => {
-    if (transcript.current && latest.current) {
+    if (!readingOlder.current && transcript.current && latest.current) {
       transcript.current.scrollTop = latest.current.offsetTop;
     }
   }, [messages]);
+  const pending = turn.isPending || !!session?.busy;
 
-  const prompts = page === "Settings"
+  const prompts = page?.startsWith("/settings")
     ? ["What happens when I upload a resume?", "How do saved skills affect my career suggestions?"]
-    : page === "Dashboard"
+    : page === "/dashboard"
       ? ["What should I learn next?", "How does my learning streak work?"]
       : params.has("left") && params.has("right")
     ? ["What work do these careers share?", "Give me an exercise to try both roles."]
@@ -270,26 +307,28 @@ function CounselorConversation({ params, page, onFollowSource }: {
 
   return (
     <div className="counselor-conversation">
-      <div ref={transcript} className="counselor-transcript" role="log" aria-label="Conversation">
+      <div className="counselor-context"><Button type="button" variant="ghost" disabled={pending} onClick={() => { setMessages([]); setQuestion(""); turn.reset(); }}>New conversation</Button></div>
+      <div ref={transcript} onScroll={event => { const el = event.currentTarget; readingOlder.current = el.scrollHeight - el.scrollTop - el.clientHeight > 100; }} className="counselor-transcript" role="log" aria-label="Conversation">
         {messages.length === 0 && (
           <div className="counselor-welcome">
             <img src={snowflake} alt="" />
-            <h2>What would you like to learn?</h2>
+            <h2>What would you like to explore{savedProfile.data?.profile?.first_name ? `, ${savedProfile.data.profile.first_name}` : ""}?</h2>
             <p>Explore a career, understand a topic, or find a first step.</p>
           </div>
         )}
         {messages.map(({ question, result }, index) => (
           <section key={index} ref={index === messages.length - 1 ? latest : undefined} className="counselor-turn">
-            <h2>{question}</h2>
+            <p className="counselor-question">{question}</p>
             <GuidanceAnswer data={result} onFollowSource={onFollowSource} />
           </section>
         ))}
+        {pending && <p className="counselor-question">{turn.variables}</p>}
       </div>
       <form className="counselor-compose" onSubmit={(event) => {
         event.preventDefault();
-        if (question.trim() && !turn.isPending) turn.mutate(question.trim());
+        if (question.trim() && !pending) turn.mutate(question.trim());
       }}>
-        {messages.length === 0 && !turn.isPending && (
+        {messages.length === 0 && !pending && (
           <div className="counselor-prompts" aria-label="Suggested questions">
             {prompts.map((prompt) => (
               <Button key={prompt} type="button" variant="secondary" onClick={() => {
@@ -299,23 +338,23 @@ function CounselorConversation({ params, page, onFollowSource }: {
             ))}
           </div>
         )}
-        {turn.isPending && <p role="status">Preparing your answer…</p>}
+        {pending && <p role="status"><LoadingIndicator />{" "}Preparing your answer…</p>}
         {turn.isError && <p role="alert">{turn.error.message}</p>}
         <div className="counselor-composer">
           <label className="sr-only" htmlFor={inputId}>Your question</label>
           <textarea ref={input} id={inputId} rows={2} placeholder="Ask Asgard"
-            value={question} maxLength={1000 - pageIntro.length} disabled={turn.isPending}
+            value={question} maxLength={1000} disabled={pending}
             onChange={(event) => setQuestion(event.target.value)} />
           <div className="counselor-composer-actions">
-            <label><input type="checkbox" checked={searchWeb} disabled={turn.isPending}
+            <label><input type="checkbox" checked={searchWeb} disabled={pending}
               onChange={(event) => setSearchWeb(event.target.checked)} /> Include web sources</label>
-            <Button type="submit" size="icon" className="min-h-11 min-w-11"
-              aria-label="Send question" disabled={!question.trim() || turn.isPending}>
+            <Button type="submit" size="icon" className="counselor-send"
+              aria-label="Send question" disabled={!question.trim() || pending}>
               <ArrowUp aria-hidden="true" />
             </Button>
           </div>
         </div>
-        <p className="counselor-disclosure">Groq receives your question, recent turns, and relevant career or next-step context. Public search uses career names.</p>
+        <p className="counselor-disclosure">Groq receives your question, recent turns, and relevant app context. Public search uses career names.</p>
       </form>
     </div>
   );
@@ -324,13 +363,12 @@ function CounselorConversation({ params, page, onFollowSource }: {
 export function CounselorPage() {
   const availability = useAvailability();
   const { user } = useAuth();
-  const [params] = useSearchParams();
   return (
     <section className="space-y-5">
-      <PageHeading title="AI Counselor" description="Ask about career suggestions, tradeoffs, or what to learn next. This conversation clears when you leave." />
+      <PageHeading title="AI Counselor" description="Ask about career suggestions, tradeoffs, or what to learn next. Your conversation stays available while you explore Asgard." />
       <Link className="underline" to="/careers">Back to careers</Link>
       {availability.isPending ? <p role="status">Opening counselor…</p>
-        : availability.data && user ? <CounselorConversation key={user.id + params.toString()} params={params} />
+        : availability.data && user ? <p>Open the AI Counselor button to continue your conversation.</p>
           : <p>The counselor is currently unavailable.</p>}
     </section>
   );

@@ -22,4 +22,8 @@ COPY --chown=asgard:asgard openapi.json .
 USER asgard
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload", "--no-access-log"]
 
+FROM runtime AS maintenance
+COPY --chown=asgard:asgard scripts/purge_accounts.py ./scripts/purge_accounts.py
+CMD ["python", "scripts/purge_accounts.py"]
+
 FROM runtime AS production

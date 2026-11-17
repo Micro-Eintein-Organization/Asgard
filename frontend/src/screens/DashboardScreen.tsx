@@ -1,3 +1,5 @@
+import { useScreenContext } from "@/features/counselor-context";
+import { useSavedProfile } from "@/features/profile/identity";
 import { useState } from "react";
 import { Link } from "react-router";
 import { ChevronLeft, ChevronRight, SquarePen } from "lucide-react";
@@ -17,27 +19,31 @@ const groups = [
 ] as const;
 
 export function DashboardScreen() {
-  const dashboard = useCoreQuery(["dashboard"], coreApi.dashboard);
+  const savedProfile = useSavedProfile();
+  const greeting = savedProfile.data?.profile?.first_name ? `Welcome back, ${savedProfile.data.profile.first_name}` : "Your next step is here.";
+  const page = useCoreQuery(["dashboard-view"], coreApi.dashboardView);
+  useScreenContext(page.data ? { label: ["Dashboard", page.data.current?.roadmap.title].filter(Boolean).join(" → ") } : null);
+  const dashboard = { ...page, data: page.data?.dashboard };
   const preferences = useCoreQuery(["preferences"], coreApi.preferences);
   const id = dashboard.data?.learning_state.current_roadmap_id ?? "";
-  const roadmap = useCoreQuery(["roadmap", id], () => coreApi.roadmap(id), !!id);
+  const roadmap = { ...page, data: page.data?.current?.roadmap };
   const careerId = roadmap.data?.career_id ?? "";
-  const career = useCoreQuery(["career", careerId], () => coreApi.career(careerId), !!careerId);
-  const progress = useCoreQuery(["progress", id], () => coreApi.progress(id), !!id);
-  const branches = useCoreQuery(["branches", id], () => coreApi.branches(id), !!id);
+  const career = { ...page, data: page.data?.career };
+  const progress = { ...page, data: page.data?.current?.progress };
+  const branches = { ...page, data: page.data?.current?.branches };
+  const activeRoadmap = { ...page, data: page.data?.active_roadmap };
   const activeId = dashboard.data?.active_topic?.roadmap_id ?? "";
-  const activeRoadmap = useCoreQuery(["roadmap", activeId], () => coreApi.roadmap(activeId), !!activeId);
   const [monthOffset, setMonthOffset] = useState(0);
   const dateParts = new Intl.DateTimeFormat("en", {year:"numeric",month:"2-digit",day:"2-digit",timeZone:preferences.data?.timezone ?? "UTC"}).formatToParts(new Date());
   const part = (name: string) => dateParts.find(item => item.type === name)?.value ?? "01";
   const today = `${part("year")}-${part("month")}-${part("day")}`;
   const calendar = new Date(Date.UTC(Number(part("year")), Number(part("month")) - 1 + monthOffset, 1));
   const month = calendar.toISOString().slice(0,7);
-  const activity = useCoreQuery(["activity",month], () => coreApi.activity(month));
-  const queries = [dashboard,preferences,roadmap,career,progress,branches,activeRoadmap,activity];
+  const activity = useCoreQuery(["activity",month], () => coreApi.activity(month), !!page.data && !!preferences.data);
+  const queries = [page,preferences];
   const error = queries.find(query => query.error)?.error;
   if (error) return <StatePanel kind="error" title="Dashboard unavailable" action={<Button onClick={() => queries.forEach(query => {if (query.data || query.error) void query.refetch();})}>Try again</Button>}>{error.message}</StatePanel>;
-  if (!dashboard.data || !preferences.data || !activity.data || (id && (!roadmap.data || !career.data || !progress.data || !branches.data))) return <StatePanel kind="loading" title="Loading your Dashboard">Reading your saved learning state.</StatePanel>;
+  if (!dashboard.data || !preferences.data || (id && (!roadmap.data || !career.data || !progress.data || !branches.data))) return <StatePanel kind="loading" title="Loading your Dashboard">Reading your saved learning state.</StatePanel>;
   const overview = dashboard.data;
   const savedActivity = activity.data;
   const content = roadmap.data;
@@ -59,18 +65,18 @@ export function DashboardScreen() {
   const days = new Date(Date.UTC(calendar.getUTCFullYear(),calendar.getUTCMonth()+1,0)).getUTCDate();
   const monthLabel = calendar.toLocaleDateString("en",{month:"long",year:"numeric",timeZone:"UTC"});
   if (!id && !overview.active_topic) return <>
-    <PageHeading title="Your next step is here." />
+    <PageHeading title={greeting} />
     <StatePanel kind="empty" title="Choose your first roadmap" action={<Button asChild><Link to={appRoutes.careers}>Browse careers</Link></Button>}>Choose a roadmap to see your learning topics and progress here.</StatePanel>
   </>;
   return <>
-    {id ? <h1 className="sr-only">Dashboard</h1> : <PageHeading title="Your next step is here." action={<Button asChild variant="outline"><Link to={appRoutes.careers}>Browse careers</Link></Button>} />}
+    {id ? <h1 className="sr-only">Dashboard</h1> : <PageHeading title={greeting} action={<Button asChild variant="outline"><Link to={appRoutes.careers}>Browse careers</Link></Button>} />}
     <div className="dashboard-layout">
       <div className="dashboard-main">
         <section className="milestone-hero" aria-labelledby="milestone-heading">
           <h2 id="milestone-heading">{activeTitle ?? next?.title ?? milestone?.title ?? "Choose a learning path"}</h2>
           {milestone && <p>{milestone.title}</p>}
           <Link to={nextLink}>{activeLink ? "Resume learning" : needsBranch ? "Choose your tool path" : overview.progress?.fully_done ? "View roadmap" : overview.progress?.no_remaining_suggestions ? "Review skipped topics" : "Continue learning"} <ChevronRight aria-hidden="true" size={17} /></Link>
-          <div className="sample-progress"><div><span>{summary?.requires_branch_choice ? `${summary.common_done} of ${summary.common_total} common topics Done · choose a tool path` : `${summary?.done ?? 0} of ${summary?.applicable ?? 0} topics Done`}</span><span>{summary?.percentage != null ? `${summary.percentage}%` : ""}</span></div>{summary?.percentage != null && <Progress value={summary.percentage} aria-label={`Milestone progress, ${summary.percentage} percent`} />}</div>
+          <div className="sample-progress"><div><span>{summary?.requires_branch_choice ? `${summary.common_done} of ${summary.common_total} common topics Done Â· choose a tool path` : `${summary?.done ?? 0} of ${summary?.applicable ?? 0} topics Done`}</span><span>{summary?.percentage != null ? `${summary.percentage}%` : ""}</span></div>{summary?.percentage != null && <Progress value={summary.percentage} aria-label={`Milestone progress, ${summary.percentage} percent`} />}</div>
           {overview.progress?.requires_branch_choice && <p>Choose the remaining tool paths to see full-roadmap progress.</p>}
         </section>
         <section>
@@ -91,11 +97,13 @@ export function DashboardScreen() {
         </Card>
         <Card id="progress" className="support-card">
           <div className="calendar-title"><h2>{monthLabel}</h2><div className="flex"><Button variant="ghost" size="icon" aria-label="Previous month" onClick={() => setMonthOffset(value => value-1)}><ChevronLeft /></Button><Button variant="ghost" size="icon" aria-label="Next month" disabled={monthOffset === 0} onClick={() => setMonthOffset(value => value+1)}><ChevronRight /></Button></div></div>
-          <div className="streak-summary" role="group" aria-label="Learning streak"><p>Current streak <strong>{savedActivity.streak_days} days</strong></p><p>Longest streak <strong className="streak-unavailable">Not available</strong></p></div>
-          {!savedActivity.days.length && <p className="streak-empty">Complete a topic to start your learning streak.</p>}
+          <div className="streak-summary" role="group" aria-label="Learning streak"><p>Current streak <strong>{savedActivity ? `${savedActivity.streak_days} days` : activity.error ? "Unavailable" : "Loading"}</strong></p><p>Longest streak <strong>{savedActivity?.longest_streak_days != null ? `${savedActivity.longest_streak_days} days` : activity.error || savedActivity ? "Unavailable" : "Loading"}</strong></p></div>
+          {activity.isPending && <p>Loading activityâ€¦</p>}
+          {activity.error && <p>Activity unavailable. <button onClick={() => void activity.refetch()}>Try again</button></p>}
+          {savedActivity && !savedActivity.days.length && <p className="streak-empty">Complete a topic to start your learning streak.</p>}
           <div className="calendar-grid" aria-label="Activity calendar">{["Su","Mo","Tu","We","Th","Fr","Sa"].map(day => <span key={day}>{day}</span>)}{Array.from({length:calendar.getUTCDay()},(_,i) => <span key={`space-${i}`} aria-hidden="true" />)}{Array.from({length:days},(_,i) => {
             const date = `${month}-${String(i+1).padStart(2,"0")}`;
-            const active = savedActivity.days.some(day => day.local_date === date && day.done_count > 0);
+            const active = (savedActivity?.days ?? []).some(day => day.local_date === date && day.done_count > 0);
             return <span key={date} className={`calendar-day ${active ? monthOffset === 0 ? "active-current" : "active-past" : ""} ${date === today ? "today" : ""}`} aria-label={`${date}, ${active ? "active learning day" : "no completion"}`} aria-current={date === today ? "date" : undefined}>{i+1}</span>;
           })}</div><p className="calendar-legend">Orange days mark completed topics. The ring marks today.</p>
         </Card>

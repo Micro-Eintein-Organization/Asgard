@@ -34,3 +34,10 @@ class Career(Contract):
 
 class CareerPage(Page[Career]):
     catalog_release_id: UUID
+
+
+class CatalogSummary(Contract):
+    categories: list[Category]
+    by_category: dict[str, int]
+    total: int
+    catalog_release_id: UUID

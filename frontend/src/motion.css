@@ -1,0 +1,74 @@
+:root {
+  --motion-fast: 120ms;
+  --motion-standard: 180ms;
+  --motion-deliberate: 220ms;
+  --motion-ease-enter: cubic-bezier(0.2, 0, 0, 1);
+  --motion-ease-exit: cubic-bezier(0.4, 0, 1, 1);
+}
+
+@keyframes asgard-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes asgard-fade-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes asgard-loading-turn { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes asgard-loading-reveal { from { opacity: 0; } to { opacity: 1; } }
+
+.loading-indicator {
+  display: inline-flex;
+  flex: 0 0 auto;
+  inline-size: 1rem;
+  block-size: 1rem;
+  vertical-align: -0.15em;
+}
+.loading-indicator[data-size="panel"] { inline-size: 2rem; block-size: 2rem; }
+.loading-indicator img { display: block; inline-size: 100%; block-size: 100%; object-fit: contain; }
+@keyframes asgard-dialog-in { from { opacity: 0; scale: 0.985; } to { opacity: 1; scale: 1; } }
+@keyframes asgard-dialog-out { from { opacity: 1; scale: 1; } to { opacity: 0; scale: 0.985; } }
+@keyframes asgard-menu-in { from { opacity: 0; transform: translateY(var(--menu-offset, -4px)); } to { opacity: 1; transform: translateY(0); } }
+@keyframes asgard-panel-in { from { opacity: 0; transform: translateX(8px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes asgard-panel-out { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(8px); } }
+@keyframes asgard-accordion-in { from { height: 0; } to { height: var(--radix-accordion-content-height); } }
+@keyframes asgard-accordion-out { from { height: var(--radix-accordion-content-height); } to { height: 0; } }
+
+@media (prefers-reduced-motion: no-preference) {
+  .loading-indicator { animation: asgard-loading-reveal var(--motion-fast) 150ms both; }
+  .loading-indicator img { animation: asgard-loading-turn 2.4s linear 150ms infinite; }
+  .save-feedback, .state-success { animation: asgard-fade-in var(--motion-standard) var(--motion-ease-enter); }
+  [data-slot="dialog-overlay"][data-state="open"],
+  .counselor-overlay[data-state="open"],
+  [data-slot="tabs-content"][data-state="active"] {
+    animation: asgard-fade-in var(--motion-standard) var(--motion-ease-enter);
+  }
+  [data-slot="dialog-overlay"][data-state="closed"],
+  .counselor-overlay[data-state="closed"] {
+    animation: asgard-fade-out var(--motion-fast) var(--motion-ease-exit);
+  }
+  [data-slot="dialog-content"][data-state="open"] {
+    animation: asgard-dialog-in var(--motion-standard) var(--motion-ease-enter);
+  }
+  [data-slot="dialog-content"][data-state="closed"] {
+    animation: asgard-dialog-out var(--motion-fast) var(--motion-ease-exit);
+  }
+  [data-slot="dropdown-menu-content"], [data-slot="dropdown-menu-sub-content"] {
+    transform-origin: var(--radix-dropdown-menu-content-transform-origin);
+  }
+  [data-slot="dropdown-menu-content"][data-side="top"] { --menu-offset: 4px; }
+  [data-slot="dropdown-menu-content"][data-state="open"],
+  [data-slot="dropdown-menu-sub-content"][data-state="open"], .mobile-navigation {
+    animation: asgard-menu-in var(--motion-standard) var(--motion-ease-enter);
+  }
+  [data-slot="dropdown-menu-content"][data-state="closed"],
+  [data-slot="dropdown-menu-sub-content"][data-state="closed"] {
+    animation: asgard-fade-out var(--motion-fast) var(--motion-ease-exit);
+  }
+  .counselor-panel[data-state="open"] {
+    animation: asgard-panel-in var(--motion-deliberate) var(--motion-ease-enter);
+  }
+  .counselor-panel[data-state="closed"] {
+    animation: asgard-panel-out var(--motion-fast) var(--motion-ease-exit);
+  }
+  [data-slot="accordion-content"][data-state="open"] {
+    animation: asgard-accordion-in var(--motion-standard) var(--motion-ease-enter);
+  }
+  [data-slot="accordion-content"][data-state="closed"] {
+    animation: asgard-accordion-out var(--motion-fast) var(--motion-ease-exit);
+  }
+}

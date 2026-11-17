@@ -174,3 +174,7 @@ question returned HTTP 200 with an Asgard source and explained the skill review
 and experience-level step. The account was deleted. To try it, open
 http://127.0.0.1:5173/dashboard or http://127.0.0.1:5173/settings/profile,
 click the snowflake, and send one of the suggested questions.
+
+
+## Counselor personalization decision, 2026-11-16
+Owner @YakisobaNissin approved page-aware chat, saved-profile identity, in-memory conversation continuity and separately labeled general model knowledge in chat. Recommendations retain existing evidence rules. See [implementation and pending acceptance](contextual-counselor-profile.md).

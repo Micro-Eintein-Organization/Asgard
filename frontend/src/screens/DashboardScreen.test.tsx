@@ -11,11 +11,11 @@ describe("account-backed Cabusao Dashboard",()=>{
     const data:Record<string,unknown>={
       dashboard:{learning_state:{current_roadmap_id:"roadmap"},active_topic:null,core_milestone_id:"milestone",progress:{next_topic_ids:["next"],milestones:[{milestone_id:"milestone",done:1,applicable:3,percentage:33}],requires_branch_choice:false},guidance_id:null},
       preferences:{timezone:"Asia/Manila"},roadmap:{career_id:"career",milestones:[{id:"milestone",title:"Foundations",topics}]},career:{title:"Saved career"},
-      progress:[{topic_id:"done",status:"done"},{topic_id:"skipped",status:"skipped"}],branches:[],activity:{days:[],streak_days:2},
+      progress:[{topic_id:"done",status:"done"},{topic_id:"skipped",status:"skipped"}],branches:[],activity:{days:[],streak_days:2,longest_streak_days:5},
     };
-    vi.mocked(useCoreQuery).mockImplementation(key=>({data:data[String(key[0])],error:null,refetch:vi.fn()}) as never);
+    vi.mocked(useCoreQuery).mockImplementation(key=>({data:key[0] === "dashboard-view" ? {dashboard:data.dashboard,current:{roadmap:data.roadmap,progress:data.progress,branches:data.branches},career:data.career,active_roadmap:null} : data[String(key[0])],error:key[0] === "activity" ? data.activityError : null,refetch:vi.fn()}) as never);
     vi.mocked(useCoreMutation).mockReturnValue({error:null,isPending:false} as never);
-    render(<MemoryRouter><DashboardScreen /></MemoryRouter>);
+    const view = render(<MemoryRouter><DashboardScreen /></MemoryRouter>);
     const title=screen.getByRole("heading",{name:"Saved career"});
     const card=title.closest('[data-slot="card"]') as HTMLElement;
     expect(card).toHaveClass("support-card","current-roadmap-card");
@@ -38,6 +38,17 @@ describe("account-backed Cabusao Dashboard",()=>{
     expect(screen.getByText("Skipped topic")).toBeVisible();
     expect(screen.getByRole("group",{name:"Learning streak"})).toHaveTextContent("2 days");
     expect(screen.getByRole("link",{name:"View milestone"})).toHaveAttribute("href","/roadmaps/career?roadmap=roadmap#milestone-milestone");
-    expect(screen.getByRole("group",{name:"Learning streak"})).toHaveTextContent("Longest streak Not available");
+    expect(screen.getByRole("group",{name:"Learning streak"})).toHaveTextContent("Longest streak 5 days");
+    data.activity = { days: [], streak_days: 0, longest_streak_days: 0 };
+    view.rerender(<MemoryRouter><DashboardScreen /></MemoryRouter>);
+    expect(screen.getByRole("group",{name:"Learning streak"})).toHaveTextContent("Longest streak 0 days");
+    data.activity = undefined;
+    view.rerender(<MemoryRouter><DashboardScreen /></MemoryRouter>);
+    expect(screen.getByRole("group",{name:"Learning streak"})).toHaveTextContent("Longest streak Loading");
+    data.activityError = new Error("Unavailable");
+    view.rerender(<MemoryRouter><DashboardScreen /></MemoryRouter>);
+    expect(screen.getByRole("group",{name:"Learning streak"})).toHaveTextContent("Longest streak Unavailable");
   });
 });
+
+vi.mock("@/features/profile/identity", () => ({ useSavedProfile: () => ({ data: undefined }) }));
