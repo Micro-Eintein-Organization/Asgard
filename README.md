@@ -1,5 +1,11 @@
 # Asgard
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="frontend/src/assets/Logo_Snowflake%2BASGARD_darkmode.png">
+  <source media="(prefers-color-scheme: light)" srcset="frontend/src/assets/Logo_Snowflake%2BASGARD_lightmode.png">
+  <img src="frontend/src/assets/Logo_Snowflake%2BASGARD_lightmode.png" alt="Asgard logo" width="325">
+</picture>
+
 Asgard is a career exploration and learning platform for people pursuing technology careers. It brings together guided Discovery, career comparisons, curated roadmaps, and learning progress to help learners choose a direction and follow their next step.
 
 ## Features
