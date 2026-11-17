@@ -1,7 +1,7 @@
 import { useScreenContext } from "@/features/counselor-context";
 import { useContentMotion } from "@/components/use-content-motion";
 import { Link, useNavigate, useSearchParams } from "react-router";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Search, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -40,6 +40,12 @@ export default function RoleCatalog({
     !catalogSummary.isPending && !preferences.isPending,
   );
   const search = params.get("q") ?? "";
+  const [settledSearch, setSettledSearch] = useState(search);
+  useEffect(() => {
+    const timer = setTimeout(() => setSettledSearch(search), 250);
+    return () => clearTimeout(timer);
+  }, [search]);
+  const querySearch = search ? settledSearch : "";
   useEffect(() => {
     if (!search && restoreFocus.current) {
       searchInput.current?.focus();
@@ -55,14 +61,15 @@ export default function RoleCatalog({
   const categoryId = categories.data?.find((c) => c.title === category)?.id;
   useScreenContext({ label: `Careers → ${category}`, category_id: categoryId, filter: search });
   const careers = useCoreQuery(
-    ["careers", search, categoryId],
+    ["careers", querySearch, categoryId],
     signal =>
       coreApi.catalog({
-        q: search || undefined,
+        q: querySearch || undefined,
         category_id: categoryId,
         limit: 100,
       }, signal),
     !categories.isPending && !preferences.isPending,
+    { keepPreviousData: true },
   );
   const state = recommendations.data;
   const run = state?.current?.status === "completed" ? state.current : state?.previous_eligible_success;
@@ -76,9 +83,10 @@ export default function RoleCatalog({
     else next.delete(key);
     setParams(next, { replace: true });
   };
-  const failure = categories.error ?? preferences.error ?? careers.error;
+  const failure = categories.error ?? preferences.error;
+  const updating = search !== querySearch || careers.isFetching || careers.isPlaceholderData;
   const resultsContent = useRef<HTMLDivElement>(null);
-  useContentMotion(resultsContent, careers.isPending || failure ? null :
+  useContentMotion(resultsContent, careers.isPending || updating || careers.error || failure ? null :
     JSON.stringify(careers.data?.items.map(item => item.id)));
   if (failure)
     return (
@@ -100,7 +108,7 @@ export default function RoleCatalog({
         {failure.message}
       </StatePanel>
     );
-  if (categories.isPending || preferences.isPending || careers.isPending)
+  if (categories.isPending || preferences.isPending)
     return (
       <StatePanel kind="loading" title="Loading published careers">
         Reading the career catalog.
@@ -184,7 +192,17 @@ export default function RoleCatalog({
         <input ref={searchInput} id="career-search" type="search" aria-label="Search career roles or skills" value={search} onChange={(event) => update("q", event.target.value)} onKeyDown={event => {if (event.key === "Escape") {event.preventDefault(); update("q", "");}}} placeholder="Search career roles or skills" className="min-h-11 w-full px-4 py-3 text-sm" />
         {search && <button type="button" aria-label="Clear search query" onClick={() => {restoreFocus.current = true; update("q", "");}}><X size={19} /></button>}
         </div>
-        <div className="space-y-8" ref={resultsContent}>
+        {updating && !careers.isPending && !careers.error && (
+          <p role="status" className="text-sm text-gray-600">Updating careers… Showing previous results until the update finishes.</p>
+        )}
+        <div className="space-y-8" ref={resultsContent} aria-busy={!!updating || careers.isPending}>
+        {careers.isPending ? (
+          <StatePanel kind="loading" title="Loading published careers">Reading the career catalog.</StatePanel>
+        ) : careers.error ? (
+          <StatePanel kind="error" title="Could not update careers" action={<button onClick={() => void careers.refetch()}>Try again</button>}>
+            {careers.error.message}
+          </StatePanel>
+        ) : <>
         {recommendations.isError && (
           <p role="status" className="text-sm text-gray-600">
             Suggestions are unavailable. You can still browse all published
@@ -244,6 +262,7 @@ export default function RoleCatalog({
             </p>
           )}
         </section>
+        </>}
         </div>
       </div>
     </div>

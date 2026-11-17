@@ -22,6 +22,36 @@ beforeEach(() => {
   });
 });
 describe("connected catalog interactions", () => {
+  it("keeps search mounted and focused while results load or fail", async () => {
+    const original = vi.mocked(useCoreQuery).getMockImplementation()!;
+    let pending = false;
+    let failed = false;
+    vi.mocked(useCoreQuery).mockImplementation((...args) => {
+      if (args[0][0] === "careers" && pending)
+        return { data: undefined, isPending: !failed, isFetching: !failed,
+          error: failed ? new Error("Search unavailable") : null } as never;
+      return original(...args);
+    });
+    const view = render(<MemoryRouter><RoleCatalog /></MemoryRouter>);
+    const input = screen.getByRole("searchbox");
+    input.focus();
+    pending = true;
+    fireEvent.change(input, { target: { value: "bac" } });
+    expect(screen.getByRole("searchbox")).toBe(input);
+    expect(input).toHaveFocus();
+    fireEvent.change(input, { target: { value: "backend" } });
+    await waitFor(() => expect(vi.mocked(useCoreQuery).mock.calls.some(call =>
+      call[0][0] === "careers" && call[0][1] === "backend")).toBe(true));
+    expect(vi.mocked(useCoreQuery).mock.calls.some(call =>
+      call[0][0] === "careers" && call[0][1] === "bac")).toBe(false);
+    failed = true;
+    view.rerender(<MemoryRouter><RoleCatalog /></MemoryRouter>);
+    expect(screen.getByText("Could not update careers")).toBeVisible();
+    expect(screen.getByRole("searchbox")).toBe(input);
+    expect(input).toHaveFocus();
+    fireEvent.keyDown(input, { key: "Escape" });
+    expect(input).toHaveValue("");
+  });
   it("does not request summaries for roadmaps without saved progress", () => {
     hasProgress = false;
     render(<MemoryRouter><RoleCatalog /></MemoryRouter>);

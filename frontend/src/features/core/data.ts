@@ -313,12 +313,18 @@ export function useCoreQuery<T>(
   key: readonly unknown[],
   load: (signal?: AbortSignal) => Promise<T>,
   enabled = true,
+  options: { keepPreviousData?: boolean } = {},
 ) {
   const { user } = useAuth();
   return useQuery({
     queryKey: ["account", user?.id, ...key],
     queryFn: ({ signal }) => load(AbortSignal.any([signal, AbortSignal.timeout(90_000)])),
     enabled: !!user && enabled,
+    placeholderData: options.keepPreviousData
+      ? (previous, query) => user && query?.queryKey[0] === "account" &&
+          query.queryKey[1] === user.id && query.queryKey[2] === key[0]
+        ? previous : undefined
+      : undefined,
     staleTime: ["catalog-summary", "careers", "career", "roadmap"].includes(String(key[0])) ? 30_000 : 0,
     refetchInterval: false,
     refetchIntervalInBackground: false,
