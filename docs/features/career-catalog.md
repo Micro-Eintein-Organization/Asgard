@@ -2,6 +2,44 @@
 
 # Career catalog
 
+## Uninterrupted search, 2026-11-17
+
+Implementer/task owner: Codex. Created: 2026-11-17; last updated: 2026-11-17.
+Status: implemented; focused checks passed, rendered acceptance pending.
+Required reviewer: @YakisobaNissin. Requirements: REQ-02/03 and NFR-01–03.
+Owner request: repair search interruption shown in the supplied screenshots,
+under the chat's end-to-end implementation authorization. The bounded plan was
+to retain controls/results during search and debounce requests; no new product
+contract, dependency or backend behavior. Work stays on the existing feature branch.
+
+`frontend/src/components/catalog/RoleCatalog.tsx` keeps heading, categories and
+search mounted while results load or fail. Nonempty search requests wait 250 ms
+after typing; clearing search remains immediate. URL text updates immediately.
+Existing results remain visible with an Updating careers status until replacement;
+first results and search failures use only the result area's loading/error panel.
+Empty results appear only after a completed read. Existing result glides wait for
+committed results. Retry and clear-search/focus behavior remain available.
+
+`frontend/src/features/core/data.ts` adds an opt-in previous-data option, used by
+catalog search only. It retains data only when both account and operation match;
+other query callers retain existing behavior. Existing query-key cancellation,
+timeout, account cache clearing and error handling remain in effect.
+
+PASS: TypeScript and scoped source ESLint. Nine focused tests across existing
+catalog regressions and a small retained-query regression passed, including
+uninterrupted typing/debounce, search failure, clear, same-account result retention
+and rejection across account/operation changes. No backend suite, browser matrix,
+container rebuild or deployment was run. The owner requested focused UI checks.
+
+Manual acceptance pending: at `http://127.0.0.1:5173/careers`, type “backend”
+continuously, change category and clear/Escape. Expect stable input/focus and
+visible previous results during reads; only the result area updates. Under a slow
+or failed read, continue editing and retry; controls must remain available. Confirm
+no-match copy only after results complete. Report query/category, steps and
+expected/actual behavior. Reviewer follow-up: @YakisobaNissin. This frontend-only
+repair requires Vercel publication; no commit, push or deployment was performed.
+Deferred scope is unchanged, so future-development needs no update.
+
 ## Hosted request reduction, 2026-11-15
 
 Implementer: Codex; created/updated: 2026-11-15. Status: implemented; technical
