@@ -159,8 +159,8 @@
   box-shadow: none;
   text-decoration: none;
   transition:
-    background-color 0.15s,
-    border-color 0.15s;
+    background-color var(--motion-fast) var(--motion-ease-enter),
+    border-color var(--motion-fast) var(--motion-ease-enter);
 }
 [data-slot="button"]:hover {
   text-decoration: none;
@@ -1329,8 +1329,8 @@
   font-weight: 600;
   text-decoration: none;
   transition:
-    background-color 0.15s,
-    border-color 0.15s;
+    background-color var(--motion-fast) var(--motion-ease-enter),
+    border-color var(--motion-fast) var(--motion-ease-enter);
 }
 .current-roadmap-open:hover {
   border-color: #a3a3a3;
@@ -1622,9 +1622,9 @@
   opacity: 1;
   transform: translateX(0);
   transition:
-    grid-template-rows var(--motion-deliberate) ease,
-    opacity var(--motion-standard) ease,
-    transform var(--motion-standard) ease,
+    grid-template-rows var(--motion-deliberate) var(--motion-ease-enter),
+    opacity var(--motion-standard) var(--motion-ease-enter),
+    transform var(--motion-standard) var(--motion-ease-enter),
     visibility 0s;
 }
 .topic-task.is-hidden {
@@ -1634,9 +1634,9 @@
   visibility: hidden;
   pointer-events: none;
   transition:
-    grid-template-rows var(--motion-deliberate) ease,
-    opacity var(--motion-standard) ease,
-    transform var(--motion-standard) ease,
+    grid-template-rows var(--motion-deliberate) var(--motion-ease-exit),
+    opacity var(--motion-standard) var(--motion-ease-exit),
+    transform var(--motion-standard) var(--motion-ease-exit),
     visibility 0s linear var(--motion-deliberate);
 }
 .topic-task-content {
@@ -2458,11 +2458,24 @@
   transition: border-color var(--motion-fast) var(--motion-ease-enter);
 }
 [data-slot="progress-indicator"], [data-slot="accordion-trigger"] > svg {
-  transition-duration: var(--motion-standard);
+  transition-duration: var(--motion-deliberate);
   transition-timing-function: var(--motion-ease-enter);
 }
 
 /* Security settings share the profile page's card spacing and control tokens. */
+@media (prefers-reduced-motion: no-preference) {
+  [data-slot="button"] {
+    transition-property: color, background-color, border-color, scale;
+  }
+  [data-slot="button"]:active:not(:disabled):not([aria-disabled="true"]) {
+    scale: 0.985;
+  }
+  .question-progress span, .selection-indicator {
+    transition: background-color var(--motion-standard) var(--motion-ease-enter),
+      opacity var(--motion-fast) var(--motion-ease-enter);
+  }
+}
+
 .settings-account-content { display: grid; gap: 1rem; }
 .settings-account-content[hidden] { display: none; }
 .settings-account-content > .settings-card { padding: 1.5rem; gap: 1rem; }

@@ -74,7 +74,12 @@ acceptance.
 
 Asgard uses white cards, light neutral surfaces, dark text/actions and a restrained green selection/progress accent. Arial/Helvetica matches the sans-serif character of the supplied exports without adding a font dependency. The header/onboarding wordmark uses the supplied light-mode Snowflake + ASGARD image through [BrandLogo](../frontend/src/components/brand-logo.tsx). There are no generated illustrations, invented people, testimonials or match scores.
 
-Design direction: ENERGY 1 / RHYTHM 2 / MOTION 1. Career exploration stays calm and readable; page composition varies with its task. The dark Dashboard milestone establishes the main continuation action. Its dark gradient follows the reference's hierarchy; it is not a page-wide effect. Borders group content. The restored committed screens retain their original card/banner shadows and calendar/callout accents. Functional icons identify navigation, search, account, resources and status; they do not fill empty illustration space.
+Design direction: ENERGY 1 / RHYTHM 2 / MOTION 2. Career exploration stays calm and readable; page composition varies with its task. The dark Dashboard milestone establishes the main continuation action. Its dark gradient follows the reference's hierarchy; it is not a page-wide effect. Borders group content. The restored committed screens retain their original card/banner shadows and calendar/callout accents. Functional icons identify navigation, search, account, resources and status; they do not fill empty illustration space.
+
+Owner-approved motion refinement, 2026-11-17: small page/content glides and fades,
+consistent control feedback and smooth expansion use 140/160/220/280 ms feedback,
+exit, entry and expansion tokens. Reduced motion renders final states immediately.
+See [implementation and pending visual acceptance](features/ui-refinement-and-motion.md#fluid-motion-follow-up-2026-11-17).
 
 ## Tokens and components
 

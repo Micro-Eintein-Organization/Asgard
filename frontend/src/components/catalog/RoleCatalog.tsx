@@ -1,4 +1,5 @@
 import { useScreenContext } from "@/features/counselor-context";
+import { useContentMotion } from "@/components/use-content-motion";
 import { Link, useNavigate, useSearchParams } from "react-router";
 import { useEffect, useRef } from "react";
 import { Search, X } from "lucide-react";
@@ -76,6 +77,9 @@ export default function RoleCatalog({
     setParams(next, { replace: true });
   };
   const failure = categories.error ?? preferences.error ?? careers.error;
+  const resultsContent = useRef<HTMLDivElement>(null);
+  useContentMotion(resultsContent, careers.isPending || failure ? null :
+    JSON.stringify(careers.data?.items.map(item => item.id)));
   if (failure)
     return (
       <StatePanel
@@ -180,6 +184,7 @@ export default function RoleCatalog({
         <input ref={searchInput} id="career-search" type="search" aria-label="Search career roles or skills" value={search} onChange={(event) => update("q", event.target.value)} onKeyDown={event => {if (event.key === "Escape") {event.preventDefault(); update("q", "");}}} placeholder="Search career roles or skills" className="min-h-11 w-full px-4 py-3 text-sm" />
         {search && <button type="button" aria-label="Clear search query" onClick={() => {restoreFocus.current = true; update("q", "");}}><X size={19} /></button>}
         </div>
+        <div className="space-y-8" ref={resultsContent}>
         {recommendations.isError && (
           <p role="status" className="text-sm text-gray-600">
             Suggestions are unavailable. You can still browse all published
@@ -239,6 +244,7 @@ export default function RoleCatalog({
             </p>
           )}
         </section>
+        </div>
       </div>
     </div>
     </>

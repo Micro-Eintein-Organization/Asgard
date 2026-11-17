@@ -2,7 +2,7 @@
 
 # UI refinement and motion
 
-Implementer: Codex. Created: 2026-11-16. Last updated: 2026-11-16.
+Implementer: Codex. Created: 2026-11-16. Last updated: 2026-11-17.
 Status: implemented; focused checks recorded below; human review pending.
 Required reviewer: @YakisobaNissin. Owner authorization: reviewed proposal and
 implementation request in chat on 2026-11-16. Requirements: NFR-01–03 in
@@ -10,6 +10,66 @@ implementation request in chat on 2026-11-16. Requirements: NFR-01–03 in
 Task acceptance: consistent controls, quiet interruptible motion, reduced-motion
 support and preserved layout/state. See the [reviewed plan](../plans/ui-refinement-and-motion.md),
 [design baseline](../design.md) and [architecture](../architecture.md).
+
+## Fluid motion follow-up, 2026-11-17
+
+Implementer/task owner: Codex. Required reviewer: @YakisobaNissin. The owner
+selected restrained app-wide glides/fades, reviewed the bounded chat plan,
+requested implementation, and confirmed approval as @YakisobaNissin on
+2026-11-17. Rendered visual acceptance remains pending. Requirements: NFR-01–03;
+preserve Discovery F-001-AC-06–07. Initial working tree was clean; work stays on
+the existing `codex/cabusao-ui-integration` branch. No commits or publication.
+
+Direction is ENERGY 1 / RHYTHM 2 / MOTION 2. Motion explains content changes,
+interaction and expansion. Shared feedback/exit/entry/expansion durations are
+140/160/220/280 ms, with existing non-overshooting easing. No dependencies,
+contracts, backend behavior, layouts or deferred feature scope changed.
+
+Source/modules: `frontend/src/components/use-content-motion.ts` adds the internal
+`useContentMotion(ref, changeKey)` hook and shared Web Animations helper.
+PageMotion uses a 6 px pathname entry glide/fade; DiscoveryWizard question IDs,
+RoadmapPage topic IDs and RoleCatalog committed result IDs trigger 4 px glides.
+Local first mounts are skipped to avoid stacking with page entry. Search stays
+outside the animated catalog results. Typing, answer selection, unchanged results
+and save feedback do not replay the local animation. Content is not remounted.
+Cleanup cancels obsolete animations, live reduced motion cancels immediately,
+and missing animation/media-query APIs leave content visible. Animation never
+controls application state, requests, saves or navigation.
+
+`frontend/src/motion.css` coordinates existing Radix/Counselor presence, backdrops
+and accordion timing. `frontend/src/styles.css` shares task-collapse easing,
+control/progress timing, a 0.985 enabled-button press scale and actual-state
+question-segment/selection feedback. Reduced motion retains immediate final states
+and a still loading logo. Compact navigation retains its existing immediate close.
+
+Verification:
+
+- PASS: TypeScript, production build and scoped ESLint, using installed locked
+  host dependencies. No dependency installation or service restart.
+- PASS: 25 focused tests across motion, loading, Discovery Results, catalog and
+  roadmap files after correction. The four affected motion/catalog files were
+  rerun: 12 passed. Hook regressions cover first/unchanged content, replacement
+  and unmount cancellation, retained draft/focus, live reduced motion and absent
+  Web Animations. Catalog initially failed because jsdom lacked matchMedia;
+  checking API availability before animation fixed the affected tests.
+- PENDING: live visual, performance, desktop/zoom and reduced-motion acceptance.
+  Docker inspection was denied by local pipe permissions; the in-app browser
+  timed out opening `http://127.0.0.1:5173`. Source/unit evidence does not replace
+  rendered acceptance. Earlier unrelated lint/harness/release gates remain open.
+
+Manual review: at the local URL navigate Dashboard → Careers → roadmap → Settings;
+open/close menus, dialogs and Counselor with Escape and rapid reopening. Filter
+Careers, switch topic details, collapse tasks and inspect actual progress changes.
+On an approved test account use Discovery Next/Return: answers must survive, and
+pending/errors remain immediate. Repeat at 1280/1440/1920 px and 200%/400% zoom,
+with reduced motion enabled and switched during animation. Expect no clipped or
+stuck content, no lost focus and immediate final states under reduced motion.
+Report route, viewport, preference and expected/actual behavior without secrets.
+
+Handoff: shared motion, Discovery, catalog and roadmap presentation are implemented;
+human technical/visual acceptance belongs to @YakisobaNissin. The existing guide
+and design system are updated. Future-development needs no update because deferred
+scope is unchanged. No API/schema/auth or integration order changes are required.
 
 ## Branded loading and Counselor follow-up, 2026-11-16
 
