@@ -15,8 +15,19 @@ contract, dependency or backend behavior. Work stays on the existing feature bra
 `frontend/src/components/catalog/RoleCatalog.tsx` keeps heading, categories and
 search mounted while results load or fail. Nonempty search requests wait 250 ms
 after typing; clearing search remains immediate. URL text updates immediately.
-Existing results remain visible with an Updating careers status until replacement;
-first results and search failures use only the result area's loading/error panel.
+Owner screenshot follow-up, 2026-11-17: the owner requested a spinning Asgard logo
+in the results area below search, superseding the visible previous-results/status
+presentation. While debouncing or fetching, a centered existing 32 px snowflake
+replaces only results, in a 24 rem minimum-height area with no loading card or
+visible loading copy. Search and categories remain mounted and enabled. A hidden
+Updating careers status and busy results region announce progress. The shared
+loading indicator retains its existing rotation and reduced-motion still image.
+Follow-up verification: TypeScript and eight existing catalog tests passed, with
+the loading/focus regression extended to check the scoped logo, busy state,
+hidden announcement and enabled category controls. Whitespace checks passed.
+Rendered visual acceptance remains pending; no broader checks were rerun.
+Search failures use only the result area's error panel. Existing results remain
+in the query observer while fetching but are not displayed during the update.
 Empty results appear only after a completed read. Existing result glides wait for
 committed results. Retry and clear-search/focus behavior remain available.
 
@@ -33,7 +44,7 @@ container rebuild or deployment was run. The owner requested focused UI checks.
 
 Manual acceptance pending: at `http://127.0.0.1:5173/careers`, type “backend”
 continuously, change category and clear/Escape. Expect stable input/focus and
-visible previous results during reads; only the result area updates. Under a slow
+the centered logo during reads; only the result area updates. Under a slow
 or failed read, continue editing and retry; controls must remain available. Confirm
 no-match copy only after results complete. Report query/category, steps and
 expected/actual behavior. Reviewer follow-up: @YakisobaNissin. This frontend-only

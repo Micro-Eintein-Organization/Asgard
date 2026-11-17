@@ -6,6 +6,7 @@ import { Search, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { PageHeading, StatePanel } from "@/components/shared";
+import { LoadingIndicator } from "@/components/loading-indicator";
 import { coreApi, useCoreQuery, useRoadmapPreload } from "@/features/core/data";
 import { appRoutes } from "@/lib/routes";
 import { careerSummary } from "@/lib/career-summary";
@@ -85,6 +86,7 @@ export default function RoleCatalog({
   };
   const failure = categories.error ?? preferences.error;
   const updating = search !== querySearch || careers.isFetching || careers.isPlaceholderData;
+  const loadingResults = careers.isPending || !!updating;
   const resultsContent = useRef<HTMLDivElement>(null);
   useContentMotion(resultsContent, careers.isPending || updating || careers.error || failure ? null :
     JSON.stringify(careers.data?.items.map(item => item.id)));
@@ -192,16 +194,16 @@ export default function RoleCatalog({
         <input ref={searchInput} id="career-search" type="search" aria-label="Search career roles or skills" value={search} onChange={(event) => update("q", event.target.value)} onKeyDown={event => {if (event.key === "Escape") {event.preventDefault(); update("q", "");}}} placeholder="Search career roles or skills" className="min-h-11 w-full px-4 py-3 text-sm" />
         {search && <button type="button" aria-label="Clear search query" onClick={() => {restoreFocus.current = true; update("q", "");}}><X size={19} /></button>}
         </div>
-        {updating && !careers.isPending && !careers.error && (
-          <p role="status" className="text-sm text-gray-600">Updating careers… Showing previous results until the update finishes.</p>
+        {loadingResults && !careers.error && (
+          <p role="status" className="sr-only">Updating careers</p>
         )}
-        <div className="space-y-8" ref={resultsContent} aria-busy={!!updating || careers.isPending}>
-        {careers.isPending ? (
-          <StatePanel kind="loading" title="Loading published careers">Reading the career catalog.</StatePanel>
-        ) : careers.error ? (
+        <div className="catalog-results space-y-8" ref={resultsContent} aria-busy={loadingResults}>
+        {careers.error ? (
           <StatePanel kind="error" title="Could not update careers" action={<button onClick={() => void careers.refetch()}>Try again</button>}>
             {careers.error.message}
           </StatePanel>
+        ) : loadingResults ? (
+          <div className="catalog-results-loading"><LoadingIndicator size="panel" /></div>
         ) : <>
         {recommendations.isError && (
           <p role="status" className="text-sm text-gray-600">
