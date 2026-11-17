@@ -49,8 +49,9 @@ def test_combined_guard_fails_closed(safe, allowed, code):
             assert code is not None
             assert error.status in (401, 503)
         assert reached == (code is None)
-        assert len(calls) == 1
-        assert "session_allowed" in calls[0] and "set_config" in calls[0]
+        assert len(calls) == 2
+        assert "pg_advisory_xact_lock_shared" in calls[0]
+        assert "session_allowed" in calls[-1] and "set_config" in calls[-1]
     asyncio.run(check())
 
 

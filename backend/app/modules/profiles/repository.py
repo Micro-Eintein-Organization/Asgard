@@ -35,7 +35,7 @@ class ProfileRepository:
         )
 
     @asynccontextmanager
-    async def transaction(self, identity: Identity):
+    async def transaction(self, identity: Identity, *, deletion=False):
         started = perf_counter()
         async with self.engine.begin() as connection:
             metrics = current_metrics.get()
@@ -48,6 +48,9 @@ class ProfileRepository:
             }
             connection.info["asgard_statement_counts"] = {}
             connection.info["asgard_query_phase"] = "authorization"
+            lock = "pg_advisory_xact_lock" if deletion else "pg_advisory_xact_lock_shared"
+            await connection.execute(text(
+                f"SELECT {lock}(hashtextextended(CAST(:uid AS text), 481516))"), params)
             guard = (await connection.execute(text("""
                 WITH role_guard AS MATERIALIZED (
                     SELECT current_user = 'asgard_app' AND NOT rolsuper

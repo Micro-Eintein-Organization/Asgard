@@ -16,6 +16,7 @@ class Settings(BaseSettings):
     supabase_url: str = "http://supabase_kong_asgard-foundation:8000"
     supabase_anon_key: SecretStr = SecretStr("")
     readiness_timeout_seconds: float = Field(default=2.0, gt=0, le=10)
+    account_deletion_enabled: bool = False
     auth_enabled: bool = False
     auth_issuer: str = "http://127.0.0.1:55321/auth/v1"
     database_url: SecretStr = SecretStr("")

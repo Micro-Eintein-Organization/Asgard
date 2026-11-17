@@ -1,5 +1,14 @@
 # Future development
 
+## Account deletion implementation, 2026-11-17
+
+The owner approved implementation in chat. Source now includes verified acceptance,
+an immediate application access block, a resumable Storage/Auth purge worker and
+the Settings confirmation dialog. Activation remains off until reviewed migration,
+protected maintenance credentials, independent monitoring, ledger preservation and
+disposable hosted-account acceptance are established. @YakisobaNissin owns review
+and hosted setup. See the [implementation and activation guide](features/account-deletion.md).
+
 ## Roadmap experience comparison disabled, 2026-11-16
 
 Owner decision in chat: disable the roadmap experience-comparison dialog and its

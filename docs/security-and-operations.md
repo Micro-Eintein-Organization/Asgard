@@ -1,5 +1,11 @@
 # Asgard: Security and operations baseline
 
+Implementation update, 2026-11-17: the owner-approved account deletion source and
+maintenance workflow are implemented behind a disabled backend gate. See the
+[implementation guide](features/account-deletion.md) for activation order and
+verification limits. This records implementation status; it does not establish
+hosted scheduler, independent alerts, backup/restore or purge acceptance.
+
 25 October 2026. Documentation decisions delegated by the project owner. These are required controls and starting operating limits, not deployed settings, measured capacity, or a security certification. Preserve the foundation in [architecture](architecture.md). Schema, endpoint, and privileged-operation implementations still require technical review under AGENTS.md.
 
 Updated 26 October 2026: the owner selected an eight-character password minimum in the [password resolution](decisions.md#password-minimum-resolution). Local Auth/Profile source and Stage 4 storage/constraints exist; [Development](development.md#current-foundation-status-and-evidence) records their bounded evidence. Hosted protection, lifecycle jobs and final security acceptance remain pending. Requirements below must not be read as an inventory of deployed controls.

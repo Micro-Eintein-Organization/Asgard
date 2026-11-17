@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, Navigate, useNavigate } from "react-router";
+import { Link, Navigate, useNavigate, useSearchParams } from "react-router";
 import { useAuth } from "@/auth/context";
 import { authConfigured, supabase } from "@/auth/supabase";
 import { Eye, EyeOff } from "lucide-react";
@@ -23,6 +23,7 @@ type Fields = {
 type Mode = "login" | "register" | "verify" | "recovery";
 
 export function ConnectedAuthPage({ mode }: { mode: Mode }) {
+  const [params] = useSearchParams();
   const navigate = useNavigate();
   const auth = useAuth();
   const pendingSignupEmail = sessionStorage.getItem("asgard.signup-email");
@@ -182,6 +183,7 @@ export function ConnectedAuthPage({ mode }: { mode: Mode }) {
                   : "Sign in to return to your learning path."}
           </p>
         </header>
+        {mode === "login" && params.get("account_deleted") === "1" && <p role="status">Account access ended. Deletion is in progress.</p>}
         <form className="form-grid" onSubmit={handleSubmit(submit)}>
           <div className="field">
             <Label htmlFor="email">Email</Label>

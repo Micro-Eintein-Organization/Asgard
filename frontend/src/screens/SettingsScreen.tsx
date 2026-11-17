@@ -1,3 +1,4 @@
+import { AccountDeletion } from "@/features/auth/account-deletion";
 import { useScreenContext } from "@/features/counselor-context";
 import { ProfileSkills } from "@/features/competencies/profile-skills";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -9,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { StatePanel, Unavailable } from "@/components/shared";
+import { StatePanel } from "@/components/shared";
 import { LoadingIndicator } from "@/components/loading-indicator";
 import { coreApi, useCoreMutation, useCoreQuery } from "@/features/core/data";
 import { isCurrentAccount } from "@/auth/transport";
@@ -27,17 +28,8 @@ export function SettingsScreen() {
 
 function AccountCards() {
   return <>
-    <Card className="settings-card">
-      <header><h2>Sign-in methods</h2><p>You are signed in with email and password.</p></header>
-      <Button disabled variant="outline">Link Google</Button>
-      <Unavailable>Google linking is not available yet.</Unavailable>
-    </Card>
     <AuthenticatorSetting />
-    <Card className="settings-card">
-      <header><h2>Delete account</h2><p>Account deletion and removal of personal records are not available yet.</p></header>
-      <Button disabled variant="destructive">Delete account</Button>
-      <Unavailable>Account deletion is not available yet.</Unavailable>
-    </Card>
+    <AccountDeletion />
   </>;
 }
 
@@ -214,7 +206,7 @@ function SettingsEditor({ userId }: { userId: string }) {
           documents={<ProfileDocuments compact onGuardChange={onDocumentGuardChange} />} />
       </div>
       <section id="account-security" tabIndex={-1} className="settings-account-content" aria-label="Account and security" hidden={!accountView}>
-        <AccountCards />
+        {accountView && <AccountCards />}
       </section>
     </SettingsLayout>
     <ProfileEditorDialogs editor={editor} extraDirty={preferenceDirty || documentGuard.dirty || skillGuard.dirty} extraPending={preferenceSave.isPending || documentGuard.pending || skillGuard.pending} />

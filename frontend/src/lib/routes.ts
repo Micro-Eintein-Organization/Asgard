@@ -5,6 +5,9 @@ export const routes = {
   recovery: "/password-recovery",
   verify: "/check-email",
   status: "/status",
+  licenses: "/licenses",
+  credits: "/credits",
+  terms: "/terms",
   mfaSetup: "/set-up-2fa",
   mfaChallenge: "/verify-2fa",
 };

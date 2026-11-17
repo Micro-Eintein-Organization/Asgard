@@ -139,3 +139,30 @@ Google, reset-password implementation, deletion, hosted AI/uploads/photo process
 and real-user operational acceptance remain outside this increment. Vercel sharing
 does not make Render or Supabase private. No live site, custom SMTP, backup schedule,
 restore evidence or provider setting has been created by these source edits.
+
+
+## Security interface alignment, 2026-11-16
+
+Implementer: Codex. Owner/reviewer: @YakisobaNissin; owner requested in chat.
+Requirements REQ-01/13 and QA-09. Status: implemented locally; visual/hosted
+acceptance pending. Owner reports existing-account MFA works; new-account
+acceptance is not established by that report.
+
+Account and security omits the unimplemented Google/sign-in-methods card.
+Authenticator management uses the shared outline Button with the existing route.
+The account cards share Profile spacing, heading sizes and action alignment.
+Management has a wider Settings-style card and return link; onboarding/challenge
+retain their compact auth layout. Setup QR/manual key, recovery codes, status and
+error feedback use scoped styles with wrapped mobile controls. Disablement and
+all reauthentication/provider behavior are unchanged. No API/schema/key changes.
+Sources: SettingsScreen.tsx, features/auth/mfa-page.tsx and styles.css.
+
+Verification: TypeScript and seven existing MFA UI tests passed. Build/lint results
+are recorded in the handoff. No new test harness or provider requests were added.
+Manual acceptance: /settings/account should show authenticator and deletion cards
+without Google controls. Manage authenticator must look and behave like existing
+Settings buttons. At /set-up-2fa check existing-factor status, QR/manual setup,
+recovery display and errors at desktop/390px, keyboard focus and browser zoom.
+Keep recovery material private. Check /verify-2fa still accepts valid codes and
+rejects wrong ones. Actual visual review and new-account/provider acceptance remain
+pending. Deploy frontend only after review; existing backend remains compatible.

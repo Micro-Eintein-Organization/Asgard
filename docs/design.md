@@ -1,5 +1,14 @@
 # Asgard: Implemented UI foundation
 
+Footer follow-up, 2026-11-17: the black footer now links to public Licenses,
+Credits, draft Terms and conditions, and Service status. The existing `/status`
+connectivity checks now have an availability summary, separate API/data results,
+last-check time and manual retry. No historical uptime claim is displayed.
+These public pages reuse current typography, surfaces and focus behavior;
+focused-onboarding exclusions remain. See the
+[implementation and verification](features/footer-information-and-service-status.md)
+for completed checks, remaining browser coverage and Terms review.
+
 Longest streak, 2026-11-16: the Dashboard's existing calendar card now shows the
 account's actual longest qualifying run in place of Not available. Composition
 is unchanged. See [learning-streak evidence](features/learning-streaks.md).

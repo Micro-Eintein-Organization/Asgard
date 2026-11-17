@@ -22,6 +22,7 @@ import { CounselorLauncher } from "@/features/ai-guidance";
 import { CareerNavigation } from "./career-navigation";
 import { GuidanceBanner } from "./guidance";
 import { PageMotion } from "@/components/page-motion";
+import { FooterLinks } from "./information";
 
 const onboardingPaths = new Set([
   appRoutes.welcome,
@@ -267,9 +268,7 @@ function ShellContent() {
               Career exploration, at your pace.
             </span>
           </span>
-          <div>
-            <Link to={routes.status}>Service status</Link>
-          </div>
+          <FooterLinks />
         </footer>
       )}
     </>

@@ -39,3 +39,8 @@ export function authenticatedRequest(request: Request) {
     signal: AbortSignal.any([request.signal, controller.signal]),
   });
 }
+
+export function endAcceptedDeletion() {
+  unauthorized?.();
+  setTransportSession(null);
+}

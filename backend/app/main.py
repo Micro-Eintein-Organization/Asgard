@@ -116,6 +116,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
 
     app.state.comparison_insights = ComparisonInsights()
     app.include_router(ai_guidance_router, prefix="/api/v1")
+    from app.modules.account_deletion import router as deletion_router
+    app.include_router(deletion_router, prefix="/api/v1")
     app.include_router(profile_router, prefix="/api/v1")
     app.include_router(foundation_router, prefix="/api/v1")
     from app.modules.documents.routes import router as document_router
