@@ -1,3 +1,5 @@
+> Implementation record. Dated sections preserve their original evidence and limitations. For current behavior and activation status, use the [documentation baseline](../README.md) and linked owning specifications. Earlier plans do not override later recorded decisions.
+
 # Hosted content performance
 
 Implementer: Codex. Created/updated: 2026-11-15. Requirements: QA-09, A-09,

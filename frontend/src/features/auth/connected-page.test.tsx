@@ -4,15 +4,21 @@ import { Link, MemoryRouter, Route, Routes } from "react-router";
 import { AuthContext } from "@/auth/context";
 import { ConnectedAuthPage } from "./connected-page";
 import { WelcomePage } from "@/features/discovery/page";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const authMocks = vi.hoisted(() => ({
   verifyOtp: vi.fn(),
   resend: vi.fn(),
+  requestRecovery: vi.fn(),
 }));
 
 vi.mock("@/auth/supabase", () => ({
   authConfigured: true,
   supabase: { auth: authMocks },
+}));
+vi.mock("@/auth/recovery", () => ({
+  requestRecovery: authMocks.requestRecovery, recoveryCooldown: () => 0,
+  recoveryAcknowledgment: "If an account can use password recovery, we’ll send instructions.",
 }));
 
 beforeEach(() => {
@@ -22,7 +28,7 @@ beforeEach(() => {
 
 function renderVerificationPage(mode: "verify" | "recovery" = "verify") {
   return render(
-    <MemoryRouter>
+    <QueryClientProvider client={new QueryClient()}><MemoryRouter>
       <AuthContext.Provider
         value={{
           user: null,
@@ -51,7 +57,7 @@ function renderVerificationPage(mode: "verify" | "recovery" = "verify") {
           />
         </Routes>
       </AuthContext.Provider>
-    </MemoryRouter>,
+    </MemoryRouter></QueryClientProvider>,
   );
 }
 
@@ -137,14 +143,19 @@ it.each([
   expect(sessionStorage.getItem("asgard.signup-email")).toBeNull();
 });
 
-it("keeps recovery clearly unavailable without calling the provider", () => {
+it("requests recovery without revealing account existence or calling signup verification", async () => {
+  authMocks.requestRecovery.mockResolvedValue(undefined);
   renderVerificationPage("recovery");
   expect(
     screen.getByRole("heading", { name: "Reset your password." }),
   ).toBeVisible();
   expect(
     screen.getByRole("button", { name: "Send recovery instructions" }),
-  ).toBeDisabled();
+  ).toBeEnabled();
+  fireEvent.change(screen.getByLabelText("Email"), { target: { value: "owner@example.test" } });
+  fireEvent.click(screen.getByRole("button", { name: "Send recovery instructions" }));
+  expect(await screen.findByRole("status")).toHaveTextContent("If an account can use password recovery");
+  expect(authMocks.requestRecovery).toHaveBeenCalledWith("owner@example.test");
   expect(screen.queryByLabelText("Password")).not.toBeInTheDocument();
   expect(authMocks.verifyOtp).not.toHaveBeenCalled();
   expect(authMocks.resend).not.toHaveBeenCalled();

@@ -40,7 +40,11 @@ export function authenticatedRequest(request: Request) {
   });
 }
 
-export function endAcceptedDeletion() {
+export function endCurrentAccountAccess() {
   unauthorized?.();
   setTransportSession(null);
+}
+
+export function endAcceptedDeletion() {
+  endCurrentAccountAccess();
 }

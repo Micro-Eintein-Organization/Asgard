@@ -1,3 +1,5 @@
+> Implementation record. Dated sections preserve their original evidence and limitations. For current behavior and activation status, use the [documentation baseline](../README.md) and linked owning specifications. Earlier plans do not override later recorded decisions.
+
 # Windows One-Click Developer Onboarding
 
 **Feature name:** Asgard Windows first-run and daily-start launchers

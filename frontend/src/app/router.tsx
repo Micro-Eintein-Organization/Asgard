@@ -24,6 +24,7 @@ import { EscoReferencePage } from "@/features/catalog/esco";
 
 import { CounselorPage } from "@/features/ai-guidance";
 import { MfaPage } from "@/features/auth/mfa-page";
+import { ResetPasswordPage } from "@/features/auth/reset-password";
 
 export const router = createBrowserRouter([
   {
@@ -44,6 +45,7 @@ export const router = createBrowserRouter([
       { path: routes.login, element: <AuthPage mode="login" /> },
       { path: routes.register, element: <AuthPage mode="register" /> },
       { path: routes.recovery, element: <AuthPage mode="recovery" /> },
+      { path: routes.resetPassword, element: <ResetPasswordPage /> },
       { path: routes.verify, element: <AuthPage mode="verify" /> },
       { path: routes.status, element: <FoundationStatus /> },
       { path: routes.licenses, element: <InformationPage page="licenses" /> },

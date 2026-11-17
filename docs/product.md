@@ -21,58 +21,17 @@ requirements:
 
 # Asgard: Product requirements and scope
 
+Documentation baseline: 2026-11-17. Requirements and acceptance IDs below remain stable. Recorded owner resolutions are consolidated in [Decisions](decisions.md); this editorial baseline does not approve unresolved requirements or certify release acceptance. Original BRIEF provenance remains open under AUD-10.
 
-## Owner-authorized local testing, 2026-11-04
+Asgard connects technology career exploration, guided Discovery, curated learning roadmaps, and reported learning progress for adults aged 18 and above. [Pages](pages-and-interactions.md) and [Journeys](user-journeys.md) describe the current flow. [Development](development.md) and feature guides separate implemented source from verified behavior.
 
-After setup stopped on the new pending migration, the owner explicitly requested
-applying it and implementing all required local activation so they could test.
-The single competency migration and 120 Asgard-authored mappings are now installed
-in the normal local environment, preserving all pre-existing private-table digests.
-This is a local-test publication exception with independent content/code review
-still pending; it does not approve hosted use or claim validated occupational
-requirements. See [activation evidence](features/competency-comparison.md#normal-local-test-activation-2026-11-04).
+## Current scope resolutions
 
-## Docker verification follow-up, 2026-11-04
+Guided Discovery v2 supersedes earlier five-round and 8–10-question proposals for new sessions; existing drafts retain their version. V2 produces deterministic first suggestions, with provider-backed capabilities separately gated. The published roadmap catalog is the candidate roster; earlier three-, seven-, and twelve-role counts are historical milestones rather than a fixed maximum.
 
-The resumed competency checks passed the isolated migration/private-state upgrade,
-draft/repeat/conflict publication, 21 pinned-container unit/Auth integration cases,
-and scoped Chrome persistence/comparison/removal/layout/focus checks. SQL policy
-quoting, readback ordering and comparison-trigger contrast were corrected. Normal
-migration/activation, real content approval and independent human review remain
-pending. See [dated execution evidence](features/competency-comparison.md#resumed-docker-acceptance-2026-11-04).
-This does not change final-MVP or hosted release gates.
+Profile skill editing and resume-assisted confirmation extend the original profile scope. Career-to-career comparison remains available. Roadmap experience comparison is disabled; W07 practice/reflection presentation is dormant while APIs/data are retained. Photos, PDF processing, Counselor, MFA, and deletion depend on their configuration and acceptance gates. See [current decisions](decisions.md#current-resolutions).
 
-## Implementation follow-up, 2026-11-04
-
-The owner subsequently approved proceeding with the proposed migration/API scope
-and selected Anti Slop during. Skill-profile/comparison source and generated clients
-are now implemented. Independent review, database activation, content publication
-and end-to-end acceptance remain pending; earlier preparation-only status below is
-historical. See [implementation evidence and limitations](features/competency-comparison.md).
-No final-MVP release gate is marked complete by this update.
-
-
-## Skill comparison increment: owner direction, 2026-11-04
-
-The owner selected feature-first local delivery: manual skill profiles and
-comparison across the 12 current careers, using Asgard-authored learning content.
-The [decision resolution](decisions.md#skill-comparison-delivery-resolution-2026-11-04)
-and [feature specification](specs/competency-comparison.md) own this bounded addition.
-It adds a manually editable skill capability to the later increment, superseding
-the exclusion of that form in REQ-11 only for this new increment. Existing PDF-derived
-context and recommendation behavior are unchanged. Hosting/additional account
-controls are deferred from its immediate sequence, not removed from final-MVP scope.
-Technical/content review and mandatory focused checks remain required. Earlier
-seven-role launch coverage is a minimum; this increment targets all 12 current roles.
-
-
-**Version 0.3 · Updated 26 October 2026 · Status: Product baseline with recorded owner resolutions; partial foundation implemented, feature acceptance pending**
-
-Consolidated 25 October 2026 from the product brief, PRD, and scope. Original requirements and acceptance statements are retained. The owner delegated outstanding choices on 25 October 2026; [decisions](decisions.md) distinguishes selected policy from provider conflicts, authored content and unrun evidence. [Journeys](user-journeys.md) describe routes and [pages and interactions](pages-and-interactions.md) describe screen behavior.
-
-Asgard connects career explanations with curated learning paths so people can understand the work, investigate options, and choose a practical learning step. The assumed need and intended benefits still require user research. Suggestions are advisory and uncertainty must not become an inferred ability or preference.
-
-[Development](development.md#current-foundation-status-and-evidence) owns implementation status and evidence. Auth/Profile source and shared SQL/API scaffolding exist; labeled sample pages and 501 feature operations do not meet these end-to-end acceptance criteria. The [password minimum resolution](decisions.md#password-minimum-resolution) selects 8 characters; [Security and operations](security-and-operations.md) owns the complete account policy. Frontmatter still retains draft status; recorded resolutions do not approve the whole PRD. The missing originating BRIEF artifact is tracked under [decision provenance](decisions.md#documentation-authority-and-unresolved-integration-records).
+Eight characters remains the password minimum. Desktop/laptop scope and accessible reflow remain required. Hosted readiness, privacy, provider quality, operations, and complete browser/accessibility acceptance are not established by documentation completion.
 
 ## Vocabulary
 
@@ -144,7 +103,7 @@ Guided discovery and explained recommendations. REQ-05 also governs career sugge
 - **Behavior:** recommendations shall use available catalog content and relevant user context. MVP inputs include Discovery answers when provided, the explicitly selected current roadmap, and recorded topic progress. Guidance shall adapt to relevant changes in these inputs rather than remain fixed to the initial Discovery result. Users who bypass Discovery remain eligible for guidance based on their explicit roadmap choice and topic progress. Suggestions appear in Discovery results and Careers.
 - **Acceptance:** each recommendation references an available catalog item and has a plain-language explanation supported by the relevant inputs. The same context is not required to produce different suggestions on every visit. Changes to recommendations shall not automatically change the current roadmap or topic states. Unsure can produce varied broad suggestions. Suitability percentages, assessed competency, job-readiness claims, and invented user skills shall not be displayed. Recorded completion shall not be treated as proof of mastery or career preference.
 - **States:** no result, incomplete content, invalid identifier, request failure, previous successful result during a retake. Preserve answers and offer retry/browsing without fabricating a result.
-- **MVP approach (updated 24 October 2026):** use LLM-based recommendations grounded in curated catalog entries and permitted user context, returning existing career IDs and supported explanations through a validated result contract. Keep optional PDF extraction separate. Agent-based recommendations and PDF reviewing are possible future extensions; maintain separate service boundaries to support them. This supersedes the earlier rule-based ranking proposal. See the [recommendation specification](specs/career-recommendations.md).
+- **Current approach:** completed Guided Discovery v2 uses saved deterministic first suggestions. Provider-backed recommendations remain available under their own context, quota, and evidence rules. Keep optional PDF extraction separate. The v2 resolution supersedes the earlier requirement that all first suggestions use an LLM. See the [recommendation specification](specs/career-recommendations.md).
 - **Dependencies:** selected F-002 count/diversity/refresh/input policy, Groq adapter/candidate evaluation, reviewed catalog attributes, and encoded/tested Pydantic/OpenAPI contracts. Software interest does not imply AI interest; automation does not necessarily involve AI.
 - **Journeys:** J-02, J-05.
 
@@ -250,7 +209,7 @@ Profile information, optional document analysis, Discovery retakes, account/secu
 ### REQ-11: Manage profile, preferences, and retakes
 
 - **Outcome:** update personal context without losing learning history.
-- **Behavior:** Settings includes Profile, Role, account/security, the agreed 2FA scope, and Logout. Name/image editing and optional background enrichment belong in Profile. The MVP shall offer optional PDF upload and analysis from Settings / Profile for users who wish to supply previous work, projects, or other relevant experience. Users can upload, replace, or remove a document. Successful analysis shall automatically update the document-derived profile context used for recommendations, without a mandatory confirmation step. A separate manually editable skills form is not part of the current requirement. Upload shall not require Discovery completion or verified professional experience. F-002 defines logical extraction fields/provenance and budgets; security and operations defines provider privacy/retention. Encode and review implementation contracts before code. Chatbot settings are outside MVP. Account/security shows linked methods, MFA/recovery status, explicit linking and deletion actions, using the security baseline.
+- **Behavior:** Settings includes Profile, Role, account/security, the agreed 2FA scope, and Logout. Name/image editing and optional background enrichment belong in Profile. The MVP shall offer optional PDF upload and analysis from Settings / Profile for users who wish to supply previous work, projects, or other relevant experience. Users can upload, replace, or remove a document. Successful analysis shall automatically update the document-derived profile context used for recommendations, without a mandatory confirmation step. Manual skill editing and confirmed resume-assisted skill review are implemented extensions; their confirmed reports remain distinct from automatically applied document analysis. Upload shall not require Discovery completion or verified professional experience. F-002 defines logical extraction fields/provenance and budgets; security and operations defines provider privacy/retention. Encode and review implementation contracts before code. Chatbot settings are outside MVP. Account/security shows linked methods, MFA/recovery status, explicit linking and deletion actions, using the security baseline.
 - **Profile fields:** First name (1–100 Unicode characters after outer trimming), optional Surname (0–100) and optional photo. Accept diverse names/mononyms; reject control characters. Saving First name completes the basic profile; photo/PDF remain optional. Save profile explicitly commits name/photo; Save preferences independently commits catalog preference. Photo validation follows the security baseline.
 - **Discovery context display:** Profile shall show the available saved Discovery result context and a Retake Discovery action. Without a successful result, show an appropriate empty state. This context shall remain distinct from the explicitly selected current roadmap; retaking shall not automatically change that roadmap.
 - **Preferred primary field:** users shall be able to select and save a preferred technology category in Settings / Profile. It determines the default category shown when opening the career catalog. Changing this preference shall not itself change recommendations, Discovery answers, the current roadmap, or topic progress. Users remain free to browse other categories.
@@ -267,23 +226,23 @@ Profile information, optional document analysis, Discovery retakes, account/secu
 - **Dependencies:** encode/test selected F-002 extraction/provenance and security lifecycle policies, including actual provider capabilities. Optional enrichment remains independent of Discovery and learning.
 - **Journeys:** J-04 through J-07.
 
-## Excluded and deferred capabilities
+## Extended and deferred capabilities
 
-These capabilities do not form part of the MVP acceptance scope. Their identifiers are retained for traceability.
+These identifiers originated outside the initial MVP and now have recorded implemented extensions. Their broader assessment/tutoring ambitions remain deferred.
 
-### REQ-06: Saved careers and comparison [comparison outside MVP]
+### REQ-06: Saved careers and comparison
 
 - **Outcome:** revisit or compare interesting roles.
-- **Status:** career comparison is excluded from MVP. Standalone career bookmarking is not included in the defined baseline. The following requirements apply only if these capabilities enter a later release.
+- **Status:** career comparison and saved alternatives are implemented extensions. The current two-career view, private notes, and explicit focus separation follow the [comparison specification](specs/career-exploration-comparison.md).
 - **If included:** define comparison attributes/selection limits and save persistence. Saving is distinct from Set as current roadmap; it does not restrict catalog access or replace focus.
 - **Conditional acceptance:** saves persist for their owning account; comparison uses the same available attributes for selected roles; errors are visible. Incomplete career information is not generated to fill comparison gaps.
 - **Dependencies:** explicit launch scope, content, persistence design.
 - **Journeys:** optional extension to J-01/J-04, not a baseline step.
 
-### REQ-12: Contextual AI assistance [outside MVP]
+### REQ-12: Contextual AI assistance
 
 - **Outcome if included:** ask questions grounded in curated career/roadmap context.
-- **Status:** a user-facing conversational assistant and associated settings are excluded from MVP. In-topic tutoring and AI-generated roadmap structures are outside the current baseline. The following requirements apply only if these capabilities enter a later release.
+- **Status:** the optional contextual Counselor is implemented behind its configuration gate. It is read-only and links to curated career/learning content. In-topic tutoring and AI-generated roadmap structures remain outside scope. See [current implementation](features/contextual-counselor-profile.md).
 - **Conditional acceptance:** use available curated context, validate referenced destinations, acknowledge unavailable answers, and keep browsing/learning usable during provider failure. Do not claim that an assistant exists or is approved for implementation.
 - **Dependencies:** product scope, provider, cost/data handling, contextual sources.
 
@@ -291,7 +250,7 @@ These capabilities do not form part of the MVP acceptance scope. Their identifie
 
 The baseline experience is account entry → guided or direct catalog exploration → role explanation → curated roadmap/topic/resources → explicit current focus → reversible topic states → Dashboard and Settings. Launch coverage spans the major technology categories, with fewer roles initially available per category. Recommendations shall reflect relevant Discovery responses, current-roadmap selection, and recorded topic progress as specified in REQ-05.
 
-Career comparison (REQ-06) and the user-facing assistant (REQ-12) are outside MVP. Experience-based AI starting-topic advice is not part of the defined baseline; standalone bookmarking remains unapproved. PDF upload and analysis are included in the MVP as an optional Profile capability for users supplying additional experience or background. F-002 and Security and operations select processing limits, disclosure and provenance; implementation review remains required. The six-category, seven-role inventory is confirmed; authored curricula and launch schedule still need delivery work. Architecture is approved; capacity and runtime gates remain unverified. Each of the seven launch roles requires a complete career explanation and introductory roadmap under REQ-02 and REQ-07.
+Career comparison (REQ-06) and the user-facing assistant (REQ-12) were outside the original MVP and are now implemented extensions under recorded owner decisions. Experience-based AI starting-topic advice is not part of the defined baseline; standalone bookmarking remains unapproved. PDF upload and analysis are included in the MVP as an optional Profile capability for users supplying additional experience or background. F-002 and Security and operations select processing limits, disclosure and provenance; implementation review remains required. The initial six-category, seven-role minimum is retained; published expansions and their review status are recorded in feature guides. Architecture is approved; capacity and runtime gates remain unverified. Each of the seven launch roles requires a complete career explanation and introductory roadmap under REQ-02 and REQ-07.
 
 Live job-market scraping, market analytics, AI-generated graphs, full course delivery, assessed competencies, achievements, and detailed learning analytics are outside the currently defined baseline.
 
@@ -299,10 +258,10 @@ Live job-market scraping, market analytics, AI-generated graphs, full course del
 
 - **Career/category:** stable identifier, working taxonomy, plain-language explanation, associated roadmap references, editorial/source ownership.
 - **Roadmap/topic/resource:** authored relationships, meaningful milestone grouping, explanations, resource links/access labels, tool guidance, maintenance/version decisions.
-- **Discovery and recommendations:** questionnaire version, supplied answers including explicit uncertainty, relevant roadmap/progress context, and recommendation results. Stage 4 supplies versioned identity/storage and generated API scaffolding; technical review, authored option content and feature services remain required. Retention follows the security baseline.
+- **Discovery and recommendations:** questionnaire version, supplied answers including explicit uncertainty, relevant roadmap/progress context, and recommendation results. Versioned identity/storage, generated contracts, authored questionnaires, and service handlers are implemented; applicable content review and unrun acceptance remain required. Retention follows the security baseline.
 - **Current focus:** explicit account-to-roadmap choice, separate from selected category and recommendation results.
 - **Topic state:** account-owned state and relevant ordering/history data; no assessment score is implied.
-- **Profile:** name/image and optional supplied background; no profession-based automatic skill assignment. Document lifecycle follows the security baseline; assistant history is outside MVP.
+- **Profile:** name/image and optional supplied background; no profession-based automatic skill assignment. Document lifecycle follows the security baseline; durable assistant history remains deferred; current conversation continuity is in memory.
 
 ## Publication and content revision policy
 
@@ -431,17 +390,17 @@ All seven named launch roles are the content floor; each of the six categories i
 ### Build-now boundaries
 
 - Account entry and required verification / recovery, with new versus returning routing: REQ-01, REQ-13.
-- Conditional Discovery questions and explained results under F-001's selected controls, using the five existing themes as a content baseline: REQ-04, REQ-05. Later question/choice sets may depend on earlier answers. The reviewed route map, persistence, authored content, service integration and comprehension/quality evidence remain required.
+- Conditional Discovery questions and explained results under F-001's selected controls, using the five existing themes as a content baseline: REQ-04, REQ-05. Later question/choice sets may depend on earlier answers. V2 route definitions, persistence and service integration are implemented; remaining comprehension/quality evidence is still required.
 - Searchable category catalog, role explanation, curated roadmap / resources: REQ-02, REQ-03, REQ-07.
 - Explicit current roadmap, reversible independent topic states, and account-wide single Learning topic: REQ-08, REQ-09.
 - Dashboard continuation, milestone progress, groups, activity, and relevant empty / end states: REQ-10.
 - Profile and catalog preferences: relevant parts of REQ-11.
 
-This list describes the proposed protected demo. It does not establish that all work fits one day. No authentication, calendar, or account-management requirement has been silently removed. Any further working-demo deferrals must be recorded explicitly before approving its implementation plan.
+This list preserves the original protected-core scope; recorded extensions above describe the current application. It does not establish a delivery schedule. No authentication, calendar, or account-management requirement has been silently removed. Any further working-demo deferrals must be recorded explicitly before approving its implementation plan.
 
 ### Remaining delivery evidence
 
-- Reviewed explanations, curricula, topic membership, and resources for the confirmed six-category, seven-role inventory.
+- Reviewed explanations, curricula, topic membership, and resources for the published six-category career inventory.
 - Final-MVP account security, linking, deletion and optional working PDF analysis remain required. A demo may label PDF analysis unavailable, but must never claim it worked. No further silent deferrals.
 - Execute the verification rubric and 20-active-user workload; record actual evaluator attendance and person-hours before promising a delivery date.
 - Approved architecture exists; reviewed implementation contracts and bounded feature plans still require technical review before code. Documentation choices do not create a runtime.

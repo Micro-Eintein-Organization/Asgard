@@ -1,3 +1,5 @@
+> Implementation record. Dated sections preserve their original evidence and limitations. For current behavior and activation status, use the [documentation baseline](../README.md) and linked owning specifications. Earlier plans do not override later recorded decisions.
+
 # Career exploration and saved comparison
 
 ## Aligned work comparison rows, 2026-11-08
@@ -35,7 +37,7 @@ Discovery note.
 
 Implementer: Codex. Created: 2026-11-05. Last updated: 2026-11-05.
 Status: implemented and activated for local testing after concrete owner approval; focused checks and the short browser journey passed. Technical reviewer: @YakisobaNissin. Independent code review pending.
-Requirements: CEJ-01–06 in the [owning specification](../specs/career-exploration-comparison.md), extending PM-F06 / W06 and existing PM-I1 experience behavior. Owner authorized the bounded implementation plan in this chat; no independent approval is inferred.
+Requirements: CEJ-01–06 in the [owning specification](../specs/career-exploration-comparison.md), extending PM-F06 / W06 and existing PM-I1 experience behavior. Owner authorized the bounded implementation plan in the recorded task; no independent approval is inferred.
 
 ## Collapsible roadmap introduction, 2026-11-06
 

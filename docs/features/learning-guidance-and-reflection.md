@@ -1,3 +1,5 @@
+> Implementation record. Dated sections preserve their original evidence and limitations. For current behavior and activation status, use the [documentation baseline](../README.md) and linked owning specifications. Earlier plans do not override later recorded decisions.
+
 # Personal learning guidance and reflection
 
 Implementer Codex. Created and updated 2026-11-05. PM-W07, FUT-03 and FUT-06. Status is active locally after owner approval in chat. Technical reviewer is @YakisobaNissin. [Roadmap scope](../post-mvp-roadmap.md#pm-w07-personal-learning-guidance-and-reflection)

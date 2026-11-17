@@ -1,3 +1,5 @@
+> Implementation record. Dated sections preserve their original evidence and limitations. For current behavior and activation status, use the [documentation baseline](../README.md) and linked owning specifications. Earlier plans do not override later recorded decisions.
+
 # Shared Learning Topic on Dashboard
 
 ## Longest streak enabled, 2026-11-16
@@ -76,12 +78,12 @@ Statuses and progress still come from presentation fixtures; topic selection is 
 
 - [Dashboard](../../frontend/src/features/dashboard/page.tsx)
 - [Roadmaps](../../frontend/src/features/roadmaps/page.tsx)
-- [Local topic state](../../frontend/src/lib/learning-state.ts)
+- Local topic state (historical source: `frontend/src/lib/learning-state.ts`; absent from the current checkout)
 - [Careers](../../frontend/src/features/catalog/page.tsx)
 - [Shared state panels](../../frontend/src/components/preview-states.tsx)
 - [Routes and error fallback](../../frontend/src/app/router.tsx)
 - [Discovery and sample-results return](../../frontend/src/features/discovery/page.tsx) and [Results](../../frontend/src/features/recommendations/page.tsx)
-- [Focused flow tests](../../frontend/tests/learning-flow.test.tsx)
+- Focused flow tests (historical source: `frontend/tests/learning-flow.test.tsx`; absent from the current checkout)
 
 Product and architecture sources remain authoritative: [architecture](../architecture.md), [Discovery specification](../specs/discovery.md), [decisions](../decisions.md), and [pages and interactions](../pages-and-interactions.md).
 

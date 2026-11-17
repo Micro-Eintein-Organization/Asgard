@@ -1,3 +1,5 @@
+> Research material. This is not current implementation or release authority. Use the [documentation index](../README.md) and owning specifications; any dated approvals retain their recorded scope.
+
 # Paper reconstruction and scope review
 
 Author: Codex. Date: 2026-11-05. Status: reconstructed drafts for owner/adviser review. Owner request: recreate the missing paper copies. No application changes or publication are included.

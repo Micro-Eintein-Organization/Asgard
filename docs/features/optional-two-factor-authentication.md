@@ -1,3 +1,5 @@
+> Implementation record. Dated sections preserve their original evidence and limitations. For current behavior and activation status, use the [documentation baseline](../README.md) and linked owning specifications. Earlier plans do not override later recorded decisions.
+
 # Optional two-factor authentication and hosted account demo
 
 2026-11-14 Render Free correction: the owner encountered Blueprint rejection of
@@ -24,7 +26,7 @@ Required reviewer/operator: @YakisobaNissin. Requirements: REQ-01/13,
 QA-01/02/09/11, A-01/02/09, AUTH-C2.
 
 The owner approved implementation of the [bounded plan](../plans/hosting-account-demo.md)
-in this chat, selected the current app branch and retained built-in email for their
+in the recorded task, selected the current app branch and retained built-in email for their
 eligible address. The later direction requests a team-wide Vercel-link demo with
 real persistence. This approval does not establish provider capabilities or test results.
 Owning requirements remain [Product](../product.md),

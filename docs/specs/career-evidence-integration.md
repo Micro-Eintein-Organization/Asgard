@@ -1,5 +1,8 @@
 # Full evidence and recommendation integration: technical proposal
 
+Documentation baseline: 2026-11-17. Current [decisions](../decisions.md#current-resolutions) supersede earlier delivery sequencing and fixed catalog counts. Profile skill editing, confirmed resume review, and career-to-career comparison are implemented; roadmap experience comparison is disabled. Occupational reference entries require authored roadmaps and reviewed publication before becoming recommendation candidates. Hosted activation and unrun quality/privacy acceptance remain separate. Dated increment details below retain their original scope.
+
+
 Current local status, 2026-11-05: owner-approved concrete migration/publication is
 applied for all twelve careers; startup and authenticated smoke passed with data
 preserved. This supersedes the earlier activation-pending status below. Versioned

@@ -1,3 +1,5 @@
+> Implementation record. Dated sections preserve their original evidence and limitations. For current behavior and activation status, use the [documentation baseline](../README.md) and linked owning specifications. Earlier plans do not override later recorded decisions.
+
 # Roadmap content expansion
 
 - Implementer: Codex
@@ -6,7 +8,7 @@
 - Status: locally published; independent curriculum/technical acceptance pending
 - Requirements: [REQ-02, REQ-03 and REQ-07](../product.md)
 - Reviewer: project owner, mapped in [CODEOWNERS](../../.github/CODEOWNERS)
-- Authorization: owner approved the plan and current branch, then explicitly waived resource verification and requested import as supplied in this chat on 2026-11-02.
+- Authorization: owner approved the plan and current branch, then explicitly waived resource verification and requested import as supplied in the recorded task on 2026-11-02.
 
 ## Implemented behavior
 

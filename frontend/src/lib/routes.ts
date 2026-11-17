@@ -3,6 +3,7 @@ export const routes = {
   login: "/sign-in",
   register: "/create-account",
   recovery: "/password-recovery",
+  resetPassword: "/reset-password",
   verify: "/check-email",
   status: "/status",
   licenses: "/licenses",

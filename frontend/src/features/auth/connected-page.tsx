@@ -13,6 +13,7 @@ import { resendCooldown, startResendCooldown } from "@/auth/cooldown";
 import { validateNewPassword } from "@/auth/password";
 import { appRoutes, routes } from "@/lib/routes";
 import { emailDeliveryError } from "@/auth/email-errors";
+import { recoveryAcknowledgment, recoveryCooldown, requestRecovery } from "@/auth/recovery";
 
 type Fields = {
   email: string;
@@ -42,7 +43,7 @@ export function ConnectedAuthPage({ mode }: { mode: Mode }) {
   const [verificationComplete, setVerificationComplete] = useState(false);
   const [visible, setVisible] = useState(false);
   const [resending, setResending] = useState(false);
-  const [remaining, setRemaining] = useState(resendCooldown);
+  const [remaining, setRemaining] = useState(() => mode === "recovery" ? recoveryCooldown() : resendCooldown());
   useEffect(() => {
     if (mode !== "recovery" && auth.user?.email_confirmed_at && !auth.loading &&
         auth.mfa !== "checking" && !auth.error)
@@ -54,18 +55,23 @@ export function ConnectedAuthPage({ mode }: { mode: Mode }) {
       );
   }, [auth.user, auth.loading, auth.mfa, auth.error, navigate, mode]);
   useEffect(() => {
-    const timer = setInterval(() => setRemaining(resendCooldown()), 1000);
+    const timer = setInterval(() => setRemaining(mode === "recovery" ? recoveryCooldown() : resendCooldown()), 1000);
     return () => clearInterval(timer);
-  }, []);
+  }, [mode]);
   function beginCooldown() {
     setRemaining(startResendCooldown());
   }
   async function submit(values: Fields) {
-    if (!supabase || mode === "recovery") return;
+    if (!supabase) return;
     setError("");
     setMessage("");
     try {
-      if (mode === "login") {
+      if (mode === "recovery") {
+        try {
+          await requestRecovery(values.email);
+          setMessage(recoveryAcknowledgment);
+        } finally { setRemaining(recoveryCooldown()); }
+      } else if (mode === "login") {
         const { error } = await supabase.auth.signInWithPassword({
           email: values.email.trim(),
           password: values.password,
@@ -177,13 +183,14 @@ export function ConnectedAuthPage({ mode }: { mode: Mode }) {
             {mode === "verify"
               ? `We sent a six-digit code to ${pendingSignupEmail}. Check your inbox and spam folder.`
               : mode === "recovery"
-                ? "Password recovery is not connected yet. No recovery email will be sent."
+                ? "Enter your account email. Open the recovery link in this browser to choose a new password."
                 : mode === "register"
                   ? "A place to explore your options and keep your learning together."
                   : "Sign in to return to your learning path."}
           </p>
         </header>
         {mode === "login" && params.get("account_deleted") === "1" && <p role="status">Account access ended. Deletion is in progress.</p>}
+        {mode === "login" && params.get("password_reset") === "1" && <p role="status">Your password was changed. Sign in with your new password.</p>}
         <form className="form-grid" onSubmit={handleSubmit(submit)}>
           <div className="field">
             <Label htmlFor="email">Email</Label>
@@ -309,7 +316,7 @@ export function ConnectedAuthPage({ mode }: { mode: Mode }) {
             type="submit"
             disabled={
               !authConfigured ||
-              mode === "recovery" ||
+              (mode === "recovery" && remaining > 0) ||
               isSubmitting ||
               resending
             }
@@ -321,10 +328,10 @@ export function ConnectedAuthPage({ mode }: { mode: Mode }) {
                 : mode === "register"
                   ? "Send email code"
                   : mode === "recovery"
-                    ? "Send recovery instructions"
+                    ? remaining > 0 ? `Send again in ${remaining}s` : "Send recovery instructions"
                     : "Verify"}
           </Button>
-          {!authConfigured && mode !== "recovery" && (
+          {!authConfigured && (
             <Unavailable>
               Account access is not configured in this environment. No email
               will be sent and no account will be created.
@@ -368,13 +375,6 @@ export function ConnectedAuthPage({ mode }: { mode: Mode }) {
           <Link to={mode === "login" ? "/create-account" : "/sign-in"}>
             {mode === "login" ? "Create an account" : "Return to sign-in"}
           </Link>
-          <p className="field-help mt-3">
-            This local build supports email/password only. Password recovery is
-            not connected yet.
-          </p>
-          <p className="field-help mt-3">
-            Google sign-in and authenticator setup await provider verification.
-          </p>
         </div>
       </Card>
     </div>

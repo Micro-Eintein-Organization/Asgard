@@ -39,7 +39,7 @@ These instructions apply to human contributors and AI agents. Read this file at 
 - Read runtime/dependency pins from `.node-version`, package manifests/locks and Dockerfiles. Use root `npm ci` for the locked Supabase CLI and Docker for application dependencies. Host Python or a global Supabase CLI is not required by this workflow. Do not upgrade versions or regenerate locks merely to match the current machine.
 - Each developer uses local resources and their own approved credentials. Loopback URLs refer to that developer's computer; project IDs refer to that Docker daemon's resources. Multiple checkouts/worktrees with the same project ID are not isolated; coordinate before starting or stopping shared local services.
 - Fresh-clone setup is not fully automated: the active Supabase config needs ignored local signing keys, and authenticated operation needs separately provisioned restricted-role credentials and environment approval. Do not copy another developer's `.env`/private keys, assume prior activation approval applies elsewhere, replace the runtime role with an administrator, or report connectivity as authenticated acceptance.
-- Read the [Stage 4 shared contracts/handoff](docs/development.md#stage-4-shared-contracts-and-handoff) before feature implementation. Versioned SQL is schema authority; generated OpenAPI/TypeScript is wire-contract authority. The scaffold's `501` responses and labeled sample fixtures are intentional until feature owners implement the corresponding behavior.
+- Read the [current shared contracts/handoff](docs/development.md#shared-contracts-and-handoff) before feature implementation. Versioned SQL is schema authority; generated OpenAPI/TypeScript is wire-contract authority. Feature handlers now implement the shared operations; historical scaffold `501` responses and sample fixtures are not current behavior. Use the current development guide and dated feature evidence for implementation and acceptance status.
 - Keep feature logic in its owning module. Coordinate shared route registration, migrations and regenerated clients; preserve cross-feature ownership, context revisions and concurrency guards. Follow the recorded review gates before independent feature-agent implementation.
 
 ## Change boundaries
@@ -110,6 +110,8 @@ When instructions disagree, do not silently select one. Identify the conflicting
 Where an approved document explicitly supersedes older guidance, follow that stated boundary and report the stale reference. Otherwise, pause only the work that depends on the conflict and continue independent authorized work. Record the owner's resolution in the owning document and update affected references before resuming dependent work.
 
 ## Document map
+
+Use the [documentation index](docs/README.md) for the 2026-11-17 editorial baseline and archive boundaries. Superseded plans and execution records are historical; consolidation does not waive unresolved requirements or release checks.
 
 Before changing frontend components or layouts, consult the [implemented design system](docs/design.md) and reuse its shared components and tokens.
 

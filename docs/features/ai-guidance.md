@@ -1,8 +1,10 @@
+> Implementation record. Dated sections preserve their original evidence and limitations. For current behavior and activation status, use the [documentation baseline](../README.md) and linked owning specifications. Earlier plans do not override later recorded decisions.
+
 # Discovery reliability, comparison insights, and AI Counselor
 
 ## Learning progress and authored practice, 2026-11-09
 
-Codex implemented REQ-12 / PM-W08 under Yakisoba Nissin's approved local
+Codex implemented REQ-12 / PM-W08 under the project owner's approved local
 plan. Technical reviewer `@YakisobaNissin`. Local signed-in acceptance passed.
 
 The [Counselor](../../backend/app/modules/ai_guidance.py) and Dashboard share
