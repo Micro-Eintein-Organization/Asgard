@@ -73,7 +73,7 @@ component and generated client. See [content authoring](../content-authoring.md)
 
 ## Local setup and operations
 
-Run from the checkout root after the existing [getting started](../../README.md#getting-started)
+Run from the checkout root after the existing [getting started](../getting-started.md#getting-started)
 sequence provisions this developer's local signing keys, restricted credentials and stack.
 
 1. Review/apply pending migrations with the pinned local CLI. The daily starter
