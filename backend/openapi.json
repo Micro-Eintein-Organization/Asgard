@@ -523,6 +523,98 @@
         "title": "CareerShortlist",
         "type": "object"
       },
+      "CareerSkillMatch": {
+        "additionalProperties": false,
+        "properties": {
+          "benchmark_skill_count": {
+            "title": "Benchmark Skill Count",
+            "type": "integer"
+          },
+          "career_id": {
+            "format": "uuid",
+            "title": "Career Id",
+            "type": "string"
+          },
+          "career_title": {
+            "title": "Career Title",
+            "type": "string"
+          },
+          "display_count": {
+            "title": "Display Count",
+            "type": "string"
+          },
+          "matched_skill_count": {
+            "title": "Matched Skill Count",
+            "type": "integer"
+          },
+          "rank": {
+            "title": "Rank",
+            "type": "integer"
+          },
+          "sample_note": {
+            "title": "Sample Note",
+            "type": "string"
+          },
+          "skills": {
+            "items": {
+              "$ref": "#/components/schemas/SkillMatchItem"
+            },
+            "title": "Skills",
+            "type": "array"
+          }
+        },
+        "required": [
+          "career_id",
+          "career_title",
+          "rank",
+          "matched_skill_count",
+          "benchmark_skill_count",
+          "display_count",
+          "skills",
+          "sample_note"
+        ],
+        "title": "CareerSkillMatch",
+        "type": "object"
+      },
+      "CareerSkillMatchResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/CareerSkillMatch"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "sample_label": {
+            "title": "Sample Label",
+            "type": "string"
+          },
+          "source": {
+            "title": "Source",
+            "type": "string"
+          },
+          "source_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Version"
+          }
+        },
+        "required": [
+          "source",
+          "source_version",
+          "sample_label",
+          "items"
+        ],
+        "title": "CareerSkillMatchResponse",
+        "type": "object"
+      },
       "CatalogProgress": {
         "additionalProperties": false,
         "properties": {
@@ -3703,6 +3795,82 @@
         "title": "ResumeReviewAvailability",
         "type": "object"
       },
+      "ResumeSignal": {
+        "additionalProperties": false,
+        "properties": {
+          "analysis_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Analysis Id"
+          },
+          "document_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Document Id"
+          },
+          "kind": {
+            "const": "skill",
+            "title": "Kind",
+            "type": "string"
+          },
+          "matched_phrases": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Matched Phrases",
+            "type": "array"
+          },
+          "page": {
+            "title": "Page",
+            "type": "integer"
+          },
+          "revision": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Revision"
+          },
+          "span": {
+            "title": "Span",
+            "type": "string"
+          },
+          "text": {
+            "title": "Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "document_id",
+          "analysis_id",
+          "revision",
+          "kind",
+          "page",
+          "text",
+          "span",
+          "matched_phrases"
+        ],
+        "title": "ResumeSignal",
+        "type": "object"
+      },
       "ResumeSkillReview": {
         "additionalProperties": false,
         "properties": {
@@ -4276,6 +4444,76 @@
         "title": "SkillExplanation",
         "type": "object"
       },
+      "SkillMatchItem": {
+        "additionalProperties": false,
+        "properties": {
+          "competency_id": {
+            "format": "uuid",
+            "title": "Competency Id",
+            "type": "string"
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "reported_level": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reported Level"
+          },
+          "resume_signals": {
+            "items": {
+              "$ref": "#/components/schemas/ResumeSignal"
+            },
+            "title": "Resume Signals",
+            "type": "array"
+          },
+          "source": {
+            "title": "Source",
+            "type": "string"
+          },
+          "source_version": {
+            "title": "Source Version",
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "MATCHED",
+              "UNKNOWN",
+              "MISSING"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "user_report": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/UserReportSignal"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "competency_id",
+          "label",
+          "source",
+          "source_version",
+          "status",
+          "reported_level",
+          "user_report"
+        ],
+        "title": "SkillMatchItem",
+        "type": "object"
+      },
       "StartDiscovery": {
         "additionalProperties": false,
         "properties": {
@@ -4548,6 +4786,46 @@
           "updated_at"
         ],
         "title": "UserCompetency",
+        "type": "object"
+      },
+      "UserReportSignal": {
+        "additionalProperties": false,
+        "properties": {
+          "level": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Level"
+          },
+          "source": {
+            "const": "user_report",
+            "default": "user_report",
+            "title": "Source",
+            "type": "string"
+          },
+          "updated_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Updated At"
+          }
+        },
+        "required": [
+          "level",
+          "updated_at"
+        ],
+        "title": "UserReportSignal",
         "type": "object"
       },
       "ValidatedRecommendationItem": {
@@ -6700,6 +6978,52 @@
         "summary": "Remove",
         "tags": [
           "career-comparison"
+        ]
+      }
+    },
+    "/api/v1/me/career-skill-matches": {
+      "get": {
+        "operationId": "get_my_career_skill_matches",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CareerSkillMatchResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Career Skill Matches",
+        "tags": [
+          "skill matching"
         ]
       }
     },
