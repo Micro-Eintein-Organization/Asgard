@@ -3,9 +3,10 @@ import { Check, RefreshCw, TriangleAlert } from "lucide-react";
 import { getHealth, getReadiness } from "../api/client";
 import { BackLink, PageHeading } from "@/components/shared";
 import { Button } from "@/components/ui/button";
-import { routes } from "@/lib/routes";
+import { useInformationReturn } from "./information-navigation";
 
 export function FoundationStatus() {
+  const returnTo = useInformationReturn();
   const health = useQuery({
     queryKey: ["operations", "health"],
     queryFn: getHealth,
@@ -55,7 +56,7 @@ export function FoundationStatus() {
 
   return (
     <section className="information-page service-status-page">
-      <BackLink to={routes.home}>Back to Asgard</BackLink>
+      <BackLink to={returnTo}>Back to Asgard</BackLink>
       <PageHeading
         title="Service status"
         description="A quick look at Asgard’s availability."
@@ -145,7 +146,7 @@ export function FoundationStatus() {
       <section className="service-context">
         <h2>Taking a little longer?</h2>
         <p>
-          The demo service may need about a minute to start after inactivity. If
+          The service may need about a minute to start after inactivity. If
           a check fails, wait a moment and try again. Avoid retrying a save
           until you know whether it completed.
         </p>

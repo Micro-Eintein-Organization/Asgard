@@ -1,7 +1,7 @@
 # Asgard: Implemented UI foundation
 
 Footer follow-up, 2026-11-17: the black footer now links to public Licenses,
-Credits, draft Terms and conditions, and Service status. The existing `/status`
+Credits, Terms and conditions, and Service status. The existing `/status`
 connectivity checks now have an availability summary, separate API/data results,
 last-check time and manual retry. No historical uptime claim is displayed.
 These public pages reuse current typography, surfaces and focus behavior;
@@ -169,3 +169,9 @@ The [Nielsen heuristic review](https://www.nngroup.com/articles/ten-usability-he
 Automated Chromium/axe checks, rendered comparison and interaction coverage are recorded in [Development](development.md). They are not a WCAG conformance or completed usability-study claim. Real browser zoom, assistive technologies and the desktop cross-browser matrix remain manual gates. The narrow CSS-viewport check is reflow evidence, not proof of real browser zoom.
 
 Future agents: consult this guide before UI changes, reuse these components, keep sample fixtures separate from persisted account data, and obtain reviewed feature contracts before connecting data. Update this guide when the implemented system changes. Product-owner review is still needed for the visual baseline and authored curricula; do not backfill approval from a screenshot or a passing automated check.
+
+Footer/Counselor follow-up, 2026-11-17: information pages retain ready-session
+account navigation and Credits includes owner-supplied team portraits. Counselor
+uses secondary transcript surfaces, dark question bubbles, foreground answer text
+and collapsed Sources disclosures. See the footer and contextual Counselor feature
+guides for scope, verification and pending human presentation review.

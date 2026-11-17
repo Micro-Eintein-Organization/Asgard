@@ -23,6 +23,7 @@ import { CareerNavigation } from "./career-navigation";
 import { GuidanceBanner } from "./guidance";
 import { PageMotion } from "@/components/page-motion";
 import { FooterLinks } from "./information";
+import { informationPaths } from "./information-navigation";
 
 const onboardingPaths = new Set([
   appRoutes.welcome,
@@ -31,8 +32,8 @@ const onboardingPaths = new Set([
   appRoutes.profileSetup,
 ]);
 
-function Header() {
-  const { user } = useAuth();
+export function Header() {
+  const { user, loading, error, mfa } = useAuth();
   const savedProfile = useSavedProfile();
   const displayName = [savedProfile.data?.profile?.first_name, savedProfile.data?.profile?.surname].filter(Boolean).join(" ");
   const signOut = useLogout();
@@ -44,8 +45,14 @@ function Header() {
   ];
   const location = useLocation();
   const { pathname } = location;
-  const publicPage = Object.values(routes).includes(pathname);
-  const showAppNavigation = !!user?.email_confirmed_at && !publicPage;
+  const normalizedPath = pathname.replace(/\/+$/, "") || "/";
+  const informationPage = informationPaths.has(normalizedPath);
+  const publicPage = Object.values(routes).includes(normalizedPath);
+  const showAppNavigation = !!user?.email_confirmed_at &&
+    (!publicPage || (informationPage && !loading && !error && mfa === "ready"));
+  const pendingSession = informationPage && (loading || (!error && !!user && mfa === "checking"));
+  const accountDestination = error ? routes.login : !user?.email_confirmed_at
+    ? routes.verify : routes.mfaChallenge;
   const [open, setOpen] = useState(false);
   const [logoutError, setLogoutError] = useState("");
   const menuRef = useRef<HTMLButtonElement>(null);
@@ -166,6 +173,10 @@ function Header() {
               </DropdownMenu>
             </div>
           </>
+        ) : pendingSession ? (
+          <span role="status">Restoring your session…</span>
+        ) : informationPage && (user || error) ? (
+          <Link to={accountDestination}>{error ? "Sign in again" : "Continue to account"}</Link>
         ) : (
           <div className="public-nav">
             <Link to={routes.login}>Log in</Link>

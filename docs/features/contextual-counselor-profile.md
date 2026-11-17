@@ -92,3 +92,35 @@ Run the manual steps above at https://asgard-navy.vercel.app, including two acco
 web failure and the exact reported comparison. Report request IDs and behavior,
 not secrets. Manual visual/keyboard/real-answer acceptance is pending; no claim of
 hallucination-free output or completed release acceptance is made.
+
+## Counselor readability and source disclosure, 2026-11-17
+
+Implementer: Codex. Created: 2026-11-17. Last updated: 2026-11-17.
+Status: implemented; human visual review pending. Reviewer: @YakisobaNissin.
+Owner requested this bounded UI follow-up in chat during the approved footer task.
+Requirements REQ-12, QA-09; task-local COUN-UI-01 readability and COUN-UI-02 sources.
+Scope: existing ai-guidance component, its tests and shared stylesheet. No backend,
+context collection, model, dependencies, API or privacy-contract changes.
+
+Conversation uses the existing secondary surface, foreground text, white answer
+surfaces and dark question bubbles. Counselor answer sources are inside a native
+Sources details/summary disclosure, collapsed initially and keyboard operable.
+Existing Asgard/web grouping and link destinations remain; web-unavailable warnings
+stay visible outside the disclosure. Comparison sources retain their presentation.
+
+Manual review pending: at http://127.0.0.1:5173/dashboard, sign in and open AI
+Counselor. Send a question returning sources; expect readable separated messages,
+Sources initially collapsed, and working links after expanding by click or Enter.
+Verify narrow width, 200% zoom, Tab focus, scrolling and composer availability.
+Report route, viewport and observed/expected behavior to @YakisobaNissin.
+
+Verification, 2026-11-17: two focused Counselor tests passed, including collapsed
+source visibility and expansion; frontend TypeScript passed. Scoped ESLint has
+zero errors but fails its zero-warning gate on the pre-existing mixed hook/component
+export (useComparisonInsight, react-refresh/only-export-components). That export
+is unchanged; no unrelated module split was introduced for this UI task.
+The first disclosure assertion was corrected for the DOM harness: collapsed native
+details retain descendants in the DOM but hide them visually. No application
+workaround was needed. Browser preview timed out; real visual/keyboard checks
+remain pending. Full backend suites and container rebuilds were not run because
+backend behavior is unchanged and the owner requested limited UI verification.
