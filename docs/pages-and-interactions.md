@@ -15,7 +15,7 @@ Protected pages require a valid account session. Preserve private query isolatio
 
 ## Landing and account entry
 
-Public routes include Landing, login, registration, email verification, password recovery, service status, Licenses, Credits, and draft Terms. Supabase owns identity operations. Returning learners reach Dashboard; new-account entry offers discovery or browsing. Do not automatically reopen unfinished Discovery. Provider configuration controls unavailable Auth, optional MFA enrollment, and recovery. Google remains subject to AUTH-C1.
+Public routes include Landing, login, registration, email verification, password recovery, service status, Licenses, Credits, and Terms. Supabase owns identity operations. Returning learners reach Dashboard; new-account entry offers discovery or browsing. Do not automatically reopen unfinished Discovery. Provider configuration controls unavailable Auth, optional MFA enrollment, and recovery. Google remains subject to AUTH-C1.
 
 ## Discovery and Results
 
@@ -51,7 +51,7 @@ The optional Counselor uses bounded current-route/account context and validated 
 
 ## Footer and service status
 
-The footer links Licenses, Credits, draft Terms, and Service status outside focused onboarding where applicable. Status reports current API/data checks, last-check time, and retry; it does not claim historical uptime. [Implementation evidence](features/footer-information-and-service-status.md).
+The footer links Licenses, Credits, Terms, and Service status outside focused onboarding where applicable. Status reports current API/data checks, last-check time, and retry; it does not claim historical uptime. [Implementation evidence](features/footer-information-and-service-status.md).
 
 ## Verification boundary
 
@@ -232,3 +232,7 @@ The following links locate superseded wording in the dated archive. Current beha
 <a id="counselor-personalization-decision-2026-11-16"></a>
 
 [Counselor personalization decision, 2026-11-16](archive/2026-11-17/pages-and-interactions.md#counselor-personalization-decision-2026-11-16).
+
+2026-11-17 follow-up: footer pages remain public but show application navigation
+for confirmed, MFA-ready sessions. Counselor answer Sources start collapsed and
+expand on request; availability warnings remain visible.

@@ -4,6 +4,7 @@ import { MemoryRouter } from "react-router";
 import { beforeEach, expect, it, vi } from "vitest";
 import { FoundationStatus } from "./status";
 vi.mock("../api/client", () => ({ getHealth: vi.fn(), getReadiness: vi.fn() }));
+vi.mock("@/auth/context", () => ({ useAuth: () => ({ user: null, loading: false, error: null, mfa: "ready" }) }));
 import { getHealth, getReadiness } from "../api/client";
 beforeEach(() => vi.resetAllMocks());
 function renderStatus() {

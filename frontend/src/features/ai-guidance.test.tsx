@@ -36,3 +36,20 @@ it("uses background context without controls and keeps sending state accessible"
   view.unmount();
   client.clear();
 });
+
+it("keeps counselor sources collapsed until requested", async () => {
+  vi.mocked(api.POST).mockResolvedValue({ data: { answer: "Start with a topic.", sources: [{ kind: "asgard", title: "Dashboard", url: "/dashboard" }], web_unavailable: false } } as never);
+  const client = new QueryClient({ defaultOptions: { queries: { retry: false } } });
+  const view = render(<QueryClientProvider client={client}><MemoryRouter><CounselorLauncher page="/settings/profile" /></MemoryRouter></QueryClientProvider>);
+  fireEvent.click(screen.getByRole("button", { name: "Open AI Counselor" }));
+  fireEvent.change(screen.getByRole("textbox", { name: "Your question" }), { target: { value: "Where do I start?" } });
+  fireEvent.click(screen.getByRole("button", { name: "Send question" }));
+  const summary = await screen.findByText("Sources", { selector: "summary" });
+  const disclosure = summary.closest("details")!;
+  expect(disclosure.open).toBe(false);
+  expect(screen.getByText("Dashboard", { selector: "a" })).not.toBeVisible();
+  fireEvent.click(summary);
+  expect(disclosure.open).toBe(true);
+  expect(screen.getByRole("link", { name: "Dashboard" })).toHaveAttribute("href", "/dashboard");
+  view.unmount(); client.clear();
+});

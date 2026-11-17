@@ -4,7 +4,7 @@
 
 Implementer: Codex. Created: 2026-11-17. Last updated: 2026-11-17.
 Status: implemented; focused automated checks passed; partial browser verification
-completed. Human presentation/content review and final Terms approval pending.
+completed. The 2026-11-17 follow-up below supersedes the earlier draft-label presentation; human implementation review remains pending.
 Required reviewer and follow-up owner: @YakisobaNissin.
 
 The owner approved the [bounded plan](../plans/footer-information-and-service-status.md)
@@ -90,7 +90,7 @@ owner review work; no legal review or full license audit is claimed.
    expect the matching public page and heading focus. Repeat signed out at
    `http://127.0.0.1:5173/licenses`, `/credits`, `/terms` and `/status`.
 2. On Licenses, Tab to the MIT disclosure and press Enter; expect the full notice.
-   Activate again to collapse. On Terms, expect the visible draft label.
+   Activate again to collapse. On Terms, expect professional service wording without the earlier draft label.
 3. On status, expect actual connectivity results and time. Click Check again;
    expect pending feedback, disabled retry, then updated results. Failed checks
    must never leave Service is up visible as the current result.
@@ -117,3 +117,49 @@ browser navigation; no invented uptime, people, security claims or fake metrics.
 PASS: runtime, build, TypeScript and scoped lint succeeded. Verified Terms reflow
 and keyboard disclosure are recorded above; remaining visual/accessibility
 acceptance stays explicitly pending and is not represented as completed.
+
+## Session-aware footer pages and portraits, 2026-11-17
+
+Implementer: Codex. Owner/reviewer: @YakisobaNissin. Owner identified themselves
+and approved the revised plan in this chat on 2026-11-17, then requested implementation.
+Status: implemented; human implementation/presentation review pending.
+This approval supersedes the earlier FOOT-03 visible draft-label requirement;
+it does not establish independent legal review or hosted production acceptance.
+
+Acceptance IDs: FOOT-04 session-aware navigation; FOOT-05 credits/portraits;
+FOOT-06 professional wording; STAT-02 status terminology. Dependencies: existing
+Auth context, router, shared navigation, and six owner-supplied portrait originals.
+Shared API contracts, backend and authentication policies remain unchanged.
+
+The shell now retains application/account navigation on all four footer routes
+for confirmed, MFA-ready sessions, including trailing slashes. Pending sessions
+suppress signup prompts; incomplete verification uses existing account-completion
+routes and errors offer sign-in recovery. Logo and return links lead ready users
+to Dashboard and signed-out users to Landing. Other public routes retain their behavior.
+Credits lists Coulison, Hzmth, Lamb-OH, Ranzzzz, YakisobaNissin alphabetically, then
+约翰·马可 with the sole role label CEO and Founder. The six supplied originals are
+bundled from frontend/src/assets/team in the approved mapping. The responsive grid
+uses three/two/one columns, full-image 160 px portrait areas and adjacent captions.
+The team thank-you replaces the former project-lead/integration credit.
+Terms and Status use professional service wording while retaining factual limits.
+
+Affected modules: shell, information, information-navigation, status, associated
+tests, team assets and the shared stylesheet. Updated design and page documentation.
+No deferred scope changed; future-development requires no update.
+
+Verification: 29 focused Vitest tests passed across information, status, shell and
+protected-route tests; frontend TypeScript, scoped ESLint and production build passed.
+Production output includes all six portraits. Docker was initially unavailable;
+a later authorized inspection found no running Compose application services.
+The existing local frontend dependencies were used without changing pins/locks.
+A local Vite preview started, but the in-app browser timed out on /credits;
+visual, keyboard, zoom and real signed-in session checks remain pending.
+
+Manual follow-up: at http://127.0.0.1:5173 visit /licenses, /credits, /terms and
+/status signed in and signed out; refresh and follow return links. Expect account
+navigation only for ready sessions, correct portrait/name pairs and collapsed license
+notices. At 320, 600 and 1280 px and 200% zoom, verify readable wrapping without
+horizontal overflow. Check Tab/Shift+Tab, account menu, mobile Menu and logout.
+Report route, viewport, steps, expected/actual behavior to @YakisobaNissin.
+
+Approved scope and reviewer record: [follow-up plan](../plans/footer-authentication-and-copy.md).

@@ -2,6 +2,22 @@ import { Link } from "react-router";
 import { BackLink, PageHeading } from "@/components/shared";
 import { routes } from "@/lib/routes";
 import shadcnLicense from "@/components/ui/LICENSE.md?raw";
+import { useInformationReturn } from "./information-navigation";
+import coulison from "@/assets/team/coulison.png";
+import hzmth from "@/assets/team/hzmth.png";
+import lambOh from "@/assets/team/lamb-oh.png";
+import ranz from "@/assets/team/ranz.jpg";
+import yakisoba from "@/assets/team/yakisobanissin.png";
+import founder from "@/assets/team/founder.png";
+
+const members = [
+  { name: "Coulison", portrait: coulison },
+  { name: "Hzmth", portrait: hzmth },
+  { name: "Lamb-OH", portrait: lambOh },
+  { name: "Ranzzzz", portrait: ranz },
+  { name: "YakisobaNissin", portrait: yakisoba },
+  { name: "约翰·马可", portrait: founder, role: "CEO and Founder" },
+];
 
 export function FooterLinks() {
   return (
@@ -21,6 +37,7 @@ export function InformationPage({
 }: {
   page: "licenses" | "credits" | "terms";
 }) {
+  const returnTo = useInformationReturn();
   const title = {
     licenses: "Licenses",
     credits: "Credits",
@@ -28,14 +45,14 @@ export function InformationPage({
   }[page];
   return (
     <article className="information-page">
-      <BackLink to={routes.home}>Back to Asgard</BackLink>
+      <BackLink to={returnTo}>Back to Asgard</BackLink>
       <PageHeading
         title={title}
         description={
           {
             licenses: "The software and sources behind Asgard.",
             credits: "Built with the work of many.",
-            terms: "About using Asgard for career exploration.",
+            terms: "Terms for using Asgard’s career exploration and learning services.",
           }[page]
         }
       />
@@ -99,9 +116,22 @@ export function InformationPage({
               together to help people explore a direction at their own pace.
             </p>
             <p>
-              Project lead: YakisobaNissin. The interface builds on the Cabusao
-              design integration and Asgard’s shared components.
+              Thank you for trying out our university project. Suggestions are welcome!
+              <br />The Asgard Team
             </p>
+          </section>
+          <section aria-labelledby="team-heading">
+            <h2 id="team-heading">Asgard Team Members</h2>
+            <ul className="team-grid">
+              {members.map(member => (
+                <li key={member.name}>
+                  <figure>
+                    <img src={member.portrait} alt="" width={160} height={160} loading="lazy" />
+                    <figcaption>{member.name}{member.role && <span>{member.role}</span>}</figcaption>
+                  </figure>
+                </li>
+              ))}
+            </ul>
           </section>
           <section>
             <h2>Open-source foundations</h2>
@@ -130,14 +160,6 @@ export function InformationPage({
       )}
       {page === "terms" && (
         <>
-          <aside className="information-draft">
-            <strong>Draft for review</strong>
-            <p>
-              This page describes the current service. Final Terms and
-              conditions are awaiting project-owner review; this draft is not a
-              finalized legal agreement.
-            </p>
-          </aside>
           <section>
             <h2>Career exploration</h2>
             <p>
@@ -165,9 +187,9 @@ export function InformationPage({
           <section>
             <h2>Service availability</h2>
             <p>
-              Asgard is under development. Features may be unavailable, and
-              services can take time to start after inactivity. Continuous
-              availability and a fixed uptime percentage are not promised.
+              Service access may be interrupted by maintenance or technical issues.
+              Some requests may take longer after periods of inactivity. Continuous
+              availability and a specific uptime percentage are not guaranteed.
             </p>
             <Link to={routes.status}>Check current service status</Link>
           </section>

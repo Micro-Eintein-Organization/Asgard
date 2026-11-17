@@ -117,18 +117,16 @@ function AnswerText({ text }: { text: string }) {
 
 function GuidanceAnswer({ data, onFollowSource }: { data: Answer; onFollowSource?: () => void }) {
   return (
-    <div className="space-y-3">
+    <div className="counselor-answer space-y-3">
       {data.answer && <AnswerText text={data.answer} />}
       {data.general_knowledge && <div><h3>General explanation</h3><p className="text-sm text-muted-foreground">From model knowledge; not verified against web sources.</p><AnswerText text={data.general_knowledge} /></div>}
-      <GuidanceSources data={data} onFollowSource={onFollowSource} />
+      <GuidanceSources data={data} onFollowSource={onFollowSource} collapsible />
     </div>
   );
 }
 
-function GuidanceSources({ data, onFollowSource }: { data: Answer; onFollowSource?: () => void }) {
-  return (
-    <div className="space-y-2">
-      {(["asgard", "web"] as const).map((kind) => {
+function GuidanceSources({ data, onFollowSource, collapsible = false }: { data: Answer; onFollowSource?: () => void; collapsible?: boolean }) {
+  const groups = (["asgard", "web"] as const).map((kind) => {
         const sources = data.sources.filter((source) => source.kind === kind);
         if (!sources.length) return null;
         return (
@@ -148,7 +146,15 @@ function GuidanceSources({ data, onFollowSource }: { data: Answer; onFollowSourc
             ))}</ul>
           </div>
         );
-      })}
+      });
+  return (
+    <div className="space-y-2">
+      {data.sources.length > 0 && (collapsible ? (
+        <details className="counselor-sources">
+          <summary>Sources</summary>
+          <div className="space-y-3">{groups}</div>
+        </details>
+      ) : groups)}
       {data.web_unavailable && <p>Web search was unavailable. This answer uses available app context and model knowledge.</p>}
     </div>
   );
