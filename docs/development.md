@@ -27,7 +27,7 @@ The repository contains `frontend/`, `backend/`, app-service Compose configurati
 
 ## Current foundation status and evidence
 
-The foundation evidence below was reviewed against local `foundation` source on 26 October 2026. The 27 October persisted-core source follow-up is recorded separately in its [guide](features/persisted-core.md); no checks were run for that follow-up. [README](../README.md#getting-started) owns setup; the [Stage 4 handoff](#stage-4-shared-contracts-and-handoff) owns shared contracts and transaction conventions. Dated records below describe their original execution environments, not services that every reader already has running. Their old branch names, changed-file counts and pre-activation gates are historical snapshots.
+The foundation evidence below was reviewed against local `foundation` source on 26 October 2026. The 27 October persisted-core source follow-up is recorded separately in its [guide](features/persisted-core.md); no checks were run for that follow-up. [Local onboarding](getting-started.md#getting-started) owns setup; the [Stage 4 handoff](#stage-4-shared-contracts-and-handoff) owns shared contracts and transaction conventions. Dated records below describe their original execution environments, not services that every reader already has running. Their old branch names, changed-file counts and pre-activation gates are historical snapshots.
 
 | Area | Implemented source / recorded evidence | Still required |
 | --- | --- | --- |
@@ -68,7 +68,7 @@ The branch workflow is recorded under the owner's explicit authorization; techni
 
 ## Local workflow
 
-[README](../README.md#getting-started) is the teammate onboarding entry point: prerequisite installation links, separate PowerShell/Bash first-time commands, daily startup, shutdown and troubleshooting. Run root `npm ci` to install the locked local CLI; after the first-start provisioning prerequisite in README is satisfied, use `node scripts/dev.mjs start`. Application dependencies are installed by Docker builds, not host npm/pip. No cloud credentials are needed; the helper manages ordinary local URL/anonymous-key values, while local signing-key and authenticated application credentials need separate provisioning. The commands below were executed on Windows; their shared Node implementation and Linux-container checks do not establish native Linux-host acceptance.
+[README](getting-started.md#getting-started) is the teammate onboarding entry point: prerequisite installation links, separate PowerShell/Bash first-time commands, daily startup, shutdown and troubleshooting. Run root `npm ci` to install the locked local CLI; after the first-start provisioning prerequisite in the onboarding guide is satisfied, use `node scripts/dev.mjs start`. Application dependencies are installed by Docker builds, not host npm/pip. No cloud credentials are needed; the helper manages ordinary local URL/anonymous-key values, while local signing-key and authenticated application credentials need separate provisioning. The commands below were executed on Windows; their shared Node implementation and Linux-container checks do not establish native Linux-host acceptance.
 
 Windows verification used Node 24.19.0, npm 11.17.0, Docker Engine 29.8.2 and Compose 5.5.1. The backend remains Python **3.13.17** in Docker; host Python 3.14 is not used. Image digests, root/frontend npm locks, and exact hashed backend locks are preserved. No dependency or runtime upgrade was introduced by hardening.
 
@@ -340,7 +340,7 @@ At the pre-activation review, the [credential initializer](../scripts/provision-
 
 The historical Auth proposal described local email/password signup, six-digit confirmation, 600-second code expiry, 60-second resend spacing and 900-second JWT expiry, with an ignored signing-key file and committed confirmation template. Its former 15-character password description is superseded by the [owner's eight-character resolution](decisions.md#password-minimum-resolution), which matches both current config files and frontend validation. At that pre-activation review, CLI key generation had been checked through help only; the later isolated generation probe is recorded above. Local SMTP is the testing destination; no external delivery or public-registration readiness is claimed.
 
-At the pre-activation review, the proposed activation sequence required a backup/state check, reviewed SQL application without reset, signing-key and credential provisioning, Auth configuration and affected-service restart. The later local-only approval did not authorize another environment. Use [README](../README.md#before-first-startup) for the current provisioning sequence; do not execute a historical proposal as an additional setup path.
+At the pre-activation review, the proposed activation sequence required a backup/state check, reviewed SQL application without reset, signing-key and credential provisioning, Auth configuration and affected-service restart. The later local-only approval did not authorize another environment. Use [README](getting-started.md#before-first-startup) for the current provisioning sequence; do not execute a historical proposal as an additional setup path.
 
 ### Verification and remaining work
 

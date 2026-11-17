@@ -27,7 +27,7 @@ Both `.cmd` files are in the checkout's top-level folder, beside `README.md` and
 | `Setup-Asgard.cmd` | First run. Checks Node/npm/Docker, installs the locked Supabase CLI if missing, preserves local files, and guides a fresh local environment through explicit approval gates. |
 | `Start-Asgard.cmd` | Daily use. Starts the existing local stack through `scripts/dev.mjs` and opens the app and local email inbox. |
 
-The launchers automatically resolve the checkout root and use `scripts/setup-windows.mjs`. This feature guide is saved at `<checkout-root>/docs/features/windows-one-click-onboarding.md`. See the [README folder tree](../../README.md#start-asgard) and [Getting started](../../README.md#getting-started) for the teammate instructions.
+The launchers automatically resolve the checkout root and use `scripts/setup-windows.mjs`. This feature guide is saved at `<checkout-root>/docs/features/windows-one-click-onboarding.md`. See the [onboarding folder tree](../getting-started.md#start-asgard) and [Getting started](../getting-started.md#getting-started) for the teammate instructions.
 
 Implementation files: [Setup-Asgard.cmd](../../Setup-Asgard.cmd), [Start-Asgard.cmd](../../Start-Asgard.cmd), and [setup-windows.mjs](../../scripts/setup-windows.mjs). The launchers reuse the [shared startup helper](../../scripts/dev.mjs) and [guarded credential initializer](../../scripts/provision-local-db.mjs). Setup authority and approval boundaries remain in [AGENTS.md](../../AGENTS.md#portable-local-development-and-shared-foundation) and the [development guide](../development.md#current-foundation-status-and-evidence).
 
@@ -97,7 +97,7 @@ share .env, private keys, passwords or raw CLI status.
 
 ## Other platforms
 
-Linux teammates use the Bash commands in [README Getting started](../../README.md#getting-started) and [Before first startup](../../README.md#before-first-startup). The Windows launchers do not run on Linux. Native Linux-host onboarding remains pending independent verification.
+Linux teammates use the Bash commands in [onboarding Getting started](../getting-started.md#getting-started) and [Before first startup](../getting-started.md#before-first-startup). The Windows launchers do not run on Linux. Native Linux-host onboarding remains pending independent verification.
 
 ## Original review and verification, 2026-10-26
 

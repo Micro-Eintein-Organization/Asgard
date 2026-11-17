@@ -41,7 +41,7 @@ This supersedes historical proposals for Next.js and native-only development, in
 | Backend deployment | Render Free (MVP; replaceable) |
 | Cloud data | Supabase Free (subject to quotas, inactivity, and backup limitations) |
 
-Runtime patches, dependency locks and image digests are pinned in the repository. Read the current values from `.node-version`, manifests/locks and Dockerfiles; [README prerequisites](../README.md#install-prerequisites) explains their host/container boundaries. Upgrades require their own reviewed scope.
+Runtime patches, dependency locks and image digests are pinned in the repository. Read the current values from `.node-version`, manifests/locks and Dockerfiles; [local prerequisites](getting-started.md#install-prerequisites) explains their host/container boundaries. Upgrades require their own reviewed scope.
 
 ## 3. Runtime boundaries
 
