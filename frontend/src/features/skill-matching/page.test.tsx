@@ -27,11 +27,16 @@ function skill(overrides: Partial<SkillMatchItem> = {}): SkillMatchItem {
     reported_level: null,
     user_report: null,
     resume_signals: [],
+    posting_count: null,
+    total_postings: null,
     ...overrides,
   };
 }
 
-function career(skills: SkillMatchItem[] = [skill()]): CareerSkillMatch {
+function career(
+  skills: SkillMatchItem[] = [skill()],
+  overrides: Partial<CareerSkillMatch> = {},
+): CareerSkillMatch {
   return {
     career_id: "career-1",
     career_title: "Data Analyst",
@@ -40,7 +45,9 @@ function career(skills: SkillMatchItem[] = [skill()]): CareerSkillMatch {
     benchmark_skill_count: skills.length,
     display_count: "3 of 7",
     skills,
+    sample_label: "reviewed snapshot (v1): 5 postings",
     sample_note: "Benchmark sample note.",
+    ...overrides,
   };
 }
 
@@ -152,6 +159,74 @@ describe("SkillMatchingPage", () => {
   it("does not render a percentage", () => {
     const { container } = renderPage();
     expect(container.textContent).not.toContain("%");
+  });
+
+  it("shows annotated posting counts and no percent sign", () => {
+    mocks.useCoreQuery.mockReturnValue({
+      data: response([career([skill({ posting_count: 2, total_postings: 5 })])]),
+      isPending: false,
+      isError: false,
+      refetch: vi.fn(),
+    });
+
+    const { container } = renderPage();
+    fireEvent.click(screen.getByText("1. Data Analyst"));
+    expect(screen.getByText("seen in 2 of 5 postings")).toBeInTheDocument();
+    expect(container.textContent).not.toContain("%");
+  });
+
+  it("does not show posting counts when either count is null", () => {
+    mocks.useCoreQuery.mockReturnValue({
+      data: response([career([skill({ posting_count: 2 })])]),
+      isPending: false,
+      isError: false,
+      refetch: vi.fn(),
+    });
+
+    renderPage();
+    fireEvent.click(screen.getByText("1. Data Analyst"));
+    expect(screen.queryByText(/seen in/)).not.toBeInTheDocument();
+  });
+
+  it("uses singular posting for a one-posting sample", () => {
+    mocks.useCoreQuery.mockReturnValue({
+      data: response([career([skill({ posting_count: 1, total_postings: 1 })])]),
+      isPending: false,
+      isError: false,
+      refetch: vi.fn(),
+    });
+
+    renderPage();
+    fireEvent.click(screen.getByText("1. Data Analyst"));
+    expect(screen.getByText("seen in 1 of 1 posting")).toBeInTheDocument();
+  });
+
+  it("shows a very small sample label while details are collapsed", () => {
+    mocks.useCoreQuery.mockReturnValue({
+      data: response([career([skill()], { sample_label: "snapshot: 1 posting - very small sample" })]),
+      isPending: false,
+      isError: false,
+      refetch: vi.fn(),
+    });
+
+    renderPage();
+    expect(screen.getByText("snapshot: 1 posting - very small sample")).toBeVisible();
+    expect(screen.getByText("1. Data Analyst").closest("details")).not.toHaveAttribute("open");
+  });
+
+  it("shows no skill mapping when benchmark_skill_count is zero", () => {
+    mocks.useCoreQuery.mockReturnValue({
+      data: response([career([], { benchmark_skill_count: 0, display_count: "0 of 0" })]),
+      isPending: false,
+      isError: false,
+      refetch: vi.fn(),
+    });
+
+    renderPage();
+    expect(screen.getByText("No skill mapping yet")).toBeInTheDocument();
+    expect(screen.queryByText("0 of 0")).not.toBeInTheDocument();
+    expect(screen.getByText("This career has no linked skills yet.")).toBeInTheDocument();
+    expect(screen.queryByRole("list")).not.toBeInTheDocument();
   });
 
   it("renders the empty state when the API returns no careers", () => {

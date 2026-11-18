@@ -80,26 +80,42 @@ export default function SkillMatchingPage() {
                 <details>
                   <summary className="flex cursor-pointer list-none flex-wrap items-center justify-between gap-3 p-5">
                     <span className="font-semibold">{career.rank}. {career.career_title}</span>
-                    <span>{career.display_count}</span>
+                    <span>
+                      {career.benchmark_skill_count === 0
+                        ? "No skill mapping yet"
+                        : career.display_count}
+                    </span>
+                    <span className="field-help w-full">{career.sample_label}</span>
                   </summary>
                   <div className="space-y-4 px-5 pb-5">
-                    <p className="field-help">{career.sample_note}</p>
-                    <ul className="space-y-3">
-                      {career.skills.map(skill => (
-                        <li key={skill.competency_id} className="rounded-lg border p-3">
-                          <div className="flex flex-wrap items-center justify-between gap-2">
-                            <h2 className="font-medium">{skill.label}</h2>
-                            <Badge variant="outline">{statusLabels[skill.status]}</Badge>
-                          </div>
-                          {skill.reported_level !== null && (
-                            <p className="field-help">Reported level: {skill.reported_level}</p>
-                          )}
-                          {skill.status === "MATCHED" && (skill.resume_signals?.length ?? 0) > 0 && (
-                            <p className="field-help">from resume</p>
-                          )}
-                        </li>
-                      ))}
-                    </ul>
+                    {career.benchmark_skill_count === 0 ? (
+                      <p className="field-help">This career has no linked skills yet.</p>
+                    ) : (
+                      <>
+                        <p className="field-help">{career.sample_note}</p>
+                        <ul className="space-y-3">
+                          {career.skills.map(skill => (
+                            <li key={skill.competency_id} className="rounded-lg border p-3">
+                              <div className="flex flex-wrap items-center justify-between gap-2">
+                                <h2 className="font-medium">{skill.label}</h2>
+                                <Badge variant="outline">{statusLabels[skill.status]}</Badge>
+                              </div>
+                              {skill.reported_level !== null && (
+                                <p className="field-help">Reported level: {skill.reported_level}</p>
+                              )}
+                              {skill.status === "MATCHED" && (skill.resume_signals?.length ?? 0) > 0 && (
+                                <p className="field-help">from resume</p>
+                              )}
+                              {skill.posting_count !== null && skill.total_postings !== null && (
+                                <p className="field-help">
+                                  seen in {skill.posting_count} of {skill.total_postings} {skill.total_postings === 1 ? "posting" : "postings"}
+                                </p>
+                              )}
+                            </li>
+                          ))}
+                        </ul>
+                      </>
+                    )}
                   </div>
                 </details>
               </Card>
