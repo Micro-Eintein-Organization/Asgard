@@ -96,6 +96,10 @@ def validate(path: Path) -> int:
                 for field in ("job_title", "company", "source_url"):
                     if not record[field]:
                         error(row_number, f"{field} must not be empty")
+                if not record["collected_by"]:
+                    error(row_number, "collected_by must not be empty")
+                if not record["asgard_career_proposed"]:
+                    warning(row_number, "asgard_career_proposed is empty")
 
                 source_url = record["source_url"]
                 if source_url:
@@ -142,6 +146,7 @@ def validate(path: Path) -> int:
                         error(row_number, "skill labels must be no longer than 40 characters")
 
                 review_status = record["review_status"]
+                reviewed_by = record["reviewed_by"]
                 if review_status not in REVIEW_STATUSES:
                     error(
                         row_number,
@@ -149,6 +154,11 @@ def validate(path: Path) -> int:
                     )
                 else:
                     status_counts[review_status] += 1
+                if review_status == "verified":
+                    if not reviewed_by:
+                        error(row_number, "reviewed_by must not be empty when review_status is verified")
+                    elif reviewed_by.strip().casefold() == record["collected_by"].strip().casefold():
+                        error(row_number, "reviewed_by must differ from collected_by when review_status is verified")
     except (OSError, UnicodeError, csv.Error) as exc:
         error(1, f"could not read CSV: {exc}")
 

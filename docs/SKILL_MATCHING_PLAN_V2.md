@@ -564,28 +564,30 @@ The job_title-to-career mapping is proposed only. Source URLs have not been open
 
 ## 4. Curated snapshot table proposal
 
-Proposed table: asgard_catalog.career_skill_benchmark_snapshot, one row per reviewed source skill signal per career/version. Migration creates it; import script loads draft rows; matcher reads only published=true. This is curated career-side data; sources.py is the swap point.
+Table: `asgard_catalog.career_skill_snapshot`, with one aggregate row per career, competency, and source version. The import process loads draft rows; the matcher reads only rows where `published = true`. This is curated career-side data; `sources.py` is the swap point.
 
 | Column | PostgreSQL type | Rule |
 |---|---|---|
 | id | uuid | Primary key |
-| career_id | uuid | Not null FK to catalog career |
-| skill_key | text | Not null stable skill identity within version |
-| skill_label | text | Not null source/curated phrase |
-| canonical_competency_id | uuid | Nullable FK; must be mapped to match |
-| source | text | Not null dataset name |
-| source_version | text | Not null immutable snapshot identifier |
-| source_observation_id | text | Nullable posting row identifier |
-| source_job_title | text | Not null observed title |
-| source_url | text | Nullable; terms/retention review required |
-| psf_code | text | Nullable display group only |
-| reviewed_by | text | Not null human reviewer |
-| reviewed_at | timestamptz | Not null |
-| published | boolean | Not null default false; matcher filters true |
-| created_at | timestamptz | Not null |
+| career_id | uuid | Not null FK to `asgard_catalog.careers`; delete restricted |
+| competency_id | uuid | Not null FK to `asgard_catalog.competencies`; delete restricted |
+| posting_count | integer | Not null; must be less than or equal to `total_postings` |
+| total_postings | integer | Not null; greater than zero |
+| source | text | Not null and nonblank |
+| source_version | text | Not null and nonblank; part of the aggregate identity |
+| published | boolean | Not null, default false; matcher filters true |
+| reviewed_by | text | Nullable for draft imports |
+| reviewed_at | timestamptz | Nullable for draft imports |
 
-Proposed primary/foreign keys, nonblank checks, uniqueness over career/source/version/skill/observation, and indexes for published version/career and canonical skill require schema-owner review. Keep personal data out. Retain source/version/provenance for reproducible review. PSF never determines matching or ranking.
+The table has a uniqueness constraint on `(career_id, competency_id, source_version)` and a partial matcher index on `(source_version, career_id)` for published rows. Publishing requires a nonblank reviewer and a review timestamp. No seed rows are included. Per-posting provenance remains in the validated CSV, not this aggregate table.
 
+Dropped from the earlier proposal:
+- `skill_key`, `skill_label`, and nullable `canonical_competency_id`: every stored row now has a required catalog `competency_id`; unmapped skills are rejected by the importer.
+- `source_observation_id`, `source_job_title`, and `source_url`: rows aggregate postings; per-posting provenance stays in the validated CSV.
+- `psf_code`: omitted because the codes are unverified and are not matching keys.
+- `created_at`: omitted because it is not part of the decided table design.
+
+Keep personal data out. Retain source/version provenance for reproducible review. PSF codes do not determine matching or ranking.
 ## 5. Matcher design
 
 Inputs: authenticated user reports (competency ID, nullable level, update time); the user's active document evidence (kind/text/page/span, skill kind only); every catalog career; and rows from the selected published snapshot version.
