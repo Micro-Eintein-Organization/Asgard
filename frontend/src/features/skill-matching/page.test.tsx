@@ -152,8 +152,8 @@ describe("SkillMatchingPage", () => {
 
     renderPage();
     expect(screen.getByText("from resume")).toBeInTheDocument();
-    expect(screen.getByText("Reported level: 0")).toBeInTheDocument();
-    expect(screen.queryByText("Reported level: 1")).not.toBeInTheDocument();
+    expect(screen.getByText("Your experience: No experience reported")).toBeInTheDocument();
+    expect(screen.queryByText(/Your experience: Familiar with concepts/)).not.toBeInTheDocument();
   });
 
   it("does not render a percentage", () => {
@@ -308,8 +308,12 @@ describe("SkillMatchingPage", () => {
     });
 
     renderPage();
-    expect(screen.getByText("benchmark sample")).toBeInTheDocument();
-    expect(screen.getByText("career-linked competencies")).toBeInTheDocument();
-    expect(screen.queryByText(/Source version:/)).not.toBeInTheDocument();
+    expect(screen.getByText("Source: career-linked competencies")).toBeInTheDocument();
+    expect(screen.queryByText(/ \(version /)).not.toBeInTheDocument();
+  });
+
+  it("does not add a nested page-container", () => {
+    const { container } = renderPage();
+    expect(container.querySelector(".page-container")).not.toBeInTheDocument();
   });
 });

@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { StatePanel } from "@/components/shared";
+import { experienceLevels } from "@/features/competencies/levels";
 import { useCoreQuery } from "@/features/core/data";
 import { appRoutes } from "@/lib/routes";
 import { readCareerSkillMatches } from "./api";
@@ -34,19 +35,19 @@ export default function SkillMatchingPage() {
       </StatePanel>
     );
 
-  const { items, sample_label, source, source_version } = query.data;
+  const { items, source, source_version } = query.data;
   const hasMatchedOrUnknown = items.some(career =>
     career.skills.some(skill => skill.status === "MATCHED" || skill.status === "UNKNOWN"),
   );
 
   return (
-    <div className="page-container space-y-6">
+    <div className="space-y-6">
       <header className="space-y-2">
         <h1>Career skill matches</h1>
         <p className="field-help">Based on your saved skills and your most recent resume.</p>
-        <p><strong>Sample:</strong> {sample_label}</p>
-        <p><strong>Source:</strong> {source}</p>
-        {source_version !== null && <p><strong>Source version:</strong> {source_version}</p>}
+        <p className="field-help">
+          Source: {source}{source_version !== null ? ` (version ${source_version})` : ""}
+        </p>
       </header>
 
       {items.length === 0 ? (
@@ -71,7 +72,7 @@ export default function SkillMatchingPage() {
           )}
 
           <p className="field-help">
-            Matched = reported level 1–4 or resume mention; Unknown = saved skill with no level; Missing = no record or level 0.
+            Matched = you reported at least ‘Familiar with concepts’, or your resume mentions it. Unknown = ‘Not sure yet’. Missing = no record or ‘No experience reported’.
           </p>
 
           <section aria-label="Ranked career skill matches" className="space-y-4">
@@ -101,7 +102,9 @@ export default function SkillMatchingPage() {
                                 <Badge variant="outline">{statusLabels[skill.status]}</Badge>
                               </div>
                               {skill.reported_level !== null && (
-                                <p className="field-help">Reported level: {skill.reported_level}</p>
+                                <p className="field-help">
+                                  Your experience: {experienceLevels[skill.reported_level]}
+                                </p>
                               )}
                               {skill.status === "MATCHED" && (skill.resume_signals?.length ?? 0) > 0 && (
                                 <p className="field-help">from resume</p>
