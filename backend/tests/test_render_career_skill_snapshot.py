@@ -1,6 +1,17 @@
+import pytest
+
 from scripts.render_career_skill_snapshot import (
-    OfflineCareer, OfflineCompetency, aggregate_rows, map_competency,
-    normalize_skill, render_publish_sql, render_snapshot_sql, snapshot_uuid, sql_literal,
+    EXPECTED_ALIAS_HEADER,
+    OfflineCareer,
+    OfflineCompetency,
+    aggregate_rows,
+    load_aliases,
+    map_competency,
+    normalize_skill,
+    render_publish_sql,
+    render_snapshot_sql,
+    snapshot_uuid,
+    sql_literal,
 )
 
 
@@ -11,11 +22,20 @@ def career():
     ))
 
 
+def write_alias_csv(path, rows, header=EXPECTED_ALIAS_HEADER):
+    path.write_text(
+        ",".join(header) + "\n" + "".join(",".join(row) + "\n" for row in rows),
+        encoding="utf-8-sig",
+    )
+
+
 def test_normalize_skill_matches_matcher_normalization_samples():
     samples = (" Python  Developer ", "C++\tBasics", "  DATA   ANALYST  ")
     def matcher_expression(value):
         return " ".join(value.split()).casefold()
-    assert [normalize_skill(value) for value in samples] == [matcher_expression(value) for value in samples]
+    assert [normalize_skill(value) for value in samples] == [
+        matcher_expression(value) for value in samples
+    ]
 
 
 def test_uuid_is_stable_and_uses_all_identity_fields():
@@ -35,6 +55,127 @@ def test_skill_mapping_is_exact_and_reports_unmapped_or_ambiguous():
     ambiguous = OfflineCareer(item.key, item.title, item.competencies + (
         OfflineCompetency("data-analyst/core-03", "Python"),))
     assert map_competency("Python", ambiguous) == (None, "ambiguous skill")
+
+
+def test_reviewed_alias_loads_and_exact_duplicate_row_is_reported_and_ignored(tmp_path):
+    path = tmp_path / "competency_aliases.csv"
+    row = ("data-analyst", "data-analyst/core-02", " SQL   reports ", "Reviewer A")
+    write_alias_csv(path, [row, row])
+
+    careers, duplicate_rows = load_aliases(path, (career(),))
+
+    assert duplicate_rows == (3,)
+    assert careers[0].competencies[1].aliases == ("SQL   reports",)
+    assert map_competency(" sql reports ", careers[0]) == (careers[0].competencies[1], None)
+
+
+@pytest.mark.parametrize(
+    ("row", "message"),
+    [
+        (
+            ("data-analyst", "data-analyst/core-99", "Excel", "Reviewer"),
+            "not an offline competency",
+        ),
+        (("other-career", "data-analyst/core-01", "Python", "Reviewer"), "prefix"),
+        (("data-analyst", "data-analyst/core-01", "   ", "Reviewer"), "alias must not be blank"),
+        (
+            ("data-analyst", "data-analyst/core-01", "Python", "   "),
+            "reviewed_by must not be blank",
+        ),
+    ],
+)
+def test_alias_validation_errors_include_csv_row_number(tmp_path, row, message):
+    path = tmp_path / "competency_aliases.csv"
+    write_alias_csv(path, [row])
+
+    with pytest.raises(ValueError, match=rf"row 2: .*{message}"):
+        load_aliases(path, (career(),))
+
+
+def test_alias_file_requires_exact_header(tmp_path):
+    path = tmp_path / "competency_aliases.csv"
+    write_alias_csv(path, [], header=("competency_key", "career_slug", "alias", "reviewed_by"))
+
+    with pytest.raises(ValueError, match="row 1: header must exactly match"):
+        load_aliases(path, (career(),))
+
+
+def test_alias_with_same_normalized_phrase_for_two_competencies_is_rejected(tmp_path):
+    path = tmp_path / "competency_aliases.csv"
+    write_alias_csv(path, [
+        ("data-analyst", "data-analyst/core-01", "Query", "Reviewer A"),
+        ("data-analyst", "data-analyst/core-02", " query ", "Reviewer B"),
+    ])
+
+    with pytest.raises(ValueError, match="row 3: normalized alias maps to two competencies"):
+        load_aliases(path, (career(),))
+
+
+def test_alias_matching_a_different_competency_label_remains_ambiguous(tmp_path):
+    path = tmp_path / "competency_aliases.csv"
+    write_alias_csv(path, [
+        ("data-analyst", "data-analyst/core-01", "SQL querying", "Reviewer A"),
+    ])
+
+    careers, _ = load_aliases(path, (career(),))
+
+    assert map_competency("SQL querying", careers[0]) == (None, "ambiguous skill")
+
+
+def test_missing_alias_file_preserves_existing_mapping_behavior(tmp_path):
+    original = (career(),)
+
+    careers, duplicate_rows = load_aliases(tmp_path / "does-not-exist.csv", original)
+
+    assert careers is original
+    assert duplicate_rows == ()
+    assert map_competency("Python alias", careers[0]) == (None, "unmapped skill")
+
+
+def test_unmapped_report_ranks_skills_by_verified_posting_count():
+    records = [
+        {"posting_id": "p1", "review_status": "verified", "asgard_career_proposed": "Data Analyst",
+         "skills": "Need A|Need B|need b"},
+        {"posting_id": "p2", "review_status": "verified", "asgard_career_proposed": "Data Analyst",
+         "skills": "Need B|Python"},
+    ]
+
+    _, report, _ = aggregate_rows(records, (career(),), "sample-v1")
+
+    ranked = [row for row in report if row["section"] == "ranked_unmapped_skills"]
+    assert [(row["rank"], row["skill"], row["verified_postings"]) for row in ranked] == [
+        ("1", "Need B", "2"),
+        ("2", "Need A", "1"),
+    ]
+
+
+def test_summary_reports_verified_skill_mention_mapping_ratio():
+    records = [
+        {"posting_id": "p1", "review_status": "verified", "asgard_career_proposed": "Data Analyst",
+         "skills": "Python|Unknown"},
+        {
+            "posting_id": "p2",
+            "review_status": "verified",
+            "asgard_career_proposed": "Unknown Career",
+            "skills": "Other A|Other B",
+        },
+        {"posting_id": "p3", "review_status": "pending", "asgard_career_proposed": "Data Analyst",
+         "skills": "Python|SQL querying"},
+    ]
+
+    _, _, summary = aggregate_rows(records, (career(),), "sample-v1")
+
+    assert summary["total_skill_mentions"] == 4
+    assert summary["mapped_skill_mentions"] == 1
+    assert summary["mapped_ratio"] == 0.25
+
+
+def test_summary_mapping_ratio_is_zero_when_there_are_no_verified_skill_mentions():
+    _, _, summary = aggregate_rows([], (career(),), "sample-v1")
+
+    assert summary["total_skill_mentions"] == 0
+    assert summary["mapped_skill_mentions"] == 0
+    assert summary["mapped_ratio"] == 0.0
 
 
 def test_aggregation_counts_each_skill_once_per_verified_posting():
@@ -61,7 +202,10 @@ def test_rendered_sql_guards_keys_and_never_updates_published_rows():
     sql = render_snapshot_sql(rows, "posting sample", "sample-v1")
     assert "RAISE EXCEPTION" in sql
     assert "JOIN asgard_catalog.careers AS career ON career.slug = input.career_key" in sql
-    assert "JOIN asgard_catalog.competencies AS competency ON competency.canonical_key = input.competency_key" in sql
+    assert (
+        "JOIN asgard_catalog.competencies AS competency "
+        "ON competency.canonical_key = input.competency_key"
+    ) in sql
     assert "WHERE asgard_catalog.career_skill_snapshot.published = false" in sql
     assert "false, NULL, NULL" in sql
 
