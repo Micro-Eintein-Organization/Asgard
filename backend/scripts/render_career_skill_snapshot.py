@@ -26,6 +26,9 @@ UUID_NAMESPACE = UUID("6a66c8cc-7ef6-5c59-9ef5-70e0f0a215cb")
 ADVISORY_LOCK = (411, 4)
 SOURCE_PATTERN = re.compile(r"[A-Za-z0-9 ._:-]+\Z")
 REVIEWER_PATTERN = re.compile(r"[A-Za-z0-9 .'-]+\Z")
+PLACEHOLDER_REVIEWERS = {
+    "test-only", "test", "tbd", "todo", "placeholder", "unknown", "n/a", "na",
+}
 EXPECTED_HEADER = (
     "posting_id", "job_title", "company", "source_url", "retrieved_on",
     "skills", "asgard_career_proposed", "collected_by", "reviewed_by",
@@ -68,6 +71,11 @@ def normalize_skill(value: str) -> str:
     return " ".join(value.split()).casefold()
 
 
+def is_placeholder_reviewer(value: str) -> bool:
+    normalized = normalize_skill(value)
+    return normalized in {normalize_skill(item) for item in PLACEHOLDER_REVIEWERS}
+
+
 def snapshot_uuid(career_key: str, competency_key: str, source_version: str) -> UUID:
     """Return a stable UUIDv5 under the fixed namespace documented above."""
     return uuid5(UUID_NAMESPACE, f"{career_key}:{competency_key}:{source_version}")
@@ -94,7 +102,9 @@ def load_offline_careers() -> tuple[OfflineCareer, ...]:
 
 
 def load_aliases(
-    path: Path, careers: tuple[OfflineCareer, ...]
+    path: Path,
+    careers: tuple[OfflineCareer, ...],
+    allow_placeholder_reviewers: bool = False,
 ) -> tuple[tuple[OfflineCareer, ...], tuple[int, ...]]:
     """Load reviewed exact aliases; return careers and duplicate CSV row numbers."""
     if not path.exists():
@@ -143,6 +153,10 @@ def load_aliases(
                 raise ValueError(f"Alias CSV row {row_number}: alias must not be blank")
             if not reviewed_by:
                 raise ValueError(f"Alias CSV row {row_number}: reviewed_by must not be blank")
+            if not allow_placeholder_reviewers and is_placeholder_reviewer(reviewed_by):
+                raise ValueError(
+                    f"Alias CSV row {row_number}: reviewed_by must not be a placeholder"
+                )
 
             owner_key = (career_slug, normalized)
             previous_owner = seen_alias_owners.get(owner_key)
@@ -397,6 +411,33 @@ def read_records(path: Path) -> list[dict[str, str]]:
         return [{key: (value or "").strip() for key, value in row.items()} for row in reader]
 
 
+def validate_posting_reviewers(path: Path, allow_placeholder_reviewers: bool) -> None:
+    if allow_placeholder_reviewers:
+        return
+    with path.open("r", encoding="utf-8-sig", newline="") as stream:
+        reader = csv.DictReader(stream)
+        for row in reader:
+            row_number = reader.line_num
+            status = (row.get("review_status") or "").strip()
+            reviewer = (row.get("reviewed_by") or "").strip()
+            if status == "verified" and is_placeholder_reviewer(reviewer):
+                raise ValueError(
+                    f"Postings CSV row {row_number}: reviewed_by must not be a placeholder"
+                )
+
+
+def output_paths(csv_path: Path, allow_placeholder_reviewers: bool) -> tuple[Path, Path, Path]:
+    stem = csv_path.stem
+    if allow_placeholder_reviewers:
+        stem = f"SCRATCH-{stem}"
+    base = OUTPUT_DIR / stem
+    return (
+        Path(f"{base}.snapshot.sql"),
+        Path(f"{base}.unmapped.csv"),
+        Path(f"{base}.publish.sql"),
+    )
+
+
 def _load_validator():
     path = ROOT / "docs" / "data" / "validate_postings.py"
     spec = importlib.util.spec_from_file_location("asgard_validate_postings", path)
@@ -423,8 +464,12 @@ def main() -> int:
     parser.add_argument("--source-version", required=True)
     parser.add_argument("--publish-reviewed", action="store_true")
     parser.add_argument("--reviewer")
+    parser.add_argument("--aliases", type=Path, default=ALIAS_PATH)
+    parser.add_argument("--allow-placeholder-reviewers", action="store_true")
     parser.add_argument("--force", action="store_true")
     args = parser.parse_args()
+    if args.allow_placeholder_reviewers and args.publish_reviewed:
+        parser.error("--allow-placeholder-reviewers cannot be used with --publish-reviewed")
     for name, value in (("--source", args.source), ("--source-version", args.source_version)):
         if not SOURCE_PATTERN.fullmatch(value):
             parser.error(
@@ -443,17 +488,21 @@ def main() -> int:
 
     if _load_validator()(args.csv_path) != 0:
         raise SystemExit("CSV validation failed; no output was written")
+    validate_posting_reviewers(args.csv_path, args.allow_placeholder_reviewers)
     records = read_records(args.csv_path)
     verified_count = sum(record["review_status"] == "verified" for record in records)
     try:
-        careers, duplicate_alias_rows = load_aliases(ALIAS_PATH, load_offline_careers())
+        careers, duplicate_alias_rows = load_aliases(
+            args.aliases,
+            load_offline_careers(),
+            args.allow_placeholder_reviewers,
+        )
     except ValueError as exc:
         parser.error(str(exc))
     rows, report, summary = aggregate_rows(records, careers, args.source_version)
-    base = OUTPUT_DIR / args.csv_path.stem
-    snapshot_path = base.with_suffix(".snapshot.sql")
-    report_path = base.with_suffix(".unmapped.csv")
-    publish_path = base.with_suffix(".publish.sql")
+    snapshot_path, report_path, publish_path = output_paths(
+        args.csv_path, args.allow_placeholder_reviewers
+    )
     if args.publish_reviewed and (len(records) < 15 or verified_count < 5):
         raise SystemExit("Publication requires at least 15 CSV rows and at least 5 verified rows")
     targets = [snapshot_path, report_path] + ([publish_path] if args.publish_reviewed else [])

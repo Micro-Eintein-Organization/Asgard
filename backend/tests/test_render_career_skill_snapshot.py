@@ -1,17 +1,24 @@
+import sys
+from pathlib import Path
+
 import pytest
 
+import scripts.render_career_skill_snapshot as renderer
 from scripts.render_career_skill_snapshot import (
     EXPECTED_ALIAS_HEADER,
+    EXPECTED_HEADER,
     OfflineCareer,
     OfflineCompetency,
     aggregate_rows,
     load_aliases,
     map_competency,
     normalize_skill,
+    output_paths,
     render_publish_sql,
     render_snapshot_sql,
     snapshot_uuid,
     sql_literal,
+    validate_posting_reviewers,
 )
 
 
@@ -27,6 +34,121 @@ def write_alias_csv(path, rows, header=EXPECTED_ALIAS_HEADER):
         ",".join(header) + "\n" + "".join(",".join(row) + "\n" for row in rows),
         encoding="utf-8-sig",
     )
+
+
+def write_postings_csv(path, reviewer="Reviewer", status="verified"):
+    values = (
+        "posting-1", "Data Analyst", "Example Co", "https://example.com/job/1",
+        "2026-11-18", "Python|SQL", "Data Analyst", "Collector", reviewer, status,
+    )
+    path.write_text(
+        ",".join(EXPECTED_HEADER) + "\n" + ",".join(values) + "\n",
+        encoding="utf-8",
+    )
+
+
+def test_placeholder_reviewers_are_rejected_by_default(tmp_path):
+    aliases_path = tmp_path / "aliases.csv"
+    write_alias_csv(
+        aliases_path,
+        [("data-analyst", "data-analyst/core-01", "Py", " TBD ")],
+    )
+    with pytest.raises(ValueError, match="Alias CSV row 2:.*placeholder"):
+        load_aliases(aliases_path, (career(),))
+
+    postings_path = tmp_path / "postings.csv"
+    write_postings_csv(postings_path, reviewer=" N/A ")
+    with pytest.raises(ValueError, match="Postings CSV row 2:.*placeholder"):
+        validate_posting_reviewers(postings_path, allow_placeholder_reviewers=False)
+
+
+def test_placeholder_reviewers_are_allowed_with_flag(tmp_path):
+    aliases_path = tmp_path / "aliases.csv"
+    write_alias_csv(
+        aliases_path,
+        [("data-analyst", "data-analyst/core-01", "Py", " TBD ")],
+    )
+    careers, _ = load_aliases(
+        aliases_path, (career(),), allow_placeholder_reviewers=True
+    )
+    assert careers[0].competencies[0].aliases == ("Py",)
+
+    postings_path = tmp_path / "postings.csv"
+    write_postings_csv(postings_path, reviewer=" N/A ")
+    validate_posting_reviewers(postings_path, allow_placeholder_reviewers=True)
+
+
+def test_placeholder_reviewer_flag_prefixes_output_names(tmp_path, monkeypatch):
+    monkeypatch.setattr(renderer, "OUTPUT_DIR", tmp_path)
+
+    paths = output_paths(Path("sample.v2.csv"), allow_placeholder_reviewers=True)
+
+    assert [path.name for path in paths] == [
+        "SCRATCH-sample.v2.snapshot.sql",
+        "SCRATCH-sample.v2.unmapped.csv",
+        "SCRATCH-sample.v2.publish.sql",
+    ]
+
+
+def test_placeholder_reviewer_flag_cannot_be_used_for_publish(monkeypatch):
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "render_career_skill_snapshot.py",
+            "postings.csv",
+            "--source",
+            "test",
+            "--source-version",
+            "v1",
+            "--allow-placeholder-reviewers",
+            "--publish-reviewed",
+            "--reviewer",
+            "Reviewer",
+        ],
+    )
+
+    with pytest.raises(SystemExit, match="2"):
+        renderer.main()
+
+
+def test_aliases_argument_path_is_passed_to_alias_loader(tmp_path, monkeypatch):
+    postings_path = tmp_path / "postings.csv"
+    write_postings_csv(postings_path)
+    aliases_path = tmp_path / "custom-aliases.csv"
+    output_dir = tmp_path / "output"
+    observed = {}
+    original_load_aliases = renderer.load_aliases
+
+    def recording_load_aliases(path, careers, allow_placeholder_reviewers=False):
+        observed["path"] = path
+        observed["allow_placeholder_reviewers"] = allow_placeholder_reviewers
+        return original_load_aliases(path, careers, allow_placeholder_reviewers)
+
+    monkeypatch.setattr(renderer, "OUTPUT_DIR", output_dir)
+    monkeypatch.setattr(renderer, "_load_validator", lambda: lambda _path: 0)
+    monkeypatch.setattr(renderer, "load_offline_careers", lambda: (career(),))
+    monkeypatch.setattr(renderer, "load_aliases", recording_load_aliases)
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "render_career_skill_snapshot.py",
+            str(postings_path),
+            "--source",
+            "test",
+            "--source-version",
+            "v1",
+            "--aliases",
+            str(aliases_path),
+        ],
+    )
+
+    assert renderer.main() == 0
+    assert observed == {
+        "path": aliases_path,
+        "allow_placeholder_reviewers": False,
+    }
 
 
 def test_normalize_skill_matches_matcher_normalization_samples():
