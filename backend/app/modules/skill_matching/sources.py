@@ -7,7 +7,7 @@ careers and published competencies.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Protocol, Sequence
 from uuid import UUID
 
@@ -26,10 +26,27 @@ class SkillProvenance:
 
 
 @dataclass(frozen=True, slots=True)
+class SnapshotAnnotation:
+    posting_count: int
+    total_postings: int
+
+
+@dataclass(frozen=True, slots=True)
+class CareerSample:
+    source: str
+    source_version: str
+    total_postings: int
+
+
+@dataclass(frozen=True, slots=True)
 class CareerCatalog:
     careers: tuple[Career, ...]
     provenance: dict[UUID, SkillProvenance]
     source_version: str | None
+    snapshot_annotations: dict[tuple[UUID, UUID], SnapshotAnnotation] = field(
+        default_factory=dict
+    )
+    samples: dict[UUID, CareerSample] = field(default_factory=dict)
 
 
 class CareerSkillSource(Protocol):
@@ -43,6 +60,10 @@ def catalog_from_rows(source_rows: Sequence[dict]) -> CareerCatalog:
     skills_by_career: dict[UUID, dict[str, BenchmarkSkill]] = {}
     provenance: dict[UUID, SkillProvenance] = {}
     versions: set[str] = set()
+    snapshot_rows: dict[
+        UUID, dict[tuple[UUID, UUID], dict[str, tuple[tuple, SnapshotAnnotation]]]
+    ] = {}
+    invalid_snapshot_careers: set[UUID] = set()
 
     for row in source_rows:
         career_id = UUID(str(row["career_id"]))
@@ -64,16 +85,75 @@ def catalog_from_rows(source_rows: Sequence[dict]) -> CareerCatalog:
         )
         versions.add(row["source_version"])
 
+        if row.get("snapshot_published") is False:
+            continue
+        snapshot_id_value = row.get("snapshot_id")
+        snapshot_fields = (
+            row.get("snapshot_posting_count"),
+            row.get("snapshot_total_postings"),
+            row.get("snapshot_source"),
+            row.get("snapshot_source_version"),
+        )
+        if snapshot_id_value is None:
+            if any(value is not None for value in snapshot_fields):
+                invalid_snapshot_careers.add(career_id)
+            continue
+
+        posting_count, total_postings, source, source_version = snapshot_fields
+        if (
+            not isinstance(posting_count, int)
+            or not isinstance(total_postings, int)
+            or not isinstance(source, str)
+            or not source
+            or not isinstance(source_version, str)
+            or not source_version
+        ):
+            invalid_snapshot_careers.add(career_id)
+            continue
+
+        pair = (career_id, competency_id)
+        snapshot_key = str(snapshot_id_value)
+        metadata = (source, source_version, total_postings)
+        annotation = SnapshotAnnotation(posting_count, total_postings)
+        rows_by_id = snapshot_rows.setdefault(career_id, {}).setdefault(pair, {})
+        previous = rows_by_id.get(snapshot_key)
+        if previous is not None and previous != (metadata, annotation):
+            invalid_snapshot_careers.add(career_id)
+        else:
+            rows_by_id[snapshot_key] = (metadata, annotation)
+
     careers = tuple(
         Career(career_id, career_names[career_id], tuple(skills.values()))
         for career_id, skills in sorted(
-            skills_by_career.items(), key=lambda item: (career_names[item[0]].casefold(), str(item[0]))
+            skills_by_career.items(),
+            key=lambda item: (career_names[item[0]].casefold(), str(item[0])),
         )
     )
+    snapshot_annotations: dict[tuple[UUID, UUID], SnapshotAnnotation] = {}
+    samples: dict[UUID, CareerSample] = {}
+    for career_id, rows_by_pair in snapshot_rows.items():
+        metadata: set[tuple[str, str, int]] = set()
+        career_annotations: dict[tuple[UUID, UUID], SnapshotAnnotation] = {}
+        valid = career_id not in invalid_snapshot_careers
+        for pair, rows_by_id in rows_by_pair.items():
+            if len(rows_by_id) != 1:
+                valid = False
+                continue
+            row_metadata, annotation = next(iter(rows_by_id.values()))
+            metadata.add(row_metadata)
+            career_annotations[pair] = annotation
+        if not valid or len(metadata) != 1:
+            continue
+        source, source_version, total_postings = next(iter(metadata))
+        samples[career_id] = CareerSample(source, source_version, total_postings)
+        snapshot_annotations.update(career_annotations)
+
     return CareerCatalog(
         careers=careers,
         provenance=provenance,
         source_version=next(iter(versions)) if len(versions) == 1 else None,
+        snapshot_annotations=snapshot_annotations,
+        samples=samples,
     )
 
 
@@ -85,12 +165,21 @@ class CompetencyLinksSource:
             connection,
             "SELECT career.id AS career_id, career.title AS career_title, "
             "competency.id AS competency_id, competency.label, competency.aliases, "
-            "competency.source, competency.source_version "
+            "competency.source, competency.source_version, "
+            "snap.id AS snapshot_id, "
+            "snap.published AS snapshot_published, "
+            "snap.posting_count AS snapshot_posting_count, "
+            "snap.total_postings AS snapshot_total_postings, "
+            "snap.source AS snapshot_source, "
+            "snap.source_version AS snapshot_source_version "
             "FROM asgard_catalog.careers AS career "
             "LEFT JOIN asgard_catalog.competency_links AS link "
             "ON link.career_id = career.id "
             "LEFT JOIN asgard_catalog.competencies AS competency "
             "ON competency.id = link.competency_id AND competency.published "
+            "LEFT JOIN asgard_catalog.career_skill_snapshot AS snap "
+            "ON snap.career_id = career.id "
+            "AND snap.competency_id = competency.id AND snap.published "
             "WHERE career.status = 'published' "
             "ORDER BY lower(career.title), career.id, competency.id",
         )

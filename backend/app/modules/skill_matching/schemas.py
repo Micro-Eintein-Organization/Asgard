@@ -37,6 +37,8 @@ class SkillMatchItem(Contract):
     reported_level: StrictInt | None
     user_report: UserReportSignal | None
     resume_signals: list[ResumeSignal] = Field(default_factory=list)
+    posting_count: StrictInt | None
+    total_postings: StrictInt | None
 
 
 class CareerSkillMatch(Contract):
@@ -48,6 +50,7 @@ class CareerSkillMatch(Contract):
     display_count: str
     skills: list[SkillMatchItem]
     sample_note: str
+    sample_label: str
 
 
 class CareerSkillMatchResponse(Contract):

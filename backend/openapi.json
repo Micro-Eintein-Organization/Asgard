@@ -551,6 +551,10 @@
             "title": "Rank",
             "type": "integer"
           },
+          "sample_label": {
+            "title": "Sample Label",
+            "type": "string"
+          },
           "sample_note": {
             "title": "Sample Note",
             "type": "string"
@@ -571,7 +575,8 @@
           "benchmark_skill_count",
           "display_count",
           "skills",
-          "sample_note"
+          "sample_note",
+          "sample_label"
         ],
         "title": "CareerSkillMatch",
         "type": "object"
@@ -4456,6 +4461,17 @@
             "title": "Label",
             "type": "string"
           },
+          "posting_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Posting Count"
+          },
           "reported_level": {
             "anyOf": [
               {
@@ -4491,6 +4507,17 @@
             "title": "Status",
             "type": "string"
           },
+          "total_postings": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Total Postings"
+          },
           "user_report": {
             "anyOf": [
               {
@@ -4509,7 +4536,9 @@
           "source_version",
           "status",
           "reported_level",
-          "user_report"
+          "user_report",
+          "posting_count",
+          "total_postings"
         ],
         "title": "SkillMatchItem",
         "type": "object"

@@ -1264,6 +1264,8 @@ export interface components {
             matched_skill_count: number;
             /** Rank */
             rank: number;
+            /** Sample Label */
+            sample_label: string;
             /** Sample Note */
             sample_note: string;
             /** Skills */
@@ -2659,6 +2661,8 @@ export interface components {
             competency_id: string;
             /** Label */
             label: string;
+            /** Posting Count */
+            posting_count: number | null;
             /** Reported Level */
             reported_level: number | null;
             /** Resume Signals */
@@ -2672,6 +2676,8 @@ export interface components {
              * @enum {string}
              */
             status: "MATCHED" | "UNKNOWN" | "MISSING";
+            /** Total Postings */
+            total_postings: number | null;
             user_report: components["schemas"]["UserReportSignal"] | null;
         };
         /** StartDiscovery */

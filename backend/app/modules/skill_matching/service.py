@@ -5,7 +5,12 @@ from __future__ import annotations
 from datetime import datetime
 from uuid import UUID
 
-from app.modules.skill_matching.matcher import ResumeEvidence, SkillStatus, UserSkillReport, rank_careers
+from app.modules.skill_matching.matcher import (
+    ResumeEvidence,
+    SkillStatus,
+    UserSkillReport,
+    rank_careers,
+)
 from app.modules.skill_matching.schemas import (
     CareerSkillMatch,
     CareerSkillMatchResponse,
@@ -22,6 +27,8 @@ from app.modules.skill_matching.sources import (
     CompetencyLinksSource,
 )
 from app.modules.storage import rows
+
+SMALL_SAMPLE_MAX = 2  # placeholder, team decision pending
 
 
 def _as_datetime(value) -> datetime | None:
@@ -56,6 +63,9 @@ def assemble_response(
         skills = []
         for match in career.skill_matches:
             provenance = catalog.provenance[match.competency_id]
+            annotation = catalog.snapshot_annotations.get(
+                (career.career_id, match.competency_id)
+            )
             report = (
                 UserReportSignal(level=match.report.level, updated_at=match.report.updated_at)
                 if match.report is not None
@@ -84,8 +94,20 @@ def assemble_response(
                     reported_level=match.reported_level,
                     user_report=report,
                     resume_signals=signals,
+                    posting_count=(annotation.posting_count if annotation else None),
+                    total_postings=(annotation.total_postings if annotation else None),
                 )
             )
+        sample = catalog.samples.get(career.career_id)
+        sample_label = SAMPLE_LABEL
+        if sample is not None:
+            posting_unit = "posting" if sample.total_postings == 1 else "postings"
+            sample_label = (
+                f"{sample.source} ({sample.source_version}): "
+                f"{sample.total_postings} {posting_unit}"
+            )
+            if sample.total_postings <= SMALL_SAMPLE_MAX:
+                sample_label += " - very small sample"
         items.append(
             CareerSkillMatch(
                 career_id=career.career_id,
@@ -96,6 +118,7 @@ def assemble_response(
                 display_count=f"{career.matched_skill_count} of {career.benchmark_skill_count}",
                 skills=skills,
                 sample_note=SOURCE_NOTE,
+                sample_label=sample_label,
             )
         )
     return CareerSkillMatchResponse(
