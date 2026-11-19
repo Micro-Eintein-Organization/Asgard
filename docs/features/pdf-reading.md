@@ -5,6 +5,47 @@ Status: source explanation and Profile extraction interface implemented; human r
 Reviewer: @YakisobaNissin, following [CODEOWNERS](../../.github/CODEOWNERS).
 Requirements: REQ-11, F-002, PM-W03/FUT-13.
 
+## Organized results and Skills visibility, 2026-11-19
+
+Task UI-RESUME-02. Implementer: Codex. Owner approved the
+[bounded plan](../plans/resume-results-organization.md) in chat with “approve”.
+Required reviewer: @YakisobaNissin. Status: implemented locally; human code review
+and manual visual acceptance pending.
+
+Saved background now uses category tables with wrapping text and expandable
+source passages. Skills automatically shows the current active document's skill
+evidence under **From resume**, using the existing account-scoped document query.
+Replacement/removal updates both views through the shared query cache. Resume
+claims remain separate from confirmed experience reports and never create or
+overwrite their ratings. Grouped source text is preserved rather than guessed
+into individual canonical skills. The empty Skills message now specifically
+refers to confirmed reports.
+
+Sources: [shared evidence presentation](../../frontend/src/features/profile/resume-evidence.tsx),
+[document controls](../../frontend/src/features/profile/documents.tsx),
+[Skills card](../../frontend/src/features/competencies/profile-skills.tsx), and
+[styles](../../frontend/src/styles.css). No backend, parser, provider, schema,
+contract, dependency or environment changes.
+
+Verification: 14 focused Vitest tests passed across document controls, shared
+resume evidence and competencies in the existing frontend Docker image with
+current source mounted read-only and networking disabled. Coverage includes
+source disclosures, clearing removed background, and no skill-report writes.
+TypeScript passed. Scoped ESLint failed only on the pre-existing synchronous
+state reset in `documents.tsx` (`react-hooks/set-state-in-effect`); no errors
+were reported in the new shared component or changed Skills component.
+The unrelated lint issue remains outside this presentation change.
+
+Manual acceptance pending: open `/settings/profile` in the existing app, refresh
+a successful analysis and inspect each category table. Expand a source using
+Tab/Enter; compare Skills → From resume with the saved skill evidence. Existing
+confirmed ratings must remain unchanged. Check long text at a narrow viewport
+and 200% zoom. With disposable approved data, replace/remove background and
+verify both views update. Report the route, viewport and expected/actual behavior
+without sharing private PDF text. Chrome inspection was denied during the earlier
+diagnosis; no new live PDF/provider or hosted checks were performed. The original
+transient extraction failure remains unconfirmed. No commits or publication.
+
 ## Primary resume picker presentation, 2026-11-19
 
 Task: UI-RESUME-01. Implementer/task owner: Codex. Reviewer: @YakisobaNissin.
