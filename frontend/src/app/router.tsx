@@ -12,6 +12,7 @@ import {
   RoadmapPage,
   ResultsPage,
   AuthenticatedProfilePage,
+  SkillMatchingPage,
   ProfileSetupPage,
   CareerComparisonPage,
   CareerSourcesPage,
@@ -71,6 +72,7 @@ export const router = createBrowserRouter([
             element: <CareerDestination />,
           },
           { path: appRoutes.profile, element: <AuthenticatedProfilePage /> },
+          { path: appRoutes.careerSkillMatches, element: <SkillMatchingPage /> },
           {
             path: appRoutes.account,
             element: (

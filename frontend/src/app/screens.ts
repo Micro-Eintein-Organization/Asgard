@@ -35,6 +35,9 @@ export const AccountSettingsPage = lazy(async () => ({
 export const AuthenticatedProfilePage = lazy(async () => ({
   default: (await import("@/screens/SettingsScreen")).SettingsScreen,
 }));
+export const SkillMatchingPage = lazy(async () => ({
+  default: (await import("@/features/skill-matching/page")).default,
+}));
 export const ProfileSetupPage = lazy(async () => ({
   default: (await import("@/components/profile/OptionalProfileSetup")).default,
 }));

@@ -328,6 +328,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/me/career-skill-matches": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Career Skill Matches */
+        get: operations["get_my_career_skill_matches"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/me/careers/{career_id}/competency-comparison": {
         parameters: {
             query?: never;
@@ -1221,6 +1238,28 @@ export interface components {
             /** Total */
             total: number;
         };
+        /** CareerPosting */
+        CareerPosting: {
+            /** Company */
+            company: string;
+            /** Job Title */
+            job_title: string;
+            /** Posting Id */
+            posting_id: string;
+            /**
+             * Retrieved On
+             * Format: date
+             */
+            retrieved_on: string;
+            /** Skills */
+            skills: components["schemas"]["PostingSkill"][];
+            /** Source */
+            source: string;
+            /** Source Url */
+            source_url: string;
+            /** Source Version */
+            source_version: string;
+        };
         /** CareerShortlist */
         CareerShortlist: {
             /** Available */
@@ -1229,6 +1268,45 @@ export interface components {
             items: components["schemas"]["SavedCareer"][];
             /** Version */
             version: number;
+        };
+        /** CareerSkillMatch */
+        CareerSkillMatch: {
+            /** Benchmark Skill Count */
+            benchmark_skill_count: number;
+            /**
+             * Career Id
+             * Format: uuid
+             */
+            career_id: string;
+            /** Career Title */
+            career_title: string;
+            /** Display Count */
+            display_count: string;
+            /** Matched Skill Count */
+            matched_skill_count: number;
+            /** Postings */
+            postings?: components["schemas"]["CareerPosting"][];
+            /** Rank */
+            rank: number;
+            /** Sample Label */
+            sample_label: string;
+            /** Sample Note */
+            sample_note: string;
+            /** Skills */
+            skills: components["schemas"]["SkillMatchItem"][];
+        };
+        /** CareerSkillMatchResponse */
+        CareerSkillMatchResponse: {
+            /** Items */
+            items: components["schemas"]["CareerSkillMatch"][];
+            /** Postings Sample Label */
+            postings_sample_label: string;
+            /** Sample Label */
+            sample_label: string;
+            /** Source */
+            source: string;
+            /** Source Version */
+            source_version: string | null;
         };
         /** CatalogProgress */
         CatalogProgress: {
@@ -2102,6 +2180,20 @@ export interface components {
             /** Recommendation Run Id */
             recommendation_run_id?: string | null;
         };
+        /** PostingResumeMatch */
+        PostingResumeMatch: {
+            /** Matched Phrase */
+            matched_phrase: string;
+            /** Pages */
+            pages: number[];
+        };
+        /** PostingSkill */
+        PostingSkill: {
+            /** Label */
+            label: string;
+            /** Resume Match */
+            resume_match: components["schemas"]["PostingResumeMatch"] | null;
+        };
         /** Preferences */
         Preferences: {
             /** Dismissed Guidance */
@@ -2362,6 +2454,28 @@ export interface components {
             /** Enabled */
             enabled: boolean;
         };
+        /** ResumeSignal */
+        ResumeSignal: {
+            /** Analysis Id */
+            analysis_id: string | null;
+            /** Document Id */
+            document_id: string | null;
+            /**
+             * Kind
+             * @constant
+             */
+            kind: "skill";
+            /** Matched Phrases */
+            matched_phrases: string[];
+            /** Page */
+            page: number;
+            /** Revision */
+            revision: number | null;
+            /** Span */
+            span: string;
+            /** Text */
+            text: string;
+        };
         /** ResumeSkillReview */
         ResumeSkillReview: {
             /** Suggestions */
@@ -2578,6 +2692,34 @@ export interface components {
             /** Why It Matters */
             why_it_matters: string;
         };
+        /** SkillMatchItem */
+        SkillMatchItem: {
+            /**
+             * Competency Id
+             * Format: uuid
+             */
+            competency_id: string;
+            /** Label */
+            label: string;
+            /** Posting Count */
+            posting_count: number | null;
+            /** Reported Level */
+            reported_level: number | null;
+            /** Resume Signals */
+            resume_signals?: components["schemas"]["ResumeSignal"][];
+            /** Source */
+            source: string;
+            /** Source Version */
+            source_version: string;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "MATCHED" | "UNKNOWN" | "MISSING";
+            /** Total Postings */
+            total_postings: number | null;
+            user_report: components["schemas"]["UserReportSignal"] | null;
+        };
         /** StartDiscovery */
         StartDiscovery: {
             /**
@@ -2700,6 +2842,19 @@ export interface components {
              * Format: date-time
              */
             updated_at: string;
+        };
+        /** UserReportSignal */
+        UserReportSignal: {
+            /** Level */
+            level: number | null;
+            /**
+             * Source
+             * @default user_report
+             * @constant
+             */
+            source: "user_report";
+            /** Updated At */
+            updated_at: string | null;
         };
         /**
          * ValidatedRecommendationItem
@@ -4115,6 +4270,44 @@ export interface operations {
             };
             /** @description Unprocessable Content */
             422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    get_my_career_skill_matches: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CareerSkillMatchResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
                 headers: {
                     [name: string]: unknown;
                 };
