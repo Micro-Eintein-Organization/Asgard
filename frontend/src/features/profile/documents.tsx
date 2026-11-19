@@ -76,13 +76,24 @@ export function ProfileDocuments({ onGuardChange, compact = false, active = true
       {state?.available && <div className="form-grid">
         <h3>Import skills and experience from your resume</h3>
         <p>Choose a PDF, then select Analyze PDF to extract and save its skills, work experience, education and projects. Your resume is stored privately; relevant background is processed by Groq. A successful analysis replaces your previous resume background.</p>
-        <label htmlFor="background-pdf">{state.active ? "Replace resume PDF" : "Choose resume PDF"}</label>
-        <input ref={input} id="background-pdf" type="file" accept="application/pdf,.pdf"
-          disabled={pending || !!state.candidate}
-          onChange={event => {
-            setFile(event.target.files?.[0] ?? null);
-            extract.reset();
-          }} />
+        <div className="resume-file-card">
+          <span className="resume-file-icon" aria-hidden="true">PDF</span>
+          <div className="resume-file-info">
+            <strong>{file?.name ?? (state.candidate ? "Resume ready for analysis" : "Review a resume")}</strong>
+            <span>{phase || (busyCandidate ? "Processing your resume…" : pending ? "Updating resume…" : file || state.candidate ? "Ready to analyze" : "Select a PDF to review skills and experience")}</span>
+          </div>
+          <button type="button" className="resume-file-choose disabled:cursor-not-allowed disabled:opacity-50"
+            disabled={pending || !!state.candidate} onClick={() => input.current?.click()}>
+            {file || state.active ? "Replace PDF" : "Choose PDF"}
+          </button>
+          <input className="sr-only" ref={input} id="background-pdf" type="file" accept="application/pdf,.pdf"
+            tabIndex={-1} aria-label={state.active ? "Replace resume PDF" : "Choose resume PDF"}
+            disabled={pending || !!state.candidate}
+            onChange={event => {
+              setFile(event.target.files?.[0] ?? null);
+              extract.reset();
+            }} />
+        </div>
         <p className="field-help">Selectable-text PDF, up to 10 MB. No career selection is required. Experience ratings remain separate self-reports.</p>
         {state.synthetic_only && <label><input type="checkbox" checked={synthetic} disabled={pending}
           onChange={event => setSynthetic(event.target.checked)} /> This is a synthetic test resume with no real personal data.</label>}

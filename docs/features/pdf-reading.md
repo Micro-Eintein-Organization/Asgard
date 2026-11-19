@@ -5,6 +5,33 @@ Status: source explanation and Profile extraction interface implemented; human r
 Reviewer: @YakisobaNissin, following [CODEOWNERS](../../.github/CODEOWNERS).
 Requirements: REQ-11, F-002, PM-W03/FUT-13.
 
+## Primary resume picker presentation, 2026-11-19
+
+Task: UI-RESUME-01. Implementer/task owner: Codex. Reviewer: @YakisobaNissin.
+The owner requested that the main resume upload use the existing **Review a
+resume** card with its PDF indicator, rather than the plain native file input.
+The screenshot and request define the bounded presentation plan: reuse the
+existing resume-card classes in `frontend/src/features/profile/documents.tsx`,
+show the selected filename/readiness, and retain Choose/Replace PDF keyboard
+activation plus the existing explicit Analyze PDF action. Existing document
+upload, synthetic-data confirmation, account guards, saved evidence, and the
+optional career-specific temporary review keep their behavior. No backend,
+shared contracts, dependencies or new visual assets are needed.
+
+Initial worktree inspection was clean on `codex/cabusao-ui-integration`. The owner
+requested no tests for this change; no tests were added or run. Verification:
+`npm run typecheck` passed, existing card classes and keyboard button activation
+were checked in source, and scoped whitespace checks passed. Status: implemented
+locally and ready for source review; manual appearance acceptance pending.
+
+Manual check at `http://127.0.0.1:5173/settings/profile`: the main import flow
+should show the existing red PDF indicator, **Review a resume**, and **Choose
+PDF**. Choose a PDF using keyboard or pointer; its filename and Ready to analyze
+indicator should appear. Analyze PDF retains its existing enablement conditions.
+Cancel selection should restore the prompt. Check a narrow viewport and long
+filename. Report the route and expected/actual presentation; keep resume contents
+private. Provider configuration acceptance is outside this presentation change.
+
 ## Profile extraction integration, 2026-11-19
 
 Implementer/task owner: Codex. Created/updated: 2026-11-19. Reviewer:
