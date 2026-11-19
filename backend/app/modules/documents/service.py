@@ -1,7 +1,6 @@
 import asyncio
 import json
 import logging
-import math
 from datetime import UTC, datetime
 from uuid import uuid4
 
@@ -236,32 +235,6 @@ async def upload(request, identity, expected, data):
 
 
 async def reserve(connection, uid, doc, key, attempt):
-    counts = await one(
-        connection,
-        (
-            "SELECT count(*) FILTER(WHERE "
-            "reserved_at>statement_timestamp()-interval '1 hour') AS hourly, "
-            "count(*) AS daily, "
-            "extract(epoch FROM (min(reserved_at) FILTER(WHERE "
-            "reserved_at>statement_timestamp()-interval '1 hour') "
-            "+interval '1 hour'-statement_timestamp())) AS hourly_wait, "
-            "extract(epoch FROM (min(reserved_at)+interval '24 hours'"
-            "-statement_timestamp())) AS daily_wait "
-            "FROM asgard_private.analysis_attempts WHERE "
-            "user_id=CAST(:uid AS uuid) AND operation='pdf_analysis' AND "
-            "reserved_at>statement_timestamp()-interval '24 hours'"
-        ),
-        {"uid": str(uid)},
-    )
-    if counts["hourly"] >= 3 or counts["daily"] >= 5:
-        wait = max(
-            float(counts["hourly_wait"] or 0) if counts["hourly"] >= 3 else 0,
-            float(counts["daily_wait"] or 0) if counts["daily"] >= 5 else 0,
-        )
-        raise APIError(
-            429, "quota_exceeded", "PDF analysis allowance reached.",
-            retry_after=max(1, math.ceil(wait)),
-        )
     budget = await one(
         connection,
         (
@@ -352,10 +325,7 @@ async def analyze(request, identity, doc, body):
         )
         await bump(connection, uid)
 
-    attempts = 0
-
-    async def retry():
-        nonlocal attempts
+    async def retry(is_retry=True):
         async with transaction(request, identity) as connection:
             await head(connection, uid)
             pending = await one(
@@ -369,8 +339,7 @@ async def analyze(request, identity, doc, body):
             )
             if not pending:
                 raise APIError(409, "document_changed", "Document was removed or expired.")
-            await reserve(connection, uid, doc, uuid4(), attempts + 1)
-        attempts += 1
+            await reserve(connection, uid, doc, uuid4(), 2 if is_retry else 1)
 
     failure = None
     evidence = []
@@ -383,8 +352,9 @@ async def analyze(request, identity, doc, body):
             pages = await provider.parse(response.content)
             stage = "filtering"
             pages = provider.redact(pages, known_names)
+            provider.source_chunks(pages)
             stage = "allowance"
-            await retry()
+            await retry(False)
             stage = "provider_or_validation"
             result = await provider.extract(request.app.state.http, settings, pages, retry)
             evidence = result.model_dump(mode="json")["items"]

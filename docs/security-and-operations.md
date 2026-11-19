@@ -33,7 +33,7 @@ These numbers are Asgard's initial policy, not OWASP defaults. Use whichever app
 | API reads | 120/minute/account, burst 20; bounded catalog queries | Backend |
 | API writes | 60/minute/account, burst 10; stricter limits below take precedence | Backend |
 | Recommendation generation | 1 in flight/account, 1/minute and 10/day/account | Persisted quota reservation before provider call |
-| PDF analysis | 1 in flight/account, 3/hour and 5/day/account | Persisted quota reservation and file limits |
+| PDF analysis | 1 in flight/account; no PDF-specific per-account hourly/daily cap (owner decision 2026-11-19) | File/request limits and shared provider budget remain |
 | Application-wide external analysis | Initially 100 attempts/day across recommendations and PDF analysis, including retries, or lower remaining provider quota | Shared persisted budget, no automatic paid upgrade |
 
 PDF reliability follow-up, 2026-11-19: the owner approved reserving PDF allowance
