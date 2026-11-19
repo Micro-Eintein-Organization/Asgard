@@ -30,14 +30,14 @@ describe("PDF removal", () => {
   it("does not remove the saved document when confirmation is cancelled", () => {
     vi.spyOn(window, "confirm").mockReturnValue(false);
     render(<MemoryRouter><ProfileDocuments /></MemoryRouter>);
-    fireEvent.click(screen.getByRole("button", { name: "Remove document background" }));
+    fireEvent.click(screen.getByRole("button", { name: "Remove resume" }));
     expect(remove).not.toHaveBeenCalled();
   });
   it("keeps saved-document removal available in the compact reference card", () => {
     vi.spyOn(window, "confirm").mockReturnValue(false);
     render(<MemoryRouter><ProfileDocuments compact /></MemoryRouter>);
     expect(screen.queryByText("Academic profile and document management")).not.toBeInTheDocument();
-    fireEvent.click(screen.getByRole("button", { name: "Remove document background" }));
+    fireEvent.click(screen.getByRole("button", { name: "Remove resume" }));
     expect(remove).not.toHaveBeenCalled();
   });
   it("offers extraction without a career selection and keeps the guard registered", () => {
@@ -88,4 +88,26 @@ it("does not analyze an uploaded file after an account change", async () => {
   fireEvent.click(screen.getByRole("button", { name: "Analyze PDF" }));
   await waitFor(() => expect(isCurrentAccount).toHaveBeenCalledWith("owner"));
   expect(coreApi.analyzeDocument).not.toHaveBeenCalled();
+});
+
+it("clears only the selected PDF without removing saved background", () => {
+  documentView.evidence = [{ kind: "skill", text: "SQL", page: 1, span: "Skills: SQL" }];
+  render(<MemoryRouter><ProfileDocuments /></MemoryRouter>);
+  fireEvent.change(screen.getByLabelText("Replace resume PDF"), {
+    target: { files: [new File(["pdf"], "selection.pdf", { type: "application/pdf" })] },
+  });
+  fireEvent.click(screen.getByRole("button", { name: "Clear selected PDF" }));
+  expect(screen.queryByText("selection.pdf")).not.toBeInTheDocument();
+  expect(screen.getByRole("region", { name: "Skills from resume" })).toHaveTextContent("SQL");
+  expect(remove).not.toHaveBeenCalled();
+});
+
+it("uses a destructive button and confirms the removal scope", () => {
+  const confirm = vi.spyOn(window, "confirm").mockReturnValue(true);
+  render(<MemoryRouter><ProfileDocuments /></MemoryRouter>);
+  const button = screen.getByRole("button", { name: "Remove resume" });
+  expect(button).toHaveAttribute("data-variant", "destructive");
+  fireEvent.click(button);
+  expect(confirm).toHaveBeenCalledWith(expect.stringContaining("Manual skills and learning progress are preserved"));
+  expect(remove).toHaveBeenCalledWith({ expected_revision: 2 });
 });

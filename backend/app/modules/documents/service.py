@@ -1,5 +1,7 @@
 import asyncio
 import json
+import logging
+import math
 from datetime import UTC, datetime
 from uuid import uuid4
 
@@ -9,6 +11,8 @@ from app.core.errors import APIError
 from app.modules.documents import provider
 from app.modules.documents.schemas import DocumentState
 from app.modules.storage import lock_account, one, required, rows, transaction
+
+logger = logging.getLogger(__name__)
 
 
 def configured(settings):
@@ -237,15 +241,26 @@ async def reserve(connection, uid, doc, key, attempt):
         (
             "SELECT count(*) FILTER(WHERE "
             "reserved_at>statement_timestamp()-interval '1 hour') AS hourly, "
-            "count(*) AS daily FROM asgard_private.analysis_attempts WHERE "
+            "count(*) AS daily, "
+            "extract(epoch FROM (min(reserved_at) FILTER(WHERE "
+            "reserved_at>statement_timestamp()-interval '1 hour') "
+            "+interval '1 hour'-statement_timestamp())) AS hourly_wait, "
+            "extract(epoch FROM (min(reserved_at)+interval '24 hours'"
+            "-statement_timestamp())) AS daily_wait "
+            "FROM asgard_private.analysis_attempts WHERE "
             "user_id=CAST(:uid AS uuid) AND operation='pdf_analysis' AND "
             "reserved_at>statement_timestamp()-interval '24 hours'"
         ),
         {"uid": str(uid)},
     )
     if counts["hourly"] >= 3 or counts["daily"] >= 5:
+        wait = max(
+            float(counts["hourly_wait"] or 0) if counts["hourly"] >= 3 else 0,
+            float(counts["daily_wait"] or 0) if counts["daily"] >= 5 else 0,
+        )
         raise APIError(
-            429, "quota_exceeded", "PDF analysis allowance reached. Try later.", retry_after=3600
+            429, "quota_exceeded", "PDF analysis allowance reached.",
+            retry_after=max(1, math.ceil(wait)),
         )
     budget = await one(
         connection,
@@ -260,8 +275,10 @@ async def reserve(connection, uid, doc, key, attempt):
         ),
     )
     if not budget:
+        now = datetime.now(UTC)
+        wait = 86400 - (now.hour * 3600 + now.minute * 60 + now.second)
         raise APIError(
-            429, "quota_exceeded", "Application analysis allowance reached.", retry_after=86400
+            429, "quota_exceeded", "Application analysis allowance reached.", retry_after=wait,
         )
     await connection.execute(
         text(
@@ -318,7 +335,6 @@ async def analyze(request, identity, doc, body):
             {"uid": uid},
         )
         known_names = (profile["first_name"], profile["surname"]) if profile else ()
-        await reserve(connection, uid, doc, body.idempotency_key, 1)
         await connection.execute(
             text(
                 "UPDATE asgard_private.documents SET "
@@ -336,7 +352,10 @@ async def analyze(request, identity, doc, body):
         )
         await bump(connection, uid)
 
+    attempts = 0
+
     async def retry():
+        nonlocal attempts
         async with transaction(request, identity) as connection:
             await head(connection, uid)
             pending = await one(
@@ -350,24 +369,42 @@ async def analyze(request, identity, doc, body):
             )
             if not pending:
                 raise APIError(409, "document_changed", "Document was removed or expired.")
-            await reserve(connection, uid, doc, uuid4(), 2)
+            await reserve(connection, uid, doc, uuid4(), attempts + 1)
+        attempts += 1
 
     failure = None
     evidence = []
+    quota_error = None
+    stage = "storage"
     try:
         async with asyncio.timeout(120):
             response = await object_request(request, "GET", saved["object_key"])
-            pages = provider.redact(await provider.parse(response.content), known_names)
+            stage = "reading"
+            pages = await provider.parse(response.content)
+            stage = "filtering"
+            pages = provider.redact(pages, known_names)
+            stage = "allowance"
+            await retry()
+            stage = "provider_or_validation"
             result = await provider.extract(request.app.state.http, settings, pages, retry)
             evidence = result.model_dump(mode="json")["items"]
     except TimeoutError:
         failure = "timeout"
     except APIError as error:
         failure = error.code
-    except (ValueError, KeyError, IndexError, TypeError):
-        failure = "invalid_evidence"
+        if error.code == "quota_exceeded":
+            quota_error = error
+    except (ValueError, KeyError, IndexError, TypeError) as error:
+        failure = (
+            "no_usable_evidence" if error.args == ("no_usable_evidence",) else "invalid_evidence"
+        )
     except Exception:
         failure = "analysis_unavailable"
+    if failure:
+        logger.warning(
+            "PDF analysis failed stage=%s code=%s request_id=%s", stage, failure,
+            getattr(request.state, "request_id", "unavailable"),
+        )
     async with transaction(request, identity) as connection:
         await head(connection, uid)
         pending = required(
@@ -388,21 +425,26 @@ async def analyze(request, identity, doc, body):
             await connection.execute(
                 text(
                     "UPDATE asgard_private.documents SET "
-                    "status=:status,evidence=CAST(:evidence AS "
+                    "status=:status,analysis_key=CASE WHEN :blocked THEN NULL "
+                    "ELSE analysis_key END,deadline_at=CASE WHEN :blocked THEN NULL "
+                    "ELSE deadline_at END,evidence=CAST(:evidence AS "
                     "jsonb),failure_code=:failure,purge_due_at=CASE WHEN :failed THEN "
                     "statement_timestamp() ELSE NULL END WHERE user_id=CAST(:uid AS uuid) "
                     "AND id=CAST(:id AS uuid)"
                 ),
                 {
-                    "status": "failed" if failure else "active",
+                    "status": "uploaded" if quota_error else "failed" if failure else "active",
+                    "blocked": quota_error is not None,
                     "evidence": json.dumps(evidence if not failure else []),
                     "failure": failure,
-                    "failed": bool(failure),
+                    "failed": bool(failure) and quota_error is None,
                     "uid": uid,
                     "id": str(doc),
                 },
             )
             await bump(connection, uid)
+    if quota_error:
+        raise quota_error
     await cleanup(request, identity)
     async with transaction(request, identity) as connection:
         return await state(connection, uid, settings)

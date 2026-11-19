@@ -54,7 +54,8 @@ def redact(pages, known_names=()):
     # Conservative section allowlist drops resume headers, contacts and free-form prose.
     # Real-document activation still requires privacy review; this is not an anonymizer.
     heading = re.compile(
-        r"^(skills|technical skills|education|experience|work experience|projects)\s*:?", re.I
+        r"^(skills|technical skills|education|experience|work experience|projects)"
+        r"\s*(?::\s*.*)?$", re.I,
     )
     contact = re.compile(
         (
@@ -69,8 +70,8 @@ def redact(pages, known_names=()):
         if name and len(name.strip()) >= 2
     ]
     result = []
+    active = False
     for page in pages:
-        active = False
         lines = []
         for line in page.splitlines():
             if heading.fullmatch(line.strip()):
@@ -159,7 +160,10 @@ async def extract(http, settings, pages, reserve_retry):
                         "provider_unavailable",
                         "PDF analysis is unavailable. Existing saved context is preserved.",
                     )
-                delay = float(response.headers.get("retry-after", "1"))
+                try:
+                    delay = float(response.headers.get("retry-after", "1"))
+                except ValueError:
+                    raise APIError(503, "provider_unavailable", "Try analysis later.") from None
                 if delay < 0 or delay > 5:
                     raise APIError(503, "provider_unavailable", "Try analysis later.")
         except httpx.TransportError as error:

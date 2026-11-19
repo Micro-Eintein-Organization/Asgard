@@ -5,6 +5,59 @@ Status: source explanation and Profile extraction interface implemented; human r
 Reviewer: @YakisobaNissin, following [CODEOWNERS](../../.github/CODEOWNERS).
 Requirements: REQ-11, F-002, PM-W03/FUT-13.
 
+## Reliability and visible controls, 2026-11-19
+
+Implementer/task owner: Codex. Owner approved the bounded implementation plan
+in chat with “Please implement the plan.” Required reviewer: @YakisobaNissin.
+Status: source implemented; human review and live hosted acceptance pending.
+Requirements: REQ-11/13, F-002, existing privacy/resource limits.
+
+Approved scope: fix filtering, quota reservation timing and retry feedback;
+use shared clear/remove/recovery buttons. Affected modules are document service,
+provider, Profile controls and their tests. No schema, API shape, dependency,
+provider or numerical quota changes. Account transactions, private Storage,
+shared budgets, removal guards and previous successful background are preserved.
+
+Allowed headings now accept inline content such as `Skills: SQL`, and sections
+continue across pages. Provider allowance is reserved after bounded local
+preparation and before each AI call, including its one transient retry.
+Pre-provider storage/read/filter failures do not spend AI allowance. Historical
+reservations remain unchanged. Quota rejection retains an uploaded candidate;
+Retry-After reflects the limiting rolling window or UTC day. Failure diagnostics
+contain stage/code/request ID, not resume text.
+
+Profile displays specific failure reasons, quota waiting time, bounded status
+polling and duplicate-click protection with a per-candidate analysis key.
+Clear selected PDF clears only local selection. Remove resume is a destructive
+button with confirmation covering saved and pending background; manual skills
+and progress remain. Reload and cleanup are visible shared buttons.
+
+Verification: 22 backend PDF/resume tests passed in the existing image with
+read-only mounted source and networking disabled. Coverage includes inline and
+continued sections, pre-provider failures without quota reservation, quota
+candidate retention, waits and a simulated transient retry. Eight Profile tests
+and TypeScript passed on the host. Backend scoped Ruff passed after line-length
+corrections. Docker required sandbox escalation; no services were started or
+rebuilt. Frontend lint's new clock/dependency findings were corrected; its
+pre-existing synchronous inactive-form reset remains a limitation.
+
+Not run: live provider, authenticated browser and actual PostgreSQL quota/race
+acceptance. Mocked responses do not establish live reliability. Human reviewer:
+@YakisobaNissin. No commit/deployment or 100-percent success claim.
+
+Manual acceptance (pending): at `/settings/profile` on the intended build,
+analyze synthetic separate-heading, inline-heading and multi-page text PDFs.
+Inspect saved evidence and source passages. Reject a scan/invalid PDF without
+losing prior background. At an arranged quota boundary, verify waiting time and
+retained candidate. Clear selection without deleting saved background; cancel
+then confirm Remove resume and verify manual skills/progress remain. Report
+request ID, build, action and expected/actual outcome without private PDF text.
+
+Owner's subsequent request for completed-roadmap indicators in Career skill
+matches is a separate shared-contract decision awaiting clarification. Splitting
+AI requests would increase quota use; no chunking or quota-policy expansion is
+implemented by this change.
+
 ## Organized results and Skills visibility, 2026-11-19
 
 Task UI-RESUME-02. Implementer: Codex. Owner approved the
@@ -302,7 +355,7 @@ Sources: [document service and lifecycle](../../backend/app/modules/documents/se
 | Unsupported input | Wrong type/signature, encrypted or malformed PDFs, and PDFs without selectable text are rejected |
 | Parser bounds | Two-second slot wait; 15-second communication timeout; 384 MiB address-space and 12-second CPU limits |
 | Provider failures | At most one transient retry, subject to quota; malformed, refused, truncated or unsupported output fails analysis |
-| Analysis quota | Three reserved attempts per rolling hour and five per rolling 24 hours per account; 100 reserved attempts per UTC day application-wide; retries reserve another attempt |
+| Analysis quota | Three provider attempts per rolling hour and five per rolling 24 hours per account; 100 shared external-analysis attempts per UTC day; reserve after local preparation and before each provider request, including retries |
 | Changed state | Revision conflicts require reloading state before retrying; removed or expired candidates cannot apply late results |
 
 The [specification](../specs/career-recommendations.md#optional-pdf-extraction)
