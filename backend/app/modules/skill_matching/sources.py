@@ -7,11 +7,13 @@ careers and published competencies.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from collections.abc import Sequence
+from dataclasses import dataclass, field, replace
 from datetime import date
-from typing import Protocol, Sequence
+from typing import Protocol
 from uuid import UUID
 
+from app.core.errors import APIError
 from app.modules.skill_matching.matcher import BenchmarkSkill, Career
 from app.modules.storage import rows
 
@@ -64,6 +66,9 @@ class CareerCatalog:
     postings_by_career: dict[UUID, tuple[CuratedPosting, ...]] = field(
         default_factory=dict
     )
+    source_label: str = SOURCE_LABEL
+    sample_label: str = SAMPLE_LABEL
+    source_note: str = SOURCE_NOTE
 
 
 class CareerSkillSource(Protocol):
@@ -244,4 +249,69 @@ class CompetencyLinksSource:
                 career_id: tuple(postings)
                 for career_id, postings in postings_by_career.items()
             },
+        )
+
+
+class SnapshotSource:
+    """Rank only skills from one explicitly configured, reviewed snapshot."""
+
+    def __init__(self, source: str, version: str):
+        self.source, self.version = source.strip(), version.strip()
+
+    async def list_all(self, connection) -> CareerCatalog:
+        if not self.source or not self.version:
+            raise APIError(
+                503, "benchmark_unavailable", "The benchmark sample is not configured yet. "
+                "You can use Learning-path skills.",
+            )
+        parameters = {"source": self.source, "version": self.version}
+        source_rows = await rows(
+            connection,
+            "SELECT career.id AS career_id, career.title AS career_title, "
+            "sample.* FROM asgard_catalog.careers career LEFT JOIN ("
+            "SELECT snap.career_id AS sample_career_id, competency.id AS competency_id, "
+            "competency.label, competency.aliases, competency.source, competency.source_version, "
+            "snap.id AS snapshot_id, snap.published AS snapshot_published, "
+            "snap.posting_count AS snapshot_posting_count, "
+            "snap.total_postings AS snapshot_total_postings, "
+            "snap.source AS snapshot_source, snap.source_version AS snapshot_source_version "
+            "FROM asgard_catalog.career_skill_snapshot snap "
+            "JOIN asgard_catalog.competencies competency ON competency.id=snap.competency_id "
+            "AND competency.published WHERE snap.published AND snap.source=:source "
+            "AND snap.source_version=:version) sample ON sample.sample_career_id=career.id "
+            "WHERE career.status='published' "
+            "ORDER BY lower(career.title),career.id,sample.competency_id",
+            parameters,
+        )
+        if not any(item.get("competency_id") is not None for item in source_rows):
+            raise APIError(503, "benchmark_unavailable", "The selected benchmark sample has no "
+                           "published skill mappings yet. You can use Learning-path skills.")
+        catalog = catalog_from_rows(source_rows)
+        posting_rows = await rows(
+            connection,
+            "SELECT posting.* FROM asgard_catalog.career_skill_postings posting "
+            "JOIN asgard_catalog.career_skill_posting_versions version "
+            "ON version.source=posting.source AND version.source_version=posting.source_version "
+            "JOIN asgard_catalog.careers career ON career.id=posting.career_id "
+            "WHERE posting.source=:source AND posting.source_version=:version "
+            "AND version.status='published' AND career.status='published' "
+            "ORDER BY career.id,posting.retrieved_on DESC,posting.posting_id",
+            parameters,
+        )
+        postings: dict[UUID, list[CuratedPosting]] = {}
+        for row in posting_rows:
+            postings.setdefault(UUID(str(row["career_id"])), []).append(CuratedPosting(
+                source=row["source"], source_version=row["source_version"],
+                posting_id=row["posting_id"], company=row["company"], job_title=row["job_title"],
+                source_url=row["source_url"],
+                retrieved_on=(date.fromisoformat(row["retrieved_on"])
+                              if isinstance(row["retrieved_on"], str) else row["retrieved_on"]),
+                skill_labels=tuple(row["skill_labels"]),
+            ))
+        return replace(
+            catalog, source_label=self.source, source_version=self.version,
+            sample_label="Benchmark sample",
+            source_note="Skills mapped from reviewed sample postings, "
+                        "not a comprehensive employer requirement list.",
+            postings_by_career={key: tuple(value) for key, value in postings.items()},
         )

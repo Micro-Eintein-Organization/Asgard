@@ -1,10 +1,14 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { ProfileDocuments } from "./documents";
+import { coreApi } from "@/features/core/data";
+import { isCurrentAccount } from "@/auth/transport";
 
 const remove = vi.fn();
-const documentView = vi.hoisted(() => ({ active: true }));
+const documentView = vi.hoisted(() => ({ active: true, evidence: [] as { kind: string; text: string; page: number; span: string }[] }));
+vi.mock("@/auth/context", () => ({ useAuth: () => ({ user: { id: "owner" } }) }));
+vi.mock("@/auth/transport", () => ({ isCurrentAccount: vi.fn(() => true) }));
 vi.mock("@/features/core/data", () => ({
   coreApi: {
     documents: vi.fn(), uploadDocument: vi.fn(), analyzeDocument: vi.fn(),
@@ -12,14 +16,15 @@ vi.mock("@/features/core/data", () => ({
   },
   useCoreQuery: () => ({ data: {
     available: true, synthetic_only: true, revision: 2,
-    active: documentView.active ? { evidence: [] } : null, candidate: null, cleanup_pending: 0,
-  } }),
+    active: documentView.active ? { evidence: documentView.evidence } : null, candidate: null, cleanup_pending: 0,
+  }, refetch: vi.fn() }),
   useCoreMutation: (operation: unknown) => ({
     isPending: false, mutate: operation === "remove" ? remove : vi.fn(), reset: vi.fn(),
+    mutateAsync: operation,
   }),
 }));
 
-afterEach(() => { vi.restoreAllMocks(); remove.mockClear(); documentView.active = true; });
+afterEach(() => { vi.restoreAllMocks(); vi.clearAllMocks(); documentView.active = true; documentView.evidence = []; vi.mocked(isCurrentAccount).mockReturnValue(true); });
 
 describe("PDF removal", () => {
   it("does not remove the saved document when confirmation is cancelled", () => {
@@ -35,11 +40,52 @@ describe("PDF removal", () => {
     fireEvent.click(screen.getByRole("button", { name: "Remove document background" }));
     expect(remove).not.toHaveBeenCalled();
   });
-  it("omits duplicate empty-state copy while keeping the document guard registered", () => {
+  it("offers extraction without a career selection and keeps the guard registered", () => {
     documentView.active = false;
     const guard = vi.fn();
-    const view = render(<MemoryRouter><ProfileDocuments compact onGuardChange={guard} /></MemoryRouter>);
-    expect(view.container).toBeEmptyDOMElement();
+    render(<MemoryRouter><ProfileDocuments compact onGuardChange={guard} /></MemoryRouter>);
+    expect(screen.getByLabelText("Choose resume PDF")).toBeVisible();
+    expect(screen.getByRole("button", { name: "Analyze PDF" })).toBeDisabled();
     expect(guard).toHaveBeenCalledWith(false, false);
   });
+});
+
+it("uploads and analyzes the chosen PDF only after confirmation, using the upload revision", async () => {
+  vi.mocked(coreApi.uploadDocument).mockResolvedValue({ revision: 3, candidate: { id: "document", status: "uploaded" } } as never);
+  vi.mocked(coreApi.analyzeDocument).mockResolvedValue({ revision: 4 } as never);
+  render(<MemoryRouter><ProfileDocuments /></MemoryRouter>);
+  const file = new File(["pdf"], "resume.pdf", { type: "application/pdf" });
+  fireEvent.change(screen.getByLabelText("Replace resume PDF"), { target: { files: [file] } });
+  expect(coreApi.uploadDocument).not.toHaveBeenCalled();
+  expect(screen.getByRole("button", { name: "Analyze PDF" })).toBeDisabled();
+  fireEvent.click(screen.getByLabelText("This is a synthetic test resume with no real personal data."));
+  fireEvent.click(screen.getByRole("button", { name: "Analyze PDF" }));
+  await waitFor(() => expect(coreApi.analyzeDocument).toHaveBeenCalledWith({ id: "document", body: {
+    expected_revision: 3, idempotency_key: expect.any(String), synthetic_document: true,
+  } }));
+  expect(coreApi.uploadDocument).toHaveBeenCalledWith({ file, revision: 2 });
+});
+
+it("renders persisted skills and work experience with source passages", () => {
+  documentView.evidence = [
+    { kind: "skill", text: "CSS", page: 1, span: "Skills: CSS" },
+    { kind: "experience", text: "Frontend Developer", page: 2, span: "Worked as a Frontend Developer" },
+  ];
+  render(<MemoryRouter><ProfileDocuments /></MemoryRouter>);
+  expect(screen.getByRole("region", { name: "Skills from resume" })).toHaveTextContent("CSS");
+  expect(screen.getByRole("region", { name: "Work experience from resume" })).toHaveTextContent("Frontend Developer");
+  expect(screen.getByText("Source: page 2")).toBeVisible();
+});
+
+it("does not analyze an uploaded file after an account change", async () => {
+  vi.mocked(coreApi.uploadDocument).mockImplementation(async () => {
+    vi.mocked(isCurrentAccount).mockReturnValue(false);
+    return { revision: 3, candidate: { id: "document", status: "uploaded" } } as never;
+  });
+  render(<MemoryRouter><ProfileDocuments /></MemoryRouter>);
+  fireEvent.change(screen.getByLabelText("Replace resume PDF"), { target: { files: [new File(["pdf"], "resume.pdf")] } });
+  fireEvent.click(screen.getByLabelText("This is a synthetic test resume with no real personal data."));
+  fireEvent.click(screen.getByRole("button", { name: "Analyze PDF" }));
+  await waitFor(() => expect(isCurrentAccount).toHaveBeenCalledWith("owner"));
+  expect(coreApi.analyzeDocument).not.toHaveBeenCalled();
 });

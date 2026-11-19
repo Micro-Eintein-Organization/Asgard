@@ -3,6 +3,43 @@
 Documentation baseline: 2026-11-17. Current [decisions](../decisions.md#current-resolutions) supersede earlier delivery sequencing and fixed catalog counts. Profile skill editing, confirmed resume review, and career-to-career comparison are implemented; roadmap experience comparison is disabled. Occupational reference entries require authored roadmaps and reviewed publication before becoming recommendation candidates. Hosted activation and unrun quality/privacy acceptance remain separate. Dated increment details below retain their original scope.
 
 
+## Benchmark and learning-path comparison decision, 2026-11-19
+
+Owner/technical reviewer: YakisobaNissin. Review reference: the 2026-11-19 chat
+selection of “Show both separately,” “Two tabs,” and “I will review,” followed by
+approval of the bounded implementation plan. The Career skill matches page has
+separate Benchmark sample and Learning-path skills tabs; Benchmark sample opens
+first. This extends the historical V2 proposal rather than treating that plan as
+standalone implementation authority. Posting/alias content approval is separate.
+
+Benchmark rankings/counts use only distinct canonical skills mapped in one
+explicitly configured published source/version. Every published career is shown;
+careers without mappings display 0 of 0. Learning-path counts retain published
+career-linked coverage. Neither comparison asserts employer requirements or
+proficiency. Posting frequency does not weight ranking. Both preserve positive
+report OR exact resume skill-evidence precedence, saved unknown/zero distinctions,
+and deterministic count/title/ID ordering. Work experience is not a proficiency
+signal. Missing benchmark configuration/publication shows an explained unavailable
+state with the learning-path tab still available; there is no implicit substitution.
+
+The existing endpoint gains optional `basis=benchmark|learning_path`, defaulting
+to learning_path for old callers. Generated OpenAPI remains contract authority.
+No public version picker or new database schema is included. The owner reviews
+posting provenance and exact aliases before publication. Unmapped/ambiguous terms
+remain excluded; no inferred semantic mapping is authorized. See the
+[implementation and evidence](../features/competency-comparison.md#benchmark-and-learning-path-views-2026-11-19).
+
+### Benchmark reference granularity resolution, 2026-11-19
+
+YakisobaNissin selected “Add separate technology skills for the benchmark;
+preserve the existing 230 learning-path skills” in the implementation chat.
+Approval scope: prepare a separate benchmark reference vocabulary in the existing
+competencies table, using stable new identities and the posting labels themselves
+instead of equating broad technologies with narrower curriculum tasks. Keep the
+existing learning-path records/links unchanged. This requires content/importer
+preparation, not a new database table or migration. Publication remains a separate
+reviewable operator action; source-verification status must not be fabricated.
+
 ## Planned W03 resume-assisted Profile review, 2026-11-06
 
 The owner selected an optional resume-assisted path within Profile. Manual skill

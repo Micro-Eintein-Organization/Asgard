@@ -19,7 +19,6 @@ export function ResetPasswordPage() {
   const [password, setPassword] = useState("");
   const [confirmation, setConfirmation] = useState("");
   const [code, setCode] = useState("");
-  const [recovery, setRecovery] = useState(false);
   const [pending, setPending] = useState(false);
   const [changed, setChanged] = useState(false);
   const [error, setError] = useState("");
@@ -42,7 +41,7 @@ export function ResetPasswordPage() {
     }
     setPending(true); setError("");
     try {
-      const result = await replaceRecoveredPassword(password, code, recovery);
+      const result = await replaceRecoveredPassword(password, code, false);
       setPassword(""); setConfirmation(""); setCode("");
       if (!result.complete) {
         setChanged(true);
@@ -64,9 +63,8 @@ export function ResetPasswordPage() {
       {!changed && <>
         <div className="field"><Label htmlFor="new-password">New password</Label><Input id="new-password" type="password" autoComplete="new-password" required minLength={8} value={password} onChange={event => setPassword(event.target.value)} disabled={pending} /><p className="field-help">Use at least 8 characters. Spaces, paste and password managers are supported.</p></div>
         <div className="field"><Label htmlFor="confirm-new-password">Confirm new password</Label><Input id="confirm-new-password" type="password" autoComplete="new-password" required value={confirmation} onChange={event => setConfirmation(event.target.value)} disabled={pending} /></div>
-        {mfa && <><div className="field"><Label htmlFor="recovery-mfa">{recovery ? "Recovery code" : "Authenticator code"}</Label><Input id="recovery-mfa" autoComplete="one-time-code" required value={code} onChange={event => setCode(event.target.value)} disabled={pending} /></div>
-          <label className="security-confirm"><input type="checkbox" checked={recovery} onChange={event => { setRecovery(event.target.checked); setCode(""); }} disabled={pending} />Use a recovery code</label>
-          <p className="field-help">If you lost both your authenticator and recovery codes, email recovery cannot remove two-factor authentication.</p></>}
+        {mfa && <><div className="field"><Label htmlFor="recovery-mfa">Authenticator code</Label><Input id="recovery-mfa" autoComplete="one-time-code" required inputMode="numeric" pattern="[0-9]{6}" value={code} onChange={event => setCode(event.target.value)} disabled={pending} /></div>
+          <p className="field-help">If you lost your authenticator, sign in with your current password and use a backup code to replace it first. Losing both your password and authenticator is not supported by backup-code recovery.</p></>}
       </>}
       <Button type="submit" disabled={pending}>{pending ? "Please wait…" : changed ? "Finish signing out" : "Save new password"}</Button>
     </form>}

@@ -50,16 +50,16 @@ configuration checking. Enter secrets directly in provider secret stores.
    administrators to work around this restriction. The documented built-in quota
    is currently two messages/hour **project-wide**, including resend attempts;
    prepare before the presentation and leave time between email tests.
-7. Under Auth MFA, enable supported TOTP enrollment/challenge/verification and check
-   provider-managed recovery-code availability on this project. Supabase dashboard
-   account MFA is different from MFA for Asgard users. The SDK experimental option
-   is configured in source; it cannot turn on unsupported server features.
+7. Under Auth MFA, enable supported TOTP enrollment/challenge/verification. Supabase
+   dashboard account MFA is different from MFA for Asgard users. The owner's
+   2026-11-19 MFA-RECOVERY-01 exception selects application-managed backup codes for
+   restricted replacement; follow its [setup and deployment order](features/application-recovery-codes.md#setup-and-deployment-order), including the new migration and backend-only admin credential.
 8. Before enabling Asgard enrollment, verify AUTH-C2: issuance, single-use recovery
    redemption (including concurrent reuse), regeneration, removal, lost-response
-   handling, fresh primary authentication and factor-change notifications. Check
+   handling, restricted replacement and durable access blocking, revocation, fresh primary authentication and factor-change notifications. Check
    **direct provider endpoints**, not only UI prompts. Browser checks alone cannot
    enforce the five-minute policy. If unsupported, keep the gate false and report
-   the exact error/capability; do not weaken the policy or invent recovery storage.
+   the exact error/capability; stay within the approved recovery ADR and preserve enforcement.
 9. Configure applicable Auth rate limits/abuse controls. Before widening beyond this
    owner-operated demo, the [public-entry controls](security-and-operations.md#public-entry-points-and-abuse),
    including receiving-service CAPTCHA, must be implemented and verified. This

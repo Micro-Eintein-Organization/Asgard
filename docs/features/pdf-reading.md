@@ -1,9 +1,85 @@
 # How Asgard reads PDFs
 
-Author/implementer: Codex. Created: 2026-11-18. Last updated: 2026-11-18.
-Status: source-based explanation; human review pending.
+Author/implementer: Codex. Created: 2026-11-18. Last updated: 2026-11-19.
+Status: source explanation and Profile extraction interface implemented; human review and hosted acceptance pending.
 Reviewer: @YakisobaNissin, following [CODEOWNERS](../../.github/CODEOWNERS).
 Requirements: REQ-11, F-002, PM-W03/FUT-13.
+
+## Profile extraction integration, 2026-11-19
+
+Implementer/task owner: Codex. Created/updated: 2026-11-19. Reviewer:
+@YakisobaNissin. Owner requested implementation in chat. Bounded implementation
+uses the already approved upload/analyze/remove operations and the F-002 rule that
+explicit Analyze PDF authorizes automatically applying validated extraction.
+Scope: Profile document controls, their Settings mount, primary/secondary resume
+presentation, focused frontend tests and implementation guides. No shared API,
+schema, authentication, parser or provider changes are included. Unrelated
+concurrent recovery-code work is preserved.
+
+[Profile document controls](../../frontend/src/features/profile/documents.tsx)
+now upload the chosen file, use the returned account revision for analysis, and
+display persisted skills, work experience, education and projects. Each result
+has its supporting page/span. Analysis requires an explicit action and, when the
+backend limits use to synthetic data, explicit synthetic-document confirmation.
+An account change after upload prevents analysis under the next account. Selected
+files and processing participate in the Settings navigation guard. Existing
+backend lifecycle rules preserve prior active evidence until validated success;
+remove/replace, failure recovery and pending-document status remain available.
+Resume evidence feeds career matching independently of manually rated skills.
+
+Verification: 12 focused document/Profile tests passed, including upload-to-analysis
+revision handoff, explicit action/synthetic gating, saved evidence presentation,
+removal cancellation and account-change protection. TypeScript checking was
+attempted and failed in unrelated concurrent `src/auth/recovery-codes.ts` error
+union handling (four errors); no errors were reported in the changed resume
+sources. The additional Settings suite failed in its pre-existing ProfilePhoto
+test harness because it lacks QueryClientProvider; it was not expanded or retried.
+No full suite/build, live provider calls, backend or hosted/browser acceptance ran.
+The offline skill publisher generated 230 stable identities and passed Node syntax
+checking; its SQL has not been applied or database-validated. Whitespace checks
+passed for the changed resume sources.
+
+Manual acceptance remains pending: at `/settings/profile`, select a synthetic
+PDF containing separate Skills and Work experience headings and choose Analyze
+PDF. Expect automatically saved grouped evidence, then refresh and open
+`/career-skill-matches`. Replace with an invalid PDF and verify previous successful
+background remains. Remove background and check resume-derived matching disappears;
+manual reports remain. Repeat as another account to verify isolation. Backend
+Storage, processing/Groq flags and credentials must already be provisioned;
+availability does not establish privacy or provider-quality acceptance.
+
+### Empty hosted skill catalog
+
+Approval recorded 2026-11-19: YakisobaNissin explicitly approved the prepared
+publication of the existing 230 skill definitions in chat ("i approve, can you
+please adjust the skill publicaiton sql"). Codex set the reviewer in
+`output/sql/skill-catalog-publication.sql` to `YakisobaNissin`; the generic renderer
+retains its approval guard for future generation. This records content-publication
+approval, not executed hosted SQL or completed runtime acceptance.
+
+The owner's 2026-11-19 Supabase SQL result showed zero total, published and
+CSS skill records. Migrations create tables; skill content is published separately.
+An empty search now checks the unfiltered catalog once and explains when the
+published catalog is empty rather than implying only the search term failed.
+
+`node scripts/render-skill-publication.mjs output/sql/skill-catalog-publication.sql`
+was executed successfully. The offline [renderer](../../scripts/render-skill-publication.mjs)
+combines the existing base and expansion definitions, retaining their identity/
+conflict checks and requiring 230 published identities within one transaction.
+The generated SQL is a local output artifact, not a migration or approval record.
+Review it, replace its single reviewer-setting value `REPLACE_AFTER_REVIEW` with
+the approving reviewer name, and run the entire file in the correct Supabase
+project's SQL Editor. Until replaced, the guard deliberately rejects execution.
+No administrator credentials or hosted writes are used by the renderer.
+Foreign-key/content conflicts roll back the publication; report them rather than
+resetting or deleting existing content. Repeat publication preserves existing
+skill reports. No table migration or migration-history repair is needed for this
+content-only operation. After success, repeat the count query and search CSS;
+expect 230 published skills and the existing CSS skill. Content review and hosted
+acceptance remain pending.
+
+The original documentation-only baseline below retains its dated evidence;
+this section records the subsequent interface implementation.
 
 The owner approved this documentation-only plan in chat on 2026-11-18.
 The bounded change covers this guide and its documentation-index link, with
@@ -17,10 +93,16 @@ Asgard has two separate paths:
 | Path | What it does | Current presentation |
 | --- | --- | --- |
 | Temporary resume skill review | Matches text against skills linked to a selected career; you choose what to save | Profile offers it when resume review is enabled |
-| Stored document analysis | Uses Groq to extract supported background for recommendation context | Backend operations exist; the current document-management frontend says “PDF upload and analysis: Coming later.” |
+| Stored document analysis | Uses Groq to extract skills, work experience, education and projects for saved background | Profile offers Choose resume PDF and explicit Analyze PDF when storage is available; backend processing/provider gates still apply |
 
-The second path is described below to explain the backend, not as an available
-upload button. Existing stored background can still be removed through Profile.
+The second path is now the primary Profile resume action. Select a PDF and explicitly
+choose **Analyze PDF** to authorize upload and provider processing. On validated
+success its extracted background is saved automatically and displayed by kind, with
+page/source passages. No career selection or manual retyping is needed. Resume skills
+feed career matching through active document evidence; they remain distinct from
+manually rated skill reports. The older temporary review lives under **Review
+career-linked skills without storing a resume**. Existing stored background can
+still be removed through Profile.
 Availability depends on environment configuration; source code and flags alone
 do not prove hosted activation or acceptance.
 
@@ -65,7 +147,7 @@ Sources: [routes](../../backend/app/modules/documents/routes.py),
 
 ## Temporary resume review: step by step
 
-1. Open **Settings / Profile**, expand **Review skills from a resume**, choose
+1. Open **Settings / Profile**, find **Academic profile & document management**, choose
    a career and a selectable-text PDF, then select **Review resume**.
 2. The backend checks that review is enabled and loads skills linked to that
    published career. It parses the submitted PDF using the shared parser.
@@ -75,12 +157,19 @@ Sources: [routes](../../backend/app/modules/documents/routes.py),
    These rules do not understand every possible sentence or negation.
 4. The response contains at most 30 distinct suggested skills, each with its
    original page number and nearby passage. No match produces an empty list.
-5. Read the passage, dismiss unwanted suggestions, and explicitly choose a
-   skill and self-reported experience level to save. A mention alone does not
+5. Read the passage, dismiss unwanted suggestions, select **Add [skill]**
+   (or **Edit [skill]** for a saved report), choose your experience in the Skills
+   editor below, and select **Save skill**. A mention alone does not
    establish proficiency and never automatically becomes a saved skill report.
 6. End or replace the review to discard temporary suggestions. Ending the
    review does not undo skill reports you already saved. Manual entry remains
    available when review is disabled or finds nothing.
+
+Changing careers cancels outdated review work and clears suggestions while keeping
+the selected PDF. Failed reviews retain the PDF for retry. The Review button has
+adjacent guidance explaining missing prerequisites. See the
+[2026-11-19 repair and verification record](competency-comparison.md#resume-saving-and-hosted-schema-repair-2026-11-19)
+for hosted migration requirements and pending manual acceptance.
 
 This path makes no Groq request. The PDF and extracted text remain temporary
 in-memory data rather than stored documents; the response uses `Cache-Control:
@@ -198,7 +287,7 @@ selectable-text PDF for a selected career, inspect the page/passage, dismiss one
 suggestion and explicitly save another with an experience level. End review and
 reload: only saved reports should remain. Check an image-only PDF produces a
 recoverable error and manual entry still works. Stored upload/analysis cannot
-be verified through the current “Coming later” frontend; use the existing
-reviewed backend verification workflow and hosted acceptance record for that
-path. Report the URL, action, expected/actual behavior and a safe request ID;
+be verified by the original documentation-only baseline. The 2026-11-19 interface
+now exposes this flow; use the current manual steps above and the existing
+reviewed backend verification workflow for acceptance. Report the URL, action, expected/actual behavior and a safe request ID;
 exclude document text and credentials.

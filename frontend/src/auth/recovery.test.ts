@@ -90,19 +90,20 @@ it("rejects provider-expired or replayed links before any password write", async
   expect(mocks.updateUser).not.toHaveBeenCalled();
 });
 
-it("blocks missing or invalid MFA and preserves factors on successful recovery-code verification", async () => {
+it("blocks backup-code substitution in email reset and preserves factors after TOTP verification", async () => {
   mocks.assurance.mockResolvedValue({ data: { currentLevel: "aal1", nextLevel: "aal2" }, error: null });
   const api = await import("./recovery");
   expect(await api.openRecovery("valid-code")).toEqual({ mfaRequired: true });
   await expect(api.replaceRecoveredPassword("new-password")).rejects.toThrow("Enter your authenticator");
-  mocks.recovery.mockResolvedValue({ error: {} });
-  await expect(api.replaceRecoveredPassword("new-password", "bad-code", true)).rejects.toThrow("verification failed");
+  await expect(api.replaceRecoveredPassword("new-password", "bad-code", true)).rejects.toThrow("Recover your authenticator");
   expect(mocks.updateUser).not.toHaveBeenCalled();
-  mocks.recovery.mockImplementation(async () => {
+  expect(mocks.recovery).not.toHaveBeenCalled();
+  mocks.listFactors.mockResolvedValue({ data: { totp: [{ id: "factor", status: "verified" }] }, error: null });
+  mocks.challenge.mockImplementation(async () => {
     mocks.assurance.mockResolvedValue({ data: { currentLevel: "aal2", nextLevel: "aal2" }, error: null });
     return { error: null };
   });
-  expect((await api.replaceRecoveredPassword("new-password", "unused-code", true)).complete).toBe(true);
+  expect((await api.replaceRecoveredPassword("new-password", "123456", false)).complete).toBe(true);
   expect(mocks.updateUser).toHaveBeenCalledWith({ password: "new-password" });
   expect(mocks.signOut).toHaveBeenCalledWith({ scope: "global" });
 });

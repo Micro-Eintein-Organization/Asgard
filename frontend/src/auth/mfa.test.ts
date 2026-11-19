@@ -4,11 +4,13 @@ import { checkAssurance, verifySecondFactor } from "./mfa";
 const mocks = vi.hoisted(() => ({
   getSession: vi.fn(), getAuthenticatorAssuranceLevel: vi.fn(), listFactors: vi.fn(),
   challengeAndVerify: vi.fn(), recoveryVerify: vi.fn(),
+  recoveryState: vi.fn(),
 }));
+vi.mock("./recovery-codes", () => ({ recoveryState: mocks.recoveryState }));
 vi.mock("./supabase", () => ({ supabase: { auth: {
   getSession: mocks.getSession, mfa: { ...mocks, recoveryCodes: { verify: mocks.recoveryVerify } },
 } } }));
-beforeEach(() => vi.resetAllMocks());
+beforeEach(() => { vi.resetAllMocks(); mocks.recoveryState.mockResolvedValue({ pending: false }); });
 
 it("checks current provider factors with the exact token, requiring MFA for enrolled AAL1", async () => {
   mocks.getAuthenticatorAssuranceLevel.mockResolvedValue({ data: { currentLevel: "aal1", nextLevel: "aal2" }, error: null });
@@ -33,9 +35,19 @@ it("verifies only an enrolled provider factor and does not leak raw errors", asy
   mocks.challengeAndVerify.mockResolvedValue({ error: new Error("private-provider-detail") });
   await expect(verifySecondFactor("000000")).rejects.toThrow("Authenticator verification failed");
 });
-it("uses provider recovery verification, never TOTP enrollment or a custom code store", async () => {
-  mocks.recoveryVerify.mockResolvedValue({ error: null });
-  await verifySecondFactor("backup-code", true);
-  expect(mocks.recoveryVerify).toHaveBeenCalledWith({ code: "backup-code" });
+it("directs backup-code users through authenticator replacement", async () => {
+  await expect(verifySecondFactor("backup-code", true)).rejects.toThrow("replace your lost authenticator");
+  expect(mocks.recoveryVerify).not.toHaveBeenCalled();
   expect(mocks.listFactors).not.toHaveBeenCalled();
+});
+it("requires recovery completion even when the provider has no remaining factor", async () => {
+  mocks.getAuthenticatorAssuranceLevel.mockResolvedValue({ data: { currentLevel: "aal1", nextLevel: "aal1" }, error: null });
+  mocks.recoveryState.mockResolvedValue({ pending: true });
+  expect(await checkAssurance("token")).toBe("required");
+  expect(mocks.recoveryState).toHaveBeenCalledWith("token");
+});
+it("fails closed if the durable recovery status is unavailable", async () => {
+  mocks.getAuthenticatorAssuranceLevel.mockResolvedValue({ data: { currentLevel: "aal2", nextLevel: "aal2" }, error: null });
+  mocks.recoveryState.mockRejectedValue(new Error("offline"));
+  await expect(checkAssurance("token")).rejects.toThrow("offline");
 });

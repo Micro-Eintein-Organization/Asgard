@@ -17,6 +17,13 @@ Protected pages require a valid account session. Preserve private query isolatio
 
 Public routes include Landing, login, registration, email verification, password recovery, service status, Licenses, Credits, and Terms. Supabase owns identity operations. Returning learners reach Dashboard; new-account entry offers discovery or browsing. Do not automatically reopen unfinished Discovery. Provider configuration controls unavailable Auth, optional MFA enrollment, and recovery. Google remains subject to AUTH-C1.
 
+MFA-RECOVERY-01 uses the existing authenticator management and challenge pages for
+application backup codes. Issuance shows a one-time copy/download set. Recovery
+requires the current password and an unused code, then a replacement QR/manual
+key and explicit verification. Protected app access stays blocked until completion;
+email reset and deletion direct users to recover the authenticator first. Follow
+the [recovery guide](features/application-recovery-codes.md) and AUTH-C2 activation gate.
+
 ## Discovery and Results
 
 Entry offers Guided Discovery and Browse careers. V2 uses the server-authored four-to-six-question route, up to two interests/activities, uncertainty and at most one follow-up. Checkpoint saves preserve revisions and inactive-answer rules. Resume continues a draft; Retake in Results/Profile starts blank. [Discovery](specs/discovery.md) owns exact behavior.

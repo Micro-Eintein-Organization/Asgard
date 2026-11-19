@@ -7,7 +7,6 @@ from uuid import UUID
 
 from app.modules.skill_matching.matcher import (
     ResumeEvidence,
-    SkillStatus,
     UserSkillReport,
     matching_resume_evidence,
     rank_careers,
@@ -24,9 +23,6 @@ from app.modules.skill_matching.schemas import (
 )
 from app.modules.skill_matching.sources import (
     POSTINGS_SAMPLE_LABEL,
-    SAMPLE_LABEL,
-    SOURCE_LABEL,
-    SOURCE_NOTE,
     CareerCatalog,
     CareerSkillSource,
     CompetencyLinksSource,
@@ -104,7 +100,7 @@ def assemble_response(
                 )
             )
         sample = catalog.samples.get(career.career_id)
-        sample_label = SAMPLE_LABEL
+        sample_label = catalog.sample_label
         if sample is not None:
             posting_unit = "posting" if sample.total_postings == 1 else "postings"
             sample_label = (
@@ -148,15 +144,15 @@ def assemble_response(
                 benchmark_skill_count=career.benchmark_skill_count,
                 display_count=f"{career.matched_skill_count} of {career.benchmark_skill_count}",
                 skills=skills,
-                sample_note=SOURCE_NOTE,
+                sample_note=catalog.source_note,
                 sample_label=sample_label,
                 postings=postings,
             )
         )
     return CareerSkillMatchResponse(
-        source=SOURCE_LABEL,
+        source=catalog.source_label,
         source_version=catalog.source_version,
-        sample_label=SAMPLE_LABEL,
+        sample_label=catalog.sample_label,
         postings_sample_label=POSTINGS_SAMPLE_LABEL,
         items=items,
     )

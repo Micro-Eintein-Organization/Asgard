@@ -211,7 +211,7 @@ function SettingsEditor({ userId }: { userId: string }) {
         <ProfileSkills key={userId} active={!accountView} onGuardChange={onSkillGuardChange}
           reviewCareer={review.get("reviewCareer") ?? undefined}
           reviewRoadmap={review.get("reviewRoadmap") ?? undefined}
-          documents={<ProfileDocuments compact onGuardChange={onDocumentGuardChange} />} />
+          documents={<ProfileDocuments compact active={!accountView} onGuardChange={onDocumentGuardChange} />} />
       </div>
       <section id="account-security" tabIndex={-1} className="settings-account-content" aria-label="Account and security" hidden={!accountView}>
         {accountView && <AccountCards />}

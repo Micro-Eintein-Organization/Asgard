@@ -18,6 +18,7 @@ vi.mock("@/features/core/data", () => ({
     removeCompetency: vi.fn(),
     competencyComparison: vi.fn(),
     resumeReviewAvailability: vi.fn(),
+    reviewResume: vi.fn(),
   },
   useCoreQuery: vi.fn(),
   useCoreMutation: vi.fn(),
@@ -84,6 +85,12 @@ it("distinguishes unassessed, saved unknown and explicit zero", () => {
   expect(experienceLabel(true, null)).toBe("Not sure yet");
   expect(experienceLabel(true, 0)).toContain("No experience");
 });
+it("explains an empty published catalog when a skill search has no results", () => {
+  render(<ProfileSkills onGuardChange={vi.fn()} />);
+  fireEvent.click(screen.getByRole("button", { name: "Add a skill" }));
+  fireEvent.change(screen.getByLabelText("Find a skill"), { target: { value: "css" } });
+  expect(screen.getByText(/The published skill catalog is empty/)).toBeVisible();
+});
 it("saves zero with the revision captured when editing and clears the guard", async () => {
   const guard = vi.fn();
   render(<ProfileSkills onGuardChange={guard} />);
@@ -108,6 +115,29 @@ it("keeps a failed edit available for reconciliation", async () => {
   fireEvent.click(screen.getByRole("button", { name: "Save skill" }));
   await waitFor(() => expect(coreApi.saveCompetency).toHaveBeenCalled());
   expect(screen.getByLabelText("Your experience")).toHaveValue("");
+});
+it("adds a PDF suggestion only after an explicit experience save", async () => {
+  vi.mocked(useCoreQuery).mockImplementation((key) => ({
+    data: key[0] === "skills" ? { version: 7, items: [], recommendations_enabled: false }
+      : key[0] === "resume-review-availability" ? { enabled: true }
+      : { items: [{ id: "career", title: "Data Analyst", roadmap_ids: [] }], total: 1 },
+    refetch: vi.fn(),
+  }) as never);
+  vi.mocked(coreApi.reviewResume).mockResolvedValue({ suggestions: [
+    { skill_id: "sql", label: "SQL", page: 1, passage: "Used SQL" },
+  ] });
+  render(<ProfileSkills onGuardChange={vi.fn()} />);
+  screen.getByText("Review career-linked skills without storing a resume").closest("details")!.open = true;
+  fireEvent.change(screen.getByLabelText("Career"), { target: { value: "career" } });
+  fireEvent.change(screen.getByLabelText("Choose PDF"), { target: { files: [new File(["pdf"], "resume.pdf")] } });
+  fireEvent.click(screen.getByRole("button", { name: "Review resume" }));
+  fireEvent.click(await screen.findByRole("button", { name: "Add SQL" }));
+  expect(coreApi.saveCompetency).not.toHaveBeenCalled();
+  expect(screen.getByLabelText("Your experience")).toHaveFocus();
+  fireEvent.change(screen.getByLabelText("Your experience"), { target: { value: "2" } });
+  fireEvent.click(screen.getByRole("button", { name: "Save skill" }));
+  await waitFor(() => expect(coreApi.saveCompetency).toHaveBeenCalledWith({ id: "sql", body: { expected_version: 7, level: 2 } }));
+  await screen.findByText("Skill saved.");
 });
 it("opens a bounded comparison with exact topic links and no learning writes", () => {
   render(

@@ -2,6 +2,12 @@
 
 # Account deletion
 
+MFA-RECOVERY-01 follow-up, 2026-11-19 (Codex): application backup codes authorize
+[authenticator replacement](application-recovery-codes.md). Recover the lost
+authenticator before deletion; direct backup-code substitution is rejected by the
+backend. Pending recovery blocks normal deletion acceptance and all app data.
+The older provider-code acceptance steps below retain their original scope.
+
 2026-11-19 follow-up (Codex): failed availability requests now show a retry action,
 separately from a confirmed disabled result. Backend acceptance, maintenance gates
 and deployment flags are unchanged. See [account access fixes](account-access-fixes.md)

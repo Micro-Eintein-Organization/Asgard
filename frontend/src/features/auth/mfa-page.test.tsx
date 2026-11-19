@@ -8,6 +8,11 @@ const mocks = vi.hoisted(() => ({
   enroll: vi.fn(), challengeAndVerify: vi.fn(), verifySecondFactor: vi.fn(),
   generate: vi.fn(), getStatus: vi.fn(), regenerate: vi.fn(), unenroll: vi.fn(),
   refreshAssurance: vi.fn(), signOut: vi.fn(),
+  recoveryState: vi.fn(), removeCodes: vi.fn(),
+}));
+vi.mock("@/auth/recovery-codes", () => ({ recoveryState: mocks.recoveryState,
+  issueRecoveryCodes: (replace: boolean) => replace ? mocks.regenerate() : mocks.generate(),
+  removeRecoveryCodes: mocks.removeCodes,
 }));
 vi.mock("@/auth/context", () => ({ useAuth: () => ({
   user: { id: "owner", email: "owner@example.test", email_confirmed_at: "today" },
@@ -35,7 +40,9 @@ beforeEach(() => {
   mocks.signInWithPassword.mockResolvedValue({ data: { user: { id: "owner" } }, error: null });
   mocks.enroll.mockResolvedValue({ data: { id: "factor", totp: { secret: "private-setup-key", qr_code: "data:image/svg+xml,test" } }, error: null });
   mocks.challengeAndVerify.mockResolvedValue({ error: null });
-  mocks.generate.mockResolvedValue({ data: { codes: ["private-backup-code"], total: 1 }, error: null });
+  mocks.generate.mockResolvedValue({ codes: ["private-backup-code"], total: 1 });
+  mocks.recoveryState.mockResolvedValue({ enabled: true, pending: false, remaining: null });
+  mocks.removeCodes.mockResolvedValue(undefined);
 });
 it("offers skip while blocking unapproved enrollment", async () => {
   open();
@@ -44,7 +51,14 @@ it("offers skip while blocking unapproved enrollment", async () => {
   expect(await screen.findByRole("heading", { name: "Welcome destination" })).toBeVisible();
   expect(mocks.enroll).not.toHaveBeenCalled();
 });
-it("requires fresh password, verifies setup, and reveals provider recovery codes only in memory", async () => {
+it("blocks new enrollment until the backend recovery capability is configured", async () => {
+  mocks.approved = true;
+  mocks.recoveryState.mockResolvedValue({ enabled: false, pending: false, remaining: null });
+  open();
+  expect(await screen.findByRole("button", { name: "Set up authenticator" })).toBeDisabled();
+  expect(mocks.enroll).not.toHaveBeenCalled();
+});
+it("requires fresh password, verifies setup, and reveals application recovery codes only in memory", async () => {
   mocks.approved = true; open();
   fireEvent.change(await screen.findByLabelText("Confirm your password"), { target: { value: "password" } });
   fireEvent.click(screen.getByRole("button", { name: "Set up authenticator" }));
@@ -59,20 +73,19 @@ it("requires fresh password, verifies setup, and reveals provider recovery codes
   expect(await screen.findByRole("heading", { name: "Welcome destination" })).toBeVisible();
   expect(screen.queryByText("private-backup-code")).not.toBeInTheDocument();
 });
-it("keeps failed challenges recoverable and allows provider recovery-code verification", async () => {
+it("keeps failed authenticator challenges recoverable", async () => {
   mocks.mfa = "required"; mocks.verifySecondFactor.mockRejectedValueOnce(new Error("Code failed")); open(true);
   fireEvent.change(screen.getByLabelText("Authenticator code"), { target: { value: "123456" } });
   fireEvent.click(screen.getByRole("button", { name: "Verify" }));
   expect(await screen.findByRole("alert")).toHaveTextContent("Code failed");
   expect(screen.queryByText("Dashboard destination")).not.toBeInTheDocument();
-  fireEvent.click(screen.getByRole("button", { name: "Use a recovery code" }));
-  fireEvent.change(screen.getByLabelText("Recovery code"), { target: { value: "backup" } });
+  fireEvent.change(screen.getByLabelText("Authenticator code"), { target: { value: "654321" } });
   fireEvent.click(screen.getByRole("button", { name: "Verify" }));
-  await waitFor(() => expect(mocks.verifySecondFactor).toHaveBeenLastCalledWith("backup", true));
+  await waitFor(() => expect(mocks.verifySecondFactor).toHaveBeenLastCalledWith("654321"));
   expect(await screen.findByRole("heading", { name: "Dashboard destination" })).toBeVisible();
 });
 it("reports unavailable recovery issuance instead of claiming full setup success", async () => {
-  mocks.approved = true; mocks.generate.mockResolvedValue({ data: null, error: { code: "mfa_recovery_codes_enroll_not_enabled" } }); open();
+  mocks.approved = true; mocks.generate.mockRejectedValue(new Error("Recovery codes could not be issued")); open();
   fireEvent.change(await screen.findByLabelText("Confirm your password"), { target: { value: "password" } });
   fireEvent.click(screen.getByRole("button", { name: "Set up authenticator" }));
   await screen.findByText("private-setup-key");
@@ -85,7 +98,7 @@ it("reports unavailable recovery issuance instead of claiming full setup success
 function existingAuthenticator() {
   mocks.approved = true;
   mocks.listFactors.mockResolvedValue({ data: { all: [{ id: "existing", factor_type: "totp", status: "verified" }], totp: [{ id: "existing", status: "verified" }] }, error: null });
-  mocks.getStatus.mockResolvedValue({ data: { remaining: 2 }, error: null });
+  mocks.recoveryState.mockResolvedValue({ enabled: true, pending: false, remaining: 2 });
 }
 async function fillFreshCredentials() {
   fireEvent.change(await screen.findByLabelText("Confirm your password"), { target: { value: "password" } });
@@ -93,12 +106,12 @@ async function fillFreshCredentials() {
 }
 it("reauthenticates and verifies the existing factor before recovery rotation", async () => {
   existingAuthenticator();
-  mocks.regenerate.mockResolvedValue({ data: { codes: ["replacement-code"], total: 1 }, error: null }); open();
+  mocks.regenerate.mockResolvedValue({ codes: ["replacement-code"], total: 1 }); open();
   await fillFreshCredentials();
   fireEvent.click(screen.getByRole("button", { name: "Replace recovery codes" }));
   expect(await screen.findByText("replacement-code")).toBeVisible();
   expect(mocks.signInWithPassword).toHaveBeenCalled();
-  expect(mocks.verifySecondFactor).toHaveBeenCalledWith("123456", false);
+  expect(mocks.verifySecondFactor).toHaveBeenCalledWith("123456");
   expect(mocks.regenerate).toHaveBeenCalledOnce();
 });
 it("requires explicit disable confirmation and revokes sessions only after factor removal", async () => {
@@ -111,15 +124,15 @@ it("requires explicit disable confirmation and revokes sessions only after facto
   fireEvent.click(screen.getByRole("checkbox"));
   fireEvent.click(screen.getByRole("button", { name: "Disable two-factor authentication" }));
   expect(await screen.findByRole("heading", { name: "Sign-in destination" })).toBeVisible();
-  expect(mocks.verifySecondFactor).toHaveBeenCalledWith("123456", false);
+  expect(mocks.verifySecondFactor).toHaveBeenCalledWith("123456");
   expect(mocks.unenroll).toHaveBeenCalledWith({ factorId: "existing" });
   expect(mocks.signOut).toHaveBeenCalledWith({ scope: "global" });
 });
 it("retains protection on a recovery-removal error instead of blindly disabling factors", async () => {
-  existingAuthenticator(); mocks.unenroll.mockResolvedValue({ error: { code: "unavailable" } }); open();
+  existingAuthenticator(); mocks.removeCodes.mockRejectedValue(new Error("Authenticator protection remains")); open();
   await fillFreshCredentials(); fireEvent.click(screen.getByRole("checkbox"));
   fireEvent.click(screen.getByRole("button", { name: "Disable two-factor authentication" }));
   expect(await screen.findByRole("alert")).toHaveTextContent("Authenticator protection remains");
-  expect(mocks.unenroll).toHaveBeenCalledOnce();
+  expect(mocks.unenroll).not.toHaveBeenCalled();
   expect(mocks.signOut).not.toHaveBeenCalled();
 });

@@ -46,7 +46,7 @@ Trust client addresses only from documented trusted proxies. Ignore user-supplie
 
 Owner-selected input bounds, 2026-11-19 (ACCOUNT-ACCESS-01): sign-in, registration and reset use the eight-Unicode-character minimum and provider-compatible 72 UTF-8 byte ceiling. Never truncate or trim passwords; multibyte characters reach that ceiling sooner. Auth emails are trimmed, format-checked and limited to 254 characters. Explicit duplicate-registration feedback is selected for supported provider duplicate responses; reset acknowledgments remain neutral. See [implementation evidence](features/account-access-fixes.md). Hosted receiving-service acceptance remains pending.
 
-- Use Supabase for passwords, verification tokens, sessions, and TOTP; never build an alternative password store or custom MFA verifier.
+- Use Supabase for passwords, verification tokens, sessions, and TOTP; never build an alternative password store or custom TOTP verifier. The owner's 2026-11-19 [MFA-RECOVERY-01 ADR](adr/2026-11-19-application-recovery-codes.md) permits a narrowly scoped application-managed backup-code verifier for authenticator replacement, with the controls below.
 - Require a minimum of 8 characters, selected by the project owner on 26 October 2026; support at least 64 characters, spaces, paste, autofill, and password managers. The minimum is an Asgard product decision, not a claim of standards conformance. Active Supabase config and frontend validation already use 8; verify hosted receiving-service enforcement separately. Do not require arbitrary upper/lower/digit/symbol mixtures or routine password expiration. Configure server-side policy, not just client validation. Block common/compromised passwords where supported. Supabase's leaked-password check is plan-dependent; do not claim it exists on Free. Review an upgrade or provider-supported control before unrestricted public registration. [Supabase password controls](https://supabase.com/docs/guides/auth/password-security).
 - Registration uses a provider-issued six-digit email code, explicit Verify, a target 10-minute expiry, and a 60-second resend cooldown. Reset uses a provider-issued single-use HTTPS link, target 15-minute expiry, and an allowlisted callback. Verify that the hosted provider can configure distinct expiry policies; if not, use the stricter shared 10-minute expiry and update displayed copy. Do not invent separate application tokens.
 - Reset request acknowledgment: "If an account can use password recovery, we’ll send instructions." Use the same accepted-request status/body for known and unknown destinations. Avoid existence-dependent timing shortcuts; rate-limit identifiers regardless of whether an account exists. Provider behavior must be tested, including duplicate registration and OAuth-only accounts.
@@ -57,13 +57,44 @@ Owner-selected input bounds, 2026-11-19 (ACCOUNT-ACCESS-01): sign-in, registrati
 
 Require fresh primary authentication within 5 minutes for initial MFA enrollment, followed by verification of the newly enrolled factor before activation. For MFA-enabled accounts, require fresh primary authentication plus an existing factor for factor changes, linking, deletion and recovery-code regeneration; ordinary accounts require fresh primary authentication for linking/deletion. Supabase's AAL claim alone is not proof of recent primary authentication; verify through supported provider mechanisms. For MFA-enabled users, backend application-data access requires AAL2. Test direct API access after primary sign-in; a frontend challenge screen alone is insufficient.
 
-Use provider-managed recovery codes if supported by the pinned SDK and hosted project. Current upstream Supabase Auth exposes recovery-code generation, single-use verification to AAL2, and atomic regeneration, but enrollment/verification can be disabled server-side. Upstream source is not proof of hosted availability. Show the issued set once, support copy/download, never store plaintext codes in application tables/logs, and display only remaining-count metadata afterward. Do not hard-code code count/length. [Supabase Auth API source](https://github.com/supabase/auth/blob/master/openapi.yaml).
+MFA-RECOVERY-01 replaces provider-managed-only recovery within its approved scope.
+The owner observed `mfa_recovery_codes_enroll_not_enabled` on their actual hosted
+project. Generate ten independent 128-bit backup codes on the backend; store only
+account-bound digests in private RLS-protected tables. Require recent signed
+primary-password and TOTP proof for issuance, rotation and removal. Show each set
+once, support copy/download, and display only remaining-count metadata afterward.
+Never store plaintext codes or capabilities in application tables, logs, query
+caches or persistent browser storage.
 
-Regeneration invalidates the previous set only on successful provider rotation. Lost response after rotation is an ambiguous outcome: check status and require authenticated regeneration rather than claim the old set still works. Disablement requires explicit confirmation and notification, revokes recovery material and refresh sessions, and preserves a usable primary sign-in method. Password reset alone never removes MFA. Loss of all factors/codes has no email-only or security-question bypass; show that recovery is unavailable. Follow [OWASP MFA guidance](https://cheatsheetseries.owasp.org/cheatsheets/Multifactor_Authentication_Cheat_Sheet.html).
+Password plus an unused backup code authorizes replacement of the lost
+authenticator, not an application assertion of provider AAL2. Verify primary
+credentials server-side, consume the code atomically and commit an account-wide
+application-data block before any privileged factor removal. Limit each stage to
+five attempts per account per fifteen minutes. Require a hashed, ten-minute
+recovery capability and fresh password for replacement setup/verification. Only
+Supabase verification of the specific replacement TOTP, removal of unexpected
+factors, and revocation of other sessions permit clearing the block. Expiry and
+failure must retain it. Another unused code and password may restart recovery.
+Keep the provider admin credential backend-only, explicitly gated and reviewed;
+normal application database work stays under the restricted role.
+
+Rotation replaces the prior set atomically; recovery completion also replaces all
+prior codes. Lost responses are ambiguous: check status and require authenticated
+rotation instead of claiming the old set works. Disablement requires explicit
+confirmation and notification, revokes recovery material and refresh sessions,
+and preserves a usable primary method. Email-password reset and deletion require
+the recovered authenticator first; password reset alone never removes MFA or the
+pending recovery block. Losing both primary password and authenticator is outside
+backup-code recovery. Loss of all factors/codes has no email-only or security-question
+bypass. Follow [OWASP MFA guidance](https://cheatsheetseries.owasp.org/cheatsheets/Multifactor_Authentication_Cheat_Sheet.html).
 
 **Compatibility blocker AUTH-C1:** Supabase documents automatic same-email OAuth identity linking, while REQ-13 requires explicit linking after proof of existing-account access. Preserve REQ-13. A provider configuration/spike must prove this policy at the provider boundary, including direct OAuth attempts. Hiding a button or rejecting the callback afterward does not undo a provider-side link. Do not enable conflicting Google behavior or replace the identity provider without a separate owner decision. [Supabase identity linking](https://supabase.com/docs/guides/auth/auth-identity-linking).
 
-**Capability gate AUTH-C2:** demonstrate provider-managed code issuance, redemption, rotation, disablement and fresh-auth behavior on the actual project before enabling MFA. If unavailable, stop that implementation and report the incompatibility; custom recovery infrastructure would change approved security architecture. These gates remain required even though UX policy is selected.
+**Capability gate AUTH-C2:** demonstrate MFA-RECOVERY-01 code issuance, concurrent
+single-use redemption, rotation, restricted replacement, direct-provider race
+isolation, session revocation, disablement, notifications and fresh-auth behavior
+on the actual project before enabling MFA. The ADR authorizes local source
+implementation; it does not establish provider compatibility or pass this gate.
 
 Build verified email/password access first. AUTH-C1 blocks Google integration only; AUTH-C2 blocks new MFA enrollment only. Neither prevents independent catalog/roadmap work. Do not disable enforcement for users already enrolled in MFA. An interim email/password build does not satisfy final-MVP Google/MFA requirements merely because unsafe controls are hidden.
 

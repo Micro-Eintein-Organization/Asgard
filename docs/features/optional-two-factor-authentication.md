@@ -2,6 +2,12 @@
 
 # Optional two-factor authentication and hosted account demo
 
+Current recovery follow-up, 2026-11-19 (Codex): owner/codeowner-approved
+[MFA-RECOVERY-01](application-recovery-codes.md) replaces the provider-code paths
+with application-managed backup codes for restricted TOTP replacement. Supabase
+still verifies TOTP and issues AAL2. The older provider-code descriptions and test
+records below retain their dates; actual provider/manual acceptance remains open.
+
 2026-11-19 follow-up (Codex): the shared header now retains authenticated navigation
 on authenticator management, and restricts navigation while assurance is pending or
 required. MFA provider operations are unchanged. See [account access fixes](account-access-fixes.md)

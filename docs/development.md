@@ -29,6 +29,15 @@ Discovery owns versioned questionnaire sessions, active answers, checkpoints, an
 
 Shared foundation operations have service handlers. Historical references to intentional feature-wide 501 stubs describe the scaffold, not the current application. A handler's presence is not proof that all security, content, or hosted acceptance criteria passed.
 
+MFA-RECOVERY-01 (owner/codeowner approval, 2026-11-19) adds account recovery endpoints,
+private hashed-code/attempt/pending tables and a shared session-guard block. Follow
+the [ADR](adr/2026-11-19-application-recovery-codes.md) and
+[implementation guide](features/application-recovery-codes.md). Apply the reviewed
+migration before deploying the updated backend/frontend; the frontend now checks
+durable recovery status during assurance. Backend activation remains off until
+credential provisioning and actual provider/session acceptance pass. Historical
+provider-managed-only recovery guidance is superseded only within this ADR's scope.
+
 ## Verification
 
 Choose focused checks for changed behavior using [AGENTS.md](../AGENTS.md) and [Verification](verification.md). Reuse unchanged dated evidence within its recorded scope. Documentation-only changes use local link/anchor, reference, and whitespace checks. Do not restart services or rerun the full stack for prose edits.

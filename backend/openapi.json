@@ -101,6 +101,33 @@
         "title": "AnalyzeDocument",
         "type": "object"
       },
+      "BeginRecovery": {
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "format": "password",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Code",
+            "type": "string",
+            "writeOnly": true
+          },
+          "password": {
+            "format": "password",
+            "maxLength": 1024,
+            "minLength": 1,
+            "title": "Password",
+            "type": "string",
+            "writeOnly": true
+          }
+        },
+        "required": [
+          "password",
+          "code"
+        ],
+        "title": "BeginRecovery",
+        "type": "object"
+      },
       "Branch": {
         "additionalProperties": false,
         "properties": {
@@ -496,6 +523,59 @@
         "title": "CareerPage",
         "type": "object"
       },
+      "CareerPosting": {
+        "additionalProperties": false,
+        "properties": {
+          "company": {
+            "title": "Company",
+            "type": "string"
+          },
+          "job_title": {
+            "title": "Job Title",
+            "type": "string"
+          },
+          "posting_id": {
+            "title": "Posting Id",
+            "type": "string"
+          },
+          "retrieved_on": {
+            "format": "date",
+            "title": "Retrieved On",
+            "type": "string"
+          },
+          "skills": {
+            "items": {
+              "$ref": "#/components/schemas/PostingSkill"
+            },
+            "title": "Skills",
+            "type": "array"
+          },
+          "source": {
+            "title": "Source",
+            "type": "string"
+          },
+          "source_url": {
+            "title": "Source Url",
+            "type": "string"
+          },
+          "source_version": {
+            "title": "Source Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "source",
+          "source_version",
+          "posting_id",
+          "company",
+          "job_title",
+          "source_url",
+          "retrieved_on",
+          "skills"
+        ],
+        "title": "CareerPosting",
+        "type": "object"
+      },
       "CareerShortlist": {
         "additionalProperties": false,
         "properties": {
@@ -547,6 +627,13 @@
             "title": "Matched Skill Count",
             "type": "integer"
           },
+          "postings": {
+            "items": {
+              "$ref": "#/components/schemas/CareerPosting"
+            },
+            "title": "Postings",
+            "type": "array"
+          },
           "rank": {
             "title": "Rank",
             "type": "integer"
@@ -591,6 +678,10 @@
             "title": "Items",
             "type": "array"
           },
+          "postings_sample_label": {
+            "title": "Postings Sample Label",
+            "type": "string"
+          },
           "sample_label": {
             "title": "Sample Label",
             "type": "string"
@@ -615,6 +706,7 @@
           "source",
           "source_version",
           "sample_label",
+          "postings_sample_label",
           "items"
         ],
         "title": "CareerSkillMatchResponse",
@@ -1139,6 +1231,33 @@
           "description"
         ],
         "title": "ContextFact",
+        "type": "object"
+      },
+      "ContinueRecovery": {
+        "additionalProperties": false,
+        "properties": {
+          "password": {
+            "format": "password",
+            "maxLength": 1024,
+            "minLength": 1,
+            "title": "Password",
+            "type": "string",
+            "writeOnly": true
+          },
+          "token": {
+            "format": "password",
+            "maxLength": 100,
+            "minLength": 40,
+            "title": "Token",
+            "type": "string",
+            "writeOnly": true
+          }
+        },
+        "required": [
+          "password",
+          "token"
+        ],
+        "title": "ContinueRecovery",
         "type": "object"
       },
       "Dashboard": {
@@ -2290,6 +2409,42 @@
         "title": "Exploration",
         "type": "object"
       },
+      "FinishRecovery": {
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "format": "password",
+            "maxLength": 6,
+            "minLength": 6,
+            "title": "Code",
+            "type": "string",
+            "writeOnly": true
+          },
+          "password": {
+            "format": "password",
+            "maxLength": 1024,
+            "minLength": 1,
+            "title": "Password",
+            "type": "string",
+            "writeOnly": true
+          },
+          "token": {
+            "format": "password",
+            "maxLength": 100,
+            "minLength": 40,
+            "title": "Token",
+            "type": "string",
+            "writeOnly": true
+          }
+        },
+        "required": [
+          "password",
+          "token",
+          "code"
+        ],
+        "title": "FinishRecovery",
+        "type": "object"
+      },
       "GuidanceAnswer": {
         "additionalProperties": false,
         "properties": {
@@ -2631,6 +2786,40 @@
           }
         },
         "title": "HealthResponse",
+        "type": "object"
+      },
+      "IssueCodes": {
+        "additionalProperties": false,
+        "properties": {
+          "replace": {
+            "default": false,
+            "title": "Replace",
+            "type": "boolean"
+          }
+        },
+        "title": "IssueCodes",
+        "type": "object"
+      },
+      "IssuedCodes": {
+        "additionalProperties": false,
+        "properties": {
+          "codes": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Codes",
+            "type": "array"
+          },
+          "total": {
+            "title": "Total",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "codes",
+          "total"
+        ],
+        "title": "IssuedCodes",
         "type": "object"
       },
       "LearningGroup": {
@@ -3041,6 +3230,53 @@
           "path"
         ],
         "title": "PageContext",
+        "type": "object"
+      },
+      "PostingResumeMatch": {
+        "additionalProperties": false,
+        "properties": {
+          "matched_phrase": {
+            "title": "Matched Phrase",
+            "type": "string"
+          },
+          "pages": {
+            "items": {
+              "type": "integer"
+            },
+            "title": "Pages",
+            "type": "array"
+          }
+        },
+        "required": [
+          "matched_phrase",
+          "pages"
+        ],
+        "title": "PostingResumeMatch",
+        "type": "object"
+      },
+      "PostingSkill": {
+        "additionalProperties": false,
+        "properties": {
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "resume_match": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PostingResumeMatch"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "label",
+          "resume_match"
+        ],
+        "title": "PostingSkill",
         "type": "object"
       },
       "Preferences": {
@@ -3687,6 +3923,102 @@
           "unavailable_reason"
         ],
         "title": "RecommendationState",
+        "type": "object"
+      },
+      "RecoveredSession": {
+        "additionalProperties": false,
+        "properties": {
+          "access_token": {
+            "title": "Access Token",
+            "type": "string"
+          },
+          "codes": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Codes",
+            "type": "array"
+          },
+          "refresh_token": {
+            "title": "Refresh Token",
+            "type": "string"
+          },
+          "total": {
+            "title": "Total",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "codes",
+          "total",
+          "access_token",
+          "refresh_token"
+        ],
+        "title": "RecoveredSession",
+        "type": "object"
+      },
+      "RecoveryCapability": {
+        "additionalProperties": false,
+        "properties": {
+          "token": {
+            "title": "Token",
+            "type": "string"
+          }
+        },
+        "required": [
+          "token"
+        ],
+        "title": "RecoveryCapability",
+        "type": "object"
+      },
+      "RecoveryState": {
+        "additionalProperties": false,
+        "properties": {
+          "enabled": {
+            "title": "Enabled",
+            "type": "boolean"
+          },
+          "pending": {
+            "title": "Pending",
+            "type": "boolean"
+          },
+          "remaining": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Remaining"
+          }
+        },
+        "required": [
+          "enabled",
+          "pending",
+          "remaining"
+        ],
+        "title": "RecoveryState",
+        "type": "object"
+      },
+      "ReplacementSetup": {
+        "additionalProperties": false,
+        "properties": {
+          "qr": {
+            "title": "Qr",
+            "type": "string"
+          },
+          "secret": {
+            "title": "Secret",
+            "type": "string"
+          }
+        },
+        "required": [
+          "secret",
+          "qr"
+        ],
+        "title": "ReplacementSetup",
         "type": "object"
       },
       "RequestRecommendations": {
@@ -7013,6 +7345,22 @@
     "/api/v1/me/career-skill-matches": {
       "get": {
         "operationId": "get_my_career_skill_matches",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "basis",
+            "required": false,
+            "schema": {
+              "default": "learning_path",
+              "enum": [
+                "benchmark",
+                "learning_path"
+              ],
+              "title": "Basis",
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "content": {
@@ -7033,6 +7381,16 @@
               }
             },
             "description": "Unauthorized"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
           },
           "503": {
             "content": {
@@ -10107,6 +10465,564 @@
         "summary": "Retry Recommendations",
         "tags": [
           "foundation-contracts"
+        ]
+      }
+    },
+    "/api/v1/me/recovery-codes": {
+      "get": {
+        "operationId": "state_api_v1_me_recovery_codes_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecoveryState"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "State",
+        "tags": [
+          "account"
+        ]
+      },
+      "post": {
+        "operationId": "issue_api_v1_me_recovery_codes_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IssueCodes"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IssuedCodes"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Issue",
+        "tags": [
+          "account"
+        ]
+      }
+    },
+    "/api/v1/me/recovery-codes/begin": {
+      "post": {
+        "operationId": "begin_api_v1_me_recovery_codes_begin_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BeginRecovery"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecoveryCapability"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Begin",
+        "tags": [
+          "account"
+        ]
+      }
+    },
+    "/api/v1/me/recovery-codes/finish": {
+      "post": {
+        "operationId": "finish_api_v1_me_recovery_codes_finish_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FinishRecovery"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecoveredSession"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Finish",
+        "tags": [
+          "account"
+        ]
+      }
+    },
+    "/api/v1/me/recovery-codes/prepare": {
+      "post": {
+        "operationId": "prepare_api_v1_me_recovery_codes_prepare_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContinueRecovery"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReplacementSetup"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Prepare",
+        "tags": [
+          "account"
+        ]
+      }
+    },
+    "/api/v1/me/recovery-codes/remove": {
+      "post": {
+        "operationId": "remove_api_v1_me_recovery_codes_remove_post",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "boolean"
+                  },
+                  "title": "Response Remove Api V1 Me Recovery Codes Remove Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Remove",
+        "tags": [
+          "account"
         ]
       }
     },

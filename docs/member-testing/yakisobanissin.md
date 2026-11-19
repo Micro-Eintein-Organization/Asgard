@@ -53,9 +53,9 @@ Coverage: REQ-01, REQ-13; QA-01.
 
 Coverage: REQ-01/13; QA-01; AUTH-C1.
 
-1. **Action:** Inspect the account-entry page for Google access against the organizer's declared build coverage. **Expected:** Current omitted presentation is recorded as a coverage gap; no control or successful authentication is assumed.
-2. **Action:** On an approved enabled build, use the designated Google account to sign in, then repeat and cancel consent. **Expected:** Success reaches the correct account; cancellation leaves usable entry.
-3. **Action:** With the organizer's existing-account fixture, follow explicit linking and prove access to that existing account. **Expected:** Matching email alone does not merge accounts; profile/history are preserved after approved linking.
+1. **Action:** Inspect the account-entry page for Google access against the organizer's declared build coverage. **Expected:** Current omitted presentation is recorded as a coverage gap; no control or successful authentication is assumed.  4 - google sign in is omited, can use any email.
+2. **Action:** On an approved enabled build, use the designated Google account to sign in, then repeat and cancel consent. **Expected:** Success reaches the correct account; cancellation leaves usable entry. 4 - reaches account correctly, detects incorrect passwords and resets input fields when leaving page
+3. **Action:** With the organizer's existing-account fixture, follow explicit linking and prove access to that existing account. **Expected:** Matching email alone does not merge accounts; profile/history are preserved after approved linking. 1- sign up doesn't check for existing account. 
 
 | Criterion | 4 - Exemplary | 3 - Proficient | 2 - Developing | 1 - Beginning | Score (1–4) |
 | --- | --- | --- | --- | --- | --- |
@@ -66,10 +66,10 @@ Coverage: REQ-01/13; QA-01; AUTH-C1.
 
 Coverage: REQ-11/13; QA-02; AUTH-C2.
 
-1. **Action:** On the organizer's disposable account, start authenticator enrollment and enter an incorrect then correct setup code. **Expected:** Enrollment activates only after valid verification; errors do not enable the factor.
-2. **Action:** Sign out/in and supply an invalid then valid authenticator code. **Expected:** An invalid factor cannot grant protected access; a valid one completes the intended flow.
-3. **Action:** Use one designated recovery code, then try that consumed code again; follow the supported regeneration flow. **Expected:** Recovery codes are single-use; regenerated codes invalidate old ones according to provider-managed behavior.
-4. **Action:** Follow fresh-auth disablement and the organizer's lost-factor fixture. **Expected:** No email-only bypass silently removes MFA; unavailable recovery is explained.
+1. **Action:** On the organizer's disposable account, start authenticator enrollment and enter an incorrect then correct setup code. **Expected:** Enrollment activates only after valid verification; errors do not enable the factor. 4 correct
+2. **Action:** Sign out/in and supply an invalid then valid authenticator code. **Expected:** An invalid factor cannot grant protected access; a valid one completes the intended flow. 4 correct
+3. **Action:** Use one designated recovery code, then try that consumed code again; follow the supported regeneration flow. **Expected:** Recovery codes are single-use; regenerated codes invalidate old ones according to provider-managed behavior.  2 - no recovery codes feature yet.
+4. **Action:** Follow fresh-auth disablement and the organizer's lost-factor fixture. **Expected:** No email-only bypass silently removes MFA; unavailable recovery is explained. 4 - error states and checking is present.
 
 | Criterion | 4 - Exemplary | 3 - Proficient | 2 - Developing | 1 - Beginning | Score (1–4) |
 | --- | --- | --- | --- | --- | --- |

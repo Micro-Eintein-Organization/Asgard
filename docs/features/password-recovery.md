@@ -1,5 +1,11 @@
 # Password recovery
 
+MFA-RECOVERY-01 follow-up, 2026-11-19 (Codex): application backup codes authorize
+[authenticator replacement](application-recovery-codes.md), not direct email-reset
+verification. Recover the authenticator using the current password and an unused
+backup code before resetting the password. Loss of both password and authenticator
+is outside this flow. Earlier provider-code test records below remain historical.
+
 2026-11-19 follow-up (Codex): Account and security now offers recovery email for the
 signed-in account, using the existing isolated flow and shared cooldown. Input
 validation follows ACCOUNT-ACCESS-01. See [account access fixes](account-access-fixes.md)

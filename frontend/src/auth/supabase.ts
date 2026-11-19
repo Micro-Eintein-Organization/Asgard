@@ -19,7 +19,6 @@ export const supabase = authConfigured
           persistSession: true,
           autoRefreshToken: true,
           detectSessionInUrl: false,
-          experimental: { recoveryCodes: true },
         },
       },
     )

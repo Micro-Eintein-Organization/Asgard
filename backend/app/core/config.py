@@ -17,6 +17,8 @@ class Settings(BaseSettings):
     supabase_anon_key: SecretStr = SecretStr("")
     readiness_timeout_seconds: float = Field(default=2.0, gt=0, le=10)
     account_deletion_enabled: bool = False
+    recovery_codes_enabled: bool = False
+    recovery_auth_admin_key: SecretStr = SecretStr("")
     auth_enabled: bool = False
     auth_issuer: str = "http://127.0.0.1:55321/auth/v1"
     database_url: SecretStr = SecretStr("")
@@ -30,12 +32,16 @@ class Settings(BaseSettings):
     documents_enabled: bool = False
     documents_processing_enabled: bool = False
     resume_skill_review_enabled: bool = False
+    skill_matching_benchmark_source: str = ""
+    skill_matching_benchmark_version: str = ""
     profile_photos_enabled: bool = False
     documents_real_data_approved: bool = False
     storage_service_key: SecretStr = SecretStr("")
 
     @model_validator(mode="after")
     def hosted_configuration(self):
+        if self.recovery_codes_enabled and not self.recovery_auth_admin_key.get_secret_value():
+            raise ValueError("Backup-code recovery requires a backend-only Auth admin credential.")
         if self.deployment_environment == "local":
             return self
 
