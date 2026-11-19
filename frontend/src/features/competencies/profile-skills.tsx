@@ -9,6 +9,7 @@ import { experienceLabel, experienceLevels } from "./levels";
 import { ResumeSkillReview } from "./resume-skill-review";
 import { Link } from "react-router";
 import { appRoutes } from "@/lib/routes";
+import { SavedResumeSkills } from "@/features/profile/resume-evidence";
 
 type Draft = { id: string; label: string; level: string; version: number; example?: string };
 const skillPageSize = 8;
@@ -195,8 +196,9 @@ export function ProfileSkills({
         </div>
       )}
       {feedback && <p role="status">{feedback}</p>}
+      <SavedResumeSkills />
       {saved.data && !saved.data.items.length && (
-        <p>No skills recorded yet. Adding a skill is optional.</p>
+        <p>No confirmed skill reports yet. Adding a skill is optional.</p>
       )}
       {!adding && !draft && !!saved.data?.items.length && <details>
       <summary>Saved skills ({saved.data.items.length})</summary>

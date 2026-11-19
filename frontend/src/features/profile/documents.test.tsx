@@ -74,7 +74,7 @@ it("renders persisted skills and work experience with source passages", () => {
   render(<MemoryRouter><ProfileDocuments /></MemoryRouter>);
   expect(screen.getByRole("region", { name: "Skills from resume" })).toHaveTextContent("CSS");
   expect(screen.getByRole("region", { name: "Work experience from resume" })).toHaveTextContent("Frontend Developer");
-  expect(screen.getByText("Source: page 2")).toBeVisible();
+  expect(screen.getByText("Page 2")).toBeVisible();
 });
 
 it("does not analyze an uploaded file after an account change", async () => {

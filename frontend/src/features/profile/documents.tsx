@@ -5,6 +5,7 @@ import { isCurrentAccount } from "@/auth/transport";
 import { Button } from "@/components/ui/button";
 import { coreApi, useCoreMutation, useCoreQuery } from "@/features/core/data";
 import { appRoutes } from "@/lib/routes";
+import { ResumeEvidence } from "./resume-evidence";
 
 export function ProfileDocuments({ onGuardChange, compact = false, active = true }: {
   onGuardChange?: (dirty: boolean, pending: boolean) => void;
@@ -107,21 +108,14 @@ export function ProfileDocuments({ onGuardChange, compact = false, active = true
         </div>
       </div>}
       {state && !state.available && <p>Resume extraction is unavailable in this environment. You can still add skill reports manually.</p>}
-      {state?.active && <div>
+      {state?.active && <div className="resume-saved-background">
         <p>Saved document background remains available until you remove it.</p>
-        {([['skill', 'Skills from resume'], ['experience', 'Work experience from resume'], ['education', 'Education from resume'], ['project', 'Projects from resume']] as const).map(([kind, title]) => {
-          const items = state.active!.evidence.filter(item => item.kind === kind);
-          return <section key={kind} className="space-y-2" aria-label={title}>
-            <h3>{title}</h3>
-            {items.length ? <ul className="space-y-2">{items.map((item, index) => <li key={`${kind}-${index}`}>
-              <p className="break-words">{item.text}</p>
-              <details><summary>Source: page {item.page}</summary><blockquote className="whitespace-pre-wrap break-words">{item.span}</blockquote></details>
-            </li>)}</ul> : <p>No supported {kind === 'experience' ? 'work experience' : kind === 'skill' ? 'skills' : kind === 'project' ? 'projects' : 'education'} found in this resume.</p>}
-          </section>;
-        })}
+        <ResumeEvidence evidence={state.active.evidence} />
         <p className="field-help">Resume skills are used by career matching. They do not assign proficiency ratings to your manual skill reports.</p>
-        <Link className="underline" to={appRoutes.careerSkillMatches}>View career matches</Link>{" · "}
+        <div className="action-row">
+        <Link className="underline" to={appRoutes.careerSkillMatches}>View career matches</Link>
         <Link className="underline" to={appRoutes.results}>Review career suggestions</Link>
+        </div>
       </div>}
       {state?.latest_failure && !state.candidate && (!state.active || new Date(state.latest_failure.created_at) > new Date(state.active.created_at)) && <p role="alert">The latest resume could not be analyzed. Previous successful background is preserved. Choose another selectable-text PDF or retry with a new upload.</p>}
       {state?.candidate && <p>A pending document is saved and can be removed.</p>}
