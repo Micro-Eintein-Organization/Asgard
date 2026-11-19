@@ -6,6 +6,23 @@ import { Button } from "@/components/ui/button";
 import { coreApi, useCoreMutation, useCoreQuery } from "@/features/core/data";
 import { appRoutes } from "@/lib/routes";
 import { ResumeEvidence } from "./resume-evidence";
+import { APIRequestError } from "@/api/errors";
+
+const failureMessages: Record<string, string> = {
+  no_selectable_text: "This PDF has no readable text. Use a text-based PDF rather than a scan.",
+  encrypted_pdf: "Use a PDF without password protection.",
+  invalid_pdf: "This PDF could not be read. Export it as a new text-based PDF.",
+  unsafe_or_large_context: "Use a shorter resume with Skills, Education, Experience or Projects headings.",
+  pdf_busy: "PDF reading was busy. Try again shortly.",
+  provider_unavailable: "The analysis service is temporarily unavailable. Try again later.",
+  quota_exceeded: "The analysis allowance has been reached. Wait before trying again.",
+  timeout: "Analysis took too long. Try a shorter PDF later.",
+  invalid_evidence: "Analysis did not return usable, source-supported background. Try a simpler PDF.",
+  storage_unavailable: "Resume storage is temporarily unavailable. Try again later.",
+  no_usable_evidence: "No usable background was found. Use a resume with clear background sections.",
+  too_many_pages: "Use a PDF with no more than 50 pages.",
+  too_much_text: "This PDF has too much text. Use a shorter resume.",
+};
 
 export function ProfileDocuments({ onGuardChange, compact = false, active = true }: {
   onGuardChange?: (dirty: boolean, pending: boolean) => void;
@@ -17,7 +34,12 @@ export function ProfileDocuments({ onGuardChange, compact = false, active = true
   const [synthetic, setSynthetic] = useState(false);
   const [phase, setPhase] = useState("");
   const input = useRef<HTMLInputElement>(null);
+  const inFlight = useRef(false);
+  const analysisKey = useRef({ document: "", key: "" });
+  const [retryAt, setRetryAt] = useState(0);
+  const [clock, setClock] = useState(() => Date.now());
   const query = useCoreQuery(["documents"], coreApi.documents);
+  const { refetch } = query;
   const remove = useCoreMutation(coreApi.removeDocuments);
   const cleanup = useCoreMutation(coreApi.cleanupDocuments);
   const state = query.data;
@@ -34,8 +56,11 @@ export function ProfileDocuments({ onGuardChange, compact = false, active = true
     if (!candidate || candidate.status !== "uploaded")
       throw new Error("Reload document state before analyzing this PDF.");
     setPhase("Extracting skills and experience…");
+    if (analysisKey.current.document !== candidate.id) {
+      analysisKey.current = { document: candidate.id, key: crypto.randomUUID() };
+    }
     return coreApi.analyzeDocument({ id: candidate.id, body: {
-      expected_revision: current.revision, idempotency_key: crypto.randomUUID(),
+      expected_revision: current.revision, idempotency_key: analysisKey.current.key,
       synthetic_document: synthetic,
     } });
   });
@@ -53,14 +78,36 @@ export function ProfileDocuments({ onGuardChange, compact = false, active = true
   }, [onGuardChange, pending, file]);
   const error = query.error ?? extract.error ?? remove.error ?? cleanup.error;
   const busyCandidate = state?.candidate && state.candidate.status !== "uploaded";
+  useEffect(() => {
+    if (!retryAt || Date.now() >= retryAt) return;
+    const timer = window.setInterval(() => {
+      setClock(Date.now());
+      if (Date.now() >= retryAt) window.clearInterval(timer);
+    }, 1000);
+    return () => window.clearInterval(timer);
+  }, [retryAt]);
+  useEffect(() => {
+    if (!active || !busyCandidate || pending) return;
+    const started = Date.now();
+    const timer = window.setInterval(() => {
+      if (Date.now() - started > 125_000) window.clearInterval(timer);
+      else void refetch();
+    }, 3000);
+    return () => window.clearInterval(timer);
+  }, [active, busyCandidate, pending, refetch]);
   async function analyze() {
-    if (pending) return;
+    if (pending || inFlight.current || Date.now() < retryAt) return;
+    inFlight.current = true;
     const owner = user?.id;
     try {
       await extract.mutateAsync();
-    } catch {
-      // Reload persisted state even when the upload or analysis response was lost.
+    } catch (error) {
+      if (error instanceof APIRequestError && error.retryAfter !== null) {
+        setRetryAt(Date.now() + error.retryAfter * 1000);
+        setClock(Date.now());
+      }
     } finally {
+      inFlight.current = false;
       if (owner && isCurrentAccount(owner)) {
         setFile(null);
         setPhase("");
@@ -99,12 +146,14 @@ export function ProfileDocuments({ onGuardChange, compact = false, active = true
         {state.synthetic_only && <label><input type="checkbox" checked={synthetic} disabled={pending}
           onChange={event => setSynthetic(event.target.checked)} /> This is a synthetic test resume with no real personal data.</label>}
         <div className="action-row">
-          <Button type="button" disabled={pending || !!busyCandidate || (!file && !state.candidate) || (state.synthetic_only && !synthetic)}
+          <Button type="button" disabled={pending || clock < retryAt || !!busyCandidate || (!file && !state.candidate) || (state.synthetic_only && !synthetic)}
             onClick={() => void analyze()}>Analyze PDF</Button>
           {file && <Button type="button" variant="outline" disabled={pending} onClick={() => {
             setFile(null);
+            extract.reset();
+            setPhase("");
             if (input.current) input.current.value = "";
-          }}>Cancel selection</Button>}
+          }}>Clear selected PDF</Button>}
         </div>
       </div>}
       {state && !state.available && <p>Resume extraction is unavailable in this environment. You can still add skill reports manually.</p>}
@@ -117,26 +166,27 @@ export function ProfileDocuments({ onGuardChange, compact = false, active = true
         <Link className="underline" to={appRoutes.results}>Review career suggestions</Link>
         </div>
       </div>}
-      {state?.latest_failure && !state.candidate && (!state.active || new Date(state.latest_failure.created_at) > new Date(state.active.created_at)) && <p role="alert">The latest resume could not be analyzed. Previous successful background is preserved. Choose another selectable-text PDF or retry with a new upload.</p>}
+      {state?.latest_failure && !state.candidate && (!state.active || new Date(state.latest_failure.created_at) > new Date(state.active.created_at)) && <p role="alert">{failureMessages[state.latest_failure.failure_code ?? ""] ?? "The resume could not be analyzed. Try again later with a readable-text PDF."} Previous successful background is preserved.</p>}
+      {clock < retryAt && <p role="status">Try analysis again after {new Date(retryAt).toLocaleTimeString()}. Reloading does not reset your allowance.</p>}
       {state?.candidate && <p>A pending document is saved and can be removed.</p>}
       {busyCandidate && <Button type="button" variant="outline" disabled={pending} onClick={() => void query.refetch()}>Check resume status</Button>}
-      {state && (state.active || state.candidate) && <button disabled={pending} onClick={() => {
-        if (!window.confirm("Remove active and pending document background? Learning progress is preserved.")) return;
+      {state && (state.active || state.candidate) && <Button type="button" variant="destructive" disabled={pending} onClick={() => {
+        if (!window.confirm("Remove the saved resume background and any pending PDF? Manual skills and learning progress are preserved.")) return;
         remove.reset();
         remove.mutate({ expected_revision: state.revision });
-      }}>Remove document background</button>}
-      {!!state?.cleanup_pending && <p>Private-file cleanup pending. <button disabled={pending} onClick={() => {
+      }}>Remove resume</Button>}
+      {!!state?.cleanup_pending && <p>Private-file cleanup pending. <Button type="button" variant="outline" disabled={pending} onClick={() => {
         cleanup.reset();
         cleanup.mutate();
-      }}>Retry cleanup</button></p>}
+      }}>Retry cleanup</Button></p>}
       {pending && <p role="status">{phase || "Saving document state…"}</p>}
       {remove.isSuccess && !pending && <p role="status">Document background removed from active use.</p>}
-      {error && <p role="alert">{error.message} <button disabled={pending} onClick={() => {
+      {error && <p role="alert">{error.message} <Button type="button" variant="outline" disabled={pending} onClick={() => {
         void query.refetch();
         remove.reset();
         cleanup.reset();
         extract.reset();
-      }}>Reload document state</button></p>}
+      }}>Reload document state</Button></p>}
     </section>
   );
 }

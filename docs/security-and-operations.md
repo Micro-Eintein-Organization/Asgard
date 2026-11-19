@@ -36,6 +36,12 @@ These numbers are Asgard's initial policy, not OWASP defaults. Use whichever app
 | PDF analysis | 1 in flight/account, 3/hour and 5/day/account | Persisted quota reservation and file limits |
 | Application-wide external analysis | Initially 100 attempts/day across recommendations and PDF analysis, including retries, or lower remaining provider quota | Shared persisted budget, no automatic paid upgrade |
 
+PDF reliability follow-up, 2026-11-19: the owner approved reserving PDF allowance
+after bounded local storage/read/filter preparation and immediately before each
+provider attempt. Local preparation failures do not spend AI allowance. Actual
+provider attempts, including failures/retries, remain charged. Numerical limits
+and historical reservations are unchanged. See [PDF implementation](features/pdf-reading.md).
+
 Supabase documents a per-user reset cooldown, not every destination-hour rule above. A control unsupported by hosted Auth is a compatibility gate, not something to simulate in the browser. A custom FastAPI reset endpoint is not needed by the approved direct Auth flow. Do not add a privileged proxy just to claim extra limits: it needs separate review, protected provider access, trusted client-IP forwarding, and proof that direct Auth cannot bypass the intended control.
 
 Application quotas use a shared persistent counter/reservation design in PostgreSQL; in-memory counters may supplement them but cannot be the only defense across restarts/workers. The [Stage 4 migration](../supabase/migrations/20261026000100_shared_foundation.sql) supplies analysis-attempt and aggregate daily-budget storage; technical review and transactional quota enforcement remain unfinished. Storage alone does not enforce these limits. Reject over-budget expensive work before contacting a provider. If quota enforcement fails, fail closed for analysis while leaving independent reads/progress usable. Respond with 429 and Retry-After where the service owns that response. Bound request bodies, query length, concurrency, DB pools, and execution time. Do not allocate one task or log record per hostile request without limits. This follows resource-bounding guidance in [OWASP DoS prevention](https://cheatsheetseries.owasp.org/cheatsheets/Denial_of_Service_Cheat_Sheet.html).
