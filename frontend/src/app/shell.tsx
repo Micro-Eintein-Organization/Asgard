@@ -23,7 +23,6 @@ import { CareerNavigation } from "./career-navigation";
 import { GuidanceBanner } from "./guidance";
 import { PageMotion } from "@/components/page-motion";
 import { FooterLinks } from "./information";
-import { informationPaths } from "./information-navigation";
 
 const onboardingPaths = new Set([
   appRoutes.welcome,
@@ -45,12 +44,8 @@ export function Header() {
   ];
   const location = useLocation();
   const { pathname } = location;
-  const normalizedPath = pathname.replace(/\/+$/, "") || "/";
-  const informationPage = informationPaths.has(normalizedPath);
-  const publicPage = Object.values(routes).includes(normalizedPath);
-  const showAppNavigation = !!user?.email_confirmed_at &&
-    (!publicPage || (informationPage && !loading && !error && mfa === "ready"));
-  const pendingSession = informationPage && (loading || (!error && !!user && mfa === "checking"));
+  const showAppNavigation = !!user?.email_confirmed_at && !loading && !error && mfa === "ready";
+  const pendingSession = loading || (!error && !!user && mfa === "checking");
   const accountDestination = error ? routes.login : !user?.email_confirmed_at
     ? routes.verify : routes.mfaChallenge;
   const [open, setOpen] = useState(false);
@@ -175,7 +170,7 @@ export function Header() {
           </>
         ) : pendingSession ? (
           <span role="status">Restoring your session…</span>
-        ) : informationPage && (user || error) ? (
+        ) : user || error ? (
           <Link to={accountDestination}>{error ? "Sign in again" : "Continue to account"}</Link>
         ) : (
           <div className="public-nav">

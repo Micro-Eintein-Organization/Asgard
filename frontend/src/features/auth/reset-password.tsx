@@ -37,7 +37,8 @@ export function ResetPasswordPage() {
     event.preventDefault();
     if (pending || state !== "ready") return;
     if (!changed && (validateNewPassword(password) !== true || password !== confirmation)) {
-      setError("Use at least 8 characters and enter the same password twice."); return;
+      const validation = validateNewPassword(password);
+      setError(validation === true ? "Enter the same password twice." : validation); return;
     }
     setPending(true); setError("");
     try {

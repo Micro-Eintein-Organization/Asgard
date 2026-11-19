@@ -19,7 +19,7 @@ beforeEach(() => {
 function open(path: string) {
   return render(<MemoryRouter initialEntries={[path]}><Header /><InformationPage page="credits" /></MemoryRouter>);
 }
-it.each(["/licenses", "/credits", "/terms", "/status", "/credits/"])("retains account navigation on %s and updates after logout", path => {
+it.each(["/licenses", "/credits", "/terms", "/status", "/credits/", "/set-up-2fa", "/password-recovery"])("retains account navigation on %s and updates after logout", path => {
   const view = open(path);
   expect(screen.getByRole("link", { name: "Dashboard" })).toHaveAttribute("href", "/dashboard");
   expect(screen.getByRole("button", { name: "Account menu" })).toBeInTheDocument();
@@ -42,7 +42,7 @@ it.each(["loading", "checking", "required", "unverified", "error"])("handles %s 
   if (phase === "checking" || phase === "required") state.mfa = phase;
   if (phase === "unverified") state.user!.email_confirmed_at = "";
   if (phase === "error") state.error = "Session unavailable";
-  open("/credits");
+  open("/set-up-2fa");
   expect(screen.queryByText("Get started")).not.toBeInTheDocument();
   expect(screen.queryByRole("button", { name: "Account menu" })).not.toBeInTheDocument();
   if (phase === "loading" || phase === "checking") expect(screen.getByRole("status")).toBeInTheDocument();

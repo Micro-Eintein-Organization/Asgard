@@ -61,7 +61,8 @@ export function AccountDeletion() {
   return <Card className="settings-card">
     <header><h2>Delete account</h2><p>Permanently remove your account and saved personal data.</p></header>
     <Button variant="destructive" disabled={!availability.data?.enabled} onClick={() => { key.current = crypto.randomUUID(); setOpen(true); }}>Delete account</Button>
-    {!availability.isPending && !availability.data?.enabled && <p role="status" className="field-help">Account deletion is temporarily unavailable. Please try again later.</p>}
+    {availability.isError ? <div role="alert"><p>Could not check account deletion availability.</p><Button variant="outline" disabled={availability.isFetching} onClick={() => void availability.refetch()}>Try again</Button></div>
+      : !availability.isPending && !availability.data?.enabled && <p role="status" className="field-help">Account deletion is temporarily unavailable. Please try again later.</p>}
     <Dialog open={open} onOpenChange={next => { if (!next) close(); }}>
       <DialogContent onInteractOutside={event => { if (pending) event.preventDefault(); }} onEscapeKeyDown={event => { if (pending) event.preventDefault(); }}>
         <DialogHeader><DialogTitle>Delete your account permanently?</DialogTitle>

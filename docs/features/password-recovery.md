@@ -1,5 +1,11 @@
 # Password recovery
 
+2026-11-19 follow-up (Codex): Account and security now offers recovery email for the
+signed-in account, using the existing isolated flow and shared cooldown. Input
+validation follows ACCOUNT-ACCESS-01. See [account access fixes](account-access-fixes.md)
+for source, verification and pending hosted acceptance. Last updated: 2026-11-19;
+required reviewer remains @YakisobaNissin.
+
 Implementer: Codex. Created/last updated: 2026-11-17.
 Owner/reviewer: @YakisobaNissin. Status: source implemented; focused local checks
 and hosted acceptance are recorded below. No completed human review is implied.

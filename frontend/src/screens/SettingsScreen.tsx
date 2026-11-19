@@ -1,4 +1,5 @@
 import { AccountDeletion } from "@/features/auth/account-deletion";
+import { ChangePassword } from "@/features/auth/change-password";
 import { useScreenContext } from "@/features/counselor-context";
 import { ProfileSkills } from "@/features/competencies/profile-skills";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -28,6 +29,7 @@ export function SettingsScreen() {
 
 function AccountCards() {
   return <>
+    <ChangePassword />
     <AuthenticatorSetting />
     <AccountDeletion />
   </>;
