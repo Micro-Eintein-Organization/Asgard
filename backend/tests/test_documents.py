@@ -115,28 +115,28 @@ def test_supported_statement_has_source_not_proficiency():
     assert result.items[0].text == "SQL"
 
 
-def test_quota_uses_daily_wait_when_both_limits_are_reached(monkeypatch):
+def test_pdf_reservation_has_no_per_account_attempt_limit(monkeypatch):
     from app.modules.documents import service
 
-    async def counts(*args, **kwargs):
-        return {"hourly": 3, "daily": 5, "hourly_wait": 25.1, "daily_wait": 7200.2}
+    async def budget(connection, sql, *args):
+        assert "analysis_daily_budget" in sql
+        assert "count(*)" not in sql
+        return {"reserved_attempts": 42}
 
-    monkeypatch.setattr(service, "one", counts)
-    with pytest.raises(APIError) as error:
-        asyncio.run(service.reserve(None, "user", "document", "key", 1))
-    assert error.value.retry_after == 7201
+    monkeypatch.setattr(service, "one", budget)
+    connection = SimpleNamespace(execute=AsyncMock())
+    asyncio.run(service.reserve(connection, "user", "document", "key", 1))
+    connection.execute.assert_awaited_once()
 
 
-def test_quota_uses_hourly_wait_without_daily_exhaustion(monkeypatch):
+def test_shared_budget_still_blocks_pdf_requests(monkeypatch):
     from app.modules.documents import service
 
-    async def counts(*args, **kwargs):
-        return {"hourly": 3, "daily": 3, "hourly_wait": 25.1, "daily_wait": 7200.2}
-
-    monkeypatch.setattr(service, "one", counts)
+    monkeypatch.setattr(service, "one", AsyncMock(return_value=None))
     with pytest.raises(APIError) as error:
         asyncio.run(service.reserve(None, "user", "document", "key", 1))
-    assert error.value.retry_after == 26
+    assert error.value.message == "Application analysis allowance reached."
+    assert 1 <= error.value.retry_after <= 86400
 
 
 def test_transient_provider_failure_retries_once_and_reserves_attempt():
@@ -153,7 +153,7 @@ def test_transient_provider_failure_retries_once_and_reserves_attempt():
             return httpx.Response(503, headers={"retry-after": "0"})
         return httpx.Response(200, json={"choices": [{
             "finish_reason": "stop", "message": {"content":
-                '{"items":[{"kind":"skill","text":"SQL","page":1,"span":"SQL"}]}'},
+                '{"items":[{"kind":"skill","text":"SQL","source_id":1}]}'},
         }]})
 
     retry = AsyncMock()
@@ -167,6 +167,55 @@ def test_transient_provider_failure_retries_once_and_reserves_attempt():
     assert asyncio.run(run()).items[0].text == "SQL"
     assert len(calls) == 2
     retry.assert_awaited_once()
+
+
+def test_chunks_keep_original_pages_and_exact_source_text():
+    from app.modules.documents.provider import source_chunks
+
+    pages = ["Skills: SQL\n" + "Python " * 1000, "Projects: ETL"]
+    chunks = source_chunks(pages)
+    assert 1 < len(chunks) <= 4
+    for chunk in chunks:
+        for source in chunk:
+            assert source["text"] in pages[source["page"] - 1]
+    assert chunks[-1][-1]["page"] == 2
+
+
+@pytest.mark.parametrize("invalid_second_chunk", [False, True])
+def test_chunk_merge_preserves_source_and_rejects_partial_failure(invalid_second_chunk):
+    import json
+
+    import httpx
+    from pydantic import SecretStr
+
+    from app.modules.documents import provider
+
+    def respond(request):
+        payload = json.loads(request.content)
+        sources = json.loads(payload["messages"][1]["content"])
+        source = sources[0]
+        item = {"kind": "skill", "text": source["text"][:30],
+                "source_id": source["source_id"]}
+        if invalid_second_chunk and source["source_id"] > 1:
+            item["source_id"] = 999999
+        return httpx.Response(200, json={"choices": [{"finish_reason": "stop",
+            "message": {"content": json.dumps({"items": [item]})}}]})
+
+    reserve = AsyncMock()
+
+    async def run():
+        async with httpx.AsyncClient(transport=httpx.MockTransport(respond)) as client:
+            return await provider.extract(client, SimpleNamespace(
+                groq_model="test", groq_api_key=SecretStr("synthetic"),
+            ), ["Skills: SQL\n" + "Python " * 1000, "Projects: ETL"], reserve)
+
+    if invalid_second_chunk:
+        with pytest.raises(ValueError, match="unsupported_evidence"):
+            asyncio.run(run())
+    else:
+        result = asyncio.run(run())
+        assert len(result.items) == 2
+        reserve.assert_awaited_once_with(False)
 
 
 @pytest.mark.parametrize("blocked", [False, True])

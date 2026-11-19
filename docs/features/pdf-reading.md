@@ -5,6 +5,88 @@ Status: source explanation and Profile extraction interface implemented; human r
 Reviewer: @YakisobaNissin, following [CODEOWNERS](../../.github/CODEOWNERS).
 Requirements: REQ-11, F-002, PM-W03/FUT-13.
 
+## Bounded extraction implementation, 2026-11-19
+
+Owner approved the researched script/chunk approach in chat with “ok implement.”
+Implementer: Codex; reviewer: @YakisobaNissin, human review pending. Requirements:
+REQ-11/13 and F-002. Scope: internal provider chunking, source-ID extraction,
+source reconstruction and bounded merge; document service ownership/revisions,
+public evidence schema and private-data rules remain. Preserve existing edits.
+Use at most four sequential chunks and one transient retry across the analysis,
+retain the service's 120-second analysis timeout and shared reservations for every
+call. Divide the 4,000 successful-output-token budget across chunks. Fail the
+replacement if any chunk fails; no silent partial apply or inferred proficiency.
+No new dependency, OCR, agent framework, migration or public API shape change.
+Checks: existing focused PDF/resume cases plus small chunk/provenance regression
+coverage, scoped lint/TypeScript if UI feedback changes. Live acceptance remains
+separate; owner requested no extensive testing.
+
+Status: implemented locally; human review/live hosted acceptance pending.
+The provider splits filtered text into source excerpts of at most 500 characters,
+groups them into at most four sequential chunks of about 6,000 serialized UTF-8
+bytes, and preserves original page numbers. Short resumes use one chunk.
+A conservative request-size estimate is checked against 7,600 estimated total
+tokens; this is not an exact tokenizer or a statement of account quota.
+Accepted completion budgets total at most 4,000 tokens across chunks. At most
+one transient retry is shared across the document; every chunk/retry reserves
+shared budget and rechecks active ownership/removal/deadline before its call.
+The existing attempt column remains 1 for each chunk's first call and 2 for a
+retry; no migration or misuse of the column as a chunk counter is required.
+
+Internal provider schema v2 requests category, source identifier and a short exact
+text substring. The backend reconstructs page/span from the submitted excerpt,
+rejects unsupported identifiers/text, merges and deduplicates locally, and keeps
+the existing maximum of 30 saved items. Empty chunks are allowed, but no usable
+items overall is unsuccessful. Any failed chunk, over-budget input, unsupported
+evidence or aggregate validation failure rejects the replacement; no incomplete
+success is saved. Existing active background remains. Public API evidence fields
+are unchanged. This does not introduce an agent or OCR.
+
+Focused checks passed: 25 PDF/resume backend tests in the existing network-isolated
+image with read-only source, plus scoped backend Ruff. Added cases cover source
+page preservation, sequential merge/reservation and rejecting a bad later chunk.
+One existing Starlette deprecation warning remains. No broad suite, new test
+infrastructure, live provider request, actual database/concurrency probe or hosted
+browser acceptance was run. Manual acceptance pending: analyze short and larger
+synthetic resumes on `/settings/profile`, inspect categories/page/source text,
+and verify a failed replacement preserves the previous background. Record build,
+request ID and actual result without private resume content. The owner must review
+real extracted answers before presenting this as a reliability improvement.
+
+## Per-account attempt limit removed, 2026-11-19
+
+Implementer/task owner: Codex. Owner approved “Remove the PDF attempt limit and
+cooldown” in chat (PDF-QUOTA-02). Reviewer: @YakisobaNissin; human review and hosted
+acceptance pending. Scope: remove account-count queries and browser cooldown,
+update tests and policy. No schema, API shape, dependency or Auth changes.
+
+No PDF-specific 3/hour or 5/day account cap remains. Keep one analysis in flight,
+normal API/file limits, shared 100 external attempts/UTC day and Groq limits.
+Historical reservations remain. This supersedes account-wait descriptions below.
+Visible clear/remove controls and earlier feedback fixes are preserved.
+
+Manual check pending: at `/settings/profile` on the intended build, repeat
+synthetic PDF analysis past former account limits; verify no account countdown
+while shared-budget rejection remains safe. Removing limits does not establish
+extraction quality or live success. See [research findings](../research/pdf-analysis-reliability.md).
+
+Focused verification: 22 backend PDF/resume tests and 10 frontend Profile tests
+passed; TypeScript, scoped backend Ruff and whitespace checks passed. Backend
+checks used the existing image, read-only source and no network. No full suite,
+image rebuild, live provider test, database quota integration or hosted browser
+acceptance was run. Owner requested no extensive testing due to time constraints;
+existing regressions remain and no further test expansion is planned here.
+
+### Removal feedback follow-up, 2026-11-19
+
+Codex corrected stale feedback within the owner-approved PDF controls scope.
+An earlier removal receipt is now hidden while saved state still contains an
+active/pending document or a new local selection. Confirming removal clears old
+analysis/cleanup errors; it preserves the account quota and waiting time.
+Two regression cases cover new pending documents and confirmed empty state.
+Human review and hosted visual verification remain pending; see the checks
+reported in the handoff. No API, database or quota policy changes.
+
 ## Reliability and visible controls, 2026-11-19
 
 Implementer/task owner: Codex. Owner approved the bounded implementation plan
@@ -355,7 +437,7 @@ Sources: [document service and lifecycle](../../backend/app/modules/documents/se
 | Unsupported input | Wrong type/signature, encrypted or malformed PDFs, and PDFs without selectable text are rejected |
 | Parser bounds | Two-second slot wait; 15-second communication timeout; 384 MiB address-space and 12-second CPU limits |
 | Provider failures | At most one transient retry, subject to quota; malformed, refused, truncated or unsupported output fails analysis |
-| Analysis quota | Three provider attempts per rolling hour and five per rolling 24 hours per account; 100 shared external-analysis attempts per UTC day; reserve after local preparation and before each provider request, including retries |
+| Analysis quota | No PDF-specific per-account cap; one in flight/account; 100 shared external-analysis attempts per UTC day; reserve before each provider request, including retries |
 | Changed state | Revision conflicts require reloading state before retrying; removed or expired candidates cannot apply late results |
 
 The [specification](../specs/career-recommendations.md#optional-pdf-extraction)

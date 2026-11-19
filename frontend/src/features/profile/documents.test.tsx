@@ -6,7 +6,7 @@ import { coreApi } from "@/features/core/data";
 import { isCurrentAccount } from "@/auth/transport";
 
 const remove = vi.fn();
-const documentView = vi.hoisted(() => ({ active: true, evidence: [] as { kind: string; text: string; page: number; span: string }[] }));
+const documentView = vi.hoisted(() => ({ active: true, removed: false, candidate: false, evidence: [] as { kind: string; text: string; page: number; span: string }[] }));
 vi.mock("@/auth/context", () => ({ useAuth: () => ({ user: { id: "owner" } }) }));
 vi.mock("@/auth/transport", () => ({ isCurrentAccount: vi.fn(() => true) }));
 vi.mock("@/features/core/data", () => ({
@@ -16,17 +16,33 @@ vi.mock("@/features/core/data", () => ({
   },
   useCoreQuery: () => ({ data: {
     available: true, synthetic_only: true, revision: 2,
-    active: documentView.active ? { evidence: documentView.evidence } : null, candidate: null, cleanup_pending: 0,
+    active: documentView.active ? { evidence: documentView.evidence } : null,
+    candidate: documentView.candidate ? { id: "pending", status: "uploaded" } : null, cleanup_pending: 0,
   }, refetch: vi.fn() }),
   useCoreMutation: (operation: unknown) => ({
+    isSuccess: operation === "remove" && documentView.removed,
     isPending: false, mutate: operation === "remove" ? remove : vi.fn(), reset: vi.fn(),
     mutateAsync: operation,
   }),
 }));
 
-afterEach(() => { vi.restoreAllMocks(); vi.clearAllMocks(); documentView.active = true; documentView.evidence = []; vi.mocked(isCurrentAccount).mockReturnValue(true); });
+afterEach(() => { vi.restoreAllMocks(); vi.clearAllMocks(); documentView.active = true; documentView.removed = false; documentView.candidate = false; documentView.evidence = []; vi.mocked(isCurrentAccount).mockReturnValue(true); });
 
 describe("PDF removal", () => {
+  it("does not show an old removal receipt beside a new pending PDF", () => {
+    documentView.active = false;
+    documentView.removed = true;
+    documentView.candidate = true;
+    render(<MemoryRouter><ProfileDocuments /></MemoryRouter>);
+    expect(screen.getByText("A pending document is saved and can be removed.")).toBeVisible();
+    expect(screen.queryByText("Document background removed from active use.")).not.toBeInTheDocument();
+  });
+  it("shows the removal receipt only after saved state has no document", () => {
+    documentView.active = false;
+    documentView.removed = true;
+    render(<MemoryRouter><ProfileDocuments /></MemoryRouter>);
+    expect(screen.getByText("Document background removed from active use.")).toBeVisible();
+  });
   it("does not remove the saved document when confirmation is cancelled", () => {
     vi.spyOn(window, "confirm").mockReturnValue(false);
     render(<MemoryRouter><ProfileDocuments /></MemoryRouter>);

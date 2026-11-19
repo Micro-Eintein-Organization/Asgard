@@ -72,6 +72,16 @@ Previous eligible successful results remain visible with an explicit previous/ou
 
 ## Optional PDF extraction
 
+Owner-approved implementation follow-up, 2026-11-19: “ok implement” after the
+bounded script/chunk research proposal authorizes up to four sequential prepared
+text chunks, source-ID reconstruction, local validated merge, and one transient
+retry across the analysis. Keep original page evidence, the existing 120-second
+analysis deadline, a 4,000-token successful completion budget divided across
+chunks, per-call shared budget reservations and the 30-item saved limit. Reject
+the replacement if any chunk fails; no partial-success apply. This refines the
+single-request approach below without changing public evidence fields or adding
+OCR/agent infrastructure. See [implementation and evidence](../features/pdf-reading.md).
+
 Use the existing 10 MB selectable-text PDF scope and the limits/disclosure in [security and operations](../security-and-operations.md#upload-and-provider-data-handling). Extract text in the backend; send bounded contact-redacted text to the same Groq adapter as a separate extraction request. Do not send the raw PDF to recommendation generation.
 
 Logical extraction output: skills (name), education (qualification/field), experience (role and explicitly stated activities), projects (title and activities). Each item requires a page number and exact supporting text span, checked against extracted source text. Missing fields are empty lists, never guessed; omit unsupported dates/proficiency. Store source spans only with private derived context, not normal logs. The detailed Pydantic/API/storage implementation requires technical review.
