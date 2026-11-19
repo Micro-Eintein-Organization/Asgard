@@ -45,6 +45,7 @@ These instructions apply to human contributors and AI agents. Read this file at 
 ## Change boundaries
 
 - Do not change database schemas, API contracts, authentication, or shared architecture without explicit approval.
+- MFA-RECOVERY-01 is the owner's 2026-11-19 approved exception for application-managed backup codes that authorize restricted authenticator replacement. Follow [its ADR](docs/adr/2026-11-19-application-recovery-codes.md); Supabase still verifies TOTP and issues AAL2 sessions. This exception does not approve hosted activation or a general MFA bypass.
 - Do not install new dependencies without justification and approval where required.
 - Do not modify unrelated files.
 - Do not replace existing implementations solely because an alternative seems cleaner.

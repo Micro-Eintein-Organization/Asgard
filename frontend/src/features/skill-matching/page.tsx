@@ -1,4 +1,6 @@
 import { Link } from "react-router";
+import { useState } from "react";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -15,7 +17,20 @@ const statusLabels = {
 } as const;
 
 export default function SkillMatchingPage() {
-  const query = useCoreQuery(["career-skill-matches"], readCareerSkillMatches);
+  const [basis, setBasis] = useState<"benchmark" | "learning_path">("benchmark");
+  return <Tabs value={basis} onValueChange={value => setBasis(value as typeof basis)}>
+    <TabsList aria-label="Skill comparison basis">
+      <TabsTrigger value="benchmark">Benchmark sample</TabsTrigger>
+      <TabsTrigger value="learning_path">Learning-path skills</TabsTrigger>
+    </TabsList>
+    <TabsContent value={basis}>
+      <SkillMatchingResults key={basis} basis={basis} />
+    </TabsContent>
+  </Tabs>;
+}
+
+function SkillMatchingResults({ basis }: { basis: "benchmark" | "learning_path" }) {
+  const query = useCoreQuery(["career-skill-matches", basis], signal => readCareerSkillMatches(signal, basis));
 
   if (query.isPending)
     return (
@@ -45,6 +60,9 @@ export default function SkillMatchingPage() {
       <header className="space-y-2">
         <h1>Career skill matches</h1>
         <p className="field-help">Based on your saved skills and your most recent resume.</p>
+        <p className="field-help">{basis === "benchmark"
+          ? "Counts include distinct skills mapped from the selected reviewed posting sample. Careers without mappings show 0 of 0."
+          : "Counts include skills linked to each learning path. These describe learning-path coverage."}</p>
         <p className="field-help">
           Source: {source}{source_version !== null ? ` (version ${source_version})` : ""}
         </p>
@@ -83,14 +101,14 @@ export default function SkillMatchingPage() {
                     <span className="font-semibold">{career.rank}. {career.career_title}</span>
                     <span>
                       {career.benchmark_skill_count === 0
-                        ? "No skill mapping yet"
+                        ? basis === "benchmark" ? "0 of 0" : "No skill mapping yet"
                         : career.display_count}
                     </span>
                     <span className="field-help w-full">{career.sample_label}</span>
                   </summary>
                   <div className="space-y-4 px-5 pb-5">
                     {career.benchmark_skill_count === 0 ? (
-                      <p className="field-help">This career has no linked skills yet.</p>
+                      <p className="field-help">{basis === "benchmark" ? "No reviewed benchmark mappings for this career in this sample." : "This career has no linked skills yet."}</p>
                     ) : (
                       <>
                         <p className="field-help">{career.sample_note}</p>

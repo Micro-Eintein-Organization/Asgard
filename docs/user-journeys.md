@@ -35,7 +35,7 @@ Save names, career preferences, and self-reported skills. If enabled, add a priv
 
 ## J-07: Protect or end account access
 
-Use provider-managed password/recovery and optional MFA when enabled and verified. Logout clears private state. Enabled account deletion requires fresh verification, confirmation, and healthy maintenance. An accepted receipt blocks access immediately while asynchronous purge completes; network failure must not imply success. Google and MFA retain AUTH-C1/C2 gates.
+Use provider-managed password reset and optional Supabase TOTP when enabled and verified. MFA-RECOVERY-01 backup codes plus the current password start restricted authenticator replacement; app access waits for a verified replacement and session cleanup. Logout clears private state. Enabled account deletion requires fresh verification, confirmation, and healthy maintenance. An accepted receipt blocks access immediately while asynchronous purge completes; network failure must not imply success. Google and MFA retain AUTH-C1/C2 gates.
 
 ## Cross-journey constraints
 

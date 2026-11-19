@@ -554,7 +554,8 @@ BEGIN
         SELECT 1 FROM ({guard_values}) AS input(career_key, competency_key)
         LEFT JOIN asgard_catalog.careers AS career ON career.slug = input.career_key
         LEFT JOIN asgard_catalog.competencies AS competency ON competency.canonical_key = input.competency_key
-        WHERE career.id IS NULL OR competency.id IS NULL
+        WHERE career.id IS NULL OR competency.id IS NULL OR NOT competency.published
+          OR career.status <> 'published'
     ) THEN
         RAISE EXCEPTION 'Career skill snapshot contains unresolved career or competency keys';
     END IF;
@@ -576,6 +577,20 @@ SET posting_count = EXCLUDED.posting_count,
     total_postings = EXCLUDED.total_postings,
     source = EXCLUDED.source
 WHERE asgard_catalog.career_skill_snapshot.published = false;
+DO $import_count$ BEGIN
+ IF (SELECT count(*) FROM asgard_catalog.career_skill_snapshot
+     WHERE source={sql_literal(source)} AND source_version={sql_literal(source_version)}) <> {len(rows)} THEN
+  RAISE EXCEPTION 'Snapshot import count differs from reviewed input';
+ END IF;
+ IF (SELECT count(*) FROM ({values}) AS input(snapshot_id, career_key, competency_key,
+       posting_count, total_postings, source, source_version)
+     JOIN asgard_catalog.career_skill_snapshot actual ON actual.id=input.snapshot_id
+       AND actual.source=input.source AND actual.source_version=input.source_version
+       AND actual.posting_count=input.posting_count
+       AND actual.total_postings=input.total_postings) <> {len(rows)} THEN
+  RAISE EXCEPTION 'Snapshot contents conflict with reviewed input';
+ END IF;
+END $import_count$;
 COMMIT;
 """  # noqa: E501
 
@@ -585,6 +600,12 @@ def render_publish_sql(source: str, source_version: str, reviewer: str) -> str:
     lock_a, lock_b = ADVISORY_LOCK
     return f"""BEGIN;
 SELECT pg_advisory_xact_lock({lock_a}, {lock_b});
+DO $$ BEGIN
+ IF NOT EXISTS (SELECT 1 FROM asgard_catalog.career_skill_snapshot
+   WHERE source={sql_literal(source)} AND source_version={sql_literal(source_version)}) THEN
+  RAISE EXCEPTION 'Cannot publish an empty benchmark snapshot';
+ END IF;
+END $$;
 UPDATE asgard_catalog.career_skill_snapshot
 SET published = true, reviewed_by = {sql_literal(reviewer.strip())}, reviewed_at = now()
 WHERE source = {sql_literal(source)}
@@ -592,6 +613,60 @@ WHERE source = {sql_literal(source)}
   AND NOT published;
 COMMIT;
 """
+
+
+def render_alias_sql(careers: tuple[OfflineCareer, ...]) -> str:
+    """Persist reviewed exact aliases without replacing existing catalog aliases."""
+    statements = ["BEGIN;", "SELECT pg_advisory_xact_lock(411, 4);"]
+    for career in careers:
+        for competency in career.competencies:
+            for alias in competency.aliases:
+                key, value = sql_literal(competency.canonical_key), sql_literal(alias)
+                tag = "$asgard_alias_guard$"
+                while tag in alias + competency.canonical_key + career.key:
+                    tag = tag[:-1] + "_$"
+                statements.append(f"""DO {tag} BEGIN
+ IF NOT EXISTS (SELECT 1 FROM asgard_catalog.competencies WHERE canonical_key={key} AND published) THEN
+  RAISE EXCEPTION 'Reviewed alias has no published canonical skill';
+ END IF;
+ IF EXISTS (SELECT 1 FROM asgard_catalog.competencies other
+   JOIN asgard_catalog.competency_links link ON link.competency_id=other.id
+   JOIN asgard_catalog.careers career ON career.id=link.career_id
+   WHERE career.slug={sql_literal(career.key)} AND other.canonical_key<>{key}
+   AND other.published AND EXISTS (SELECT 1 FROM unnest(other.aliases || ARRAY[other.label]) phrase
+      WHERE lower(regexp_replace(btrim(phrase), '\\s+', ' ', 'g'))
+          =lower(regexp_replace(btrim({value}), '\\s+', ' ', 'g')))) THEN
+  RAISE EXCEPTION 'Reviewed alias conflicts with another skill in this career';
+ END IF;
+END {tag};
+UPDATE asgard_catalog.competencies SET aliases=array_append(aliases,{value})
+ WHERE canonical_key={key} AND NOT ({value}=ANY(aliases));""")  # noqa: E501
+    return "\n".join([*statements, "COMMIT;", ""])
+
+
+def review_rows(records: list[dict[str, str]], careers: tuple[OfflineCareer, ...]):
+    """Suggestions are lexical review aids, never accepted mapping decisions."""
+    for record in records:
+        career = map_career(record["asgard_career_proposed"], careers)
+        for skill in record["skills"].split("|"):
+            exact, reason = (
+                map_competency(skill.strip(), career) if career else (None, "unresolved career")
+            )
+            tokens = set(re.findall(r"[a-z0-9+#]+", skill.casefold())) - {"and", "the", "for"}
+            candidates = [] if career is None else sorted(
+                ((len(tokens & set(re.findall(r"[a-z0-9+#]+", item.label.casefold()))), item)
+                 for item in career.competencies),
+                key=lambda pair: (-pair[0], pair[1].canonical_key),
+            )
+            yield {
+                **record, "skill": skill.strip(),
+                "exact_competency_key": exact.canonical_key if exact else "",
+                "candidate_keys": "|".join(
+                    item.canonical_key for score, item in candidates[:3] if score),
+                "candidate_labels": "|".join(item.label for score, item in candidates[:3] if score),
+                "mapping_note": reason or "exact mapping; posting/source review still required",
+                "mapping_reviewed_by": "",
+            }
 
 
 def read_records(path: Path) -> list[dict[str, str]]:
@@ -711,9 +786,17 @@ def main() -> int:
     )
     if args.publish_reviewed and (len(records) < 15 or verified_count < 5):
         raise SystemExit("Publication requires at least 15 CSV rows and at least 5 verified rows")
+    if args.publish_reviewed and not rows:
+        raise SystemExit("Publication requires at least one mapped benchmark skill")
+    if args.publish_reviewed and len(postings) != verified_count:
+        raise SystemExit("Resolve every verified posting's career before publication")
+    review_path = snapshot_path.with_suffix(".review.csv")
+    alias_path = snapshot_path.with_suffix(".aliases.sql")
+    release_path = snapshot_path.with_suffix(".release.sql")
     targets = [snapshot_path, report_path, postings_path]
+    targets.append(review_path)
     if args.publish_reviewed:
-        targets.extend((publish_path, postings_publish_path))
+        targets.extend((publish_path, postings_publish_path, alias_path, release_path))
     if not args.force:
         existing = [path for path in targets if path.exists()]
         if existing:
@@ -756,6 +839,16 @@ def main() -> int:
         writer.writeheader()
         writer.writerows(report)
     if args.publish_reviewed:
+        alias_sql = render_alias_sql(careers)
+        write_new(alias_path, alias_sql, args.force)
+        parts = [alias_sql, render_snapshot_sql(rows, args.source, args.source_version),
+                 render_postings_sql(
+                     postings, args.source, args.source_version, len(records), verified_count),
+                 render_publish_sql(args.source, args.source_version, args.reviewer),
+                 render_postings_publish_sql(args.source, args.source_version, args.reviewer)]
+        bodies = (part.strip().removeprefix("BEGIN;").removesuffix("COMMIT;") for part in parts)
+        release = "BEGIN;\n" + "\n".join(bodies) + "\nCOMMIT;\n"
+        write_new(release_path, release, args.force)
         write_new(
             publish_path,
             render_publish_sql(args.source, args.source_version, args.reviewer),
@@ -768,6 +861,14 @@ def main() -> int:
             ),
             args.force,
         )
+    reviews = list(review_rows(records, careers))
+    with review_path.open("x" if not args.force else "w", encoding="utf-8", newline="") as stream:
+        writer = csv.DictWriter(stream, fieldnames=(
+            *EXPECTED_HEADER, "skill", "exact_competency_key", "candidate_keys",
+            "candidate_labels", "mapping_note", "mapping_reviewed_by"), lineterminator="\n")
+        writer.writeheader()
+        writer.writerows(reviews)
+    print(f"review_sheet={review_path}")
     print("Summary: " + ", ".join(f"{key}={value}" for key, value in sorted(summary.items())))
     if duplicate_alias_rows:
         print("duplicate_alias_rows=" + ",".join(map(str, duplicate_alias_rows)))

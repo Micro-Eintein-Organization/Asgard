@@ -15,6 +15,10 @@ services:
         value: "true"
       - key: ASGARD_ACCOUNT_DELETION_ENABLED
         value: "false"
+      - key: ASGARD_RECOVERY_CODES_ENABLED
+        value: "true"
+      - key: ASGARD_RECOVERY_AUTH_ADMIN_KEY
+        sync: false
       - key: ASGARD_DOCUMENTS_PROCESSING_ENABLED
         value: "true"
       - key: ASGARD_DOCUMENTS_REAL_DATA_APPROVED

@@ -22,7 +22,6 @@ export function AccountDeletion() {
   const [password, setPassword] = useState("");
   const [confirmation, setConfirmation] = useState("");
   const [code, setCode] = useState("");
-  const [recovery, setRecovery] = useState(false);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState("");
   const key = useRef(crypto.randomUUID());
@@ -38,7 +37,7 @@ export function AccountDeletion() {
     try {
       const result = await api.POST("/api/v1/me/account-deletion", { body: {
         confirmation: "DELETE", password, idempotency_key: key.current,
-        mfa_code: code || null, recovery,
+        mfa_code: code || null, recovery: false,
       } });
       if (!isCurrentAccount(owner)) return;
       if (result.error || !result.data) {
@@ -69,8 +68,8 @@ export function AccountDeletion() {
           <DialogDescription>Access ends as soon as deletion is accepted. Your profile, files, skills, Discovery, saved careers, recommendations and learning progress will be removed within seven days. This cannot be undone.</DialogDescription></DialogHeader>
         <form className="form-grid" onSubmit={submit}>
           <div className="field"><Label htmlFor="delete-password">Confirm your password</Label><Input id="delete-password" type="password" autoComplete="current-password" value={password} onChange={event => setPassword(event.target.value)} required disabled={pending} /></div>
-          {availability.data?.mfa_required && <><div className="field"><Label htmlFor="delete-code">{recovery ? "Recovery code" : "Authenticator code"}</Label><Input id="delete-code" autoComplete="one-time-code" value={code} onChange={event => setCode(event.target.value)} required disabled={pending} /></div>
-            <label className="security-confirm"><input type="checkbox" checked={recovery} onChange={event => { setRecovery(event.target.checked); setCode(""); }} disabled={pending} />Use a recovery code</label></>}
+          {availability.data?.mfa_required && <><div className="field"><Label htmlFor="delete-code">Authenticator code</Label><Input id="delete-code" autoComplete="one-time-code" inputMode="numeric" pattern="[0-9]{6}" value={code} onChange={event => setCode(event.target.value)} required disabled={pending} /></div>
+            <p className="field-help">If your authenticator is lost, recover it from the sign-in verification page before deleting your account.</p></>}
           <div className="field"><Label htmlFor="delete-confirm">Type DELETE to confirm</Label><Input id="delete-confirm" autoComplete="off" value={confirmation} onChange={event => setConfirmation(event.target.value)} required pattern="DELETE" disabled={pending} /></div>
           {error && <p role="alert" className="field-error">{error}</p>}
           <div className="action-row"><Button type="button" variant="outline" onClick={close} disabled={pending}>Cancel</Button><Button type="submit" variant="destructive" disabled={pending || confirmation !== "DELETE" || !password}>{pending ? "Confirming deletion…" : "Permanently delete account"}</Button></div>

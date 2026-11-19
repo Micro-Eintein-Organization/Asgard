@@ -2,6 +2,218 @@
 
 # Skill profiles and career comparison
 
+## Benchmark and learning-path views, 2026-11-19
+
+Implementer/task owner: Codex. Created/updated: 2026-11-19. Requirements:
+REQ-11 and the owner-reviewed two-view extension of Skill Matching V2.
+Reviewer/data-publication reviewer: YakisobaNissin. The owner approved the bounded
+plan in chat with “Please implement the plan.” This approves implementation of
+two tabs, the optional basis API parameter, version-pinned benchmark reads,
+offline review/publication artifacts and focused checks. It does not approve
+posting records, aliases, hosted writes or deployment.
+
+Affected modules: skill_matching routes/sources/service, settings, generated
+OpenAPI/TypeScript, the skill-matching page/client, offline snapshot renderer,
+review data and owning documentation. Existing account/session transactions,
+competency IDs, document evidence and snapshot/posting tables are dependencies.
+No migration, authentication or dependency replacement is planned. Preserve
+concurrent recovery-code work. Checks: focused source/matcher/API/import tests,
+frontend tab tests, TypeScript and generated-contract drift; actual restricted-role
+publication/ownership and hosted acceptance remain distinct required evidence.
+
+### Implemented behavior and focused evidence
+
+Both tabs are implemented. `/api/v1/me/career-skill-matches` accepts optional
+`basis=benchmark|learning_path`; omission preserves the previous learning-path
+response. Benchmark SQL directly joins published snapshots and competencies,
+pins both source and version, keeps unmapped published careers, and loads only
+the matching published posting version. Resume signals and self-reports remain
+account-scoped through the unchanged session-checked transaction/service.
+The frontend keys cached queries by basis and preserves tab navigation during
+loading/errors. Existing generic account invalidation refreshes both views after
+skill/document mutations. No provider calls or writes occur during matching.
+
+Set `ASGARD_SKILL_MATCHING_BENCHMARK_SOURCE` and
+`ASGARD_SKILL_MATCHING_BENCHMARK_VERSION` on the backend only after reviewed data
+is published. Blank settings preserve learning-path access and show a clear
+benchmark-unavailable error. Source/version are configuration, not inferred from
+version-string order. Response provenance identifies the selected snapshot;
+canonical skill provenance remains separate.
+
+Correct-checkout verification passed: 63 distinct focused backend tests
+(matcher, source/API selection, private-read scoping and publisher), 20 matching
+page tests, frontend TypeScript, scoped Python lint, and OpenAPI drift.
+The recovery-code chat coordinated regeneration of both shared contract files
+and reported frontend client drift plus the combined build passing. No recovery
+operations were removed. An initial backend run used the image's cached source;
+those results were discarded and rerun with `PYTHONPATH=/repo/backend` for the
+mounted checkout. The initial frontend no-mapping assertion was updated for the
+approved benchmark 0-of-0 display. One existing Starlette deprecation warning
+remains. Full suites, live Groq, browser acceptance and actual PostgreSQL
+publication/role tests were not run for this change. Earlier database test
+evidence does not verify the new publication SQL.
+
+### Data review and owner-operated rollout
+
+Subsequent owner decision, 2026-11-19: use separate benchmark technology/skill
+references rather than alias broad posting terms to narrow learning tasks.
+The initial worksheet found 0 exact mappings across 154 mentions, demonstrating
+the vocabulary mismatch. Existing 230 learning-path identities and links must
+remain unchanged. Preparation of the separate reference vocabulary/importer is
+the next content task; the existing importer still targets career-qualified
+learning-path references and must be extended before this new vocabulary can be
+published. Do not apply the earlier alias-based publication instructions below
+to manufacture equivalence. They describe the original implementation and need
+revision with the concrete separate-vocabulary release.
+
+The offline renderer generated a 154-row skill-level worksheet covering all 22
+pending postings at `.local/career-skill-snapshot/ph_postings_collected.snapshot.review.csv`.
+It includes source URLs, proposed careers, exact mappings and up to three lexical
+candidate keys/labels, plus blank mapping-reviewer fields. Suggestions do not
+assert equivalence or verify a source. The CSV and alias file remain unapproved;
+no review status was promoted and no publishable release was generated.
+
+1. YakisobaNissin reviews provenance/terms, proposed careers and extracted posting
+   skills against the sources. Record actual decisions in
+   `docs/data/ph_postings_collected.csv`; only verified records receive the real
+   reviewer identity. Collector and reviewer must differ. Review worksheet
+   annotations are aids, not the import's authority.
+2. For approved exact equivalences, populate `docs/data/competency_aliases.csv`
+   with the existing career_slug,competency_key,alias,reviewed_by format.
+   Do not map broad terms to narrow competencies merely to increase coverage.
+   Unmapped and ambiguous terms stay excluded from N.
+3. Run the existing renderer in the pinned backend runtime with the reviewed CSV,
+   explicit source/version, `--publish-reviewed --reviewer YakisobaNissin`.
+   The exercised draft command used source `ph_postings_collected` and proposed
+   version `2026-11-19-v1`; use that pair for this first release. Rerendering an
+   existing output requires explicit `--force` after preserving reviewer edits.
+   At least 15 input records, 5 verified records, one mapped skill and resolution
+   of every verified posting's career are required.
+4. Review the generated `.release.sql`. It combines additive alias application,
+   snapshot import, posting import and both publications in one transaction.
+   Runtime matching and importing use the same approved aliases. Alias SQL
+   preserves existing values and rejects same-career collisions or missing
+   published canonical skills. Snapshot SQL validates expected counts/contents;
+   publication rejects empty snapshots. Source/foreign-key/content conflicts
+   roll back the transaction. Other sources and old immutable posting versions
+   remain separate. Repeat release application is rejected by existing published
+   posting-version guards rather than rewriting history.
+5. Before hosted application, run the applicable isolated PostgreSQL integrity,
+   rollback and restricted-role tests against the candidate release. Then the
+   owner runs the reviewed complete release in Supabase SQL Editor. Existing
+   snapshot/posting migrations are prerequisites; this is content publication,
+   not a new schema migration. Do not run the empty draft artifacts generated
+   while all records are pending.
+6. Configure the two backend settings to the published pair, deploy backend before
+   frontend, and verify authenticated `/career-skill-matches`. No hosted setting,
+   database, commit, push or deployment was performed by this implementation.
+
+Read-only verification after an authorized release:
+
+```sql
+SELECT source, source_version, count(*) AS mapped_skills
+FROM asgard_catalog.career_skill_snapshot
+WHERE published
+GROUP BY source, source_version;
+
+SELECT source, source_version, status, posting_count
+FROM asgard_catalog.career_skill_posting_versions;
+```
+
+At `/career-skill-matches`, check Benchmark sample opens first and reports the
+configured version; switch to Learning-path skills and confirm counts are
+independent. With synthetic data, add a positive, unknown and zero report,
+analyze a resume with a reviewed exact alias, refresh, and remove its background.
+Verify statuses, source evidence, stable ordering, empty-career 0 of 0 and no
+learning-state changes. Repeat under another account. Report URL, basis,
+expected/actual count and sanitized request ID without private evidence text.
+Pending: owner data/alias review, PostgreSQL publication/security acceptance,
+human code/UI review, hosted configuration/deployment and manual acceptance.
+
+## Resume saving and hosted schema repair, 2026-11-19
+
+Implementer: Codex. Created: 2026-11-19. Last updated: 2026-11-19.
+Requirements: REQ-11, PM-W03/FUT-13 and the existing career skill-matching scope.
+Owner: Codex; required technical reviewer: @YakisobaNissin.
+Status: owner approved the bounded implementation plan in chat; human technical
+review and hosted migration/application acceptance remain pending.
+
+The reviewed scope covers the resume review component, Profile skill actions,
+their focused tests, and these implementation/PDF guides. Existing document
+review and versioned skill-save APIs are reused without contract, dependency,
+ranking or schema changes. Resume suggestions now offer **Add [skill]** or
+**Edit [skill]**, followed by the existing experience editor and explicit
+**Save skill**. Existing saved reports show their saved experience. Review
+prerequisites are explained beside the button. Changing careers cancels the old
+request and discards suggestions while retaining the selected PDF. Failed reviews
+retain that PDF for retry; Remove, End review and leaving the active view clear it.
+
+On 2026-11-19 the pinned CLI's linked migration-history read reported
+`20261116000100`, `20261118000100` and `20261118000200` as unapplied.
+This is history evidence, not direct proof that tables were never created manually.
+The career matcher requires the snapshot and posting tables. The two November 18
+migrations are independent of the pending account-deletion migration; a general
+database push would include that unrelated security/lifecycle change.
+
+### Operator steps in hosted Supabase
+
+Use the project serving the hosted backend. After technical review and explicit
+owner approval for the hosted writes, open **SQL Editor**. First run this read-only
+check:
+
+```sql
+SELECT name, to_regclass(name) IS NOT NULL AS installed,
+       has_table_privilege('asgard_app', to_regclass(name), 'SELECT') AS runtime_can_read
+FROM (VALUES
+  ('asgard_catalog.career_skill_snapshot'),
+  ('asgard_catalog.career_skill_posting_versions'),
+  ('asgard_catalog.career_skill_postings')
+) AS required(name);
+```
+
+For absent tables, run the complete contents of these versioned files separately,
+in this order:
+
+1. [Snapshot migration](../../supabase/migrations/20261118000100_career_skill_snapshot.sql).
+2. [Posting migration](../../supabase/migrations/20261118000200_career_skill_postings.sql).
+
+Both files include their own transactions, SELECT grants and published-only RLS.
+If some tables already exist or a run fails, stop and report the error; do not
+drop tables, reset the database or rerun CREATE statements over existing objects.
+Repeat the read-only query: all three installed/access values should be true.
+These migrations create empty tables; reviewed posting publication is separate.
+Core career-linked matching does not require posting sample rows.
+
+SQL Editor execution does not register CLI migration history. An authorized
+operator must reconcile the two versions as applied using the pinned CLI's
+`migration repair` only after verifying successful complete application, then
+repeat `migration list --linked`. Leave `20261116000100_account_deletion.sql`
+for its separately reviewed rollout. Never mark unapplied SQL as applied.
+
+### Focused verification and manual acceptance
+
+Frontend TypeScript checking passed. Matching-page and suggestion-cache tests
+passed (20 tests); the two affected resume/Profile suites passed (10 tests) after
+correcting a test hook that accidentally returned a mock function. The old resume
+test's removed-details and outdated file-label selectors were repaired. These
+were test-harness failures, not observed application failures. `git diff --check`
+passed. No full frontend suite, build or browser matrix was run, following the
+owner's request to limit verification. No backend source or contracts changed. Docker was unavailable
+during investigation; backend/database checks and hosted ownership acceptance
+remain pending. Earlier dated database evidence does not verify this hosted project.
+
+At the hosted app, open `/settings/profile`, choose a career and a synthetic
+selectable-text PDF mentioning a linked skill, then select **Review resume**.
+Select **Add [skill]**, choose experience, and **Save skill**. Refresh and confirm
+the saved experience. Open `/career-skill-matches` and confirm successful loading;
+a positive experience report should match, while unknown and zero retain their
+existing meanings. Repeat selection in reverse order, change careers, and end a
+review. Verify old suggestions disappear and only explicitly saved skills persist.
+Use a second account to confirm private saved skills are isolated. Report route,
+action, expected/actual result and sanitized request ID, without PDF contents or
+credentials. Manual/browser and hosted acceptance are pending; no commit,
+deployment or hosted schema write was performed by this change.
+
 ## Curated job-posting benchmark, 2026-11-19
 
 Implementer: Codex. Created: 2026-11-19. Last updated: 2026-11-19.

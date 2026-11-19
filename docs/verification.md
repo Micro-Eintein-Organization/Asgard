@@ -19,7 +19,7 @@ Adopt LCP ≤2.5 seconds, INP ≤200 ms, CLS ≤0.1 as targets, not measured cla
 | ID | Requirement coverage | Required evidence |
 | --- | --- | --- |
 | QA-01 | REQ-01/13 | Google/email entry, verification code, invalid/expired/resend, known/unknown reset responses, password change, OAuth cancellation, expired sessions; AUTH-C1 compatibility evidence |
-| QA-02 | REQ-11/13 | TOTP enrollment, direct-API AAL enforcement, recovery code once-only consumption under concurrent requests, rotation/ambiguous response, lost-all-factor state, fresh-auth and disablement; AUTH-C2 evidence |
+| QA-02 | REQ-11/13 | TOTP enrollment, direct-API AAL enforcement, MFA-RECOVERY-01 backup-code single-use concurrency and rotation, durable recovery access block, specific replacement verification, direct-provider race isolation, revoked-session rejection, failure/expiry/retry, lost-all-factor state, notifications, fresh-auth and disablement; AUTH-C2 evidence |
 | QA-03 | REQ-04; F-001-AC-01–08 | Per-round controls, exclusive uncertainty, Back/resume/skip, explicit saves, concurrent draft conflict, final submission and failed retake |
 | QA-04 | REQ-02/03/07 | Seven reviewed launch roles, six categories, search by role/skill, filter reset, direct View roadmap, role explanation, authored alternatives, resources and desktop/keyboard panels |
 | QA-05 | REQ-08/09/10 | Explicit focus, branch/topic switching with resolution, cancel/failure/partial outcomes, cross-tab single Learning topic, per-roadmap state, Done-only counts, Hide completed, retained skipped topics |

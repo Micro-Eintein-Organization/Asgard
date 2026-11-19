@@ -6,7 +6,7 @@ Baseline: 2026-11-17. This is the remaining-work register, not implementation au
 
 | ID | Scope | Current disposition and next step |
 | --- | --- | --- |
-| FUT-01 | Skill evidence and comparisons | Profile/manual and resume-assisted skills implemented; roadmap experience-comparison UI disabled. Preserve confirmation and evidence boundaries. See [competencies](features/competency-comparison.md) |
+| FUT-01 | Skill evidence and comparisons | On 2026-11-19 the owner approved separate Benchmark sample and Learning-path skills tabs. Source implemented; the 22 pending postings/aliases require YakisobaNissin review and publication/security acceptance. Roadmap experience-comparison UI remains disabled. See [competencies](features/competency-comparison.md#benchmark-and-learning-path-views-2026-11-19) |
 | FUT-02 | Compare careers and save alternatives | Implemented career-to-career comparison and saved alternatives; comprehension/content review remains pending. See [comparison guide](features/career-comparison-and-shortlist.md) |
 | FUT-03 | Practice and reflection | W07 UI dormant; retain records/APIs pending an approved redesign |
 | FUT-04 | Conversational guidance | Contextual Counselor source implemented; hosted answer-quality and privacy acceptance pending. See [Counselor](features/contextual-counselor-profile.md) |
@@ -16,9 +16,9 @@ Baseline: 2026-11-17. This is the remaining-work register, not implementation au
 | FUT-08 | Labor-market context | Optional future work; no selected demand/salary feed |
 | FUT-09 | OCR and other document formats | Deferred; selectable-text PDF support does not authorize OCR or new parsers |
 | FUT-10 | Profile photos | Source supports hosted activation; hosted acceptance and unattended cleanup remain pending |
-| FUT-11 | Google/MFA/recovery | MFA and password-recovery source implemented; Google UI remains omitted by owner direction. AUTH-C1/C2, actual mail/recovery and public-abuse acceptance remain open. See [password recovery](features/password-recovery.md) (owner-approved local implementation, 2026-11-17; reviewer @YakisobaNissin) |
+| FUT-11 | Google/MFA/recovery | MFA/password-recovery source implemented. Owner/codeowner approved MFA-RECOVERY-01 and explicitly authorized activation before live/manual acceptance on 2026-11-19; the Render Blueprint is enabled. See [recovery guide](features/application-recovery-codes.md). Actual hosted activation and AUTH-C2 provider/session/notification evidence remain unverified. Google stays omitted; AUTH-C1 and public-abuse gates remain open. Reviewer/operator: @YakisobaNissin |
 | FUT-12 | Production operations | Hosted performance, SMTP/public signup, backup/restore, monitoring, provider and release gates remain open |
-| FUT-13 | PDF analysis and resume review | Source implemented and hosted activation authorized 2026-11-16; actual configuration, privacy and lifecycle acceptance still required |
+| FUT-13 | PDF analysis and resume review | Hosted activation authorized 2026-11-16. On 2026-11-19, owner-requested Profile upload/Analyze PDF presentation connects existing extraction and displays saved background; configuration, privacy and lifecycle acceptance remain pending. See [PDF guide](features/pdf-reading.md) |
 
 ## Account deletion
 

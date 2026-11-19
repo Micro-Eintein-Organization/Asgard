@@ -9,17 +9,21 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { StatePanel } from "@/components/shared";
+import { recoveryState, issueRecoveryCodes, removeRecoveryCodes } from "@/auth/recovery-codes";
+import { RecoverAuthenticator } from "./recover-authenticator";
 
 export function MfaPage({ challenge = false }: { challenge?: boolean }) {
   const auth = useAuth();
+  const [recovering, setRecovering] = useState(false);
   if (auth.loading) return <StatePanel kind="loading" title="Restoring your session">Please wait.</StatePanel>;
   if (!auth.user) return <Navigate to={routes.login} replace />;
   if (!auth.user.email_confirmed_at) return <Navigate to={routes.verify} replace />;
+  if (recovering) return <RecoverAuthenticator key={auth.user.id} />;
   if (challenge && auth.mfa === "ready") return <Navigate to={appRoutes.dashboard} replace />;
-  return <MfaForm key={auth.user.id + String(challenge)} challenge={challenge} />;
+  return <MfaForm key={auth.user.id + String(challenge)} challenge={challenge} onRecover={() => setRecovering(true)} />;
 }
 
-function MfaForm({ challenge }: { challenge: boolean }) {
+function MfaForm({ challenge, onRecover }: { challenge: boolean; onRecover: () => void }) {
   const auth = useAuth();
   const navigate = useNavigate();
   const [params] = useSearchParams();
@@ -27,7 +31,7 @@ function MfaForm({ challenge }: { challenge: boolean }) {
   const destination = welcome ? appRoutes.welcome : appRoutes.account;
   const [password, setPassword] = useState("");
   const [code, setCode] = useState("");
-  const [recovery, setRecovery] = useState(false);
+  const [recoveryEnabled, setRecoveryEnabled] = useState(false);
   const [busy, setBusy] = useState(false);
   const [loading, setLoading] = useState(!challenge);
   const [error, setError] = useState("");
@@ -41,17 +45,14 @@ function MfaForm({ challenge }: { challenge: boolean }) {
   const [disableConfirmed, setDisableConfirmed] = useState(false);
   useEffect(() => {
     alive.current = true;
-    if (!challenge && supabase) {
+    if (supabase) {
       void supabase.auth.mfa.listFactors().then(async ({ data, error }) => {
         if (error) throw error;
         if (!alive.current) return;
         setFactors(data.totp.filter(item => item.status === "verified"));
-        if (data.totp.some(item => item.status === "verified")) {
-          const result = await supabase!.auth.mfa.recoveryCodes.getStatus();
-          if (!alive.current) return;
-          if (result.error && result.error.code !== "mfa_factor_not_found") throw result.error;
-          setRemaining(result.data?.remaining ?? null);
-        }
+        const result = await recoveryState();
+        if (!alive.current) return;
+        setRecoveryEnabled(result.enabled); setRemaining(result.remaining);
       }).catch(() => {
         if (alive.current) setError("Could not load security settings or recovery capability. Try reopening this page.");
       }).finally(() => { if (alive.current) setLoading(false); });
@@ -71,24 +72,20 @@ function MfaForm({ challenge }: { challenge: boolean }) {
     if (!supabase || !auth.user?.email) throw new Error("Sign in again to continue.");
     const { data, error } = await supabase.auth.signInWithPassword({ email: auth.user.email, password });
     if (error || data.user?.id !== auth.user.id) throw new Error("Password verification failed. Try again.");
-    if (factors.length) await verifySecondFactor(code, recovery);
+    if (factors.length) await verifySecondFactor(code);
     authenticatedUntil.current = Date.now() + 300_000;
     if (!alive.current) throw new Error("Account changed. Reopen security settings.");
   }
   async function generateCodes(rotate = false) {
-    if (!supabase) return;
-    const result = rotate ? await supabase.auth.mfa.recoveryCodes.regenerate()
-      : await supabase.auth.mfa.recoveryCodes.generate();
-    if (result.error) throw new Error("Recovery codes could not be issued. The provider may have saved the change. Reopen settings to check status; use authenticated regeneration if the codes were lost.");
-    setCodes(result.data.codes);
-    setRemaining(result.data.total);
+    const result = await issueRecoveryCodes(rotate);
+    setCodes(result.codes); setRemaining(result.total);
   }
   function submit(event: FormEvent) {
     event.preventDefault();
     void perform(async () => {
       if (!supabase) return;
       if (challenge) {
-        await verifySecondFactor(code, recovery);
+        await verifySecondFactor(code);
         await auth.refreshAssurance();
         void navigate(appRoutes.dashboard, { replace: true });
       } else if (pending) {
@@ -97,10 +94,11 @@ function MfaForm({ challenge }: { challenge: boolean }) {
         const result = await supabase.auth.mfa.challengeAndVerify({ factorId: pending.id, code });
         if (result.error) throw new Error("That authenticator code did not work. Use the current code and try again.");
         setFactors([{ id: pending.id }]); setPending(null);
-        await generateCodes();
+        if (recoveryEnabled) await generateCodes();
+        else setMessage("Authenticator enabled. Backup-code recovery is not enabled in this environment yet.");
         await auth.refreshAssurance();
       } else {
-        if (!mfaEnrollmentApproved) throw new Error("Authenticator setup is not enabled for this demo yet.");
+        if (!mfaEnrollmentApproved || !recoveryEnabled) throw new Error("Authenticator setup is waiting for backup-code recovery to be enabled.");
         await freshAuthentication();
         const current = await supabase.auth.mfa.listFactors();
         if (current.error) throw new Error("Could not check existing setup. Try again.");
@@ -136,8 +134,9 @@ function MfaForm({ challenge }: { challenge: boolean }) {
       {error && <p role="alert" className="security-feedback security-feedback-error">{error}</p>}
       {message && <p role="status" className="security-feedback">{message}</p>}
       {!challenge && !mfaEnrollmentApproved && <p role="status">Authenticator setup and changes are not enabled for this demo yet. Existing two-factor sign-in still works.</p>}
+      {!challenge && mfaEnrollmentApproved && !recoveryEnabled && !factors.length && <p role="status">Authenticator setup is waiting for backup-code recovery to be enabled.</p>}
       {codes.length > 0 ? <section className="security-recovery" aria-label="Save recovery codes">
-        <h2>Save your recovery codes</h2><p>These codes are shown once. Keep them somewhere private. Each code works only once.</p>
+        <h2>Save your recovery codes</h2><p>These codes are shown once. Keep them somewhere private. Each code works once, together with your password, to replace a lost authenticator. Completing recovery replaces the entire code set.</p>
         <pre className="security-codes">{codes.join("\n")}</pre>
         <Button onClick={downloadCodes}>Download recovery codes</Button>
         <Button variant="outline" onClick={() => void perform(async () => {
@@ -153,15 +152,14 @@ function MfaForm({ challenge }: { challenge: boolean }) {
         <form className="form-grid" onSubmit={submit}>
           {!challenge && !pending && <div className="field"><Label htmlFor="mfa-password">Confirm your password</Label>
             <Input id="mfa-password" type="password" autoComplete="current-password" required value={password} onChange={event => setPassword(event.target.value)} /></div>}
-          {(challenge || pending || factors.length > 0) && <div className="field"><Label htmlFor="mfa-code">{recovery && !pending ? "Recovery code" : "Authenticator code"}</Label>
-            <Input id="mfa-code" autoComplete="one-time-code" inputMode={recovery ? "text" : "numeric"} required
-              pattern={recovery ? undefined : "[0-9]{6}"} value={code} onChange={event => setCode(event.target.value)} /></div>}
-          {(challenge || factors.length > 0) && !pending && <Button type="button" variant="outline" disabled={busy} onClick={() => { setRecovery(!recovery); setCode(""); }}>
-            {recovery ? "Use authenticator instead" : "Use a recovery code"}</Button>}
-          {(challenge || pending || factors.length === 0) && <Button disabled={busy || (!challenge && !mfaEnrollmentApproved)}>
+          {(challenge || pending || factors.length > 0) && <div className="field"><Label htmlFor="mfa-code">Authenticator code</Label>
+            <Input id="mfa-code" autoComplete="one-time-code" inputMode="numeric" required
+              pattern="[0-9]{6}" value={code} onChange={event => setCode(event.target.value)} /></div>}
+          {(challenge || factors.length > 0) && !pending && recoveryEnabled && <Button type="button" variant="outline" disabled={busy} onClick={onRecover}>Use a recovery code</Button>}
+          {(challenge || pending || factors.length === 0) && <Button disabled={busy || (!challenge && !mfaEnrollmentApproved) || (!challenge && !pending && !factors.length && !recoveryEnabled)}>
             {busy ? "Please wait" : challenge || pending ? "Verify" : "Set up authenticator"}</Button>}
           {!challenge && !pending && factors.length > 0 && <>
-            <Button type="button" disabled={busy || !password || !code || !mfaEnrollmentApproved} onClick={() => void perform(async () => {
+            <Button type="button" disabled={busy || !password || !code || !mfaEnrollmentApproved || !recoveryEnabled} onClick={() => void perform(async () => {
               await freshAuthentication(); await generateCodes(remaining !== null); await auth.refreshAssurance();
             })}>{remaining === null ? "Generate recovery codes" : "Replace recovery codes"}</Button>
             <Label className="security-confirm"><input type="checkbox" checked={disableConfirmed} onChange={event => setDisableConfirmed(event.target.checked)} /> I understand disabling 2FA removes this extra sign-in protection.</Label>
@@ -169,9 +167,7 @@ function MfaForm({ challenge }: { challenge: boolean }) {
               if (!disableConfirmed)
                 throw new Error("Confirm that you want to disable two-factor authentication.");
               await freshAuthentication();
-              const removedCodes = await supabase!.auth.mfa.recoveryCodes.unenroll();
-              if (removedCodes.error && removedCodes.error.code !== "mfa_factor_not_found")
-                throw new Error("Recovery removal failed. Authenticator protection remains; reopen settings to check status.");
+              if (recoveryEnabled) await removeRecoveryCodes();
               for (const factor of factors) {
                 const result = await supabase!.auth.mfa.unenroll({ factorId: factor.id });
                 if (result.error) throw new Error("Not all authenticators were removed. Reopen settings to check status before retrying.");

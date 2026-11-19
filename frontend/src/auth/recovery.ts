@@ -22,7 +22,7 @@ function recoveryClient() {
     client = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_ANON_KEY, {
       auth: {
         storageKey: sessionKey, persistSession: true, autoRefreshToken: false,
-        detectSessionInUrl: false, flowType: "pkce", experimental: { recoveryCodes: true },
+        detectSessionInUrl: false, flowType: "pkce",
         storage: {
           getItem(key) {
             if (!key.endsWith("-code-verifier")) return memory.get(key) ?? null;
@@ -129,14 +129,13 @@ export async function replaceRecoveredPassword(password: string, code = "", reco
     const validation = validateNewPassword(password);
     if (validation !== true) throw new Error(validation);
     if (await needsMfa()) {
-      if (!code.trim()) throw new Error("Enter your authenticator or recovery code.");
+      if (!code.trim()) throw new Error("Enter your authenticator code.");
       if (recovery) {
-        const result = await auth.mfa.recoveryCodes.verify({ code: code.trim() });
-        if (result.error) throw new Error("Recovery code verification failed.");
+        throw new Error("Recover your authenticator with your current password and a backup code from sign-in first.");
       } else {
         const factors = await auth.mfa.listFactors();
         const factor = factors.data?.totp.find(item => item.status === "verified");
-        if (factors.error || !factor) throw new Error("Use a recovery code if your authenticator is unavailable.");
+        if (factors.error || !factor) throw new Error("Recover your authenticator from sign-in first.");
         const result = await auth.mfa.challengeAndVerify({ factorId: factor.id, code: code.trim() });
         if (result.error) throw new Error("Authenticator verification failed. Check the current code.");
       }

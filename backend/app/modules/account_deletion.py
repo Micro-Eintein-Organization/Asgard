@@ -38,6 +38,9 @@ class DeletionReceipt(Contract):
 
 
 async def verify_fresh(request, identity, body):
+    if body.recovery:
+        raise APIError(403, "authenticator_recovery_required",
+                       "Recover your authenticator before deleting your account.")
     settings = request.app.state.settings
     root = settings.supabase_url.rstrip("/") + "/auth/v1"
     http = request.app.state.http
@@ -82,32 +85,19 @@ async def verify_fresh(request, identity, body):
         if factors:
             if body.mfa_code is None:
                 raise APIError(
-                    403, "second_factor_required", "Enter your authenticator or recovery code."
+                    403, "second_factor_required", "Enter your authenticator code."
                 )
-            if body.recovery:
-                verified = await call(
-                    "POST",
-                    "/factors/recovery-codes/verify",
-                    token=temporary,
-                    data={"code": body.mfa_code.get_secret_value()},
-                )
-            else:
-                factor = next((f for f in factors if f.get("factor_type") == "totp"), None)
-                if not factor:
-                    raise APIError(403, "second_factor_required", "Use an available recovery code.")
-                fid = str(UUID(factor["id"]))
-                challenge = await call(
-                    "POST", f"/factors/{fid}/challenge", token=temporary, data={}
-                )
-                verified = await call(
-                    "POST",
-                    f"/factors/{fid}/verify",
-                    token=temporary,
-                    data={
-                        "challenge_id": challenge["id"],
-                        "code": body.mfa_code.get_secret_value(),
-                    },
-                )
+            factor = next((f for f in factors if f.get("factor_type") == "totp"), None)
+            if not factor:
+                raise APIError(403, "second_factor_required", "Recover your authenticator first.")
+            fid = str(UUID(factor["id"]))
+            challenge = await call(
+                "POST", f"/factors/{fid}/challenge", token=temporary, data={}
+            )
+            verified = await call(
+                "POST", f"/factors/{fid}/verify", token=temporary,
+                data={"challenge_id": challenge["id"], "code": body.mfa_code.get_secret_value()},
+            )
             temporary = verified["access_token"]
             fresh = await request.app.state.token_verifier.verify(temporary)
             if fresh.user_id != identity.user_id or fresh.aal != "aal2":

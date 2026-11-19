@@ -32,18 +32,18 @@ export function ResumeSkillReview({ careers, onReview, disabled, active = true, 
     if (input.current) input.current.value = "";
   }, [active]);
 
-  function clear(resetInput = true) {
+  function clear(resetInput = true, keepFile = false) {
     request.current?.abort();
     request.current = null;
     setPending(false);
     setItems(null);
     setError("");
-    setFile(null);
+    if (!keepFile) setFile(null);
     if (resetInput && input.current) input.current.value = "";
   }
 
   async function review() {
-    if (!career || !file || pending) return;
+    if (disabled || !career || !file || pending) return;
     const current = new AbortController();
     request.current = current;
     setPending(true);
@@ -59,8 +59,6 @@ export function ResumeSkillReview({ careers, onReview, disabled, active = true, 
       if (request.current === current) {
         request.current = null;
         setPending(false);
-        setFile(null);
-        if (input.current) input.current.value = "";
       }
     }
   }
@@ -74,7 +72,7 @@ export function ResumeSkillReview({ careers, onReview, disabled, active = true, 
         <span className="resume-file-icon" aria-hidden="true">PDF</span>
         <div className="resume-file-info">
           <strong>{file?.name ?? (items ? "Resume review complete" : "Review a resume")}</strong>
-          <span>{file ? "Ready to review" : items ? "Suggestions available below" : "Select a PDF to review skills"}</span>
+          <span>{pending ? "Reading your resume…" : items ? "Review complete; suggestions below" : file ? "Ready to review" : "Select a PDF to review skills"}</span>
         </div>
         <label className="resume-file-choose" htmlFor="resume-pdf">{file || items ? "Replace PDF" : "Choose PDF"}</label>
         {(file || items || pending) && <button type="button" className="resume-file-remove" onClick={() => clear()}>Remove</button>}
@@ -88,15 +86,22 @@ export function ResumeSkillReview({ careers, onReview, disabled, active = true, 
         <p>Your PDF is read temporarily. Choose which suggested skills to save.</p>
         <label htmlFor="resume-career">Career</label>
         <select id="resume-career" value={career} onChange={(event) => {
-          if (career) clear();
+          clear(false, true);
           setCareer(event.target.value);
         }}>
           <option value="">Choose a career</option>
           {careers.map((item) => <option key={item.id} value={item.id}>{item.title}</option>)}
         </select>
         <p className="field-help">Selectable text PDF, up to 10 MB.</p>
+        <p id="resume-review-help" className="field-help">
+          {disabled ? "Finish or cancel your skill edit before reviewing a resume."
+            : !career && !file ? "Choose a career and a PDF to review skills."
+            : !career ? "Choose a career to review this PDF."
+            : !file ? "Choose a PDF to review skills for this career."
+            : "Review the suggestions, select Add, then choose your experience and Save skill below."}
+        </p>
         <div className="action-row">
-          <Button type="button" disabled={disabled || !career || !file || pending} onClick={() => void review()}>
+          <Button type="button" aria-describedby="resume-review-help" disabled={disabled || !career || !file || pending} onClick={() => void review()}>
             Review resume
           </Button>
           <Button type="button" variant="outline" onClick={() => clear()}>{items || pending ? "End review" : "Skip for now"}</Button>

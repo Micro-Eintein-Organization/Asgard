@@ -66,6 +66,11 @@ export function ProfileSkills({
       !!saved.data?.recommendations_enabled &&
       !!saved.data.items.some((item) => item.competency_id === id),
   });
+  const catalogAvailability = useCoreQuery(
+    ["skill-catalog-availability"],
+    () => coreApi.competencies({ limit: 1 }),
+    adding && available.data?.total === 0 && Boolean(search.trim() || careerId),
+  );
   const remove = useCoreMutation(coreApi.removeCompetency, {
     clearSuggestions: () => !!saved.data?.recommendations_enabled,
   });
@@ -118,6 +123,9 @@ export function ProfileSkills({
     <>
     <Card className="settings-card" id="resume-skill-review" tabIndex={-1}>
       <header><h2>Academic profile &amp; document management</h2><p>Review skills from a resume or add your experience below.</p></header>
+      {documents}
+      <details>
+      <summary>Review career-linked skills without storing a resume</summary>
       <ResumeSkillReview
         key={`${user?.id}:${resumeCareer?.id ?? ""}`}
         initialCareer={resumeCareer?.id}
@@ -133,17 +141,17 @@ export function ProfileSkills({
                 resumeFocus.current = true;
                 edit(item.skill_id, item.label, existing?.level ?? null);
               }}>
-              {existing ? "Edit" : "Review"} {item.label}
+              {existing ? "Edit" : "Add"} {item.label}
             </Button>
           </>;
         }}
       />
+      </details>
       {resumeCareer && reviewRoadmap && (
         <Link className="underline" to={appRoutes.skillComparison(resumeCareer.id, reviewRoadmap)}>
           Return to skill comparison
         </Link>
       )}
-      {documents}
     </Card>
     <Card className="settings-card" id="profile-skills" tabIndex={-1}>
       <header className="settings-section-heading">
@@ -332,7 +340,9 @@ export function ProfileSkills({
           {(search.trim() || careerId) && available.isPending && <p role="status">Searching skills…</p>}
           {(search.trim() || careerId) && available.data && !available.data.total && (
             <p>
-              {search
+              {catalogAvailability.data?.total === 0
+                ? "The published skill catalog is empty. An administrator needs to publish the skill definitions before search is available."
+                : search
                 ? "No published skills match this search."
                 : "Skill mappings are awaiting content review and publication."}
             </p>

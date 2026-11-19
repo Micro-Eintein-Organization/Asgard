@@ -338,3 +338,41 @@ def test_publish_sql_quotes_fields_and_filters_source_version():
     assert "WHERE source = 'O''Reilly sample'" in sql
     assert "source_version = 'v1'" in sql
     assert "AND NOT published" in sql
+
+
+def test_review_sheet_does_not_approve_pending_records_or_fuzzy_candidates():
+    records = [{"posting_id": "p1", "review_status": "pending", "reviewed_by": "",
+                "asgard_career_proposed": "data-analyst", "skills": "SQL|Unknown"}]
+    rows = list(renderer.review_rows(records, (career(),)))
+    assert rows[0]["candidate_keys"] == "data-analyst/core-02"
+    assert rows[0]["exact_competency_key"] == ""
+    assert rows[0]["mapping_reviewed_by"] == ""
+    assert all(row["review_status"] == "pending" for row in rows)
+    assert rows[1]["candidate_keys"] == ""
+
+
+def test_alias_publication_preserves_existing_aliases_and_rejects_collisions():
+    item = OfflineCareer("data-analyst", "Data Analyst", (
+        OfflineCompetency("data-analyst/core-02", "SQL querying", ("SQL",)),))
+    sql = renderer.render_alias_sql((item,))
+    assert "array_append(aliases,'SQL')" in sql
+    assert "NOT ('SQL'=ANY(aliases))" in sql
+    assert "conflicts with another skill" in sql
+    assert "no published canonical skill" in sql
+
+
+def test_alias_sql_cannot_terminate_the_dollar_quoted_guard():
+    alias = "SQL $asgard_alias_guard$ $$ O'Reilly"
+    item = OfflineCareer("data-analyst", "Data Analyst", (
+        OfflineCompetency("data-analyst/core-02", "SQL querying", (alias,)),))
+    sql = renderer.render_alias_sql((item,))
+    assert "DO $asgard_alias_guard_$ BEGIN" in sql
+    assert "END $asgard_alias_guard_$;" in sql
+    assert "O''Reilly" in sql
+
+
+def test_snapshot_publication_requires_nonempty_sample_and_import_verifies_counts():
+    assert "Cannot publish an empty" in render_publish_sql("sample", "v1", "Reviewer")
+    sql = render_snapshot_sql([], "sample", "v1")
+    assert "Snapshot import count differs" in sql
+    assert "Snapshot contents conflict" in sql

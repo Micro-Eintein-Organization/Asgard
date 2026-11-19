@@ -97,6 +97,21 @@ function renderPage() {
 }
 
 describe("SkillMatchingPage", () => {
+  it("keeps tabs available when the benchmark is unavailable and queries each basis separately", () => {
+    mocks.useCoreQuery.mockImplementation((key) => key[1] === "benchmark" ? {
+      isError: true, error: new Error("Benchmark not published"), refetch: vi.fn(),
+    } : { data: response([career([])]), isPending: false, isError: false });
+    renderPage();
+    expect(screen.getByRole("tab", { name: "Benchmark sample" })).toHaveAttribute("aria-selected", "true");
+    expect(screen.getByText("Benchmark not published")).toBeVisible();
+    fireEvent.mouseDown(screen.getByRole("tab", { name: "Learning-path skills" }), { button: 0, ctrlKey: false });
+    expect(screen.getByRole("tab", { name: "Learning-path skills" })).toHaveAttribute("aria-selected", "true");
+    expect(screen.queryByText("Benchmark not published")).not.toBeInTheDocument();
+    const call = mocks.useCoreQuery.mock.calls.at(-1)!;
+    expect(call[0]).toEqual(["career-skill-matches", "learning_path"]);
+    call[1]();
+    expect(mocks.readCareerSkillMatches).toHaveBeenLastCalledWith(undefined, "learning_path");
+  });
   beforeEach(() => {
     vi.clearAllMocks();
     mocks.useCoreQuery.mockReturnValue({
@@ -251,9 +266,8 @@ describe("SkillMatchingPage", () => {
     });
 
     renderPage();
-    expect(screen.getByText("No skill mapping yet")).toBeInTheDocument();
-    expect(screen.queryByText("0 of 0")).not.toBeInTheDocument();
-    expect(screen.getByText("This career has no linked skills yet.")).toBeInTheDocument();
+    expect(screen.getByText("0 of 0")).toBeInTheDocument();
+    expect(screen.getByText("No reviewed benchmark mappings for this career in this sample.")).toBeInTheDocument();
     expect(screen.queryByRole("list")).not.toBeInTheDocument();
   });
 

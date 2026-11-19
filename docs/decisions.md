@@ -8,6 +8,10 @@ Consolidated baseline: 2026-11-17. This register retains recorded owner decision
 
 ## Current resolutions
 
+- MFA-RECOVERY-01 activation override (2026-11-19): the owner/codeowner explicitly requested "enable it now. override. tell me what to do for enable" for the existing hosted Asgard environment. Render's deployment configuration enables recovery and prompts for its backend-only Auth admin credential. This accepts proceeding before the recorded live-provider/manual gate is complete; those checks remain unverified, not passed. The migration, credential validation, fresh-auth proof, pending access block and provider AAL2 verification remain required. No commit, push or actual hosted change is recorded by this entry. See the [activation instructions](features/application-recovery-codes.md#owner-activation-override-2026-11-19).
+
+- MFA-RECOVERY-01 (2026-11-19): the owner requested application-managed backup codes and approved the bounded password-plus-code authenticator-replacement implementation, identifying themselves as codeowner @YakisobaNissin in chat. The [ADR](adr/2026-11-19-application-recovery-codes.md) records the exception to provider-managed-only recovery. Supabase TOTP/AAL2 enforcement stays authoritative; source implementation, review and hosted acceptance are distinct. No Git publication or hosted activation was approved.
+
 - ACCOUNT-ACCESS-01 review, 2026-11-19: the owner identified themselves as the designated @YakisobaNissin reviewer and approved the implemented bounded changes in chat. See the [approval record](features/account-access-fixes.md). Hosted/manual acceptance and deletion activation prerequisites remain open; no Git publication operation was authorized.
 
 - ACCOUNT-ACCESS-01 (2026-11-19, project owner in chat, reviewed implementation plan): show explicit duplicate-registration feedback from supported provider responses; offer email recovery from signed-in Account and security. Validate sign-in, signup and reset passwords at eight Unicode characters minimum and 72 UTF-8 bytes maximum, and auth emails at 254 characters maximum with format validation. Preserve existing Unicode-name rules. Technical review remains assigned to @YakisobaNissin; hosted activation is not approved by this entry.
@@ -32,7 +36,7 @@ These policies are interpreted with the current resolutions above and their owni
 | --- | --- |
 | L1 | Returning users reach Dashboard; optional Resume Discovery, never automatic reopening |
 | L2 | Explicit Google linking with fresh proof of existing-account access; preserve account history |
-| L3 | Provider-managed single-use recovery, atomic regeneration, fresh primary+factor for sensitive actions; no lost-all-factor/email-only bypass |
+| L3 | MFA-RECOVERY-01: application-managed single-use backup codes authorize restricted TOTP replacement; atomic rotation, fresh primary+factor for code management, real provider AAL2 after replacement; no lost-all-factor/email-only bypass |
 | L4 | Compact Landing; 18+ notice without DOB; explicit Verify; neutral reset response; security-baseline password, token, cooldown and abuse policy |
 | D1 | Guided Discovery v2: four-to-six-question conditional route, up to two field/activity choices, exclusive uncertainty, versioned checkpoints, inactive-answer exclusion, and blank full retakes. |
 | D2 | Up to three distinct published roles with supported reasons/evidence; broad uncertain context spans categories where eligible. Individual View roadmap plus Browse careers; no result-selection prerequisite or match scores |
@@ -69,7 +73,7 @@ These policies are interpreted with the current resolutions above and their owni
 | ID | Boundary | Owner |
 | --- | --- | --- |
 | AUTH-C1 | Explicit Google linking must be proved at the provider boundary; keep conflicting behavior disabled | Architecture reviewer/operator |
-| AUTH-C2 | New MFA enrollment requires provider-managed recovery and fresh-auth lifecycle acceptance; preserve existing enforcement | Architecture reviewer/operator |
+| AUTH-C2 | New MFA enrollment requires the MFA-RECOVERY-01 backup-code replacement, provider/session, notification and fresh-auth lifecycle acceptance; preserve existing enforcement | Architecture reviewer/operator |
 | ABUSE-C1 | Verify actual provider-side abuse/rate controls, including direct Auth requests | Operator |
 | OPS-C1 | Prove scheduled maintenance, missed-run detection, backup destination, and isolated restore; workflow files alone are insufficient | Operator |
 | AUD-10 | Originating BRIEF and durable external references for early conversation approvals remain absent | Project lead |
