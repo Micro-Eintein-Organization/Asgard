@@ -21,6 +21,7 @@ export const appRoutes = {
   profileSetup: "/profile-setup",
   careers: "/careers",
   profile: "/settings/profile",
+  careerSkillMatches: "/career-skill-matches",
   account: "/settings/account",
   roadmaps: "/roadmaps",
   roadmap: (id: string) => `/roadmaps/${id}`,

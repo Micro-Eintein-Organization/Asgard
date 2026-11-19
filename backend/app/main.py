@@ -102,6 +102,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     from app.modules.competencies.routes import router as competency_router
 
     app.include_router(competency_router, prefix="/api/v1")
+    from app.modules.skill_matching.routes import router as skill_matching_router
+
+    app.include_router(skill_matching_router, prefix="/api/v1")
     from app.modules.careers.esco import router as esco_router
 
     app.include_router(esco_router, prefix="/api/v1")
