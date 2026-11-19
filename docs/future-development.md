@@ -26,6 +26,13 @@ Implemented source; activation remains off until its documented maintenance, mig
 
 ## Release acceptance
 
+Hosted Supabase audit, 2026-11-19: primary catalogs, migrations and PH benchmark
+are present; the separate ESCO/occupational reference layers are missing in the
+linked project. Portable restoration is prepared and locally verified, pending
+hosted approval/application. JWT lifetime differs from the approved target and
+database SSL enforcement is off; external backup/restore and some live provider
+checks remain operator work. See the [audit](features/supabase-hosted-audit.md).
+
 Use [Verification](verification.md), [hosted performance](features/hosted-content-performance.md), [hosted activation](features/hosted-feature-activation.md), and the [deployment runbook](deployment.md). None is marked passed merely because this baseline is consolidated. The restricted account-demo exception remains narrower than public signup or production operation.
 
 ## Updating this register

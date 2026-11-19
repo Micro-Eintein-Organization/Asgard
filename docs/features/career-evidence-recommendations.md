@@ -2,6 +2,18 @@
 
 # Full career evidence and skills-aware recommendations
 
+## Hosted restoration prepared, 2026-11-19
+
+Owner requested an end-to-end Supabase audit after verifying that the hosted
+ESCO and occupational release tables are empty. Codex preserved the exact earlier
+23-career local release in portable, hashed repository assets and prepared a
+repeat-safe SQL import/activation package. The isolated PostgreSQL validation
+passed with real reference migrations and restricted-role reads. Hosted content
+approval, application, and authenticated acceptance remain pending; earlier
+local-only review waivers are not expanded by this record. See the
+[audit and exact repair order](supabase-hosted-audit.md). The historical local
+activation evidence below remains unchanged.
+
 ## Learner-facing exploration update, 2026-11-05
 
 The owner-selected [career exploration and comparison feature](career-comparison-and-shortlist.md) is active locally after concrete shortlist migration approval. Suggestion cards now use direct Explore career / Compare actions; their saved evidence disclosures remain typed and historical. Experience review is inline and full occupational records are on a secondary Sources and limitations page. No provider selection, evidence eligibility, erasure or reference-release policy was changed by this UI/shortlist increment.

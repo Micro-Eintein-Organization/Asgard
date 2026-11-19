@@ -1,0 +1,11 @@
+{
+  "esco_id": "8e4deef5-ac7a-5960-b937-8a98e34803a6",
+  "occupational_id": "b6ff93ae-3210-5bbe-8410-a3f6d989962a",
+  "occupational_sha256": "6d194c8d6dc67c0417ceeb6d20b7357f5d6617637596b492685ef60528f142e8",
+  "historical_scope": "Owner-approved local rollout, 2026-11-08; hosted activation requires review",
+  "archive_sha256": "f9761b0b52be1828b38a3e5e0ae59a93a7b0ce358bc800f52f57a8b002adeb3e",
+  "files": {
+    "occupational.json.gz": "4390997b4f487bcb03881df89189bc99827c6242ba92d74451cc95ae6e757cc7",
+    "esco.json": "e144f604f005d516283feacdb719aec2512e7e67052d453209af3a5928217131"
+  }
+}

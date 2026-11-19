@@ -90,6 +90,24 @@ Local Mailpit success does not verify SMTP.
 
 ## Administrative migrations and content
 
+### Content publication inventory
+
+Migrations create storage structures; they do not populate all application data.
+Audit each enabled content layer separately after a hosted setup:
+
+| Layer | Publication authority/tooling |
+| --- | --- |
+| Careers, roadmaps, resources, Discovery | `scripts/render-publication.mjs`, releases 1–6 |
+| Learning-path skills | Existing skill definitions and `scripts/render-skill-publication.mjs` |
+| PH benchmark technologies/postings | `backend/scripts/render_technology_benchmark.py`; configure the selected source/version in Render |
+| ESCO/occupational evidence | Preserved reference assets and `backend/scripts/render_reference_restore.py`, after explicit hosted-content review |
+
+Do not treat the first publisher as a complete optional-feature seed. Existing
+content should be checked before rerunning any import. The
+[2026-11-19 hosted audit and repair guide](features/supabase-hosted-audit.md)
+records live evidence, exact missing layers and safe repair order. Never use a
+whole local Supabase config push to repair a single hosted Auth setting.
+
 Use a separately authorized administrator through the supported Supabase CLI
 workflow. The app must continue to use asgard_app. Inspect an existing role before
 running the initial role migration; it deliberately refuses an unexplained conflict.

@@ -28,6 +28,10 @@ Current editorial baseline: 2026-11-17. The project owner requested consolidatio
 
 ## Implementation records
 
+[Hosted Supabase audit and repair](features/supabase-hosted-audit.md) records the
+2026-11-19 database/content/Auth/Storage audit, portable reference restoration
+package, and remaining hosted configuration and recovery gates.
+
 The [feature directory](features/) contains dated implementation and verification records. Sections are evidence for their recorded code/environment, not blanket approval or production certification. Use the current guides above for behavior; preserve original test dates and limitations.
 
 [How Asgard reads PDFs](features/pdf-reading.md) explains temporary resume review, backend document analysis, supported files, privacy boundaries and current availability.
