@@ -66,6 +66,19 @@ class SnapshotRow:
     snapshot_id: UUID
 
 
+@dataclass(frozen=True)
+class PostingRow:
+    career_key: str
+    posting_id: str
+    job_title: str
+    company: str
+    source_url: str
+    retrieved_on: str
+    skill_labels: tuple[str, ...]
+    collected_by: str
+    reviewed_by: str
+
+
 def normalize_skill(value: str) -> str:
     """Match the matcher's casefolded, whitespace-collapsed normalization."""
     return " ".join(value.split()).casefold()
@@ -324,6 +337,184 @@ def aggregate_rows(
     return rows, report, summary
 
 
+def build_posting_rows(
+    records: list[dict[str, str]], careers: tuple[OfflineCareer, ...]
+) -> list[PostingRow]:
+    """Keep verified, career-resolved posting facts for the separate postings table."""
+    result = []
+    for record in records:
+        if record["review_status"] != "verified":
+            continue
+        career = map_career(record["asgard_career_proposed"], careers)
+        if career is None:
+            continue
+        result.append(
+            PostingRow(
+                career_key=career.key,
+                posting_id=record["posting_id"],
+                job_title=record["job_title"],
+                company=record["company"],
+                source_url=record["source_url"],
+                retrieved_on=record["retrieved_on"],
+                skill_labels=tuple(
+                    label.strip() for label in record["skills"].split("|")
+                ),
+                collected_by=record["collected_by"],
+                reviewed_by=record["reviewed_by"],
+            )
+        )
+    return result
+
+
+def _posting_values_sql(
+    rows: list[PostingRow], source: str, source_version: str
+) -> str:
+    tuples = []
+    for row in rows:
+        labels = "ARRAY[" + ", ".join(map(sql_literal, row.skill_labels)) + "]::text[]"
+        tuples.append(
+            "(" + ", ".join(
+                (
+                    sql_literal(source),
+                    sql_literal(source_version),
+                    sql_literal(row.posting_id),
+                    sql_literal(row.career_key),
+                    sql_literal(row.job_title),
+                    sql_literal(row.company),
+                    sql_literal(row.source_url),
+                    sql_literal(row.retrieved_on) + "::date",
+                    labels,
+                    sql_literal(row.collected_by),
+                    sql_literal(row.reviewed_by),
+                )
+            ) + ")"
+        )
+    if tuples:
+        return "VALUES\n        " + ",\n        ".join(tuples)
+    return (
+        "SELECT NULL::text, NULL::text, NULL::text, NULL::text, NULL::text, "
+        "NULL::text, NULL::text, NULL::date, NULL::text[], NULL::text, NULL::text "
+        "WHERE FALSE"
+    )
+
+
+def _posting_lock_sql(source: str) -> str:
+    """Return the shared publisher/importer lock expression for one source."""
+    lock_key = sql_literal("asgard:career-skill-postings:" + source)
+    return f"SELECT pg_advisory_xact_lock(hashtextextended({lock_key}, 411));"
+
+
+def render_postings_sql(
+    rows: list[PostingRow],
+    source: str,
+    source_version: str,
+    input_row_count: int,
+    verified_row_count: int,
+) -> str:
+    """Render an offline, draft-only replacement for one source/version."""
+    values = _posting_values_sql(rows, source, source_version)
+    career_values = (
+        "VALUES\n        " + ",\n        ".join(
+            "(" + sql_literal(row.posting_id) + ", " + sql_literal(row.career_key) + ")"
+            for row in rows
+        )
+        if rows
+        else "SELECT NULL::text, NULL::text WHERE FALSE"
+    )
+    return f"""BEGIN;
+{_posting_lock_sql(source)}
+DO $posting_draft_guard$
+BEGIN
+    IF EXISTS (
+        SELECT 1 FROM asgard_catalog.career_skill_posting_versions
+        WHERE source = {sql_literal(source)}
+          AND source_version = {sql_literal(source_version)}
+          AND status <> 'draft'
+    ) THEN
+        RAISE EXCEPTION 'Published or retired posting versions cannot be replaced by a draft';
+    END IF;
+    IF EXISTS (
+        SELECT 1 FROM ({career_values}) AS input(posting_id, career_key)
+        LEFT JOIN asgard_catalog.careers AS career ON career.slug = input.career_key
+        WHERE career.id IS NULL
+    ) THEN
+        RAISE EXCEPTION 'Career postings contain an unresolved career key';
+    END IF;
+END
+$posting_draft_guard$;
+INSERT INTO asgard_catalog.career_skill_posting_versions
+    (source, source_version, input_row_count, verified_row_count, posting_count, status)
+VALUES (
+    {sql_literal(source)}, {sql_literal(source_version)}, {input_row_count},
+    {verified_row_count}, {len(rows)}, 'draft'
+)
+ON CONFLICT (source, source_version) DO UPDATE
+SET input_row_count = EXCLUDED.input_row_count,
+    verified_row_count = EXCLUDED.verified_row_count,
+    posting_count = EXCLUDED.posting_count
+WHERE asgard_catalog.career_skill_posting_versions.status = 'draft';
+DELETE FROM asgard_catalog.career_skill_postings
+WHERE source = {sql_literal(source)}
+  AND source_version = {sql_literal(source_version)};
+WITH input(source, source_version, posting_id, career_key, job_title, company,
+           source_url, retrieved_on, skill_labels, collected_by, record_reviewed_by) AS (
+    {values}
+)
+INSERT INTO asgard_catalog.career_skill_postings
+    (source, source_version, posting_id, career_id, job_title, company, source_url,
+     retrieved_on, skill_labels, collected_by, reviewed_by)
+SELECT input.source, input.source_version, input.posting_id, career.id,
+       input.job_title, input.company, input.source_url, input.retrieved_on,
+       input.skill_labels, input.collected_by, input.record_reviewed_by
+FROM input
+JOIN asgard_catalog.careers AS career ON career.slug = input.career_key;
+COMMIT;
+"""
+
+
+def render_postings_publish_sql(
+    source: str, source_version: str, reviewer: str
+) -> str:
+    """Render atomic publication and source-local retirement for a reviewed version."""
+    return f"""BEGIN;
+{_posting_lock_sql(source)}
+DO $posting_publish_guard$
+DECLARE target asgard_catalog.career_skill_posting_versions%ROWTYPE;
+        actual_posting_count integer;
+BEGIN
+    SELECT * INTO target
+    FROM asgard_catalog.career_skill_posting_versions
+    WHERE source = {sql_literal(source)}
+      AND source_version = {sql_literal(source_version)}
+    FOR UPDATE;
+    IF NOT FOUND OR target.status <> 'draft' THEN
+        RAISE EXCEPTION 'Target career posting version is not an unpublished draft';
+    END IF;
+    IF target.input_row_count < 15 OR target.verified_row_count < 5
+       OR target.posting_count < 1 THEN
+        RAISE EXCEPTION 'Career posting version does not meet publication requirements';
+    END IF;
+    SELECT count(*) INTO actual_posting_count
+    FROM asgard_catalog.career_skill_postings
+    WHERE source = target.source AND source_version = target.source_version;
+    IF actual_posting_count <> target.posting_count THEN
+        RAISE EXCEPTION 'Career posting draft row count does not match its manifest';
+    END IF;
+END
+$posting_publish_guard$;
+UPDATE asgard_catalog.career_skill_posting_versions
+SET status = 'retired', retired_at = now()
+WHERE source = {sql_literal(source)} AND status = 'published';
+UPDATE asgard_catalog.career_skill_posting_versions
+SET status = 'published', reviewed_by = {sql_literal(reviewer.strip())},
+    reviewed_at = now(), published_at = now()
+WHERE source = {sql_literal(source)}
+  AND source_version = {sql_literal(source_version)}
+  AND status = 'draft';
+COMMIT;
+"""
+
+
 def _values_sql(rows: list[SnapshotRow], source: str, source_version: str) -> str:
     tuples = [
         "(" + ", ".join(
@@ -438,6 +629,17 @@ def output_paths(csv_path: Path, allow_placeholder_reviewers: bool) -> tuple[Pat
     )
 
 
+def posting_output_paths(
+    csv_path: Path, allow_placeholder_reviewers: bool
+) -> tuple[Path, Path]:
+    """Return separate draft and publication SQL paths for collected postings."""
+    stem = csv_path.stem
+    if allow_placeholder_reviewers:
+        stem = f"SCRATCH-{stem}"
+    base = OUTPUT_DIR / stem
+    return Path(f"{base}.postings.sql"), Path(f"{base}.postings-publish.sql")
+
+
 def _load_validator():
     path = ROOT / "docs" / "data" / "validate_postings.py"
     spec = importlib.util.spec_from_file_location("asgard_validate_postings", path)
@@ -500,12 +702,18 @@ def main() -> int:
     except ValueError as exc:
         parser.error(str(exc))
     rows, report, summary = aggregate_rows(records, careers, args.source_version)
+    postings = build_posting_rows(records, careers)
     snapshot_path, report_path, publish_path = output_paths(
+        args.csv_path, args.allow_placeholder_reviewers
+    )
+    postings_path, postings_publish_path = posting_output_paths(
         args.csv_path, args.allow_placeholder_reviewers
     )
     if args.publish_reviewed and (len(records) < 15 or verified_count < 5):
         raise SystemExit("Publication requires at least 15 CSV rows and at least 5 verified rows")
-    targets = [snapshot_path, report_path] + ([publish_path] if args.publish_reviewed else [])
+    targets = [snapshot_path, report_path, postings_path]
+    if args.publish_reviewed:
+        targets.extend((publish_path, postings_publish_path))
     if not args.force:
         existing = [path for path in targets if path.exists()]
         if existing:
@@ -518,6 +726,17 @@ def main() -> int:
     write_new(
         snapshot_path,
         render_snapshot_sql(rows, args.source, args.source_version),
+        args.force,
+    )
+    write_new(
+        postings_path,
+        render_postings_sql(
+            postings,
+            args.source,
+            args.source_version,
+            len(records),
+            verified_count,
+        ),
         args.force,
     )
     with report_path.open("w" if args.force else "x", encoding="utf-8", newline="") as stream:
@@ -542,14 +761,23 @@ def main() -> int:
             render_publish_sql(args.source, args.source_version, args.reviewer),
             args.force,
         )
+        write_new(
+            postings_publish_path,
+            render_postings_publish_sql(
+                args.source, args.source_version, args.reviewer
+            ),
+            args.force,
+        )
     print("Summary: " + ", ".join(f"{key}={value}" for key, value in sorted(summary.items())))
     if duplicate_alias_rows:
         print("duplicate_alias_rows=" + ",".join(map(str, duplicate_alias_rows)))
     print(f"ignored_pending={summary['pending']}, ignored_rejected={summary['rejected']}")
     print(f"snapshot_sql={snapshot_path}")
+    print(f"postings_sql={postings_path}")
     print(f"unmapped_report={report_path}")
     if args.publish_reviewed:
         print(f"publish_sql={publish_path}")
+        print(f"postings_publish_sql={postings_publish_path}")
     return 0
 
 

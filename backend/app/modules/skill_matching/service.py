@@ -9,16 +9,21 @@ from app.modules.skill_matching.matcher import (
     ResumeEvidence,
     SkillStatus,
     UserSkillReport,
+    matching_resume_evidence,
     rank_careers,
 )
 from app.modules.skill_matching.schemas import (
+    CareerPosting,
     CareerSkillMatch,
     CareerSkillMatchResponse,
+    PostingResumeMatch,
+    PostingSkill,
     ResumeSignal,
     SkillMatchItem,
     UserReportSignal,
 )
 from app.modules.skill_matching.sources import (
+    POSTINGS_SAMPLE_LABEL,
     SAMPLE_LABEL,
     SOURCE_LABEL,
     SOURCE_NOTE,
@@ -108,6 +113,32 @@ def assemble_response(
             )
             if sample.total_postings <= SMALL_SAMPLE_MAX:
                 sample_label += " - very small sample"
+        postings = []
+        for posting in catalog.postings_by_career.get(career.career_id, ()):
+            posting_skills = []
+            for label in posting.skill_labels:
+                matches = matching_resume_evidence(label, evidence)
+                resume_match = (
+                    PostingResumeMatch(
+                        matched_phrase=label,
+                        pages=sorted({item.page for item in matches}),
+                    )
+                    if matches
+                    else None
+                )
+                posting_skills.append(PostingSkill(label=label, resume_match=resume_match))
+            postings.append(
+                CareerPosting(
+                    source=posting.source,
+                    source_version=posting.source_version,
+                    posting_id=posting.posting_id,
+                    company=posting.company,
+                    job_title=posting.job_title,
+                    source_url=posting.source_url,
+                    retrieved_on=posting.retrieved_on,
+                    skills=posting_skills,
+                )
+            )
         items.append(
             CareerSkillMatch(
                 career_id=career.career_id,
@@ -119,12 +150,14 @@ def assemble_response(
                 skills=skills,
                 sample_note=SOURCE_NOTE,
                 sample_label=sample_label,
+                postings=postings,
             )
         )
     return CareerSkillMatchResponse(
         source=SOURCE_LABEL,
         source_version=catalog.source_version,
         sample_label=SAMPLE_LABEL,
+        postings_sample_label=POSTINGS_SAMPLE_LABEL,
         items=items,
     )
 

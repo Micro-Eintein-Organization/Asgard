@@ -35,7 +35,7 @@ export default function SkillMatchingPage() {
       </StatePanel>
     );
 
-  const { items, source, source_version } = query.data;
+  const { items, source, source_version, postings_sample_label } = query.data;
   const hasMatchedOrUnknown = items.some(career =>
     career.skills.some(skill => skill.status === "MATCHED" || skill.status === "UNKNOWN"),
   );
@@ -118,6 +118,52 @@ export default function SkillMatchingPage() {
                           ))}
                         </ul>
                       </>
+                    )}
+                    {(career.postings?.length ?? 0) > 0 && (
+                      <section aria-label={`${postings_sample_label} for ${career.career_title}`} className="space-y-3">
+                        <h2 className="text-lg font-semibold">{postings_sample_label}</h2>
+                        <p className="field-help">
+                          Curated reference postings. They may not be active vacancies and are not a comprehensive list of employer requirements.
+                        </p>
+                        <div className="space-y-3">
+                          {career.postings?.map(posting => (
+                            <article
+                              key={`${posting.source}:${posting.source_version}:${posting.posting_id}`}
+                              aria-label={`${posting.job_title} at ${posting.company}`}
+                              className="space-y-3 rounded-lg border p-4"
+                            >
+                              <div className="space-y-1">
+                                <h3 className="font-medium">{posting.job_title}</h3>
+                                <p>{posting.company}</p>
+                                <p className="field-help">Viewed: {posting.retrieved_on}</p>
+                                <a
+                                  className="underline"
+                                  href={posting.source_url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  View original posting
+                                </a>
+                              </div>
+                              <ul aria-label="Collected skills" className="space-y-2">
+                                {posting.skills.map((postingSkill, index) => (
+                                  <li key={`${postingSkill.label}-${index}`}>
+                                    <span>{postingSkill.label}</span>
+                                    {postingSkill.resume_match !== null && (
+                                      <p className="field-help">
+                                        In your resume: {postingSkill.resume_match.matched_phrase}
+                                        {postingSkill.resume_match.pages.length > 0 && (
+                                          <> ({postingSkill.resume_match.pages.length === 1 ? "page" : "pages"} {postingSkill.resume_match.pages.join(", ")})</>
+                                        )}
+                                      </p>
+                                    )}
+                                  </li>
+                                ))}
+                              </ul>
+                            </article>
+                          ))}
+                        </div>
+                      </section>
                     )}
                   </div>
                 </details>

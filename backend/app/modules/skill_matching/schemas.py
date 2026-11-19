@@ -1,6 +1,6 @@
 """HTTP contracts for career skill matching."""
 
-from datetime import datetime
+from datetime import date, datetime
 from typing import Literal
 from uuid import UUID
 
@@ -28,6 +28,27 @@ class UserReportSignal(Contract):
     updated_at: datetime | None
 
 
+class PostingResumeMatch(Contract):
+    matched_phrase: str
+    pages: list[StrictInt]
+
+
+class PostingSkill(Contract):
+    label: str
+    resume_match: PostingResumeMatch | None
+
+
+class CareerPosting(Contract):
+    source: str
+    source_version: str
+    posting_id: str
+    company: str
+    job_title: str
+    source_url: str
+    retrieved_on: date
+    skills: list[PostingSkill]
+
+
 class SkillMatchItem(Contract):
     competency_id: UUID
     label: str
@@ -51,10 +72,12 @@ class CareerSkillMatch(Contract):
     skills: list[SkillMatchItem]
     sample_note: str
     sample_label: str
+    postings: list[CareerPosting] = Field(default_factory=list)
 
 
 class CareerSkillMatchResponse(Contract):
     source: str
     source_version: str | None
     sample_label: str
+    postings_sample_label: str
     items: list[CareerSkillMatch]

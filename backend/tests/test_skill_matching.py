@@ -8,6 +8,7 @@ from app.modules.skill_matching.matcher import (
     ResumeEvidence,
     SkillStatus,
     UserSkillReport,
+    matching_resume_evidence,
     rank_careers,
 )
 
@@ -79,6 +80,14 @@ def test_near_miss_java_does_not_match_javascript():
     evidence = ResumeEvidence("skill", "JavaScript engineer", 1, "JavaScript engineer")
     result = rank_careers([career(skills=(required,))], resume_evidence=[evidence])[0]
     assert result.skill_matches[0].status is SkillStatus.MISSING
+
+
+def test_posting_phrase_evidence_reuses_exact_skill_phrase_boundaries():
+    java_script = ResumeEvidence("skill", "JavaScript", 1, "JavaScript")
+    java = ResumeEvidence("skill", "Experience with JAVA", 2, "JAVA")
+    project = ResumeEvidence("project", "Java", 3, "Java")
+
+    assert matching_resume_evidence(" Java ", [java_script, java, project]) == (java,)
 
 
 def test_career_ranking_uses_match_count_then_name_and_id():

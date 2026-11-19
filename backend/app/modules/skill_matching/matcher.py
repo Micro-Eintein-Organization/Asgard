@@ -111,6 +111,17 @@ def _phrase_pattern(phrase: str) -> re.Pattern[str]:
     return re.compile(r"(?<![\w.+#])" + expression + r"(?![\w+#])", re.IGNORECASE)
 
 
+def matching_resume_evidence(
+    phrase: str, evidence: Sequence[ResumeEvidence]
+) -> tuple[ResumeEvidence, ...]:
+    """Return skill evidence containing the same exact phrase used by career matching."""
+    pattern = _phrase_pattern(phrase)
+    return tuple(
+        item for item in evidence
+        if item.kind == "skill" and pattern.search(item.text)
+    )
+
+
 def _eligible_skills(skills: Sequence[BenchmarkSkill]) -> tuple[BenchmarkSkill, ...]:
     by_key: dict[str, BenchmarkSkill] = {}
     for skill in skills:

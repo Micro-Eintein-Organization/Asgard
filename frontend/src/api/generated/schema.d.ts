@@ -1238,6 +1238,28 @@ export interface components {
             /** Total */
             total: number;
         };
+        /** CareerPosting */
+        CareerPosting: {
+            /** Company */
+            company: string;
+            /** Job Title */
+            job_title: string;
+            /** Posting Id */
+            posting_id: string;
+            /**
+             * Retrieved On
+             * Format: date
+             */
+            retrieved_on: string;
+            /** Skills */
+            skills: components["schemas"]["PostingSkill"][];
+            /** Source */
+            source: string;
+            /** Source Url */
+            source_url: string;
+            /** Source Version */
+            source_version: string;
+        };
         /** CareerShortlist */
         CareerShortlist: {
             /** Available */
@@ -1262,6 +1284,8 @@ export interface components {
             display_count: string;
             /** Matched Skill Count */
             matched_skill_count: number;
+            /** Postings */
+            postings?: components["schemas"]["CareerPosting"][];
             /** Rank */
             rank: number;
             /** Sample Label */
@@ -1275,6 +1299,8 @@ export interface components {
         CareerSkillMatchResponse: {
             /** Items */
             items: components["schemas"]["CareerSkillMatch"][];
+            /** Postings Sample Label */
+            postings_sample_label: string;
             /** Sample Label */
             sample_label: string;
             /** Source */
@@ -2153,6 +2179,20 @@ export interface components {
             questionnaire_id?: string | null;
             /** Recommendation Run Id */
             recommendation_run_id?: string | null;
+        };
+        /** PostingResumeMatch */
+        PostingResumeMatch: {
+            /** Matched Phrase */
+            matched_phrase: string;
+            /** Pages */
+            pages: number[];
+        };
+        /** PostingSkill */
+        PostingSkill: {
+            /** Label */
+            label: string;
+            /** Resume Match */
+            resume_match: components["schemas"]["PostingResumeMatch"] | null;
         };
         /** Preferences */
         Preferences: {

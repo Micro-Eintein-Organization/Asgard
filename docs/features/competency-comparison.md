@@ -2,6 +2,119 @@
 
 # Skill profiles and career comparison
 
+## Curated job-posting benchmark, 2026-11-19
+
+Implementer: Codex. Created: 2026-11-19. Last updated: 2026-11-19.
+Status: Stages A–C implementation is present; the Stage D PostgreSQL
+integration and Skill Matching backend test suites passed on 2026-11-19. The
+requirements are the curated-postings and resume-phrase-indicator scope from
+the feature implementation review; no separate acceptance ID was assigned.
+Technical review by `@YakisobaNissin` is required for migration and
+shared-contract changes. Manual UI acceptance and publication of a reviewed
+posting version remain pending.
+
+### What the page shows
+
+The Skill Matching page keeps its existing career order, matched counts,
+saved-skill statuses, and proficiency levels. Under a career with published
+posting records, it shows each posting's title, company, `retrieved_on` date,
+original source URL, and collected skill labels. `retrieved_on` is the date
+viewed/collected from the hand-collected CSV. A career without published
+postings has no empty posting section.
+
+The page labels this material **Curated benchmark sample** and explains that
+the postings are curated references, not necessarily active vacancies or a
+comprehensive list of employer requirements. These postings are a sample, not
+an employer-defined requirement set.
+
+For each posting skill, the page shows a positive resume indicator only when
+the existing exact phrase matcher finds it in the user's most recent active
+resume evidence. The indicator includes the matched phrase and page number(s).
+The matcher uses the existing normalized phrase and boundary behavior. No
+indicator is shown for an unmatched posting skill. These indicators do not
+infer proficiency and do not alter career ranking, matched-skill counts,
+saved-skill status, or reported levels. See the
+[Skill Matching API source](../../backend/app/modules/skill_matching/service.py),
+[career data source](../../backend/app/modules/skill_matching/sources.py),
+[matcher](../../backend/app/modules/skill_matching/matcher.py), and
+[Skill Matching page](../../frontend/src/features/skill-matching/page.tsx).
+
+### Posting version lifecycle
+
+Posting records live separately from the aggregate
+`career_skill_snapshot` table. The migration creates a version manifest and
+posting records keyed by `(source, source_version)` and
+`(source, source_version, posting_id)`. Each source can have at most one
+published version, enforced by a partial unique index. Draft versions are
+inserted first; publication changes the prior published version for the same
+source to `retired` and the target draft to `published` in one transaction.
+The renderer uses a source-specific transaction advisory lock. A failure in
+that transaction rolls back both state changes. Other sources are independent;
+version names are not ordered to determine which version is current.
+
+The database permits draft-to-published and published-to-retired transitions.
+It does not permit rewriting or republishing a published/retired version.
+Posting rows can only be written while their parent version is a draft;
+published and retired posting records cannot be updated or deleted. The
+runtime role `asgard_app` has SELECT grants only, with row-level policies
+exposing published versions and postings for published versions. The runtime
+source also explicitly joins versions with `status = 'published'`; it does
+not select a version by sorting version strings. See
+[posting migration](../../supabase/migrations/20261118000200_career_skill_postings.sql),
+[posting renderer](../../backend/scripts/render_career_skill_snapshot.py),
+and [runtime posting query](../../backend/app/modules/skill_matching/sources.py).
+
+### Preparing and reviewing a version
+
+From the repository root, the offline renderer accepts a validated CSV path
+plus required source identifiers. Its command shape is:
+
+```text
+python backend/scripts/render_career_skill_snapshot.py <csv-path> --source <source> --source-version <version>
+```
+
+The renderer validates the CSV and writes draft SQL and an unmapped report
+under `.local/career-skill-snapshot/`. It keeps only rows marked `verified`
+for posting records and reports ignored pending/rejected rows. Review the
+input CSV, unmapped report, and generated SQL before any authorized database
+operation. Publication generation uses the renderer's explicit
+`--publish-reviewed --reviewer <name>` options; it refuses fewer than 15 CSV
+rows or fewer than 5 verified rows. This produces a separate
+`.postings-publish.sql` file, and does not connect to or write to PostgreSQL.
+The CLI also emits aggregate snapshot artifacts; those remain a separate,
+unchanged lifecycle and are not the posting records described here.
+
+The repository contains no documented command or script for applying the
+generated posting SQL. Therefore this guide does not prescribe an apply
+command or database credential. An authorized operator must use an approved
+database-administration procedure after reviewing the generated artifacts;
+the exact procedure remains undocumented and is a release blocker until
+recorded. The `asgard_app` runtime role cannot perform publication.
+
+Rollback of a failed publication transaction is automatic: PostgreSQL keeps
+the previous version published and the target in draft. To replace a version,
+generate and review another draft for the same source, then use its generated
+publication transaction. Publishing one source does not retire another
+source's active version. Published history remains immutable; rollback by
+editing or deleting posting data is not supported by the migration.
+
+### Verification and pending acceptance
+
+On 2026-11-19, the PostgreSQL integration suite passed: 10 passed, 0 failed.
+It exercises the PostgreSQL index, triggers, transactional
+replacement/rollback, source-specific locking, runtime source filtering, and
+`asgard_app` privileges. The existing backend Skill Matching suites also
+passed: `tests/test_skill_matching.py` and
+`tests/test_skill_matching_api.py`, 30 passed, 0 failed. Both suites were run
+through Docker Compose from PowerShell. The backend run emitted one
+non-blocking Starlette deprecation warning. These results do not establish a
+shared/production migration or posting-version publication. The tests require
+an explicitly opted-in, uniquely named isolated local PostgreSQL project with
+the posting migration already installed; they do not create databases, apply
+migrations, or clean up rows. Do not point them at a shared development,
+staging, or production database. Manual UI acceptance and publication of a
+reviewed posting version remain pending.
+
 ## Roadmap experience comparison disabled, 2026-11-16
 
 Owner requested disabling this specific feature in chat; Codex removed the

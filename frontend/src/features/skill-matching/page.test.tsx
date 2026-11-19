@@ -1,6 +1,7 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import type { components } from "@/api/generated/schema";
 import type {
   CareerSkillMatch,
   CareerSkillMatchResponse,
@@ -8,6 +9,9 @@ import type {
   SkillMatchItem,
 } from "./api";
 import SkillMatchingPage from "./page";
+
+type CareerPosting = components["schemas"]["CareerPosting"];
+type PostingSkill = components["schemas"]["PostingSkill"];
 
 const mocks = vi.hoisted(() => ({
   readCareerSkillMatches: vi.fn(),
@@ -33,6 +37,28 @@ function skill(overrides: Partial<SkillMatchItem> = {}): SkillMatchItem {
   };
 }
 
+function postingSkill(overrides: Partial<PostingSkill> = {}): PostingSkill {
+  return {
+    label: "Excel",
+    resume_match: null,
+    ...overrides,
+  };
+}
+
+function posting(overrides: Partial<CareerPosting> = {}): CareerPosting {
+  return {
+    source: "hand-collected",
+    source_version: "v1",
+    posting_id: "ph_002",
+    company: "Example Co.",
+    job_title: "Junior Data Analyst",
+    source_url: "https://example.test/jobs/analyst-1",
+    retrieved_on: "2026-11-18",
+    skills: [postingSkill()],
+    ...overrides,
+  };
+}
+
 function career(
   skills: SkillMatchItem[] = [skill()],
   overrides: Partial<CareerSkillMatch> = {},
@@ -47,6 +73,7 @@ function career(
     skills,
     sample_label: "reviewed snapshot (v1): 5 postings",
     sample_note: "Benchmark sample note.",
+    postings: [],
     ...overrides,
   };
 }
@@ -56,6 +83,7 @@ function response(items: CareerSkillMatch[] = [career()]): CareerSkillMatchRespo
     source: "career-linked competencies",
     source_version: "v1",
     sample_label: "benchmark sample",
+    postings_sample_label: "Curated benchmark sample",
     items,
   };
 }
@@ -315,5 +343,97 @@ describe("SkillMatchingPage", () => {
   it("does not add a nested page-container", () => {
     const { container } = renderPage();
     expect(container.querySelector(".page-container")).not.toBeInTheDocument();
+  });
+
+  it("shows curated postings under their career with positive resume evidence only", () => {
+    const collectedPosting = posting({
+      skills: [
+        postingSkill({
+          resume_match: { matched_phrase: "Excel", pages: [1, 3] },
+        }),
+        postingSkill({ label: "Java" }),
+      ],
+    });
+    mocks.useCoreQuery.mockReturnValue({
+      data: response([
+        career([skill()], { postings: [collectedPosting] }),
+        career([skill({ competency_id: "competency-2", label: "Kubernetes" })], {
+          career_id: "career-2",
+          career_title: "DevOps Engineer",
+          rank: 2,
+          postings: [],
+        }),
+      ]),
+      isPending: false,
+      isError: false,
+      refetch: vi.fn(),
+    });
+
+    renderPage();
+    fireEvent.click(screen.getByText("1. Data Analyst"));
+
+    const postingCard = screen.getByRole("article", {
+      name: "Junior Data Analyst at Example Co.",
+    });
+    expect(screen.getByText("Curated benchmark sample")).toBeInTheDocument();
+    expect(postingCard).toHaveTextContent("Junior Data Analyst");
+    expect(postingCard).toHaveTextContent("Example Co.");
+    expect(postingCard).toHaveTextContent("Viewed: 2026-11-18");
+    expect(
+      within(postingCard).getByRole("link", { name: "View original posting" }),
+    ).toHaveAttribute("href", "https://example.test/jobs/analyst-1");
+    expect(postingCard).toHaveTextContent("Excel");
+    expect(postingCard).toHaveTextContent("Java");
+    expect(postingCard).toHaveTextContent("In your resume: Excel (pages 1, 3)");
+    expect(postingCard).not.toHaveTextContent(/missing|unmatched|not in your resume/i);
+    expect(postingCard.closest("details")).toBe(
+      screen.getByText("1. Data Analyst").closest("details"),
+    );
+    expect(
+      screen.queryByRole("region", {
+        name: "Curated benchmark sample for DevOps Engineer",
+      }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("renders a career without postings normally and preserves API ranking and skill fields", () => {
+    mocks.useCoreQuery.mockReturnValue({
+      data: response([
+        career(
+          [skill({ status: "MATCHED", reported_level: 1 })],
+          {
+            career_id: "career-b",
+            career_title: "Beta Career",
+            rank: 1,
+            matched_skill_count: 1,
+            display_count: "1 of 1",
+          },
+        ),
+        career(
+          [skill({ status: "UNKNOWN", user_report: { source: "user_report", level: null, updated_at: null } })],
+          {
+            career_id: "career-a",
+            career_title: "Alpha Career",
+            rank: 2,
+            matched_skill_count: 0,
+            display_count: "0 of 1",
+          },
+        ),
+      ]),
+      isPending: false,
+      isError: false,
+      refetch: vi.fn(),
+    });
+
+    renderPage();
+
+    expect(screen.getByText("1. Beta Career")).toBeInTheDocument();
+    expect(screen.getByText("2. Alpha Career")).toBeInTheDocument();
+    expect(screen.queryByText("Curated benchmark sample")).not.toBeInTheDocument();
+    fireEvent.click(screen.getByText("1. Beta Career"));
+    expect(screen.getByText("Matched")).toBeInTheDocument();
+    expect(screen.getByText("Your experience: Familiar with concepts")).toBeInTheDocument();
+    expect(screen.getByText("1 of 1")).toBeInTheDocument();
+    expect(screen.getByText("0 of 1")).toBeInTheDocument();
   });
 });

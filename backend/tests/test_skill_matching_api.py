@@ -1,4 +1,5 @@
-from datetime import datetime, timezone
+import asyncio
+from datetime import date, datetime, timezone
 from uuid import uuid4
 
 import pytest
@@ -9,11 +10,14 @@ from app.main import create_app
 from app.modules.skill_matching.matcher import UserSkillReport
 from app.modules.skill_matching.service import assemble_response
 from app.modules.skill_matching.sources import (
+    POSTINGS_SAMPLE_LABEL,
     SAMPLE_LABEL,
     SOURCE_LABEL,
     SOURCE_NOTE,
     CareerCatalog,
     CareerSample,
+    CompetencyLinksSource,
+    CuratedPosting,
     SkillProvenance,
     SnapshotAnnotation,
     catalog_from_rows,
@@ -388,3 +392,100 @@ def test_anonymous_route_rejected_before_database_access():
     with TestClient(app) as client:
         response = client.get("/api/v1/me/career-skill-matches")
     assert response.status_code == 401
+
+
+def test_postings_are_career_scoped_and_resume_indicators_do_not_change_matching():
+    first_career, second_career, python_id, sql_id = (uuid4() for _ in range(4))
+    catalog = catalog_from_rows(
+        [
+            source_row(first_career, "Alpha", python_id, "Python"),
+            source_row(second_career, "Beta", sql_id, "SQL"),
+        ]
+    )
+    catalog = CareerCatalog(
+        careers=catalog.careers,
+        provenance=catalog.provenance,
+        source_version=catalog.source_version,
+        postings_by_career={
+            first_career: (
+                CuratedPosting(
+                    source="hand-collected",
+                    source_version="v1",
+                    posting_id="posting-1",
+                    company="Example Co.",
+                    job_title="Junior Analyst",
+                    source_url="https://example.test/job/1",
+                    retrieved_on=date(2026, 11, 18),
+                    skill_labels=("Excel", "Java"),
+                ),
+            )
+        },
+    )
+    document = {
+        "id": uuid4(),
+        "analysis_id": uuid4(),
+        "revision": 4,
+        "evidence": [
+            {"kind": "skill", "text": "EXCEL", "page": 2, "span": "EXCEL"},
+            {"kind": "skill", "text": "JavaScript", "page": 3, "span": "JavaScript"},
+        ],
+    }
+
+    response = assemble_response(catalog, [], document).model_dump(mode="json")
+    careers = {item["career_title"]: item for item in response["items"]}
+    alpha = careers["Alpha"]
+    beta = careers["Beta"]
+    assert response["postings_sample_label"] == POSTINGS_SAMPLE_LABEL
+    assert [posting["posting_id"] for posting in alpha["postings"]] == ["posting-1"]
+    assert beta["postings"] == []
+    posting = alpha["postings"][0]
+    assert posting["retrieved_on"] == "2026-11-18"
+    assert posting["company"] == "Example Co."
+    assert posting["job_title"] == "Junior Analyst"
+    assert posting["source_url"] == "https://example.test/job/1"
+    assert posting["skills"] == [
+        {"label": "Excel", "resume_match": {"matched_phrase": "Excel", "pages": [2]}},
+        {"label": "Java", "resume_match": None},
+    ]
+    assert alpha["matched_skill_count"] == beta["matched_skill_count"] == 0
+    assert alpha["display_count"] == beta["display_count"] == "0 of 1"
+    assert all(
+        skill["status"] == "MISSING"
+        for item in careers.values()
+        for skill in item["skills"]
+    )
+
+
+def test_competency_source_reads_only_explicitly_published_posting_versions(monkeypatch):
+    career_id, competency_id = uuid4(), uuid4()
+    query_texts = []
+
+    async def fake_rows(_connection, statement, _parameters=None):
+        query_texts.append(statement)
+        if "career_skill_postings AS posting" in statement:
+            return [
+                {
+                    "career_id": career_id,
+                    "source": "hand-collected",
+                    "source_version": "v2",
+                    "posting_id": "posting-current",
+                    "company": "Example Co.",
+                    "job_title": "Analyst",
+                    "source_url": "https://example.test/job/current",
+                    "retrieved_on": date(2026, 11, 18),
+                    "skill_labels": ["Excel", "SQL"],
+                }
+            ]
+        return [source_row(career_id, "Analyst", competency_id, "Python")]
+
+    monkeypatch.setattr("app.modules.skill_matching.sources.rows", fake_rows)
+    catalog = asyncio.run(CompetencyLinksSource().list_all(object()))
+    posting_query = query_texts[1]
+
+    assert "version.status = 'published'" in posting_query
+    assert "version.source_version = posting.source_version" in posting_query
+    assert "career.status = 'published'" in posting_query
+    assert [item.posting_id for item in catalog.postings_by_career[career_id]] == [
+        "posting-current"
+    ]
+    assert catalog.postings_by_career[career_id][0].source_version == "v2"

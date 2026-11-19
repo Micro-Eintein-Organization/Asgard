@@ -8,6 +8,7 @@ careers and published competencies.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from datetime import date
 from typing import Protocol, Sequence
 from uuid import UUID
 
@@ -17,6 +18,7 @@ from app.modules.storage import rows
 SOURCE_LABEL = "career-linked competencies"
 SAMPLE_LABEL = "career-linked learning-path coverage"
 SOURCE_NOTE = "Learning-path coverage, not validated employer requirements."
+POSTINGS_SAMPLE_LABEL = "Curated benchmark sample"
 
 
 @dataclass(frozen=True, slots=True)
@@ -39,6 +41,18 @@ class CareerSample:
 
 
 @dataclass(frozen=True, slots=True)
+class CuratedPosting:
+    source: str
+    source_version: str
+    posting_id: str
+    company: str
+    job_title: str
+    source_url: str
+    retrieved_on: date
+    skill_labels: tuple[str, ...]
+
+
+@dataclass(frozen=True, slots=True)
 class CareerCatalog:
     careers: tuple[Career, ...]
     provenance: dict[UUID, SkillProvenance]
@@ -47,6 +61,9 @@ class CareerCatalog:
         default_factory=dict
     )
     samples: dict[UUID, CareerSample] = field(default_factory=dict)
+    postings_by_career: dict[UUID, tuple[CuratedPosting, ...]] = field(
+        default_factory=dict
+    )
 
 
 class CareerSkillSource(Protocol):
@@ -183,4 +200,48 @@ class CompetencyLinksSource:
             "WHERE career.status = 'published' "
             "ORDER BY lower(career.title), career.id, competency.id",
         )
-        return catalog_from_rows(source_rows)
+        catalog = catalog_from_rows(source_rows)
+        posting_rows = await rows(
+            connection,
+            "SELECT posting.career_id, posting.source, posting.source_version, "
+            "posting.posting_id, posting.company, posting.job_title, "
+            "posting.source_url, posting.retrieved_on, posting.skill_labels "
+            "FROM asgard_catalog.career_skill_postings AS posting "
+            "JOIN asgard_catalog.career_skill_posting_versions AS version "
+            "ON version.source = posting.source "
+            "AND version.source_version = posting.source_version "
+            "AND version.status = 'published' "
+            "JOIN asgard_catalog.careers AS career "
+            "ON career.id = posting.career_id AND career.status = 'published' "
+            "WHERE version.status = 'published' "
+            "ORDER BY career.id, posting.source, posting.source_version, "
+            "posting.retrieved_on DESC, posting.posting_id",
+        )
+        postings_by_career: dict[UUID, list[CuratedPosting]] = {}
+        for row in posting_rows:
+            retrieved_on = row["retrieved_on"]
+            if isinstance(retrieved_on, str):
+                retrieved_on = date.fromisoformat(retrieved_on)
+            posting = CuratedPosting(
+                source=row["source"],
+                source_version=row["source_version"],
+                posting_id=row["posting_id"],
+                company=row["company"],
+                job_title=row["job_title"],
+                source_url=row["source_url"],
+                retrieved_on=retrieved_on,
+                skill_labels=tuple(row["skill_labels"]),
+            )
+            career_id = UUID(str(row["career_id"]))
+            postings_by_career.setdefault(career_id, []).append(posting)
+        return CareerCatalog(
+            careers=catalog.careers,
+            provenance=catalog.provenance,
+            source_version=catalog.source_version,
+            snapshot_annotations=catalog.snapshot_annotations,
+            samples=catalog.samples,
+            postings_by_career={
+                career_id: tuple(postings)
+                for career_id, postings in postings_by_career.items()
+            },
+        )
