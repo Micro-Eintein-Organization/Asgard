@@ -4,6 +4,14 @@ Baseline: 2026-11-17. This is the remaining-work register, not implementation au
 
 ## Feature status
 
+SKILL-EVIDENCE-03 update, 2026-11-19 (owner-approved plan, Codex implementation):
+FUT-01 now includes a locally implemented unified evidence count, applicable
+Done-topic links and separate automatic supported-equivalence resume interpretation.
+The additive migration, generated contracts and UI are prepared; human review,
+authorized migration/deployment and live semantic/browser acceptance remain pending.
+This does not reactivate roadmap experience-comparison UI or dormant W07 panels.
+See [current handoff](features/competency-comparison.md).
+
 | ID | Scope | Current disposition and next step |
 | --- | --- | --- |
 | FUT-01 | Skill evidence and comparisons | On 2026-11-19 YakisobaNissin approved separate Benchmark sample/Learning-path skills views and a separate technology vocabulary. Hosted read-only audit confirms 108 benchmark references, 120 mappings and 22 PH postings published alongside the 230 learning-path skills. Render configuration and app acceptance remain pending. Roadmap experience-comparison UI remains disabled. See [competencies](features/competency-comparison.md#benchmark-and-learning-path-views-2026-11-19) |

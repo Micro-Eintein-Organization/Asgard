@@ -5,6 +5,7 @@ from __future__ import annotations
 from datetime import datetime
 from uuid import UUID
 
+from app.modules.skill_matching import interpretation
 from app.modules.skill_matching.matcher import (
     ResumeEvidence,
     UserSkillReport,
@@ -15,6 +16,8 @@ from app.modules.skill_matching.schemas import (
     CareerPosting,
     CareerSkillMatch,
     CareerSkillMatchResponse,
+    InterpretationSignal,
+    LearningSignal,
     PostingResumeMatch,
     PostingSkill,
     ResumeSignal,
@@ -191,4 +194,44 @@ async def get_career_skill_matches(
         {"uid": str(user_id)},
     )
     document = document_rows[0] if document_rows else None
-    return assemble_response(catalog, reports, document)
+    response = assemble_response(catalog, reports, document)
+    state, mappings = await interpretation.saved_state(connection, user_id, document)
+    response.interpretation = state
+    learning = []
+    if isinstance(career_source, CompetencyLinksSource):
+        learning = await rows(connection,
+            "SELECT DISTINCT l.career_id,l.competency_id,p.roadmap_id,p.topic_id,t.title "
+            "FROM asgard_private.topic_progress p "
+            "JOIN asgard_catalog.competency_links l ON l.roadmap_id=p.roadmap_id "
+            "AND l.topic_id=p.topic_id "
+            "JOIN asgard_catalog.topics t ON t.roadmap_id=p.roadmap_id AND t.id=p.topic_id "
+            "JOIN asgard_catalog.milestones m ON m.roadmap_id=t.roadmap_id AND m.id=t.milestone_id "
+            "JOIN asgard_catalog.roadmaps r ON r.id=p.roadmap_id AND r.career_id=l.career_id "
+            "WHERE p.user_id=CAST(:uid AS uuid) AND p.status='done' "
+            "AND r.status='published' AND t.retired_at IS NULL AND m.retired_at IS NULL "
+            "AND (t.branch_id IS NULL OR EXISTS(SELECT 1 FROM asgard_private.branch_choices b "
+            "WHERE b.user_id=p.user_id AND b.roadmap_id=p.roadmap_id AND b.branch_id=t.branch_id))",
+            {"uid": str(user_id)})
+    for career in response.items:
+        for skill in career.skills:
+            skill.learning_signals = [LearningSignal(
+                roadmap_id=item["roadmap_id"], topic_id=item["topic_id"], title=item["title"],
+            ) for item in learning if item["career_id"] == career.career_id
+                and item["competency_id"] == skill.competency_id]
+            for mapping in mappings:
+                if mapping["competency_id"] != str(skill.competency_id):
+                    continue
+                index = mapping["evidence_index"]
+                evidence = document["evidence"] if document else []
+                if (not 0 <= index < len(evidence)
+                        or mapping["quote"] not in evidence[index]["text"]):
+                    continue
+                item = evidence[index]
+                skill.interpretation_signals.append(InterpretationSignal(
+                    page=item["page"], text=mapping["quote"], span=item["span"],
+                ))
+            skill.evidence_found = skill.status == "MATCHED" or bool(
+                skill.learning_signals or skill.interpretation_signals,
+            )
+        career.evidence_count = sum(skill.evidence_found for skill in career.skills)
+    return response

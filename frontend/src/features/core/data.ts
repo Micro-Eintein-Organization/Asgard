@@ -140,6 +140,11 @@ export const coreApi = {
         headers: { "Content-Type": "application/pdf" },
       }),
     ),
+  interpretResume: (id: string) => result(api.POST(
+    "/api/v1/me/documents/{document_id}/skill-interpretation", {
+      params: { path: { document_id: id } }, signal: AbortSignal.timeout(65_000),
+    },
+  )),
   analyzeDocument: ({
     id,
     body,
@@ -340,7 +345,7 @@ export function useRoadmapGuidance(roadmapId: string) {
 
 export function useCoreMutation<TVariables, TData>(
   save: (variables: TVariables) => Promise<TData>,
-  options?: { clearSuggestions?: (variables: TVariables) => boolean; learningChange?: "selection" | "progress" },
+  options?: { clearSuggestions?: (variables: TVariables) => boolean; learningChange?: "selection" | "progress"; clearSkillEvidence?: boolean },
 ) {
   const { user } = useAuth();
   const client = useQueryClient();
@@ -355,6 +360,12 @@ export function useCoreMutation<TVariables, TData>(
     },
     onSuccess: async (_data, variables) => {
       if (userId && isCurrentAccount(userId)) {
+        if (options?.clearSkillEvidence) {
+          const key = ["account", userId, "career-skill-matches"];
+          await client.cancelQueries({ queryKey: key });
+          if (!isCurrentAccount(userId)) return;
+          await client.resetQueries({ queryKey: key });
+        }
         if (options?.learningChange === "selection") {
           const state = _data as Schemas["LearningState"];
           await client.cancelQueries({ predicate: query =>
@@ -392,7 +403,7 @@ export function useCoreMutation<TVariables, TData>(
           void client.invalidateQueries({ predicate: query =>
             query.queryKey[0] === "account" && query.queryKey[1] === userId &&
             ["dashboard", "dashboard-view", "learning", "roadmap-view", "progress", "summary", "branches",
-              "catalog-progress", "activity", "recommendations", "roadmap-guidance"]
+              "catalog-progress", "activity", "recommendations", "roadmap-guidance", "career-skill-matches"]
               .includes(String(query.queryKey[2])),
             refetchType: "none",
           });

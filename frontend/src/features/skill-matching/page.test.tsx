@@ -19,12 +19,17 @@ const mocks = vi.hoisted(() => ({
 }));
 
 vi.mock("./api", () => ({ readCareerSkillMatches: mocks.readCareerSkillMatches }));
-vi.mock("@/features/core/data", () => ({ useCoreQuery: mocks.useCoreQuery }));
+vi.mock("@/features/core/data", () => ({
+  useCoreQuery: mocks.useCoreQuery,
+  coreApi: { interpretResume: vi.fn() },
+  useCoreMutation: () => ({ mutate: vi.fn(), isPending: false, error: null }),
+}));
 
 function skill(overrides: Partial<SkillMatchItem> = {}): SkillMatchItem {
   return {
     competency_id: "competency-1",
     label: "Python",
+    evidence_found: false,
     source: "reviewed snapshot",
     source_version: "v1",
     status: "MISSING",
@@ -68,6 +73,7 @@ function career(
     career_title: "Data Analyst",
     rank: 1,
     matched_skill_count: 0,
+    evidence_count: 0,
     benchmark_skill_count: skills.length,
     display_count: "3 of 7",
     skills,
@@ -102,10 +108,10 @@ describe("SkillMatchingPage", () => {
       isError: true, error: new Error("Benchmark not published"), refetch: vi.fn(),
     } : { data: response([career([])]), isPending: false, isError: false });
     renderPage();
-    expect(screen.getByRole("tab", { name: "Benchmark sample" })).toHaveAttribute("aria-selected", "true");
+    expect(screen.getByRole("tab", { name: "Job-sample skills" })).toHaveAttribute("aria-selected", "true");
     expect(screen.getByText("Benchmark not published")).toBeVisible();
-    fireEvent.mouseDown(screen.getByRole("tab", { name: "Learning-path skills" }), { button: 0, ctrlKey: false });
-    expect(screen.getByRole("tab", { name: "Learning-path skills" })).toHaveAttribute("aria-selected", "true");
+    fireEvent.mouseDown(screen.getByRole("tab", { name: "Roadmap skills" }), { button: 0, ctrlKey: false });
+    expect(screen.getByRole("tab", { name: "Roadmap skills" })).toHaveAttribute("aria-selected", "true");
     expect(screen.queryByText("Benchmark not published")).not.toBeInTheDocument();
     const call = mocks.useCoreQuery.mock.calls.at(-1)!;
     expect(call[0]).toEqual(["career-skill-matches", "learning_path"]);
@@ -124,7 +130,7 @@ describe("SkillMatchingPage", () => {
 
   it("renders the API display_count text exactly as returned", () => {
     renderPage();
-    expect(screen.getByText("3 of 7")).toBeInTheDocument();
+    expect(screen.getByText("Evidence found for 0 of 1 skills")).toBeInTheDocument();
   });
 
   it("renders Matched, Unknown, and Missing as text labels", () => {
@@ -142,9 +148,9 @@ describe("SkillMatchingPage", () => {
     });
 
     renderPage();
-    expect(screen.getByText("Matched")).toBeInTheDocument();
-    expect(screen.getByText("Unknown")).toBeInTheDocument();
-    expect(screen.getByText("Missing")).toBeInTheDocument();
+    expect(screen.getByText("Evidence found")).toBeInTheDocument();
+    expect(screen.getByText("Not sure")).toBeInTheDocument();
+    expect(screen.getByText("No evidence recorded")).toBeInTheDocument();
   });
 
   it("labels resume matches and omits a null reported level", () => {
@@ -166,7 +172,7 @@ describe("SkillMatchingPage", () => {
     });
 
     renderPage();
-    expect(screen.getByText("from resume")).toBeInTheDocument();
+    expect(screen.getByText("From resume")).toBeInTheDocument();
     expect(screen.queryByText(/Reported level:/)).not.toBeInTheDocument();
   });
 
@@ -194,7 +200,7 @@ describe("SkillMatchingPage", () => {
     });
 
     renderPage();
-    expect(screen.getByText("from resume")).toBeInTheDocument();
+    expect(screen.getByText("From resume")).toBeInTheDocument();
     expect(screen.getByText("Your experience: No experience reported")).toBeInTheDocument();
     expect(screen.queryByText(/Your experience: Familiar with concepts/)).not.toBeInTheDocument();
   });
@@ -213,7 +219,7 @@ describe("SkillMatchingPage", () => {
     });
 
     const { container } = renderPage();
-    fireEvent.click(screen.getByText("1. Data Analyst"));
+    fireEvent.click(screen.getByText("Data Analyst"));
     expect(screen.getByText("seen in 2 of 5 postings")).toBeInTheDocument();
     expect(container.textContent).not.toContain("%");
   });
@@ -227,7 +233,7 @@ describe("SkillMatchingPage", () => {
     });
 
     renderPage();
-    fireEvent.click(screen.getByText("1. Data Analyst"));
+    fireEvent.click(screen.getByText("Data Analyst"));
     expect(screen.queryByText(/seen in/)).not.toBeInTheDocument();
   });
 
@@ -240,7 +246,7 @@ describe("SkillMatchingPage", () => {
     });
 
     renderPage();
-    fireEvent.click(screen.getByText("1. Data Analyst"));
+    fireEvent.click(screen.getByText("Data Analyst"));
     expect(screen.getByText("seen in 1 of 1 posting")).toBeInTheDocument();
   });
 
@@ -254,7 +260,7 @@ describe("SkillMatchingPage", () => {
 
     renderPage();
     expect(screen.getByText("snapshot: 1 posting - very small sample")).toBeVisible();
-    expect(screen.getByText("1. Data Analyst").closest("details")).not.toHaveAttribute("open");
+    expect(screen.getByText("Data Analyst").closest("details")).not.toHaveAttribute("open");
   });
 
   it("shows no skill mapping when benchmark_skill_count is zero", () => {
@@ -266,7 +272,7 @@ describe("SkillMatchingPage", () => {
     });
 
     renderPage();
-    expect(screen.getByText("0 of 0")).toBeInTheDocument();
+    expect(screen.getByText("No skills listed for comparison")).toBeInTheDocument();
     expect(screen.getByText("No reviewed benchmark mappings for this career in this sample.")).toBeInTheDocument();
     expect(screen.queryByRole("list")).not.toBeInTheDocument();
   });
@@ -293,9 +299,9 @@ describe("SkillMatchingPage", () => {
     });
 
     renderPage();
-    expect(screen.getByText("1. Data Analyst")).toBeInTheDocument();
-    expect(screen.getAllByText("Missing")).toHaveLength(2);
-    expect(screen.getByRole("status")).toHaveTextContent("None of your saved skills or resume mentions match the skills in these careers yet.");
+    expect(screen.getByText("Data Analyst")).toBeInTheDocument();
+    expect(screen.getAllByText("No evidence recorded")).toHaveLength(2);
+    expect(screen.getByRole("status")).toHaveTextContent("No supporting evidence has been recorded for these career skills yet.");
     expect(screen.getByRole("link", { name: "Go to your profile to add skills" })).toBeInTheDocument();
   });
 
@@ -308,8 +314,8 @@ describe("SkillMatchingPage", () => {
     });
 
     renderPage();
-    expect(screen.getByText("Matched")).toBeInTheDocument();
-    expect(screen.queryByText(/None of your saved skills or resume mentions match/)).not.toBeInTheDocument();
+    expect(screen.getByText("Evidence found")).toBeInTheDocument();
+    expect(screen.queryByText(/No supporting evidence has been recorded/)).not.toBeInTheDocument();
   });
 
   it("does not render the no-matches notice when any skill is UNKNOWN", () => {
@@ -321,8 +327,8 @@ describe("SkillMatchingPage", () => {
     });
 
     renderPage();
-    expect(screen.getByText("Unknown")).toBeInTheDocument();
-    expect(screen.queryByText(/None of your saved skills or resume mentions match/)).not.toBeInTheDocument();
+    expect(screen.getByText("Not sure")).toBeInTheDocument();
+    expect(screen.queryByText(/No supporting evidence has been recorded/)).not.toBeInTheDocument();
   });
 
   it("renders loading and error states", () => {
@@ -384,7 +390,7 @@ describe("SkillMatchingPage", () => {
     });
 
     renderPage();
-    fireEvent.click(screen.getByText("1. Data Analyst"));
+    fireEvent.click(screen.getByText("Data Analyst"));
 
     const postingCard = screen.getByRole("article", {
       name: "Junior Data Analyst at Example Co.",
@@ -401,7 +407,7 @@ describe("SkillMatchingPage", () => {
     expect(postingCard).toHaveTextContent("In your resume: Excel (pages 1, 3)");
     expect(postingCard).not.toHaveTextContent(/missing|unmatched|not in your resume/i);
     expect(postingCard.closest("details")).toBe(
-      screen.getByText("1. Data Analyst").closest("details"),
+      screen.getByText("Data Analyst").closest("details"),
     );
     expect(
       screen.queryByRole("region", {
@@ -419,7 +425,7 @@ describe("SkillMatchingPage", () => {
             career_id: "career-b",
             career_title: "Beta Career",
             rank: 1,
-            matched_skill_count: 1,
+            matched_skill_count: 1, evidence_count: 1,
             display_count: "1 of 1",
           },
         ),
@@ -441,13 +447,13 @@ describe("SkillMatchingPage", () => {
 
     renderPage();
 
-    expect(screen.getByText("1. Beta Career")).toBeInTheDocument();
-    expect(screen.getByText("2. Alpha Career")).toBeInTheDocument();
+    expect(screen.getByText("Beta Career")).toBeInTheDocument();
+    expect(screen.getByText("Alpha Career")).toBeInTheDocument();
     expect(screen.queryByText("Curated benchmark sample")).not.toBeInTheDocument();
-    fireEvent.click(screen.getByText("1. Beta Career"));
-    expect(screen.getByText("Matched")).toBeInTheDocument();
+    fireEvent.click(screen.getByText("Beta Career"));
+    expect(screen.getByText("Evidence found")).toBeInTheDocument();
     expect(screen.getByText("Your experience: Familiar with concepts")).toBeInTheDocument();
-    expect(screen.getByText("1 of 1")).toBeInTheDocument();
-    expect(screen.getByText("0 of 1")).toBeInTheDocument();
+    expect(screen.getByText("Evidence found for 1 of 1 skills")).toBeInTheDocument();
+    expect(screen.getByText("Evidence found for 0 of 1 skills")).toBeInTheDocument();
   });
 });

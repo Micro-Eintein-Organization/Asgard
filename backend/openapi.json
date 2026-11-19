@@ -623,6 +623,11 @@
             "title": "Display Count",
             "type": "string"
           },
+          "evidence_count": {
+            "default": 0,
+            "title": "Evidence Count",
+            "type": "integer"
+          },
           "matched_skill_count": {
             "title": "Matched Skill Count",
             "type": "integer"
@@ -671,6 +676,9 @@
       "CareerSkillMatchResponse": {
         "additionalProperties": false,
         "properties": {
+          "interpretation": {
+            "$ref": "#/components/schemas/InterpretationState"
+          },
           "items": {
             "items": {
               "$ref": "#/components/schemas/CareerSkillMatch"
@@ -2788,6 +2796,77 @@
         "title": "HealthResponse",
         "type": "object"
       },
+      "InterpretationSignal": {
+        "additionalProperties": false,
+        "properties": {
+          "page": {
+            "title": "Page",
+            "type": "integer"
+          },
+          "span": {
+            "title": "Span",
+            "type": "string"
+          },
+          "text": {
+            "title": "Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "page",
+          "text",
+          "span"
+        ],
+        "title": "InterpretationSignal",
+        "type": "object"
+      },
+      "InterpretationState": {
+        "additionalProperties": false,
+        "properties": {
+          "document_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Document Id"
+          },
+          "failure_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Failure Code"
+          },
+          "status": {
+            "enum": [
+              "no_resume",
+              "not_analyzed",
+              "not_updated",
+              "pending",
+              "completed",
+              "failed",
+              "outdated",
+              "unavailable"
+            ],
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "title": "InterpretationState",
+        "type": "object"
+      },
       "IssueCodes": {
         "additionalProperties": false,
         "properties": {
@@ -2856,6 +2935,32 @@
           "topic_title"
         ],
         "title": "LearningGroup",
+        "type": "object"
+      },
+      "LearningSignal": {
+        "additionalProperties": false,
+        "properties": {
+          "roadmap_id": {
+            "format": "uuid",
+            "title": "Roadmap Id",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "topic_id": {
+            "format": "uuid",
+            "title": "Topic Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "roadmap_id",
+          "topic_id",
+          "title"
+        ],
+        "title": "LearningSignal",
         "type": "object"
       },
       "LearningState": {
@@ -4789,9 +4894,28 @@
             "title": "Competency Id",
             "type": "string"
           },
+          "evidence_found": {
+            "default": false,
+            "title": "Evidence Found",
+            "type": "boolean"
+          },
+          "interpretation_signals": {
+            "items": {
+              "$ref": "#/components/schemas/InterpretationSignal"
+            },
+            "title": "Interpretation Signals",
+            "type": "array"
+          },
           "label": {
             "title": "Label",
             "type": "string"
+          },
+          "learning_signals": {
+            "items": {
+              "$ref": "#/components/schemas/LearningSignal"
+            },
+            "title": "Learning Signals",
+            "type": "array"
           },
           "posting_count": {
             "anyOf": [
@@ -9382,6 +9506,104 @@
         "summary": "Download",
         "tags": [
           "documents"
+        ]
+      }
+    },
+    "/api/v1/me/documents/{document_id}/skill-interpretation": {
+      "post": {
+        "operationId": "interpret_resume_skills",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "document_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Document Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InterpretationState"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Interpret Resume Skills",
+        "tags": [
+          "skill matching"
         ]
       }
     },
