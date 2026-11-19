@@ -55,14 +55,104 @@ evidence does not verify the new publication SQL.
 
 ### Data review and owner-operated rollout
 
+#### Current technology release package, 2026-11-19
+
+Hosted publication audit, 2026-11-19: at the owner's request Codex used the pinned
+CLI for read-only catalog counts and migration history. The linked project now
+has 230 published learning-path skills, 108 published benchmark technologies,
+120 published snapshot mappings and 22 published postings for
+`ph_postings_collected/2026-11-19-v1`. All 20 repository migrations are recorded
+remotely, including recovery codes; no further migration application/history
+repair was indicated. Also observed: 23 published careers and roadmaps, published
+questionnaires v1/v2, content releases 1–6, and no published career lacking a
+published roadmap. No draft/unpublished rows appeared in the checked publication
+states. One career and three roadmaps are retired; do not reactivate them merely
+to clear a publication audit. ESCO and occupational reference-release tables each
+have zero releases and zero active selectors, so those separate evidence datasets
+are not loaded. This does not block the PH benchmark. This audit does not verify
+Render settings, authenticated app responses, source-page validity, provider
+quality or all release/security gates. No hosted writes were performed by the
+audit. The query artifact is `output/sql/catalog-publication-audit.sql`.
+
+Implementer/task owner: Codex. Reviewer/approver: YakisobaNissin. Requirements:
+REQ-11 and the two-view benchmark extension. Approval references: the owner's
+“ok i approve” after the posting worksheet handoff and subsequent selection of
+separate technology references, preserving the 230 learning-path skills. The
+owner then reported the deployed benchmark-unconfigured screen; this follow-up
+completes the previously missing content package. Approval authorizes the sample
+publication, not a claim that Codex independently verified the linked job pages
+or that those vacancies remain active.
+
+The [technology renderer](../../backend/scripts/render_technology_benchmark.py)
+prepares 108 distinct normalized posting-skill references with stable UUIDs and
+`benchmark-technology/` keys, 120 career-skill mappings and 22 posting records.
+It preserves existing learning-path records/links and user reports. Equal labels
+share a reference across careers; fuzzy synonyms are not merged. Old narrower
+learning-task reports therefore do not automatically become technology reports.
+Resume exact skill evidence and newly saved technology reports can match them.
+
+The prepared local file is `output/sql/benchmark-technology-publication.sql`.
+It records the named owner approval, creates the separate references, imports the
+snapshot/postings and publishes both in one transaction. No new schema migration
+or API change is required. Input pending CSV statuses remain unchanged; the
+explicit approving-reviewer and approval-reference arguments authorize the
+release's in-memory approved copy. Rejected records remain excluded. Publication
+does not bypass career resolution, distinct reviewer/collector, minimum sample,
+foreign-key, identity-conflict or immutable-posting safeguards.
+
+Executed offline command, using the pinned backend runtime:
+
+```text
+python scripts/render_technology_benchmark.py ../docs/data/ph_postings_collected.csv --source ph_postings_collected --source-version 2026-11-19-v1 --reviewer YakisobaNissin --approval-reference "2026-11-19 owner chat approval and separate technology vocabulary selection" --output ../output/sql/benchmark-technology-publication.sql
+```
+
+The command runs from `backend/`, writes a fresh file without overwriting existing
+artifacts, and never connects to a database. The offline validator correctly
+warns that the source CSV remains pending; the output explicitly records the
+owner-authorized release instead of silently changing collected-source history.
+
+Verification: four focused renderer tests and scoped Ruff passed. A disposable,
+network-isolated PostgreSQL 17 check applied the actual snapshot/posting migrations
+over minimal catalog prerequisites, then executed the complete generated release.
+It verified 108 technologies, 120 mappings, 22 published postings, preservation of
+230 synthetic baseline learning references, restricted-role SELECT and absence
+of INSERT privileges. Repeating the release was rejected by the existing posting
+immutability guard; counts remained 230/108/120/22 after rollback. The disposable
+container was removed. This checks generated SQL and catalog grants, not a full
+Supabase schema rebuild, hosted Auth/provider/session acceptance, actual hosted
+content or source-URL validity. No frontend behavior changed, so frontend tests
+were not rerun. The owner subsequently published the package, as confirmed by the
+audit above; Render configuration and browser acceptance remain pending.
+
+Owner next steps:
+
+1. In the intended hosted Supabase SQL Editor, execute the complete
+   `output/sql/benchmark-technology-publication.sql` once. Do not rerun the older
+   schema migrations, learning-path publication or empty benchmark drafts.
+2. In Render backend environment set
+   `ASGARD_SKILL_MATCHING_BENCHMARK_SOURCE=ph_postings_collected` and
+   `ASGARD_SKILL_MATCHING_BENCHMARK_VERSION=2026-11-19-v1`; save and redeploy.
+   The deployed two-tab code already reads these settings.
+3. Refresh `/career-skill-matches`. Benchmark sample should load the configured
+   version and reviewed sample; Learning-path skills should retain its original
+   coverage. No user evidence means zero matches, not an application failure.
+   Careers absent from the sample show 0 of 0. Analyze a synthetic resume with
+   exact sample terms, check matches, then remove its background and recheck.
+
+After publication, expected catalog totals are 338 overall, 230 existing
+learning-path references and 108 new benchmark references. CSS search can now
+return the narrower learning task and the separate CSS technology. Verify the
+sample counts with the read-only queries below. Report SQL/configuration errors
+without rerunning or deleting existing records. This section supersedes the
+original alias-based publication workflow below for this technology release.
+
 Subsequent owner decision, 2026-11-19: use separate benchmark technology/skill
 references rather than alias broad posting terms to narrow learning tasks.
 The initial worksheet found 0 exact mappings across 154 mentions, demonstrating
 the vocabulary mismatch. Existing 230 learning-path identities and links must
-remain unchanged. Preparation of the separate reference vocabulary/importer is
-the next content task; the existing importer still targets career-qualified
-learning-path references and must be extended before this new vocabulary can be
-published. Do not apply the earlier alias-based publication instructions below
+remain unchanged. The separate reference vocabulary and publication package are
+now prepared by the technology renderer above; the original importer continues
+to target career-qualified learning-path references. Do not apply the earlier alias-based publication instructions below
 to manufacture equivalence. They describe the original implementation and need
 revision with the concrete separate-vocabulary release.
 

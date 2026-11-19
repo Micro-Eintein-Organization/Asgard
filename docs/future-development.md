@@ -6,7 +6,7 @@ Baseline: 2026-11-17. This is the remaining-work register, not implementation au
 
 | ID | Scope | Current disposition and next step |
 | --- | --- | --- |
-| FUT-01 | Skill evidence and comparisons | On 2026-11-19 the owner approved separate Benchmark sample and Learning-path skills tabs. Source implemented; the 22 pending postings/aliases require YakisobaNissin review and publication/security acceptance. Roadmap experience-comparison UI remains disabled. See [competencies](features/competency-comparison.md#benchmark-and-learning-path-views-2026-11-19) |
+| FUT-01 | Skill evidence and comparisons | On 2026-11-19 YakisobaNissin approved separate Benchmark sample/Learning-path skills views and a separate technology vocabulary. Hosted read-only audit confirms 108 benchmark references, 120 mappings and 22 PH postings published alongside the 230 learning-path skills. Render configuration and app acceptance remain pending. Roadmap experience-comparison UI remains disabled. See [competencies](features/competency-comparison.md#benchmark-and-learning-path-views-2026-11-19) |
 | FUT-02 | Compare careers and save alternatives | Implemented career-to-career comparison and saved alternatives; comprehension/content review remains pending. See [comparison guide](features/career-comparison-and-shortlist.md) |
 | FUT-03 | Practice and reflection | W07 UI dormant; retain records/APIs pending an approved redesign |
 | FUT-04 | Conversational guidance | Contextual Counselor source implemented; hosted answer-quality and privacy acceptance pending. See [Counselor](features/contextual-counselor-profile.md) |
