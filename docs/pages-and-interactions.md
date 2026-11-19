@@ -36,6 +36,14 @@ Show current roadmap/milestone, active or next authored topic, progress, activit
 
 ## Careers and comparison
 
+Career skill matches now labels the views Job-sample skills and Roadmap skills.
+It displays one evidence count with source labels for reports, direct resume
+matches, AI-interpreted equivalent wording and applicable completed lessons
+(Roadmap skills only). Source passages remain inspectable; no proficiency is
+assigned. Automatic post-analysis interpretation and explicit Update resume matches
+operate separately from ordinary reads. Removed/stale sources cannot remain current.
+See [skill evidence](features/competency-comparison.md) for review/activation limits.
+
 Catalog supports search and category/preferences filters with compact career cards. Compare careers opens a dedicated two-career view for differences, skills, work examples, and available source-backed explanations. The saved-careers filter and ESCO catalog shortcut were removed from the main catalog controls; retained data/routes do not imply visible controls. Occupational references are separate from roadmap-backed career candidates. [Comparison guide](features/career-comparison-and-shortlist.md).
 
 ## Roadmaps and topics
@@ -45,6 +53,12 @@ Use expandable milestones and a topic detail panel with authored overview, outco
 The experience-comparison dialog and W07 practice/reflection panels are disabled/dormant. Do not reintroduce them through this specification. Existing Profile skills, career comparison, APIs, and records remain separate.
 
 ## Profile and preferences
+
+A successful new resume analysis automatically requests supported-equivalence
+career-skill interpretation as a separate bounded operation. Its failure does
+not undo saved extraction. Existing resumes can use Update resume matches on
+Career skill matches. Private results are invalidated on removal/replacement;
+source explanations never assign manual experience ratings.
 
 Profile contains personal details, career background, skills, saved suggestions, and preferences. Profile and preference saves remain independent and revision-guarded. Keep pending edits across tabs and warn before leaving. Optional private photos and document upload/analysis/resume review depend on backend flags and credentials. Resume-extracted skill suggestions require user confirmation; optional files never gate browsing or learning. Replace/Remove must preserve lifecycle and stale-response protections.
 

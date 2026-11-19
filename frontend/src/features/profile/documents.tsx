@@ -33,12 +33,13 @@ export function ProfileDocuments({ onGuardChange, compact = false, active = true
   const [file, setFile] = useState<File | null>(null);
   const [synthetic, setSynthetic] = useState(false);
   const [phase, setPhase] = useState("");
+  const [matchingNotice, setMatchingNotice] = useState("");
   const input = useRef<HTMLInputElement>(null);
   const inFlight = useRef(false);
   const analysisKey = useRef({ document: "", key: "" });
   const query = useCoreQuery(["documents"], coreApi.documents);
   const { refetch } = query;
-  const remove = useCoreMutation(coreApi.removeDocuments);
+  const remove = useCoreMutation(coreApi.removeDocuments, { clearSkillEvidence: true });
   const cleanup = useCoreMutation(coreApi.cleanupDocuments);
   const state = query.data;
   const extract = useCoreMutation(async () => {
@@ -57,11 +58,25 @@ export function ProfileDocuments({ onGuardChange, compact = false, active = true
     if (analysisKey.current.document !== candidate.id) {
       analysisKey.current = { document: candidate.id, key: crypto.randomUUID() };
     }
-    return coreApi.analyzeDocument({ id: candidate.id, body: {
+    const analyzed = await coreApi.analyzeDocument({ id: candidate.id, body: {
       expected_revision: current.revision, idempotency_key: analysisKey.current.key,
       synthetic_document: synthetic,
     } });
-  });
+    if (analyzed.active?.id === candidate.id && isCurrentAccount(owner)) {
+      setPhase("Updating career skill matches…");
+      try {
+        const interpretation = await coreApi.interpretResume(candidate.id);
+        if (isCurrentAccount(owner)) setMatchingNotice(interpretation.status === "completed"
+          ? "Resume saved and career skill matches updated."
+          : "Resume saved. Automatic wording interpretation is unavailable; exact skill matches remain available.");
+      } catch {
+        if (isCurrentAccount(owner)) setMatchingNotice(
+          "Resume saved. Automatic wording interpretation could not finish. Use Update resume matches on Career skill matches.",
+        );
+      }
+    }
+    return analyzed;
+  }, { clearSkillEvidence: true });
   const pending = remove.isPending || cleanup.isPending || extract.isPending;
   useEffect(() => {
     if (!active && !pending) {
@@ -88,6 +103,7 @@ export function ProfileDocuments({ onGuardChange, compact = false, active = true
   async function analyze() {
     if (pending || inFlight.current) return;
     inFlight.current = true;
+    setMatchingNotice("");
     const owner = user?.id;
     try {
       await extract.mutateAsync();
@@ -168,6 +184,7 @@ export function ProfileDocuments({ onGuardChange, compact = false, active = true
         cleanup.mutate();
       }}>Retry cleanup</Button></p>}
       {pending && <p role="status">{phase || "Saving document state…"}</p>}
+      {matchingNotice && !pending && <p role="status">{matchingNotice}</p>}
       {remove.isSuccess && !pending && state && !state.active && !state.candidate && !file && <p role="status">Document background removed from active use.</p>}
       {error && <p role="alert">{error.message} <Button type="button" variant="outline" disabled={pending} onClick={() => {
         void query.refetch();

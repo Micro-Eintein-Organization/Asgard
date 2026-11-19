@@ -653,6 +653,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/me/documents/{document_id}/skill-interpretation": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Interpret Resume Skills */
+        post: operations["interpret_resume_skills"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/me/learning": {
         parameters: {
             query?: never;
@@ -1381,6 +1398,11 @@ export interface components {
             career_title: string;
             /** Display Count */
             display_count: string;
+            /**
+             * Evidence Count
+             * @default 0
+             */
+            evidence_count: number;
             /** Matched Skill Count */
             matched_skill_count: number;
             /** Postings */
@@ -1396,6 +1418,7 @@ export interface components {
         };
         /** CareerSkillMatchResponse */
         CareerSkillMatchResponse: {
+            interpretation?: components["schemas"]["InterpretationState"];
             /** Items */
             items: components["schemas"]["CareerSkillMatch"][];
             /** Postings Sample Label */
@@ -2143,6 +2166,27 @@ export interface components {
              */
             status: "ok";
         };
+        /** InterpretationSignal */
+        InterpretationSignal: {
+            /** Page */
+            page: number;
+            /** Span */
+            span: string;
+            /** Text */
+            text: string;
+        };
+        /** InterpretationState */
+        InterpretationState: {
+            /** Document Id */
+            document_id?: string | null;
+            /** Failure Code */
+            failure_code?: string | null;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "no_resume" | "not_analyzed" | "not_updated" | "pending" | "completed" | "failed" | "outdated" | "unavailable";
+        };
         /** IssueCodes */
         IssueCodes: {
             /**
@@ -2176,6 +2220,21 @@ export interface components {
             topic_id: string;
             /** Topic Title */
             topic_title: string;
+        };
+        /** LearningSignal */
+        LearningSignal: {
+            /**
+             * Roadmap Id
+             * Format: uuid
+             */
+            roadmap_id: string;
+            /** Title */
+            title: string;
+            /**
+             * Topic Id
+             * Format: uuid
+             */
+            topic_id: string;
         };
         /** LearningState */
         LearningState: {
@@ -2875,8 +2934,17 @@ export interface components {
              * Format: uuid
              */
             competency_id: string;
+            /**
+             * Evidence Found
+             * @default false
+             */
+            evidence_found: boolean;
+            /** Interpretation Signals */
+            interpretation_signals?: components["schemas"]["InterpretationSignal"][];
             /** Label */
             label: string;
+            /** Learning Signals */
+            learning_signals?: components["schemas"]["LearningSignal"][];
             /** Posting Count */
             posting_count: number | null;
             /** Reported Level */
@@ -6051,6 +6119,82 @@ export interface operations {
             };
             /** @description Content Too Large */
             413: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Unprocessable Content */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    interpret_resume_skills: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                document_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["InterpretationState"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
                 headers: {
                     [name: string]: unknown;
                 };

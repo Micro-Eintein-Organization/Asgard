@@ -2,6 +2,120 @@
 
 # Skill profiles and career comparison
 
+### Current implementation and handoff, 2026-11-19
+
+Unified evidence is implemented locally. Job-sample skills preserves the published
+posting basis; Roadmap skills adds applicable Done topics via existing skill links.
+Each listed skill contributes at most one to the new `evidence_count`, regardless
+of the number of sources. Legacy reported/resume status, counts, ordering fields,
+ratings and records remain unchanged in the API. The page sorts the new count,
+removes numbered career ranks, and shows source labels and original resume passages.
+Neither an AI interpretation nor a Done record writes a proficiency rating.
+
+Automatic interpretation runs after a newly saved successful resume analysis.
+`POST /api/v1/me/documents/{document_id}/skill-interpretation` also supports the
+Update resume matches action for old/failed/stale analyses. GET remains read-only.
+Published skill definitions and saved background statements are sent in bounded
+compact batches to the configured Groq model. All claimed IDs and quote substrings
+are validated; semantic equivalence remains a model judgment requiring live review.
+At most three batches plus one transient retry, four shared reservations, and a
+60-second deadline apply. Whole-set validation failure saves no new mappings;
+successful extraction, direct matches and reported skills remain available.
+
+One pending run per account/document prevents duplicate calls. Reads reject stale
+catalog/analysis/prompt versions. Source removal/replacement clears derived data
+through the migration trigger; ownership, active analysis, run ID, catalog hash
+and deadline are rechecked after external work. Private cache entries reset after
+resume mutation; progress/branch changes invalidate skill-match queries. No AI
+call is made by ordinary page loading. Disabled processing/privacy/storage/Groq
+configuration rejects new interpretation calls; exact matching remains usable.
+
+New storage: [document interpretation migration](../../supabase/migrations/20261119000200_document_skill_interpretations.sql),
+restricted to the existing app/maintenance roles with RLS and compound owner FK.
+Schema/client: [OpenAPI](../../backend/openapi.json) and [TypeScript](../../frontend/src/api/generated/schema.d.ts).
+Sources: `backend/app/modules/skill_matching/`, `frontend/src/features/skill-matching/`,
+Profile document controls and core query invalidation. No new dependency or agent.
+
+Focused checks: 41 backend matcher/source/API/evidence cases passed in the existing
+network-isolated image with read-only current source; 31 matching/Profile frontend
+cases passed on the host. An isolated PostgreSQL 17 database applied the actual
+new migration and passed owner-FK checks, cross-account read/write isolation,
+browser-role denial and deletion of interpretations on resume removal. This is
+not a full Supabase schema rebuild or hosted lifecycle test. Scoped backend Ruff
+passed. Frontend lint has one pre-existing inactive-form reset finding in
+`profile/documents.tsx`; no new findings in the other checked modules.
+TypeScript/API synchronization and final evidence are recorded in the handoff.
+
+Final checks: TypeScript and backend OpenAPI drift passed. The Windows frontend
+client-drift command encountered the existing temporary-path `EISDIR` error;
+the same repository check passed in the existing network-isolated frontend
+image with source/schema mounted read-only. Whitespace checks passed.
+An optional read-only local published-catalog sizing probe was blocked because
+the local `postgres` login could not SET ROLE asgard_app. No administrator bypass,
+credential change or repeat probe was attempted. Real published-catalog batch
+fit remains part of manual acceptance; over-budget interpretation is explicitly
+unavailable while direct matching remains usable. The disposable migration-test
+container was removed after its checks.
+
+Live synthetic Groq/app acceptance is pending: the updated route requires the
+reviewed migration in an authorized environment. No live documents were sent,
+services restarted, hosted migrations applied, commits created or deployments made.
+The owner requested focused verification only; no broad suite/framework was added.
+Human reviewer/operator: @YakisobaNissin. Approval to implement does not establish
+completed architecture review, model quality or production readiness.
+
+Deployment order: review/apply the single additive migration through the existing
+approved workflow, then deploy the matching Render backend and Vercel frontend.
+Do not rerun older publication/migration scripts. Existing provider/configuration
+keys suffice. Without the migration, GET falls back to exact/learning evidence
+with interpretation unavailable; POST returns an explained migration-required error.
+
+Manual review (pending) at `/career-skill-matches` and `/settings/profile`:
+
+1. Analyze a synthetic resume with an explicit task expressed differently from
+   a listed skill. Review the automatic interpretation status and original passage.
+2. Use an unsupported broad term such as Python alone against an API-development
+   task. It must not be interpreted as that specific task. Record actual model output.
+3. Mark a directly linked applicable topic Done and revisit Roadmap skills: its
+   evidence appears once. Undo Done, select another branch and confirm recalculation.
+   Job-sample skills must not gain credit from guessed technology/task relationships.
+4. Provide several sources for one skill and confirm it counts once. Inspect the
+   untouched reported rating and legacy fields. Verify all-zero lists have no
+   numbered career recommendation labels.
+5. Remove/replace the resume, including during interpretation: no stale mapping
+   may reappear. Use a second test account to confirm isolation. Simulate provider
+   failure and verify saved extraction/direct matching remain usable.
+6. Check Tab/Enter, narrow widths and 200% zoom. Report build, request ID, actions
+   and expected/actual results without resume text or credentials.
+
+## Unified skill evidence, 2026-11-19
+
+Implementer/task owner: Codex. Owner approved the reviewed plan in chat with
+“implement” after selecting one evidence count and automatic supported-equivalence
+interpretation. Required reviewer: @YakisobaNissin; human review pending.
+Requirements: REQ-09/11/13 and the owner-approved skill-matching extension.
+Scope: account-scoped completed-topic evidence, separate persisted resume
+interpretations, additive matching contracts, automatic post-analysis refresh,
+clear evidence labels and tab names. Dependencies: existing topic/skill links,
+branch/progress rules, document lifecycle, shared budget and session transactions.
+Affected modules: skill_matching, document lifecycle/controls, core query
+invalidation, versioned SQL and generated OpenAPI/TypeScript. Preserve current
+features, evidence/report identities, public legacy fields and unrelated changes.
+
+Approved bounds: exact/manual matching remains usable without AI; one skill
+counts once despite multiple sources. Done topics credit only Roadmap skills
+and applicable published paths. AI maps only explicit equivalent claims to
+published definitions and never infers experience levels. Interpret after a
+successful analysis, never during GET reads; explicit refresh supports old/stale
+resumes. Up to three sequential catalog batches plus one shared retry within
+60 seconds, shared reservation before every provider attempt. Entire mapping set
+applies atomically or not at all; source extraction survives mapping failure.
+One additive restricted-role/RLS migration stores derived runs/mappings and
+clears them on document removal/replacement. Checks: focused matching and API
+regressions, schema/client sync, TypeScript, isolated migration/integrity/isolation
+probe, plus one bounded synthetic live check where the authorized environment
+is available. No full-suite expansion, new dependencies or agent framework.
+
 ## Benchmark and learning-path views, 2026-11-19
 
 Implementer/task owner: Codex. Created/updated: 2026-11-19. Requirements:

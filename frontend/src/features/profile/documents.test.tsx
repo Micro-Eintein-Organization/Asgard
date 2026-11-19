@@ -11,7 +11,7 @@ vi.mock("@/auth/context", () => ({ useAuth: () => ({ user: { id: "owner" } }) })
 vi.mock("@/auth/transport", () => ({ isCurrentAccount: vi.fn(() => true) }));
 vi.mock("@/features/core/data", () => ({
   coreApi: {
-    documents: vi.fn(), uploadDocument: vi.fn(), analyzeDocument: vi.fn(),
+    documents: vi.fn(), uploadDocument: vi.fn(), analyzeDocument: vi.fn(), interpretResume: vi.fn(),
     removeDocuments: "remove", cleanupDocuments: vi.fn(),
   },
   useCoreQuery: () => ({ data: {
@@ -104,6 +104,17 @@ it("does not analyze an uploaded file after an account change", async () => {
   fireEvent.click(screen.getByRole("button", { name: "Analyze PDF" }));
   await waitFor(() => expect(isCurrentAccount).toHaveBeenCalledWith("owner"));
   expect(coreApi.analyzeDocument).not.toHaveBeenCalled();
+});
+
+it("automatically updates matches after saving a newly analyzed resume", async () => {
+  vi.mocked(coreApi.uploadDocument).mockResolvedValue({ revision: 3, candidate: { id: "document", status: "uploaded" } } as never);
+  vi.mocked(coreApi.analyzeDocument).mockResolvedValue({ revision: 4, active: { id: "document" } } as never);
+  vi.mocked(coreApi.interpretResume).mockResolvedValue({ status: "completed" } as never);
+  render(<MemoryRouter><ProfileDocuments /></MemoryRouter>);
+  fireEvent.change(screen.getByLabelText("Replace resume PDF"), { target: { files: [new File(["pdf"], "resume.pdf")] } });
+  fireEvent.click(screen.getByLabelText("This is a synthetic test resume with no real personal data."));
+  fireEvent.click(screen.getByRole("button", { name: "Analyze PDF" }));
+  await waitFor(() => expect(coreApi.interpretResume).toHaveBeenCalledWith("document"));
 });
 
 it("clears only the selected PDF without removing saved background", () => {

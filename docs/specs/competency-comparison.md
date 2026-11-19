@@ -1,5 +1,27 @@
 # Manual skill profiles and career comparison
 
+## Unified evidence decision, 2026-11-19
+
+The project owner selected one evidence count, automatic resume interpretation
+and supported equivalence, then approved implementation with “implement.” This
+extends the two-view policy below. Job-sample skills uses published posting skills;
+Roadmap skills additionally recognizes applicable linked Done topics, excluding
+retired or unselected alternatives. Each skill counts once across positive reports,
+exact/alias resume matches, validated interpreted wording and eligible learning.
+Source labels stay distinct, and no source assigns a proficiency level.
+
+Legacy match/report fields remain; additive `evidence_count`, per-skill learning
+and interpretation signals, and interpretation-state fields drive the clearer UI.
+Career numbers are removed; UI sorting uses evidence count and stable alphabetical
+ties. Automatic supported-equivalence interpretation replaces the earlier ban on
+unreviewed semantic mapping only within this owner-approved, source-cited feature.
+Broad, related or uncertain claims remain excluded; authored identities are unchanged.
+Saved derived interpretations are private, versioned, invalidated with their source
+and separate from manual ratings. Failed interpretation leaves exact matching and
+successful extraction available. POST triggers analysis; ordinary GET reads do not.
+Technical reviewer @YakisobaNissin; human review/live validation pending. See the
+[implementation guide](../features/competency-comparison.md) for bounds and evidence.
+
 Documentation baseline: 2026-11-17. Current [decisions](../decisions.md#current-resolutions) supersede earlier delivery sequencing and fixed catalog counts. Profile skill editing, confirmed resume review, and career-to-career comparison are implemented; roadmap experience comparison is disabled. Occupational reference entries require authored roadmaps and reviewed publication before becoming recommendation candidates. Hosted activation and unrun quality/privacy acceptance remain separate. Dated increment details below retain their original scope.
 
 

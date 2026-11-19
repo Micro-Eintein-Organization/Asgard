@@ -28,6 +28,27 @@ class UserReportSignal(Contract):
     updated_at: datetime | None
 
 
+class LearningSignal(Contract):
+    roadmap_id: UUID
+    topic_id: UUID
+    title: str
+
+
+class InterpretationSignal(Contract):
+    page: StrictInt
+    text: str
+    span: str
+
+
+class InterpretationState(Contract):
+    status: Literal[
+        "no_resume", "not_analyzed", "not_updated", "pending", "completed",
+        "failed", "outdated", "unavailable",
+    ]
+    document_id: UUID | None = None
+    failure_code: str | None = None
+
+
 class PostingResumeMatch(Contract):
     matched_phrase: str
     pages: list[StrictInt]
@@ -60,6 +81,9 @@ class SkillMatchItem(Contract):
     resume_signals: list[ResumeSignal] = Field(default_factory=list)
     posting_count: StrictInt | None
     total_postings: StrictInt | None
+    learning_signals: list[LearningSignal] = Field(default_factory=list)
+    interpretation_signals: list[InterpretationSignal] = Field(default_factory=list)
+    evidence_found: bool = False
 
 
 class CareerSkillMatch(Contract):
@@ -73,6 +97,7 @@ class CareerSkillMatch(Contract):
     sample_note: str
     sample_label: str
     postings: list[CareerPosting] = Field(default_factory=list)
+    evidence_count: StrictInt = 0
 
 
 class CareerSkillMatchResponse(Contract):
@@ -81,3 +106,6 @@ class CareerSkillMatchResponse(Contract):
     sample_label: str
     postings_sample_label: str
     items: list[CareerSkillMatch]
+    interpretation: InterpretationState = Field(
+        default_factory=lambda: InterpretationState(status="not_updated"),
+    )
