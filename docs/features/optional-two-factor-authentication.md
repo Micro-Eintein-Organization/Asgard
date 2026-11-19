@@ -2,6 +2,11 @@
 
 # Optional two-factor authentication and hosted account demo
 
+2026-11-19 follow-up (Codex): the shared header now retains authenticated navigation
+on authenticator management, and restricts navigation while assurance is pending or
+required. MFA provider operations are unchanged. See [account access fixes](account-access-fixes.md)
+for evidence and manual steps. Required reviewer remains @YakisobaNissin.
+
 2026-11-14 Render Free correction: the owner encountered Blueprint rejection of
 `maxShutdownDelaySeconds`. Codex removed that unsupported override and shortened
 Uvicorn shutdown from 40 to 20 seconds to fit the host's default 30-second window.

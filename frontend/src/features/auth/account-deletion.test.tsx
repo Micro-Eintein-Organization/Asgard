@@ -29,6 +29,14 @@ it("keeps unavailable deletion disabled", async () => {
   expect(mocks.post).not.toHaveBeenCalled();
 });
 
+it("retries a failed availability check", async () => {
+  mocks.get.mockRejectedValueOnce(new Error("Network error"));
+  open();
+  fireEvent.click(await screen.findByRole("button", { name: "Try again" }));
+  await waitFor(() => expect(screen.getByRole("button", { name: "Delete account" })).toBeEnabled());
+  expect(mocks.post).not.toHaveBeenCalled();
+});
+
 it("requires confirmation, clears canceled credentials and preserves access on rejection", async () => {
   mocks.post.mockResolvedValue({ error: { message: "Verification failed." } });
   open();

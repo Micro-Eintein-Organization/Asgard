@@ -8,6 +8,10 @@ Consolidated baseline: 2026-11-17. This register retains recorded owner decision
 
 ## Current resolutions
 
+- ACCOUNT-ACCESS-01 review, 2026-11-19: the owner identified themselves as the designated @YakisobaNissin reviewer and approved the implemented bounded changes in chat. See the [approval record](features/account-access-fixes.md). Hosted/manual acceptance and deletion activation prerequisites remain open; no Git publication operation was authorized.
+
+- ACCOUNT-ACCESS-01 (2026-11-19, project owner in chat, reviewed implementation plan): show explicit duplicate-registration feedback from supported provider responses; offer email recovery from signed-in Account and security. Validate sign-in, signup and reset passwords at eight Unicode characters minimum and 72 UTF-8 bytes maximum, and auth emails at 254 characters maximum with format validation. Preserve existing Unicode-name rules. Technical review remains assigned to @YakisobaNissin; hosted activation is not approved by this entry.
+
 - Approved architecture: React/Vite, FastAPI, Supabase PostgreSQL/Auth/Storage, SQLAlchemy restricted-role access, versioned SQL, generated API contracts, Docker development, and backend-only Groq integration. See [Architecture](architecture.md).
 - PASSWORD-01: the minimum is eight characters, replacing the former fifteen-character documentation default. [Security policy](security-and-operations.md#account-access-and-recovery) owns the remaining controls.
 - Discovery v2 supersedes the original fixed-five and later 8–10-question proposals for new sessions. Existing drafts keep their version; retakes start blank. [Current specification](specs/discovery.md).

@@ -2,6 +2,12 @@
 
 # Account deletion
 
+2026-11-19 follow-up (Codex): failed availability requests now show a retry action,
+separately from a confirmed disabled result. Backend acceptance, maintenance gates
+and deployment flags are unchanged. See [account access fixes](account-access-fixes.md)
+for checks and the operator activation checklist. Required reviewer remains
+@YakisobaNissin; hosted activation and destructive acceptance remain pending.
+
 Implementer: Codex. Created: 2026-11-16. Last updated: 2026-11-17.
 Status: implemented locally; architecture-owner review and hosted acceptance pending.
 Owner/reviewer: @YakisobaNissin. Scope: REQ-13, QA-01/02/09/11.

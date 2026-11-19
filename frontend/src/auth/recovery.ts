@@ -1,6 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 import { authConfigured } from "./supabase";
 import { validateNewPassword } from "./password";
+import { validateEmail } from "./email";
 import { emailDeliveryError } from "./email-errors";
 import { routes } from "@/lib/routes";
 
@@ -56,6 +57,8 @@ export function recoveryCooldown() {
 }
 
 export async function requestRecovery(email: string) {
+  const validation = validateEmail(email);
+  if (validation !== true) throw new Error(validation);
   if (recoveryCooldown()) throw new Error("Wait before requesting another recovery email.");
   const auth = recoveryClient().auth;
   exchange = null;

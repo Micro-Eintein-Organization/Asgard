@@ -7,6 +7,7 @@ import { WelcomePage } from "@/features/discovery/page";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const authMocks = vi.hoisted(() => ({
+  signUp: vi.fn(),
   verifyOtp: vi.fn(),
   resend: vi.fn(),
   requestRecovery: vi.fn(),
@@ -26,7 +27,7 @@ beforeEach(() => {
   vi.clearAllMocks();
 });
 
-function renderVerificationPage(mode: "verify" | "recovery" = "verify") {
+function renderVerificationPage(mode: "verify" | "recovery" | "register" = "verify") {
   return render(
     <QueryClientProvider client={new QueryClient()}><MemoryRouter>
       <AuthContext.Provider
@@ -74,6 +75,21 @@ it("shows the destination address and a visible resend option", () => {
     screen.getByText(/request another code when the timer ends/),
   ).toBeVisible();
   expect(screen.getByRole("button", { name: /Resend code in/ })).toBeDisabled();
+});
+
+it.each([
+  { data: { user: { identities: [] }, session: null }, error: null },
+  { data: {}, error: { code: "user_already_exists" } },
+])("keeps duplicate signup out of verification", async response => {
+  authMocks.signUp.mockResolvedValue(response);
+  renderVerificationPage("register");
+  fireEvent.change(screen.getByLabelText("Email"), { target: { value: "owner@example.test" } });
+  fireEvent.change(screen.getByLabelText("Password"), { target: { value: "password123" } });
+  fireEvent.change(screen.getByLabelText("Confirm password"), { target: { value: "password123" } });
+  fireEvent.click(screen.getByRole("button", { name: "Send email code" }));
+  expect(await screen.findByText(/An account already exists/)).toBeVisible();
+  expect(sessionStorage.getItem("asgard.signup-email")).toBeNull();
+  expect(sessionStorage.getItem("asgard.resend-at")).toBeNull();
 });
 
 it("returns direct verification visits to account creation without a pending signup", async () => {

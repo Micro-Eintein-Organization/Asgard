@@ -11,6 +11,7 @@ import { Label } from "@/components/ui/label";
 import { StatePanel, Unavailable } from "@/components/shared";
 import { resendCooldown, startResendCooldown } from "@/auth/cooldown";
 import { validateNewPassword } from "@/auth/password";
+import { validateEmail } from "@/auth/email";
 import { appRoutes, routes } from "@/lib/routes";
 import { emailDeliveryError } from "@/auth/email-errors";
 import { recoveryAcknowledgment, recoveryCooldown, requestRecovery } from "@/auth/recovery";
@@ -90,7 +91,9 @@ export function ConnectedAuthPage({ mode }: { mode: Mode }) {
         });
         if (error)
           throw new Error(
-            error.code === "weak_password"
+            error.code === "user_already_exists" || error.code === "email_exists"
+              ? "An account already exists with this email. Sign in or reset your password."
+              : error.code === "weak_password"
               ? "Use at least 8 characters for your password."
               : emailDeliveryError(error.code, "Could not start registration. Check the details or try again later."),
           );
@@ -100,6 +103,8 @@ export function ConnectedAuthPage({ mode }: { mode: Mode }) {
             "Email verification is not configured as required. Contact the project owner.",
           );
         }
+        if (data.user?.identities?.length === 0)
+          throw new Error("An account already exists with this email. Sign in or reset your password.");
         sessionStorage.setItem("asgard.signup-email", values.email.trim());
         beginCooldown();
         void navigate(routes.verify);
@@ -133,9 +138,10 @@ export function ConnectedAuthPage({ mode }: { mode: Mode }) {
   async function resend() {
     if (!supabase || remaining > 0 || resending || isSubmitting) return;
     const email =
-      mode === "verify" ? pendingSignupEmail : getValues("email").trim();
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setError("Enter the email address where you want the code sent.");
+      mode === "verify" ? pendingSignupEmail ?? "" : getValues("email").trim();
+    const emailValidation = validateEmail(email ?? "");
+    if (emailValidation !== true) {
+      setError(emailValidation);
       return;
     }
     setResending(true);
@@ -202,11 +208,7 @@ export function ConnectedAuthPage({ mode }: { mode: Mode }) {
               readOnly={mode === "verify"}
               aria-invalid={!!errors.email}
               {...register("email", {
-                required: "Enter your email.",
-                pattern: {
-                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                  message: "Enter a valid email address.",
-                },
+                validate: validateEmail,
               })}
             />
             {errors.email && (
@@ -228,8 +230,7 @@ export function ConnectedAuthPage({ mode }: { mode: Mode }) {
                   aria-invalid={!!errors.password}
                   {...register("password", {
                     required: "Enter your password.",
-                    validate: (value) =>
-                      mode !== "register" || validateNewPassword(value),
+                    validate: validateNewPassword,
                   })}
                 />
                 <Button
@@ -360,7 +361,7 @@ export function ConnectedAuthPage({ mode }: { mode: Mode }) {
               </Button>
             </div>
           )}
-          {mode === "login" && (
+          {(mode === "login" || mode === "register") && (
             <Link className="inline-link" to={routes.recovery}>
               Forgot your password?
             </Link>

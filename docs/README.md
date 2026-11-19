@@ -30,6 +30,8 @@ Current editorial baseline: 2026-11-17. The project owner requested consolidatio
 
 The [feature directory](features/) contains dated implementation and verification records. Sections are evidence for their recorded code/environment, not blanket approval or production certification. Use the current guides above for behavior; preserve original test dates and limitations.
 
+[How Asgard reads PDFs](features/pdf-reading.md) explains temporary resume review, backend document analysis, supported files, privacy boundaries and current availability.
+
 Current cross-cutting records include [Discovery v2](features/guided-discovery-v2.md), [Counselor/profile context](features/contextual-counselor-profile.md), [hosted feature activation](features/hosted-feature-activation.md), [performance](features/hosted-content-performance.md), [account deletion](features/account-deletion.md), [MFA](features/optional-two-factor-authentication.md), [streaks](features/learning-streaks.md), and [footer/status](features/footer-information-and-service-status.md).
 
 Roadmap experience comparison is disabled; W07 practice/reflection presentation is dormant. Profile skills and two-career comparison remain separate. Optional integrations depend on explicit environment configuration. Pending hosted timing, content/privacy/model review, mail/MFA compatibility, monitoring/restore, and browser/accessibility acceptance stay open unless their records explicitly report completion.
