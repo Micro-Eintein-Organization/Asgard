@@ -6,6 +6,7 @@ import re
 from types import SimpleNamespace
 
 from app.modules.recommendations.resume_connections import saved_connections
+from app.modules.skill_matching.matcher import BenchmarkSkill, Career, ResumeEvidence, rank_careers
 from app.modules.storage import one, rows
 
 
@@ -25,7 +26,8 @@ async def current(connection, uid):
         "JOIN asgard_catalog.career_skill_posting_versions v ON v.source=s.source "
         "AND v.source_version=s.source_version AND v.status='published' "
         "JOIN asgard_catalog.careers r ON r.id=s.career_id AND r.status='published' "
-        "WHERE u.user_id=CAST(:uid AS uuid) AND (u.level>0 OR (u.evidence_confirmed AND u.level IS NULL))",
+        "WHERE u.user_id=CAST(:uid AS uuid) "
+        "AND (u.level>0 OR (u.evidence_confirmed AND u.level IS NULL))",
         {"uid": str(uid)},
     )
     state = await one(
@@ -65,17 +67,28 @@ async def current(connection, uid):
         )
         exact = await rows(
             connection,
-            "SELECT DISTINCT c.id,c.label,r.slug FROM asgard_catalog.competencies c "
+            "SELECT DISTINCT c.id,c.label,c.aliases,r.id AS career_id,r.slug "
+            "FROM asgard_catalog.competencies c "
             "JOIN asgard_catalog.competency_links l ON l.competency_id=c.id "
             "JOIN asgard_catalog.careers r ON r.id=l.career_id "
             "WHERE c.published AND r.status='published'",
         )
+        skills_by_career = {}
         for row in exact:
-            if any(
-                re.search(r"(?<!\w)" + re.escape(row["label"]) + r"(?!\w)", item["text"], re.I)
-                for item in doc["evidence"]
-            ):
-                support.setdefault(row["slug"], set()).add(str(row["id"]))
+            skills_by_career.setdefault((row["career_id"], row["slug"]), []).append(
+                BenchmarkSkill(str(row["id"]), row["label"],
+                               tuple(row["aliases"] or []), row["id"])
+            )
+        evidence = [ResumeEvidence(item["kind"], item["text"], item["page"], item["span"])
+                    for item in doc["evidence"]]
+        ranked = rank_careers([
+            Career(career_id, slug, tuple(skills))
+            for (career_id, slug), skills in skills_by_career.items()
+        ], (), evidence)
+        for career in ranked:
+            for skill in career.skill_matches:
+                if skill.resume_signals:
+                    support.setdefault(career.career_name, set()).add(str(skill.competency_id))
         for career in careers:
             for link in links.get(str(career["id"]), []):
                 support.setdefault(career["slug"], set()).add(link["competency_id"])

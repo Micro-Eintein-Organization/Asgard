@@ -79,3 +79,17 @@ def test_anonymous_interpretation_is_denied_before_database_or_provider():
     with TestClient(create_app(Settings(auth_enabled=True, database_url=""))) as client:
         result = client.post(f"/api/v1/me/documents/{uuid4()}/skill-interpretation")
     assert result.status_code == 401
+
+
+def test_previous_interpretation_policy_is_stale_without_erasing_source(monkeypatch):
+    doc = {"id": uuid4(), "analysis_id": uuid4(), "evidence": [{"text": "SQL"}]}
+    monkeypatch.setattr(interpretation, "ready", AsyncMock(return_value=True))
+    monkeypatch.setattr(interpretation, "definitions", AsyncMock(return_value=([], "catalog")))
+    monkeypatch.setattr(interpretation, "one", AsyncMock(return_value={
+        "analysis_id": doc["analysis_id"], "catalog_fingerprint": "catalog",
+        "prompt_version": "resume-equivalence-v1", "status": "completed", "mappings": [],
+    }))
+    state, mappings = asyncio.run(interpretation.saved_state(None, uuid4(), doc))
+    assert state.status == "outdated"
+    assert mappings == []
+    assert doc["evidence"] == [{"text": "SQL"}]

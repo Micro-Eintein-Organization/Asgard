@@ -2,6 +2,39 @@
 
 # Skill profiles and career comparison
 
+### Resume matching regression repair, 2026-11-20
+
+Implementer: Codex. Created: 2026-11-20. Last updated: 2026-11-20.
+Status: owner-approved repair implemented locally; final human review and hosted
+acceptance pending. Reviewer: @YakisobaNissin. Requirements: REQ-11, F-002,
+RES-01, SKILL-01/02. [Investigation and approved plan](../plans/skill-evidence-regression-repair.md).
+
+The shared `backend/app/modules/competencies/claims.py` filter preserves
+`scikit-learn` and positive comma-separated skill claims when a later item is
+negative. Negated/aspirational lists remain excluded. Existing matcher calls use
+these statements and preserve original evidence passages and unrated resume status.
+Discovery's direct matching now reuses `skill_matching/matcher.py`; its source
+coverage remains learning-path links. `skill_matching/interpretation.py` advances
+to `resume-equivalence-v2` after the earlier negation-prompt change. Previous
+interpretations appear stale until explicitly updated; exact matching remains
+available and no source evidence is erased. No schema or API shape changes.
+
+Verification: 84 distinct focused backend cases passed across PDF, deferral,
+matcher, basis, evidence, natural-language, Discovery reasoning and v4 tests;
+scoped Ruff passed. The plan records the corrected test-assertion failure and
+targeted rerun. A screenshot-text regression now matches SQL, Python and Excel
+without assigning proficiency. No live provider or hosted acceptance was run.
+
+Manual check pending: on `http://127.0.0.1:5173/settings/profile`, analyze a
+synthetic PDF with `Skills` followed by `SQL, Python, scikit-learn, Excel`.
+At `/career-skill-matches`, open Job-sample skills and expand Data Analyst; with
+the reviewed PH sample loaded, those three exact skills should show resume
+evidence. A role absent from that sample still has no benchmark mappings.
+Use Update resume matches for stale AI mappings; extraction need not be repeated
+for an existing saved resume. Report tab, role, expected skill, interpretation
+status and request ID on failure, without private resume content. Hosted behavior
+requires deploying the reviewed backend repair; hosted configuration is unchanged.
+
 ### Current implementation and handoff, 2026-11-19
 
 Unified evidence is implemented locally. Job-sample skills preserves the published

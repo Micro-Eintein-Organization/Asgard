@@ -17,7 +17,9 @@ def uid(value: int) -> UUID:
     return UUID(int=value)
 
 
-def skill(key: str = "python", label: str = "Python", aliases: tuple[str, ...] = ()) -> BenchmarkSkill:
+def skill(
+    key: str = "python", label: str = "Python", aliases: tuple[str, ...] = (),
+) -> BenchmarkSkill:
     return BenchmarkSkill(key, label, aliases, uid(100))
 
 
@@ -35,6 +37,17 @@ def test_positive_report_levels_are_matched(level: int):
     assert result.skill_matches[0].status is SkillStatus.MATCHED
     assert result.skill_matches[0].reported_level == level
     assert result.n_of_N == (1, 1)
+
+
+def test_resume_skill_list_with_scikit_learn_keeps_other_exact_matches():
+    text = "Analytics: SQL, Python, pandas, scikit-learn, Excel, A/B testing, cohort analysis"
+    skills = tuple(BenchmarkSkill(str(i), label, competency_id=uid(i))
+                   for i, label in enumerate(("SQL", "Python", "Excel"), 1))
+    evidence = ResumeEvidence("skill", text, 1, text)
+    result = rank_careers([career(skills=skills)], (), [evidence])[0]
+    assert result.matched_skill_count == 3
+    assert all(match.reported_level is None for match in result.skill_matches)
+    assert all(match.resume_signals[0].evidence.text == text for match in result.skill_matches)
 
 
 def test_level_zero_is_missing():

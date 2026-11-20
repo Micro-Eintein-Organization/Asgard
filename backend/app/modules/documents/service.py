@@ -95,7 +95,7 @@ async def state(connection, uid, settings):
         active=find({"active"}),
         candidate=find({"uploaded", "uploading", "analyzing"}),
         latest_failure=find({"failed"}),
-        available=configured(settings),
+        available=configured(settings) and settings.documents_processing_enabled,
         synthetic_only=not settings.documents_real_data_approved,
         cleanup_pending=sum(
             item["purge_due_at"] is not None and item["purged_at"] is None for item in documents
