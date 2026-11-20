@@ -10,6 +10,35 @@ Requirements: REQ-04, REQ-05, REQ-11; F-001-AC-01–08, F-002-AC-01–09.
 
 ## Behavior
 
+### Owner-requested card/progress correction, 2026-11-20
+
+Codex adapted the owner's supplied earlier design: a centered Discovery title,
+readable four-column maximum grid, semantic lucide icons, descriptions, and green
+outlined selection with a visible Selected label. Cards keep their geometry when
+selected and wrap to two columns/tablet and one column/mobile. No placeholder
+illustrations or new assets were introduced. The CSS overrides are scoped to the
+questionnaire rather than changing catalog/entry cards.
+
+Progress now uses the actual editor index and active route length. Segments use
+the same column count as the route and advance/reverse with Next/Return. The count
+can change when saved answers activate additional questions. The stale stage label
+was removed. Existing checkpoint and branching services were not changed.
+
+Sources: DiscoveryHeader/DiscoveryWizard, `features/discovery/choice-presentation.ts`
+and scoped rules in `styles.css`. TypeScript passed. One short local signed-in
+browser check passed: four-card row cap, readable widths, unchanged selected card
+height/position, 375 px reflow, progress 1→2→3→4→3 and dynamic paired-interest routing.
+Desktop/mobile screenshots were visually inspected. Its disposable account was
+removed. The first temporary check failed to import its helper; correcting the
+temporary relative import resolved the harness issue before the successful run.
+No broad tests, provider checks, backend or database changes were needed.
+
+Manual review: open `/discovery` with a new attempt/retake, select Basics, then two
+interests. Confirm readable wrapped cards and Selected labels, then advance through
+the bridge/activities and use Return. The question number and segment count must
+match the active question/route; verify native keyboard selection/focus and narrow
+layout. Report route, viewport and expected/actual appearance for visual feedback.
+
 New published v3 attempts use field scenarios, all fifteen paired-field bridges,
 and follow-ups activated by selected activities. Routes contain at most ten
 questions and may finish sooner when uncertain. The old goal question is omitted.

@@ -22,6 +22,7 @@ import { useRecommendationFlow } from "@/features/recommendations/use-recommenda
 import { useAuth } from "@/auth/context";
 import { isCurrentAccount } from "@/auth/transport";
 import { ExperienceIntake } from "@/features/discovery/experience-intake";
+import { choicePresentation, Check } from "@/features/discovery/choice-presentation";
 import { useCallback, useState } from "react";
 
 type Schemas = components["schemas"];
@@ -177,16 +178,15 @@ function DiscoveryEditor({
       errorSummary.current?.focus();
   }, [editor.error, editor.blocker.state]);
   return (
-    <section className="discovery-page">
+    <section className="discovery-page discovery-questionnaire">
       <DiscoveryHeader
-        currentStep={definition.version === 3 ? (editor.question.kind === "experience_preference" ? 1 : 2) : editor.index + 1}
-        totalSteps={definition.version === 3 ? 3 : editor.total}
+        currentStep={editor.index + 1}
+        totalSteps={editor.total}
         disabled={editor.busy}
         onBack={() => void editor.move(-1)}
         onSkip={() => void editor.skip()}
       />
       <div ref={questionContent} className={definition.version === 3 ? "discovery-v3" : undefined}>
-        {definition.version === 3 && <p className="discovery-stage" aria-label="Current stage">{editor.question.kind === "experience_preference" ? "Background" : "Explore work"} → Your suggestions</p>}
         <header className="discovery-header">
           <h1 ref={heading} tabIndex={-1}>
             {editor.question.prompt}
@@ -208,7 +208,7 @@ function DiscoveryEditor({
           className="choice-grid question-choices border-0 p-0"
           style={
             {
-              "--choice-count": definition.version === 2
+              "--choice-count": definition.version >= 2
                 ? Math.min(editor.question.options.length, 4)
                 : editor.question.options.length,
             } as CSSProperties
@@ -217,6 +217,8 @@ function DiscoveryEditor({
           <legend className="sr-only">{editor.question.prompt}</legend>
           {editor.question.options.map((option) => {
             const selected = editor.selected.includes(option.id);
+            const presentation = choicePresentation(editor.question.question_id, option.id, option.description);
+            const Icon = presentation.icon;
             return (
               <label key={option.id} className="choice-card selectable-card">
                 <input
@@ -229,13 +231,10 @@ function DiscoveryEditor({
                   }}
                   className="self-start accent-emerald-600"
                 />
-                {selected && (
-                  <span className="selection-indicator" aria-hidden="true">
-                    ✓
-                  </span>
-                )}
+                <span className="discovery-choice-status" aria-hidden="true">{selected ? <><Check size={12} />Selected</> : "Option"}</span>
+                <span className="discovery-choice-icon" aria-hidden="true"><Icon size={32} strokeWidth={1.5} /></span>
                 <strong>{option.label}</strong>
-                {option.description && <span>{option.description}</span>}
+                {presentation.description && <span className="discovery-choice-description">{presentation.description}</span>}
               </label>
             );
           })}
@@ -270,7 +269,7 @@ function DiscoveryEditor({
             </button>
           </div>
         )}
-        <div className="question-actions" data-align="end">
+        <div className="question-actions discovery-question-actions" data-align="center">
           {editor.question.kind === "experience_preference" && (
             <Button variant="outline" disabled={editor.busy} onClick={() => void editor.skipExperience()}>
               Skip

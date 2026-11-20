@@ -15,3 +15,13 @@ confirmation, profile components and migration; reuse it without replacing edits
 Checks: focused route/rules/security tests, TypeScript, contract drift and guided
 manual acceptance. No full foundation suite or browser matrix.
 No commit, push, deployment or hosted activation is part of implementation.
+
+## Owner-requested presentation correction, 2026-11-20
+
+Owner requested cards/progress based on the earlier supplied design. Codex owns
+the bounded change; reviewer @YakisobaNissin. Acceptance F-001-AC-06/07: readable
+wrapping cards with semantic icons, outlined green selection and stable geometry;
+question-based progress advances with navigation and follows the active route.
+Affected modules: DiscoveryHeader, wizard presentation and scoped stylesheet.
+No API/schema/branching changes. Reuse existing lucide icons and design tokens.
+Verify with TypeScript and one short browser pass at desktop/mobile; no broad suite.
