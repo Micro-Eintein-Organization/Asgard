@@ -26,6 +26,7 @@ import { EscoReferencePage } from "@/features/catalog/esco";
 import { CounselorPage } from "@/features/ai-guidance";
 import { MfaPage } from "@/features/auth/mfa-page";
 import { ResetPasswordPage } from "@/features/auth/reset-password";
+import { PostSignInDestination } from "@/features/auth/entry-destination";
 
 export const router = createBrowserRouter([
   {
@@ -57,6 +58,7 @@ export const router = createBrowserRouter([
       {
         element: <ProtectedRoute />,
         children: [
+          { path: appRoutes.start, element: <PostSignInDestination /> },
           { path: appRoutes.dashboard, element: <DashboardPage /> },
           { path: appRoutes.welcome, element: <WelcomePage /> },
           { path: appRoutes.discovery, element: <DiscoveryPage /> },

@@ -184,7 +184,7 @@ export function RecommendationCards({
                   <p>{careerSummary(career.description)}</p>
                   <div className="suggestion-reason">
                     <h3>Why this was suggested</h3>
-                    <p className="text-sm">{careerSummary(item.reason)}</p>
+                    <p className="text-sm">{item.reason}</p>
                   </div>
                   {item.explanation && <details className="text-sm space-y-3">
                     <summary>Answers, experience and roadmap reasoning</summary>

@@ -1,5 +1,14 @@
 # Asgard: Decisions and delivery gates
 
+DISCOVERY-V4, 2026-11-20: project owner selected balanced experience influence,
+stable phases with live progress, published app content only, and at most one
+explained alternative outside selected fields; then explicitly requested plan
+implementation and prepared migration scripts/steps. Implementer Codex; reviewer
+@YakisobaNissin. Source and additive scripts prepared; no v4 application or hosted
+activation performed. [Implementation](features/guided-discovery-v4.md),
+[operator steps](deployment-discovery-v4.md). Final technical review and live v4
+acceptance remain pending.
+
 DISCOVERY-V3 (2026-11-20, project owner/codeowner @YakisobaNissin in chat):
 approved the overhaul end to end and requested implementation of the reviewed
 plan. Selections: required experience input on the experience branch, adaptive
@@ -15,6 +24,10 @@ Consolidated baseline: 2026-11-17. This register retains recorded owner decision
 <a id="w05-guided-discovery-revision-scope-2026-11-09"></a>
 
 ## Current resolutions
+
+- PH-SALARY-01 clarification (2026-11-20, project owner in chat): requested a general “gist on average starting,” permitting researched, explicitly labeled starting-pay estimates using broader job families. The owner corrected the obsolete twelve-role assumption; cover the full published catalog (currently 23), including the 11-role expansion. This supersedes the initial exact-reference-only salary presentation, not the shared API or recommendation boundaries. See [specification](specs/career-exploration-comparison.md#philippine-salary-and-organization-update-2026-11-20). Codex implements; @YakisobaNissin review and owner Chrome acceptance remain pending.
+
+- PH-SALARY-01 / COMPARE-ORG-01 (2026-11-20, project owner in chat): “implement” approves the [comparison salary and organization plan](plans/comparison-ph-salary-2026-11-20.md). Permit bounded attributed Philippine salary snapshots, explicit missing coverage and clearer labeled sections/icons. Supersedes the comparison specification's no-new-dataset boundary only for this snapshot; live feeds and recommendation inputs remain outside scope. Implementer: Codex; technical reviewer: @YakisobaNissin, review pending. No shared API, migration, dependency or Git publication change.
 
 - SKILL-EVIDENCE-03 (2026-11-19, project owner in chat): selected “One evidence count,” automatic resume interpretation, and “Supported equivalence,” then approved implementation with “implement.” Add applicable Done-topic evidence to Roadmap skills; retain separately labeled reports, resume passages and interpreted wording; count each skill once. Permit automatic equivalent-wording interpretation with validated IDs/source quotes, excluding broad or uncertain implications. Authorize the bounded private interpretation migration and additive API/client changes in the reviewed plan. Codex implemented locally; @YakisobaNissin technical review and live acceptance pending. No hosted migration, deployment or Git publication authorized. [Owning specification](specs/competency-comparison.md), [implementation](features/competency-comparison.md).
 

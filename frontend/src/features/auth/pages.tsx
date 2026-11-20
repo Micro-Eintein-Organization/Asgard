@@ -23,7 +23,7 @@ export function LandingPage() {
       </StatePanel>
     );
   if (user?.email_confirmed_at && !error)
-    return <Navigate to={appRoutes.dashboard} replace />;
+    return <Navigate to={appRoutes.start} replace />;
   return (
     <section className="landing">
       <div>

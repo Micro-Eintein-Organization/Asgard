@@ -101,7 +101,7 @@ try {
     catalog_release_id: state.catalog_release_id };
   const result = await api(owner, "me/recommendations", { method: "POST", expected: 202, body: request });
   assert.equal(result.status, "completed");
-  assert.equal(result.prompt_version, "discovery-rules-3");
+  assert.equal(result.prompt_version, "discovery-rules-3.1");
   assert.ok(result.items.every(item => item.explanation?.first_topics.length));
   assert.equal((await api(owner, "me/recommendations", { method: "POST", expected: 202, body: request })).id, result.id);
   await api(other, `me/recommendations/${result.id}`, { expected: 404 });

@@ -1,5 +1,10 @@
 # Discovery v3 and contextual counselor: combined activation checklist
 
+V4 follow-up, 2026-11-20: new adaptive behavior has a separate prepared
+[v4 operator checklist](deployment-discovery-v4.md). Its migration and publication
+were applied locally with explicit owner approval; hosted activation remains pending. Use that checklist for v4; historical v3 activation and
+the unrelated Counselor/skills prerequisites below are not a reason to rerun old SQL.
+
 Prepared by Codex on 2026-11-20. Release operator/reviewer: @YakisobaNissin.
 This is the single operator checklist for the combined changes, supplementing the
 [deployment runbook](deployment.md). It does not authorize publication, migration
@@ -8,6 +13,10 @@ application or deployment. Product behavior and acceptance remain owned by the
 [competency guide](features/competency-comparison.md) and [PDF guide](features/pdf-reading.md).
 
 ## Current state and responsibility
+
+- Completion/navigation correction (2026-11-20): implemented and checked locally;
+  deploy the reviewed frontend with the combined change. This correction adds no
+  SQL. See [focused evidence](features/guided-discovery-v4.md#completion-and-navigation-correction-2026-11-20).
 
 - Both features share one uncommitted checkout on `codex/cabusao-ui-integration`.
   Neither chat committed, pushed or deployed these changes. Redeploying the current
@@ -129,7 +138,7 @@ Run this bounded walkthrough at the selected hosted frontend, or locally at
    failure, session/account changes, keyboard operation and a narrow viewport.
 
 **Deferred/nonblocking for these bounded features:** unrelated backlog work, new
-datasets, semantic expansion of Discovery's exact resume-connection reasons, full
+datasets, new interpretation generation within Discovery, full
 browser matrices and broad foundation reruns without a changed-risk reason. Existing
 production security, recovery, operational backup and release gates still apply
 when their environment/feature scope is activated; this checklist does not waive them.

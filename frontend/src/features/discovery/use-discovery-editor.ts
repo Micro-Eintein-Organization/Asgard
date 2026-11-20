@@ -37,19 +37,14 @@ export function useDiscoveryEditor(initial: Session, definition: Definition, int
       initial.answers.map((answer) => [answer.question_id, answer.option_ids]),
     ),
   );
-  const [index, setIndex] = useState(() =>
-    initial.source_session_id && initial.revision === 1
-      ? 0
-      : Math.max(
-          0,
-          initial.active_question_ids.indexOf(
-            initial.next_question_id ?? "goals",
-          ),
-        ),
-  );
+  const [cursor, setCursor] = useState(() => initial.next_question_id ?? initial.active_question_ids[0]);
+  const activeId = saved.active_question_ids.includes(cursor) ? cursor : saved.next_question_id ?? saved.active_question_ids[0];
+  const index = saved.active_question_ids.indexOf(activeId);
+  const setIndex = (next: number) => setCursor(saved.active_question_ids[next] ?? saved.active_question_ids[0]);
   const [error, setError] = useState("");
   const [feedback, setFeedback] = useState("");
   const [busy, setBusy] = useState(false);
+  const [pendingLabel, setPendingLabel] = useState("Saving answers...");
   const writing = useRef(false);
   const bypass = useRef(false);
   const checkpoint = useCoreMutation(coreApi.saveDiscovery);
@@ -141,43 +136,22 @@ export function useDiscoveryEditor(initial: Session, definition: Definition, int
         throw new Error("Your account changed. Reopen Discovery.");
       setSaved(result);
     };
-    if (definition.version === 1 && !same(drafts.interests, savedAnswers.interests)) {
-      const first = definition.questions.find(
-        (item) => item.question_id === "interests",
-      )!;
-      if (!valid(first, drafts.interests ?? []))
-        throw new Error("Choose an interest or uncertainty before saving.");
-      await save([{ question_id: "interests", option_ids: drafts.interests }]);
+    // Checkpoint in route order: an earlier edit can retire later questions.
+    const visited = new Set<string>();
+    while (true) {
+      const baseline = Object.fromEntries(
+        result.answers.map((answer) => [answer.question_id, answer.option_ids]),
+      );
+      const id = result.active_question_ids.find(
+        key => !visited.has(key) && drafts[key] !== undefined && !same(drafts[key], baseline[key]),
+      );
+      if (!id) break;
+      const edited = definition.questions.find(item => item.question_id === id)!;
+      if (!valid(edited, drafts[id]))
+        throw new Error("An edited question needs an answer or uncertainty. Return to it, or leave without saving.");
+      await save([{ question_id: id, option_ids: drafts[id] }]);
+      visited.add(id);
     }
-    const baseline = Object.fromEntries(
-      result.answers.map((answer) => [answer.question_id, answer.option_ids]),
-    );
-    const changes = Object.entries(drafts).filter(
-      ([id, values]) => !same(values, baseline[id]),
-    );
-    if (definition.version === 1 && changes.some(([id]) => !result.active_question_ids.includes(id)))
-      throw new Error(
-        "There are unsaved edits on an inactive question. Return to that branch to save them, or leave without saving.",
-      );
-    if (
-      changes.some(
-        ([id, values]) =>
-          !valid(
-            definition.questions.find((item) => item.question_id === id)!,
-            values,
-          ),
-      )
-    )
-      throw new Error(
-        "An edited question needs an answer or uncertainty. Return to it, or leave without saving.",
-      );
-    if (changes.length)
-      await save(
-        changes.map(([question_id, option_ids]) => ({
-          question_id,
-          option_ids,
-        })),
-      );
     setFeedback("Your active answers are saved.");
     return result;
   }
@@ -203,10 +177,19 @@ export function useDiscoveryEditor(initial: Session, definition: Definition, int
     if (writing.current || !isCurrentAccount(userId)) return;
     writing.current = true;
     setBusy(true);
+    setPendingLabel("Saving answers...");
     setError("");
     try {
       await action();
     } catch (failure) {
+      if ((failure as {body?: {code?: string}})?.body?.code === "experience_changed") {
+        try {
+          const current = await coreApi.discovery();
+          if (isCurrentAccount(userId) && current.draft?.id === saved.id) setSaved(current.draft);
+        } catch {
+          // Keep local input and the original error if the recovery read also fails.
+        }
+      }
       if (isCurrentAccount(userId))
         setError(
           failure instanceof Error
@@ -236,25 +219,24 @@ export function useDiscoveryEditor(initial: Session, definition: Definition, int
       }
       if (!valid(question, selected))
         throw new Error("Choose an answer or 'I'm not sure yet' to continue.");
-      const finalStep =
-        direction > 0 && index === saved.active_question_ids.length - 1;
-      const result = finalStep ? await saveAll() : await saveCurrent();
+      const result = direction > 0 ? await saveAll() : await saveCurrent();
       const savedIndex = result.active_question_ids.indexOf(question.question_id);
       if (direction < 0 && index === 0) {
         const baseline = Object.fromEntries(
-          result.answers.map((answer) => [
-            answer.question_id,
-            answer.option_ids,
-          ]),
+          result.answers.map((answer) => [answer.question_id, answer.option_ids]),
         );
         bypass.current = !Object.entries(drafts).some(
           ([id, value]) => !same(value, baseline[id]),
         );
         void navigate(appRoutes.welcome);
-      } else if (
-        direction > 0 &&
-        savedIndex === result.active_question_ids.length - 1
-      ) {
+      } else if (direction < 0) {
+        setCursor(result.active_question_ids[Math.max(0, savedIndex - 1)]);
+      } else if (result.flow?.experience_changed) {
+        throw new Error("Your experience changed. Choose whether to use updated experience before continuing.");
+      } else if (result.next_question_id) {
+        setCursor(result.next_question_id);
+      } else {
+        setPendingLabel("Finishing Discovery...");
         const completed = await completion.mutateAsync({
           id: result.id,
           body: { expected_revision: result.revision },
@@ -265,16 +247,35 @@ export function useDiscoveryEditor(initial: Session, definition: Definition, int
           replace: true,
           state: { generateFor: completed.id },
         });
-      } else setIndex(savedIndex + direction);
+      }
     });
   }
 
+  const refreshExperience = () => perform(async () => {
+    const result = await checkpoint.mutateAsync({ id: saved.id, body: {
+      expected_version: saved.revision, refresh_experience: true,
+      answers: [{question_id: "experience_preference", option_ids: ["use_experience"]}],
+    }});
+    if (!isCurrentAccount(userId)) return;
+    setSaved(result);
+    setCursor(result.next_question_id ?? result.active_question_ids[0]);
+  });
+  const startBasics = () => perform(async () => {
+    const result = await checkpoint.mutateAsync({ id: saved.id, body: {
+      expected_version: saved.revision,
+      answers: [{question_id: "experience_preference", option_ids: ["basics"]}],
+    }});
+    if (!isCurrentAccount(userId)) return;
+    setSaved(result);
+    setDrafts(previous => ({...previous, experience_preference: ["basics"]}));
+    setCursor(result.next_question_id ?? result.active_question_ids[0]);
+  });
   const skipExperience = () =>
     perform(async () => {
       if (question.kind !== "experience_preference") return;
       const result = await saveCurrent(["unsure"]);
       setDrafts(previous => ({ ...previous, [question.question_id]: ["unsure"] }));
-      setIndex(result.active_question_ids.indexOf(question.question_id) + 1);
+      setCursor(result.active_question_ids[result.active_question_ids.indexOf(question.question_id) + 1]);
     });
 
   const skip = () =>
@@ -311,14 +312,7 @@ export function useDiscoveryEditor(initial: Session, definition: Definition, int
           ]),
         ),
       );
-      setIndex(
-        Math.max(
-          0,
-          current.draft.active_question_ids.indexOf(
-            current.draft.next_question_id ?? "goals",
-          ),
-        ),
-      );
+      setCursor(current.draft.next_question_id ?? current.draft.active_question_ids[0]);
       checkpoint.reset();
       completion.reset();
       setFeedback("Saved answers reloaded.");
@@ -330,6 +324,8 @@ export function useDiscoveryEditor(initial: Session, definition: Definition, int
     });
   return {
     question,
+    refreshExperience,
+    startBasics,
     selected,
     index,
     total: saved.active_question_ids.length,
@@ -337,6 +333,9 @@ export function useDiscoveryEditor(initial: Session, definition: Definition, int
     error,
     feedback,
     busy,
+    pendingLabel,
+    readyToComplete: !saved.next_question_id && !saved.flow?.experience_changed && !intakeDirty &&
+      saved.active_question_ids.every(id => same(drafts[id] ?? savedAnswers[id], savedAnswers[id])),
     dirty,
     toggle,
     move,

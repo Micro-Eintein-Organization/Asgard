@@ -1,6 +1,7 @@
 import { useScreenContext } from "@/features/counselor-context";
 import { WorkExamples, LearningExamples } from "./exploration";
 import { useState } from "react";
+import { ArrowLeft, ArrowRightLeft, Banknote, BookOpen, BriefcaseBusiness, ClipboardList, GitCompareArrows, NotebookPen } from "lucide-react";
 import { Link, useParams, useSearchParams } from "react-router";
 import { Card } from "@/components/ui/card";
 import { PageHeading } from "@/components/shared";
@@ -12,6 +13,16 @@ import { ComparisonCitations, ComparisonInsight, useComparisonInsight } from "@/
 import { SharedPractice } from "./shared-practice";
 import { SavedCareerEditor } from "./saved-career";
 import { EscoCareerSources } from "@/features/catalog/esco";
+import { PhilippineSalaryComparison, PhilippineSalarySources } from "./ph-salary";
+
+const comparisonSections = [
+  { id: "work", title: "What each career does", description: "Compare the activities, outputs and checks in each role.", icon: BriefcaseBusiness },
+  { id: "salary", title: "Philippine salary comparison", description: "Get a rough idea of starting pay in each career, in pesos per month.", icon: Banknote },
+  { id: "shared", title: "Shared work and skills", description: "See how the work connects and try a practice activity.", icon: GitCompareArrows },
+  { id: "learning", title: "What you could start learning", description: "Explore a first step in either learning path.", icon: BookOpen },
+  { id: "experience", title: "Experience you’ve reported", description: "Revisit what you have recorded for each career.", icon: ClipboardList },
+  { id: "notes", title: "Saved careers and personal notes", description: "Keep an alternative and a private note about your choice.", icon: NotebookPen },
+] as const;
 
 function CareerPairForm({
   left,
@@ -80,6 +91,7 @@ function CareerPairForm({
           </label>
         ))}
         <Button type="submit" disabled={!canSubmit}>
+          <ArrowRightLeft className="size-4" aria-hidden="true" />
           Compare careers
         </Button>
       </div>
@@ -125,17 +137,21 @@ export function CareerComparisonPage() {
     <section className="space-y-6">
       <PageHeading
         title="Compare careers"
-        description="See what each career does, where the skills overlap, and what to learn first."
+        description="Compare the work, Philippine salary references, shared skills and first learning steps."
       />
-      <Link className="underline" to="/careers">
-        Choose careers from the catalog
+      <Link className="inline-flex min-h-11 items-center gap-2 underline underline-offset-4" to="/careers">
+        <ArrowLeft className="size-4" aria-hidden="true" />
+        Back to career catalog
       </Link>
-      <CareerPairForm
+      <Card className="gap-3 p-5 shadow-none">
+        <h2 className="font-semibold">Choose two careers</h2>
+        <CareerPairForm
         key={`${left}|${right}`}
         left={left}
         right={right}
         submit={(left, right) => setParams({ left, right })}
-      />
+        />
+      </Card>
 
       {!valid ? (
         params.has("left") || params.has("right") ? (
@@ -153,10 +169,15 @@ export function CareerComparisonPage() {
       ) : (
         <>
           {query.data && (
-            <div className="space-y-5">
+            <div className="space-y-8">
+              <nav aria-label="Comparison sections" className="flex flex-wrap gap-x-5 gap-y-1 border-y py-2 text-sm">
+                {comparisonSections.map(({ id, title }) => (
+                  <a key={id} href={`#compare-${id}`} className="inline-flex min-h-11 items-center underline underline-offset-4">{title}</a>
+                ))}
+              </nav>
               <div className="grid gap-4 md:grid-cols-2">
                 {query.data.careers.map(({ career }) => (
-                  <Card key={career.id} className="p-5">
+                  <Card key={career.id} className="min-w-0 gap-2 border-t-4 border-t-primary p-5 shadow-none">
                     <h2 className="text-2xl font-semibold">{career.title}</h2>
                     <Link className="underline" to={`/roadmaps/${career.id}`}>
                       Explore roadmap
@@ -164,32 +185,29 @@ export function CareerComparisonPage() {
                   </Card>
                 ))}
               </div>
-              {(["work", "learning", "experience", "notes"] as const).map(
-                (section) => (
-                  <div key={section} className="space-y-5">
-                    {section === "learning" && (
-                      <section key={`${left}|${right}`} className="space-y-4">
-                        <h2 className="text-xl font-semibold">Similarities in the work</h2>
-                        <ComparisonInsight insight={insight} careers={query.data!.careers.map(({ career }) => career)} />
-                        <SharedPractice careers={query.data!.careers} />
-                      </section>
-                    )}
-                    <section className="space-y-3">
-                      <h2 className="text-xl font-semibold">
-                        {
-                          {
-                            work: "What each career does",
-                            experience: "Experience you’ve reported",
-                            learning: "What you could start learning",
-                            notes: "Save an alternative and personal notes",
-                          }[section]
-                        }
-                      </h2>
+              {comparisonSections.map(
+                ({ id: section, title, description, icon: Icon }) => (
+                    <section key={section} id={`compare-${section}`} aria-labelledby={`compare-${section}-heading`} className="scroll-mt-28 space-y-4">
+                      <div className="space-y-1">
+                        <h2 id={`compare-${section}-heading`} className="flex items-center gap-2 text-xl font-semibold">
+                          <Icon className="size-5 shrink-0" aria-hidden="true" />
+                          {title}
+                        </h2>
+                        <p className="text-sm text-muted-foreground">{description}</p>
+                      </div>
+                      {section === "salary" ? (
+                        <PhilippineSalaryComparison careers={query.data!.careers.map(({ career }) => career)} />
+                      ) : section === "shared" ? (
+                        <div className="space-y-4">
+                          <ComparisonInsight insight={insight} careers={query.data!.careers.map(({ career }) => career)} />
+                          <SharedPractice careers={query.data!.careers} />
+                        </div>
+                      ) : (
                       <div className="grid gap-4 md:grid-cols-2">
                         {query.data!.careers.map((column) => (
                           <Card
                             key={column.career.id}
-                            className="p-5 min-w-0 space-y-3"
+                            className="min-w-0 gap-3 p-5 shadow-none"
                           >
                             <h3 className="font-semibold">
                               {column.career.title}
@@ -251,8 +269,8 @@ export function CareerComparisonPage() {
                           </Card>
                         ))}
                       </div>
+                      )}
                     </section>
-                  </div>
                 ),
               )}
             </div>
@@ -262,6 +280,7 @@ export function CareerComparisonPage() {
       <details className="text-sm">
         <summary className="cursor-pointer font-semibold">Sources and limitations</summary>
         <div className="mt-3 space-y-3">
+          {query.data && <PhilippineSalarySources />}
           {query.data && (
             <ul className="space-y-2 pl-5 list-disc">
               {query.data.careers.map(({ career }) => (

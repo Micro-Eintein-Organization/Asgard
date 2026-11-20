@@ -17,6 +17,24 @@ Help authenticated learners explore published careers without claiming assessed 
 
 ## Screen sequence
 
+Completion consistency resolution, 2026-11-20 (owner-approved plan): all saved
+versions use the checkpoint response's next_question_id for forward navigation.
+Continue may reveal a newly applicable question; See suggestions is reserved for
+a fully saved route with no unanswered questions and current experience. A final
+checkpoint with no remaining question completes immediately. Failed completion
+keeps the saved draft for retry. Legacy progress uses stable version-bounded
+capacity and the current question number; v4 retains fixed phases. Neither reaches
+completion before submission succeeds. This changes navigation/presentation, not
+historical question meanings or authored routing. See the
+[correction evidence](../features/guided-discovery-v4.md#completion-and-navigation-correction-2026-11-20).
+
+V4 prepared, 2026-11-20: the owner approved the consistent adaptive-flow plan.
+After its separate migration/publication, new attempts use bounded meaningful
+clarifications, early stopping, source-change acknowledgement and fixed-phase
+progress. Existing attempts retain their version. See [v4 implementation and
+verification limits](../features/guided-discovery-v4.md). Earlier v3 descriptions
+remain applicable to existing v3 sessions until the v4 rollout.
+
 Owner-approved overhaul, 2026-11-20: new published attempts and retakes use v3.
 V1/v2 drafts retain their saved version. V3 removes the goals question and uses
 field scenarios, paired-interest bridges and selected-activity follow-ups, capped
@@ -26,6 +44,10 @@ documents/employment history remain optional, with manual skills as an alternati
 See [v3 implementation and acceptance](../features/guided-discovery-v3.md).
 
 The v2 description below remains applicable to saved v2 attempts.
+
+2026-11-20 copy correction: v3 follow-ups use distinct authored situations instead
+of repeating selected activity labels. Existing question/option identities, their
+activity meanings and route limits are preserved; see the v3 implementation guide.
 
 Entry offers Guided Discovery or Browse careers. New sessions and full retakes use the published v2 questionnaire. Existing drafts resume their saved version. The server owns the route, question IDs, choices, limits, and validation in [definition.py](../../backend/app/modules/discovery/definition.py); [generated contracts](../../backend/openapi.json) own the wire shape.
 

@@ -3,6 +3,31 @@
 Documentation baseline: 2026-11-17. Current [decisions](../decisions.md#current-resolutions) supersede earlier delivery sequencing and fixed catalog counts. Profile skill editing, confirmed resume review, and career-to-career comparison are implemented; roadmap experience comparison is disabled. Occupational reference entries require authored roadmaps and reviewed publication before becoming recommendation candidates. Hosted activation and unrun quality/privacy acceptance remain separate. Dated increment details below retain their original scope.
 
 
+## Philippine salary and organization update, 2026-11-20
+
+The project owner approved the [bounded plan](../plans/comparison-ph-salary-2026-11-20.md)
+with “implement” in chat on 2026-11-20. This supersedes the no-new-dataset boundary
+below only for manually maintained, attributed Philippine salary snapshots on
+the two-career comparison page. No live feed, recommendation input or API change.
+Technical reviewer: @YakisobaNissin; independent review remains pending.
+
+- PH-SALARY-01: Following the owner's 2026-11-20 clarification requesting a
+  general “gist on average starting,” display approximate monthly PHP starting
+  ranges across the published catalog. Broader researched job-family estimates
+  are permitted when labeled as Asgard estimates and explained per career.
+  Include the source, reference vintage, scope and check date. Do not describe
+  authored estimates as measured national averages, exact employer offers or
+  take-home pay. Keep unmapped future IDs unavailable instead of returning zero.
+  This supersedes the first increment's exact-reference-only implementation and
+  its six-career coverage; the current publication contains 23 careers.
+- COMPARE-ORG-01: Separate work, Philippine pay, shared work/skills, learning,
+  reported experience and private notes with labeled section icons and direct
+  section links. Maintain paired order and accessible narrow-screen reflow.
+- COMPARE-PRESERVE-01: Preserve submitted URL selections, existing loading/retry,
+  AI explanations, source disclosure, private notes and learning behavior.
+
+Implementation and verification belong in the [feature guide](../features/career-comparison-and-shortlist.md#philippine-salary-and-organization-2026-11-20).
+
 ## Beginner exploration update, 2026-11-05
 
 The owner selected career choice first across all twelve careers. Use concrete work, outputs, checks and one beginner activity per career, with optional task-based experience questions on the existing 120 skills. The typed local content package is implemented without database or recommendation changes. [Implementation and focused evidence](../features/career-comparison-and-shortlist.md#beginner-exploration-2026-11-05). Independent comprehension/content review remains pending; PDF, hosting and additional account controls remain deferred.

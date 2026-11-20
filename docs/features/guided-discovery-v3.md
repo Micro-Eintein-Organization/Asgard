@@ -10,6 +10,43 @@ Requirements: REQ-04, REQ-05, REQ-11; F-001-AC-01–08, F-002-AC-01–09.
 
 ## Behavior
 
+### Repeated questions and resume-backed reasons, 2026-11-20
+
+Owner requested distinct follow-ups and visible experience-based explanations.
+Codex replaced the generated “Go deeper”/repeated activity copy with 23 authored
+situations. Cloud now asks about a traffic spike, for example. Existing option IDs
+retain their activity meanings and the same routes/registries remain valid.
+
+The recommendation service now reuses current validated saved resume equivalence
+mappings, in addition to exact published skill wording. Each relationship requires
+the active account/document/analysis revision, a current interpretation fingerprint,
+a published career/skill relationship and a quote resolving to the supplied PDF
+fact. Unavailable/stale interpretations contribute no inferred connection. No model
+call is made while reading/preparing deterministic results.
+
+Supported resume background (or saved reported skills) appears first in the main
+reason, followed by chosen work and authored introductory topics. Source passages
+remain available in the details. The frontend displays the full reason rather than
+only its first sentence. Rules identity is `discovery-rules-3.1`, so older saved
+deterministic results become outdated and refresh through the existing flow.
+
+Sources: `discovery/follow_ups.py`, `discovery/v3.py`, recommendation rules/service,
+`recommendations/resume_connections.py`, and recommendation card presentation.
+Verification: 22 focused copy/route/evidence cases passed, including unsupported
+quotes, unrelated skill IDs, stale revisions and removed/account-scoped documents;
+TypeScript and scoped lint passed. The existing local signed-in journey passed
+result generation/reuse/rendering and ownership/removal checks with disposable
+accounts cleaned up. It exercised reported skills, not an actual resume upload;
+resume connections were verified with structured synthetic evidence. Semantic
+preview was unavailable in that run and the exact task fallback worked.
+
+Manual acceptance: after deploying compatible backend/frontend source, retake
+Discovery to review the new situation copy. Use a successfully analyzed synthetic
+resume, finish with Use my experience, and inspect refreshed Results: applicable
+background should be visible in the main reason, with its original passage in
+the details. An unrelated or removed resume must not produce a claimed connection.
+No new SQL/schema/registry publication is required for this copy/evidence correction.
+
 ### Owner-requested card/progress correction, 2026-11-20
 
 Codex adapted the owner's supplied earlier design: a centered Discovery title,

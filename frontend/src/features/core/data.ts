@@ -259,12 +259,12 @@ export const coreApi = {
     body,
   }: {
     id: string;
-    body: Schemas["SaveDiscovery"];
+    body: Omit<Schemas["SaveDiscovery"], "refresh_experience"> & { refresh_experience?: boolean };
   }) =>
     result(
       api.PATCH("/api/v1/me/discovery/{session_id}/answers", {
         params: { path: { session_id: id } },
-        body,
+        body: { refresh_experience: false, ...body },
       }),
     ),
   completeDiscovery: ({

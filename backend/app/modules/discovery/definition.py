@@ -92,6 +92,9 @@ def uncertain(description="I would like to explore the options."):
 
 
 def definition(questionnaire_id=None):
+    from app.modules.discovery import v3, v4
+    if str(questionnaire_id) == str(v4.ID):
+        return v4.definition(v3.definition(definition_v2()))
     from app.modules.discovery import v3
     if str(questionnaire_id) == str(v3.ID):
         return v3.definition(definition_v2())
@@ -363,7 +366,7 @@ def definition_v2():
         "interests",
         "interests",
         "What kind of work would you like to try?",
-        "Pick up to two fields you’re curious about.",
+        "Pick up to two fields you're curious about.",
         [option(key, label, "") for key, label, _ in FIELDS] + [uncertain("")],
         limit=2,
     )
@@ -380,7 +383,7 @@ def definition_v2():
         "activities_general",
         "activities",
         "Which activities would you like to try?",
-        "Pick up to two, or continue if you’re still unsure.",
+        "Pick up to two, or continue if you're still unsure.",
         [option(*choices[0], "") for _, _, choices in FIELDS]
         + [option("unsure", "Still not sure", "", exclusive=True)],
         limit=2,
@@ -395,7 +398,7 @@ def definition_v2():
             [
                 option(left, labels[left], ""),
                 option(right, labels[right], ""),
-                option("both", "Both or I’m not sure", ""),
+                option("both", "Both or I'm not sure", ""),
             ],
             kind="activity_follow_up",
         )
@@ -405,6 +408,9 @@ def definition_v2():
 
 
 def active_route(answers, version=1):
+    if version == 4:
+        from app.modules.discovery.v4 import route
+        return route(answers)
     if version == 3:
         from app.modules.discovery.v3 import route
         return route(answers)

@@ -2,6 +2,10 @@
 
 These notices cover the occupational reference datasets used or staged by Asgard. The [source inventory](../backend/app/content/occupational/v1/sources.csv) records individual documents, versions, hashes, and review status.
 
+The separately maintained [Philippine salary snapshot notice](ph-salary.md)
+records the authored starting-pay estimates, linked references and career mappings.
+Salary figures do not enter occupational competency targets or recommendations.
+
 | Source | Attribution and reuse |
 | --- | --- |
 | [ESCO v1.2.1](esco.md) | European Commission. Follow the specific ESCO reuse conditions and review third-party material separately. |

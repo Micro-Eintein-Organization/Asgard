@@ -11,8 +11,10 @@ from app.modules.discovery import service as discovery
 from app.modules.discovery.definition import QUESTIONNAIRE_V2_ID, definition
 from app.modules.discovery.schemas import DiscoverySession
 from app.modules.discovery.v3 import ID as QUESTIONNAIRE_V3_ID
+from app.modules.discovery.v4 import ID as QUESTIONNAIRE_V4_ID
 from app.modules.progress.service import learning as read_learning
 from app.modules.recommendations import discovery_rules, occupational_runtime
+from app.modules.recommendations.discovery_v3_rules import RULE_VERSION as V3_RULE_VERSION
 from app.modules.recommendations.provider import (
     PROMPT_VERSION,
     SCHEMA_VERSION,
@@ -145,13 +147,20 @@ async def run(connection, uid, run_id, context_revision, catalog_release_id, *, 
             not latest
             or latest["id"] != saved["discovery_session_id"]
             or latest["revision"] != saved["discovery_revision"]
-            or saved["prompt_version"] != (
-                "discovery-rules-3"
-                if reference and reference.questionnaire_id == QUESTIONNAIRE_V3_ID
+            or saved["prompt_version"]
+            != (
+                (
+                    "discovery-rules-4"
+                    if reference and reference.questionnaire_id == QUESTIONNAIRE_V4_ID
+                    else V3_RULE_VERSION
+                )
+                if reference
+                and reference.questionnaire_id in (QUESTIONNAIRE_V3_ID, QUESTIONNAIRE_V4_ID)
                 else discovery_rules.RULE_VERSION
             )
             or (
-                reference is not None and reference.questionnaire_id == QUESTIONNAIRE_V3_ID
+                reference is not None
+                and reference.questionnaire_id in (QUESTIONNAIRE_V3_ID, QUESTIONNAIRE_V4_ID)
                 and saved["context_revision"] != context_revision
             )
             or saved["schema_version"] != discovery_rules.RESULT_SCHEMA
@@ -254,16 +263,29 @@ async def state(connection, uid, settings):
         is_current = row["rank"] == 1
         if not is_current and (previous is not None or row["status"] != "completed"):
             continue
-        value = await run(connection, uid, row["id"], learning["context_revision"], release,
-            bundled={"saved": row, "eligible": row["eligible"],
-                     "items": row["bundled_items"] if row["status"] == "completed" else []})
+        value = await run(
+            connection,
+            uid,
+            row["id"],
+            learning["context_revision"],
+            release,
+            bundled={
+                "saved": row,
+                "eligible": row["eligible"],
+                "items": row["bundled_items"] if row["status"] == "completed" else [],
+            },
+        )
         if is_current:
             current = value
         elif previous is None:
             previous = value
     completed = await discovery.latest_completed_identity(connection, uid)
     available = release is not None and (
-        (completed and completed["questionnaire_id"] in (QUESTIONNAIRE_V2_ID, QUESTIONNAIRE_V3_ID))
+        (
+            completed
+            and completed["questionnaire_id"]
+            in (QUESTIONNAIRE_V2_ID, QUESTIONNAIRE_V3_ID, QUESTIONNAIRE_V4_ID)
+        )
         or (settings.groq_enabled and bool(settings.groq_api_key.get_secret_value()))
     )
     return {
@@ -594,8 +616,16 @@ async def reserve_attempt(connection, uid, run_id, attempt):
 
 
 async def request_rules(connection, uid, body, learning, release, completed):
-    v3 = completed["questionnaire_id"] == QUESTIONNAIRE_V3_ID
-    strategy = "discovery-rules-3" if v3 else discovery_rules.RULE_VERSION
+    v3 = completed["questionnaire_id"] in (QUESTIONNAIRE_V3_ID, QUESTIONNAIRE_V4_ID)
+    strategy = (
+        (
+            "discovery-rules-4"
+            if completed["questionnaire_id"] == QUESTIONNAIRE_V4_ID
+            else V3_RULE_VERSION
+        )
+        if v3
+        else discovery_rules.RULE_VERSION
+    )
     context_revision = learning["context_revision"]
     params = {
         "uid": str(uid),
@@ -666,7 +696,7 @@ async def request_rules(connection, uid, body, learning, release, completed):
         ]
     published = await rows(
         connection,
-        "SELECT c.id AS career_id, c.slug, r.id AS roadmap_id "
+        "SELECT c.id AS career_id, c.slug, c.title, c.description, r.id AS roadmap_id "
         "FROM asgard_catalog.careers c JOIN asgard_catalog.roadmaps r ON r.career_id = c.id "
         "WHERE c.status = 'published' AND r.status = 'published' ORDER BY c.slug, r.id",
     )
@@ -676,6 +706,8 @@ async def request_rules(connection, uid, body, learning, release, completed):
             pair["slug"],
             {
                 "slug": pair["slug"],
+                "title": pair.get("title", pair["slug"]),
+                "description": pair.get("description", ""),
                 "career_id": str(pair["career_id"]),
                 "roadmap_ids": [],
             },
@@ -689,8 +721,12 @@ async def request_rules(connection, uid, body, learning, release, completed):
 
         reports = (
             await skills.state(connection, uid)
-            if any(f.source == "reported_skill" for f in context.facts) else {"items": []}
+            if any(f.source == "reported_skill" for f in context.facts)
+            else {"items": []}
         )
+        if session.questionnaire_id == QUESTIONNAIRE_V4_ID:
+            from app.modules.discovery.experience import augment_reports
+            reports = await augment_reports(connection, uid, reports)
         experience = {}
         cited = {f.source_id for f in context.facts if f.source == "reported_skill"}
         for report in reports["items"]:
@@ -700,7 +736,18 @@ async def request_rules(connection, uid, body, learning, release, completed):
                 for career in report["career_context"]:
                     key = str(career["career_id"])
                     experience[key] = experience.get(key, 0) + 1
-        selected = choose(session, catalog, experience)
+        if session.questionnaire_id == QUESTIONNAIRE_V4_ID:
+            from app.modules.discovery.experience import current
+            from app.modules.recommendations.discovery_v4_rules import choose as choose_v4
+
+            _, support = (
+                await current(connection, uid)
+                if context.document or reports["items"]
+                else ("basics", {})
+            )
+            selected = choose_v4(session, catalog, support)
+        else:
+            selected = choose(session, catalog, experience)
         selected = explain(selected, session, context)
         # Occupational references are optional context; deterministic rules cite input facts.
         if hasattr(context, "source_references"):
@@ -711,21 +758,34 @@ async def request_rules(connection, uid, body, learning, release, completed):
 
         reports = (
             await skills.state(connection, uid)
-            if any(f.source == "reported_skill" for f in context.facts) else {"items": []}
+            if any(f.source == "reported_skill" for f in context.facts)
+            else {"items": []}
         )
+        if session.questionnaire_id == QUESTIONNAIRE_V4_ID:
+            from app.modules.discovery.experience import augment_reports
+            reports = await augment_reports(connection, uid, reports)
+        from app.modules.recommendations.resume_connections import saved_connections
+
+        resume_links = await saved_connections(connection, uid, context)
         facts_by_id = {fact.id: fact for fact in context.facts}
         for item in selected:
             connections = []
+            background_labels = []
+            background_source = None
             for report in reports["items"]:
                 fact_id = "reported-skill:" + str(report["competency_id"])
                 if (
                     fact_id in facts_by_id
+                    and (session.questionnaire_id != QUESTIONNAIRE_V4_ID or report["level"] != 0)
+                    and len(background_labels) < 3
                     and (report.get("evidence_confirmed") or (report.get("level") or 0) > 0)
                     and any(
                         str(c["career_id"]) == str(item.career_id) for c in report["career_context"]
                     )
                 ):
                     item.evidence_fact_ids.append(fact_id)
+                    background_labels.append(report["label"])
+                    background_source = "saved skills"
                     connections.append(
                         report["label"]
                         + " is linked to this career in the published skill catalog."
@@ -746,26 +806,65 @@ async def request_rules(connection, uid, body, learning, release, completed):
             )
             career_skills = await one(
                 connection,
-                "SELECT skills FROM asgard_catalog.careers WHERE id=CAST(:id AS uuid)",
+                "SELECT title,skills FROM asgard_catalog.careers WHERE id=CAST(:id AS uuid)",
                 {"id": str(item.career_id)},
             )
+            resume_labels = []
+            for link in resume_links.get(str(item.career_id), [])[:3]:
+                item.evidence_fact_ids.append(link["fact_id"])
+                resume_labels.append(link["label"])
+                connections.append(
+                    "Your resume supports "
+                    + link["label"]
+                    + ": '"
+                    + link["quote"][:180]
+                    + "'. This is background to build on, not assessed proficiency."
+                )
             for fact in context.facts:
                 if fact.source == "pdf_analysis":
                     matches = [
                         name
                         for name in career_skills["skills"]
+                        if len(resume_labels) < 3
+                        and name.casefold() not in {label.casefold() for label in resume_labels}
                         if re.search(
                             r"(?<!\w)" + re.escape(name) + r"(?!\w)", fact.description, re.I
                         )
                     ]
                     if matches:
+                        resume_labels.extend(matches)
                         item.evidence_fact_ids.append(fact.id)
                         connections.append(
                             "Your resume mentions "
                             + ", ".join(matches)
-                            + (", also listed in this career's published skills. This is a "
-                                'wording connection, not a proficiency assessment.')
+                            + (
+                                ", also listed in this career's published skills. This is a "
+                                "wording connection, not a proficiency assessment."
+                            )
                         )
+            if resume_labels:
+                background_labels = resume_labels
+                background_source = "resume"
+            labels = list(dict.fromkeys(background_labels))[:3]
+            base_reason = item.reason.split(" Explore this roadmap", 1)[0]
+            if labels:
+                item.reason = (
+                    "Your "
+                    + background_source
+                    + (" describes " if background_source == "resume" else " include ")
+                    + ", ".join(labels)
+                    + ". This gives you relevant background to explore "
+                    + career_skills["title"]
+                    + ". "
+                    + base_reason
+                )
+            else:
+                item.reason = base_reason
+            if topics:
+                item.reason += (
+                    " The roadmap starts with " + ", ".join(t["title"] for t in topics[:2]) + "."
+                )
+            item.reason = item.reason[:1200]
             item.evidence_fact_ids = list(dict.fromkeys(item.evidence_fact_ids))[:20]
             context.explanations[str(item.career_id)] = DiscoveryExplanation(
                 answer_reasons=[
@@ -776,8 +875,10 @@ async def request_rules(connection, uid, body, learning, release, completed):
                 experience_connections=connections,
                 roadmap_reason=roadmap["description"] or roadmap["title"],
                 first_topics=[t["title"] for t in topics],
-                considerations=('Compare the daily tasks with the alternatives. Missing experience'
-                    ' is unknown; this is not an assessment of ability.'),
+                considerations=(
+                    "Compare the daily tasks with the alternatives. Missing experience"
+                    " is unknown; this is not an assessment of ability."
+                ),
             )
     validated = validate_recommendations(
         UntrustedRecommendationOutput(items=selected),
@@ -808,11 +909,16 @@ async def request_rules(connection, uid, body, learning, release, completed):
         "(CAST(:uid AS uuid), CAST(:session AS uuid), :revision, :context_revision, "
         "CAST(:release AS uuid), :strategy, :schema, CAST(:key AS uuid), CAST(:snapshot AS jsonb), "
         "statement_timestamp() + interval '30 seconds', NULL) RETURNING id",
-        params | {"snapshot": json.dumps({
-            "context": context.model_dump(mode="json"),
-            "catalog": catalog,
-            "catalog_release_id": str(release),
-        })},
+        params
+        | {
+            "snapshot": json.dumps(
+                {
+                    "context": context.model_dump(mode="json"),
+                    "catalog": catalog,
+                    "catalog_release_id": str(release),
+                }
+            )
+        },
     )
     for position, item in enumerate(validated):
         await connection.execute(
@@ -863,7 +969,7 @@ async def request_run(request, identity, body):
             )
         completed = await discovery.latest_completed_identity(connection, uid)
         if completed and completed["questionnaire_id"] in (
-            QUESTIONNAIRE_V2_ID, QUESTIONNAIRE_V3_ID
+            QUESTIONNAIRE_V2_ID, QUESTIONNAIRE_V3_ID, QUESTIONNAIRE_V4_ID
         ):
             return await request_rules(connection, uid, body, learning, release, completed)
         occupational_id = await occupational_runtime.reference_release(connection)

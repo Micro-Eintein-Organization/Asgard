@@ -1,5 +1,10 @@
 # Asgard: Implemented UI foundation
 
+V4 progress prepared, 2026-11-20: four fixed phases use server-provided per-question
+progress and a current question number without a changing denominator. Legacy v1-v3 now use fixed version-bounded progress capacity with a current
+question number, following the completion correction below. The card design is unchanged. See the
+[v4 guide](features/guided-discovery-v4.md); local browser checks passed; hosted activation and human acceptance remain pending.
+
 Discovery v3 presentation correction, 2026-11-20: the owner requested the earlier
 outlined-card reference. Choices now wrap at four columns maximum, retain stable
 selected geometry, use existing semantic icons and show explanatory text. Progress
@@ -188,3 +193,14 @@ account navigation and Credits includes owner-supplied team portraits. Counselor
 uses secondary transcript surfaces, dark question bubbles, foreground answer text
 and collapsed Sources disclosures. See the footer and contextual Counselor feature
 guides for scope, verification and pending human presentation review.
+
+## Discovery completion correction, 2026-11-20
+
+Owner approved completion/navigation correction: label the action Continue while
+an active answer is unsaved. Reserve See suggestions for a fully saved route with
+no unanswered questions and current experience. Saving may reveal a clarification;
+completion uses the returned route, with separate Saving answers and Finishing
+Discovery states. Legacy progress uses stable version-bounded capacity without
+an overall question denominator; v4 uses server phase progress. This supersedes
+the variable route-count presentation described in the earlier v3 note above.
+See [implementation and focused evidence](features/guided-discovery-v4.md#completion-and-navigation-correction-2026-11-20).
