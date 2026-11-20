@@ -7,6 +7,29 @@ questions were verified. Hosted application remains pending. REQ-04/05/11; F-001
 
 ## Implementation
 
+### Technology-backed experience, 2026-11-20
+
+Implementer: Codex; reviewer: @YakisobaNissin. Owner approved the
+[bounded evidence plan/table](../plans/roadmap-technology-evidence.md).
+REQ-11, F-002, RES-01, SKILL-01/02. Implemented locally; final review and
+hosted/manual acceptance pending. Discovery experience shares roadmap technology
+terms; recommendation resume connections now retain direct positive evidence
+when interpretation failed, while rechecking active owner/analysis/revision.
+Connections cite matched wording and the original PDF fact. Technology evidence
+does not establish task completion/proficiency or trigger the performed-task quote
+shortcut. No document writes were added to reads. Strategy v4.1 (v3.2 for v3)
+marks previous runs outdated without rewriting saved answers or explanations.
+
+167 focused backend cases passed, including source removal, strategy staleness
+and new-run explanation persistence with failed interpretation; OpenAPI drift
+passed. Scoped lint retains the pre-existing matcher enum-style finding recorded
+in the plan. No new infrastructure or provider calls. Manual check pending:
+at `http://127.0.0.1:5173/discovery`, use the existing synthetic resume, choose
+With experience and complete/request new suggestions. Compare a supported career's
+Experience connections/source passage with Roadmap skills. Old saved runs need a
+new request; ordinary reads do not rewrite them. Report run/career/request IDs for
+discrepancies. Hosted acceptance requires reviewed backend deployment.
+
 V4 retains the existing card design and v1â€“v3 handlers. New published attempts use
 one situation per interest, then at most two applicable clarifications. A single
 clear direction finishes early. Two consecutive uncertain work answers stop probing.

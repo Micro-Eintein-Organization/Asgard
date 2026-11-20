@@ -1,5 +1,36 @@
 # Manual skill profiles and career comparison
 
+## Technology mentions as roadmap evidence, 2026-11-20
+
+Product decision: the project owner selected technology mentions as sufficient
+supporting evidence in chat, explaining that resumes commonly list pandas or
+MySQL rather than specific curriculum tasks. This supersedes the earlier
+broad-to-specific exclusion only for explicitly mapped technology-to-roadmap
+relationships. The owner approved the bounded plan/table with "implement" on
+2026-11-20. Source is implemented locally; final human review and hosted/manual
+acceptance remain pending. See the
+[bounded plan](../plans/roadmap-technology-evidence.md). This decision is not
+evidence that the new matching behavior is deployed or verified.
+
+A positive resume skill mention of a mapped technology may contribute evidence
+to its related roadmap tasks, including pandas for Pandas loading and typing and
+MySQL for SQL tasks. It does not establish task completion, proficiency or assessed
+ability. Preserve the exact resume passage and identify the technology that
+supports the match. Each canonical roadmap skill counts at most once, regardless
+of overlapping technology, exact, interpreted, reported or learning sources.
+
+The implementation must use explicit, reviewable relationships; no unrestricted
+substring/fuzzy matching or assumption that Python proves an unrelated API task.
+Negated and aspirational claims remain excluded. Benchmark reference identities,
+learning-path task identities, manual ratings and learning progress remain
+separate. Related evidence must be usable consistently in roadmap comparisons
+and Discovery's experience selection/explanations, with saved-run provenance
+preserved. Provider failure must not disable deterministic technology evidence.
+
+Unmapped broad relationships and uncertain semantic equivalence remain excluded.
+The earlier sections retain their historical decision boundaries except where
+this resolution explicitly supersedes them.
+
 ## Unified evidence decision, 2026-11-19
 
 The project owner selected one evidence count, automatic resume interpretation

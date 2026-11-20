@@ -15,11 +15,15 @@ from uuid import UUID
 
 from app.core.errors import APIError
 from app.modules.skill_matching.matcher import BenchmarkSkill, Career
+from app.modules.skill_matching.technology_evidence import technology_terms
 from app.modules.storage import rows
 
 SOURCE_LABEL = "career-linked competencies"
 SAMPLE_LABEL = "career-linked learning-path coverage"
-SOURCE_NOTE = "Learning-path coverage, not validated employer requirements."
+SOURCE_NOTE = (
+    "Learning-path coverage, not validated employer requirements. "
+    "Mapped technology mentions count as supporting background, not task completion."
+)
 POSTINGS_SAMPLE_LABEL = "Curated benchmark sample"
 
 
@@ -206,6 +210,12 @@ class CompetencyLinksSource:
             "ORDER BY lower(career.title), career.id, competency.id",
         )
         catalog = catalog_from_rows(source_rows)
+        catalog = replace(catalog, careers=tuple(
+            replace(career, skills=tuple(
+                replace(skill, supporting_technologies=technology_terms(skill.label))
+                for skill in career.skills
+            )) for career in catalog.careers
+        ))
         posting_rows = await rows(
             connection,
             "SELECT posting.career_id, posting.source, posting.source_version, "

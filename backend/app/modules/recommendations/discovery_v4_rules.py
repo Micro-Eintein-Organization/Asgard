@@ -4,7 +4,7 @@ from app.modules.discovery.v3 import SCENARIOS
 from app.modules.recommendations.discovery_rules import ACTIVITY_CAREERS, ACTIVITY_LABELS
 from app.modules.recommendations.schemas import UntrustedRecommendationItem
 
-VERSION = "discovery-rules-4"
+VERSION = "discovery-rules-4.1"
 
 
 def choose(session, catalog, experience):

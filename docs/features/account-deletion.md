@@ -14,10 +14,42 @@ and deployment flags are unchanged. See [account access fixes](account-access-fi
 for checks and the operator activation checklist. Required reviewer remains
 @YakisobaNissin; hosted activation and destructive acceptance remain pending.
 
-Implementer: Codex. Created: 2026-11-16. Last updated: 2026-11-17.
-Status: implemented locally; architecture-owner review and hosted acceptance pending.
+Implementer: Codex. Created: 2026-11-16. Last updated: 2026-11-20.
+Status: implemented; bounded hosted cleanup evidence recorded below. Full hosted
+security/operations acceptance and completed PR review remain unverified.
 Owner/reviewer: @YakisobaNissin. Scope: REQ-13, QA-01/02/09/11.
 The owner approved implementation in chat; this does not record a completed PR review.
+
+## Hosted cleanup investigation, 2026-11-20
+
+Codex investigated REQ-13, QA-01/02/09/11 under the owner-approved
+[repair plan](../plans/hosted-account-deletion-repair.md). The owner approved that
+plan in chat on 2026-11-20 ("i approve"). No application, schema, contract,
+credential, deployment or scheduler changes were needed or made in this investigation.
+
+Owner-provided Supabase results showed two accepted requests at stage `storage`,
+each with zero attempts and no failure code. Their eligibility times were
+2026-11-20 07:32:42 UTC and 07:39:54 UTC. A GitHub screenshot showed the preceding
+maintenance run at 15:20 Manila time, before either request was accepted. The
+owner then supplied run #14's successful `Purge accepted accounts` summary:
+`{"processed": 2, "failed": 0, "overdue": 0}`. After being asked to rerun the
+ledger query and refresh Auth Users, the owner replied "completed". This records
+owner-confirmed ledger completion; a separate refreshed Auth Users screenshot was
+not supplied. The worker's completed path verifies Auth removal, Storage cleanup
+and application-record removal, but that evidence is reported by the worker rather
+than an independent audit of each data store.
+
+The observed symptom was waiting for maintenance to process accepted requests;
+the supplied run showed successful live-provider cleanup. No live Supabase
+communication defect was demonstrated. Exact automatic schedule latency and its
+reliability were not established by this manually triggered run.
+
+Manual checks still pending: immediate rejection of old sessions, other-account
+isolation, partial-provider-failure retry, independent missed-run alerts and
+ledger-aware restore. Earlier activation instructions remain the operating
+procedure; this bounded result does not pass all OPS-C1 or QA release gates.
+Documentation-only verification: local link/anchor and whitespace checks; no
+application tests rerun because runtime source and configuration were unchanged.
 
 ## Authority and behavior
 

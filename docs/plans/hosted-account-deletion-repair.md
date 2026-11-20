@@ -2,8 +2,9 @@
 
 Date: 2026-11-20. Task owner/implementer: Codex.
 Required technical reviewer: @YakisobaNissin, per `.github/CODEOWNERS`.
-Status: investigation recorded; bounded plan awaiting review. No implementation or
-hosted configuration changes have been made.
+Status: plan approved by the owner in chat on 2026-11-20 ("i approve"); investigation
+concluded with owner-confirmed ledger completion after maintenance run #14. No
+application implementation or hosted configuration changes were needed or made.
 
 ## Scope and authority
 
@@ -76,5 +77,10 @@ partial failure retries. Record request ID, time, stage and sanitized error on f
 
 Checks so far: read-only source/configuration inspection; clean Git status. No
 application tests run because no application code changed. No real account purge
-or hosted acceptance claimed. Hosted evidence and technical plan review are pending;
-follow-up operator execution is unassigned.
+or agent-executed hosted acceptance claimed. Subsequent owner-supplied evidence:
+run #14 reported two accounts processed, zero failures and zero overdue; the owner
+confirmed the ledger result was "completed". See the
+[dated implementation record](../features/account-deletion.md#hosted-cleanup-investigation-2026-11-20)
+for the evidence and limits. No source defect was demonstrated. Remaining security
+and operations acceptance follow-up execution is unassigned; technical reviewer
+remains @YakisobaNissin. No commit, push or deployment was performed by Codex.

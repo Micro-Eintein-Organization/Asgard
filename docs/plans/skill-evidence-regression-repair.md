@@ -51,6 +51,41 @@ either surface intentionally replaces the prior active resume for that account.
 
 ## Verification and limits
 
+### Discovery and roadmap follow-up, 2026-11-20
+
+The owner reports job-sample matches recovered and supplies screenshots showing
+Data Analyst 3/19 and Data Engineer 2/16. A newly completed hosted Discovery run
+after redeploy shows no BI Analyst experience connections; roadmap Data Analyst
+shows 0/10 despite the saved resume mentioning pandas. These are owner-observed
+results, not independently authenticated API reads.
+
+The shared matcher recognizes `pandas` in the screenshot text but not the entire
+task label `Pandas loading and typing`, nor `SQL joins` or `Python notebooks setup`.
+That distinction follows the current specification's exclusion of broad-to-specific
+inference; changing the evidence count needs a product decision. The owner has
+been asked whether to display related technology separately or count it as task
+evidence. No curriculum aliases, task definitions or counting policy were changed.
+
+Source inspection also shows separate enrichment paths: Discovery selection's
+`experience.current` uses direct canonical skill matches and current interpreted
+connections, but recommendation explanations use `saved_connections` (current
+completed AI mappings only), manual links and a literal whole-career-skill fallback.
+The latter fallback does not reuse the shared matcher. A failed interpretation
+can therefore leave explanations empty; empty connections alone do not establish
+that `use_experience` was unsaved. Snapshot code retains a current document and
+PDF facts when the saved session selects `use_experience`. Recommendation
+explanations are persisted with the run, not rebuilt by subsequent GETs.
+
+Prepared `output/sql/discovery-experience-audit.sql`: a bounded read-only query
+returning the five latest completed Discovery run IDs/timestamps, saved experience
+choice, document-reference presence and counts of PDF facts/reported skills/
+experience connections. It prints no resume passages or user identifiers. EXPLAIN
+passed against the local schema with the existing restricted application role;
+the first shell invocation failed due to quoting before reaching PostgreSQL, then
+the corrected invocation passed. The SELECT has not been executed against hosted.
+It can distinguish saved-choice failure, missing snapshot evidence and absent
+career-specific links without treating a completed run as evidence correctness.
+
 Hosted evidence supplied by the owner, 2026-11-20 (not independently queried):
 the active resume retains 18 evidence entries, including three skill statements.
 Its current-analysis interpretation failed at `2026-11-20T10:48:27Z` with
