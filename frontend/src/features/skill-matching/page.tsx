@@ -9,6 +9,7 @@ import { experienceLevels } from "@/features/competencies/levels";
 import { coreApi, useCoreMutation, useCoreQuery } from "@/features/core/data";
 import { appRoutes } from "@/lib/routes";
 import { readCareerSkillMatches } from "./api";
+import { useScreenContext } from "@/features/counselor-context";
 
 const statusLabels = {
   MATCHED: "Matched",
@@ -30,6 +31,9 @@ export default function SkillMatchingPage() {
 }
 
 function SkillMatchingResults({ basis }: { basis: "benchmark" | "learning_path" }) {
+  const [focused, setFocused] = useState<{ career?: string; skill?: string }>({});
+  useScreenContext({ label: "Career skill matches", skill_matching_basis: basis,
+    career_ids: focused.career ? [focused.career] : [], competency_id: focused.skill });
   const query = useCoreQuery(["career-skill-matches", basis], signal => readCareerSkillMatches(signal, basis));
   const update = useCoreMutation(coreApi.interpretResume, { clearSkillEvidence: true });
   const interpretation = query.data?.interpretation;
@@ -121,7 +125,10 @@ function SkillMatchingResults({ basis }: { basis: "benchmark" | "learning_path" 
           <section aria-label="Career skill evidence" className="space-y-4">
             {items.map(career => (
               <Card key={career.career_id} className="settings-card p-0">
-                <details>
+                <details onToggle={event => {
+                  if (event.currentTarget.open) setFocused({ career: career.career_id });
+                  else setFocused(previous => previous.career === career.career_id ? {} : previous);
+                }}>
                   <summary className="flex cursor-pointer list-none flex-wrap items-center justify-between gap-3 p-5">
                     <span className="font-semibold">{career.career_title}</span>
                     <span>
@@ -139,7 +146,9 @@ function SkillMatchingResults({ basis }: { basis: "benchmark" | "learning_path" 
                         <p className="field-help">{career.sample_note}</p>
                         <ul className="space-y-3">
                           {career.skills.map(skill => (
-                            <li key={skill.competency_id} className="rounded-lg border p-3">
+                            <li key={skill.competency_id} className="rounded-lg border p-3" tabIndex={0}
+                              onFocus={() => setFocused({ career: career.career_id, skill: skill.competency_id })}
+                              onClick={() => setFocused({ career: career.career_id, skill: skill.competency_id })}>
                               <div className="flex flex-wrap items-center justify-between gap-2">
                                 <h2 className="font-medium">{skill.label}</h2>
                                 <Badge variant="outline">{skill.evidence_found || skill.status === "MATCHED" ? "Evidence found" : statusLabels[skill.status]}</Badge>
@@ -150,6 +159,7 @@ function SkillMatchingResults({ basis }: { basis: "benchmark" | "learning_path" 
                                 </p>
                               )}
                               {skill.user_report?.level != null && skill.user_report.level > 0 && <p className="field-help">Reported by you</p>}
+                              {skill.user_report?.evidence_confirmed && <p className="field-help">Skill confirmed by you · experience rating is separate</p>}
                               {(skill.resume_signals?.length ?? 0) > 0 && <div className="field-help">From resume
                                 {(skill.resume_signals ?? []).map((signal, index) => <details key={index}><summary>Page {signal.page} · source passage</summary><p>{signal.span}</p></details>)}
                               </div>}

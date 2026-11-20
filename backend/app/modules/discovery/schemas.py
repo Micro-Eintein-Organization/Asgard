@@ -69,7 +69,7 @@ class StartDiscovery(Contract):
 
 
 class SaveDiscovery(VersionedChange):
-    answers: Annotated[list[DiscoveryAnswer], Field(min_length=1, max_length=6)]
+    answers: Annotated[list[DiscoveryAnswer], Field(min_length=1, max_length=10)]
 
     @field_validator("answers")
     @classmethod

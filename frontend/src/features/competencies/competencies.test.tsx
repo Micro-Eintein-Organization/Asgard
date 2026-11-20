@@ -10,6 +10,7 @@ vi.mock("@/auth/context", () => ({
   useAuth: () => ({ user: { id: "owner" } }),
 }));
 vi.mock("@/auth/transport", () => ({ isCurrentAccount: () => true }));
+vi.mock("./natural-language-skills", () => ({ NaturalLanguageSkills: () => null }));
 vi.mock("@/features/core/data", () => ({
   coreApi: {
     myCompetencies: vi.fn(),
@@ -87,7 +88,7 @@ it("distinguishes unassessed, saved unknown and explicit zero", () => {
 });
 it("explains an empty published catalog when a skill search has no results", () => {
   render(<ProfileSkills onGuardChange={vi.fn()} />);
-  fireEvent.click(screen.getByRole("button", { name: "Add a skill" }));
+  fireEvent.click(screen.getByRole("button", { name: "Select skills manually" }));
   fireEvent.change(screen.getByLabelText("Find a skill"), { target: { value: "css" } });
   expect(screen.getByText(/The published skill catalog is empty/)).toBeVisible();
 });

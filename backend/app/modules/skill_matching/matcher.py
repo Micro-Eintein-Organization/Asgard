@@ -19,6 +19,8 @@ from enum import Enum
 from typing import Literal, Sequence
 from uuid import UUID
 
+from app.modules.competencies.claims import positive_statements
+
 
 class SkillStatus(str, Enum):
     MATCHED = "MATCHED"
@@ -118,7 +120,7 @@ def matching_resume_evidence(
     pattern = _phrase_pattern(phrase)
     return tuple(
         item for item in evidence
-        if item.kind == "skill" and pattern.search(item.text)
+        if item.kind == "skill" and any(pattern.search(part) for part in positive_statements(item.text))
     )
 
 
@@ -168,7 +170,8 @@ def _resume_signals(
     for item in evidence:
         if item.kind != "skill":
             continue
-        matched = tuple(phrase for phrase, pattern in patterns if pattern.search(item.text))
+        matched = tuple(phrase for phrase, pattern in patterns
+                        if any(pattern.search(part) for part in positive_statements(item.text)))
         if matched:
             signals.append(ResumeSignal(evidence=item, matched_phrases=matched))
     return tuple(signals)

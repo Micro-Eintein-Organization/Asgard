@@ -84,6 +84,7 @@ def test_default_questionnaire_requires_publication(monkeypatch, published_v2):
         "one",
         AsyncMock(
             side_effect=[
+                None,
                 {"id": QUESTIONNAIRE_V2_ID} if published_v2 else None,
                 {"version": authored.version},
             ]

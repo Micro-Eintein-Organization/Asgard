@@ -21,6 +21,8 @@ import { RecommendationCards } from "@/features/recommendations/components";
 import { useRecommendationFlow } from "@/features/recommendations/use-recommendation-flow";
 import { useAuth } from "@/auth/context";
 import { isCurrentAccount } from "@/auth/transport";
+import { ExperienceIntake } from "@/features/discovery/experience-intake";
+import { useCallback, useState } from "react";
 
 type Schemas = components["schemas"];
 
@@ -154,7 +156,14 @@ function DiscoveryEditor({
   initial: Schemas["DiscoverySession"];
   definition: Schemas["Questionnaire"];
 }) {
-  const editor = useDiscoveryEditor(initial, definition);
+  const [intakeDirty, setIntakeDirty] = useState(false);
+  const [intakeBusy, setIntakeBusy] = useState(false);
+  const editor = useDiscoveryEditor(initial, definition, intakeDirty, intakeBusy);
+  const intakeGuard = useCallback((dirty: boolean, pending: boolean) => { setIntakeBusy(pending); setIntakeDirty(dirty); }, []);
+  const useExperience = definition.version === 3 && editor.question.kind === "experience_preference" && editor.selected.includes("use_experience");
+  const skills = useCoreQuery(["skills"], coreApi.myCompetencies, useExperience);
+  const documents = useCoreQuery(["documents"], coreApi.documents, useExperience);
+  const experienceReady = !useExperience || !!skills.data?.items.some(item => item.evidence_confirmed || (item.level ?? 0) > 0) || !!documents.data?.active?.evidence.length;
   const questionContent = useRef<HTMLDivElement>(null);
   useContentMotion(questionContent, editor.question.question_id);
   useScreenContext({ label: "Discovery → " + editor.question.prompt, questionnaire_id: definition.id, question_id: editor.question.question_id });
@@ -170,13 +179,14 @@ function DiscoveryEditor({
   return (
     <section className="discovery-page">
       <DiscoveryHeader
-        currentStep={editor.index + 1}
-        totalSteps={editor.total}
+        currentStep={definition.version === 3 ? (editor.question.kind === "experience_preference" ? 1 : 2) : editor.index + 1}
+        totalSteps={definition.version === 3 ? 3 : editor.total}
         disabled={editor.busy}
         onBack={() => void editor.move(-1)}
         onSkip={() => void editor.skip()}
       />
-      <div ref={questionContent}>
+      <div ref={questionContent} className={definition.version === 3 ? "discovery-v3" : undefined}>
+        {definition.version === 3 && <p className="discovery-stage" aria-label="Current stage">{editor.question.kind === "experience_preference" ? "Background" : "Explore work"} → Your suggestions</p>}
         <header className="discovery-header">
           <h1 ref={heading} tabIndex={-1}>
             {editor.question.prompt}
@@ -213,7 +223,10 @@ function DiscoveryEditor({
                   type={editor.question.multiple ? "checkbox" : "radio"}
                   name={editor.question.question_id}
                   checked={selected}
-                  onChange={() => editor.toggle(option.id)}
+                  onChange={() => {
+                    if (useExperience && intakeDirty && option.id !== "use_experience" && !window.confirm("Discard unsaved experience input and change your background preference?")) return;
+                    editor.toggle(option.id);
+                  }}
                   className="self-start accent-emerald-600"
                 />
                 {selected && (
@@ -227,6 +240,7 @@ function DiscoveryEditor({
             );
           })}
         </fieldset>
+        {useExperience && <ExperienceIntake onGuardChange={intakeGuard} />}
         {editor.feedback && (
           <p role="status" className="text-center text-xs text-gray-600">
             {editor.feedback}
@@ -262,7 +276,7 @@ function DiscoveryEditor({
               Skip
             </Button>
           )}
-          <Button disabled={editor.busy} onClick={() => void editor.move(1)}>
+          <Button disabled={editor.busy || intakeBusy || !experienceReady || (useExperience && intakeDirty)} onClick={() => void editor.move(1)}>
             {editor.busy && <LoadingIndicator />}
             {editor.busy
               ? "Saving…"
@@ -271,10 +285,10 @@ function DiscoveryEditor({
                 : "Next"}
           </Button>
         </div>
-        <p className="text-center text-xs text-gray-500">
+        {definition.version !== 3 && <p className="text-center text-xs text-gray-500">
           Saved revision {editor.saved.revision}. Only answers on your current
           route are used for suggestions.
-        </p>
+        </p>}
       </div>
       <Dialog
         open={editor.blocker.state === "blocked"}
@@ -344,7 +358,7 @@ export function DiscoveryResults() {
     () => coreApi.questionnaire(completed?.questionnaire_id),
     !!completed?.questionnaire_id,
   );
-  const rulesMode = questionnaire.data?.version === 2;
+  const rulesMode = (questionnaire.data?.version ?? 0) >= 2;
   const flow = useRecommendationFlow(rulesMode);
   const generateFor =
     typeof location.state?.generateFor === "string"

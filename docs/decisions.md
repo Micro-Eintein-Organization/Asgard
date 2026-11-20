@@ -1,5 +1,13 @@
 # Asgard: Decisions and delivery gates
 
+DISCOVERY-V3 (2026-11-20, project owner/codeowner @YakisobaNissin in chat):
+approved the overhaul end to end and requested implementation of the reviewed
+plan. Selections: required experience input on the experience branch, adaptive
+questions, combined-interest scenarios, deterministic results with optional AI
+elaboration, authored roadmap first steps, and removal of the goals question.
+Source implemented by Codex; live acceptance and final review remain pending.
+See [plan](plans/discovery-v3.md) and [feature guide](features/guided-discovery-v3.md).
+
 Consolidated baseline: 2026-11-17. This register retains recorded owner decisions and stable IDs. Consolidation does not approve unresolved requirements, grant environment activation, or claim completed technical review. The [archived register](archive/2026-11-17/decisions.md) preserves dated approvals and their original scope without treating old plans as current instructions.
 
 <a id="password-minimum-resolution"></a>
@@ -244,3 +252,13 @@ Earlier headings remain addressable for incoming links. Their linked records des
 <a id="research-and-review-boundary"></a>
 
 [Research and review boundary](archive/2026-11-17/decisions.md#research-and-review-boundary).
+# Contextual counselor and confirmed skill evidence, 2026-11-20
+
+The owner selected current screen plus relevant saved data, review before saving
+natural-language skills, confirmed evidence without a proficiency rating, and
+resume matching across both skill views/all published careers. @YakisobaNissin
+approved the concrete SQL/API [review package](plans/context-aware-counselor-and-skills.md)
+in chat with “oim yakisobanissin i approve”. Approval covers bounded implementation;
+it does not authorize retained/hosted migration application or deployment.
+Acceptance: COUN-01–03, RES-01, SKILL-01–02. Evidence and outstanding acceptance
+belong to the existing counselor, competency and PDF feature guides.

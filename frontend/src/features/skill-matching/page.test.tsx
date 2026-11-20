@@ -138,7 +138,7 @@ describe("SkillMatchingPage", () => {
       data: response([
         career([
           skill({ status: "MATCHED", reported_level: 2 }),
-          skill({ competency_id: "competency-2", label: "SQL", status: "UNKNOWN", user_report: { source: "user_report", level: null, updated_at: null } }),
+          skill({ competency_id: "competency-2", label: "SQL", status: "UNKNOWN", user_report: { evidence_confirmed: false, source: "user_report", level: null, updated_at: null } }),
           skill({ competency_id: "competency-3", label: "Git" }),
         ]),
       ]),
@@ -191,7 +191,7 @@ describe("SkillMatchingPage", () => {
       data: response([career([skill({
         status: "MATCHED",
         reported_level: 0,
-        user_report: { source: "user_report", level: 0, updated_at: null },
+        user_report: { evidence_confirmed: false, source: "user_report", level: 0, updated_at: null },
         resume_signals: [signal],
       })])]),
       isPending: false,
@@ -320,7 +320,7 @@ describe("SkillMatchingPage", () => {
 
   it("does not render the no-matches notice when any skill is UNKNOWN", () => {
     mocks.useCoreQuery.mockReturnValue({
-      data: response([career([skill({ status: "UNKNOWN", user_report: { source: "user_report", level: null, updated_at: null } })])]),
+      data: response([career([skill({ status: "UNKNOWN", user_report: { evidence_confirmed: false, source: "user_report", level: null, updated_at: null } })])]),
       isPending: false,
       isError: false,
       refetch: vi.fn(),
@@ -430,7 +430,7 @@ describe("SkillMatchingPage", () => {
           },
         ),
         career(
-          [skill({ status: "UNKNOWN", user_report: { source: "user_report", level: null, updated_at: null } })],
+          [skill({ status: "UNKNOWN", user_report: { evidence_confirmed: false, source: "user_report", level: null, updated_at: null } })],
           {
             career_id: "career-a",
             career_title: "Alpha Career",

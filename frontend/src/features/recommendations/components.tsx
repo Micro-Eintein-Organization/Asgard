@@ -8,6 +8,7 @@ import { coreApi, useCoreQuery } from "@/features/core/data";
 import { appRoutes } from "@/lib/routes";
 import { careerSummary } from "@/lib/career-summary";
 import { useRecommendationFlow } from "./use-recommendation-flow";
+import { ExplainRecommendation } from "./explanation";
 
 export function RecommendationCards({
   flow,
@@ -185,6 +186,17 @@ export function RecommendationCards({
                     <h3>Why this was suggested</h3>
                     <p className="text-sm">{careerSummary(item.reason)}</p>
                   </div>
+                  {item.explanation && <details className="text-sm space-y-3">
+                    <summary>Answers, experience and roadmap reasoning</summary>
+                    <h3>Your answers</h3>
+                    <ul>{item.explanation.answer_reasons?.map(reason => <li key={reason}>{reason}</li>)}</ul>
+                    <h3>Experience connections</h3>
+                    {item.explanation.experience_connections?.length ? <ul>{item.explanation.experience_connections.map(reason => <li key={reason}>{reason}</li>)}</ul> : <p>No specific saved skill connection was established for this career.</p>}
+                    <h3>Why this roadmap</h3><p>{item.explanation.roadmap_reason}</p>
+                    <h3>First topics in the authored path</h3><ol>{item.explanation.first_topics?.map(topic => <li key={topic}>{topic}</li>)}</ol>
+                    <p>{item.explanation.considerations}</p>
+                    {!showingPrevious && !displayed.outdated && <ExplainRecommendation key={`${displayed.id + item.career_id}`} run={displayed.id} career={item.career_id} roadmap={roadmapId} />}
+                  </details>}
                   {!!career.skills.length && (
                     <ul className="skill-list" aria-label="Skills in this roadmap">
                       {career.skills.slice(0, 3).map((skill) => (

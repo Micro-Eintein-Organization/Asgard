@@ -44,7 +44,16 @@ class ContextFact(Contract):
     description: Annotated[str, Field(min_length=1, max_length=1200)]
 
 
+class DiscoveryExplanation(Contract):
+    answer_reasons: list[str] = Field(default_factory=list)
+    experience_connections: list[str] = Field(default_factory=list)
+    roadmap_reason: str
+    first_topics: list[str] = Field(default_factory=list)
+    considerations: str
+
+
 class RecommendationContext(Contract):
+    explanations: dict[str, DiscoveryExplanation] = Field(default_factory=dict)
     schema_version: Literal["1"] = "1"
     context_revision: Revision
     discovery: CompletedDiscoveryReference | None
@@ -151,6 +160,7 @@ class PublishedCareerReference(Contract):
 
 class ValidatedRecommendationItem(UntrustedRecommendationItem):
     """Construct through validate_recommendations after provenance/catalog checks."""
+    explanation: DiscoveryExplanation | None = None
 
 
 def validate_recommendations(

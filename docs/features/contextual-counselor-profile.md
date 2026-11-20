@@ -2,6 +2,9 @@
 
 # Profile identity and contextual counselor
 
+Hosted rollout and unresolved integration work:
+[combined Discovery and counselor checklist](../deployment-discovery-and-counselor.md).
+
 ## Composer refinement, 2026-11-16
 
 Later owner screenshot feedback supersedes the context-switch presentation below:
@@ -124,3 +127,33 @@ details retain descendants in the DOM but hide them visually. No application
 workaround was needed. Browser preview timed out; real visual/keyboard checks
 remain pending. Full backend suites and container rebuilds were not run because
 backend behavior is unchanged and the owner requested limited UI verification.
+## Selection-aware context, 2026-11-20
+
+Implementer: Codex. Created/last updated: 2026-11-20. Acceptance: REQ-12,
+COUN-01–03. Reviewer: @YakisobaNissin; concrete SQL/API approval recorded in the
+[review package](../plans/context-aware-counselor-and-skills.md). Implementation
+added; human code review, browser and real model acceptance pending.
+
+Roadmaps register milestone/topic selection. The backend resolves authored details
+and actual topic/milestone progress. Comparison answers return a cached reference;
+the counselor reuses it only for the same pair and current public evidence key,
+otherwise reports expiry. Skill matches register basis, expanded career and focused
+skill; backend reads actual account evidence, bounds detail and distinguishes sources.
+Saved skills can support relevant questions beyond Settings. Existing conversation,
+web opt-in and source disclosure remain; private matching data never enters the
+public comparison cache or public web query. Explicit different careers clear
+unrelated selected evidence before the model call.
+
+Sources: backend `modules/ai_guidance.py`; frontend `features/counselor-context`,
+`features/ai-guidance`, Roadmaps, Compare Careers and skill-matching page.
+Existing counselor regressions passed (nine cases); F/I lint passed.
+The added selected-topic/status/milestone case also passed. Final focused counselor
+and NLP checks passed (20 cases). TypeScript and generated API synchronization
+passed; source/browser acceptance is still distinct from these automated checks.
+For manual
+acceptance use `http://127.0.0.1:5173`: select a roadmap topic and ask about this
+topic/milestone; switch comparison pairs and ask about the displayed explanation;
+expand careers in both skill-match tabs and ask about a selected skill. Confirm
+answers use the selection, source distinctions and actual status. Check navigation
+during an answer and account switching. Report route/request ID and expected/actual
+behavior without private content. Browser/model checks remain pending.

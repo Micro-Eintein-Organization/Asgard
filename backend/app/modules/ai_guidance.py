@@ -30,7 +30,7 @@ router = APIRouter(
     responses={code: {"model": ErrorBody} for code in (401, 404, 422, 429, 503)},
 )
 Owner = Annotated[Identity, Depends(current_identity)]
-Mode = Literal["comparison_insight", "counselor_turn"]
+Mode = Literal["comparison_insight", "counselor_turn", "skill_interpretation"]
 
 
 COMPARISON_PROMPT = (
@@ -58,6 +58,10 @@ COUNSELOR_PROMPT = GUIDANCE_PROMPT + (
     "clarification and ask one short question. Classify other replies as general."
 )
 COUNSELOR_PROMPT += (
+    " Explain the selected topic or milestone specifically, using its authored details and "
+    "actual recorded status. Do not replace the selection with the globally active lesson. "
+    "For skill matches distinguish confirmed evidence, self-reported experience, resume "
+    "wording and completed learning; none is a proficiency assessment. "
     " The current question overrides page context and history. Career differences are comparison, "
     "never next_step merely because learning_context exists. Put evidence-supported content in "
     "answer with source_keys. Put additional general model knowledge in general_knowledge, "
@@ -76,6 +80,7 @@ class ComparisonInsights:
     def __init__(self):
         self.completed = OrderedDict()
         self.pending = {}
+        self.reference_pairs = OrderedDict()
 
     async def get(self, key, generate, *, web_enabled):
         cached = self.completed.get(key)
@@ -135,6 +140,9 @@ class GuidanceTurn(Contract):
 
 
 class PageContext(Contract):
+    skill_matching_basis: Literal["benchmark", "learning_path"] | None = None
+    competency_id: UUID | None = None
+    comparison_context_id: UUID | None = None
     questionnaire_id: UUID | None = None
     question_id: Annotated[str, Field(min_length=1, max_length=100)] | None = None
     recommendation_run_id: UUID | None = None
@@ -144,6 +152,7 @@ class PageContext(Contract):
 
 
 class GuidanceQuestion(Contract):
+    milestone_id: UUID | None = None
     page_context: PageContext | None = None
     question: Annotated[str, Field(min_length=1, max_length=1000)]
     history: Annotated[list[GuidanceTurn], Field(max_length=6)] = Field(default_factory=list)
@@ -186,7 +195,11 @@ class GuidanceSource(Contract):
 APP_HELP = (
     (
         GuidanceSource(title="Settings: resume and skill review", url="/settings/profile", kind="asgard"),
-        "In Settings > Profile, you can add a skill manually or, when enabled, review skills "
+        "In Settings > Profile, describe skills or tasks you have done, preview mapped skills "
+        "and explicitly save selected skills. Experience ratings are optional; confirmed skills "
+        "count as evidence without implying proficiency. Manual catalog selection remains available. "
+        "Saved resume analysis shows job-sample and roadmap matches with source passages and topic links. "
+        "You can also, when enabled, review skills "
         "from a selectable-text PDF resume. Choose a career and PDF, then start the temporary "
         "review. Asgard suggests catalog skills and shows supporting passages. Resume review "
         "does not save the PDF or set an experience level. Choose a suggested skill, enter "
@@ -224,6 +237,7 @@ class ComparisonRow(Contract):
 
 
 class ComparisonAnswer(GuidanceAnswer):
+    context_id: UUID | None = None
     work: list[ComparisonRow]
     skills: list[ComparisonRow]
     handoff: str | None
@@ -256,7 +270,7 @@ async def reserve(request, identity, mode: Mode):
                    count(*) AS daily
             FROM asgard_private.analysis_attempts
             WHERE user_id = CAST(:uid AS uuid)
-              AND operation IN ('comparison_insight', 'counselor_turn')
+              AND operation IN ('comparison_insight', 'counselor_turn', 'skill_interpretation')
               AND reserved_at >= date_trunc('day', now(), 'UTC')
             """, {"uid": uid})
         if count["recent"] >= 8 or count["daily"] >= 30:
@@ -619,14 +633,7 @@ async def answer(
     }
 
 
-@router.post("/comparison", response_model=ComparisonAnswer)
-async def comparison_insight(request: Request, identity: Owner, body: GuidancePair):
-    require_available(request)
-    if body.left == body.right:
-        raise APIError(422, "distinct_careers_required", "Choose two different careers.")
-    pair = sorted((body.left, body.right))
-    evidence, titles, _ = await context(request, identity, pair, None, None, False)
-    settings = request.app.state.settings
+def comparison_cache_key(settings, pair, evidence):
     web_enabled = bool(settings.exa_api_key.get_secret_value() and settings.ai_search_domains.strip())
     # Hash the actual public evidence so any change to the input invalidates reuse.
     snapshot = json.dumps({
@@ -637,11 +644,28 @@ async def comparison_insight(request: Request, identity: Owner, body: GuidancePa
         "completion_limit": settings.groq_max_completion_tokens,
         "domains": settings.ai_search_domains if web_enabled else None,
     }, sort_keys=True, ensure_ascii=False)
-    key = sha256(snapshot.encode("utf-8")).hexdigest()
+    return sha256(snapshot.encode("utf-8")).hexdigest()
+
+
+@router.post("/comparison", response_model=ComparisonAnswer)
+async def comparison_insight(request: Request, identity: Owner, body: GuidancePair):
+    require_available(request)
+    if body.left == body.right:
+        raise APIError(422, "distinct_careers_required", "Choose two different careers.")
+    pair = sorted((body.left, body.right))
+    evidence, titles, _ = await context(request, identity, pair, None, None, False)
+    settings = request.app.state.settings
+    web_enabled = bool(settings.exa_api_key.get_secret_value() and settings.ai_search_domains.strip())
+    key = comparison_cache_key(settings, pair, evidence)
+    cache = request.app.state.comparison_insights
+    cache.reference_pairs[key] = tuple(pair)
+    if len(cache.reference_pairs) > COMPARISON_CACHE_SIZE:
+        cache.reference_pairs.popitem(last=False)
 
     async def generate():
-        return await answer(request, identity, "comparison_insight", evidence, titles,
-                            COMPARISON_PROMPT, [], True, pair=pair)
+        result = await answer(request, identity, "comparison_insight", evidence, titles,
+                              COMPARISON_PROMPT, [], True, pair=pair)
+        return {**result, "context_id": uuid4()}
 
     return await request.app.state.comparison_insights.get(key, generate, web_enabled=web_enabled)
 
@@ -651,10 +675,112 @@ async def counselor_turn(request: Request, identity: Owner, body: GuidanceQuesti
     require_available(request)
     page = body.page_context.model_dump(mode="json") if body.page_context else None
     async with transaction(request, identity) as connection:
-        if page and page["path"].startswith("/settings") and re.search(r"\b(my|saved|profile|resume|skill)\b", body.question, re.I):
+        if page and (body.topic_id or body.roadmap_id):
+            named_topics = await rows(connection,
+                "SELECT t.id,t.roadmap_id,t.milestone_id,r.career_id FROM asgard_catalog.topics t "
+                "JOIN asgard_catalog.roadmaps r ON r.id=t.roadmap_id "
+                "JOIN asgard_catalog.careers c ON c.id=r.career_id "
+                "JOIN asgard_catalog.milestones m ON m.id=t.milestone_id "
+                "WHERE r.status='published' AND c.status='published' AND t.retired_at IS NULL "
+                "AND m.retired_at IS NULL AND position(lower(t.title) in :question)>0 "
+                "ORDER BY length(t.title) DESC,t.id LIMIT 2", {"question": body.question.casefold()})
+            if len(named_topics) > 1:
+                return {"answer": "Which roadmap topic would you like to discuss?", "sources": [],
+                        "web_unavailable": False}
+            if named_topics:
+                target = named_topics[0]
+                body = body.model_copy(update={"topic_id": target["id"],
+                    "roadmap_id": target["roadmap_id"], "milestone_id": target["milestone_id"],
+                    "career_ids": [target["career_id"]]})
+        if page and body.topic_id and body.roadmap_id:
+            selected_topic = await one(connection,
+                "SELECT t.milestone_id,t.title,t.explanation,p.status FROM asgard_catalog.topics t "
+                "LEFT JOIN asgard_private.topic_progress p ON p.topic_id=t.id "
+                "AND p.user_id=CAST(:uid AS uuid) WHERE t.id=CAST(:topic AS uuid) "
+                "AND t.roadmap_id=CAST(:roadmap AS uuid) AND t.retired_at IS NULL",
+                {"uid": str(identity.user_id), "topic": str(body.topic_id),
+                 "roadmap": str(body.roadmap_id)})
+            if not selected_topic:
+                raise APIError(422, "invalid_context", "Reopen an available topic.")
+            if page is not None:
+                page["selected_topic"] = dict(selected_topic)
+                page["selected_topic"]["milestone_id"] = str(selected_topic["milestone_id"])
+            if body.milestone_id and body.milestone_id != selected_topic["milestone_id"]:
+                raise APIError(422, "invalid_context", "Topic and milestone do not match.")
+        if page and body.milestone_id:
+            if not body.roadmap_id:
+                raise APIError(422, "invalid_context", "Select the milestone's roadmap.")
+            milestone = await one(connection,
+                "SELECT id,title,description FROM asgard_catalog.milestones "
+                "WHERE id=CAST(:id AS uuid) AND roadmap_id=CAST(:roadmap AS uuid) "
+                "AND retired_at IS NULL",
+                {"id": str(body.milestone_id), "roadmap": str(body.roadmap_id)})
+            if not milestone:
+                raise APIError(422, "invalid_context", "Reopen an available milestone.")
+            if page is not None:
+                page["milestone"] = {**milestone, "id": str(milestone["id"])}
+                summary = await progress.summary(connection, identity.user_id, body.roadmap_id)
+                page["milestone"]["progress"] = next((item for item in summary["milestones"]
+                    if item["milestone_id"] == body.milestone_id), None)
+                if page["milestone"]["progress"]:
+                    page["milestone"]["progress"] = json.loads(json.dumps(
+                        page["milestone"]["progress"], default=str))
+        if page and body.page_context.skill_matching_basis:
+            from app.modules.skill_matching.service import get_career_skill_matches
+            from app.modules.skill_matching.sources import SnapshotSource
+            settings = request.app.state.settings
+            source = SnapshotSource(settings.skill_matching_benchmark_source,
+                                    settings.skill_matching_benchmark_version) if (
+                body.page_context.skill_matching_basis == "benchmark") else None
+            matches_view = await get_career_skill_matches(connection, identity.user_id, source)
+            selected_careers = [item for item in matches_view.items
+                                if not body.career_ids or item.career_id in body.career_ids]
+            page["skill_matches"] = [item.model_dump(mode="json") for item in selected_careers[:2]]
+            if not body.career_ids:
+                page["skill_matches"] = [{"career_id": str(item.career_id),
+                    "career_title": item.career_title, "evidence_count": item.evidence_count,
+                    "skill_count": item.benchmark_skill_count} for item in matches_view.items]
+            if body.page_context.competency_id:
+                found = False
+                for item in page["skill_matches"]:
+                    item["skills"] = [s for s in item.get("skills", []) if
+                                      s["competency_id"] == str(body.page_context.competency_id)]
+                    found |= bool(item["skills"])
+                if not found:
+                    raise APIError(422, "invalid_context", "Reopen the selected skill.")
+            for item in page["skill_matches"]:
+                if "skills" in item:
+                    item["skills_shown"] = min(12, len(item["skills"]))
+                    item["skills"] = item["skills"][:12]
+                    item.pop("postings", None)
+                    for skill in item["skills"]:
+                        for key in ("resume_signals", "interpretation_signals", "learning_signals"):
+                            skill[key] = skill[key][:2]
+        if page and body.page_context.comparison_context_id:
+            cache = request.app.state.comparison_insights
+            public_evidence, _, _ = await context(
+                request, identity, sorted(body.career_ids), None, None, False)
+            current_key = comparison_cache_key(request.app.state.settings,
+                                               sorted(body.career_ids), public_evidence)
+            prior = next((value for key, (expires, value) in cache.completed.items()
+                          if expires > monotonic()
+                          and key == current_key
+                          and value.context_id == body.page_context.comparison_context_id
+                          and cache.reference_pairs.get(key) == tuple(sorted(body.career_ids))), None)
+            page["displayed_comparison"] = prior.model_dump(mode="json") if prior else {
+                "status": "unavailable", "note": "The earlier comparison expired; use curated data."}
+        if page and re.search(r"\b(my|saved|profile|resume|skill|match)\b", body.question, re.I):
             page["saved_skills"] = await rows(connection,
-                "SELECT c.label FROM asgard_private.user_competencies u JOIN asgard_catalog.competencies c ON c.id=u.competency_id WHERE u.user_id=CAST(:uid AS uuid) ORDER BY c.label LIMIT 12",
+                "SELECT c.label,u.level,u.evidence_confirmed FROM asgard_private.user_competencies u JOIN asgard_catalog.competencies c ON c.id=u.competency_id WHERE u.user_id=CAST(:uid AS uuid) ORDER BY c.label LIMIT 12",
                 {"uid": str(identity.user_id)})
+            if re.search(r"\b(resume|background|experience|project|education)\b", body.question, re.I):
+                document = await one(connection,
+                    "SELECT evidence FROM asgard_private.documents WHERE user_id=CAST(:uid AS uuid) "
+                    "AND status='active' ORDER BY created_at DESC,id DESC LIMIT 1",
+                    {"uid": str(identity.user_id)})
+                if document:
+                    page["saved_background"] = [{key: item[key] for key in ("kind", "text", "page")}
+                                                for item in document["evidence"][:8]]
         if body.page_context and body.page_context.questionnaire_id and body.page_context.question_id:
             from app.modules.discovery.service import questionnaire
             definition = await questionnaire(connection, body.page_context.questionnaire_id)
@@ -673,7 +799,8 @@ async def counselor_turn(request: Request, identity: Owner, body: GuidanceQuesti
             "SELECT id,title,slug FROM asgard_catalog.careers WHERE status='published' ORDER BY title,id")
     question = body.question.casefold()
     resolve_text = question
-    if re.search(r"\b(which|these|those|they|both)\b", question):
+    if (not body.career_ids and not body.roadmap_id
+            and re.search(r"\b(which|these|those|they|both)\b", question)):
         prior = next((turn.text for turn in reversed(body.history) if turn.role == "user"), "")
         resolve_text += " " + prior.casefold()
     matches = []
@@ -685,6 +812,9 @@ async def counselor_turn(request: Request, identity: Owner, body: GuidanceQuesti
             matches.append(record["id"])
     if len(matches) > 2:
         return {"answer": "Which two careers would you like to compare?", "sources": [], "web_unavailable": False}
+    if matches and page and set(matches) != set(body.career_ids):
+        for field in ("selected_topic", "milestone", "skill_matches", "displayed_comparison"):
+            page.pop(field, None)
     comparison = bool(re.search(r"\b(compare|compared|comparison|difference|different|versus|vs)\b", question))
     learning_request = bool(re.search(r"\b(next|resume|continue|practice|practise|exercise|learn first)\b", question))
     evidence, titles, learning = await context(

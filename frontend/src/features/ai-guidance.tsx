@@ -278,7 +278,10 @@ function CounselorConversation({ params, page, onFollowSource, session }: {
       ]);
       const { data } = await api.POST("/api/v1/me/ai-guidance/counselor", { body: {
         question: text, history, search_web: searchWeb,
-        page_context: { path: page ?? "/counselor", questionnaire_id: screen?.questionnaire_id, question_id: screen?.question_id, category_id: screen?.category_id, filter: screen?.filter?.slice(0,120), recommendation_run_id: screen?.recommendation_run_id },
+        milestone_id: screen?.milestone_id,
+        page_context: { path: page ?? "/counselor", questionnaire_id: screen?.questionnaire_id, question_id: screen?.question_id, category_id: screen?.category_id, filter: screen?.filter?.slice(0,120), recommendation_run_id: screen?.recommendation_run_id,
+          skill_matching_basis: screen?.skill_matching_basis, competency_id: screen?.competency_id,
+          comparison_context_id: screen?.comparison_context_id },
         career_ids: screen?.career_ids ?? [params.get("left"), params.get("right")].filter((id): id is string => !!id),
         roadmap_id: screen?.roadmap_id ?? params.get("roadmap"), topic_id: screen?.topic_id ?? params.get("topic"),
       }, signal: session?.controller.current.signal });

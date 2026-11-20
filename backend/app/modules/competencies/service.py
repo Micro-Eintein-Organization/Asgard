@@ -52,7 +52,7 @@ async def state(connection, user_id):
     )
     items = await rows(
         connection,
-        "SELECT u.competency_id,u.label,u.level,u.updated_at "
+        "SELECT u.competency_id,u.label,u.level,u.updated_at,u.evidence_confirmed "
         "FROM asgard_private.user_competencies u "
         "WHERE u.user_id=CAST(:uid AS uuid) ORDER BY lower(u.label),u.competency_id",
         {"uid": str(user_id)},
@@ -169,6 +169,7 @@ async def compare(connection, user_id, career_id):
         connection,
         "SELECT career.revision,c.id,c.label,c.source,c.source_version,t.id AS topic_id,"
         "t.roadmap_id,t.title,u.competency_id IS NOT NULL AS recorded,u.level,"
+        "coalesce(u.evidence_confirmed,false) AS evidence_confirmed,"
         "coalesce((SELECT version FROM asgard_private.competency_state WHERE user_id=CAST(:uid "
         "AS uuid)),0) AS account_version "
         "FROM asgard_catalog.careers career LEFT JOIN asgard_catalog.competency_links l ON "
@@ -190,6 +191,7 @@ async def compare(connection, user_id, career_id):
             items[key] = {
                 k: row[k] for k in ("id", "label", "source", "source_version", "recorded", "level")
             }
+            items[key]["evidence_confirmed"] = row.get("evidence_confirmed", False)
             items[key]["topics"] = []
         if row["topic_id"] is not None:
             items[key]["topics"].append({k: row[k] for k in ("topic_id", "roadmap_id", "title")})

@@ -837,6 +837,18 @@
             "title": "Answer",
             "type": "string"
           },
+          "context_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Context Id"
+          },
           "general_knowledge": {
             "anyOf": [
               {
@@ -905,6 +917,11 @@
             },
             "title": "Career Context",
             "type": "array"
+          },
+          "evidence_confirmed": {
+            "default": false,
+            "title": "Evidence Confirmed",
+            "type": "boolean"
           },
           "explanation": {
             "anyOf": [
@@ -1190,6 +1207,59 @@
           "questionnaire_id"
         ],
         "title": "CompletedDiscoveryReference",
+        "type": "object"
+      },
+      "ConfirmSkill": {
+        "additionalProperties": false,
+        "properties": {
+          "competency_id": {
+            "format": "uuid",
+            "title": "Competency Id",
+            "type": "string"
+          },
+          "level": {
+            "anyOf": [
+              {
+                "maximum": 4.0,
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Level"
+          }
+        },
+        "required": [
+          "competency_id"
+        ],
+        "title": "ConfirmSkill",
+        "type": "object"
+      },
+      "ConfirmSkills": {
+        "additionalProperties": false,
+        "properties": {
+          "expected_version": {
+            "minimum": 0.0,
+            "title": "Expected Version",
+            "type": "integer"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/ConfirmSkill"
+            },
+            "maxItems": 30,
+            "minItems": 1,
+            "title": "Items",
+            "type": "array"
+          }
+        },
+        "required": [
+          "expected_version",
+          "items"
+        ],
+        "title": "ConfirmSkills",
         "type": "object"
       },
       "ContextFact": {
@@ -1519,6 +1589,46 @@
           "option_ids"
         ],
         "title": "DiscoveryAnswer",
+        "type": "object"
+      },
+      "DiscoveryExplanation": {
+        "additionalProperties": false,
+        "properties": {
+          "answer_reasons": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Answer Reasons",
+            "type": "array"
+          },
+          "considerations": {
+            "title": "Considerations",
+            "type": "string"
+          },
+          "experience_connections": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Experience Connections",
+            "type": "array"
+          },
+          "first_topics": {
+            "items": {
+              "type": "string"
+            },
+            "title": "First Topics",
+            "type": "array"
+          },
+          "roadmap_reason": {
+            "title": "Roadmap Reason",
+            "type": "string"
+          }
+        },
+        "required": [
+          "roadmap_reason",
+          "considerations"
+        ],
+        "title": "DiscoveryExplanation",
         "type": "object"
       },
       "DiscoveryOption": {
@@ -2546,6 +2656,18 @@
             "title": "History",
             "type": "array"
           },
+          "milestone_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Milestone Id"
+          },
           "page_context": {
             "anyOf": [
               {
@@ -2794,6 +2916,22 @@
           }
         },
         "title": "HealthResponse",
+        "type": "object"
+      },
+      "InterpretSkills": {
+        "additionalProperties": false,
+        "properties": {
+          "text": {
+            "maxLength": 2000,
+            "minLength": 1,
+            "title": "Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "title": "InterpretSkills",
         "type": "object"
       },
       "InterpretationSignal": {
@@ -3274,6 +3412,30 @@
             ],
             "title": "Category Id"
           },
+          "comparison_context_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Comparison Context Id"
+          },
+          "competency_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Competency Id"
+          },
           "filter": {
             "anyOf": [
               {
@@ -3329,6 +3491,21 @@
               }
             ],
             "title": "Recommendation Run Id"
+          },
+          "skill_matching_basis": {
+            "anyOf": [
+              {
+                "enum": [
+                  "benchmark",
+                  "learning_path"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Skill Matching Basis"
           }
         },
         "required": [
@@ -4651,7 +4828,7 @@
             "items": {
               "$ref": "#/components/schemas/DiscoveryAnswer"
             },
-            "maxItems": 6,
+            "maxItems": 10,
             "minItems": 1,
             "title": "Answers",
             "type": "array"
@@ -4857,6 +5034,42 @@
         "title": "SelectRoadmap",
         "type": "object"
       },
+      "SkillApplication": {
+        "additionalProperties": false,
+        "properties": {
+          "basis": {
+            "enum": [
+              "benchmark",
+              "learning_path"
+            ],
+            "title": "Basis",
+            "type": "string"
+          },
+          "career_id": {
+            "format": "uuid",
+            "title": "Career Id",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "topics": {
+            "items": {
+              "$ref": "#/components/schemas/TopicLink"
+            },
+            "title": "Topics",
+            "type": "array"
+          }
+        },
+        "required": [
+          "career_id",
+          "title",
+          "basis"
+        ],
+        "title": "SkillApplication",
+        "type": "object"
+      },
       "SkillExplanation": {
         "additionalProperties": false,
         "properties": {
@@ -4963,6 +5176,13 @@
             "title": "Status",
             "type": "string"
           },
+          "topic_links": {
+            "items": {
+              "$ref": "#/components/schemas/LearningSignal"
+            },
+            "title": "Topic Links",
+            "type": "array"
+          },
           "total_postings": {
             "anyOf": [
               {
@@ -4997,6 +5217,69 @@
           "total_postings"
         ],
         "title": "SkillMatchItem",
+        "type": "object"
+      },
+      "SkillPreview": {
+        "additionalProperties": false,
+        "properties": {
+          "interpretation_available": {
+            "default": true,
+            "title": "Interpretation Available",
+            "type": "boolean"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/SkillSuggestion"
+            },
+            "title": "Items",
+            "type": "array"
+          }
+        },
+        "required": [
+          "items"
+        ],
+        "title": "SkillPreview",
+        "type": "object"
+      },
+      "SkillSuggestion": {
+        "additionalProperties": false,
+        "properties": {
+          "applications": {
+            "items": {
+              "$ref": "#/components/schemas/SkillApplication"
+            },
+            "title": "Applications",
+            "type": "array"
+          },
+          "competency_id": {
+            "format": "uuid",
+            "title": "Competency Id",
+            "type": "string"
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "method": {
+            "enum": [
+              "exact",
+              "interpreted"
+            ],
+            "title": "Method",
+            "type": "string"
+          },
+          "quote": {
+            "title": "Quote",
+            "type": "string"
+          }
+        },
+        "required": [
+          "competency_id",
+          "label",
+          "quote",
+          "method"
+        ],
+        "title": "SkillSuggestion",
         "type": "object"
       },
       "StartDiscovery": {
@@ -5231,6 +5514,11 @@
             "title": "Competency Id",
             "type": "string"
           },
+          "evidence_confirmed": {
+            "default": false,
+            "title": "Evidence Confirmed",
+            "type": "boolean"
+          },
           "explanation": {
             "anyOf": [
               {
@@ -5276,6 +5564,11 @@
       "UserReportSignal": {
         "additionalProperties": false,
         "properties": {
+          "evidence_confirmed": {
+            "default": false,
+            "title": "Evidence Confirmed",
+            "type": "boolean"
+          },
           "level": {
             "anyOf": [
               {
@@ -5332,6 +5625,16 @@
             "minItems": 1,
             "title": "Evidence Fact Ids",
             "type": "array"
+          },
+          "explanation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DiscoveryExplanation"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "reason": {
             "maxLength": 1200,
@@ -7697,6 +8000,178 @@
           }
         ],
         "summary": "State",
+        "tags": [
+          "competencies"
+        ]
+      }
+    },
+    "/api/v1/me/competencies/confirm": {
+      "post": {
+        "operationId": "confirm_skills_api_v1_me_competencies_confirm_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConfirmSkills"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompetencyState"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Confirm Skills",
+        "tags": [
+          "competencies"
+        ]
+      }
+    },
+    "/api/v1/me/competencies/interpret": {
+      "post": {
+        "operationId": "interpret_skills_api_v1_me_competencies_interpret_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InterpretSkills"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SkillPreview"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Interpret Skills",
         "tags": [
           "competencies"
         ]

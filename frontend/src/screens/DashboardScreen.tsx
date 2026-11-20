@@ -22,7 +22,11 @@ export function DashboardScreen() {
   const savedProfile = useSavedProfile();
   const greeting = savedProfile.data?.profile?.first_name ? `Welcome back, ${savedProfile.data.profile.first_name}` : "Your next step is here.";
   const page = useCoreQuery(["dashboard-view"], coreApi.dashboardView);
-  useScreenContext(page.data ? { label: ["Dashboard", page.data.current?.roadmap.title].filter(Boolean).join(" → ") } : null);
+  useScreenContext(page.data ? { label: ["Dashboard", page.data.current?.roadmap.title].filter(Boolean).join(" → "),
+    roadmap_id: page.data.current?.roadmap.id,
+    career_ids: page.data.current ? [page.data.current.roadmap.career_id] : [],
+    topic_id: page.data.dashboard.active_topic?.roadmap_id === page.data.current?.roadmap.id
+      ? page.data.dashboard.active_topic?.topic_id : undefined } : null);
   const dashboard = { ...page, data: page.data?.dashboard };
   const preferences = useCoreQuery(["preferences"], coreApi.preferences);
   const id = dashboard.data?.learning_state.current_roadmap_id ?? "";

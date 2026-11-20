@@ -167,3 +167,14 @@ Broader acceptance is deferred per the session record. Hosting, additional accou
 controls, changed eligibility, counselor, PDF, photos, recommendation integration
 and historical ratings are separate work. This specification records a proposal
 for technical contracts, not approval to apply migrations to a retained environment or publish content.
+# Confirmed natural-language skills, 2026-11-20
+
+Owner and technical reviewer @YakisobaNissin approved the concrete
+[SQL/API package](../plans/context-aware-counselor-and-skills.md) in chat.
+Natural-language entry previews published canonical skills across Job-sample and
+Roadmap vocabularies; manual selection remains available. Only explicit confirmation
+saves a skill. Confirmation counts as evidence independently of an optional
+self-reported level; it does not convert existing unknown/zero records or infer
+proficiency. Omitted levels preserve saved ratings. Resume matching continues to
+use validated source evidence across both views, with authored topic destinations.
+This decision supersedes the manual-only entry boundary for this bounded extension.

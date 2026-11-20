@@ -27,7 +27,7 @@ function valid(question: Question, selected: string[]) {
   );
 }
 
-export function useDiscoveryEditor(initial: Session, definition: Definition) {
+export function useDiscoveryEditor(initial: Session, definition: Definition, intakeDirty = false, intakeBusy = false) {
   const { user } = useAuth();
   const userId = user?.id ?? "";
   const navigate = useNavigate();
@@ -61,7 +61,7 @@ export function useDiscoveryEditor(initial: Session, definition: Definition) {
   const savedAnswers = Object.fromEntries(
     saved.answers.map((answer) => [answer.question_id, answer.option_ids]),
   );
-  const dirty = Object.entries(drafts).some(
+  const dirty = intakeDirty || Object.entries(drafts).some(
     ([id, value]) => !same(value, savedAnswers[id]),
   );
   const blocker = useBlocker(
@@ -119,7 +119,7 @@ export function useDiscoveryEditor(initial: Session, definition: Definition) {
     setDrafts((previous) => ({ ...previous, [question.question_id]: next }));
     setError("");
     setFeedback(
-      !selected.includes(id) &&
+      question.multiple && !selected.includes(id) &&
         selected.length > 0 &&
         !selected.every((value) => next.includes(value))
         ? "Conflicting selections were cleared. Your changes are not saved yet."
@@ -128,6 +128,7 @@ export function useDiscoveryEditor(initial: Session, definition: Definition) {
   }
 
   async function saveAll() {
+    if (intakeDirty) throw new Error("Save your experience input or discard it before leaving Discovery.");
     let result = saved;
     const save = async (
       answers: { question_id: string; option_ids: string[] }[],
@@ -193,11 +194,12 @@ export function useDiscoveryEditor(initial: Session, definition: Definition) {
     if (!isCurrentAccount(userId))
       throw new Error("Your account changed. Reopen Discovery.");
     setSaved(result);
-    setFeedback("This answer is saved.");
+    setFeedback("Your previous choices are saved.");
     return result;
   }
 
   async function perform(action: () => Promise<void>) {
+    if (intakeBusy) return;
     if (writing.current || !isCurrentAccount(userId)) return;
     writing.current = true;
     setBusy(true);
