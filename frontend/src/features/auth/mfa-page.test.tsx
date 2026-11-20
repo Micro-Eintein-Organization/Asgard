@@ -30,6 +30,7 @@ function open(challenge = false) {
     <Route path="/test" element={<MfaPage challenge={challenge} />} />
     <Route path="/welcome" element={<h1>Welcome destination</h1>} />
     <Route path="/dashboard" element={<h1>Dashboard destination</h1>} />
+    <Route path="/start" element={<h1>Starting page destination</h1>} />
     <Route path="/settings/account" element={<h1>Account destination</h1>} />
     <Route path="/sign-in" element={<h1>Sign-in destination</h1>} />
   </Routes></MemoryRouter>);
@@ -82,7 +83,7 @@ it("keeps failed authenticator challenges recoverable", async () => {
   fireEvent.change(screen.getByLabelText("Authenticator code"), { target: { value: "654321" } });
   fireEvent.click(screen.getByRole("button", { name: "Verify" }));
   await waitFor(() => expect(mocks.verifySecondFactor).toHaveBeenLastCalledWith("654321"));
-  expect(await screen.findByRole("heading", { name: "Dashboard destination" })).toBeVisible();
+  expect(await screen.findByRole("heading", { name: "Starting page destination" })).toBeVisible();
 });
 it("reports unavailable recovery issuance instead of claiming full setup success", async () => {
   mocks.approved = true; mocks.generate.mockRejectedValue(new Error("Recovery codes could not be issued")); open();

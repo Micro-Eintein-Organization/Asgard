@@ -2,6 +2,19 @@
 
 # Optional two-factor authentication and hosted account demo
 
+2026-11-20 account-entry repair (Codex): the owner approved the
+[bounded repair plan](../plans/account-entry-ui-repair.md) in chat. The new-learner
+branch of `/start` now offers `/set-up-2fa?welcome=1` after external email
+confirmation/sign-in, matching the existing signup-code path. Verified provider
+factors skip enrollment; existing returning-account routing and required-MFA guards
+remain. Skip for now goes directly to Welcome. Enrollment/recovery flags remain
+required, so this source repair does not activate unavailable setup. See the
+[entry guide](new-account-discovery-entry.md) for source, tests and exact manual
+steps. Sixty distinct focused tests passed across seven suites, including existing
+MFA capability/session guards, following correction of a stale test destination.
+TypeScript and scoped lint passed. Browser connection timed out; visual, real-provider
+and hosted acceptance remain pending. Reviewer: @YakisobaNissin. REQ-01/11/13.
+
 Current recovery follow-up, 2026-11-19 (Codex): owner/codeowner-approved
 [MFA-RECOVERY-01](application-recovery-codes.md) replaces the provider-code paths
 with application-managed backup codes for restricted TOTP replacement. Supabase

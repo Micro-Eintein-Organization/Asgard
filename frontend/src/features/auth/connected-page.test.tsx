@@ -27,14 +27,14 @@ beforeEach(() => {
   vi.clearAllMocks();
 });
 
-function renderVerificationPage(mode: "verify" | "recovery" | "register" = "verify") {
+function renderVerificationPage(mode: "verify" | "recovery" | "register" | "login" = "verify", authError: string | null = null) {
   return render(
     <QueryClientProvider client={new QueryClient()}><MemoryRouter>
       <AuthContext.Provider
         value={{
           user: null,
           loading: false,
-          error: null,
+          error: authError,
           mfa: "ready",
           refreshAssurance: async () => {},
           signOut: async () => {},
@@ -61,6 +61,14 @@ function renderVerificationPage(mode: "verify" | "recovery" | "register" = "veri
     </MemoryRouter></QueryClientProvider>,
   );
 }
+
+it.each(["login", "register"] as const)("explains session errors on %s without hiding the form", mode => {
+  renderVerificationPage(mode, "Could not check account security. Sign in again.");
+  expect(screen.getByRole("alert")).toHaveTextContent("Could not check account security. Sign in again.");
+  expect(screen.getByLabelText("Email")).toBeVisible();
+  expect(screen.getByLabelText("Password")).toBeVisible();
+  expect(screen.getByRole("button", { name: mode === "login" ? "Sign in" : "Send email code" })).toBeEnabled();
+});
 
 it("shows the destination address and a visible resend option", () => {
   sessionStorage.setItem("asgard.signup-email", "owner@example.test");

@@ -46,5 +46,10 @@ it.each(["loading", "checking", "required", "unverified", "error"])("handles %s 
   expect(screen.queryByText("Get started")).not.toBeInTheDocument();
   expect(screen.queryByRole("button", { name: "Account menu" })).not.toBeInTheDocument();
   if (phase === "loading" || phase === "checking") expect(screen.getByRole("status")).toBeInTheDocument();
-  else expect(screen.getByRole("link", { name: phase === "error" ? "Sign in again" : "Continue to account" })).toHaveAttribute("href", phase === "error" ? "/sign-in" : phase === "unverified" ? "/check-email" : "/verify-2fa");
+  else {
+    const action = screen.getByRole("link", { name: phase === "error" ? "Sign in again" : "Continue to account" });
+    expect(action).toHaveAttribute("href", phase === "error" ? "/sign-in" : phase === "unverified" ? "/check-email" : "/verify-2fa");
+    expect(action).toHaveAttribute("data-slot", "button");
+    expect(action.parentElement).toHaveClass("header-actions");
+  }
 });

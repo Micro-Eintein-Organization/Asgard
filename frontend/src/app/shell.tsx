@@ -172,7 +172,11 @@ export function Header() {
         ) : pendingSession ? (
           <span role="status">Restoring your session…</span>
         ) : user || error ? (
-          <Link to={accountDestination}>{error ? "Sign in again" : "Continue to account"}</Link>
+          <div className="header-actions">
+            <Button asChild>
+              <Link to={accountDestination}>{error ? "Sign in again" : "Continue to account"}</Link>
+            </Button>
+          </div>
         ) : (
           <div className="public-nav">
             <Link to={routes.login}>Log in</Link>

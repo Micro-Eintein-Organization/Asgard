@@ -1,12 +1,41 @@
 # Account access fixes
 
-Implementer: Codex. Created: 2026-11-19. Last updated: 2026-11-19.
+Implementer: Codex. Created: 2026-11-19. Last updated: 2026-11-20.
 Status: implemented; owner/reviewer approved the changes in chat on 2026-11-19;
 manual and hosted acceptance pending.
 Owner/reviewer: @YakisobaNissin. Requirements: REQ-01/11/13, QA-01/02/09/11.
 Authority: owner-selected, reviewed chat plan and ACCOUNT-ACCESS-01 in the
 [decision register](../decisions.md); [architecture](../architecture.md) and
 [security policy](../security-and-operations.md#account-access-and-recovery).
+
+## Account-entry repair, 2026-11-20
+
+The owner approved the [combined repair plan](../plans/account-entry-ui-repair.md)
+with "implement" in chat. Codex updated `frontend/src/app/shell.tsx` so error and
+pending-account actions use the existing right-aligned header action wrapper and
+shared Button. Normal signed-out Log in / Get started navigation keeps the supplied
+layout. `frontend/src/features/auth/connected-page.tsx` now displays AuthContext's
+session restoration/security error inside the card while retaining the sign-in form.
+This exposes the failure; it does not claim to resolve an unobserved provider error.
+The [new-account entry guide](new-account-discovery-entry.md) records the restored
+optional 2FA offer. No API, schema, dependency or deployment setting changed.
+
+Verification: TypeScript and changed-file ESLint passed. Sixty distinct tests in
+seven focused auth/header/entry suites passed across the initial run and the
+affected MFA retry. The initial run had one stale MFA fixture expecting Dashboard
+instead of the existing /start destination; the corrected fixture passed all eight
+MFA UI cases. Existing session restoration, ownership/session isolation and required
+MFA guard tests passed. Tests mock providers; live-provider acceptance is pending.
+Local browser inspection was attempted, but the browser connection timed out before
+rendering could be inspected. Visual, keyboard and hosted acceptance remain pending.
+
+At `http://127.0.0.1:5173/sign-in` and `/create-account`, check the header at desktop
+width and narrow reflow. Signed-out Log in / Get started must remain on the right.
+If session restoration/security fails, Sign in again must be a right-aligned button
+and its error must be visible inside the form. Sign-in fields must remain usable.
+Check `/check-email` during a disposable signup and `/password-recovery` as well.
+Report the URL, session state, viewport and expected/actual result without credentials.
+Final human review remains assigned to @YakisobaNissin; no commit or publication occurred.
 
 Approval record, 2026-11-19: the project owner identified themselves as the
 CODEOWNERS reviewer @YakisobaNissin and approved these changes in this chat

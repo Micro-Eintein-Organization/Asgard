@@ -195,6 +195,7 @@ export function ConnectedAuthPage({ mode }: { mode: Mode }) {
                   : "Sign in to return to your learning path."}
           </p>
         </header>
+        {auth.error && <p role="alert" className="field-error">{auth.error}</p>}
         {mode === "login" && params.get("account_deleted") === "1" && <p role="status">Account access ended. Deletion is in progress.</p>}
         {mode === "login" && params.get("password_reset") === "1" && <p role="status">Your password was changed. Sign in with your new password.</p>}
         <form className="form-grid" onSubmit={handleSubmit(submit)}>
