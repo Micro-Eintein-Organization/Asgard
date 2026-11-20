@@ -7,13 +7,16 @@ from app.modules.discovery.v3 import ID, SCENARIOS
 from app.modules.recommendations.resume_connections import resolve_connections
 
 
-@pytest.mark.parametrize(("text", "kind", "count"), [
-    ("Python, scikit-learn", "skill", 1),
-    ("I have no Python experience", "skill", 0),
-    ("Python", "education", 0),
-    ("Py", "skill", 1),
+@pytest.mark.parametrize(("label", "text", "kind", "count"), [
+    ("Python", "Python, scikit-learn", "skill", 1),
+    ("Python", "I have no Python experience", "skill", 0),
+    ("Python", "Python", "education", 0),
+    ("Python", "Py", "skill", 1),
+    ("Pandas loading and typing", "pandas", "skill", 1),
+    ("SQL joins", "MySQL", "skill", 1),
+    ("SQL joins", "I want to learn MySQL", "skill", 0),
 ])
-def test_discovery_uses_resume_matcher_for_skill_support(monkeypatch, text, kind, count):
+def test_discovery_uses_resume_matcher_for_skill_support(monkeypatch, label, text, kind, count):
     from asyncio import run
     from unittest.mock import AsyncMock
     from uuid import uuid4
@@ -24,7 +27,7 @@ def test_discovery_uses_resume_matcher_for_skill_support(monkeypatch, text, kind
 
     async def read(_connection, sql, params=None):
         if "SELECT DISTINCT c.id,c.label,c.aliases" in sql:
-            return [{"id": skill, "label": "Python", "aliases": ["Py"],
+            return [{"id": skill, "label": label, "aliases": ["Py"],
                      "career_id": career, "slug": "data-analyst"}]
         return []
 

@@ -1,7 +1,8 @@
 """Pure, deterministic matching of user skill signals to career benchmark skills.
 
 Reports match by canonical competency ID. Resume evidence matches exact
-canonical labels or unambiguous aliases as case-insensitive phrases with
+canonical labels, unambiguous aliases or explicitly approved roadmap technology
+relationships as case-insensitive phrases with
 normalized whitespace and phrase boundaries. A resume mention never supplies
 or changes a reported level. Missing and unknown reports remain distinct.
 
@@ -13,10 +14,11 @@ make ties deterministic without introducing a score or percentage.
 from __future__ import annotations
 
 import re
+from collections.abc import Sequence
 from dataclasses import dataclass
 from datetime import datetime
 from enum import Enum
-from typing import Literal, Sequence
+from typing import Literal
 from uuid import UUID
 
 from app.modules.competencies.claims import positive_statements
@@ -39,6 +41,7 @@ class BenchmarkSkill:
     label: str
     aliases: tuple[str, ...] = ()
     competency_id: UUID | None = None
+    supporting_technologies: tuple[str, ...] = ()
 
 
 @dataclass(frozen=True, slots=True)
@@ -120,7 +123,8 @@ def matching_resume_evidence(
     pattern = _phrase_pattern(phrase)
     return tuple(
         item for item in evidence
-        if item.kind == "skill" and any(pattern.search(part) for part in positive_statements(item.text))
+        if item.kind == "skill"
+        and any(pattern.search(part) for part in positive_statements(item.text))
     )
 
 
@@ -197,7 +201,8 @@ def rank_careers(
 ) -> tuple[CareerMatch, ...]:
     """Classify each mapped benchmark skill and rank careers deterministically.
 
-    A level 1-4 report or any exact skill-evidence mention yields MATCHED.
+    A level 1-4 report or an eligible resume phrase yields MATCHED, including
+    explicitly configured technology support for roadmap tasks.
     Otherwise a saved null-level report yields UNKNOWN; an absent or level-0
     report yields MISSING. Resume evidence is retained but never assigns a
     proficiency level. Unmapped benchmark rows are excluded from N. Repeated
@@ -224,7 +229,10 @@ def rank_careers(
             if competency_id is None:
                 continue
             report = report_index.get(competency_id)
-            signals = _resume_signals(phrases[benchmark_skill.skill_key], resume_evidence)
+            terms = tuple(dict.fromkeys((
+                *phrases[benchmark_skill.skill_key], *benchmark_skill.supporting_technologies,
+            )))
+            signals = _resume_signals(terms, resume_evidence)
             if (report is not None and report.level is not None and report.level >= 1) or signals:
                 status = SkillStatus.MATCHED
             elif report is not None and report.level is None:

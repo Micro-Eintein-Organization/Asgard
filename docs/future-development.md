@@ -4,6 +4,14 @@ Baseline: 2026-11-17. This is the remaining-work register, not implementation au
 
 ## Feature status
 
+FUT-01 update, 2026-11-20: the owner approved deterministic technology evidence
+for explicitly mapped roadmap tasks and shared Discovery connections. Source is
+implemented locally by Codex; 167 focused backend cases and OpenAPI drift passed.
+Final review (@YakisobaNissin) and hosted/manual acceptance remain pending.
+See the [owning decision](specs/competency-comparison.md#technology-mentions-as-roadmap-evidence-2026-11-20)
+and [implementation evidence/limits](plans/roadmap-technology-evidence.md).
+This adds no proficiency/completion inference, Auth, API or schema change.
+
 Discovery completion correction, 2026-11-20: implemented locally under the owner's
 approved plan. Navigation uses the returned saved route across v1-v4, the final
 label requires saved completion readiness, and legacy progress has no shifting

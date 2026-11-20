@@ -15,6 +15,7 @@ from app.modules.discovery.v4 import ID as QUESTIONNAIRE_V4_ID
 from app.modules.progress.service import learning as read_learning
 from app.modules.recommendations import discovery_rules, occupational_runtime
 from app.modules.recommendations.discovery_v3_rules import RULE_VERSION as V3_RULE_VERSION
+from app.modules.recommendations.discovery_v4_rules import VERSION as V4_RULE_VERSION
 from app.modules.recommendations.provider import (
     PROMPT_VERSION,
     SCHEMA_VERSION,
@@ -150,7 +151,7 @@ async def run(connection, uid, run_id, context_revision, catalog_release_id, *, 
             or saved["prompt_version"]
             != (
                 (
-                    "discovery-rules-4"
+                    V4_RULE_VERSION
                     if reference and reference.questionnaire_id == QUESTIONNAIRE_V4_ID
                     else V3_RULE_VERSION
                 )
@@ -619,7 +620,7 @@ async def request_rules(connection, uid, body, learning, release, completed):
     v3 = completed["questionnaire_id"] in (QUESTIONNAIRE_V3_ID, QUESTIONNAIRE_V4_ID)
     strategy = (
         (
-            "discovery-rules-4"
+            V4_RULE_VERSION
             if completed["questionnaire_id"] == QUESTIONNAIRE_V4_ID
             else V3_RULE_VERSION
         )
@@ -813,8 +814,15 @@ async def request_rules(connection, uid, body, learning, release, completed):
             for link in resume_links.get(str(item.career_id), [])[:3]:
                 item.evidence_fact_ids.append(link["fact_id"])
                 resume_labels.append(link["label"])
+                connection_note = (
+                    "Resume wording: " + ", ".join(link["matched_phrases"])
+                    + ". This supports the related roadmap skill; "
+                    "it does not establish task completion. "
+                    if link.get("matched_phrases") else ""
+                )
                 connections.append(
-                    "Your resume supports "
+                    connection_note
+                    + "Your resume supports "
                     + link["label"]
                     + ": '"
                     + link["quote"][:180]
@@ -851,7 +859,8 @@ async def request_rules(connection, uid, body, learning, release, completed):
                 item.reason = (
                     "Your "
                     + background_source
-                    + (" describes " if background_source == "resume" else " include ")
+                    + (" provides supporting background for "
+                       if background_source == "resume" else " include ")
                     + ", ".join(labels)
                     + ". This gives you relevant background to explore "
                     + career_skills["title"]

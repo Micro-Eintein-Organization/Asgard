@@ -25,6 +25,14 @@ Consolidated baseline: 2026-11-17. This register retains recorded owner decision
 
 ## Current resolutions
 
+- ROADMAP-TECH-EVIDENCE-01 (2026-11-20, project owner in chat): approved technology
+  mentions as supporting evidence for explicitly mapped roadmap tasks and then
+  approved the bounded plan/table with "implement". No proficiency/completion
+  inference or canonical identity changes. [Owning specification](specs/competency-comparison.md#technology-mentions-as-roadmap-evidence-2026-11-20),
+  [implementation/review evidence](plans/roadmap-technology-evidence.md).
+  Implemented locally by Codex; reviewer @YakisobaNissin, final human review and
+  hosted/manual acceptance pending.
+
 - PH-SALARY-01 clarification (2026-11-20, project owner in chat): requested a general “gist on average starting,” permitting researched, explicitly labeled starting-pay estimates using broader job families. The owner corrected the obsolete twelve-role assumption; cover the full published catalog (currently 23), including the 11-role expansion. This supersedes the initial exact-reference-only salary presentation, not the shared API or recommendation boundaries. See [specification](specs/career-exploration-comparison.md#philippine-salary-and-organization-update-2026-11-20). Codex implements; @YakisobaNissin review and owner Chrome acceptance remain pending.
 
 - PH-SALARY-01 / COMPARE-ORG-01 (2026-11-20, project owner in chat): “implement” approves the [comparison salary and organization plan](plans/comparison-ph-salary-2026-11-20.md). Permit bounded attributed Philippine salary snapshots, explicit missing coverage and clearer labeled sections/icons. Supersedes the comparison specification's no-new-dataset boundary only for this snapshot; live feeds and recommendation inputs remain outside scope. Implementer: Codex; technical reviewer: @YakisobaNissin, review pending. No shared API, migration, dependency or Git publication change.

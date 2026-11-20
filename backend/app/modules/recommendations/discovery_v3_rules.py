@@ -6,7 +6,7 @@ from app.modules.discovery.definition import definition
 from app.modules.recommendations.discovery_rules import ACTIVITY_CAREERS, select
 from app.modules.recommendations.schemas import UntrustedRecommendationItem
 
-RULE_VERSION = "discovery-rules-3.1"
+RULE_VERSION = "discovery-rules-3.2"
 
 
 def choose(session, catalog, experience=None):

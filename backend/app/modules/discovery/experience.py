@@ -7,6 +7,7 @@ from types import SimpleNamespace
 
 from app.modules.recommendations.resume_connections import saved_connections
 from app.modules.skill_matching.matcher import BenchmarkSkill, Career, ResumeEvidence, rank_careers
+from app.modules.skill_matching.technology_evidence import technology_terms
 from app.modules.storage import one, rows
 
 
@@ -77,7 +78,8 @@ async def current(connection, uid):
         for row in exact:
             skills_by_career.setdefault((row["career_id"], row["slug"]), []).append(
                 BenchmarkSkill(str(row["id"]), row["label"],
-                               tuple(row["aliases"] or []), row["id"])
+                               tuple(row["aliases"] or []), row["id"],
+                               technology_terms(row["label"]))
             )
         evidence = [ResumeEvidence(item["kind"], item["text"], item["page"], item["span"])
                     for item in doc["evidence"]]
@@ -92,7 +94,9 @@ async def current(connection, uid):
         for career in careers:
             for link in links.get(str(career["id"]), []):
                 support.setdefault(career["slug"], set()).add(link["competency_id"])
-                if len(link["label"].split()) >= 3 and re.search(
+                if not link.get("technology_evidence", False) and len(
+                    link["label"].split()
+                ) >= 3 and re.search(
                     r"\b(built|implemented|deployed|debugged|configured|designed|tested)\b",
                     link["quote"],
                     re.I,

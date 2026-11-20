@@ -2,6 +2,29 @@
 
 # Skill profiles and career comparison
 
+### Roadmap technology evidence, 2026-11-20
+
+Implementer: Codex. Created/last updated: 2026-11-20. Status: owner-approved plan
+implemented locally; final human review and hosted/manual acceptance pending.
+Reviewer: @YakisobaNissin. REQ-11, F-002, RES-01, SKILL-01/02.
+Owning [decision](../specs/competency-comparison.md#technology-mentions-as-roadmap-evidence-2026-11-20)
+and [approved relationship table, source list, evidence and manual steps](../plans/roadmap-technology-evidence.md).
+
+Positive mapped technologies now support related roadmap skills, such as pandas
+for Pandas loading and typing and MySQL for approved SQL tasks. Existing resume
+signals retain original passages/matched terms. Each canonical task counts once;
+no rating, completion, manual report or canonical alias is created. Job-sample
+source objects do not receive these relationships. The internal technology table,
+matcher and learning-path source own this behavior; no wire/provider change.
+
+167 focused backend cases and OpenAPI drift passed; local published-catalog
+matching gives Data Analyst 4/10 with the screenshot text. Scoped Ruff retains
+only a pre-existing enum-style UP042 in the unchanged matcher enum declaration;
+all other changed files passed. The plan records test-fixture corrections and
+verification limits. Manual acceptance is pending at
+`http://127.0.0.1:5173/career-skill-matches`; follow the plan's source/count checks
+and Discovery steps. No live provider, hosted or browser acceptance was run.
+
 ### Resume matching regression repair, 2026-11-20
 
 Implementer: Codex. Created: 2026-11-20. Last updated: 2026-11-20.
