@@ -119,8 +119,8 @@ export function CareerComparisonPage() {
     (signal) => coreApi.compareCareers(left, right, signal),
     valid,
   );
-  useScreenContext({ label: query.data ? query.data.careers.map(item => item.career.title).join(" versus ") : "Compare careers", career_ids: valid ? [left, right] : [] });
   const insight = useComparisonInsight(left, right, valid && !!query.data && !query.error);
+  useScreenContext({ label: query.data ? query.data.careers.map(item => item.career.title).join(" versus ") : "Compare careers", career_ids: valid ? [left, right] : [], comparison_context_id: insight?.data?.context_id ?? undefined });
   return (
     <section className="space-y-6">
       <PageHeading

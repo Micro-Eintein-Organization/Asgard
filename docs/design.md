@@ -1,5 +1,11 @@
 # Asgard: Implemented UI foundation
 
+Discovery v3, 2026-11-20: owner-approved overhaul uses compact scenario cards,
+inline experience intake, stage progress and expanded result reasoning. Retain
+existing tokens, typography and selection controls. The v3 composition supersedes
+historical fixed-row/oversized Discovery layouts for new attempts only.
+See [v3 evidence and pending manual acceptance](features/guided-discovery-v3.md).
+
 Footer follow-up, 2026-11-17: the black footer now links to public Licenses,
 Credits, Terms and conditions, and Service status. The existing `/status`
 connectivity checks now have an availability summary, separate API/data results,

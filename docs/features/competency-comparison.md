@@ -862,3 +862,64 @@ Codex implemented the owner-authorized local expansion for PM-I1 and REQ-02/03. 
 The disposable database passed all 230 skill identities, ten visible mapped skills per career, repeat publication, preserved skill reports, and restricted-role owner isolation. In Profile → Skills, add a Backend Developer skill and save an experience level. Reload and compare Backend Developer with Full Stack Developer from Careers. Both sides should show topic links and the shared web-request practice. Related practice does not transfer the learner's rating.
 
 Normal local publication confirmed 230 searchable reference skills. The signed-in smoke check saved and reloaded a Backend Developer skill, then verified an existing/new career comparison and its shared web-request practice in a separate disposable session. The focused competency checks passed using the pinned backend container.
+## Natural-language entry and confirmation, 2026-11-20
+
+Implementer: Codex. Created/last updated: 2026-11-20. Requirements: PM-W03,
+SKILL-01–02, SKILL-EVIDENCE-03. Concrete technical review: @YakisobaNissin approved
+the [SQL/API package](../plans/context-aware-counselor-and-skills.md) in chat.
+Source implemented; code review and browser/model acceptance pending.
+
+Profile now leads with a description, mapped-skill preview and explicit selection/
+confirmation. Manual catalog entry stays secondary. Published IDs, exact quotes,
+unambiguous exact terms and conservative positive-claim filtering constrain previews.
+Equivalent wording uses the existing bounded interpreter. Provider failure leaves
+exact-only review available. Original text is session-local, never saved in the DB.
+Save-selected is atomic/versioned; omitted levels preserve ratings. Confirmed
+evidence counts once without assigning a proficiency level. Legacy unknown/zero
+reports are unchanged. Source and task/topic identities remain distinct.
+
+Sources: backend `modules/competencies/{claims,interpretation,schemas,routes,service}`,
+`modules/skill_matching`; frontend `features/competencies/natural-language-skills`,
+`profile-skills`, core API helpers; versioned `20261120000100_confirmed_skill_evidence.sql`.
+OpenAPI/TypeScript are generated from the current combined checkout source.
+
+Verification: isolated PostgreSQL applied the actual new migration and existing
+protected mutation; atomic rollback, duplicate/stale writes, session denial,
+restricted direct writes, rating preservation and two-account isolation passed.
+Session admission used a fixture, not live Supabase lifecycle acceptance. The
+disposable container was removed. Focused NLP/matching/evidence cases passed (33),
+plus nine focused Profile/NLP/resume UI cases. Scoped Python F/I lint passed.
+On 2026-11-20 the owner separately authorized local migration application in chat
+with “yes migrate”. During preparation, the local `asgard-foundation` database
+already recorded migration `20261120000100`; it was not reapplied. Read-only
+verification confirmed the installed function exactly matches the reviewed SQL,
+the new column is non-null/default false, `asgard_app` can execute the protected
+function but cannot directly update skill records, and the analysis operation
+constraint includes `skill_interpretation`. Other pending migrations were not
+applied by this task. Hosted migration activation remains separate.
+
+Manual acceptance pending: with the local migration verified,
+open `http://127.0.0.1:5173/settings/profile`, describe “I used SQL for reports”,
+preview, select and save with no rating. Reload: expect user-confirmed evidence
+and unchanged/unknown level. Check both tabs at `/career-skill-matches`, manual
+selection, keyboard controls, stale saves and account switching. “I want to learn
+SQL” must not create positive evidence. Report route/request ID and expected/actual
+behavior. Live semantic interpretation still needs representative human review.
+
+### NLP request-budget correction, 2026-11-20
+
+Implementer: Codex. Owner requested functional fixes with minimal verification.
+Actual published skill definitions exceeded the full provider-request budget even
+though the compact user-payload batch fit its old 15,000-byte limit. Reduced the
+batch threshold to 12,000 bytes to leave room for JSON escaping, instructions,
+schema and completion tokens, retaining the existing three-batch/timeout/token
+ceilings. Added sanitized HTTP status/rate-limit diagnostics without source text,
+provider response bodies or credentials.
+
+A request-preparation check passed against all 338 published skills. A synthetic
+authenticated request through the running local app then completed successfully:
+HTTP 200, interpretation available, six suggestions including five interpreted
+wording matches. Earlier focused attempts hit transient provider HTTP 429; fallback
+remains available during limits. The disposable account was removed. No broad
+suite was rerun. This establishes one live working example, not exhaustive model
+quality acceptance. Hosted deployments remain unchanged.

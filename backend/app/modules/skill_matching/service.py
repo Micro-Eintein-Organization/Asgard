@@ -172,7 +172,7 @@ async def get_career_skill_matches(
     catalog = await career_source.list_all(connection)
     report_rows = await rows(
         connection,
-        "SELECT competency_id, level, updated_at "
+        "SELECT competency_id, level, updated_at, evidence_confirmed "
         "FROM asgard_private.user_competencies "
         "WHERE user_id = CAST(:uid AS uuid)",
         {"uid": str(user_id)},
@@ -198,7 +198,18 @@ async def get_career_skill_matches(
     state, mappings = await interpretation.saved_state(connection, user_id, document)
     response.interpretation = state
     learning = []
+    topic_links = []
     if isinstance(career_source, CompetencyLinksSource):
+        topic_links = await rows(connection,
+            "SELECT l.career_id,l.competency_id,t.roadmap_id,t.id AS topic_id,t.title "
+            "FROM asgard_catalog.competency_links l "
+            "JOIN asgard_catalog.topics t ON t.id=l.topic_id AND t.roadmap_id=l.roadmap_id "
+            "JOIN asgard_catalog.milestones m ON m.id=t.milestone_id "
+            "JOIN asgard_catalog.roadmaps r ON r.id=t.roadmap_id "
+            "WHERE r.status='published' AND t.retired_at IS NULL AND m.retired_at IS NULL "
+            "AND (t.branch_id IS NULL OR EXISTS(SELECT 1 FROM asgard_private.branch_choices b "
+            "WHERE b.user_id=CAST(:uid AS uuid) AND b.roadmap_id=t.roadmap_id AND b.branch_id=t.branch_id))",
+            {"uid": str(user_id)})
         learning = await rows(connection,
             "SELECT DISTINCT l.career_id,l.competency_id,p.roadmap_id,p.topic_id,t.title "
             "FROM asgard_private.topic_progress p "
@@ -214,6 +225,13 @@ async def get_career_skill_matches(
             {"uid": str(user_id)})
     for career in response.items:
         for skill in career.skills:
+            skill.topic_links = [LearningSignal(**{key: link[key] for key in
+                ("roadmap_id", "topic_id", "title")}) for link in topic_links
+                if link["career_id"] == career.career_id and link["competency_id"] == skill.competency_id]
+            confirmed = any(row["competency_id"] == skill.competency_id
+                            and row.get("evidence_confirmed", False) for row in report_rows)
+            if skill.user_report:
+                skill.user_report.evidence_confirmed = confirmed
             skill.learning_signals = [LearningSignal(
                 roadmap_id=item["roadmap_id"], topic_id=item["topic_id"], title=item["title"],
             ) for item in learning if item["career_id"] == career.career_id
@@ -231,7 +249,7 @@ async def get_career_skill_matches(
                     page=item["page"], text=mapping["quote"], span=item["span"],
                 ))
             skill.evidence_found = skill.status == "MATCHED" or bool(
-                skill.learning_signals or skill.interpretation_signals,
+                skill.learning_signals or skill.interpretation_signals or confirmed,
             )
         career.evidence_count = sum(skill.evidence_found for skill in career.skills)
     return response

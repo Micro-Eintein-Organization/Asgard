@@ -1,5 +1,9 @@
 # Deployment preparation and release gates
 
+For the combined 2026-11-20 features, use the
+[Discovery v3 and contextual counselor activation checklist](deployment-discovery-and-counselor.md)
+for exact artifacts, dependency checks, operator ownership and outstanding acceptance.
+
 Documentation baseline: 2026-11-17. This is the operational runbook, not proof of deployment acceptance. Optional hosted photos/PDF/Groq support is implemented; see [hosted activation](features/hosted-feature-activation.md). Account deletion has separate [maintenance and activation gates](features/account-deletion.md). Earlier preparation evidence retains its dated scope.
 
 2026-11-13 account-demo update: use the

@@ -17,6 +17,16 @@ Help authenticated learners explore published careers without claiming assessed 
 
 ## Screen sequence
 
+Owner-approved overhaul, 2026-11-20: new published attempts and retakes use v3.
+V1/v2 drafts retain their saved version. V3 removes the goals question and uses
+field scenarios, paired-interest bridges and selected-activity follow-ups, capped
+at ten questions. Use my experience requires saved usable experience before
+continuing; Basics remains available without enrichment. This qualifies AC-03:
+documents/employment history remain optional, with manual skills as an alternative.
+See [v3 implementation and acceptance](../features/guided-discovery-v3.md).
+
+The v2 description below remains applicable to saved v2 attempts.
+
 Entry offers Guided Discovery or Browse careers. New sessions and full retakes use the published v2 questionnaire. Existing drafts resume their saved version. The server owns the route, question IDs, choices, limits, and validation in [definition.py](../../backend/app/modules/discovery/definition.py); [generated contracts](../../backend/openapi.json) own the wire shape.
 
 V2 presents four to six questions: optional experience preference, interests, activities for the chosen fields (or general activities for uncertainty), at most one applicable follow-up, and goals. Field and activity selections allow up to two choices. An uncertainty choice is exclusive. Experience preference and goal affect the Results handoff and are not evidence of ability.

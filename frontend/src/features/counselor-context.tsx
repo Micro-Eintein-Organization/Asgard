@@ -2,6 +2,8 @@ import { createContext, useContext, useEffect, useMemo, useState, type ReactNode
 import { useLocation } from "react-router";
 
 export type ScreenContext = { label: string; career_ids?: string[]; roadmap_id?: string;
+  milestone_id?: string; skill_matching_basis?: "benchmark" | "learning_path";
+  competency_id?: string; comparison_context_id?: string;
   topic_id?: string; questionnaire_id?: string; question_id?: string; category_id?: string;
   recommendation_run_id?: string; filter?: string };
 type Registration = { path: string; value: ScreenContext; token: symbol };

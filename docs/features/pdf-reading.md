@@ -494,3 +494,24 @@ be verified by the original documentation-only baseline. The 2026-11-19 interfac
 now exposes this flow; use the current manual steps above and the existing
 reviewed backend verification workflow for acceptance. Report the URL, action, expected/actual behavior and a safe request ID;
 exclude document text and credentials.
+## Resume applications across skill views, 2026-11-20
+
+Implementer: Codex. Created/last updated: 2026-11-20. Requirement RES-01/REQ-11;
+reviewer @YakisobaNissin approved the [bounded SQL/API package](../plans/context-aware-counselor-and-skills.md).
+Source implemented; human code/browser/model review pending.
+
+Profile's saved resume skills now expose Job-sample and Roadmap match disclosures,
+grouped by career with source passages, exact/interpreted wording and published
+roadmap/topic links. Existing analysis/interpretation orchestration is reused;
+GET does not generate, failure preserves exact matches, and no lesson is completed
+automatically. Conservative positive-claim filtering also applies to exact resume
+matching. Sources: frontend `features/profile/resume-evidence`; backend
+`modules/skill_matching/{schemas,service,matcher,interpretation}`.
+
+Two resume presentation regressions passed within nine focused UI cases. Matching/
+evidence regressions passed within 33 backend cases. Browser and real provider
+quality acceptance remain pending. After approved environment activation, visit
+`http://127.0.0.1:5173/settings/profile`, analyze a synthetic resume, expand both
+match disclosures, inspect passages and follow topic links. Replace/remove the
+resume and verify derived matches disappear while self-reports remain. Report
+route/request ID and expected/actual outcome without private resume text.

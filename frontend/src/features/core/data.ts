@@ -22,6 +22,8 @@ async function result<T>(
 }
 
 export const coreApi = {
+  interpretSkills: (text: string) => result(api.POST("/api/v1/me/competencies/interpret", { body: { text } })),
+  confirmSkills: (body: Schemas["ConfirmSkills"]) => result(api.POST("/api/v1/me/competencies/confirm", { body })),
   catalogSummary: (signal?: AbortSignal) => result(api.GET("/api/v1/catalog/summary", { signal })),
   dashboardView: (signal?: AbortSignal) => result(api.GET("/api/v1/me/dashboard/view", { signal })),
   catalogProgress: (ids: string[], signal?: AbortSignal) =>

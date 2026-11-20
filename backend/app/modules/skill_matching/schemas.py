@@ -23,6 +23,7 @@ class ResumeSignal(Contract):
 
 
 class UserReportSignal(Contract):
+    evidence_confirmed: bool = False
     source: Literal["user_report"] = "user_report"
     level: StrictInt | None
     updated_at: datetime | None
@@ -71,6 +72,7 @@ class CareerPosting(Contract):
 
 
 class SkillMatchItem(Contract):
+    topic_links: list[LearningSignal] = Field(default_factory=list)
     competency_id: UUID
     label: str
     source: str

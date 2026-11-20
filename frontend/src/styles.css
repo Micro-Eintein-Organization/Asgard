@@ -1041,6 +1041,13 @@
   margin: 1.5rem auto 2rem;
   max-width: 49rem;
 }
+.discovery-v3 .choice-card { min-height: 8rem; height: auto; }
+.discovery-v3 .question-choices { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: stretch; }
+.discovery-intake { margin: 1.5rem auto; padding: 1.5rem; border: 1px solid var(--border); border-radius: .875rem; max-width: 48rem; }
+.discovery-intake h2 { font-size: 1.25rem; font-weight: 600; }
+.discovery-intake p, .discovery-intake .action-row { margin-bottom: 1rem; }
+.discovery-stage { text-align: center; color: var(--muted-foreground); }
+@media (max-width: 40rem) { .discovery-v3 .question-choices { grid-template-columns: 1fr; } }
 .discovery-header h1 {
   font-size: clamp(1.875rem, 3vw, 2.5rem);
 }

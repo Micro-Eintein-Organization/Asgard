@@ -4,6 +4,17 @@ Baseline: 2026-11-17. This is the remaining-work register, not implementation au
 
 ## Feature status
 
+Discovery v3, 2026-11-20: owner-approved adaptive questions, inline experience
+intake and expanded deterministic reasoning are implemented in source. Local
+question registry published; authenticated/browser/privacy acceptance pending.
+The confirmed-skills migration and remaining reviewed schema prerequisites were
+applied locally with owner authorization on 2026-11-20. Existing approved job-sample
+references were published locally. The focused local skills/Discovery browser,
+ownership and evidence-removal journey passed. Hosted activation, local PDF
+processing and semantic/Counselor quality acceptance remain pending.
+Personalized topic skipping and generated curricula remain deferred.
+See [v3 guide](features/guided-discovery-v3.md).
+
 SKILL-EVIDENCE-03 update, 2026-11-19 (owner-approved plan, Codex implementation):
 FUT-01 now includes a locally implemented unified evidence count, applicable
 Done-topic links and separate automatic supported-equivalence resume interpretation.
@@ -174,3 +185,11 @@ Earlier headings remain addressable for incoming links. Their linked records des
 <a id="hosted-performance-acceptance-2026-11-15"></a>
 
 [Hosted performance acceptance, 2026-11-15](archive/2026-11-17/future-development.md#hosted-performance-acceptance-2026-11-15).
+# Context and skill-entry follow-up, 2026-11-20
+
+The owner approved COUN-01–03, RES-01 and SKILL-01–02, including the concrete
+[SQL/API proposal](plans/context-aware-counselor-and-skills.md). Counselor selection
+context, resume application links and confirmed NLP skill entry are now bounded
+implementation work. Retained/hosted migration activation, human code review,
+browser acceptance and live model quality remain separate; no backlog entry grants
+deployment authority. See the existing counselor, competency and PDF feature guides.

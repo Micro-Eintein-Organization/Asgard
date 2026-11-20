@@ -3,6 +3,7 @@
 import asyncio
 import hashlib
 import json
+import logging
 import math
 from datetime import UTC, datetime
 from uuid import UUID, uuid4
@@ -18,6 +19,7 @@ from app.modules.skill_matching.schemas import InterpretationState
 from app.modules.storage import one, required, rows, transaction
 
 VERSION = "resume-equivalence-v1"
+logger = logging.getLogger(__name__)
 
 
 class EquivalentClaim(Contract):
@@ -112,7 +114,9 @@ def request_batches(catalog, evidence):
             "equivalent_terms": skill["aliases"],
         }
         proposed = [*current, candidate]
-        if current and len(json.dumps(compact_payload(proposed, sources)).encode()) > 15000:
+        # The user payload is JSON encoded again inside the provider request.
+        # Leave room for that escaping, instructions, schema and completion tokens.
+        if current and len(json.dumps(compact_payload(proposed, sources)).encode()) > 12000:
             batches.append({"skills": current, "sources": sources})
             current = []
         current.append(candidate)
@@ -146,6 +150,8 @@ async def generate(http, settings, batches, reserve):
                         "A broad technology does not prove a specific task: Python alone does not "
                         "prove building REST APIs. Job titles, degrees, seniority and related "
                         "topics do not prove skills. Do not infer proficiency. "
+                        "Exclude negated, hypothetical and aspirational statements, including "
+                        "wanting or planning to learn a skill. "
                         "Omit uncertain relationships; "
                         "return empty items when there is no explicit equivalent statement. "
                         "Never expand a basic claim to an advanced or broader competency."
@@ -208,6 +214,12 @@ async def generate(http, settings, batches, reserve):
                                 seen.add(key)
                                 mappings.append(claim.model_dump(mode="json"))
                         break
+                    logger.warning("Skill interpretation provider status=%s", response.status_code)
+                    if response.status_code == 429:
+                        logger.warning("Skill interpretation token limit=%s remaining=%s reset=%s",
+                            response.headers.get("x-ratelimit-limit-tokens", "unknown"),
+                            response.headers.get("x-ratelimit-remaining-tokens", "unknown"),
+                            response.headers.get("x-ratelimit-reset-tokens", "unknown"))
                     if response.status_code not in (429, 500, 502, 503, 504):
                         raise APIError(
                             503, "provider_unavailable", "Resume interpretation is unavailable."

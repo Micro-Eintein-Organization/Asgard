@@ -49,6 +49,7 @@ END IF; END $versions$;`,
     expansion,
     resourceFixes,
     discovery,
+    body(root, "20261120_discovery_v3.sql"),
     "COMMIT;",
   ].join("\n");
 }

@@ -92,6 +92,9 @@ def uncertain(description="I would like to explore the options."):
 
 
 def definition(questionnaire_id=None):
+    from app.modules.discovery import v3
+    if str(questionnaire_id) == str(v3.ID):
+        return v3.definition(definition_v2())
     if str(questionnaire_id) == str(QUESTIONNAIRE_V2_ID):
         return definition_v2()
     if questionnaire_id is not None and str(questionnaire_id) != str(QUESTIONNAIRE_ID):
@@ -402,6 +405,9 @@ def definition_v2():
 
 
 def active_route(answers, version=1):
+    if version == 3:
+        from app.modules.discovery.v3 import route
+        return route(answers)
     if version == 2:
         interests = answers.get("interests", [])
         activities = [f"activities_{key}" for key, _, _ in FIELDS if key in interests]

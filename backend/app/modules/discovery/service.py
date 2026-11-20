@@ -8,10 +8,18 @@ from app.modules.discovery.definition import (
     validate_answer,
 )
 from app.modules.discovery.schemas import DiscoverySession
+from app.modules.discovery.v3 import ID as QUESTIONNAIRE_V3_ID
 from app.modules.storage import lock_account, one, required, rows
 
 
 async def questionnaire(connection, questionnaire_id=None):
+    if questionnaire_id is None:
+        published_v3 = await one(connection,
+            ('SELECT id FROM asgard_catalog.questionnaires WHERE id=CAST(:id AS'
+                ' uuid) AND published_at IS NOT NULL'),
+            {"id": str(QUESTIONNAIRE_V3_ID)})
+        if published_v3:
+            questionnaire_id = QUESTIONNAIRE_V3_ID
     if questionnaire_id is None:
         published_v2 = await one(
             connection,
@@ -168,6 +176,8 @@ async def checkpoint(connection, uid, session_id, body):
         validate_answer(question, answer.option_ids)
         merged[answer.question_id] = answer.option_ids
     route = active_route(merged, authored.version)
+    if authored.version == 3 and merged.get("experience_preference") == ["use_experience"]:
+        await require_experience(connection, uid)
     if any(answer.question_id not in route for answer in body.answers):
         raise APIError(
             409,
@@ -231,6 +241,11 @@ async def complete(connection, uid, session_id, body):
             "discovery_incomplete",
             "Answer every question on your current route before completing Discovery.",
         )
+    if saved.questionnaire_id == QUESTIONNAIRE_V3_ID and any(
+        a.question_id == "experience_preference" and a.option_ids == ["use_experience"]
+        for a in saved.answers
+    ):
+        await require_experience(connection, uid)
     await connection.execute(
         text(
 
@@ -242,6 +257,20 @@ async def complete(connection, uid, session_id, body):
         {"uid": str(uid), "id": str(session_id)},
     )
     return await session(connection, uid, session_id)
+
+
+async def require_experience(connection, uid):
+    from app.modules.competencies import service as skills
+    reports = await skills.state(connection, uid)
+    if any(item.get("evidence_confirmed") or (item.get("level") or 0) > 0
+           for item in reports["items"]):
+        return
+    document = await one(connection,
+        "SELECT id FROM asgard_private.documents WHERE user_id=CAST(:uid AS uuid) "
+        "AND status='active' AND jsonb_array_length(evidence)>0 LIMIT 1", {"uid": str(uid)})
+    if not document:
+        raise APIError(422, "experience_required",
+                       "Save a skill or analyze a resume, or choose Start with the basics.")
 
 
 async def retake(connection, uid, body):

@@ -379,6 +379,40 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/me/competencies/confirm": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Confirm Skills */
+        post: operations["confirm_skills_api_v1_me_competencies_confirm_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/competencies/interpret": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Interpret Skills */
+        post: operations["interpret_skills_api_v1_me_competencies_interpret_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/me/competencies/{competency_id}": {
         parameters: {
             query?: never;
@@ -1480,6 +1514,8 @@ export interface components {
         ComparisonAnswer: {
             /** Answer */
             answer: string;
+            /** Context Id */
+            context_id?: string | null;
             /** General Knowledge */
             general_knowledge?: string | null;
             /** Handoff */
@@ -1497,6 +1533,11 @@ export interface components {
         ComparisonItem: {
             /** Career Context */
             career_context?: components["schemas"]["CareerContext"][];
+            /**
+             * Evidence Confirmed
+             * @default false
+             */
+            evidence_confirmed: boolean;
             explanation?: components["schemas"]["SkillExplanation"] | null;
             /**
              * Id
@@ -1600,6 +1641,23 @@ export interface components {
              * Format: uuid
              */
             session_id: string;
+        };
+        /** ConfirmSkill */
+        ConfirmSkill: {
+            /**
+             * Competency Id
+             * Format: uuid
+             */
+            competency_id: string;
+            /** Level */
+            level?: number | null;
+        };
+        /** ConfirmSkills */
+        ConfirmSkills: {
+            /** Expected Version */
+            expected_version: number;
+            /** Items */
+            items: components["schemas"]["ConfirmSkill"][];
         };
         /** ContextFact */
         ContextFact: {
@@ -1708,6 +1766,19 @@ export interface components {
             option_ids: string[];
             /** Question Id */
             question_id: string;
+        };
+        /** DiscoveryExplanation */
+        DiscoveryExplanation: {
+            /** Answer Reasons */
+            answer_reasons?: string[];
+            /** Considerations */
+            considerations: string;
+            /** Experience Connections */
+            experience_connections?: string[];
+            /** First Topics */
+            first_topics?: string[];
+            /** Roadmap Reason */
+            roadmap_reason: string;
         };
         /** DiscoveryOption */
         DiscoveryOption: {
@@ -2073,6 +2144,8 @@ export interface components {
             career_ids?: string[];
             /** History */
             history?: components["schemas"]["GuidanceTurn"][];
+            /** Milestone Id */
+            milestone_id?: string | null;
             page_context?: components["schemas"]["PageContext"] | null;
             /** Question */
             question: string;
@@ -2165,6 +2238,11 @@ export interface components {
              * @constant
              */
             status: "ok";
+        };
+        /** InterpretSkills */
+        InterpretSkills: {
+            /** Text */
+            text: string;
         };
         /** InterpretationSignal */
         InterpretationSignal: {
@@ -2373,6 +2451,10 @@ export interface components {
         PageContext: {
             /** Category Id */
             category_id?: string | null;
+            /** Comparison Context Id */
+            comparison_context_id?: string | null;
+            /** Competency Id */
+            competency_id?: string | null;
             /** Filter */
             filter?: string | null;
             /** Path */
@@ -2383,6 +2465,8 @@ export interface components {
             questionnaire_id?: string | null;
             /** Recommendation Run Id */
             recommendation_run_id?: string | null;
+            /** Skill Matching Basis */
+            skill_matching_basis?: ("benchmark" | "learning_path") | null;
         };
         /** PostingResumeMatch */
         PostingResumeMatch: {
@@ -2916,6 +3000,23 @@ export interface components {
              */
             roadmap_id: string;
         };
+        /** SkillApplication */
+        SkillApplication: {
+            /**
+             * Basis
+             * @enum {string}
+             */
+            basis: "benchmark" | "learning_path";
+            /**
+             * Career Id
+             * Format: uuid
+             */
+            career_id: string;
+            /** Title */
+            title: string;
+            /** Topics */
+            topics?: components["schemas"]["TopicLink"][];
+        };
         /** SkillExplanation */
         SkillExplanation: {
             /** Example */
@@ -2960,9 +3061,40 @@ export interface components {
              * @enum {string}
              */
             status: "MATCHED" | "UNKNOWN" | "MISSING";
+            /** Topic Links */
+            topic_links?: components["schemas"]["LearningSignal"][];
             /** Total Postings */
             total_postings: number | null;
             user_report: components["schemas"]["UserReportSignal"] | null;
+        };
+        /** SkillPreview */
+        SkillPreview: {
+            /**
+             * Interpretation Available
+             * @default true
+             */
+            interpretation_available: boolean;
+            /** Items */
+            items: components["schemas"]["SkillSuggestion"][];
+        };
+        /** SkillSuggestion */
+        SkillSuggestion: {
+            /** Applications */
+            applications?: components["schemas"]["SkillApplication"][];
+            /**
+             * Competency Id
+             * Format: uuid
+             */
+            competency_id: string;
+            /** Label */
+            label: string;
+            /**
+             * Method
+             * @enum {string}
+             */
+            method: "exact" | "interpreted";
+            /** Quote */
+            quote: string;
         };
         /** StartDiscovery */
         StartDiscovery: {
@@ -3076,6 +3208,11 @@ export interface components {
              * Format: uuid
              */
             competency_id: string;
+            /**
+             * Evidence Confirmed
+             * @default false
+             */
+            evidence_confirmed: boolean;
             explanation?: components["schemas"]["SkillExplanation"] | null;
             /** Label */
             label: string;
@@ -3089,6 +3226,11 @@ export interface components {
         };
         /** UserReportSignal */
         UserReportSignal: {
+            /**
+             * Evidence Confirmed
+             * @default false
+             */
+            evidence_confirmed: boolean;
             /** Level */
             level: number | null;
             /**
@@ -3112,6 +3254,7 @@ export interface components {
             career_id: string;
             /** Evidence Fact Ids */
             evidence_fact_ids: string[];
+            explanation?: components["schemas"]["DiscoveryExplanation"] | null;
             /** Reason */
             reason: string;
             /** Roadmap Id */
@@ -4664,6 +4807,144 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["CompetencyState"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Unprocessable Content */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    confirm_skills_api_v1_me_competencies_confirm_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ConfirmSkills"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CompetencyState"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Unprocessable Content */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    interpret_skills_api_v1_me_competencies_interpret_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["InterpretSkills"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SkillPreview"];
                 };
             };
             /** @description Unauthorized */

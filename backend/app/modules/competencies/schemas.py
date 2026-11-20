@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Annotated
+from typing import Annotated, Literal
 from uuid import UUID
 
 from pydantic import Field, StrictInt
@@ -29,6 +29,7 @@ class CompetencyPage(Page[Competency]):
 
 
 class UserCompetency(Contract):
+    evidence_confirmed: bool = False
     explanation: SkillExplanation | None = None
     competency_id: UUID
     label: str
@@ -54,6 +55,7 @@ class TopicLink(Contract):
 
 
 class ComparisonItem(Competency):
+    evidence_confirmed: bool = False
     recorded: bool
     level: Level | None
     topics: list[TopicLink]
@@ -65,3 +67,36 @@ class CompetencyComparison(Contract):
     career_revision: int
     items: list[ComparisonItem]
     occupational_release_id: UUID | None = None
+
+
+class InterpretSkills(Contract):
+    text: Annotated[str, Field(min_length=1, max_length=2000)]
+
+
+class ConfirmSkill(Contract):
+    competency_id: UUID
+    level: Level | None = None
+
+
+class ConfirmSkills(VersionedChange):
+    items: Annotated[list[ConfirmSkill], Field(min_length=1, max_length=30)]
+
+
+class SkillApplication(Contract):
+    career_id: UUID
+    title: str
+    basis: Literal["benchmark", "learning_path"]
+    topics: list[TopicLink] = Field(default_factory=list)
+
+
+class SkillSuggestion(Contract):
+    competency_id: UUID
+    label: str
+    quote: str
+    method: Literal["exact", "interpreted"]
+    applications: list[SkillApplication] = Field(default_factory=list)
+
+
+class SkillPreview(Contract):
+    items: list[SkillSuggestion]
+    interpretation_available: bool = True

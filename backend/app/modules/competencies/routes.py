@@ -13,7 +13,10 @@ from app.modules.competencies.schemas import (
     CompetencyComparison,
     CompetencyPage,
     CompetencyState,
+    ConfirmSkills,
+    InterpretSkills,
     SaveCompetency,
+    SkillPreview,
 )
 from app.modules.storage import transaction
 
@@ -22,6 +25,18 @@ router = APIRouter(
     tags=["competencies"],
     responses={code: {"model": ErrorBody} for code in (401, 404, 409, 422, 503)},
 )
+
+
+@router.post("/me/competencies/interpret", response_model=SkillPreview)
+async def interpret_skills(request: Request, identity: Auth, body: InterpretSkills):
+    from app.modules.competencies.interpretation import preview
+    return await preview(request, identity, body)
+
+
+@router.post("/me/competencies/confirm", response_model=CompetencyState)
+async def confirm_skills(request: Request, identity: Auth, body: ConfirmSkills):
+    from app.modules.competencies.interpretation import confirm
+    return await confirm(request, identity, body)
 
 
 @router.get("/competencies", response_model=CompetencyPage, operation_id="search_competencies")

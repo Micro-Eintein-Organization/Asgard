@@ -28,6 +28,7 @@ export function RoadmapPage() {
       : "";
   const [params, setParams] = useSearchParams();
   const [hideDone, setHideDone] = useState(false);
+  const [expandedMilestone, setExpandedMilestone] = useState<string>();
   const [hiddenTopics, setHiddenTopics] = useState<Set<string>>(() => new Set());
   const visibilityFocus = useRef<string | null>(null);
   useEffect(() => {
@@ -58,7 +59,9 @@ export function RoadmapPage() {
     signal => coreApi.roadmapView(roadmapId, signal), !!roadmapId);
   const selected = view.data?.roadmap.milestones.flatMap(item => item.topics).find(item => item.id === params.get("topic"));
   useScreenContext(view.data ? { label: [career.data?.title, view.data.roadmap.title, selected?.title].filter(Boolean).join(" → "),
-    career_ids: career.data ? [career.data.id] : [], roadmap_id: roadmapId, topic_id: selected?.id } : null);
+    career_ids: career.data ? [career.data.id] : [], roadmap_id: roadmapId, topic_id: selected?.id,
+    milestone_id: selected?.milestone_id ?? view.data.roadmap.milestones.find(item => item.id === expandedMilestone)?.id ??
+      view.data.roadmap.milestones.find(item => `#milestone-${item.id}` === location.hash)?.id } : null);
   const roadmap = { ...view, data: view.data?.roadmap };
   const learning = { ...view, data: view.data?.learning_state };
   const progress = { ...view, data: view.data?.progress };
@@ -300,6 +303,7 @@ export function RoadmapPage() {
           </div>
           <Accordion
             type="multiple"
+            onValueChange={values => setExpandedMilestone(values.at(-1))}
             className="milestone-list"
             defaultValue={[
               topicMilestone?.id ??

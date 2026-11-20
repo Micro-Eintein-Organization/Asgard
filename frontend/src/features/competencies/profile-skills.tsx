@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import { useAuth } from "@/auth/context";
 import { isCurrentAccount } from "@/auth/transport";
 import { Button } from "@/components/ui/button";
@@ -10,6 +10,7 @@ import { ResumeSkillReview } from "./resume-skill-review";
 import { Link } from "react-router";
 import { appRoutes } from "@/lib/routes";
 import { SavedResumeSkills } from "@/features/profile/resume-evidence";
+import { NaturalLanguageSkills } from "./natural-language-skills";
 
 type Draft = { id: string; label: string; level: string; version: number; example?: string };
 const skillPageSize = 8;
@@ -28,6 +29,8 @@ export function ProfileSkills({
   reviewRoadmap?: string;
 }) {
   const { user } = useAuth();
+  const [nlpGuard, setNlpGuard] = useState({ dirty: false, pending: false });
+  const updateNlpGuard = useCallback((dirty: boolean, pending: boolean) => setNlpGuard({ dirty, pending }), []);
   const [careerId, setCareerId] = useState("");
   const careers = useCoreQuery(["experience-careers"], () =>
     coreApi.catalog({ limit: 100 }),
@@ -78,8 +81,8 @@ export function ProfileSkills({
   const pending = save.isPending || remove.isPending;
   const error = saved.error ?? (adding ? available.error : null) ?? save.error ?? remove.error;
   useEffect(() => {
-    onGuardChange(draft !== null, pending);
-  }, [draft, pending, onGuardChange]);
+    onGuardChange(draft !== null || nlpGuard.dirty, pending || nlpGuard.pending);
+  }, [draft, pending, nlpGuard, onGuardChange]);
   useEffect(() => () => onGuardChange(false, false), [onGuardChange]);
   function edit(id: string, label: string, level: number | null, example?: string) {
     if (!saved.data) return;
@@ -159,9 +162,10 @@ export function ProfileSkills({
         <h2>Skills</h2>
         {!draft && <Button type="button" variant="outline" aria-expanded={adding}
           onClick={() => setAdding(!adding)}>
-          {adding ? "Close skill search" : "Add a skill"}
+          {adding ? "Close manual selection" : "Select skills manually"}
         </Button>}
       </header>
+      <NaturalLanguageSkills key={user?.id} saved={saved.data} onGuardChange={updateNlpGuard} />
       <details>
         <summary>How saved experience affects suggestions</summary>
         <p>
@@ -230,6 +234,7 @@ export function ProfileSkills({
                 {item.label}
                 <span className="block text-sm">
                   {experienceLabel(true, item.level)}
+                  {item.evidence_confirmed && " · Skill confirmed by you"}
                 </span>
               </span>
               <Button
