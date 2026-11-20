@@ -18,7 +18,7 @@ from app.modules.documents import service as documents
 from app.modules.skill_matching.schemas import InterpretationState
 from app.modules.storage import one, required, rows, transaction
 
-VERSION = "resume-equivalence-v1"
+VERSION = "resume-equivalence-v2"
 logger = logging.getLogger(__name__)
 
 

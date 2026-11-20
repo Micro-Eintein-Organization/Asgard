@@ -10,6 +10,28 @@ Requirements: REQ-04, REQ-05, REQ-11; F-001-AC-01–08, F-002-AC-01–09.
 
 ## Behavior
 
+### Shared direct resume matching repair, 2026-11-20
+
+Implementer: Codex; reviewer: @YakisobaNissin. Owner approved the
+[repair plan](../plans/skill-evidence-regression-repair.md); implemented locally,
+final human review and browser/provider acceptance pending. REQ-11, RES-01,
+SKILL-01/02. `backend/app/modules/discovery/experience.py` now uses the shared
+career matcher for direct resume support: skill-category evidence, exact labels,
+unambiguous aliases, phrase boundaries and corrected claim filtering. It no longer
+counts `I have no Python experience` through its direct-label fallback. Learning
+path source coverage, saved interpretation provenance, manual reports, account
+scoping and draft tracking remain. No document writes are added to Discovery reads.
+
+Four added mocked-read regressions exercise positive scikit-learn lists, negation,
+non-skill categories and aliases. They passed as part of 84 distinct focused
+repair cases; scoped Ruff passed. No live provider or hosted check was run.
+Manual check pending: at `http://127.0.0.1:5173/discovery`, choose to use experience
+and analyze a synthetic PDF through Upload resume. Verify the same background
+appears in Profile and its direct matches in Career skill matches. Resume upload
+uses the shared account-wide document lifecycle and replaces the prior successful
+background; ordinary Discovery reads do not replace it. Report the selected flow,
+skill and request ID for discrepancies, without private document contents.
+
 ### Repeated questions and resume-backed reasons, 2026-11-20
 
 Owner requested distinct follow-ups and visible experience-based explanations.

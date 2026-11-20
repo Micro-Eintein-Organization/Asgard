@@ -25,6 +25,18 @@ def test_machine_learning_and_dotted_technology_names_are_preserved():
         "I used Node.js and machine learning"]
 
 
+@pytest.mark.parametrize(("text", "expected"), [
+    ("SQL, Python, scikit-learn, Excel", ["SQL", "Python", "scikit-learn", "Excel"]),
+    ("SQL, Excel, no Java experience", ["SQL", "Excel"]),
+    ("No Java, Python or SQL", []),
+    ("I want to learn Java, Python", []),
+    ("I have no Java experience, but I used Python", ["I used Python"]),
+    ("SQL query plan maintenance", ["SQL query plan maintenance"]),
+])
+def test_skill_lists_preserve_positive_claims_without_promoting_negated_lists(text, expected):
+    assert positive_statements(text) == expected
+
+
 def test_save_preserves_absent_level_and_explicit_clear():
     skill = uuid4()
     body = ConfirmSkills(expected_version=0, items=[{"competency_id": skill}])
@@ -64,7 +76,8 @@ def test_selected_topic_and_milestone_are_resolved_for_counselor(monkeypatch):
 
     async def one(_conn, query, params):
         if "FROM asgard_catalog.topics" in query:
-            return {"milestone_id": milestone, "title": "Virtual memory", "explanation": "Pages and swap", "status": "not_started"}
+            return {"milestone_id": milestone, "title": "Virtual memory",
+                    "explanation": "Pages and swap", "status": "not_started"}
         return {"id": milestone, "title": "Kernel", "description": "Kernel architecture"}
 
     monkeypatch.setattr(guidance, "require_available", lambda request: None)
@@ -75,7 +88,8 @@ def test_selected_topic_and_milestone_are_resolved_for_counselor(monkeypatch):
     monkeypatch.setattr(guidance, "context", AsyncMock(return_value=([], [], {})))
     answer = AsyncMock(return_value={"answer": "Selected explanation"})
     monkeypatch.setattr(guidance, "answer", answer)
-    body = guidance.GuidanceQuestion(question="Explain this milestone and topic", career_ids=[career],
+    body = guidance.GuidanceQuestion(question="Explain this milestone and topic",
+        career_ids=[career],
         topic_id=topic, roadmap_id=roadmap, milestone_id=milestone,
         page_context=guidance.PageContext(path="/roadmaps/test"))
     asyncio.run(guidance.counselor_turn(None, SimpleNamespace(user_id=owner), body))

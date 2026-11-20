@@ -1,8 +1,44 @@
 from types import SimpleNamespace
 
+import pytest
+
 from app.modules.discovery.definition import definition
 from app.modules.discovery.v3 import ID, SCENARIOS
 from app.modules.recommendations.resume_connections import resolve_connections
+
+
+@pytest.mark.parametrize(("text", "kind", "count"), [
+    ("Python, scikit-learn", "skill", 1),
+    ("I have no Python experience", "skill", 0),
+    ("Python", "education", 0),
+    ("Py", "skill", 1),
+])
+def test_discovery_uses_resume_matcher_for_skill_support(monkeypatch, text, kind, count):
+    from asyncio import run
+    from unittest.mock import AsyncMock
+    from uuid import uuid4
+
+    from app.modules.discovery import experience
+
+    career, skill = uuid4(), uuid4()
+
+    async def read(_connection, sql, params=None):
+        if "SELECT DISTINCT c.id,c.label,c.aliases" in sql:
+            return [{"id": skill, "label": "Python", "aliases": ["Py"],
+                     "career_id": career, "slug": "data-analyst"}]
+        return []
+
+    async def one(_connection, sql, params=None):
+        if "competency_state" in sql:
+            return {"version": 1}
+        return {"id": uuid4(), "analysis_id": uuid4(), "revision": 1,
+                "evidence": [{"kind": kind, "text": text, "page": 1, "span": text}]}
+
+    monkeypatch.setattr(experience, "rows", read)
+    monkeypatch.setattr(experience, "one", one)
+    monkeypatch.setattr(experience, "saved_connections", AsyncMock(return_value={}))
+    _, support = run(experience.current(None, uuid4()))
+    assert support.get("data-analyst", 0) == count
 
 
 def test_all_questionnaire_versions_have_clean_text():

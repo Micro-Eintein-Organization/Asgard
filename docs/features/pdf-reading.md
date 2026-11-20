@@ -1,9 +1,35 @@
 # How Asgard reads PDFs
 
-Author/implementer: Codex. Created: 2026-11-18. Last updated: 2026-11-19.
+Author/implementer: Codex. Created: 2026-11-18. Last updated: 2026-11-20.
 Status: source explanation and Profile extraction interface implemented; human review and hosted acceptance pending.
 Reviewer: @YakisobaNissin, following [CODEOWNERS](../../.github/CODEOWNERS).
 Requirements: REQ-11, F-002, PM-W03/FUT-13.
+
+## Local processing and availability repair, 2026-11-20
+
+Owner approved the [bounded repair](../plans/skill-evidence-regression-repair.md)
+in chat. Implementer: Codex; reviewer: @YakisobaNissin. Implemented locally;
+final human review and live synthetic upload acceptance pending.
+`backend/app/modules/documents/service.py` now reports extraction available only
+when storage is configured and processing is enabled. Disabled environments retain
+saved background/removal access and show the existing unavailable message instead
+of upload controls whose route would reject processing. The parser, extraction
+provider, storage authorization and document replacement lifecycle are unchanged.
+
+The ignored local `.env` now enables document processing. Only the backend was
+recreated, with no image build; runtime flags confirm processing enabled and
+real-data approval disabled. `/health` and `/ready` returned 200. This activates
+this checkout's local synthetic test path, not another environment. Hosted
+configuration and real-data activation were not changed.
+
+Focused verification: the combined repair has 84 distinct passing backend cases
+and scoped Ruff success, including processing-disabled availability preserving
+saved background. No live PDF was sent to Groq. Manual check pending: open
+`http://127.0.0.1:5173/settings/profile`, choose a synthetic selectable-text PDF,
+check its synthetic declaration, then Analyze PDF. Expect saved evidence with page
+and source passages; follow the [matching steps](competency-comparison.md).
+Report error code/request ID if processing fails. The checkbox remains intentional
+while local real-data approval is false.
 
 ## Bounded extraction implementation, 2026-11-19
 
