@@ -1041,13 +1041,84 @@
   margin: 1.5rem auto 2rem;
   max-width: 49rem;
 }
-.discovery-v3 .choice-card { min-height: 8rem; height: auto; }
-.discovery-v3 .question-choices { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: stretch; }
 .discovery-intake { margin: 1.5rem auto; padding: 1.5rem; border: 1px solid var(--border); border-radius: .875rem; max-width: 48rem; }
 .discovery-intake h2 { font-size: 1.25rem; font-weight: 600; }
 .discovery-intake p, .discovery-intake .action-row { margin-bottom: 1rem; }
-.discovery-stage { text-align: center; color: var(--muted-foreground); }
-@media (max-width: 40rem) { .discovery-v3 .question-choices { grid-template-columns: 1fr; } }
+.discovery-progress { text-align: center; margin: 1.5rem auto 1rem; }
+.discovery-progress-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; }
+.discovery-progress-label { font-size: .75rem; color: var(--muted-foreground); }
+.discovery-questionnaire .discovery-header { margin: 1.5rem auto 2rem; }
+.discovery-questionnaire .discovery-header h1 { font-size: clamp(1.5rem, 2.4vw, 2rem); }
+.discovery-questionnaire .choice-grid.question-choices {
+  grid-template-columns: 1fr;
+  align-items: stretch;
+  gap: 1rem;
+  max-width: 68rem;
+  margin-inline: auto;
+}
+.discovery-questionnaire .choice-card.selectable-card {
+  min-height: 17rem;
+  height: auto;
+  padding: 1.25rem;
+  gap: 1rem;
+  align-items: center;
+  text-align: center;
+  transform: none;
+  background: var(--card);
+  color: var(--foreground);
+}
+.discovery-questionnaire .choice-card.selectable-card:hover { transform: none; }
+.discovery-questionnaire .choice-card.selectable-card:has(input:checked) {
+  transform: none;
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+  background: var(--card);
+  color: var(--foreground);
+}
+.discovery-questionnaire .choice-card.selectable-card:has(input:checked) > strong { color: var(--foreground); }
+.discovery-questionnaire .choice-card .discovery-choice-status,
+.discovery-questionnaire .choice-card.selectable-card:has(input:checked) > .discovery-choice-status {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: .25rem;
+  min-height: 1.5rem;
+  padding: .125rem .625rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: .6875rem;
+  color: var(--muted-foreground);
+}
+.discovery-questionnaire .choice-card.selectable-card:has(input:checked) > .discovery-choice-status {
+  color: var(--foreground);
+  background: var(--accent);
+  border-color: var(--ring);
+}
+.discovery-questionnaire .choice-card .discovery-choice-icon,
+.discovery-questionnaire .choice-card.selectable-card:has(input:checked) > .discovery-choice-icon {
+  display: grid;
+  place-items: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--secondary);
+  color: var(--foreground);
+  margin-bottom: .25rem;
+}
+.discovery-questionnaire .choice-card .discovery-choice-description,
+.discovery-questionnaire .choice-card.selectable-card:has(input:checked) > .discovery-choice-description {
+  color: var(--muted-foreground);
+  line-height: 1.5;
+  font-size: .875rem;
+}
+.discovery-questionnaire .discovery-question-actions { justify-content: center; margin-top: 1.5rem; border: 0; }
+@media (min-width: 40rem) {
+  .discovery-questionnaire .choice-grid.question-choices { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 64rem) {
+  .discovery-questionnaire .choice-grid.question-choices { grid-template-columns: repeat(var(--choice-count), minmax(0, 1fr)); }
+}
 .discovery-header h1 {
   font-size: clamp(1.875rem, 3vw, 2.5rem);
 }

@@ -1,7 +1,14 @@
 # Asgard: Implemented UI foundation
 
-Discovery v3, 2026-11-20: owner-approved overhaul uses compact scenario cards,
-inline experience intake, stage progress and expanded result reasoning. Retain
+Discovery v3 presentation correction, 2026-11-20: the owner requested the earlier
+outlined-card reference. Choices now wrap at four columns maximum, retain stable
+selected geometry, use existing semantic icons and show explanatory text. Progress
+tracks the actual current question and route count, with matching segment columns,
+including Back navigation. This supersedes the initial fixed-stage indicator.
+Focused TypeScript and desktop/mobile browser checks passed; see the v3 guide.
+
+Discovery v3, 2026-11-20: owner-approved overhaul uses scenario cards,
+inline experience intake and expanded result reasoning. Retain
 existing tokens, typography and selection controls. The v3 composition supersedes
 historical fixed-row/oversized Discovery layouts for new attempts only.
 See [v3 evidence and pending manual acceptance](features/guided-discovery-v3.md).
