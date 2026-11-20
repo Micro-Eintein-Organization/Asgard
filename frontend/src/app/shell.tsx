@@ -25,6 +25,7 @@ import { PageMotion } from "@/components/page-motion";
 import { FooterLinks } from "./information";
 
 const onboardingPaths = new Set([
+  appRoutes.start,
   appRoutes.welcome,
   appRoutes.discovery,
   appRoutes.results,

@@ -130,7 +130,7 @@ export function DiscoveryWizard() {
             : "Explore what interests you"}
         </h2>
         <p className="text-sm text-gray-500">
-          Discovery asks about work you’d like to try. You can choose
+          Discovery asks about work you'd like to try. You can choose
           uncertainty, save and leave, or browse careers at any time.
         </p>
         <p className="text-xs text-gray-500">
@@ -161,13 +161,13 @@ function DiscoveryEditor({
   const [intakeBusy, setIntakeBusy] = useState(false);
   const editor = useDiscoveryEditor(initial, definition, intakeDirty, intakeBusy);
   const intakeGuard = useCallback((dirty: boolean, pending: boolean) => { setIntakeBusy(pending); setIntakeDirty(dirty); }, []);
-  const useExperience = definition.version === 3 && editor.question.kind === "experience_preference" && editor.selected.includes("use_experience");
+  const useExperience = definition.version >= 3 && editor.question.kind === "experience_preference" && editor.selected.includes("use_experience");
   const skills = useCoreQuery(["skills"], coreApi.myCompetencies, useExperience);
   const documents = useCoreQuery(["documents"], coreApi.documents, useExperience);
   const experienceReady = !useExperience || !!skills.data?.items.some(item => item.evidence_confirmed || (item.level ?? 0) > 0) || !!documents.data?.active?.evidence.length;
   const questionContent = useRef<HTMLDivElement>(null);
   useContentMotion(questionContent, editor.question.question_id);
-  useScreenContext({ label: "Discovery → " + editor.question.prompt, questionnaire_id: definition.id, question_id: editor.question.question_id });
+  useScreenContext({ label: "Discovery: " + editor.question.prompt, questionnaire_id: definition.id, question_id: editor.question.question_id });
   const heading = useRef<HTMLHeadingElement>(null);
   const errorSummary = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -181,12 +181,14 @@ function DiscoveryEditor({
     <section className="discovery-page discovery-questionnaire">
       <DiscoveryHeader
         currentStep={editor.index + 1}
-        totalSteps={editor.total}
+        totalSteps={definition.version === 1 ? 5 : definition.version === 2 ? 6 : definition.version === 3 ? 10 : editor.total}
+        progress={editor.saved.flow?.progress_by_question[editor.question.question_id]}
         disabled={editor.busy}
         onBack={() => void editor.move(-1)}
         onSkip={() => void editor.skip()}
       />
-      <div ref={questionContent} className={definition.version === 3 ? "discovery-v3" : undefined}>
+      <div ref={questionContent} className={definition.version >= 3 ? "discovery-v3" : undefined}>
+        {editor.saved.flow?.experience_changed && <StatePanel kind="error" title="Your experience changed" action={<div className="action-row"><Button onClick={() => void editor.refreshExperience()}>Use updated experience</Button><Button variant="outline" onClick={() => void editor.startBasics()}>Start with the basics</Button></div>}>Your answers are kept. Choose how to continue before answering more questions.</StatePanel>}
         <header className="discovery-header">
           <h1 ref={heading} tabIndex={-1}>
             {editor.question.prompt}
@@ -203,7 +205,7 @@ function DiscoveryEditor({
           </p>
         </header>
         <fieldset
-          disabled={editor.busy}
+          disabled={editor.busy || !!editor.saved.flow?.experience_changed}
           aria-describedby="question-helper"
           className="choice-grid question-choices border-0 p-0"
           style={
@@ -275,13 +277,9 @@ function DiscoveryEditor({
               Skip
             </Button>
           )}
-          <Button disabled={editor.busy || intakeBusy || !experienceReady || (useExperience && intakeDirty)} onClick={() => void editor.move(1)}>
+          <Button disabled={editor.busy || intakeBusy || !experienceReady || (useExperience && intakeDirty) || !!editor.saved.flow?.experience_changed} onClick={() => void editor.move(1)}>
             {editor.busy && <LoadingIndicator />}
-            {editor.busy
-              ? "Saving…"
-              : editor.index === editor.total - 1
-                ? "See suggestions"
-                : "Next"}
+            {editor.busy ? editor.pendingLabel : editor.readyToComplete ? "See suggestions" : "Continue"}
           </Button>
         </div>
         {definition.version !== 3 && <p className="text-center text-xs text-gray-500">
@@ -407,6 +405,7 @@ export function DiscoveryResults() {
   }
   return (
     <section className="recommendations-page">
+      {questionnaire.data?.version === 4 && completed && <DiscoveryHeader currentStep={1} totalSteps={1} progress={100} onBack={() => void navigate(appRoutes.discovery)} onSkip={() => void navigate(appRoutes.careers)} />}
       <BackLink to={appRoutes.discovery}>Back to Discovery</BackLink>
       <div>
         <PageHeading
@@ -447,7 +446,7 @@ export function DiscoveryResults() {
           ) : completed && (
             <Button variant="outline" disabled={retake.isPending || state.isFetching}
               onClick={() => void retakeDiscovery()}>
-              {retake.isPending ? "Opening…" : "Retake Discovery"}
+              {retake.isPending ? "Opening..." : "Retake Discovery"}
             </Button>
           )}
         </div>

@@ -4,6 +4,29 @@ Baseline: 2026-11-17. This is the remaining-work register, not implementation au
 
 ## Feature status
 
+Discovery completion correction, 2026-11-20: implemented locally under the owner's
+approved plan. Navigation uses the returned saved route across v1-v4, the final
+label requires saved completion readiness, and legacy progress has no shifting
+total. Ten focused frontend regressions, TypeScript, scoped lint and one local
+authenticated clarification-to-results walkthrough passed. Human review, hosted
+activation and guided multi-tab acceptance remain pending; no additional migration.
+See [evidence and manual steps](features/guided-discovery-v4.md#completion-and-navigation-correction-2026-11-20).
+
+Discovery v4, 2026-11-20: consistent question planning, balanced experience-based
+selection and fixed-phase progress are prepared under the owner's approved plan.
+Scripts are supplied for operator review/application. V4 was activated locally
+with explicit owner authorization; one short authenticated Basics/two-field/Results
+browser journey passed. Hosted activation and broader experience/resume acceptance
+remain pending.
+See [v4 guide](features/guided-discovery-v4.md).
+
+Discovery resume rationale follow-up, 2026-11-20: the owner requested distinct
+questions and experience-based main reasons. Reuse of current validated saved
+resume interpretations is implemented, with exact wording fallback and original
+fact provenance; new interpretation generation remains owned by the existing
+resume service. Structured evidence/route checks passed; actual resume-upload
+acceptance remains pending. See the [Discovery guide](features/guided-discovery-v3.md).
+
 Discovery v3, 2026-11-20: owner-approved adaptive questions, inline experience
 intake and expanded deterministic reasoning are implemented in source. Local
 question registry published; authenticated/browser/privacy acceptance pending.
@@ -32,7 +55,7 @@ See [current handoff](features/competency-comparison.md).
 | FUT-05 | Adaptive Discovery | v2 implemented; learner comprehension remains pending. Optional AI refinement remains proposed. See [Discovery](features/guided-discovery-v2.md) |
 | FUT-06 | Suitable learning entry point | Authored next-topic guidance implemented; no inferred mastery or automatic completion. Further assessment/personal practice remains deferred |
 | FUT-07 | Broader curricula | Publication and expansion implemented; new curricula still require editorial, resource, and licensing review |
-| FUT-08 | Labor-market context | Optional future work; no selected demand/salary feed |
+| FUT-08 | Labor-market context | Owner clarification, 2026-11-20: approximate starting-pay guidance now covers the full 23-career published catalog under PH-SALARY-01, including explicitly labeled broader role-family estimates. Replaces the initial six-career mixed-experience snapshot. Independent content/technical review and owner Chrome acceptance remain pending. No live salary or demand feed selected. See [comparison guide](features/career-comparison-and-shortlist.md#approximate-starting-pay-2026-11-20) |
 | FUT-09 | OCR and other document formats | Deferred; selectable-text PDF support does not authorize OCR or new parsers |
 | FUT-10 | Profile photos | Source supports hosted activation; hosted acceptance and unattended cleanup remain pending |
 | FUT-11 | Google/MFA/recovery | MFA/password-recovery source implemented. Owner/codeowner approved MFA-RECOVERY-01 and explicitly authorized activation before live/manual acceptance on 2026-11-19; the Render Blueprint is enabled. See [recovery guide](features/application-recovery-codes.md). Actual hosted activation and AUTH-C2 provider/session/notification evidence remain unverified. Google stays omitted; AUTH-C1 and public-abuse gates remain open. Reviewer/operator: @YakisobaNissin |

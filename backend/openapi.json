@@ -1631,6 +1631,46 @@
         "title": "DiscoveryExplanation",
         "type": "object"
       },
+      "DiscoveryFlow": {
+        "additionalProperties": false,
+        "properties": {
+          "completed": {
+            "default": false,
+            "title": "Completed",
+            "type": "boolean"
+          },
+          "experience_changed": {
+            "title": "Experience Changed",
+            "type": "boolean"
+          },
+          "phases": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Phases",
+            "type": "array"
+          },
+          "planner_version": {
+            "title": "Planner Version",
+            "type": "string"
+          },
+          "progress_by_question": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "title": "Progress By Question",
+            "type": "object"
+          }
+        },
+        "required": [
+          "planner_version",
+          "phases",
+          "progress_by_question",
+          "experience_changed"
+        ],
+        "title": "DiscoveryFlow",
+        "type": "object"
+      },
       "DiscoveryOption": {
         "additionalProperties": false,
         "properties": {
@@ -1707,6 +1747,16 @@
             "format": "date-time",
             "title": "Created At",
             "type": "string"
+          },
+          "flow": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DiscoveryFlow"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "id": {
             "format": "uuid",
@@ -4837,6 +4887,11 @@
             "minimum": 0.0,
             "title": "Expected Version",
             "type": "integer"
+          },
+          "refresh_experience": {
+            "default": false,
+            "title": "Refresh Experience",
+            "type": "boolean"
           }
         },
         "required": [

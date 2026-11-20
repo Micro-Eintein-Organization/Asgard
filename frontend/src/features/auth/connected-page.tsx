@@ -49,7 +49,7 @@ export function ConnectedAuthPage({ mode }: { mode: Mode }) {
     if (mode !== "recovery" && auth.user?.email_confirmed_at && !auth.loading &&
         auth.mfa !== "checking" && !auth.error)
       void navigate(
-        auth.mfa === "required" ? routes.mfaChallenge : mode === "verify" ? routes.mfaSetup + "?welcome=1" : appRoutes.dashboard,
+        auth.mfa === "required" ? routes.mfaChallenge : mode === "verify" ? routes.mfaSetup + "?welcome=1" : appRoutes.start,
         {
           replace: true,
         },
@@ -83,7 +83,7 @@ export function ConnectedAuthPage({ mode }: { mode: Mode }) {
               ? "Confirm your email before signing in."
               : "Could not sign in. Check your email and password, then try again.",
           );
-        void navigate(appRoutes.dashboard, { replace: true });
+        void navigate(appRoutes.start, { replace: true });
       } else if (mode === "register") {
         const { data, error } = await supabase.auth.signUp({
           email: values.email.trim(),

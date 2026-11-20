@@ -87,7 +87,7 @@ function MfaForm({ challenge, onRecover }: { challenge: boolean; onRecover: () =
       if (challenge) {
         await verifySecondFactor(code);
         await auth.refreshAssurance();
-        void navigate(appRoutes.dashboard, { replace: true });
+        void navigate(appRoutes.start, { replace: true });
       } else if (pending) {
         if (Date.now() >= authenticatedUntil.current)
           throw new Error("Setup authentication expired. Cancel setup and confirm your password again.");

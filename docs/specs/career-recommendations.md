@@ -9,6 +9,14 @@ acceptance: [F-002-AC-01, F-002-AC-02, F-002-AC-03, F-002-AC-04, F-002-AC-05, F-
 
 # Asgard: Career recommendations
 
+V4 prepared, 2026-11-20: the owner selected balanced interest/experience influence
+and at most one explained outside-field alternative, restricted to published
+Asgard careers. Rules assemble experience before candidate selection; preserve
+both supported fields and use clarification, combined support, interest-only and
+experience-within-direction tiers. See the [v4 guide](../features/guided-discovery-v4.md)
+for source provenance, deduplication, limits and pending activation. V1–v3 remain
+version-specific. No assessed proficiency or generated curricula are authorized.
+
 Owner-approved v3 overhaul, 2026-11-20: deterministic v3 results use active
 scenarios and optionally supplied experience, with structured answer, experience,
 roadmap and first-topic explanations. Confirmed career-linked skills break ties;
@@ -16,6 +24,13 @@ resume connections use exact published skill wording. Context changes invalidate
 experience-dependent results. Optional Counselor elaboration cannot rerank the
 saved suggestions. Existing v1/v2 behavior stays version-specific.
 See [implementation, evidence and limits](../features/guided-discovery-v3.md).
+
+2026-11-20 explanation correction: v3 rules reuse current validated saved resume
+interpretations alongside exact published skill wording. Resume facts must resolve
+to the active analysis revision and career-specific published skill relationships.
+Supported background appears in the visible main explanation; no new provider call
+is needed. Rules version 3.1 invalidates older deterministic explanations. This
+does not treat resume statements as assessed proficiency or change learning state.
 
 Owner-approved update, 2026-11-09: completed Guided Discovery v2 uses
 [deterministic first results](../plans/discovery-deterministic-results.md).

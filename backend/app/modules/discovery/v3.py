@@ -170,13 +170,15 @@ def definition(base):
             choices + [uncertain],
             2,
         )
-        for activity, label, description in choices:
-            alternatives = [(key, name, detail) for key, name, detail in choices if key != activity]
+        for activity, _label, _description in choices:
+            from app.modules.discovery.follow_ups import SITUATIONS
+
+            situation, tasks = SITUATIONS[activity]
             add(
                 "scenario_" + activity,
-                "After you " + label[0].lower() + label[1:] + ", what would you try next?",
-                "Your earlier choice: " + description,
-                [(activity, "Go deeper: " + label, description), *alternatives[:2], uncertain],
+                situation,
+                "Choose the part of this situation you would most like to work on.",
+                tasks + [uncertain],
             )
     for left, right in combinations(SCENARIOS, 2):
         labels = {f: p for f, (p, _) in SCENARIOS.items()}

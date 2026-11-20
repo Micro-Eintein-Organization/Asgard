@@ -1,6 +1,9 @@
+import json
+
 from sqlalchemy import text
 
 from app.core.errors import APIError
+from app.modules.discovery import experience, v4
 from app.modules.discovery.definition import (
     QUESTIONNAIRE_V2_ID,
     active_route,
@@ -14,10 +17,23 @@ from app.modules.storage import lock_account, one, required, rows
 
 async def questionnaire(connection, questionnaire_id=None):
     if questionnaire_id is None:
-        published_v3 = await one(connection,
-            ('SELECT id FROM asgard_catalog.questionnaires WHERE id=CAST(:id AS'
-                ' uuid) AND published_at IS NOT NULL'),
-            {"id": str(QUESTIONNAIRE_V3_ID)})
+        latest = await one(
+            connection,
+            "SELECT id FROM asgard_catalog.questionnaires WHERE id=CAST(:id AS uuid) "
+            "AND published_at IS NOT NULL",
+            {"id": str(v4.ID)},
+        )
+        if latest:
+            questionnaire_id = v4.ID
+    if questionnaire_id is None:
+        published_v3 = await one(
+            connection,
+            (
+                "SELECT id FROM asgard_catalog.questionnaires WHERE id=CAST(:id AS"
+                " uuid) AND published_at IS NOT NULL"
+            ),
+            {"id": str(QUESTIONNAIRE_V3_ID)},
+        )
         if published_v3:
             questionnaire_id = QUESTIONNAIRE_V3_ID
     if questionnaire_id is None:
@@ -81,11 +97,30 @@ async def session(connection, uid, session_id, *, locked=False):
     )
     by_id = {item["question_id"]: item["option_ids"] for item in answers}
     route = active_route(by_id, authored.version)
+    flow = None
+    if authored.version == 4:
+        plan = await one(
+            connection,
+            "SELECT flow_plan FROM asgard_private.discovery_sessions "
+            "WHERE user_id=CAST(:uid AS uuid) AND id=CAST(:id AS uuid)",
+            {"uid": str(uid), "id": str(session_id)},
+        )
+        token, support = (
+            await experience.current(connection, uid)
+            if by_id.get("experience_preference") == ["use_experience"]
+            else ("basics", {})
+        )
+        stored = plan["flow_plan"]
+        changed = bool(stored and stored.get("experience_token") != token)
+        route = stored["route"] if changed else v4.route(by_id, support)
+        flow = v4.metadata(by_id, route, changed)
+        flow["completed"] = saved["status"] == "completed"
     questions = {item.question_id: item for item in authored.questions}
     for key, selected in by_id.items():
         validate_answer(questions[key], selected)
     return DiscoverySession(
         **saved,
+        flow=flow,
         answers=answers,
         active_question_ids=route,
         next_question_id=next((key for key in route if key not in by_id), None),
@@ -176,7 +211,44 @@ async def checkpoint(connection, uid, session_id, body):
         validate_answer(question, answer.option_ids)
         merged[answer.question_id] = answer.option_ids
     route = active_route(merged, authored.version)
-    if authored.version == 3 and merged.get("experience_preference") == ["use_experience"]:
+    if authored.version == 4:
+        token, support = (
+            await experience.current(connection, uid)
+            if merged.get("experience_preference") == ["use_experience"]
+            else ("basics", {})
+        )
+        if (
+            saved.flow
+            and saved.flow.experience_changed
+            and not body.refresh_experience
+            and merged.get("experience_preference") == ["use_experience"]
+        ):
+            raise APIError(
+                409,
+                "experience_changed",
+                "Your experience changed. Use updated experience or start with the basics.",
+            )
+        route = v4.route(merged, support)
+        await connection.execute(
+            text(
+                "UPDATE asgard_private.discovery_sessions SET flow_plan=CAST(:plan AS jsonb) "
+                "WHERE user_id=CAST(:uid AS uuid) AND id=CAST(:id AS uuid)"
+            ),
+            {
+                "uid": str(uid),
+                "id": str(session_id),
+                "plan": json.dumps(
+                    {
+                        "planner_version": v4.VERSION,
+                        "experience_token": token,
+                        "route": route,
+                        "work_slots": max(1, len(set(merged.get("interests", [])) - {"unsure"}))
+                        + 2,
+                    }
+                ),
+            },
+        )
+    if authored.version >= 3 and merged.get("experience_preference") == ["use_experience"]:
         await require_experience(connection, uid)
     if any(answer.question_id not in route for answer in body.answers):
         raise APIError(
@@ -191,18 +263,16 @@ async def checkpoint(connection, uid, session_id, body):
         )
         for item in body.answers
     )
-    if not changed:
+    if not changed and not body.refresh_experience:
         return saved
     for answer in body.answers:
         await connection.execute(
             text(
-
-                    "INSERT INTO asgard_private.discovery_answers (user_id, session_id, "
-                    "questionnaire_id, question_id, option_ids) VALUES (CAST(:uid AS uuid),"
-                    " CAST(:sid AS uuid), CAST(:qid AS uuid), :question, :options) ON "
-                    "CONFLICT (session_id, question_id) DO UPDATE SET option_ids = "
-                    "EXCLUDED.option_ids"
-
+                "INSERT INTO asgard_private.discovery_answers (user_id, session_id, "
+                "questionnaire_id, question_id, option_ids) VALUES (CAST(:uid AS uuid),"
+                " CAST(:sid AS uuid), CAST(:qid AS uuid), :question, :options) ON "
+                "CONFLICT (session_id, question_id) DO UPDATE SET option_ids = "
+                "EXCLUDED.option_ids"
             ),
             {
                 "uid": str(uid),
@@ -214,10 +284,8 @@ async def checkpoint(connection, uid, session_id, body):
         )
     await connection.execute(
         text(
-
-                "UPDATE asgard_private.discovery_sessions SET revision = revision + 1 "
-                "WHERE user_id = CAST(:uid AS uuid) AND id = CAST(:sid AS uuid)"
-
+            "UPDATE asgard_private.discovery_sessions SET revision = revision + 1 "
+            "WHERE user_id = CAST(:uid AS uuid) AND id = CAST(:sid AS uuid)"
         ),
         {"uid": str(uid), "sid": str(session_id)},
     )
@@ -241,7 +309,10 @@ async def complete(connection, uid, session_id, body):
             "discovery_incomplete",
             "Answer every question on your current route before completing Discovery.",
         )
-    if saved.questionnaire_id == QUESTIONNAIRE_V3_ID and any(
+    if saved.flow and saved.flow.experience_changed:
+        raise APIError(409, "experience_changed",
+                       "Refresh your experience before completing Discovery.")
+    if saved.questionnaire_id in (QUESTIONNAIRE_V3_ID, v4.ID) and any(
         a.question_id == "experience_preference" and a.option_ids == ["use_experience"]
         for a in saved.answers
     ):

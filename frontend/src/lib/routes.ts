@@ -14,6 +14,7 @@ export const routes = {
 };
 
 export const appRoutes = {
+  start: "/start",
   dashboard: "/dashboard",
   welcome: "/welcome",
   discovery: "/discovery",

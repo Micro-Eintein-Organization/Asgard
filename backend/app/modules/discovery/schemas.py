@@ -46,7 +46,16 @@ class DiscoveryAnswer(Contract):
         return value
 
 
+class DiscoveryFlow(Contract):
+    planner_version: str
+    phases: list[str]
+    progress_by_question: dict[str, float]
+    experience_changed: bool
+    completed: bool = False
+
+
 class DiscoverySession(Contract):
+    flow: DiscoveryFlow | None = None
     id: UUID
     questionnaire_id: UUID
     source_session_id: UUID | None
@@ -69,6 +78,7 @@ class StartDiscovery(Contract):
 
 
 class SaveDiscovery(VersionedChange):
+    refresh_experience: bool = False
     answers: Annotated[list[DiscoveryAnswer], Field(min_length=1, max_length=10)]
 
     @field_validator("answers")

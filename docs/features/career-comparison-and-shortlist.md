@@ -2,6 +2,156 @@
 
 # Career exploration and saved comparison
 
+## Approximate starting pay, 2026-11-20
+
+Implementer: Codex. Created/last updated: 2026-11-20. Owner-approved scope:
+“cant you search online on the general? it doesnt need to be accurate jsut a
+gist on average starting.” The owner also corrected the obsolete twelve-career
+assumption; [the current catalog record](career-catalog.md#published-career-counts-2026-11-08)
+and [expansion publication](../../supabase/content/20261104_guide_expansion_11_careers.sql)
+establish 23 published careers. The old occupational CSV is a partial reference
+inventory, not the full application roster.
+
+Status: source implemented; Chrome acceptance and independent technical/content
+review pending. Reviewer: @YakisobaNissin. Acceptance: PH-SALARY-01,
+COMPARE-ORG-01, COMPARE-PRESERVE-01, CEJ-04, REQ-06 and PM-W06. See the
+[owning specification](../specs/career-exploration-comparison.md#philippine-salary-and-organization-update-2026-11-20)
+and [bounded plan](../plans/comparison-ph-salary-2026-11-20.md).
+
+All 23 current careers now have a rough starting-pay range in PHP/month. These
+are authored planning estimates informed by linked DOLE career references,
+junior networking salary information and early-career recruitment guides.
+Each card labels the estimate basis and source vintage. Broader role-family
+estimates are explicit; DevOps uses junior experience of 1–3 years. Unknown
+future IDs retain an unavailable state. Initial mixed-experience Sweldex medians
+were removed rather than relabeled as starting salaries. Source links and the
+scope note explain that ranges are not measured national averages.
+
+Changed modules remain [comparison-page.tsx](../../frontend/src/features/careers/comparison-page.tsx),
+[ph-salary.tsx](../../frontend/src/features/careers/ph-salary.tsx),
+[ph-salary-data.ts](../../frontend/src/features/careers/ph-salary-data.ts) and
+[ph-salary.test.tsx](../../frontend/src/features/careers/ph-salary.test.tsx).
+The regression reads both the original reference IDs and the published 11-role
+expansion so that coverage is checked against the expanded roster. See
+[source/provenance notes](../../licenses/ph-salary.md). No shared contract,
+database, dependency, auth, recommendation or learning-state changes.
+
+Verification for this follow-up: TypeScript and scoped ESLint passed. Four
+focused salary tests passed, including source/estimate identity after reversal,
+coverage of all 23 published career IDs, unknown future IDs and broader-family
+disclosures. Fifty-one local documentation links/anchors and whitespace passed.
+The first coverage-test run failed because Vitest resolved `import.meta.url` as
+a browser URL; reading the repository files from the established frontend test
+working directory corrected the harness, and the affected suite passed on retry.
+Browser/manual acceptance is pending with the owner, who requested
+self-verification in Chrome. No live provider call or hosted activation is
+required for these UI estimates.
+
+Current manual steps:
+
+1. Open `http://127.0.0.1:5173/careers/compare`. Compare Cybersecurity Analyst
+   with Backend Developer. Both should show Approx. starting salary, a PHP/month
+   range, source and estimate basis rather than unavailable salary coverage.
+2. Compare another expansion role such as Cloud Engineer or Game Developer.
+   Confirm that a broader role-family estimate is identified on the card.
+3. Reverse the selection and refresh. Ranges and source links must stay attached
+   to the correct career. Check the source disclosure and section links.
+4. At desktop and about 390 px, confirm readable paired/stacked cards, wrapping
+   ranges and no horizontal scrolling. Check selectors/links with the keyboard.
+
+Report the pair, URL, viewport, action and expected/actual result if anything
+fails. Owner/@YakisobaNissin owns manual acceptance and technical review;
+independent salary-content review is unassigned. Older references and broader
+family estimates are deliberate limitations of this quick comparison, not
+representative current wage statistics. No live feed is selected.
+
+## Philippine salary and organization, 2026-11-20
+
+Historical initial increment: its six-role, mixed-experience salary snapshot and
+salary-specific manual expectations are superseded by the starting-pay follow-up
+above. Its organization and icon changes remain current.
+
+Implementer: Codex. Increment created: 2026-11-20. Last updated: 2026-11-20.
+Status: implemented locally; owner Chrome acceptance and independent
+technical/content review pending. Required reviewer: @YakisobaNissin.
+Acceptance IDs: CEJ-04, REQ-06, PM-W06, PH-SALARY-01, COMPARE-ORG-01,
+COMPARE-PRESERVE-01. Owner approval: “implement” in chat, 2026-11-20, for the
+[bounded plan](../plans/comparison-ph-salary-2026-11-20.md). The
+[comparison specification](../specs/career-exploration-comparison.md#philippine-salary-and-organization-update-2026-11-20)
+owns requirements; the [architecture](../architecture.md) remains unchanged.
+
+The page groups the two selectors, adds direct section links, and separates
+work, Philippine salary, shared work/skills, learning, reported experience and
+personal notes. Existing Lucide icons identify headings and actions with visible
+text labels. Pairs retain their submitted order and stack below the existing
+two-column breakpoint. Existing tokens and shared cards/buttons remain in use;
+the page adds no animation or global style changes.
+
+Salary cards show Sweldex's Philippine-employer median advertised pay in monthly
+PHP, before deductions, with source role, month, sample count, source link and
+retrieval date. Five source groups cover Frontend Developer, Data Analyst,
+Data Engineer, UI Designer, UX Designer and DevOps Engineer. UI and UX explicitly
+share a combined group. September and October 2026 snapshots remain separately
+labeled; the page warns that periods and samples differ. Other careers show
+Salary reference unavailable. No zero, inferred salary, seniority estimate or
+salary ranking is substituted. Source attribution, limitations and CC BY 4.0
+are included in Sources and limitations. See [provenance](../../licenses/ph-salary.md).
+
+Source/modules:
+
+- [Comparison page](../../frontend/src/features/careers/comparison-page.tsx):
+  organization, labeled icons and section links.
+- [Salary component](../../frontend/src/features/careers/ph-salary.tsx):
+  pair rendering, unavailable coverage and source disclosure.
+- [Salary snapshot](../../frontend/src/features/careers/ph-salary-data.ts):
+  canonical ID mappings, source metadata, units and reference periods.
+- [Focused regressions](../../frontend/src/features/careers/ph-salary.test.tsx):
+  identity after reversing, mixed periods, absent coverage and combined design.
+
+Verification on 2026-11-20:
+
+- Passed: `npm run typecheck` from `frontend/`.
+- Passed: scoped ESLint on the four frontend files above, with zero warnings.
+- Passed: `npm test -- src/features/careers/ph-salary.test.tsx` from `frontend/`;
+  one file, three tests.
+- Passed: 40 local documentation links/anchors, all six salary mappings against
+  canonical career IDs, tracked-diff whitespace and new-file whitespace checks.
+- Browser verification not run: Chrome access was denied by Computer Use. The
+  owner explicitly selected self-verification in Chrome; no further browser
+  automation is planned for this increment.
+- No API/schema/auth/database/dependency changes. No live AI call, full
+  foundation suite, image rebuild, hosted activation, commit or publication.
+
+Owner manual acceptance (pending):
+
+1. Open `http://127.0.0.1:5173/careers/compare`. Select Frontend Developer and
+   Data Analyst, then Compare careers. Use the Philippine salary comparison
+   section link: the frontend reference shows PHP 61,250/month, September 2026,
+   18 ads; the analyst reference shows PHP 35,000/month, October 2026, 277 ads.
+   Confirm dates, before-deduction labels and source links are visible.
+2. Reverse the careers and submit, then refresh. Each figure and its source
+   must stay with the correct career and the URL must retain the pair.
+3. Compare Cybersecurity Analyst with Data Analyst: the security role must show
+   unavailable salary coverage and the analyst figure must remain visible.
+   Compare UI Designer with UX Designer: both must disclose the combined source.
+4. Use the section links and expand Sources and limitations. Confirm salary
+   methodology/license links coexist with existing occupational and AI sources.
+   Follow a source link in its new tab and a learning link in the application.
+5. Check the page at desktop width and about 390 px, then keyboard through the
+   selectors, section links, disclosures and source links. Pairs should stack
+   without horizontal scrolling and focused controls should remain visible.
+6. Confirm existing work explanations and reported experience still appear.
+   If desired, use a disposable account to save a private note and refresh it;
+   browsing comparisons and learning links must not change learning progress.
+
+Report failures with the selected pair, URL, viewport width, action,
+expected/actual result and a sanitized request ID if shown. Human verification
+and integration follow-up owner: project owner/@YakisobaNissin. Content review
+assignment beyond the technical reviewer remains unassigned. The source is an
+advertisement sample with uneven coverage, not a representative wage survey.
+Manual snapshot refresh, wider career coverage and independent content review
+remain follow-up work; no live salary/demand feed is selected.
+
 ## Aligned work comparison rows, 2026-11-08
 
 Codex implemented the owner-requested formatting correction for CEJ-04,

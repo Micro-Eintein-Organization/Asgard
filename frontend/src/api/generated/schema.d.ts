@@ -1780,6 +1780,24 @@ export interface components {
             /** Roadmap Reason */
             roadmap_reason: string;
         };
+        /** DiscoveryFlow */
+        DiscoveryFlow: {
+            /**
+             * Completed
+             * @default false
+             */
+            completed: boolean;
+            /** Experience Changed */
+            experience_changed: boolean;
+            /** Phases */
+            phases: string[];
+            /** Planner Version */
+            planner_version: string;
+            /** Progress By Question */
+            progress_by_question: {
+                [key: string]: number;
+            };
+        };
         /** DiscoveryOption */
         DiscoveryOption: {
             /** Description */
@@ -1806,6 +1824,7 @@ export interface components {
              * Format: date-time
              */
             created_at: string;
+            flow?: components["schemas"]["DiscoveryFlow"] | null;
             /**
              * Id
              * Format: uuid
@@ -2923,6 +2942,11 @@ export interface components {
             answers: components["schemas"]["DiscoveryAnswer"][];
             /** Expected Version */
             expected_version: number;
+            /**
+             * Refresh Experience
+             * @default false
+             */
+            refresh_experience: boolean;
         };
         /** SavePractice */
         SavePractice: {

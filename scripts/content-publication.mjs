@@ -50,6 +50,7 @@ END IF; END $versions$;`,
     resourceFixes,
     discovery,
     body(root, "20261120_discovery_v3.sql"),
+    body(root, "20261120_discovery_v4.sql"),
     "COMMIT;",
   ].join("\n");
 }
