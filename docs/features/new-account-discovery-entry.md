@@ -1,5 +1,29 @@
 # New-account Discovery entry
 
+2026-11-20 follow-up (Codex, REQ-01/11/13): owner approved the
+[account-entry repair plan](../plans/account-entry-ui-repair.md) in chat. `/start`
+now routes the existing new-learner branch through `/set-up-2fa?welcome=1` before
+Welcome, covering external email confirmation followed by sign-in. Provider factor
+lookup excludes accounts with verified authenticators from this enrollment offer;
+unverified factors do not count as enabled. Lookup errors retain explicit retry.
+Returning learners and account-scoped explicit entry choices still reach Dashboard.
+Skip for now opens Welcome directly, avoiding a setup redirect loop. Enrollment and
+recovery capability gates remain enforced. Source: `frontend/src/features/auth/entry-destination.tsx`;
+existing destination tests now cover enrollment, provider lookup and Skip navigation.
+No persistent onboarding/security contract changed. Human/hosted acceptance pending.
+
+Follow-up verification: all nine destination tests passed, plus existing signup,
+header, session and MFA suites (60 distinct passing cases across seven suites).
+TypeScript and scoped lint passed. One stale MFA test destination was corrected;
+all eight MFA UI tests then passed. Browser connection timed out before visual
+inspection. With a disposable verified account without saved learning/Discovery or
+a browser entry choice, open `http://127.0.0.1:5173/sign-in`; expect Protect your
+account before Welcome. Skip must open Welcome without a loop. Existing enrollment
+flags may disable setup with an explanation; they must not silently skip the page.
+An enrolled account must complete its required challenge; a new learner already
+enrolled then reaches Welcome. Returning/chosen accounts must retain Dashboard.
+Report the failing route/step without passwords, tokens or recovery codes.
+
 Implementer: Codex. Created/updated: 2026-11-20. Reviewer: @YakisobaNissin.
 Requirements: REQ-01/04; F-001-AC-01. Owner reported hosted accounts missing the
 Discovery entry. Scope: post-sign-in navigation and welcome choice only; preserve
@@ -14,7 +38,7 @@ Password sign-in and authenticated landing previously always navigated directly
 to Dashboard. Only the in-app signup verification flow reached optional security
 setup and Welcome; external confirmation followed by sign-in could skip the choice.
 
-Sign-in, authenticated Landing and successful MFA challenge now use protected
+The initial correction made sign-in, authenticated Landing and successful MFA challenge use protected
 `/start`. Existing Discovery draft/completion or current roadmap identifies a
 returning learner. Otherwise Welcome offers Guided Discovery or Browse careers.
 An explicit choice is remembered by account in local browser storage, so deliberate
