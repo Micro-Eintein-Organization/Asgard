@@ -13,7 +13,7 @@ from app.modules.discovery.schemas import DiscoverySession
 from app.modules.discovery.v3 import ID as QUESTIONNAIRE_V3_ID
 from app.modules.discovery.v4 import ID as QUESTIONNAIRE_V4_ID
 from app.modules.progress.service import learning as read_learning
-from app.modules.recommendations import discovery_rules, occupational_runtime
+from app.modules.recommendations import discovery_rules, insufficient_context, occupational_runtime
 from app.modules.recommendations.discovery_v3_rules import RULE_VERSION as V3_RULE_VERSION
 from app.modules.recommendations.discovery_v4_rules import VERSION as V4_RULE_VERSION
 from app.modules.recommendations.provider import (
@@ -142,7 +142,13 @@ async def run(connection, uid, run_id, context_revision, catalog_release_id, *, 
         else None
     )
     rules_run = saved["model_id"] is None and saved["prompt_version"].startswith("discovery-rules-")
-    if rules_run:
+    if saved["prompt_version"] == insufficient_context.VERSION:
+        latest = await discovery.latest_completed_identity(connection, uid)
+        outdated = (
+            saved["context_revision"] != context_revision
+            or (latest["id"] if latest else None) != saved["discovery_session_id"]
+        )
+    elif rules_run:
         latest = await discovery.latest_completed_identity(connection, uid)
         outdated = (
             not latest
@@ -182,6 +188,18 @@ async def run(connection, uid, run_id, context_revision, catalog_release_id, *, 
             or saved["prompt_version"] != PROMPT_VERSION
             or saved["schema_version"] != SCHEMA_VERSION
         )
+    if reference and saved["prompt_version"] != insufficient_context.VERSION:
+        saved_facts = saved["context_snapshot"].get("context", {}).get("facts", [])
+        questions = {q.question_id: q for q in definition(reference.questionnaire_id).questions}
+        if saved_facts and not any(
+            fact["source"] == "discovery"
+            and fact["source_id"] in questions
+            and questions[fact["source_id"]].stage in ("interests", "activities")
+            and questions[fact["source_id"]].kind != "experience_preference"
+            and fact["id"].rsplit(":", 1)[-1] not in ("unsure", "both")
+            for fact in saved_facts
+        ):
+            outdated = True
     return RecommendationRun(
         **{
             key: saved[key]
@@ -281,8 +299,15 @@ async def state(connection, uid, settings):
         elif previous is None:
             previous = value
     completed = await discovery.latest_completed_identity(connection, uid)
+    fallback_available = not completed or (
+        completed["questionnaire_id"] == definition().id
+        and not insufficient_context.has_direction(
+            await discovery.session(connection, uid, completed["id"])
+        )
+    )
     available = release is not None and (
-        (
+        fallback_available
+        or (
             completed
             and completed["questionnaire_id"]
             in (QUESTIONNAIRE_V2_ID, QUESTIONNAIRE_V3_ID, QUESTIONNAIRE_V4_ID)
@@ -617,7 +642,11 @@ async def reserve_attempt(connection, uid, run_id, attempt):
 
 
 async def request_rules(connection, uid, body, learning, release, completed):
-    v3 = completed["questionnaire_id"] in (QUESTIONNAIRE_V3_ID, QUESTIONNAIRE_V4_ID)
+    session = await discovery.session(connection, uid, completed["id"]) if completed else None
+    fallback = not insufficient_context.has_direction(session)
+    v3 = bool(
+        completed and completed["questionnaire_id"] in (QUESTIONNAIRE_V3_ID, QUESTIONNAIRE_V4_ID)
+    )
     strategy = (
         (
             V4_RULE_VERSION
@@ -627,13 +656,15 @@ async def request_rules(connection, uid, body, learning, release, completed):
         if v3
         else discovery_rules.RULE_VERSION
     )
+    if fallback:
+        strategy = insufficient_context.VERSION
     context_revision = learning["context_revision"]
     params = {
         "uid": str(uid),
         "key": str(body.idempotency_key),
         "release": str(release),
-        "session": str(completed["id"]),
-        "revision": completed["revision"],
+        "session": str(completed["id"]) if completed else None,
+        "revision": completed["revision"] if completed else None,
         "context_revision": context_revision,
         "strategy": strategy,
         "schema": discovery_rules.RESULT_SCHEMA,
@@ -641,17 +672,19 @@ async def request_rules(connection, uid, body, learning, release, completed):
     existing = await one(
         connection,
         "SELECT id, prompt_version, schema_version, catalog_release_id, "
-        "discovery_session_id, discovery_revision FROM asgard_private.recommendation_runs "
+        "discovery_session_id, discovery_revision, context_revision "
+        "FROM asgard_private.recommendation_runs "
         "WHERE user_id = CAST(:uid AS uuid) AND idempotency_key = CAST(:key AS uuid)",
         params,
     )
     if existing:
         if (
-            existing["prompt_version"] != strategy
+            (fallback and existing["context_revision"] != context_revision)
+            or existing["prompt_version"] != strategy
             or existing["schema_version"] != discovery_rules.RESULT_SCHEMA
             or existing["catalog_release_id"] != release
-            or existing["discovery_session_id"] != completed["id"]
-            or existing["discovery_revision"] != completed["revision"]
+            or existing["discovery_session_id"] != (completed["id"] if completed else None)
+            or existing["discovery_revision"] != (completed["revision"] if completed else None)
         ):
             raise APIError(
                 409, "idempotency_conflict", "This request key belongs to different saved inputs."
@@ -660,41 +693,42 @@ async def request_rules(connection, uid, body, learning, release, completed):
     reusable = await rows(
         connection,
         "SELECT id FROM asgard_private.recommendation_runs "
-        "WHERE user_id = CAST(:uid AS uuid) AND status = 'completed' "
-        "AND discovery_session_id = CAST(:session AS uuid) AND discovery_revision = :revision "
+        "WHERE user_id = CAST(:uid AS uuid) AND (status = 'completed' "
+        "OR (:strategy = 'experience-fallback-1' AND failure_code = 'no_supported_careers')) "
+        "AND discovery_session_id IS NOT DISTINCT FROM CAST(:session AS uuid) "
+        "AND discovery_revision IS NOT DISTINCT FROM :revision "
         "AND catalog_release_id = CAST(:release AS uuid) AND prompt_version = :strategy "
         "AND schema_version = :schema AND payload_erased_at IS NULL ORDER BY created_at DESC",
         params,
     )
     for candidate in reusable:
-        if v3:
+        if v3 or fallback:
             saved_run = await run(connection, uid, candidate["id"], context_revision, release)
             if saved_run.outdated:
                 continue
         if await eligible(connection, uid, candidate["id"]):
             return await run(connection, uid, candidate["id"], context_revision, release)
 
-    session = await discovery.session(connection, uid, completed["id"])
-    context = RecommendationContext(
-        context_revision=context_revision,
-        discovery=CompletedDiscoveryReference(
-            session_id=session.id,
-            revision=session.revision,
-            questionnaire_id=session.questionnaire_id,
-        ),
-        facts=discovery_facts(session),
-    )
-    if v3 and any(
-        a.question_id == "experience_preference" and "use_experience" in a.option_ids
-        for a in session.answers
-    ):
+    if fallback:
         content = await snapshot(connection, uid, learning, release)
         context = TypeAdapter(SavedRecommendationContext).validate_python(content["context"])
-        context.facts = [
-            fact
-            for fact in context.facts
-            if fact.source in ("discovery", "reported_skill", "pdf_analysis")
-        ]
+    else:
+        context = RecommendationContext(
+            context_revision=context_revision,
+            discovery=CompletedDiscoveryReference(
+                session_id=session.id, revision=session.revision,
+                questionnaire_id=session.questionnaire_id,
+            ),
+            facts=discovery_facts(session),
+        )
+        if v3 and any(
+            a.question_id == "experience_preference" and "use_experience" in a.option_ids
+            for a in session.answers
+        ):
+            content = await snapshot(connection, uid, learning, release)
+            context = TypeAdapter(SavedRecommendationContext).validate_python(content["context"])
+            context.facts = [fact for fact in context.facts
+                             if fact.source in ("discovery", "reported_skill", "pdf_analysis")]
     published = await rows(
         connection,
         "SELECT c.id AS career_id, c.slug, c.title, c.description, r.id AS roadmap_id "
@@ -715,8 +749,19 @@ async def request_rules(connection, uid, body, learning, release, completed):
         )
         entry["roadmap_ids"].append(str(pair["roadmap_id"]))
     catalog = list(catalog_by_slug.values())
-    selected = discovery_rules.select(session, catalog)
-    if v3:
+    selected = [] if fallback else discovery_rules.select(session, catalog)
+    if fallback:
+        from app.modules.competencies import service as skills
+        from app.modules.discovery.experience import augment_reports
+        from app.modules.recommendations.resume_connections import saved_connections
+
+        reports = await augment_reports(connection, uid, await skills.state(connection, uid))
+        selected = insufficient_context.select(
+            catalog, context, reports, await saved_connections(connection, uid, context)
+        )
+        if hasattr(context, "source_references"):
+            context.source_references = []
+    if v3 and not fallback:
         from app.modules.competencies import service as skills
         from app.modules.recommendations.discovery_v3_rules import choose, explain
 
@@ -753,7 +798,7 @@ async def request_rules(connection, uid, body, learning, release, completed):
         # Occupational references are optional context; deterministic rules cite input facts.
         if hasattr(context, "source_references"):
             context.source_references = []
-    if v3:
+    if v3 and not fallback:
         from app.modules.competencies import service as skills
         from app.modules.recommendations.schemas import DiscoveryExplanation
 
@@ -980,6 +1025,11 @@ async def request_run(request, identity, body):
         if completed and completed["questionnaire_id"] in (
             QUESTIONNAIRE_V2_ID, QUESTIONNAIRE_V3_ID, QUESTIONNAIRE_V4_ID
         ):
+            return await request_rules(connection, uid, body, learning, release, completed)
+        completed_session = (
+            await discovery.session(connection, uid, completed["id"]) if completed else None
+        )
+        if not insufficient_context.has_direction(completed_session):
             return await request_rules(connection, uid, body, learning, release, completed)
         occupational_id = await occupational_runtime.reference_release(connection)
         if (

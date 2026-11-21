@@ -1,3 +1,4 @@
+import { hasDiscoveryDirection } from "@/features/recommendations/direction";
 import { useScreenContext } from "@/features/counselor-context";
 import { useContentMotion } from "@/components/use-content-motion";
 import { useEffect, useRef, type CSSProperties } from "react";
@@ -164,7 +165,7 @@ function DiscoveryEditor({
   const useExperience = definition.version >= 3 && editor.question.kind === "experience_preference" && editor.selected.includes("use_experience");
   const skills = useCoreQuery(["skills"], coreApi.myCompetencies, useExperience);
   const documents = useCoreQuery(["documents"], coreApi.documents, useExperience);
-  const experienceReady = !useExperience || !!skills.data?.items.some(item => item.evidence_confirmed || (item.level ?? 0) > 0) || !!documents.data?.active?.evidence.length;
+  const experienceReady = !useExperience || !!skills.data?.items?.some(item => item.evidence_confirmed || (item.level ?? 0) > 0) || !!documents.data?.active?.evidence.length;
   const questionContent = useRef<HTMLDivElement>(null);
   useContentMotion(questionContent, editor.question.question_id);
   useScreenContext({ label: "Discovery: " + editor.question.prompt, questionnaire_id: definition.id, question_id: editor.question.question_id });
@@ -355,7 +356,13 @@ export function DiscoveryResults() {
     () => coreApi.questionnaire(completed?.questionnaire_id),
     !!completed?.questionnaire_id,
   );
-  const rulesMode = (questionnaire.data?.version ?? 0) >= 2;
+  const noDirection = !hasDiscoveryDirection(completed);
+  const documents = useCoreQuery(["documents"], coreApi.documents, noDirection);
+  const skills = useCoreQuery(["skills"], coreApi.myCompetencies, noDirection);
+  const hasExperience = !!documents.data?.active?.evidence.length || !!skills.data?.items?.some(
+    item => (item.level ?? 0) > 0 || (item.level === null && item.evidence_confirmed),
+  );
+  const rulesMode = noDirection || (questionnaire.data?.version ?? 0) >= 2;
   const flow = useRecommendationFlow(rulesMode);
   const generateFor =
     typeof location.state?.generateFor === "string"
@@ -363,10 +370,11 @@ export function DiscoveryResults() {
       : null;
   useEffect(() => {
     if (
-      !completed ||
+      (!completed && (!noDirection || !hasExperience)) ||
+      (noDirection && (documents.isFetching || skills.isFetching)) ||
       !flow.query.data ||
       state.isFetching ||
-      (!!completed.questionnaire_id && !questionnaire.data) ||
+      (!!completed?.questionnaire_id && !questionnaire.data) ||
       flow.query.isFetching ||
       flow.pending ||
       flow.cooldown
@@ -374,23 +382,24 @@ export function DiscoveryResults() {
       return;
     const saved = flow.query.data;
     const current = saved.current;
-    const matchingCompletion = current?.discovery?.session_id === completed.id &&
-      current.discovery.revision === completed.revision && !current.outdated;
+    const matchingCompletion = (current?.discovery?.session_id ?? null) === (completed?.id ?? null) &&
+      current?.discovery?.revision === completed?.revision && !current?.outdated;
     if (rulesMode) {
       if (generateFor) void navigate(appRoutes.results, { replace: true, state: null });
       const finished = matchingCompletion && current?.model_id === null &&
+        (!noDirection || current.prompt_version === "experience-fallback-1") &&
         (current.status === "completed" || current.failure_code === "no_supported_careers");
-      const scope = JSON.stringify([user?.id, completed.id, completed.revision, saved.catalog_release_id]);
+      const scope = JSON.stringify([user?.id, completed?.id, completed?.revision, saved.catalog_release_id, saved.context_revision]);
       if (!saved.available || finished || requestedRules.current === scope) return;
       requestedRules.current = scope;
       void flow.request();
       return;
     }
-    if (!generateFor || started.current || generateFor !== completed.id) return;
+    if (!generateFor || started.current || generateFor !== completed?.id) return;
     started.current = true;
     void navigate(appRoutes.results, { replace: true, state: null });
-    if (saved.available && !matchingCompletion) void flow.request(completed.id);
-  }, [generateFor, completed, flow, navigate, state.isFetching, questionnaire.data, rulesMode, user?.id]);
+    if (saved.available && !matchingCompletion) void flow.request(completed?.id);
+  }, [generateFor, completed, flow, navigate, state.isFetching, questionnaire.data, rulesMode, user?.id, noDirection, hasExperience, documents.isFetching, skills.isFetching]);
   async function retakeDiscovery() {
     if (!completed || !user || state.data?.draft || retake.isPending) return;
     try {
@@ -453,6 +462,7 @@ export function DiscoveryResults() {
         {retake.error && <p role="alert" className="field-error">{retake.error.message}</p>}
         <RecommendationCards
           flow={flow}
+          noDirection={noDirection}
           rulesMode={rulesMode}
           allowInitialRequest={
             !rulesMode && !!flow.query.data?.has_reported_skills && !generateFor

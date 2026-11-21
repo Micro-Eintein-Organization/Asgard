@@ -12,11 +12,11 @@ vi.mock("@/auth/context", () => ({ useAuth: () => ({ user: { id: "user" } }) }))
 vi.mock("@/auth/transport", () => ({ isCurrentAccount: () => true }));
 
 describe("final Discovery handoff", () => {
-  let saved: { data: { latest_completed: { id: string; revision: number; questionnaire_id?: string }; draft?: object }; isFetching: boolean };
+  let saved: { data: { latest_completed: { id: string; revision: number; questionnaire_id?: string; answers?: {question_id: string; option_ids: string[]}[]; active_question_ids?: string[] }; draft?: object }; isFetching: boolean };
   let flow: ReturnType<typeof useRecommendationFlow>;
   let retake: ReturnType<typeof vi.fn>;
   beforeEach(() => {
-    saved = { data: { latest_completed: { id: "completed-session", revision: 6 } }, isFetching: false };
+    saved = { data: { latest_completed: { id: "completed-session", revision: 6, answers: [{question_id: "interests", option_ids: ["data"]}], active_question_ids: ["interests"] } }, isFetching: false };
     flow = {
       query: { data: { available: true, current: null }, isFetching: false },
       pending: false, request: vi.fn(),
@@ -48,7 +48,7 @@ describe("final Discovery handoff", () => {
     const { router } = open();
     expect(flow.request).not.toHaveBeenCalled();
     expect(router.state.location.state).toEqual({ generateFor: "completed-session" });
-    saved.data.latest_completed = { id: "completed-session", revision: 6 };
+    saved.data.latest_completed = { id: "completed-session", revision: 6, answers: [{question_id: "interests", option_ids: ["data"]}], active_question_ids: ["interests"] };
     await router.navigate("/recommendations", { state: { generateFor: "completed-session" } });
     await waitFor(() => expect(flow.request).toHaveBeenCalledTimes(1));
   });
@@ -62,7 +62,7 @@ describe("final Discovery handoff", () => {
   });
   it("reuses matching saved runs when a handoff is remounted", async () => {
     flow.query.data!.current = {
-      discovery: { session_id: "completed-session", revision: 6 }, status: "failed", outdated: false,
+      discovery: { session_id: "completed-session", revision: 6, answers: [{question_id: "interests", option_ids: ["data"]}], active_question_ids: ["interests"] }, status: "failed", outdated: false,
     } as never;
     const { router } = open();
     await waitFor(() => expect(router.state.location.state).toBeNull());
@@ -104,7 +104,7 @@ describe("final Discovery handoff", () => {
     const data = flow.query.data!;
     const older = {
       model_id: "old-provider", status: "completed", outdated: true,
-      discovery: { session_id: "completed-session", revision: 6 },
+      discovery: { session_id: "completed-session", revision: 6, answers: [{question_id: "interests", option_ids: ["data"]}], active_question_ids: ["interests"] },
     };
     data.current = older as never;
     const previous = open(null);
@@ -120,9 +120,26 @@ describe("final Discovery handoff", () => {
     useV2();
     flow.query.data!.current = {
       model_id: null, status: "failed", outdated: false, failure_code: "no_supported_careers",
-      discovery: { session_id: "completed-session", revision: 6 },
+      discovery: { session_id: "completed-session", revision: 6, answers: [{question_id: "interests", option_ids: ["data"]}], active_question_ids: ["interests"] },
     } as never;
     open(null);
     expect(flow.request).not.toHaveBeenCalled();
   });
+  it("automatically refreshes an uncertain result when saved experience changes", async () => {
+    useV2();
+    saved.data.latest_completed.answers = [{question_id: "interests", option_ids: ["unsure"]}];
+    const current = {discovery: {session_id: "completed-session", revision: 6},
+      status: "failed", failure_code: "no_supported_careers", outdated: false,
+      model_id: null, prompt_version: "experience-fallback-1"};
+    flow.query.data!.current = current as never;
+    const {router} = open(null);
+    expect(flow.request).not.toHaveBeenCalled();
+    current.outdated = true;
+    flow.query.data!.context_revision = 3;
+    await router.navigate("/recommendations");
+    await waitFor(() => expect(flow.request).toHaveBeenCalledOnce());
+    await router.navigate("/recommendations");
+    expect(flow.request).toHaveBeenCalledOnce();
+  });
+
 });

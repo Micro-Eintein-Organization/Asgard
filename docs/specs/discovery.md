@@ -59,6 +59,17 @@ Save valid answers at explicit checkpoints with truthful pending, saved, failed,
 
 Protect unsaved changes during navigation. A failed save must retain the local draft and offer recovery. A stale tab cannot silently overwrite a newer revision. Accepted completed sessions remain immutable.
 
+## Insufficient-information resolution, 2026-11-21
+
+Owner/codeowner @YakisobaNissin approved the bounded plan in chat. Entirely uncertain
+active interests/activities do not produce broad placeholder suggestions. Results
+offers Browse careers and optional Profile résumé/skills links. Saved usable
+experience supports suggestions automatically, without a retake or extra button,
+across v1–v4 and without completed Discovery. Skip still opens the catalog.
+[F-002](career-recommendations.md#insufficient-direction-resolution-2026-11-21)
+owns evidence/refresh behavior; [implementation and checks](../features/guided-discovery-v4.md#insufficient-information-results-2026-11-21)
+records verification and pending acceptance.
+
 ## Results and recommendations
 
 Completed v2 automatically prepares deterministic first suggestions from active answers and published careers, without a provider request or provider quota reservation. Reuse eligible saved results; bounded recovery handles transient failures. Direct activity matches appear before supported related careers, up to three total. Ask a clarification only when it can resolve an actual activity choice. No match percentages or invented skill claims.
