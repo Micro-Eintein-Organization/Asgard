@@ -154,4 +154,14 @@ describe("saved recommendation cards", () => {
     render(<MemoryRouter><RecommendationCards flow={current} allowInitialRequest={false} /></MemoryRouter>);
     expect(screen.queryByRole("button", { name: "Prepare suggestions" })).not.toBeInTheDocument();
   });
+  it("offers honest empty-result recovery without a generation button", () => {
+    const current = flow(true);
+    current.query.data!.current!.failure_code = "no_supported_careers";
+    render(<MemoryRouter><RecommendationCards flow={current} rulesMode noDirection /></MemoryRouter>);
+    expect(screen.getByText(/enough information to recommend a career reliably/)).toBeVisible();
+    expect(screen.getByRole("link", {name: "Upload a résumé"})).toHaveAttribute("href", "/settings/profile#resume-skill-review");
+    expect(screen.getByRole("link", {name: "Add skills"})).toHaveAttribute("href", "/settings/profile#profile-skills");
+    expect(screen.queryByRole("button", {name: "Try again"})).not.toBeInTheDocument();
+  });
+
 });

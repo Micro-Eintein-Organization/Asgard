@@ -25,6 +25,9 @@ Consolidated baseline: 2026-11-17. This register retains recorded owner decision
 
 ## Current resolutions
 
+- REC-EMPTY-01 (2026-11-21, owner/codeowner @YakisobaNissin in chat): approved the bounded plan and requested implementation. Entirely uncertain Discovery uses honest empty results; saved usable résumé/skills automatically support evidence-only suggestions. Covers saved v1–v4 and no completed attempt; preserve Skip to catalog, actual-choice rules and learning state. Supersedes broad uncertainty suggestions and manual refresh only within this fallback. Codex implemented; final code review and live acceptance pending. See [F-002](specs/career-recommendations.md#insufficient-direction-resolution-2026-11-21) and [evidence](features/guided-discovery-v4.md#insufficient-information-results-2026-11-21).
+
+
 - ROADMAP-TECH-EVIDENCE-01 (2026-11-20, project owner in chat): approved technology
   mentions as supporting evidence for explicitly mapped roadmap tasks and then
   approved the bounded plan/table with "implement". No proficiency/completion

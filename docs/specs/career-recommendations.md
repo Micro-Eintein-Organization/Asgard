@@ -60,6 +60,23 @@ Suggest published careers worth exploring with reasons supported by supplied con
 
 FastAPI/Python owns recommendation and PDF-extraction services behind separate provider interfaces. Use Groq, initially evaluate openai/gpt-oss-120b against openai/gpt-oss-20b, and persist validated results in PostgreSQL. The candidate is not a proven final model. Groq documents strict schema output for these candidates; application validation and quality review are still required. [Groq structured output](https://console.groq.com/docs/structured-outputs).
 
+## Insufficient direction resolution, 2026-11-21
+
+Owner/codeowner @YakisobaNissin approved the bounded plan in chat. Across v1–v4,
+no selected active interest/activity and no usable career-linked experience yields
+an honest insufficient-information result with Browse careers and optional Profile
+résumé/skills links. Actual field choices retain existing versioned behavior.
+Skip still opens the catalog, leaving unfinished Discovery unfinished.
+
+Saved positive skill reports and successfully analyzed current résumé passages
+support deterministic experience-only suggestions automatically when Results opens
+or is revisited, including without completed Discovery. No retake, generation
+button or recommendation provider call is needed. Reuse unchanged empty outcomes;
+context changes trigger automatic refresh. This supersedes all-uncertain broad
+suggestions and explicit-refresh-only policy solely for this bounded fallback.
+Missing interests remain unknown; return only supported published careers.
+See [implementation and checks](../features/guided-discovery-v4.md#insufficient-information-results-2026-11-21).
+
 ## Inputs and interpretation
 
 - Supply versioned Discovery answer identifiers and plain descriptions, including explicit uncertainty. Interests and activities can support exploration; work approach only informs explanation/context, never an ability/personality ranking or exclusion.
@@ -67,13 +84,13 @@ FastAPI/Python owns recommendation and PDF-extraction services behind separate p
 - Current roadmap is an explicit learning focus, not exclusive career preference. Progress describes activity. Never translate Done into mastery, Skip into dislike, or absence of progress into low ability.
 - Successful optional PDF analysis supplies explicitly evidenced skills, education, experience and projects. Do not infer proficiency from institutions/titles. Missing information remains unknown.
 - Preferred Primary Field, name and photo are excluded from recommendation reasoning. Field controls catalog navigation only.
-- With saved Discovery uncertainty or a current roadmap/progress, broad suggestions are allowed and must explain the limited basis. With no eligible context at all, show normal catalog browsing and optional Discovery rather than manufacture personalized recommendations.
+- With supplied direction or a current roadmap/progress, broad suggestions must explain the limited basis; entirely uncertain Discovery uses the resolution above. With no eligible context at all, show normal catalog browsing and optional Discovery rather than manufacture personalized recommendations.
 
 Supply all seven published launch roles, their curated descriptions and reviewed relevance attributes to the small-catalog request. No hidden numeric suitability weights or unreviewed one-answer-to-one-role mapping. Software interest does not imply AI interest; work-style answers never exclude hardware, networking, security or other roles. Catalog attributes must be authored/reviewed before release.
 
 ## Result and prompt policy
 
-Return up to three distinct published career IDs. Return fewer if evidence supports fewer; never pad. For all-uncertain or broadly mixed context, request coverage of at least two categories when the published eligible catalog permits it, explaining that these are varied exploration options. This is a product diversity policy, not a research-established ideal count.
+Return up to three distinct published career IDs. Return fewer if evidence supports fewer; never pad. For broadly mixed context with an actual direction, request coverage of at least two categories when the published eligible catalog permits it, explaining that these are varied exploration options. This is a product diversity policy, not a research-established ideal count.
 
 The logical output contains result items with career ID, a plain-language reason (one or two sentences), and one or more references to permitted input facts; include an uncertainty note when applicable. Each reference must resolve to the exact input revision used. Do not include confidence/match percentages, invented skills or opaque labels such as best fit. Existing [Pydantic schemas/validators](../../backend/app/modules/recommendations/schemas.py) and [generated OpenAPI](../../backend/openapi.json) encode the Stage 4 structures; [Development](../development.md#stage-4-shared-contracts-and-handoff) owns the technical handoff. Technical review and service-level claim/uncertainty checks remain required; this prose is not a competing wire contract.
 

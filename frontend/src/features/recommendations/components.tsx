@@ -14,10 +14,12 @@ export function RecommendationCards({
   flow,
   allowInitialRequest = true,
   rulesMode = false,
+  noDirection = false,
 }: {
   flow: ReturnType<typeof useRecommendationFlow>;
   allowInitialRequest?: boolean;
   rulesMode?: boolean;
+  noDirection?: boolean;
 }) {
   const catalog = useCoreQuery(["recommendation-careers"], () =>
     coreApi.catalog({ limit: 100 }),
@@ -92,11 +94,20 @@ export function RecommendationCards({
     no_eligible_context:
       "Record skills, complete Discovery or choose a learning roadmap to provide context.",
     no_supported_careers:
-      "Your answers are saved, but this small catalog does not contain a supported suggestion for them.",
+      "We don’t have enough information to recommend a career reliably yet.",
   };
   return (
     <div className="space-y-6">
-      {!state.available && (
+      {noDirection && !displayed && !flow.pending && !flow.willRetry && !gap && !flow.error && (
+        <p role="status">We don’t have enough information to recommend a career reliably yet.</p>
+      )}
+      {noDirection && !displayed && !flow.pending && (
+        <div className="action-row">
+          <Link className="underline" to={appRoutes.profile + "#resume-skill-review"}>Upload a résumé</Link>
+          <Link className="underline" to={appRoutes.profile + "#profile-skills"}>Add skills</Link>
+        </div>
+      )}
+      {!state.available && !noDirection && (
         <p
           role="status"
           className="border rounded-2xl p-4 text-sm text-gray-600"
@@ -124,8 +135,7 @@ export function RecommendationCards({
           </p>
           {gap && (
             <p>
-              Browse the available careers or return later as the catalog grows.
-              No career has been assigned to you.
+              Browse careers, upload a résumé or add skills to provide more context.
             </p>
           )}
         </div>
@@ -234,7 +244,7 @@ export function RecommendationCards({
           </details>
         </>
       )}
-      {!displayed && !flow.pending && !flow.willRetry && !flow.error && !current && (
+      {!displayed && !flow.pending && !flow.willRetry && !flow.error && !current && !noDirection && (
         <p className="text-center text-sm text-gray-500">
           {rulesMode && state.available
             ? "Preparing your career suggestions…"

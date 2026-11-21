@@ -253,7 +253,18 @@ def test_provider_retry_requires_a_persisted_reservation():
 
 def service_boundary(monkeypatch, content, records):
     connection = SimpleNamespace(execute=AsyncMock())
-    monkeypatch.setattr(service.discovery, "latest_completed_identity", AsyncMock(return_value=None))
+    from app.modules.discovery.definition import QUESTIONNAIRE_ID
+
+    # Provider-backed regressions exercise a supplied legacy direction. No direction
+    # now deliberately selects the deterministic experience-only fallback.
+    completed = {"id": uuid4(), "revision": 1, "questionnaire_id": QUESTIONNAIRE_ID}
+    monkeypatch.setattr(
+        service.discovery, "latest_completed_identity", AsyncMock(return_value=completed)
+    )
+    monkeypatch.setattr(service.discovery, "session", AsyncMock(return_value=SimpleNamespace(
+        questionnaire_id=QUESTIONNAIRE_ID, active_question_ids=["interests"],
+        answers=[SimpleNamespace(question_id="interests", option_ids=["tools"])],
+    )))
 
     @asynccontextmanager
     async def transaction(*args):

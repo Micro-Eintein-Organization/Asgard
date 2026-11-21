@@ -4,6 +4,13 @@ Baseline: 2026-11-17. This is the remaining-work register, not implementation au
 
 ## Feature status
 
+REC-EMPTY-01, 2026-11-21: owner-approved insufficient-information results and
+automatic saved-experience fallback are implemented in source across saved
+Discovery versions. Focused tests and the 2026-11-21 local restricted-role/Chrome skill-fallback pass
+succeeded. Final code review, résumé/legacy/multi-tab/accessibility and hosted
+acceptance remain pending. See [implementation](features/guided-discovery-v4.md#insufficient-information-results-2026-11-21).
+
+
 FUT-01 update, 2026-11-20: the owner approved deterministic technology evidence
 for explicitly mapped roadmap tasks and shared Discovery connections. Source is
 implemented locally by Codex; 167 focused backend cases and OpenAPI drift passed.
